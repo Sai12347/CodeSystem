@@ -2,13 +2,13 @@ services:
   # MySQL Database Service
   mysql:
     image: mysql:8.0
-    container_name: algoplay-mysql
+    container_name: codesystem-mysql
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: root_secure_password
-      MYSQL_DATABASE: algoplay
-      MYSQL_USER: algoplay_user
-      MYSQL_PASSWORD: algoplay_password
+      MYSQL_DATABASE: codesystem
+      MYSQL_USER: codesystem_user
+      MYSQL_PASSWORD: codesystem_password
     ports:
       - "3307:3306"
     volumes:
@@ -25,17 +25,17 @@ services:
     build:
       context: ./backend
       dockerfile: Dockerfile
-    container_name: algoplay-backend
+    container_name: codesystem-backend
     restart: always
     depends_on:
       mysql:
         condition: service_healthy
     environment:
-      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/algoplay?useSSL=false&allowPublicKeyRetrieval=true
-      SPRING_DATASOURCE_USERNAME: algoplay_user
-      SPRING_DATASOURCE_PASSWORD: algoplay_password
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/codesystem?useSSL=false&allowPublicKeyRetrieval=true
+      SPRING_DATASOURCE_USERNAME: codesystem_user
+      SPRING_DATASOURCE_PASSWORD: codesystem_password
       GEMINI_API_KEY: ${GEMINI_API_KEY:-}
-      JWT_SECRET: ${JWT_SECRET:-algoplay_secure_jwt_signing_key_32_bytes_super_secret_for_production}
+      JWT_SECRET: ${JWT_SECRET:-codesystem_secure_jwt_signing_key_32_bytes_super_secret_for_production}
     ports:
       - "8080:8080"
 
@@ -44,7 +44,7 @@ services:
     build:
       context: ./frontend
       dockerfile: Dockerfile
-    container_name: algoplay-frontend
+    container_name: codesystem-frontend
     restart: always
     depends_on:
       - backend
@@ -54,7 +54,7 @@ services:
   # Prometheus Observability Metrics
   prometheus:
     image: prom/prometheus:latest
-    container_name: algoplay-prometheus
+    container_name: codesystem-prometheus
     restart: always
     volumes:
       - ./prometheus.yml:/etc/prometheus/prometheus.yml
@@ -64,7 +64,7 @@ services:
   # Grafana Dashboards
   grafana:
     image: grafana/grafana:latest
-    container_name: algoplay-grafana
+    container_name: codesystem-grafana
     restart: always
     ports:
       - "3001:3000"

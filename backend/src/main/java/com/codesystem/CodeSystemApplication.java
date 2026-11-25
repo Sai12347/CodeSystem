@@ -1,11 +1,11 @@
-package com.algoplay;
+package com.codesystem;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class AlgoPlayApplication {
+public class CodeSystemApplication {
     public static void main(String[] args) {
-        SpringApplication.run(AlgoPlayApplication.class, args);
+        SpringApplication.run(CodeSystemApplication.class, args);
     }
 }

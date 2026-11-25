@@ -1,6 +1,6 @@
-package com.algoplay.repository;
+package com.codesystem.repository;
 
-import com.algoplay.model.UserProfile;
+import com.codesystem.model.UserProfile;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

@@ -1,4 +1,4 @@
-# AlgoPlay — Interactive DSA Learning Platform
+# CodeSystem — Interactive DSA Learning Platform
 
 > A production-quality, interactive web application engineered to help students master Data Structures & Algorithms through interactive visualizations, deterministic step-by-step execution, gamification, and AI tutoring.
 
@@ -57,7 +57,7 @@ flowchart TD
 ## 2. Folder Structure
 
 ```
-algoplay/
+CodeSystem/
 ├── .github/
 │   └── workflows/
 │       └── ci.yml                      # GitHub Actions: Lint, Vitest, Maven tests, Build
@@ -88,7 +88,7 @@ algoplay/
 ├── backend/
 │   ├── src/
 │   │   ├── main/
-│   │   │   ├── java/com/algoplay/
+│   │   │   ├── java/com/CodeSystem/
 │   │   │   │   ├── config/             # SecurityConfig (JWT, CORS), OpenTelemetry
 │   │   │   │   ├── controller/         # Auth, Topic, Practice, AiTutorController
 │   │   │   │   └── model/              # JPA Entities (User, UserProfile, DsaTopic, etc.)

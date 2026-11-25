@@ -41,7 +41,7 @@ export const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose, defaultMo
         name: name.trim() || username.trim(),
       });
 
-      setSuccessMsg(`Welcome to AlgoPlay, ${username}! Your fresh learning profile is initialized.`);
+      setSuccessMsg(`Welcome to CodeSystem, ${username}! Your fresh learning profile is initialized.`);
       setTimeout(() => {
         onClose();
       }, 1200);
@@ -104,7 +104,7 @@ export const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose, defaultMo
             </div>
             <div>
               <h2 id="auth-modal-title" className="text-base font-bold text-zinc-900 dark:text-white">
-                {mode === 'register' ? 'Create Fresh Profile' : mode === 'login' ? 'Sign In to AlgoPlay' : 'Switch Database Profile'}
+                {mode === 'register' ? 'Create Fresh Profile' : mode === 'login' ? 'Sign In to CodeSystem' : 'Switch Database Profile'}
               </h2>
               <p className="text-[11px] text-zinc-400">
                 {mode === 'register' ? 'Start with 0 XP & clean streak' : 'Persistent learning data in database'}

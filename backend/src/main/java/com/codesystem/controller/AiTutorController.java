@@ -1,4 +1,4 @@
-package com.algoplay.controller;
+package com.codesystem.controller;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
@@ -24,7 +24,7 @@ public class AiTutorController {
     public ResponseEntity<Map<String, Object>> explainAlgorithm(@RequestBody TutorRequest request) {
         // High-level safe system prompt for Gemini
         String systemInstruction = """
-            You are AlgoPlay AI Tutor, an elite DSA educator.
+            You are CodeSystem AI Tutor, an elite DSA educator.
             Explain algorithms in a structured, accessible, beginner-friendly format:
             1. Intuitive high-level explanation (plain English, no jargon).
             2. Concrete small example & dry run.
@@ -40,7 +40,7 @@ public class AiTutorController {
             // Server-side fallback if Gemini key is not yet configured in environment
             response.put("source", "local_fallback");
             response.put("explanation", """
-                ### AlgoPlay AI Tutor
+                ### CodeSystem AI Tutor
                 
                 **Question:** """ + request.query() + """
                 

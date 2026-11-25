@@ -9,10 +9,10 @@
         <version>3.3.4</version>
         <relativePath/>
     </parent>
-    <groupId>com.algoplay</groupId>
-    <artifactId>algoplay-backend</artifactId>
+    <groupId>com.codesystem</groupId>
+    <artifactId>codesystem-backend</artifactId>
     <version>1.0.0</version>
-    <name>AlgoPlay Backend</name>
+    <name>CodeSystem Backend</name>
     <description>Interactive DSA Learning Platform Backend API</description>
 
     <properties>

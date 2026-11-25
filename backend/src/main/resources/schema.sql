@@ -1,10 +1,10 @@
 -- ====================================================================
--- ALGOPLAY PRODUCTION DATABASE SCHEMA (MySQL 8.0+)
+-- CodeSystem PRODUCTION DATABASE SCHEMA (MySQL 8.0+)
 -- WCAG 2.2 AA Compliant, Relational, Indexed, Foreign Key Constrained
 -- ====================================================================
 
-CREATE DATABASE IF NOT EXISTS algoplay CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
-USE algoplay;
+CREATE DATABASE IF NOT EXISTS codesystem CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+USE codesystem;
 
 -- 1. Users Table
 CREATE TABLE IF NOT EXISTS users (

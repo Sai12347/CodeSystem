@@ -1,4 +1,4 @@
-name: AlgoPlay CI/CD Pipeline
+name: CodeSystem CI/CD Pipeline
 
 on:
   push:

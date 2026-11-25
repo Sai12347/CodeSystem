@@ -78,7 +78,7 @@ export const Navbar: React.FC<NavbarProps> = ({ activeTab, onTabChange }) => {
                 <Sparkles className="w-5 h-5 fill-current" />
               </div>
               <div>
-                <span className="text-lg font-bold tracking-tight text-zinc-900 dark:text-white">AlgoPlay</span>
+                <span className="text-lg font-bold tracking-tight text-zinc-900 dark:text-white">CodeSystem</span>
                 <span className="hidden sm:inline-block ml-1.5 px-1.5 py-0.5 text-[10px] font-semibold bg-blue-500/10 text-blue-600 dark:text-blue-400 rounded-md">
                   PRO
                 </span>

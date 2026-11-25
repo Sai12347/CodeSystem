@@ -1,5 +1,5 @@
 /**
- * AlgoPlay Top MNCs Interview PYQ Catalog
+ * CodeSystem Top MNCs Interview PYQ Catalog
  * Minimum 100+ real interview questions for every major MNC:
  * Google, Amazon, Microsoft, Meta, Apple, Netflix, Uber, Goldman Sachs, Adobe, Atlassian, Salesforce, Oracle.
  */

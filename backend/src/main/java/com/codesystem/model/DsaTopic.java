@@ -1,4 +1,4 @@
-package com.algoplay.model;
+package com.codesystem.model;
 
 import jakarta.persistence.*;
 

@@ -3,11 +3,11 @@ server:
 
 spring:
   application:
-    name: algoplay-backend
+    name: codesystem-backend
   datasource:
-    url: ${SPRING_DATASOURCE_URL:jdbc:mysql://localhost:3306/algoplay?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true}
-    username: ${SPRING_DATASOURCE_USERNAME:algoplay_user}
-    password: ${SPRING_DATASOURCE_PASSWORD:algoplay_password}
+    url: ${SPRING_DATASOURCE_URL:jdbc:mysql://localhost:3306/codesystem?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true}
+    username: ${SPRING_DATASOURCE_USERNAME:codesystem_user}
+    password: ${SPRING_DATASOURCE_PASSWORD:codesystem_password}
     driver-class-name: com.mysql.cj.jdbc.Driver
   jpa:
     hibernate:
@@ -22,7 +22,7 @@ gemini:
     key: ${GEMINI_API_KEY:}
 
 jwt:
-  secret: ${JWT_SECRET:algoplay_secure_jwt_signing_key_32_bytes_super_secret_for_production}
+  secret: ${JWT_SECRET:codesystem_secure_jwt_signing_key_32_bytes_super_secret_for_production}
   expiration: 86400000 # 24 hours
 
 management:
@@ -39,4 +39,4 @@ management:
 logging:
   level:
     root: INFO
-    com.algoplay: DEBUG
+    com.codesystem: DEBUG

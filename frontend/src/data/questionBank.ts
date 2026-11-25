@@ -1,5 +1,5 @@
 /**
- * AlgoPlay Comprehensive DSA Question Bank
+ * CodeSystem Comprehensive DSA Question Bank
  * Provides 100 to 130 questions for EVERY ONE of the 30 DSA Topics (Total 3,300+ Questions).
  * Each question includes:
  * - Real MNC interview PYQ tags (Google, Amazon, Meta, Microsoft, Apple, Netflix, Uber)

@@ -1,9 +1,9 @@
-package com.algoplay.controller;
+package com.codesystem.controller;
 
-import com.algoplay.model.User;
-import com.algoplay.model.UserProfile;
-import com.algoplay.repository.UserProfileRepository;
-import com.algoplay.repository.UserRepository;
+import com.codesystem.model.User;
+import com.codesystem.model.UserProfile;
+import com.codesystem.repository.UserProfileRepository;
+import com.codesystem.repository.UserRepository;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
@@ -67,7 +67,7 @@ public class AuthController {
             "message", "Login successful",
             "userId", user.getId(),
             "username", user.getUsername(),
-            "token", "algoplay_mock_jwt_token_" + user.getId()
+            "token", "CodeSystem_mock_jwt_token_" + user.getId()
         ));
     }
 }

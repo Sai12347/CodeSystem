@@ -9,7 +9,7 @@ export const Footer: React.FC = () => {
           <div className="w-5 h-5 rounded bg-blue-600 flex items-center justify-center text-white">
             <Sparkles className="w-3 h-3" />
           </div>
-          <span className="font-semibold text-zinc-700 dark:text-zinc-300">AlgoPlay</span>
+          <span className="font-semibold text-zinc-700 dark:text-zinc-300">CodeSystem</span>
           <span>— Production Interactive DSA Learning Platform</span>
         </div>
 

@@ -11,7 +11,7 @@ const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
 export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [theme, setTheme] = useState<Theme>(() => {
-    const saved = localStorage.getItem('algoplay-theme');
+    const saved = localStorage.getItem('CodeSystem-theme');
     if (saved === 'light' || saved === 'dark') return saved;
     return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
   });
@@ -23,7 +23,7 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ childre
     } else {
       root.classList.remove('dark');
     }
-    localStorage.setItem('algoplay-theme', theme);
+    localStorage.setItem('CodeSystem-theme', theme);
   }, [theme]);
 
   const toggleTheme = () => {

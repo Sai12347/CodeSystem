@@ -1,5 +1,5 @@
 /**
- * AlgoPlay Database Service
+ * CodeSystem Database Service
  * Provides full relational persistence across browser sessions,
  * mirroring MySQL schema (Users, Profiles, Problems, Submissions, Progress, Badges).
  */
@@ -44,10 +44,10 @@ export interface DbUserProgress {
 }
 
 const STORAGE_KEYS = {
-  USERS: 'algoplay_db_users',
-  CURRENT_USER_ID: 'algoplay_db_current_user_id',
-  SUBMISSIONS: 'algoplay_db_submissions',
-  PROGRESS: 'algoplay_db_progress',
+  USERS: 'codesystem_db_users',
+  CURRENT_USER_ID: 'codesystem_db_current_user_id',
+  SUBMISSIONS: 'codesystem_db_submissions',
+  PROGRESS: 'codesystem_db_progress',
 };
 
 // Seed default demo user
@@ -112,7 +112,7 @@ class DatabaseService {
         Object.entries(parsed).forEach(([uid, prog]) => this.progress.set(uid, prog));
       }
     } catch (e) {
-      console.error('Failed to load AlgoPlay database from localStorage:', e);
+      console.error('Failed to load CodeSystem database from localStorage:', e);
     }
   }
 
