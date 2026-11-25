@@ -1,0 +1,32 @@
+# ===== Node / Frontend =====
+node_modules/
+dist/
+.env
+.env.local
+.env.*.local
+*.log
+npm-debug.log*
+
+# ===== Java / Backend =====
+target/
+*.class
+*.jar
+*.war
+.mvn/
+!.mvn/wrapper/
+*.iml
+.idea/
+*.swp
+*.swo
+
+# ===== OS =====
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ===== Docker =====
+mysql_data/
+
+# ===== IDE =====
+.vscode/
+*.code-workspace

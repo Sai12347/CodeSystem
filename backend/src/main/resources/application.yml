@@ -1,0 +1,42 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: algoplay-backend
+  datasource:
+    url: ${SPRING_DATASOURCE_URL:jdbc:mysql://localhost:3306/algoplay?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true}
+    username: ${SPRING_DATASOURCE_USERNAME:algoplay_user}
+    password: ${SPRING_DATASOURCE_PASSWORD:algoplay_password}
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: false
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQLDialect
+
+gemini:
+  api:
+    key: ${GEMINI_API_KEY:}
+
+jwt:
+  secret: ${JWT_SECRET:algoplay_secure_jwt_signing_key_32_bytes_super_secret_for_production}
+  expiration: 86400000 # 24 hours
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics,prometheus
+  endpoint:
+    prometheus:
+      enabled: true
+    health:
+      show-details: when_authorized
+
+logging:
+  level:
+    root: INFO
+    com.algoplay: DEBUG
