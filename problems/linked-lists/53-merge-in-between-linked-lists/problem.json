@@ -1,0 +1,59 @@
+{
+  "title": "Merge In Between Linked Lists",
+  "difficulty": "Medium",
+  "subtopic": "Fast/Slow Pointer",
+  "companies": [
+    "Amazon",
+    "Microsoft",
+    "Meta",
+    "Adobe"
+  ],
+  "description": "You are given two singly linked lists `list1` and `list2`, along with two 0-indexed integers `a` and `b` satisfying `1 <= a <= b < length(list1) - 1`.\n\nRemove `list1`'s nodes from index `a` to index `b` inclusive, and splice `list2` in their place. Return the head of the resulting linked list.",
+  "constraints": [
+    "3 <= list1.length <= 10^4",
+    "1 <= a <= b < list1.length - 1",
+    "1 <= list2.length <= 10^4",
+    "-10^5 <= Node.val <= 10^5"
+  ],
+  "hints": [
+    "Use two pointers separated by an offset of `b - a + 2`: when the slow pointer stops at index `a - 1`, the fast pointer sits at index `b + 1`.",
+    "Connect `prevA.next = list2`, walk to the tail of `list2`, and connect `tail2.next = afterB` in O(1) extra space."
+  ],
+  "examples": [
+    {
+      "explanation": "Nodes at indices 3 and 4 (values 3 and 4) are replaced by [1000000, 1000001, 1000002]."
+    },
+    {
+      "explanation": "Nodes at indices 2 through 5 are replaced by [100, 101, 102, 103, 104]."
+    },
+    {
+      "explanation": "Only index 1 (value 2) is replaced by [9]."
+    }
+  ],
+  "timeComplexity": "O(n + m)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "mergeInBetween",
+    "params": [
+      {
+        "name": "list1",
+        "type": "ListNode"
+      },
+      {
+        "name": "a",
+        "type": "int"
+      },
+      {
+        "name": "b",
+        "type": "int"
+      },
+      {
+        "name": "list2",
+        "type": "ListNode"
+      }
+    ],
+    "returns": "ListNode"
+  }
+}

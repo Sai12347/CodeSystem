@@ -1,0 +1,46 @@
+{
+  "title": "Expand Polynomial Expression",
+  "difficulty": "Medium",
+  "subtopic": "Expression Parsing",
+  "companies": [
+    "Google",
+    "Meta",
+    "Amazon",
+    "Salesforce"
+  ],
+  "description": "Given a valid mathematical expression string `expr` over a single variable `'x'`, consisting of non-negative integers, `'x'`, binary operators `'+'`, `'-'`, `'*'`, parentheses `'('` and `')'`, and optional spaces, expand and simplify `expr` into a canonical polynomial.\n\nReturn a 64-bit integer array (`long[]`) of coefficients `[c_0, c_1, ..., c_d]` where `c_i` is the coefficient of `x^i`, with **no trailing zeros** (except returning `[0]` if the polynomial simplifies identically to `0`). Standard precedence applies (`'*'` > `'+'`, `'-'`, all left-associative).",
+  "constraints": [
+    "1 <= expr.length <= 2000",
+    "expr contains digits, 'x', '+', '-', '*', '(', ')', and ' ' (no implicit multiplication like '2x'; multiplication is always written '2 * x').",
+    "The degree of every intermediate polynomial is at most 15 and all intermediate/final coefficients fit in a 64-bit signed integer."
+  ],
+  "hints": [
+    "Run two-stack Shunting-Yard where each entry on the operand stack is a polynomial coefficient list (`c` -> `[c]`, `'x'` -> `[0, 1]`).",
+    "Implement helper operations for polynomial addition, subtraction, and convolution multiplication, trimming trailing zeros after every operation while keeping at least `[0]`."
+  ],
+  "examples": [
+    {
+      "explanation": "(x + 1) * (x + 2) = 2 + 3x + x^2, whose coefficient array is [2, 3, 1]."
+    },
+    {
+      "explanation": "(x - 1) * (x + 1) - x * x = (x^2 - 1) - x^2 = -1, giving [-1]."
+    },
+    {
+      "explanation": "2 * (x + 3) - 2 * x - 6 simplifies identically to 0, giving [0]."
+    }
+  ],
+  "timeComplexity": "O(n * D^2)",
+  "spaceComplexity": "O(n * D)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "expandPolynomial",
+    "params": [
+      {
+        "name": "expr",
+        "type": "String"
+      }
+    ],
+    "returns": "long[]"
+  }
+}

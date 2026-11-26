@@ -1,0 +1,43 @@
+{
+  "title": "Convert Integer to Hexadecimal",
+  "difficulty": "Easy",
+  "subtopic": "Two Complement",
+  "companies": [
+    "Meta",
+    "Amazon",
+    "Oracle"
+  ],
+  "description": "Given a 32-bit signed integer `num`, return its hexadecimal representation as a lowercase string. For negative integers, use standard 32-bit two's complement representation. The result must contain no leading zeros except when `num` is `0`, which is represented as `\"0\"`.",
+  "constraints": [
+    "-2^31 <= num <= 2^31 - 1"
+  ],
+  "hints": [
+    "Mask `num` to 32 unsigned bits (`num & 0xFFFFFFFF` in Python, or use unsigned right shift `>>>` in Java).",
+    "Repeatedly extract the lowest 4 bits (`n & 0xF`) to map to `'0'-'9'` or `'a'-'f'`, shift right by 4, and reverse the collected digits."
+  ],
+  "examples": [
+    {
+      "explanation": "26 = 1 * 16 + 10, which is \"1a\" in hexadecimal."
+    },
+    {
+      "explanation": "In 32-bit two's complement, -1 has all 32 bits set, giving \"ffffffff\"."
+    },
+    {
+      "explanation": "0 is represented as \"0\"."
+    }
+  ],
+  "timeComplexity": "O(1)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "toHex",
+    "params": [
+      {
+        "name": "num",
+        "type": "int"
+      }
+    ],
+    "returns": "String"
+  }
+}

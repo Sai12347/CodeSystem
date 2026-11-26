@@ -1,0 +1,39 @@
+{
+  "title": "Candy",
+  "difficulty": "Hard",
+  "subtopic": "Local Optimality",
+  "companies": [
+    "Amazon",
+    "Google",
+    "Microsoft"
+  ],
+  "description": "Give each child at least one candy. A child with a higher rating than an adjacent child must receive more candies than that neighbor. Return the minimum total number of candies required.",
+  "constraints": [
+    "1 <= ratings.length <= 2 * 10^4",
+    "0 <= ratings[i] <= 2 * 10^4"
+  ],
+  "hints": [
+    "Sort or scan while maintaining the best feasible choice.",
+    "Check tie values and cases where no feasible choice remains."
+  ],
+  "examples": [
+    {
+      "input": "ratings = [1,0,2]",
+      "output": "5"
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "candy",
+    "params": [
+      {
+        "name": "ratings",
+        "type": "int[]"
+      }
+    ],
+    "returns": "int"
+  }
+}

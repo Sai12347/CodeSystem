@@ -1,0 +1,88 @@
+{
+  "title": "Design Segmented LRU Cache",
+  "difficulty": "Hard",
+  "subtopic": "LRU Design",
+  "companies": [
+    "Google",
+    "Amazon",
+    "Meta",
+    "Microsoft",
+    "Apple"
+  ],
+  "description": "Design a **Segmented LRU (SLRU)** cache `SLRUCache` consisting of two separate LRU doubly linked lists: a **probation** segment (segment `1`) with capacity `probationCap` and a **protected** segment (segment `2`) with capacity `protectedCap`.\n- `SLRUCache(int probationCap, int protectedCap)` initializes both segments as empty.\n- `int get(int key)`: if `key` is absent, return `-1`. If `key` is in `protected`, move it to the MRU of `protected` and return its value. If `key` is in `probation`, **promote** it to the MRU of `protected` (if `protected` was already at `protectedCap`, first demote the LRU entry of `protected` to the MRU of `probation`) and return its value.\n- `void put(int key, int value)`:\n  - If `key` is in `protected`: update its value and move it to the MRU of `protected`.\n  - If `key` is in `probation`: update its value and **promote** it to the MRU of `protected` (demoting `protected`'s LRU to `probation`'s MRU if `protected` was full).\n  - If `key` is new: insert `(key, value)` at the MRU of `probation`; if `probation` exceeds `probationCap`, evict the LRU entry of `probation`.\n- `int segmentOf(int key)` returns `0` if `key` is not in the cache, `1` if in `probation`, or `2` if in `protected`.\n\nAll operations must run in `O(1)` time.",
+  "constraints": [
+    "1 <= probationCap, protectedCap <= 1000",
+    "0 <= key, value <= 10^5",
+    "At most 2000 calls will be made to get, put, and segmentOf."
+  ],
+  "hints": [
+    "Represent each segment (`probation` and `protected`) as a small doubly linked list helper with sentinel head/tail pointers and a `size` counter, plus a single hash map `key -> Node` where each node records `seg` (`1` or `2`).",
+    "Notice that when a node in `probation` is promoted into a full `protected` segment, `probation` first shrinks by 1 and then receives 1 demoted node from `protected`, so `probation` never overflows during a promotion."
+  ],
+  "examples": [
+    {
+      "explanation": "Keys 1 and 2 enter probation (cap 2); get(1) promotes 1 to protected (seg 2); put(3,30) enters probation without evicting 2; put(4,40) evicts probation LRU 2."
+    },
+    {
+      "explanation": "When protected (cap 1) already holds key 1, promoting key 2 demotes key 1 back to probation MRU (seg 1)."
+    },
+    {
+      "explanation": "Updating key 1 via put(1, 99) while in probation promotes it to protected (seg 2) with the new value."
+    }
+  ],
+  "timeComplexity": "O(1) per operation",
+  "spaceComplexity": "O(probationCap + protectedCap)",
+  "compare": "exact",
+  "signature": {
+    "kind": "design",
+    "className": "SLRUCache",
+    "constructor": {
+      "params": [
+        {
+          "name": "probationCap",
+          "type": "int"
+        },
+        {
+          "name": "protectedCap",
+          "type": "int"
+        }
+      ]
+    },
+    "methods": [
+      {
+        "name": "get",
+        "params": [
+          {
+            "name": "key",
+            "type": "int"
+          }
+        ],
+        "returns": "int"
+      },
+      {
+        "name": "put",
+        "params": [
+          {
+            "name": "key",
+            "type": "int"
+          },
+          {
+            "name": "value",
+            "type": "int"
+          }
+        ],
+        "returns": "void"
+      },
+      {
+        "name": "segmentOf",
+        "params": [
+          {
+            "name": "key",
+            "type": "int"
+          }
+        ],
+        "returns": "int"
+      }
+    ]
+  }
+}

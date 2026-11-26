@@ -1,0 +1,60 @@
+{
+  "title": "Count Unguarded Cells in the Grid",
+  "difficulty": "Medium",
+  "subtopic": "Dynamic Grids",
+  "companies": [
+    "Google",
+    "Amazon",
+    "Meta",
+    "Uber"
+  ],
+  "description": "You are given two integers `m` and `n` representing an `m x n` grid, along with two 2D arrays `guards` and `walls` where `guards[i] = [r, c]` and `walls[j] = [r, c]` specify the distinct occupied positions of guards and walls.\n\nA guard can see every cell in the four cardinal directions (north, east, south, west) from its position unless obstructed by a wall or another guard. A cell is **guarded** if at least one guard can see it.\n\nReturn the number of **unoccupied** cells in the grid that are **not** guarded.",
+  "constraints": [
+    "1 <= m, n <= 10^4",
+    "2 <= m * n <= 10^5",
+    "1 <= guards.length <= 5 * 10^4",
+    "0 <= walls.length <= 5 * 10^4",
+    "All positions in guards and walls are unique and within bounds."
+  ],
+  "hints": [
+    "Mark guards and walls on the grid (e.g., 1 = guard, 2 = wall), then ray-cast from every guard in all 4 directions stopping whenever you hit a wall, another guard, or the grid edge.",
+    "Because a ray stops at another guard, each cell is visited at most twice horizontally and twice vertically, guaranteeing O(m * n) total time."
+  ],
+  "examples": [
+    {
+      "explanation": "In the 4x6 grid, 3 guards and 3 walls occupy 6 cells, and the guards watch 11 additional cells, leaving 7 unguarded empty cells."
+    },
+    {
+      "explanation": "The single guard at (1, 1) is boxed in on all 4 sides by walls, so the 4 corner cells remain unguarded."
+    },
+    {
+      "explanation": "One guard in a 1x5 strip with no walls sees all 4 other cells, leaving 0 unguarded cells."
+    }
+  ],
+  "timeComplexity": "O(m * n)",
+  "spaceComplexity": "O(m * n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "countUnguarded",
+    "params": [
+      {
+        "name": "m",
+        "type": "int"
+      },
+      {
+        "name": "n",
+        "type": "int"
+      },
+      {
+        "name": "guards",
+        "type": "int[][]"
+      },
+      {
+        "name": "walls",
+        "type": "int[][]"
+      }
+    ],
+    "returns": "int"
+  }
+}

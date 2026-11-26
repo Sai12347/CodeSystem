@@ -1,0 +1,37 @@
+{
+  "title": "Basic Calculator",
+  "difficulty": "Hard",
+  "subtopic": "Expression Parsing",
+  "companies": ["Meta", "Google", "Amazon", "Microsoft", "Uber", "Bloomberg"],
+  "leetcode": 224,
+  "description": "Given a string `s` representing a valid mathematical expression, implement a basic calculator to evaluate it, and return the result of the evaluation.\n\nThe expression string contains only non-negative integers, `'+'`, `'-'`, `'('`, `')'`, and space characters `' '`.\n\nNote that:\n- `'+'` is not used as a unary operation (for example, `\"+1\"` and `\"+(2 + 3)\"` are invalid).\n- `'-'` may be used as a unary operation (for example, `\"-1\"` and `\"-(2 + 3)\"` are valid).\n- There will be no two consecutive operators in the input.\n- Every number and running calculation will fit in a signed 32-bit integer.\n- Do not use any built-in expression evaluator such as `eval()`.",
+  "constraints": [
+    "1 <= s.length <= 3 * 10^5",
+    "s consists of digits, '+', '-', '(', ')', and ' '.",
+    "s represents a valid expression.",
+    "'+' is not used as a unary operation, while '-' may be used as a unary operation.",
+    "There will be no two consecutive operators in the input.",
+    "Every number and running calculation will fit in a signed 32-bit integer."
+  ],
+  "hints": [
+    "Without parentheses, you can evaluate the expression in one left-to-right pass by maintaining a running total and the current sign (+1 or -1).",
+    "When you encounter '(', save the current running total and sign onto a stack, then reset both to evaluate the sub-expression inside the parentheses.",
+    "When you encounter ')', finish the current number, multiply the sub-expression's result by the saved sign, and add it back to the saved running total."
+  ],
+  "examples": [
+    {"explanation": "1 + 1 evaluates to 2."},
+    {"explanation": "Ignoring spaces, 2 - 1 + 2 = 3."},
+    {"explanation": "(1 + (4 + 5 + 2) - 3) + (6 + 8) = (1 + 11 - 3) + 14 = 9 + 14 = 23."}
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "calculate",
+    "params": [
+      {"name": "s", "type": "String"}
+    ],
+    "returns": "int"
+  }
+}

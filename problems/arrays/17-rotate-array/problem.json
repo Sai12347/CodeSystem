@@ -1,0 +1,58 @@
+{
+  "title": "Rotate Array",
+  "difficulty": "Medium",
+  "subtopic": "Rotations",
+  "companies": [
+    "Amazon",
+    "Microsoft",
+    "Google",
+    "Meta",
+    "Apple",
+    "Bloomberg"
+  ],
+  "leetcode": 189,
+  "description": "Given an integer array `nums`, rotate the array to the right by `k` steps, where `k` is non-negative.\n\nModify `nums` in-place with `O(1)` extra space. Note that `k` may be larger than `nums.length`.",
+  "constraints": [
+    "1 <= nums.length <= 10^5",
+    "-2^31 <= nums[i] <= 2^31 - 1",
+    "0 <= k <= 10^5"
+  ],
+  "hints": [
+    "Rotating by nums.length returns the array to its original order, so first reduce k to k % nums.length.",
+    "Think about what reversing the entire array does: the last k elements move to the front, and the first n - k elements move to the back \u2014 just in reversed order.",
+    "Reverse the entire array, then reverse the first k elements, and finally reverse the remaining n - k elements."
+  ],
+  "examples": [
+    {
+      "explanation": "Rotating right by 3 moves [5, 6, 7] to the front: [5, 6, 7, 1, 2, 3, 4]."
+    },
+    {
+      "explanation": "Rotating right by 2 moves [3, 99] to the front: [3, 99, -1, -100]."
+    },
+    {
+      "explanation": "Since k = 4 and length = 3, effective rotation is 4 % 3 = 1 step right: [3, 1, 2]."
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "rotate",
+    "params": [
+      {
+        "name": "nums",
+        "type": "int[]"
+      },
+      {
+        "name": "k",
+        "type": "int"
+      }
+    ],
+    "returns": "void",
+    "output": {
+      "mode": "param",
+      "param": "nums"
+    }
+  }
+}

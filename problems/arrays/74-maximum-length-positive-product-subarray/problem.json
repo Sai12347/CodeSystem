@@ -1,0 +1,43 @@
+{
+  "title": "Maximum Length Positive Product Subarray",
+  "difficulty": "Medium",
+  "subtopic": "Subarrays",
+  "companies": [
+    "Amazon",
+    "Google",
+    "Microsoft"
+  ],
+  "description": "Given an integer array `nums`, return the length of its longest contiguous subarray whose product is positive. The product need not be calculated; zero values make a segment's product zero. Input: `nums`. Output: the maximum length.",
+  "constraints": [
+    "1 <= nums.length <= 100000",
+    "-1000 <= nums[i] <= 1000"
+  ],
+  "hints": [
+    "Sort once or track a compact running state to avoid checking every possible group.",
+    "Test duplicates, extreme ordering, and cases with no feasible candidate."
+  ],
+  "examples": [
+    {
+      "input": "nums = [1, -2, -3, 4]",
+      "output": "4"
+    },
+    {
+      "input": "nums = [0, 1, -2, -3, -4]",
+      "output": "3"
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "getMaxLen",
+    "params": [
+      {
+        "name": "nums",
+        "type": "int[]"
+      }
+    ],
+    "returns": "int"
+  }
+}

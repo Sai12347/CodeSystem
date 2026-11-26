@@ -1,0 +1,48 @@
+{
+  "title": "XOR Operation in an Arithmetic Array",
+  "difficulty": "Easy",
+  "subtopic": "XOR Tricks",
+  "companies": [
+    "Google",
+    "Amazon",
+    "Bloomberg"
+  ],
+  "description": "Given two integers `n` and `start`, consider the array `nums` of length `n` defined by `nums[i] = start + 2 * i` for `0 <= i < n`. Return the bitwise XOR of all elements of `nums`. Because `n` can be as large as `10^9`, compute the result without iterating through all `n` elements.",
+  "constraints": [
+    "1 <= n <= 10^9",
+    "0 <= start <= 10^9"
+  ],
+  "hints": [
+    "Every term `start + 2 * i` shares the exact same least significant bit (`start & 1`), while dividing by 2 shifts the sequence into consecutive integers `(start >> 1) + i`.",
+    "The prefix XOR `0 ^ 1 ^ ... ^ x` repeats with period 4 (`x`, `1`, `x + 1`, `0` for `x % 4 == 0, 1, 2, 3`), letting you compute any consecutive range XOR in O(1) time."
+  ],
+  "examples": [
+    {
+      "explanation": "The array is [0, 2, 4, 6, 8], and 0 ^ 2 ^ 4 ^ 6 ^ 8 = 8."
+    },
+    {
+      "explanation": "The array is [3, 5, 7, 9], and 3 ^ 5 ^ 7 ^ 9 = 8."
+    },
+    {
+      "explanation": "The single-element array [7] has XOR 7."
+    }
+  ],
+  "timeComplexity": "O(1)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "xorArithmeticArray",
+    "params": [
+      {
+        "name": "n",
+        "type": "long"
+      },
+      {
+        "name": "start",
+        "type": "long"
+      }
+    ],
+    "returns": "long"
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "title": "Longest Palindromic Subsequence",
+  "difficulty": "Medium",
+  "subtopic": "Palindromes",
+  "companies": [
+    "Amazon",
+    "Google",
+    "LinkedIn"
+  ],
+  "description": "Given a string `s`, return the length of the longest palindromic subsequence in `s`. A subsequence is formed by deleting zero or more characters from `s` without changing the relative order of the remaining characters.",
+  "constraints": [
+    "1 <= s.length <= 1000",
+    "s consists only of lowercase English letters."
+  ],
+  "hints": [
+    "Let dp[i][j] be the longest palindromic subsequence inside s[i..j].",
+    "If s[i] == s[j], dp[i][j] = dp[i + 1][j - 1] + 2; otherwise take max(dp[i + 1][j], dp[i][j - 1]). You can optimize space to O(n)."
+  ],
+  "examples": [
+    {
+      "explanation": "\"bbbb\" is a palindromic subsequence of length 4."
+    },
+    {
+      "explanation": "\"bb\" is the longest palindromic subsequence of length 2."
+    },
+    {
+      "explanation": "All characters are distinct, so any single letter gives length 1."
+    }
+  ],
+  "timeComplexity": "O(n^2)",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "longestPalindromeSubseq",
+    "params": [
+      {
+        "name": "s",
+        "type": "String"
+      }
+    ],
+    "returns": "int"
+  }
+}

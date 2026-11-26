@@ -1,0 +1,44 @@
+{
+  "title": "Verify Alien Word Ordering",
+  "difficulty": "Medium",
+  "subtopic": "Alien Dictionary",
+  "companies": [
+    "Amazon",
+    "Google",
+    "Microsoft"
+  ],
+  "description": "The string `order` lists the characters of an alien alphabet from smallest to largest. Return true if `words` is sorted lexicographically according to that alphabet. A word that is a prefix of another must come first.",
+  "constraints": [
+    "1 <= words.length <= 100",
+    "1 <= words[i].length <= 20",
+    "order is a permutation of lowercase English letters"
+  ],
+  "hints": [
+    "Represent prerequisites as directed edges and process zero in-degree vertices.",
+    "A cycle prevents a complete ordering; unique orderings require a single available choice at each step."
+  ],
+  "examples": [
+    {
+      "input": "words = [\"hello\",\"leetcode\"], order = \"hlabcdefgijkmnopqrstuvwxyz\"",
+      "output": "true"
+    }
+  ],
+  "timeComplexity": "O(V+E)",
+  "spaceComplexity": "O(V+E)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "isAlienSorted",
+    "params": [
+      {
+        "name": "words",
+        "type": "String[]"
+      },
+      {
+        "name": "order",
+        "type": "String"
+      }
+    ],
+    "returns": "boolean"
+  }
+}

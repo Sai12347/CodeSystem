@@ -1,0 +1,45 @@
+{
+  "title": "Matching Bracket Index Map",
+  "difficulty": "Easy",
+  "subtopic": "Valid Parentheses",
+  "companies": [
+    "Microsoft",
+    "Adobe",
+    "Atlassian",
+    "Google"
+  ],
+  "description": "Given a string `s` containing lowercase English letters and properly balanced brackets (`'('`, `')'`, `'['`, `']'`, `'{'`, `'}'`), return an integer array `ans` of length `s.length` where:\n- If `s[i]` is a bracket, `ans[i]` is the 0-based index of its matching partner bracket.\n- If `s[i]` is a lowercase letter, `ans[i] = -1`.",
+  "constraints": [
+    "1 <= s.length <= 10^5",
+    "s contains lowercase English letters and properly balanced brackets '()', '[]', and '{}'."
+  ],
+  "hints": [
+    "Initialize the answer array with -1 everywhere and push the index of every opening bracket onto a stack.",
+    "When encountering a closing bracket at index i, pop its partner index j from the stack and assign ans[i] = j and ans[j] = i."
+  ],
+  "examples": [
+    {
+      "explanation": "Bracket at 0 matches 4, bracket at 1 matches 3, and 'a' at index 2 maps to -1."
+    },
+    {
+      "explanation": "Each pair maps symmetrically to its partner's index while letters map to -1."
+    },
+    {
+      "explanation": "\"abc\" has no brackets, so every entry is -1."
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "matchingBracketIndices",
+    "params": [
+      {
+        "name": "s",
+        "type": "String"
+      }
+    ],
+    "returns": "int[]"
+  }
+}

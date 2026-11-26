@@ -1,0 +1,43 @@
+{
+  "title": "Stable Parity Partition",
+  "difficulty": "Easy",
+  "subtopic": "In-Place Operations",
+  "companies": [
+    "Amazon",
+    "Microsoft",
+    "Google"
+  ],
+  "description": "Return a new array with all even values from `nums` first, followed by all odd values. Preserve the relative order of the even values and preserve the relative order of the odd values.",
+  "constraints": [
+    "0 <= nums.length <= 10^5",
+    "-10^9 <= nums[i] <= 10^9"
+  ],
+  "hints": [
+    "Scan the input while maintaining the invariant in the statement.",
+    "Check boundary values, duplicates, and tie cases."
+  ],
+  "examples": [
+    {
+      "input": "nums = [3,1,2,4]",
+      "output": "[2,4,3,1]"
+    },
+    {
+      "input": "nums = [0,-3,8,5]",
+      "output": "[0,8,-3,5]"
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "stableParityPartition",
+    "params": [
+      {
+        "name": "nums",
+        "type": "int[]"
+      }
+    ],
+    "returns": "int[]"
+  }
+}

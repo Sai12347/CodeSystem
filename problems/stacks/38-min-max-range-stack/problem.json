@@ -1,0 +1,69 @@
+{
+  "title": "Min-Max Range Stack",
+  "difficulty": "Easy",
+  "subtopic": "Min Stack",
+  "companies": [
+    "Amazon",
+    "Bloomberg",
+    "Microsoft",
+    "Goldman Sachs"
+  ],
+  "description": "Design a stack `RangeStack` that supports standard stack operations plus retrieving the value range (`max - min`) of all elements currently in the stack in constant `O(1)` time.\n\nImplement the `RangeStack` class:\n- `RangeStack()` initializes an empty stack.\n- `void push(int val)` pushes the 32-bit signed integer `val` onto the stack.\n- `void pop()` removes the top element of the stack.\n- `int top()` returns the top element of the stack.\n- `long getRange()` returns `(long) maxVal - (long) minVal` across all elements currently in the stack.\n\nEvery operation must run in `O(1)` time.",
+  "constraints": [
+    "-2^31 <= val <= 2^31 - 1",
+    "Methods pop, top, and getRange are always called on non-empty stacks.",
+    "At most 3 * 10^4 calls will be made across all methods."
+  ],
+  "hints": [
+    "Alongside each pushed value, store the running minimum and running maximum at that stack depth.",
+    "Compute max - min using 64-bit signed integers (long in Java) so extreme 32-bit bounds do not overflow."
+  ],
+  "examples": [
+    {
+      "explanation": "After pushing 4, 1, 9, range is 9 - 1 = 8; after popping 9, stack is [4, 1] with top 1 and range 4 - 1 = 3."
+    },
+    {
+      "explanation": "With a single element 7, max equals min so getRange returns 0."
+    },
+    {
+      "explanation": "With -2147483648 and 2147483647, the 64-bit range is 4294967295."
+    }
+  ],
+  "timeComplexity": "O(1) per op",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "design",
+    "className": "RangeStack",
+    "constructor": {
+      "params": []
+    },
+    "methods": [
+      {
+        "name": "push",
+        "params": [
+          {
+            "name": "val",
+            "type": "int"
+          }
+        ],
+        "returns": "void"
+      },
+      {
+        "name": "pop",
+        "params": [],
+        "returns": "void"
+      },
+      {
+        "name": "top",
+        "params": [],
+        "returns": "int"
+      },
+      {
+        "name": "getRange",
+        "params": [],
+        "returns": "long"
+      }
+    ]
+  }
+}

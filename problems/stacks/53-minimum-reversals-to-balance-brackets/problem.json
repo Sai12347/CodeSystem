@@ -1,0 +1,45 @@
+{
+  "title": "Minimum Reversals to Balance Brackets",
+  "difficulty": "Easy",
+  "subtopic": "Valid Parentheses",
+  "companies": [
+    "Amazon",
+    "Microsoft",
+    "Bloomberg",
+    "Goldman Sachs"
+  ],
+  "description": "You are given a string `s` consisting only of `'('` and `')'`.\n\nIn a single operation, you may flip any one character (`'('` becomes `')'`, or `')'` becomes `'('`). Return the minimum number of flips required to transform `s` into a valid balanced parentheses string, or return `-1` if it is impossible.",
+  "constraints": [
+    "1 <= s.length <= 10^5",
+    "s consists only of '(' and ')'."
+  ],
+  "hints": [
+    "An odd-length string can never be balanced, so immediately return -1.",
+    "Cancel all already-matched \"()\" pairs using a stack; the leftover string consists of c closing brackets followed by o opening brackets, requiring ceil(c / 2) + ceil(o / 2) flips."
+  ],
+  "examples": [
+    {
+      "explanation": "After cancelling matched pairs, \"))((\" remains; flipping one ')' and one '(' makes \"()()\" in 2 flips."
+    },
+    {
+      "explanation": "\"((()\" cancels to \"((\", which needs 1 flip to become \"()\"."
+    },
+    {
+      "explanation": "Odd length 3 cannot be balanced, so return -1."
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "minReversals",
+    "params": [
+      {
+        "name": "s",
+        "type": "String"
+      }
+    ],
+    "returns": "int"
+  }
+}

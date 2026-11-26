@@ -1,0 +1,48 @@
+{
+  "title": "Last Digit of a Large Power",
+  "difficulty": "Easy",
+  "subtopic": "Fast Exponentiation",
+  "companies": [
+    "Amazon",
+    "Microsoft",
+    "Goldman Sachs"
+  ],
+  "description": "Given two non-negative 64-bit integers `base` and `exp`, compute and return the last decimal digit (the ones digit) of `base^exp`. Follow the standard mathematical convention `0^0 = 1`.",
+  "constraints": [
+    "0 <= base <= 10^15",
+    "0 <= exp <= 10^15"
+  ],
+  "hints": [
+    "Only `base % 10` affects the last decimal digit of any power.",
+    "Compute `(base % 10)^exp % 10` using binary exponentiation in O(log exp) time, which naturally returns `1` when `exp == 0`."
+  ],
+  "examples": [
+    {
+      "explanation": "3^10 = 59049, whose last digit is 9."
+    },
+    {
+      "explanation": "7^4 = 2401 ends in 1, so 7^100 = (7^4)^25 also ends in 1."
+    },
+    {
+      "explanation": "By convention 0^0 = 1, so the last digit is 1."
+    }
+  ],
+  "timeComplexity": "O(log exp)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "lastDigitOfPower",
+    "params": [
+      {
+        "name": "base",
+        "type": "long"
+      },
+      {
+        "name": "exp",
+        "type": "long"
+      }
+    ],
+    "returns": "int"
+  }
+}

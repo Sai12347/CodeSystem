@@ -1,0 +1,44 @@
+{
+  "title": "Reverse Words in a String III",
+  "difficulty": "Easy",
+  "subtopic": "Parsing",
+  "companies": [
+    "Amazon",
+    "Microsoft",
+    "Google"
+  ],
+  "description": "Given a string whose words are separated by single spaces, reverse the characters of each word while preserving word order and the spaces between words.",
+  "constraints": [
+    "1 <= s.length <= 5 * 10^4",
+    "s contains English letters and single spaces",
+    "There are no leading or trailing spaces"
+  ],
+  "hints": [
+    "Scan the input while maintaining the invariant in the statement.",
+    "Check boundary values, duplicates, and tie cases."
+  ],
+  "examples": [
+    {
+      "input": "s = \"Let us code\"",
+      "output": "\"teL su edoc\""
+    },
+    {
+      "input": "s = \"God Ding\"",
+      "output": "\"doG gniD\""
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "reverseWords",
+    "params": [
+      {
+        "name": "s",
+        "type": "String"
+      }
+    ],
+    "returns": "String"
+  }
+}

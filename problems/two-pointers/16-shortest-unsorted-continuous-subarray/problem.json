@@ -1,0 +1,49 @@
+{
+  "title": "Shortest Unsorted Continuous Subarray",
+  "difficulty": "Medium",
+  "subtopic": "Partition Pointers",
+  "companies": [
+    "Google",
+    "Amazon",
+    "Meta",
+    "Microsoft",
+    "Bloomberg",
+    "Adobe"
+  ],
+  "leetcode": 581,
+  "description": "Given an integer array `nums`, find one **continuous subarray** such that if you sort only this subarray in non-decreasing order, then the whole array becomes sorted in non-decreasing order.\n\nReturn the length of the shortest such subarray. If `nums` is already sorted in non-decreasing order, return `0`.",
+  "constraints": [
+    "1 <= nums.length <= 10^4",
+    "-10^5 <= nums[i] <= 10^5"
+  ],
+  "hints": [
+    "An element is guaranteed to be in its final sorted position only if it is >= every element to its left and <= every element to its right.",
+    "Scan left to right tracking the running maximum: the last index where nums[i] < max_so_far is the right boundary of the unsorted subarray.",
+    "Symmetrically, scan right to left tracking the running minimum: the last index encountered where nums[i] > min_so_far is the left boundary."
+  ],
+  "examples": [
+    {
+      "explanation": "Sorting the subarray [6, 4, 8, 10, 9] (indices 1..5) makes the entire array [2, 4, 6, 8, 9, 10, 15], which is sorted. Its length is 5."
+    },
+    {
+      "explanation": "The array is already sorted in non-decreasing order, so no subarray needs to be sorted (length 0)."
+    },
+    {
+      "explanation": "A single-element array is already sorted, so return 0."
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "findUnsortedSubarray",
+    "params": [
+      {
+        "name": "nums",
+        "type": "int[]"
+      }
+    ],
+    "returns": "int"
+  }
+}

@@ -1,0 +1,74 @@
+{
+  "title": "Min-Max Subarray Sum Stack",
+  "difficulty": "Medium",
+  "subtopic": "Min Stack",
+  "companies": [
+    "Google",
+    "Meta",
+    "Amazon",
+    "Goldman Sachs"
+  ],
+  "description": "Design a stack `MinMaxSubarrayStack` of signed integers that supports `push`, `pop`, `top`, and querying BOTH the **minimum** and **maximum sum of any non-empty contiguous subarray** currently in the stack (ordered from bottom to top), all in **`O(1)` time** per operation.\n\nImplement the `MinMaxSubarrayStack` class:\n- `MinMaxSubarrayStack()` initializes an empty stack.\n- `void push(int val)` pushes `val` onto the top of the stack.\n- `void pop()` removes the top element of the stack.\n- `int top()` returns the top element of the stack.\n- `long getMinSubarraySum()` returns the minimum sum over all non-empty contiguous segments of elements currently in the stack.\n- `long getMaxSubarraySum()` returns the maximum sum over all non-empty contiguous segments of elements currently in the stack.",
+  "constraints": [
+    "-10^9 <= val <= 10^9",
+    "Methods pop, top, getMinSubarraySum, and getMaxSubarraySum are always called on non-empty stacks.",
+    "At most 5 * 10^4 calls will be made across all methods."
+  ],
+  "hints": [
+    "Because pushing only appends at the top of the stack, Kadane's recurrence naturally augments each stack frame in O(1) time.",
+    "Store `(val, curMinEnding, bestMin, curMaxEnding, bestMax)` per stack frame: pushing updates both Kadane states from the previous top, and popping automatically restores the exact prior states in O(1)."
+  ],
+  "examples": [
+    {
+      "explanation": "Stack [3, -5, -2]: min subarray is [-5, -2] (-7) and max subarray is [3] (3). Pushing 10 raises max subarray to [10] (10); popping 10 restores max to 3."
+    },
+    {
+      "explanation": "All-negative stack [-4, -1, -3]: min subarray is the whole stack (-8) and max subarray is [-1] (-1)."
+    },
+    {
+      "explanation": "Single element 7 has min subarray sum 7 and max subarray sum 7."
+    }
+  ],
+  "timeComplexity": "O(1) per op",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "design",
+    "className": "MinMaxSubarrayStack",
+    "constructor": {
+      "params": []
+    },
+    "methods": [
+      {
+        "name": "push",
+        "params": [
+          {
+            "name": "val",
+            "type": "int"
+          }
+        ],
+        "returns": "void"
+      },
+      {
+        "name": "pop",
+        "params": [],
+        "returns": "void"
+      },
+      {
+        "name": "top",
+        "params": [],
+        "returns": "int"
+      },
+      {
+        "name": "getMinSubarraySum",
+        "params": [],
+        "returns": "long"
+      },
+      {
+        "name": "getMaxSubarraySum",
+        "params": [],
+        "returns": "long"
+      }
+    ]
+  }
+}

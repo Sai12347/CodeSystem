@@ -1,0 +1,620 @@
+[
+ {
+  "id": "group-anagrams",
+  "order": 1,
+  "topicId": "hash-tables",
+  "topic": "Hash Tables & Maps",
+  "title": "Group Anagrams",
+  "slug": "group-anagrams",
+  "difficulty": "Medium",
+  "subtopic": "Group Anagrams",
+  "companies": [
+   "Amazon",
+   "Google",
+   "Meta",
+   "Microsoft",
+   "Bloomberg",
+   "Apple"
+  ],
+  "leetcode": 49,
+  "description": "Given an array of strings `strs`, group all **anagrams** together. You may return the groups in **any order**, and the strings within each group may also be in **any order**.\n\nAn **anagram** is a word or phrase formed by rearranging the letters of a different word or phrase, using all the original letters exactly once. Duplicate strings are anagrams of each other and must each appear in the resulting group with their original multiplicity.",
+  "constraints": [
+   "1 <= strs.length <= 10^4",
+   "0 <= strs[i].length <= 100",
+   "strs[i] consists of lowercase English letters."
+  ],
+  "hints": [
+   "Two strings are anagrams if and only if they have the exact same character frequencies (or identical sorted character sequences).",
+   "Use a canonical signature for each string as the key in a hash map whose value is the list of strings sharing that signature.",
+   "Using a 26-element letter count tuple/key avoids sorting each string and achieves O(n * k) time where k is the maximum string length."
+  ],
+  "timeComplexity": "O(n * k)",
+  "spaceComplexity": "O(n * k)",
+  "compare": "sortedDeep",
+  "examples": [
+   {
+    "input": "strs = [\"eat\",\"tea\",\"tan\",\"ate\",\"nat\",\"bat\"]",
+    "output": "[[\"eat\",\"tea\",\"ate\"],[\"tan\",\"nat\"],[\"bat\"]]",
+    "explanation": "\"eat\", \"tea\", and \"ate\" share the letter counts {a:1, e:1, t:1}; \"tan\" and \"nat\" share {a:1, n:1, t:1}; \"bat\" forms its own group."
+   },
+   {
+    "input": "strs = [\"\"]",
+    "output": "[[\"\"]]",
+    "explanation": "A single empty string forms a single group containing [\"\"]."
+   },
+   {
+    "input": "strs = [\"a\"]",
+    "output": "[[\"a\"]]",
+    "explanation": "A single-character string forms a single group [[\"a\"]]."
+   }
+  ],
+  "starterCode": {
+   "java": "class Solution {\n    public List<List<String>> groupAnagrams(String[] strs) {\n        // Write your solution here\n        return null;\n    }\n}\n",
+   "python": "class Solution:\n    def groupAnagrams(self, strs: List[str]) -> List[List[str]]:\n        # Write your solution here\n        pass\n"
+  },
+  "solutionCode": {
+   "java": "class Solution {\n    public List<List<String>> groupAnagrams(String[] strs) {\n        Map<String, List<String>> groups = new HashMap<>();\n        for (String s : strs) {\n            char[] counts = new char[26];\n            for (int i = 0; i < s.length(); i++) {\n                counts[s.charAt(i) - 'a']++;\n            }\n            String key = new String(counts);\n            groups.computeIfAbsent(key, k -> new ArrayList<>()).add(s);\n        }\n        return new ArrayList<>(groups.values());\n    }\n}\n",
+   "python": "class Solution:\n    def groupAnagrams(self, strs: List[str]) -> List[List[str]]:\n        groups = defaultdict(list)\n        for s in strs:\n            counts = [0] * 26\n            for ch in s:\n                counts[ord(ch) - 97] += 1\n            groups[tuple(counts)].append(s)\n        return list(groups.values())\n"
+  },
+  "sampleArray": [],
+  "visibleTestCount": 3,
+  "hiddenTestCount": 10,
+  "number": 1
+ },
+ {
+  "id": "longest-consecutive-sequence",
+  "order": 2,
+  "topicId": "hash-tables",
+  "topic": "Hash Tables & Maps",
+  "title": "Longest Consecutive Sequence",
+  "slug": "longest-consecutive-sequence",
+  "difficulty": "Medium",
+  "subtopic": "Subarray Sums",
+  "companies": [
+   "Google",
+   "Meta",
+   "Amazon",
+   "Microsoft",
+   "Bloomberg",
+   "Apple"
+  ],
+  "leetcode": 128,
+  "description": "Given an unsorted array of integers `nums`, return the length of the **longest consecutive elements sequence** (i.e., values `x, x + 1, x + 2, ..., x + k - 1` that all appear somewhere in `nums`).\n\nDuplicate values do not extend the length of a consecutive sequence, and elements do not need to be adjacent in `nums`. If `nums` is empty, return `0`.\n\nYou must write an algorithm that runs in `O(n)` average time.",
+  "constraints": [
+   "0 <= nums.length <= 10^5",
+   "-10^9 <= nums[i] <= 10^9"
+  ],
+  "hints": [
+   "Putting all numbers into a hash set gives O(1) average lookup and automatically eliminates duplicates.",
+   "Only start counting a sequence from a value x when x - 1 is NOT in the set, so x is guaranteed to be the start of a maximal run.",
+   "Iterate over the unique elements in the set (not the original array) so duplicate starts cannot cause repeated work; each element is visited at most twice overall."
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "examples": [
+   {
+    "input": "nums = [100,4,200,1,3,2]",
+    "output": "4",
+    "explanation": "The longest consecutive elements sequence is [1, 2, 3, 4], which has length 4."
+   },
+   {
+    "input": "nums = [0,3,7,2,5,8,4,6,0,1]",
+    "output": "9",
+    "explanation": "The sequence [0, 1, 2, 3, 4, 5, 6, 7, 8] has length 9; duplicate 0 does not add to the length."
+   },
+   {
+    "input": "nums = []",
+    "output": "0",
+    "explanation": "An empty array contains no consecutive sequence, so return 0."
+   }
+  ],
+  "starterCode": {
+   "java": "class Solution {\n    public int longestConsecutive(int[] nums) {\n        // Write your solution here\n        return 0;\n    }\n}\n",
+   "python": "class Solution:\n    def longestConsecutive(self, nums: List[int]) -> int:\n        # Write your solution here\n        pass\n"
+  },
+  "solutionCode": {
+   "java": "class Solution {\n    public int longestConsecutive(int[] nums) {\n        Set<Integer> set = new HashSet<>(nums.length * 2);\n        for (int num : nums) {\n            set.add(num);\n        }\n        int best = 0;\n        for (int x : set) {\n            if (!set.contains(x - 1)) {\n                int curr = x;\n                while (set.contains(curr + 1)) {\n                    curr++;\n                }\n                best = Math.max(best, curr - x + 1);\n            }\n        }\n        return best;\n    }\n}\n",
+   "python": "class Solution:\n    def longestConsecutive(self, nums: List[int]) -> int:\n        num_set = set(nums)\n        best = 0\n        for x in num_set:\n            if x - 1 not in num_set:\n                curr = x\n                while curr + 1 in num_set:\n                    curr += 1\n                best = max(best, curr - x + 1)\n        return best\n"
+  },
+  "sampleArray": [
+   100,
+   4,
+   200,
+   1,
+   3,
+   2
+  ],
+  "visibleTestCount": 3,
+  "hiddenTestCount": 11,
+  "number": 2
+ },
+ {
+  "id": "insert-delete-getrandom-o1",
+  "order": 3,
+  "topicId": "hash-tables",
+  "topic": "Hash Tables & Maps",
+  "title": "Insert Delete GetRandom O(1)",
+  "slug": "insert-delete-getrandom-o1",
+  "difficulty": "Medium",
+  "subtopic": "Collision Resolution",
+  "companies": [
+   "Meta",
+   "Amazon",
+   "Google",
+   "Bloomberg",
+   "Uber",
+   "Microsoft"
+  ],
+  "leetcode": 380,
+  "description": "Implement the `RandomizedSet` class supporting insert, remove, and uniform random retrieval in **average `O(1)` time**:\n\n- `RandomizedSet()` initializes an empty `RandomizedSet` object.\n- `bool insert(int val)` inserts `val` into the set if not present. Returns `true` if the item was not present, `false` otherwise.\n- `bool remove(int val)` removes `val` from the set if present. Returns `true` if the item was present, `false` otherwise.\n- `int getRandom()` returns a random element from the current set of elements (it is guaranteed that at least one element exists when this method is called). Each element must have the **same probability** of being returned.\n\nBecause `getRandom()` is randomized, the judge validates every operation return value and verifies that every `getRandom()` returns a valid member of the set with non-degenerate randomness, returning `true` when all checks pass.",
+  "constraints": [
+   "-2^31 <= val <= 2^31 - 1",
+   "At most 2 * 10^5 calls will be made to insert, remove, and getRandom.",
+   "There will be at least one element in the data structure when getRandom is called."
+  ],
+  "hints": [
+   "A hash set supports O(1) insert and remove, but cannot pick a uniformly random element in O(1) time; a dynamic array supports O(1) random indexing, but removing from the middle takes O(n).",
+   "Combine both: store values in a dynamic array and maintain a hash map from value to its current index in the array.",
+   "To remove a value in O(1), overwrite its slot in the array with the last element, update the last element's index in the hash map, and pop the array's tail."
+  ],
+  "timeComplexity": "O(1) average per op",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "examples": [
+   {
+    "input": "ops = [\"RandomizedSet\",\"insert\",\"remove\",\"insert\",\"getRandom\",\"remove\",\"insert\",\"getRandom\"], args = [[],[1],[2],[2],[],[1],[2],[]]",
+    "output": "true",
+    "explanation": "insert(1)->true, remove(2)->false, insert(2)->true, getRandom()->1 or 2, remove(1)->true, insert(2)->false, getRandom()->2. All operations pass validation."
+   },
+   {
+    "input": "ops = [\"RandomizedSet\",\"insert\",\"remove\",\"insert\",\"getRandom\"], args = [[],[0],[0],[0],[]]",
+    "output": "true",
+    "explanation": "Removing the only element and re-inserting it keeps the internal array and index map consistent."
+   }
+  ],
+  "starterCode": {
+   "java": "class RandomizedSet {\n    public RandomizedSet() {\n        \n    }\n\n    public boolean insert(int val) {\n        return false;\n    }\n\n    public boolean remove(int val) {\n        return false;\n    }\n\n    public int getRandom() {\n        return 0;\n    }\n}\n",
+   "python": "class RandomizedSet:\n    def __init__(self):\n        pass\n\n    def insert(self, val: int) -> bool:\n        return False\n\n    def remove(self, val: int) -> bool:\n        return False\n\n    def getRandom(self) -> int:\n        return 0\n"
+  },
+  "solutionCode": {
+   "java": "class RandomizedSet {\n    private final List<Integer> vals = new ArrayList<>();\n    private final Map<Integer, Integer> pos = new HashMap<>();\n    private final Random rand = new Random();\n\n    public RandomizedSet() {\n    }\n\n    public boolean insert(int val) {\n        if (pos.containsKey(val)) {\n            return false;\n        }\n        pos.put(val, vals.size());\n        vals.add(val);\n        return true;\n    }\n\n    public boolean remove(int val) {\n        Integer idxObj = pos.remove(val);\n        if (idxObj == null) {\n            return false;\n        }\n        int idx = idxObj;\n        int last = vals.remove(vals.size() - 1);\n        if (idx < vals.size()) {\n            vals.set(idx, last);\n            pos.put(last, idx);\n        }\n        return true;\n    }\n\n    public int getRandom() {\n        return vals.get(rand.nextInt(vals.size()));\n    }\n}\n",
+   "python": "import random\n\n\nclass RandomizedSet:\n    def __init__(self):\n        self.vals = []\n        self.pos = {}\n\n    def insert(self, val: int) -> bool:\n        if val in self.pos:\n            return False\n        self.pos[val] = len(self.vals)\n        self.vals.append(val)\n        return True\n\n    def remove(self, val: int) -> bool:\n        if val not in self.pos:\n            return False\n        idx = self.pos.pop(val)\n        last = self.vals.pop()\n        if idx < len(self.vals):\n            self.vals[idx] = last\n            self.pos[last] = idx\n        return True\n\n    def getRandom(self) -> int:\n        return random.choice(self.vals)\n"
+  },
+  "sampleArray": [],
+  "visibleTestCount": 2,
+  "hiddenTestCount": 9,
+  "number": 3
+ },
+ {
+  "id": "insert-delete-getrandom-duplicates",
+  "order": 4,
+  "topicId": "hash-tables",
+  "topic": "Hash Tables & Maps",
+  "title": "Insert Delete GetRandom O(1) - Duplicates allowed",
+  "slug": "insert-delete-getrandom-duplicates",
+  "difficulty": "Hard",
+  "subtopic": "Collision Resolution",
+  "companies": [
+   "Meta",
+   "Google",
+   "Amazon",
+   "Bloomberg",
+   "Uber",
+   "LinkedIn"
+  ],
+  "leetcode": 381,
+  "description": "`RandomizedCollection` is a data structure that contains a collection of numbers, possibly **duplicates** (i.e., a multiset). It must support inserting and removing specific elements and retrieving a random element in **average `O(1)` time**:\n\n- `RandomizedCollection()` initializes an empty `RandomizedCollection` object.\n- `bool insert(int val)` inserts one copy of `val` into the multiset, even if `val` is already present. Returns `true` if `val` was **not** present before this insertion, and `false` otherwise.\n- `bool remove(int val)` removes **one** copy of `val` from the multiset if present. Returns `true` if `val` was present, and `false` otherwise. If `val` has multiple occurrences, only one copy is removed.\n- `int getRandom()` returns a random element from the current multiset of elements. The probability of each distinct value being returned is **linearly proportional** to the number of copies of that value currently in the multiset.\n\nBecause `getRandom()` is randomized, the judge validates every `insert`/`remove` return value, checks every `getRandom()` is currently in the multiset, and verifies non-degenerate weighted randomness, returning `true` when all checks pass.",
+  "constraints": [
+   "-2^31 <= val <= 2^31 - 1",
+   "At most 2 * 10^5 calls in total will be made to insert, remove, and getRandom.",
+   "There will be at least one element in the data structure when getRandom is called."
+  ],
+  "hints": [
+   "Extend the array + hash map pattern from RandomizedSet by mapping each value to a set of all indices where it currently resides in the array.",
+   "On remove(val), pop any index idx from pos[val]. If idx is not the last index in the array, move the last element into idx and update its index set by removing lastIdx and adding idx.",
+   "Be careful when val equals the last element in the array: remove idx from pos[val] first, and only update pos[lastVal] if idx != lastIdx."
+  ],
+  "timeComplexity": "O(1) average per op",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "examples": [
+   {
+    "input": "ops = [\"RandomizedCollection\",\"insert\",\"insert\",\"insert\",\"getRandom\",\"remove\",\"getRandom\"], args = [[],[1],[1],[2],[],[1],[]]",
+    "output": "true",
+    "explanation": "insert(1)->true, insert(1)->false (now [1,1]), insert(2)->true (now [1,1,2]), getRandom()->1 (2/3 prob) or 2 (1/3 prob), remove(1)->true (now [1,2]), getRandom()->1 or 2 equally."
+   },
+   {
+    "input": "ops = [\"RandomizedCollection\",\"insert\",\"insert\",\"remove\",\"remove\",\"remove\",\"insert\",\"getRandom\"], args = [[],[5],[5],[5],[5],[5],[5],[]]",
+    "output": "true",
+    "explanation": "Removing all copies of a value makes the next remove return false and the next insert return true."
+   }
+  ],
+  "starterCode": {
+   "java": "class RandomizedCollection {\n    public RandomizedCollection() {\n        \n    }\n\n    public boolean insert(int val) {\n        return false;\n    }\n\n    public boolean remove(int val) {\n        return false;\n    }\n\n    public int getRandom() {\n        return 0;\n    }\n}\n",
+   "python": "class RandomizedCollection:\n    def __init__(self):\n        pass\n\n    def insert(self, val: int) -> bool:\n        return False\n\n    def remove(self, val: int) -> bool:\n        return False\n\n    def getRandom(self) -> int:\n        return 0\n"
+  },
+  "solutionCode": {
+   "java": "class RandomizedCollection {\n    private final List<Integer> vals = new ArrayList<>();\n    private final Map<Integer, LinkedHashSet<Integer>> pos = new HashMap<>();\n    private final Random rand = new Random();\n\n    public RandomizedCollection() {\n    }\n\n    public boolean insert(int val) {\n        LinkedHashSet<Integer> idxs = pos.computeIfAbsent(val, k -> new LinkedHashSet<>());\n        boolean wasAbsent = idxs.isEmpty();\n        idxs.add(vals.size());\n        vals.add(val);\n        return wasAbsent;\n    }\n\n    public boolean remove(int val) {\n        LinkedHashSet<Integer> idxs = pos.get(val);\n        if (idxs == null || idxs.isEmpty()) {\n            return false;\n        }\n        Iterator<Integer> it = idxs.iterator();\n        int removeIdx = it.next();\n        it.remove();\n        int lastIdx = vals.size() - 1;\n        int lastVal = vals.get(lastIdx);\n        if (removeIdx != lastIdx) {\n            vals.set(removeIdx, lastVal);\n            LinkedHashSet<Integer> lastIdxs = pos.get(lastVal);\n            lastIdxs.remove(lastIdx);\n            lastIdxs.add(removeIdx);\n        }\n        vals.remove(lastIdx);\n        if (idxs.isEmpty()) {\n            pos.remove(val);\n        }\n        return true;\n    }\n\n    public int getRandom() {\n        return vals.get(rand.nextInt(vals.size()));\n    }\n}\n",
+   "python": "import random\n\n\nclass RandomizedCollection:\n    def __init__(self):\n        self.vals = []\n        self.pos = defaultdict(set)\n\n    def insert(self, val: int) -> bool:\n        was_absent = len(self.pos[val]) == 0\n        self.pos[val].add(len(self.vals))\n        self.vals.append(val)\n        return was_absent\n\n    def remove(self, val: int) -> bool:\n        if not self.pos[val]:\n            return False\n        remove_idx = self.pos[val].pop()\n        last_idx = len(self.vals) - 1\n        last_val = self.vals[last_idx]\n        if remove_idx != last_idx:\n            self.vals[remove_idx] = last_val\n            self.pos[last_val].remove(last_idx)\n            self.pos[last_val].add(remove_idx)\n        self.vals.pop()\n        if not self.pos[val]:\n            del self.pos[val]\n        return True\n\n    def getRandom(self) -> int:\n        return random.choice(self.vals)\n"
+  },
+  "sampleArray": [],
+  "visibleTestCount": 2,
+  "hiddenTestCount": 9,
+  "number": 4
+ },
+ {
+  "id": "isomorphic-strings",
+  "order": 5,
+  "topicId": "hash-tables",
+  "topic": "Hash Tables & Maps",
+  "title": "Isomorphic Strings",
+  "slug": "isomorphic-strings",
+  "difficulty": "Easy",
+  "subtopic": "Frequency Counting",
+  "companies": [
+   "Amazon",
+   "Google",
+   "LinkedIn",
+   "Microsoft",
+   "Bloomberg"
+  ],
+  "leetcode": 205,
+  "description": "Given two strings `s` and `t` of equal length, determine if they are **isomorphic**.\n\nTwo strings `s` and `t` are isomorphic if the characters in `s` can be replaced to get `t`. All occurrences of a character must be replaced with another character while preserving the order of characters. No two distinct characters may map to the same character, though a character may map to itself.\n\nReturn `true` if `s` and `t` are isomorphic, and `false` otherwise.",
+  "constraints": [
+   "1 <= s.length <= 5 * 10^4",
+   "t.length == s.length",
+   "s and t consist of any valid ASCII characters."
+  ],
+  "hints": [
+   "Checking only a one-way map from s to t is not enough: two distinct characters in s could wrongly map to the same character in t.",
+   "Maintain two maps (s -> t and t -> s) to enforce a strict one-to-one bijection between characters.",
+   "Alternatively, track the last seen 1-based position of each ASCII character in two fixed arrays of size 256; at each index i, both characters must have identical last-seen positions."
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "examples": [
+   {
+    "input": "s = \"egg\", t = \"add\"",
+    "output": "true",
+    "explanation": "'e' maps to 'a' and 'g' maps to 'd', forming a valid bijection."
+   },
+   {
+    "input": "s = \"foo\", t = \"bar\"",
+    "output": "false",
+    "explanation": "'o' would need to map to both 'a' and 'r', which is invalid."
+   },
+   {
+    "input": "s = \"paper\", t = \"title\"",
+    "output": "true",
+    "explanation": "'p'->'t', 'a'->'i', 'e'->'l', 'r'->'e' is a valid one-to-one mapping."
+   }
+  ],
+  "starterCode": {
+   "java": "class Solution {\n    public boolean isIsomorphic(String s, String t) {\n        // Write your solution here\n        return false;\n    }\n}\n",
+   "python": "class Solution:\n    def isIsomorphic(self, s: str, t: str) -> bool:\n        # Write your solution here\n        pass\n"
+  },
+  "solutionCode": {
+   "java": "class Solution {\n    public boolean isIsomorphic(String s, String t) {\n        int[] lastS = new int[256];\n        int[] lastT = new int[256];\n        for (int i = 0; i < s.length(); i++) {\n            int cs = s.charAt(i);\n            int ct = t.charAt(i);\n            if (lastS[cs] != lastT[ct]) {\n                return false;\n            }\n            lastS[cs] = i + 1;\n            lastT[ct] = i + 1;\n        }\n        return true;\n    }\n}\n",
+   "python": "class Solution:\n    def isIsomorphic(self, s: str, t: str) -> bool:\n        last_s = [0] * 256\n        last_t = [0] * 256\n        for i, (cs, ct) in enumerate(zip(s, t), 1):\n            os_i, ot_i = ord(cs), ord(ct)\n            if last_s[os_i] != last_t[ot_i]:\n                return False\n            last_s[os_i] = i\n            last_t[ot_i] = i\n        return True\n"
+  },
+  "sampleArray": [],
+  "visibleTestCount": 3,
+  "hiddenTestCount": 12,
+  "number": 5
+ },
+ {
+  "id": "word-pattern",
+  "order": 6,
+  "topicId": "hash-tables",
+  "topic": "Hash Tables & Maps",
+  "title": "Word Pattern",
+  "slug": "word-pattern",
+  "difficulty": "Easy",
+  "subtopic": "Frequency Counting",
+  "companies": [
+   "Amazon",
+   "Google",
+   "Meta",
+   "Microsoft",
+   "Uber"
+  ],
+  "leetcode": 290,
+  "description": "Given a `pattern` and a string `s`, determine if `s` follows the exact same pattern.\n\nHere **follow** means a full match such that there is a **bijection** between each letter in `pattern` and each non-empty space-separated word in `s`:\n- Each letter in `pattern` maps to exactly one unique word in `s`.\n- Each unique word in `s` maps to exactly one letter in `pattern`.\n- The number of characters in `pattern` must equal the number of words in `s`.\n\nReturn `true` if `s` follows `pattern`, and `false` otherwise.",
+  "constraints": [
+   "1 <= pattern.length <= 300",
+   "pattern contains only lowercase English letters.",
+   "1 <= s.length <= 3000",
+   "s contains only lowercase English letters and spaces ' '.",
+   "s does not contain any leading or trailing spaces.",
+   "All the words in s are separated by a single space."
+  ],
+  "hints": [
+   "First split s on single spaces and immediately return false if the number of words does not equal len(pattern).",
+   "Maintain two hash maps: char_to_word and word_to_char so neither two letters map to the same word nor one letter maps to two different words.",
+   "Avoid merging characters and words into a single unprefixed map, because single-letter words like 'a' can collide with pattern letters."
+  ],
+  "timeComplexity": "O(n + m)",
+  "spaceComplexity": "O(n + m)",
+  "compare": "exact",
+  "examples": [
+   {
+    "input": "pattern = \"abba\", s = \"dog cat cat dog\"",
+    "output": "true",
+    "explanation": "'a' <-> \"dog\" and 'b' <-> \"cat\" form a valid bijection."
+   },
+   {
+    "input": "pattern = \"abba\", s = \"dog cat cat fish\"",
+    "output": "false",
+    "explanation": "'a' maps to \"dog\" at index 0, so it cannot map to \"fish\" at index 3."
+   },
+   {
+    "input": "pattern = \"abba\", s = \"dog dog dog dog\"",
+    "output": "false",
+    "explanation": "'a' maps to \"dog\" and 'b' also tries to map to \"dog\", violating the bijection."
+   }
+  ],
+  "starterCode": {
+   "java": "class Solution {\n    public boolean wordPattern(String pattern, String s) {\n        // Write your solution here\n        return false;\n    }\n}\n",
+   "python": "class Solution:\n    def wordPattern(self, pattern: str, s: str) -> bool:\n        # Write your solution here\n        pass\n"
+  },
+  "solutionCode": {
+   "java": "class Solution {\n    public boolean wordPattern(String pattern, String s) {\n        String[] words = s.split(\" \");\n        if (words.length != pattern.length()) {\n            return false;\n        }\n        Map<Character, String> charToWord = new HashMap<>();\n        Map<String, Character> wordToChar = new HashMap<>();\n        for (int i = 0; i < pattern.length(); i++) {\n            char ch = pattern.charAt(i);\n            String w = words[i];\n            String mappedW = charToWord.get(ch);\n            if (mappedW != null) {\n                if (!mappedW.equals(w)) {\n                    return false;\n                }\n            } else {\n                if (wordToChar.containsKey(w)) {\n                    return false;\n                }\n                charToWord.put(ch, w);\n                wordToChar.put(w, ch);\n            }\n        }\n        return true;\n    }\n}\n",
+   "python": "class Solution:\n    def wordPattern(self, pattern: str, s: str) -> bool:\n        words = s.split(\" \")\n        if len(words) != len(pattern):\n            return False\n        char_to_word = {}\n        word_to_char = {}\n        for ch, w in zip(pattern, words):\n            if ch in char_to_word:\n                if char_to_word[ch] != w:\n                    return False\n            elif w in word_to_char:\n                return False\n            else:\n                char_to_word[ch] = w\n                word_to_char[w] = ch\n        return True\n"
+  },
+  "sampleArray": [],
+  "visibleTestCount": 3,
+  "hiddenTestCount": 12,
+  "number": 6
+ },
+ {
+  "id": "first-unique-character-in-a-string",
+  "order": 7,
+  "topicId": "hash-tables",
+  "topic": "Hash Tables & Maps",
+  "title": "First Unique Character in a String",
+  "slug": "first-unique-character-in-a-string",
+  "difficulty": "Easy",
+  "subtopic": "Frequency Counting",
+  "companies": [
+   "Amazon",
+   "Bloomberg",
+   "Microsoft",
+   "Google",
+   "Goldman Sachs",
+   "Apple"
+  ],
+  "leetcode": 387,
+  "description": "Given a string `s`, find the **first non-repeating character** in it and return its 0-based index. If no character appears exactly once, return `-1`.",
+  "constraints": [
+   "1 <= s.length <= 10^5",
+   "s consists of only lowercase English letters."
+  ],
+  "hints": [
+   "Count the total frequency of each of the 26 lowercase English letters in a first pass over the string.",
+   "In a second pass from left to right, return the first index whose character has a total frequency of 1.",
+   "Because the alphabet size is fixed at 26, a length-26 integer array uses O(1) extra space."
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "examples": [
+   {
+    "input": "s = \"leetcode\"",
+    "output": "0",
+    "explanation": "'l' at index 0 is the first character that does not repeat anywhere in the string."
+   },
+   {
+    "input": "s = \"loveleetcode\"",
+    "output": "2",
+    "explanation": "'l', 'o', and 'e' all repeat; 'v' at index 2 is the first unique character."
+   },
+   {
+    "input": "s = \"aabb\"",
+    "output": "-1",
+    "explanation": "Every character ('a' and 'b') appears twice, so return -1."
+   }
+  ],
+  "starterCode": {
+   "java": "class Solution {\n    public int firstUniqChar(String s) {\n        // Write your solution here\n        return 0;\n    }\n}\n",
+   "python": "class Solution:\n    def firstUniqChar(self, s: str) -> int:\n        # Write your solution here\n        pass\n"
+  },
+  "solutionCode": {
+   "java": "class Solution {\n    public int firstUniqChar(String s) {\n        int[] freq = new int[26];\n        for (int i = 0; i < s.length(); i++) {\n            freq[s.charAt(i) - 'a']++;\n        }\n        for (int i = 0; i < s.length(); i++) {\n            if (freq[s.charAt(i) - 'a'] == 1) {\n                return i;\n            }\n        }\n        return -1;\n    }\n}\n",
+   "python": "class Solution:\n    def firstUniqChar(self, s: str) -> int:\n        freq = [0] * 26\n        for ch in s:\n            freq[ord(ch) - 97] += 1\n        for i, ch in enumerate(s):\n            if freq[ord(ch) - 97] == 1:\n                return i\n        return -1\n"
+  },
+  "sampleArray": [],
+  "visibleTestCount": 3,
+  "hiddenTestCount": 10,
+  "number": 7
+ },
+ {
+  "id": "design-hashmap",
+  "order": 8,
+  "topicId": "hash-tables",
+  "topic": "Hash Tables & Maps",
+  "title": "Design HashMap",
+  "slug": "design-hashmap",
+  "difficulty": "Easy",
+  "subtopic": "Collision Resolution",
+  "companies": [
+   "Amazon",
+   "Microsoft",
+   "Meta",
+   "Google",
+   "LinkedIn",
+   "Apple"
+  ],
+  "leetcode": 706,
+  "description": "Design a HashMap **without using any built-in hash table libraries**.\n\nImplement the `MyHashMap` class:\n- `MyHashMap()` initializes the object with an empty map.\n- `void put(int key, int value)` inserts a `(key, value)` pair into the HashMap. If the `key` already exists in the map, update the corresponding `value`.\n- `int get(int key)` returns the `value` to which the specified `key` is mapped, or `-1` if this map contains no mapping for the `key`.\n- `void remove(int key)` removes the `key` and its corresponding `value` if the map contains a mapping for the `key`.",
+  "constraints": [
+   "0 <= key, value <= 10^6",
+   "At most 10^4 calls will be made to put, get, and remove."
+  ],
+  "hints": [
+   "Allocate a fixed array of buckets whose length is a prime number (such as 2069) to minimize clustering.",
+   "Map each key to a bucket via key % numBuckets, and resolve collisions inside each bucket using separate chaining (a linked list or small list of (key, value) pairs).",
+   "Remember that 0 is a valid stored value, so only return -1 when the key is genuinely absent from its bucket."
+  ],
+  "timeComplexity": "O(1) average per op",
+  "spaceComplexity": "O(n + B)",
+  "compare": "exact",
+  "examples": [
+   {
+    "input": "[\"MyHashMap\",\"put\",\"put\",\"get\",\"get\",\"put\",\"get\",\"remove\",\"get\"]\n[[],[1,1],[2,2],[1],[3],[2,1],[2],[2],[2]]",
+    "output": "[null,null,null,1,-1,null,1,null,-1]",
+    "explanation": "put(1,1), put(2,2), get(1)->1, get(3)->-1, put(2,1) updates key 2, get(2)->1, remove(2), get(2)->-1."
+   },
+   {
+    "input": "[\"MyHashMap\",\"put\",\"get\",\"remove\",\"remove\",\"get\"]\n[[],[0,0],[0],[999],[0],[0]]",
+    "output": "[null,null,0,null,null,-1]",
+    "explanation": "Storing value 0 at key 0 must return 0 (not -1), and removing a missing key is a no-op."
+   }
+  ],
+  "starterCode": {
+   "java": "class MyHashMap {\n    public MyHashMap() {\n        \n    }\n\n    public void put(int key, int value) {\n        \n    }\n\n    public int get(int key) {\n        return 0;\n    }\n\n    public void remove(int key) {\n        \n    }\n}\n",
+   "python": "class MyHashMap:\n    def __init__(self):\n        pass\n\n    def put(self, key: int, value: int) -> None:\n        pass\n\n    def get(self, key: int) -> int:\n        pass\n\n    def remove(self, key: int) -> None:\n        pass\n"
+  },
+  "solutionCode": {
+   "java": "class MyHashMap {\n    private static class Node {\n        int key;\n        int val;\n        Node next;\n\n        Node(int key, int val, Node next) {\n            this.key = key;\n            this.val = val;\n            this.next = next;\n        }\n    }\n\n    private static final int SIZE = 2069;\n    private final Node[] buckets = new Node[SIZE];\n\n    public MyHashMap() {\n    }\n\n    public void put(int key, int value) {\n        int idx = key % SIZE;\n        Node curr = buckets[idx];\n        while (curr != null) {\n            if (curr.key == key) {\n                curr.val = value;\n                return;\n            }\n            curr = curr.next;\n        }\n        buckets[idx] = new Node(key, value, buckets[idx]);\n    }\n\n    public int get(int key) {\n        int idx = key % SIZE;\n        Node curr = buckets[idx];\n        while (curr != null) {\n            if (curr.key == key) {\n                return curr.val;\n            }\n            curr = curr.next;\n        }\n        return -1;\n    }\n\n    public void remove(int key) {\n        int idx = key % SIZE;\n        Node curr = buckets[idx];\n        Node prev = null;\n        while (curr != null) {\n            if (curr.key == key) {\n                if (prev == null) {\n                    buckets[idx] = curr.next;\n                } else {\n                    prev.next = curr.next;\n                }\n                return;\n            }\n            prev = curr;\n            curr = curr.next;\n        }\n    }\n}\n",
+   "python": "class MyHashMap:\n    def __init__(self):\n        self.size = 2069\n        self.buckets = [[] for _ in range(self.size)]\n\n    def put(self, key: int, value: int) -> None:\n        bucket = self.buckets[key % self.size]\n        for pair in bucket:\n            if pair[0] == key:\n                pair[1] = value\n                return\n        bucket.append([key, value])\n\n    def get(self, key: int) -> int:\n        bucket = self.buckets[key % self.size]\n        for k, v in bucket:\n            if k == key:\n                return v\n        return -1\n\n    def remove(self, key: int) -> None:\n        bucket = self.buckets[key % self.size]\n        for i, (k, _) in enumerate(bucket):\n            if k == key:\n                bucket[i] = bucket[-1]\n                bucket.pop()\n                return\n"
+  },
+  "sampleArray": [],
+  "visibleTestCount": 2,
+  "hiddenTestCount": 8,
+  "number": 8
+ },
+ {
+  "id": "design-twitter",
+  "order": 9,
+  "topicId": "hash-tables",
+  "topic": "Hash Tables & Maps",
+  "title": "Design Twitter",
+  "slug": "design-twitter",
+  "difficulty": "Medium",
+  "subtopic": "Collision Resolution",
+  "companies": [
+   "Amazon",
+   "Google",
+   "Meta",
+   "Uber",
+   "Microsoft",
+   "Salesforce"
+  ],
+  "leetcode": 355,
+  "description": "Design a simplified version of Twitter where users can post tweets, follow/unfollow other users, and retrieve the `10` most recent tweets in their news feed.\n\nImplement the `Twitter` class:\n- `Twitter()` initializes your Twitter object.\n- `void postTweet(int userId, int tweetId)` composes a new tweet with ID `tweetId` by user `userId`. Each call to this function will be made with a unique `tweetId`.\n- `List<Integer> getNewsFeed(int userId)` retrieves the `10` most recent tweet IDs in the user's news feed. Each item in the news feed must be posted by users whom `userId` followed or by `userId` themself. Tweets must be ordered from **most recent to least recent**.\n- `void follow(int followerId, int followeeId)` the user with ID `followerId` starts following the user with ID `followeeId`.\n- `void unfollow(int followerId, int followeeId)` the user with ID `followerId` stops following the user with ID `followeeId`.\n\nFollowing a user who is already followed or unfollowing a user who is not currently followed has no effect. When a user follows someone, that followee's previously posted tweets immediately become eligible for the follower's news feed.",
+  "constraints": [
+   "1 <= userId, followerId, followeeId <= 500",
+   "0 <= tweetId <= 10^4",
+   "All tweets have unique tweetId values.",
+   "At most 3 * 10^4 calls will be made to postTweet, getNewsFeed, follow, and unfollow.",
+   "followerId != followeeId for all follow and unfollow calls."
+  ],
+  "hints": [
+   "Assign a monotonically increasing integer timestamp to every posted tweet so recency can be compared in O(1).",
+   "Store each user's tweets in a per-user list (already sorted by timestamp) and each user's followees in a hash set.",
+   "To build getNewsFeed(userId), run a k-way merge with a max-heap over the tail of the tweet lists belonging to userId and their followees, popping at most 10 tweets."
+  ],
+  "timeComplexity": "O(1) post/follow/unfollow, O(k log k) getNewsFeed",
+  "spaceComplexity": "O(U + T + E)",
+  "compare": "exact",
+  "examples": [
+   {
+    "input": "[\"Twitter\",\"postTweet\",\"getNewsFeed\",\"follow\",\"postTweet\",\"getNewsFeed\",\"unfollow\",\"getNewsFeed\"]\n[[],[1,5],[1],[1,2],[2,6],[1],[1,2],[1]]",
+    "output": "[null,null,[5],null,null,[6,5],null,[5]]",
+    "explanation": "User 1 posts 5 -> feed [5]; follows 2 who posts 6 -> feed [6, 5]; unfollows 2 -> feed [5]."
+   },
+   {
+    "input": "[\"Twitter\",\"getNewsFeed\",\"postTweet\",\"follow\",\"getNewsFeed\"]\n[[],[1],[2,100],[1,2],[1]]",
+    "output": "[null,[],null,null,[100]]",
+    "explanation": "A user with no tweets and no followees gets an empty feed; following someone retrospectively includes their earlier tweets."
+   }
+  ],
+  "starterCode": {
+   "java": "class Twitter {\n    public Twitter() {\n        \n    }\n\n    public void postTweet(int userId, int tweetId) {\n        \n    }\n\n    public List<Integer> getNewsFeed(int userId) {\n        return null;\n    }\n\n    public void follow(int followerId, int followeeId) {\n        \n    }\n\n    public void unfollow(int followerId, int followeeId) {\n        \n    }\n}\n",
+   "python": "class Twitter:\n    def __init__(self):\n        pass\n\n    def postTweet(self, userId: int, tweetId: int) -> None:\n        pass\n\n    def getNewsFeed(self, userId: int) -> List[int]:\n        pass\n\n    def follow(self, followerId: int, followeeId: int) -> None:\n        pass\n\n    def unfollow(self, followerId: int, followeeId: int) -> None:\n        pass\n"
+  },
+  "solutionCode": {
+   "java": "class Twitter {\n    private int clock = 0;\n    private final Map<Integer, List<int[]>> tweets = new HashMap<>();\n    private final Map<Integer, Set<Integer>> following = new HashMap<>();\n\n    public Twitter() {\n    }\n\n    public void postTweet(int userId, int tweetId) {\n        tweets.computeIfAbsent(userId, k -> new ArrayList<>()).add(new int[]{++clock, tweetId});\n    }\n\n    public List<Integer> getNewsFeed(int userId) {\n        Set<Integer> users = new HashSet<>();\n        users.add(userId);\n        Set<Integer> followed = following.get(userId);\n        if (followed != null) {\n            users.addAll(followed);\n        }\n        PriorityQueue<int[]> pq = new PriorityQueue<>((a, b) -> Integer.compare(b[0], a[0]));\n        for (int u : users) {\n            List<int[]> list = tweets.get(u);\n            if (list != null && !list.isEmpty()) {\n                int idx = list.size() - 1;\n                int[] t = list.get(idx);\n                pq.offer(new int[]{t[0], t[1], u, idx});\n            }\n        }\n        List<Integer> feed = new ArrayList<>(10);\n        while (!pq.isEmpty() && feed.size() < 10) {\n            int[] top = pq.poll();\n            feed.add(top[1]);\n            int u = top[2];\n            int idx = top[3] - 1;\n            if (idx >= 0) {\n                int[] prev = tweets.get(u).get(idx);\n                pq.offer(new int[]{prev[0], prev[1], u, idx});\n            }\n        }\n        return feed;\n    }\n\n    public void follow(int followerId, int followeeId) {\n        if (followerId != followeeId) {\n            following.computeIfAbsent(followerId, k -> new HashSet<>()).add(followeeId);\n        }\n    }\n\n    public void unfollow(int followerId, int followeeId) {\n        if (followerId != followeeId) {\n            Set<Integer> set = following.get(followerId);\n            if (set != null) {\n                set.remove(followeeId);\n            }\n        }\n    }\n}\n",
+   "python": "class Twitter:\n    def __init__(self):\n        self.clock = 0\n        self.tweets = defaultdict(list)\n        self.following = defaultdict(set)\n\n    def postTweet(self, userId: int, tweetId: int) -> None:\n        self.clock += 1\n        self.tweets[userId].append((self.clock, tweetId))\n\n    def getNewsFeed(self, userId: int) -> List[int]:\n        heap = []\n        users = set(self.following[userId])\n        users.add(userId)\n        for u in users:\n            tlist = self.tweets.get(u)\n            if tlist:\n                idx = len(tlist) - 1\n                ts, tid = tlist[idx]\n                heapq.heappush(heap, (-ts, tid, u, idx))\n        feed = []\n        while heap and len(feed) < 10:\n            _, tid, u, idx = heapq.heappop(heap)\n            feed.append(tid)\n            if idx > 0:\n                prev_ts, prev_tid = self.tweets[u][idx - 1]\n                heapq.heappush(heap, (-prev_ts, prev_tid, u, idx - 1))\n        return feed\n\n    def follow(self, followerId: int, followeeId: int) -> None:\n        if followerId != followeeId:\n            self.following[followerId].add(followeeId)\n\n    def unfollow(self, followerId: int, followeeId: int) -> None:\n        if followerId != followeeId:\n            self.following[followerId].discard(followeeId)\n"
+  },
+  "sampleArray": [],
+  "visibleTestCount": 2,
+  "hiddenTestCount": 9,
+  "number": 9
+ },
+ {
+  "id": "analyze-user-website-visit-pattern",
+  "order": 10,
+  "topicId": "hash-tables",
+  "topic": "Hash Tables & Maps",
+  "title": "Analyze User Website Visit Pattern",
+  "slug": "analyze-user-website-visit-pattern",
+  "difficulty": "Medium",
+  "subtopic": "Frequency Counting",
+  "companies": [
+   "Amazon",
+   "Google",
+   "Meta",
+   "Bloomberg",
+   "Uber"
+  ],
+  "leetcode": 1152,
+  "description": "You are given two string arrays `username` and `website` and an integer array `timestamp`, all of the same length `n`. The tuple `[username[i], timestamp[i], website[i]]` indicates that user `username[i]` visited website `website[i]` at time `timestamp[i]`.\n\nA **pattern** is a list of **three** websites (not necessarily distinct). A user visits a pattern `(w1, w2, w3)` if they visited `w1`, then later `w2`, and then later `w3` in strictly increasing timestamp order (not necessarily consecutively).\n\nThe **score** of a pattern is the number of **distinct users** who visited all the websites in the pattern in that chronological order. (If the same user matches a pattern multiple times, that user still contributes only `1` to that pattern's score.)\n\nReturn the pattern with the **largest score**. If multiple patterns tie for the largest score, return the **lexicographically smallest** pattern (comparing element 0, then element 1, then element 2 using standard string ordering).",
+  "constraints": [
+   "3 <= username.length <= 50",
+   "1 <= username[i].length <= 10",
+   "timestamp.length == username.length",
+   "1 <= timestamp[i] <= 10^9",
+   "website.length == username.length",
+   "1 <= website[i].length <= 10",
+   "username[i] and website[i] consist of lowercase English letters.",
+   "It is guaranteed that there is at least one user who visited at least three websites.",
+   "No user visits two websites at the same timestamp."
+  ],
+  "hints": [
+   "Input records are not guaranteed to be sorted by timestamp — group visits by username and sort each user's visits by timestamp ascending.",
+   "For each user, enumerate all 3-website combinations (i < j < k) and store them in a per-user set so each user increments a pattern's score at most once.",
+   "Track the pattern with the maximum count, breaking ties by comparing the 3-tuple of website strings lexicographically."
+  ],
+  "timeComplexity": "O(n log n + sum(m_u^3))",
+  "spaceComplexity": "O(n + sum(m_u^3))",
+  "compare": "exact",
+  "examples": [
+   {
+    "input": "username = [\"joe\",\"joe\",\"joe\",\"james\",\"james\",\"james\",\"james\",\"mary\",\"mary\",\"mary\"], timestamp = [1,2,3,4,5,6,7,8,9,10], website = [\"home\",\"about\",\"career\",\"home\",\"cart\",\"maps\",\"home\",\"home\",\"about\",\"career\"]",
+    "output": "[\"home\",\"about\",\"career\"]",
+    "explanation": "joe visited [home, about, career], james visited [home, cart, maps, home], mary visited [home, about, career]. Pattern [home, about, career] has score 2 (joe and mary)."
+   },
+   {
+    "input": "username = [\"ua\",\"ua\",\"ua\",\"ub\",\"ub\",\"ub\"], timestamp = [1,2,3,4,5,6], website = [\"a\",\"b\",\"a\",\"a\",\"b\",\"c\"]",
+    "output": "[\"a\",\"b\",\"a\"]",
+    "explanation": "ua visited [a, b, a] and ub visited [a, b, c]. Both patterns have score 1, and [a, b, a] is lexicographically smaller than [a, b, c]."
+   }
+  ],
+  "starterCode": {
+   "java": "class Solution {\n    public List<String> mostVisitedPattern(String[] username, int[] timestamp, String[] website) {\n        // Write your solution here\n        return null;\n    }\n}\n",
+   "python": "class Solution:\n    def mostVisitedPattern(self, username: List[str], timestamp: List[int], website: List[str]) -> List[str]:\n        # Write your solution here\n        pass\n"
+  },
+  "solutionCode": {
+   "java": "class Solution {\n    private static class Visit {\n        int time;\n        String site;\n\n        Visit(int time, String site) {\n            this.time = time;\n            this.site = site;\n        }\n    }\n\n    private static int comparePatterns(List<String> a, List<String> b) {\n        for (int i = 0; i < 3; i++) {\n            int cmp = a.get(i).compareTo(b.get(i));\n            if (cmp != 0) {\n                return cmp;\n            }\n        }\n        return 0;\n    }\n\n    public List<String> mostVisitedPattern(String[] username, int[] timestamp, String[] website) {\n        Map<String, List<Visit>> byUser = new HashMap<>();\n        for (int i = 0; i < username.length; i++) {\n            byUser.computeIfAbsent(username[i], k -> new ArrayList<>())\n                  .add(new Visit(timestamp[i], website[i]));\n        }\n\n        Map<List<String>, Integer> scores = new HashMap<>();\n        for (List<Visit> visits : byUser.values()) {\n            visits.sort(Comparator.comparingInt(v -> v.time));\n            int m = visits.size();\n            Set<List<String>> seen = new HashSet<>();\n            for (int i = 0; i < m; i++) {\n                for (int j = i + 1; j < m; j++) {\n                    for (int k = j + 1; k < m; k++) {\n                        seen.add(List.of(visits.get(i).site, visits.get(j).site, visits.get(k).site));\n                    }\n                }\n            }\n            for (List<String> pat : seen) {\n                scores.put(pat, scores.getOrDefault(pat, 0) + 1);\n            }\n        }\n\n        List<String> best = null;\n        int bestScore = -1;\n        for (Map.Entry<List<String>, Integer> e : scores.entrySet()) {\n            List<String> pat = e.getKey();\n            int score = e.getValue();\n            if (score > bestScore || (score == bestScore && comparePatterns(pat, best) < 0)) {\n                bestScore = score;\n                best = pat;\n            }\n        }\n        return new ArrayList<>(best);\n    }\n}\n",
+   "python": "class Solution:\n    def mostVisitedPattern(self, username: List[str], timestamp: List[int], website: List[str]) -> List[str]:\n        by_user = defaultdict(list)\n        for u, t, w in zip(username, timestamp, website):\n            by_user[u].append((t, w))\n\n        scores = Counter()\n        for visits in by_user.values():\n            visits.sort(key=lambda x: x[0])\n            sites = [w for _, w in visits]\n            m = len(sites)\n            seen = set()\n            for i in range(m):\n                for j in range(i + 1, m):\n                    for k in range(j + 1, m):\n                        seen.add((sites[i], sites[j], sites[k]))\n            for pat in seen:\n                scores[pat] += 1\n\n        best_pat = min(scores.keys(), key=lambda p: (-scores[p], p))\n        return list(best_pat)\n"
+  },
+  "sampleArray": [
+   1,
+   2,
+   3,
+   4,
+   5,
+   6,
+   7,
+   8,
+   9,
+   10
+  ],
+  "visibleTestCount": 2,
+  "hiddenTestCount": 10,
+  "number": 10
+ }
+]

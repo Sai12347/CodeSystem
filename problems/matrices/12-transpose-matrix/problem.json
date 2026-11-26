@@ -1,0 +1,39 @@
+{
+  "title": "Transpose Matrix",
+  "difficulty": "Easy",
+  "subtopic": "Matrix Rotation",
+  "companies": [
+    "Amazon",
+    "Microsoft",
+    "Google"
+  ],
+  "description": "Return the transpose of `matrix`: the value at row `r`, column `c` in the result equals the value at row `c`, column `r` in the input. The input may be rectangular.",
+  "constraints": [
+    "1 <= rows, columns <= 50",
+    "-100 <= matrix[i][j] <= 100"
+  ],
+  "hints": [
+    "Use row and column structure to identify the required values.",
+    "Check single-row, single-column, and tie cases."
+  ],
+  "examples": [
+    {
+      "input": "matrix = [[1,2,3],[4,5,6]]",
+      "output": "[[1,4],[2,5],[3,6]]"
+    }
+  ],
+  "timeComplexity": "O(r*c)",
+  "spaceComplexity": "O(r*c)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "transpose",
+    "params": [
+      {
+        "name": "matrix",
+        "type": "int[][]"
+      }
+    ],
+    "returns": "int[][]"
+  }
+}

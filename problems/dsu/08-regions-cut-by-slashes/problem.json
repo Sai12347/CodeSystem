@@ -1,0 +1,41 @@
+{
+  "title": "Regions Cut By Slashes",
+  "difficulty": "Medium",
+  "subtopic": "Path Compression",
+  "companies": ["Google", "Amazon", "Meta", "Uber", "Microsoft"],
+  "leetcode": 959,
+  "description": "An `n x n` grid is composed of `1 x 1` squares, where each `1 x 1` square contains `'/'`, `'\\'`, or a blank space `' '`. These characters divide the square into contiguous regions.\n\nGiven the grid represented as a string array `grid` of length `n` (where each string has length `n`), return the total number of distinct contiguous regions.\n\nNote that backslash characters are escaped in string literals, so a single backslash is represented as `'\\\\'`.",
+  "constraints": [
+    "grid.length == n",
+    "grid[i].length == n",
+    "1 <= n <= 30",
+    "grid[i][j] is either '/', '\\\\', or ' '."
+  ],
+  "hints": [
+    "Subdivide each 1 x 1 cell into 4 triangular sub-regions: top (0), right (1), bottom (2), and left (3), giving 4 * n * n nodes in a Disjoint Set Union (DSU) structure.",
+    "Inside each cell, union triangles based on its character: '/' unions (0, 3) and (1, 2); '\\\\' unions (0, 1) and (2, 3); and ' ' unions all four triangles together.",
+    "Across neighboring cells, always union the bottom triangle (2) of (r, c) with the top triangle (0) of (r + 1, c), and the right triangle (1) of (r, c) with the left triangle (3) of (r, c + 1). The remaining number of components is the answer."
+  ],
+  "examples": [
+    {
+      "explanation": "The two forward slashes connect diagonally from top-right to bottom-left across the 2 x 2 grid, splitting it into 2 regions."
+    },
+    {
+      "explanation": "Only the top-right cell has a forward slash; its two sides remain connected through the blank cells, leaving 1 contiguous region."
+    },
+    {
+      "explanation": "The four slashes form a closed diamond in the center surrounded by 4 corner regions, producing 5 regions in total."
+    }
+  ],
+  "timeComplexity": "O(n^2 * alpha(n^2))",
+  "spaceComplexity": "O(n^2)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "regionsBySlashes",
+    "params": [
+      {"name": "grid", "type": "String[]"}
+    ],
+    "returns": "int"
+  }
+}

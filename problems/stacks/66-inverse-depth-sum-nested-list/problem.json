@@ -1,0 +1,46 @@
+{
+  "title": "Inverse Depth Sum of Nested List",
+  "difficulty": "Medium",
+  "subtopic": "Expression Parsing",
+  "companies": [
+    "LinkedIn",
+    "Meta",
+    "Google",
+    "Amazon"
+  ],
+  "description": "You are given a string `s` representing a valid nested list of signed integers formatted with square brackets `'['`, `']'` and commas `','` (e.g., `\"[1,[4,[6]]]\"`).\n\nThe **depth** of an integer is the number of bracket pairs enclosing it (outermost elements have depth `1`). Let `maxDepth` be the maximum depth among all integers present in `s` (or `0` if `s` contains no integers). The **inverse weight** of an integer at depth `d` is `maxDepth - d + 1`.\n\nReturn the sum of `value * (maxDepth - depth + 1)` over all integers in `s`.",
+  "constraints": [
+    "2 <= s.length <= 5 * 10^4",
+    "s is a valid bracketed nested list of integers with no spaces.",
+    "All integer values are in [-10^4, 10^4], and the final sum fits in a 32-bit signed integer."
+  ],
+  "hints": [
+    "Track nesting depth using a stack of '[' brackets (or depth counter) while parsing signed integers.",
+    "Use the identity sum(val * (maxDepth - d + 1)) = (maxDepth + 1) * sum(val) - sum(val * d) to compute the answer in a single pass."
+  ],
+  "examples": [
+    {
+      "explanation": "Integers are 1 (depth 1), 4 (depth 2), 6 (depth 3); maxDepth = 3, so inverse sum = 1*3 + 4*2 + 6*1 = 17."
+    },
+    {
+      "explanation": "Integers are 1,1 (depth 2), 2 (depth 1), 1,1 (depth 2); maxDepth = 2, so inverse sum = (1+1+1+1)*1 + 2*2 = 8."
+    },
+    {
+      "explanation": "No integers exist inside \"[[]]\", so the result is 0."
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "inverseDepthSum",
+    "params": [
+      {
+        "name": "s",
+        "type": "String"
+      }
+    ],
+    "returns": "int"
+  }
+}

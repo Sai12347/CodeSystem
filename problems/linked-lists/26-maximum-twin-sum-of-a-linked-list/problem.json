@@ -1,0 +1,45 @@
+{
+  "title": "Maximum Twin Sum of a Linked List",
+  "difficulty": "Medium",
+  "subtopic": "Fast/Slow Pointer",
+  "companies": [
+    "Amazon",
+    "Google",
+    "Meta",
+    "Goldman Sachs"
+  ],
+  "description": "In a singly linked list of **even** length `n`, the `i`-th node (0-indexed) and the `(n - 1 - i)`-th node are called **twins** for every `0 <= i < n / 2`. The **twin sum** of a twin pair is the sum of the two nodes' values.\n\nGiven the `head` of an even-length singly linked list, return the maximum twin sum across all pairs. Aim for `O(n)` time and `O(1)` extra space.",
+  "constraints": [
+    "The number of nodes n is even and lies in the range [2, 10^4].",
+    "1 <= Node.val <= 10^5"
+  ],
+  "hints": [
+    "Use slow and fast pointers to find the start of the second half of the list.",
+    "Reverse the second half in-place, then walk the first half and reversed second half in lockstep while tracking the maximum sum `first.val + second.val`."
+  ],
+  "examples": [
+    {
+      "explanation": "Twin pairs are (5, 1) with sum 6 and (4, 2) with sum 6, so the maximum is 6."
+    },
+    {
+      "explanation": "Twin pairs are (4, 3) with sum 7 and (2, 2) with sum 4, so the maximum is 7."
+    },
+    {
+      "explanation": "The only twin pair is (1, 100000) with sum 100001."
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "pairSum",
+    "params": [
+      {
+        "name": "head",
+        "type": "ListNode"
+      }
+    ],
+    "returns": "int"
+  }
+}

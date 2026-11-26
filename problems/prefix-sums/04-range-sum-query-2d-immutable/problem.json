@@ -1,0 +1,76 @@
+{
+  "title": "Range Sum Query 2D - Immutable",
+  "difficulty": "Medium",
+  "subtopic": "2D Submatrix Sum",
+  "companies": [
+    "Meta",
+    "Google",
+    "Amazon",
+    "Microsoft",
+    "Uber",
+    "Bloomberg"
+  ],
+  "leetcode": 304,
+  "description": "Given a 2D integer matrix `matrix`, handle multiple queries of the following type:\n\n- Calculate the **sum** of the elements of `matrix` inside the rectangle defined by its **upper-left corner** `(row1, col1)` and **lower-right corner** `(row2, col2)` (both inclusive).\n\nImplement the `NumMatrix` class:\n- `NumMatrix(int[][] matrix)` initializes the object with the integer matrix `matrix`.\n- `int sumRegion(int row1, int col1, int row2, int col2)` returns the sum of the elements of `matrix` inside the rectangle `(row1, col1)` to `(row2, col2)` inclusive.\n\nYou must design an algorithm where `sumRegion` works in `O(1)` time complexity.",
+  "constraints": [
+    "m == matrix.length",
+    "n == matrix[i].length",
+    "1 <= m, n <= 200",
+    "-10^4 <= matrix[i][j] <= 10^4",
+    "0 <= row1 <= row2 < m",
+    "0 <= col1 <= col2 < n",
+    "At most 10^4 calls will be made to sumRegion."
+  ],
+  "hints": [
+    "Generalize 1D prefix sums to 2D by storing `prefix[r + 1][c + 1]` as the sum of the submatrix from `(0, 0)` to `(r, c)`.",
+    "Using inclusion-exclusion, `prefix[r + 1][c + 1] = matrix[r][c] + prefix[r][c + 1] + prefix[r + 1][c] - prefix[r][c]`.",
+    "For any query `(row1, col1, row2, col2)`, return `prefix[row2 + 1][col2 + 1] - prefix[row1][col2 + 1] - prefix[row2 + 1][col1] + prefix[row1][col1]`."
+  ],
+  "examples": [
+    {
+      "explanation": "sumRegion(2, 1, 4, 3) = 8, sumRegion(1, 1, 2, 2) = 11, sumRegion(1, 2, 2, 4) = 12."
+    },
+    {
+      "explanation": "Single-cell, single-row, single-column, and full-matrix regions are all handled in O(1) time."
+    }
+  ],
+  "timeComplexity": "O(m * n) init, O(1) query",
+  "spaceComplexity": "O(m * n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "design",
+    "className": "NumMatrix",
+    "constructor": {
+      "params": [
+        {
+          "name": "matrix",
+          "type": "int[][]"
+        }
+      ]
+    },
+    "methods": [
+      {
+        "name": "sumRegion",
+        "params": [
+          {
+            "name": "row1",
+            "type": "int"
+          },
+          {
+            "name": "col1",
+            "type": "int"
+          },
+          {
+            "name": "row2",
+            "type": "int"
+          },
+          {
+            "name": "col2",
+            "type": "int"
+          }
+        ],
+        "returns": "int"
+      }
+    ]
+  }
+}

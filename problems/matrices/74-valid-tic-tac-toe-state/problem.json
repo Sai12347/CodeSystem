@@ -1,0 +1,46 @@
+{
+  "title": "Valid Tic-Tac-Toe Board State",
+  "difficulty": "Medium",
+  "subtopic": "Simulation",
+  "companies": [
+    "Microsoft",
+    "Amazon",
+    "Meta",
+    "Apple"
+  ],
+  "description": "Given a `3 x 3` Tic-Tac-Toe board represented as a string array `board` of length `3`, where each string has length `3` and contains only `'X'`, `'O'`, or space `' '`, return `true` if and only if it is possible to reach this board state during the course of a valid Tic-Tac-Toe game.\n\nThe rules of Tic-Tac-Toe are:\n1. Players take turns placing marks into empty squares (`' '`), with `'X'` always playing first.\n2. The game ends immediately as soon as any row, column, or main/anti-diagonal contains three identical non-empty marks (or all 9 squares are filled).\n3. No more moves can be made after the game ends.",
+  "constraints": [
+    "board.length == 3",
+    "board[i].length == 3",
+    "board[i][j] is either 'X', 'O', or ' '."
+  ],
+  "hints": [
+    "Because 'X' always moves first and players alternate, count(X) must equal count(O) or count(O) + 1.",
+    "Check whether 'X' has a winning line and whether 'O' has a winning line: both cannot win simultaneously, if 'X' wins then count(X) must equal count(O) + 1, and if 'O' wins then count(X) must equal count(O)."
+  ],
+  "examples": [
+    {
+      "explanation": "'O' cannot play before 'X' makes the first move, so count(X) = 0 and count(O) = 1 is invalid."
+    },
+    {
+      "explanation": "'X' has 3 marks while 'O' has only 1 mark, violating alternating turns."
+    },
+    {
+      "explanation": "With 4 'X's, 4 'O's, and no winner yet, this mid-game board state is reachable."
+    }
+  ],
+  "timeComplexity": "O(1)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "validTicTacToe",
+    "params": [
+      {
+        "name": "board",
+        "type": "String[]"
+      }
+    ],
+    "returns": "boolean"
+  }
+}

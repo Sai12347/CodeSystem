@@ -1,0 +1,47 @@
+{
+  "title": "Largest Magic Square",
+  "difficulty": "Medium",
+  "subtopic": "2D Search",
+  "companies": [
+    "Google",
+    "Amazon",
+    "Adobe",
+    "Bloomberg"
+  ],
+  "description": "A `k x k` **magic square** is a `k x k` subgrid filled with integers such that every row sum, every column sum, and both main diagonal sums are all equal. The integers in the magic square do not need to be distinct. Every `1 x 1` cell is trivially a magic square of side length `1`.\n\nGiven an `m x n` integer `grid`, return the side length `k` of the **largest** magic square that appears as a contiguous subgrid of `grid`.",
+  "constraints": [
+    "m == grid.length",
+    "n == grid[i].length",
+    "1 <= m, n <= 50",
+    "1 <= grid[i][j] <= 10^6"
+  ],
+  "hints": [
+    "Precompute row prefix sums and column prefix sums so any horizontal or vertical segment sum can be queried in O(1).",
+    "Search side lengths k from min(m, n) downward to 2; the very first valid k x k magic square found is immediately the answer."
+  ],
+  "examples": [
+    {
+      "explanation": "The 3x3 subgrid in rows 1..3 and columns 1..3 ([[5,1,6],[5,4,3],[2,7,3]]) has every row, column, and diagonal summing to 12."
+    },
+    {
+      "explanation": "The 2x2 subgrid [[3,3],[3,3]] is a valid magic square of side length 2."
+    },
+    {
+      "explanation": "No 2x2 subgrid has equal row, column, and diagonal sums, so the largest magic square has side length 1."
+    }
+  ],
+  "timeComplexity": "O(m * n * min(m, n)^2)",
+  "spaceComplexity": "O(m * n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "largestMagicSquare",
+    "params": [
+      {
+        "name": "grid",
+        "type": "int[][]"
+      }
+    ],
+    "returns": "int"
+  }
+}

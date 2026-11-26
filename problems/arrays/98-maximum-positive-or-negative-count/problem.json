@@ -1,0 +1,44 @@
+{
+  "title": "Maximum Positive or Negative Count",
+  "difficulty": "Easy",
+  "subtopic": "Traversal",
+  "companies": [
+    "Amazon",
+    "Google",
+    "Microsoft"
+  ],
+  "description": "Given a non-decreasing sorted integer array `nums`, count its strictly negative elements and its strictly positive elements. Ignore zeros and return the larger of those two counts. Input: sorted `nums`. Output: the maximum count.",
+  "constraints": [
+    "1 <= nums.length <= 100000",
+    "-100000 <= nums[i] <= 100000",
+    "nums is sorted in non-decreasing order"
+  ],
+  "hints": [
+    "Keep a running total or frequency count rather than recomputing over all prefixes.",
+    "Test repeated values, zeros, and minimum-size inputs."
+  ],
+  "examples": [
+    {
+      "input": "nums = [-2, -1, -1, 1, 2, 3]",
+      "output": "3"
+    },
+    {
+      "input": "nums = [-3, -2, -1, 0, 0, 1, 2]",
+      "output": "3"
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "maximumCount",
+    "params": [
+      {
+        "name": "nums",
+        "type": "int[]"
+      }
+    ],
+    "returns": "int"
+  }
+}

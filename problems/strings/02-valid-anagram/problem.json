@@ -1,0 +1,53 @@
+{
+  "title": "Valid Anagram",
+  "difficulty": "Easy",
+  "subtopic": "Anagrams",
+  "companies": [
+    "Amazon",
+    "Google",
+    "Meta",
+    "Microsoft",
+    "Bloomberg",
+    "Uber"
+  ],
+  "leetcode": 242,
+  "description": "Given two strings `s` and `t`, return `true` if `t` is an **anagram** of `s`, and `false` otherwise.\n\nAn anagram is a string formed by rearranging all the characters of another string, using each original character the exact same number of times.",
+  "constraints": [
+    "1 <= s.length, t.length <= 5 * 10^4",
+    "s and t consist only of lowercase English letters ('a'-'z')."
+  ],
+  "hints": [
+    "If `s` and `t` have different lengths, they cannot be anagrams.",
+    "Since the alphabet has only 26 lowercase English letters, you can count character frequencies in a fixed-size array of length 26.",
+    "Increment counts for characters in `s` and decrement for characters in `t`; all 26 entries must end at zero."
+  ],
+  "examples": [
+    {
+      "explanation": "Both strings contain three 'a's and one each of 'n', 'g', 'r', and 'm'."
+    },
+    {
+      "explanation": "'t' appears in \"rat\" while 'c' appears in \"car\", so they are not anagrams."
+    },
+    {
+      "explanation": "Single identical characters are trivially anagrams of each other."
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "isAnagram",
+    "params": [
+      {
+        "name": "s",
+        "type": "String"
+      },
+      {
+        "name": "t",
+        "type": "String"
+      }
+    ],
+    "returns": "boolean"
+  }
+}

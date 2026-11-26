@@ -1,0 +1,99 @@
+{
+  "title": "Design Singly Linked List",
+  "difficulty": "Medium",
+  "subtopic": "LRU Design",
+  "companies": [
+    "Amazon",
+    "Google",
+    "Meta",
+    "Microsoft",
+    "Bloomberg"
+  ],
+  "description": "Design and implement your own linked list class `MyLinkedList` (using singly or doubly linked nodes) that supports 0-indexed operations:\n- `MyLinkedList()` initializes an empty linked list.\n- `int get(int index)` returns the value of the `index`-th node, or `-1` if `index` is out of bounds.\n- `void addAtHead(int val)` inserts a node with value `val` before the first element.\n- `void addAtTail(int val)` appends a node with value `val` as the last element.\n- `void addAtIndex(int index, int val)` inserts a node with value `val` before the `index`-th node. If `index == length`, appends at the tail. If `index < 0` or `index > length`, does nothing.\n- `void deleteAtIndex(int index)` deletes the `index`-th node if `0 <= index < length`; otherwise does nothing.",
+  "constraints": [
+    "0 <= val <= 10^5",
+    "-1000 <= index <= 10^4",
+    "At most 2000 calls will be made to get, addAtHead, addAtTail, addAtIndex, and deleteAtIndex."
+  ],
+  "hints": [
+    "Using a doubly linked list with sentinel `head` and `tail` dummy nodes plus a `size` counter eliminates edge cases at both ends.",
+    "To reach any valid `index` in O(min(index, size - index)), walk forward from `head` if `index < size / 2` and backward from `tail` otherwise."
+  ],
+  "examples": [
+    {
+      "explanation": "After addAtHead(1), addAtTail(3), addAtIndex(1, 2) the list is [1, 2, 3]; get(1) is 2; deleteAtIndex(1) leaves [1, 3]; get(1) is 3."
+    },
+    {
+      "explanation": "Out-of-bounds get/delete calls safely return -1 or do nothing; valid inserts at head/tail work as expected."
+    },
+    {
+      "explanation": "Deleting the sole element empties the list so subsequent get(0) returns -1."
+    }
+  ],
+  "timeComplexity": "O(min(index, n - index))",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "design",
+    "className": "MyLinkedList",
+    "constructor": {
+      "params": []
+    },
+    "methods": [
+      {
+        "name": "get",
+        "params": [
+          {
+            "name": "index",
+            "type": "int"
+          }
+        ],
+        "returns": "int"
+      },
+      {
+        "name": "addAtHead",
+        "params": [
+          {
+            "name": "val",
+            "type": "int"
+          }
+        ],
+        "returns": "void"
+      },
+      {
+        "name": "addAtTail",
+        "params": [
+          {
+            "name": "val",
+            "type": "int"
+          }
+        ],
+        "returns": "void"
+      },
+      {
+        "name": "addAtIndex",
+        "params": [
+          {
+            "name": "index",
+            "type": "int"
+          },
+          {
+            "name": "val",
+            "type": "int"
+          }
+        ],
+        "returns": "void"
+      },
+      {
+        "name": "deleteAtIndex",
+        "params": [
+          {
+            "name": "index",
+            "type": "int"
+          }
+        ],
+        "returns": "void"
+      }
+    ]
+  }
+}

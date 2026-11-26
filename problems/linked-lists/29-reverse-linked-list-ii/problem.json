@@ -1,0 +1,56 @@
+{
+  "title": "Reverse Linked List II",
+  "difficulty": "Medium",
+  "subtopic": "Reversal",
+  "companies": [
+    "Amazon",
+    "Google",
+    "Meta",
+    "Microsoft",
+    "Apple",
+    "Bloomberg"
+  ],
+  "description": "Given the `head` of a singly linked list and two 1-indexed integers `left` and `right` where `1 <= left <= right <= n`, reverse the nodes of the list from position `left` to position `right` (inclusive), and return the head of the modified list.\n\nComplete the reversal in a single pass using `O(1)` extra space.",
+  "constraints": [
+    "The number of nodes in the list is n, with 1 <= n <= 5000.",
+    "-5000 <= Node.val <= 5000",
+    "1 <= left <= right <= n"
+  ],
+  "hints": [
+    "Attach a dummy node before `head` and walk `prev` forward `left - 1` steps so `prev` sits immediately before the sublist to reverse.",
+    "Keep `curr = prev.next` fixed as the growing reversed sublist's tail, and repeatedly splice `curr.next` directly after `prev` for `right - left` iterations."
+  ],
+  "examples": [
+    {
+      "explanation": "Reversing positions 2 through 4 of [1, 2, 3, 4, 5] turns [2, 3, 4] into [4, 3, 2], giving [1, 4, 3, 2, 5]."
+    },
+    {
+      "explanation": "A single-node range [1, 1] leaves [5] unchanged."
+    },
+    {
+      "explanation": "Reversing positions 1 through 4 reverses the entire list into [4, 3, 2, 1]."
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "reverseBetween",
+    "params": [
+      {
+        "name": "head",
+        "type": "ListNode"
+      },
+      {
+        "name": "left",
+        "type": "int"
+      },
+      {
+        "name": "right",
+        "type": "int"
+      }
+    ],
+    "returns": "ListNode"
+  }
+}

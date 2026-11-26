@@ -1,0 +1,48 @@
+{
+  "title": "Shortest Subarray With Bitwise OR at Least K",
+  "difficulty": "Medium",
+  "subtopic": "Counting Bits",
+  "companies": [
+    "Google",
+    "Meta",
+    "Uber"
+  ],
+  "description": "Given an array `nums` of non-negative integers and a non-negative integer `k`, a non-empty contiguous subarray is called special if the bitwise OR of all its elements is at least `k`. Return the length of the shortest special subarray of `nums`, or `-1` if no special subarray exists.",
+  "constraints": [
+    "1 <= nums.length <= 10^5",
+    "0 <= nums[i], k <= 10^9"
+  ],
+  "hints": [
+    "Bitwise OR is monotonically non-decreasing as a window expands, so a two-pointer sliding window applies once you can remove elements from the left.",
+    "Maintain a 30-element array `bitCount[b]` tracking how many elements in the current window have bit `b` set; a bit drops from the window OR only when its count falls to `0`."
+  ],
+  "examples": [
+    {
+      "explanation": "The single-element subarray [2] (or [3]) already has bitwise OR >= 2, so the shortest length is 1."
+    },
+    {
+      "explanation": "Only the full subarray [2, 1, 8] achieves bitwise OR 11 >= 10, giving length 3."
+    },
+    {
+      "explanation": "Even the entire array [1, 2] has bitwise OR 3 < 4, so return -1."
+    }
+  ],
+  "timeComplexity": "O(n log M)",
+  "spaceComplexity": "O(log M)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "minimumSubarrayLength",
+    "params": [
+      {
+        "name": "nums",
+        "type": "int[]"
+      },
+      {
+        "name": "k",
+        "type": "int"
+      }
+    ],
+    "returns": "int"
+  }
+}

@@ -1,0 +1,52 @@
+{
+  "title": "Largest Plus Sign in Binary Grid",
+  "difficulty": "Medium",
+  "subtopic": "2D Search",
+  "companies": [
+    "Meta",
+    "Amazon",
+    "Google",
+    "LinkedIn"
+  ],
+  "description": "You are given an integer `n` representing an `n x n` binary grid initially filled with all `1`s, along with a list `mines` where each `mines[i] = [r, c]` sets cell `(r, c)` to `0`.\n\nReturn the **order** `k` of the largest axis-aligned **plus sign** of `1`s contained in the grid. An order-`k` plus sign centered at `(r, c)` consists of `grid[r][c] == 1` together with four arms of length `k - 1` extending up, down, left, and right\u2014all containing `1`s. If every cell is `0`, return `0`.",
+  "constraints": [
+    "1 <= n <= 300",
+    "0 <= mines.length <= n * n",
+    "mines[i].length == 2",
+    "0 <= mines[i][0], mines[i][1] < n",
+    "All coordinates in mines are distinct."
+  ],
+  "hints": [
+    "For every cell (r, c), the largest plus sign centered there has order equal to the minimum of consecutive 1s extending in each of the four directions: left, right, up, and down.",
+    "Initialize an n x n array dp with n everywhere (0 at mine coordinates), then sweep each row left-to-right and right-to-left and each column top-to-bottom and bottom-to-top updating dp[r][c] = min(dp[r][c], run)."
+  ],
+  "examples": [
+    {
+      "explanation": "With a single mine at (4, 2) in a 5x5 grid, a plus sign of order 2 fits centered at (1, 1), (1, 2), (1, 3), etc., while no order-3 plus sign fits (center (2, 2) is blocked at (4, 2))."
+    },
+    {
+      "explanation": "Every cell of the 1x1 grid is a mine, so no plus sign exists (order 0)."
+    },
+    {
+      "explanation": "With no mines in a 3x3 grid, the center (1, 1) forms an order-2 plus sign."
+    }
+  ],
+  "timeComplexity": "O(n^2)",
+  "spaceComplexity": "O(n^2)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "orderOfLargestPlusSign",
+    "params": [
+      {
+        "name": "n",
+        "type": "int"
+      },
+      {
+        "name": "mines",
+        "type": "int[][]"
+      }
+    ],
+    "returns": "int"
+  }
+}

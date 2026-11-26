@@ -1,0 +1,49 @@
+{
+  "title": "Find the City With the Smallest Number of Neighbors at a Threshold Distance",
+  "difficulty": "Medium",
+  "subtopic": "Floyd-Warshall",
+  "companies": [
+    "Google",
+    "Amazon",
+    "Microsoft"
+  ],
+  "description": "Given an undirected weighted graph, count for each city how many other cities are reachable with shortest-path distance at most `distanceThreshold`. Return the city with the fewest such neighbors; if there is a tie, return the city with the largest index.",
+  "constraints": [
+    "2 <= n <= 100",
+    "1 <= edges.length <= n*(n-1)/2",
+    "1 <= edge weight <= 1000",
+    "0 <= distanceThreshold <= 10^4"
+  ],
+  "hints": [
+    "Represent the graph with adjacency lists or a distance matrix appropriate to the limits.",
+    "Track shortest-distance states and respect all time or threshold rules."
+  ],
+  "examples": [
+    {
+      "input": "n = 4, edges = [[0,1,3],[1,2,1],[1,3,4],[2,3,1]], distanceThreshold = 4",
+      "output": "3"
+    }
+  ],
+  "timeComplexity": "O((V+E) log V)",
+  "spaceComplexity": "O(V+E)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "findTheCity",
+    "params": [
+      {
+        "name": "n",
+        "type": "int"
+      },
+      {
+        "name": "edges",
+        "type": "int[][]"
+      },
+      {
+        "name": "distanceThreshold",
+        "type": "int"
+      }
+    ],
+    "returns": "int"
+  }
+}

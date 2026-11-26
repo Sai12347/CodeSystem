@@ -1,0 +1,46 @@
+{
+  "title": "Brace Expansion Expression",
+  "difficulty": "Hard",
+  "subtopic": "Expression Parsing",
+  "companies": [
+    "Google",
+    "Meta",
+    "Amazon",
+    "Salesforce"
+  ],
+  "description": "Under a shell-like brace expansion grammar, an expression represents a set of lowercase words built from the following rules:\n- A single lowercase letter `x` represents the singleton set `{\"x\"}`.\n- A comma-separated brace group `{e1,e2,...,ek}` represents the **union** of the sets produced by `e1, e2, ..., ek`.\n- Concatenating two adjacent expressions `e1e2` represents the **Cartesian product** (all string concatenations `w1 + w2` with `w1` in `e1` and `w2` in `e2`).\n\nGiven a valid brace expression string `expression`, return the **sorted list of all distinct words** represented by `expression`.",
+  "constraints": [
+    "1 <= expression.length <= 60",
+    "expression consists of lowercase English letters, '{', '}', and ','.",
+    "The output list contains at most 5000 distinct words."
+  ],
+  "hints": [
+    "Maintain a stack of brace frames, each saving (unionSet, currentProductSet) before entering '{'.",
+    "On a letter, append it to every string in currentProductSet; on ',', merge currentProductSet into unionSet and reset currentProductSet to {\"\"}; on '}', combine unionSet | currentProductSet with the popped frame's currentProductSet via Cartesian product."
+  ],
+  "examples": [
+    {
+      "explanation": "{a,b} produces {a, b} and {c,{d,e}} produces {c, d, e}; their Cartesian product is [\"ac\",\"ad\",\"ae\",\"bc\",\"bd\",\"be\"]."
+    },
+    {
+      "explanation": "The union of {a,z}, a{b,c} = {ab,ac}, and {ab,z} deduplicates and sorts to [\"a\",\"ab\",\"ac\",\"z\"]."
+    },
+    {
+      "explanation": "Simple concatenation with a single group yields [\"prexpost\",\"preypost\"]."
+    }
+  ],
+  "timeComplexity": "O(W log W)",
+  "spaceComplexity": "O(W)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "braceExpansion",
+    "params": [
+      {
+        "name": "expression",
+        "type": "String"
+      }
+    ],
+    "returns": "List<String>"
+  }
+}

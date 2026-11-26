@@ -1,0 +1,52 @@
+{
+  "title": "Sudoku Solver",
+  "difficulty": "Hard",
+  "subtopic": "Board Puzzles",
+  "companies": [
+    "Google",
+    "Amazon",
+    "Meta",
+    "Microsoft",
+    "Uber",
+    "Apple"
+  ],
+  "leetcode": 37,
+  "description": "Write a program to solve a `9 x 9` Sudoku puzzle by filling the empty cells in-place.\n\nA Sudoku solution must satisfy all of the following rules:\n1. Each of the digits `'1'-'9'` must occur exactly once in each row.\n2. Each of the digits `'1'-'9'` must occur exactly once in each column.\n3. Each of the digits `'1'-'9'` must occur exactly once in each of the nine `3 x 3` sub-boxes of the grid.\n\nThe `'.'` character indicates an empty cell. Modify `board` in-place so that it contains the unique valid solution; do not return anything.",
+  "constraints": [
+    "board.length == 9",
+    "board[i].length == 9",
+    "board[i][j] is a digit '1'-'9' or '.'.",
+    "It is guaranteed that the input board has a single unique solution."
+  ],
+  "hints": [
+    "Maintain three 9-element bitmask arrays (for rows, columns, and 3x3 boxes) to check valid candidate digits for cell (r, c) in O(1) time.",
+    "The 3x3 box index for cell (r, c) is (r // 3) * 3 + (c // 3).",
+    "To solve hard Sudokus rapidly, apply the Minimum Remaining Values (MRV) heuristic: always branch next on the empty cell with the fewest legal candidates."
+  ],
+  "examples": [
+    {
+      "explanation": "Each empty '.' cell is filled in-place so every row, column, and 3x3 sub-box contains the digits '1' through '9' exactly once."
+    },
+    {
+      "explanation": "Even with an entirely blank middle row, constraint propagation and backtracking determine the unique valid completion."
+    }
+  ],
+  "timeComplexity": "O(9^m)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "solveSudoku",
+    "params": [
+      {
+        "name": "board",
+        "type": "char[][]"
+      }
+    ],
+    "returns": "void",
+    "output": {
+      "mode": "param",
+      "param": "board"
+    }
+  }
+}

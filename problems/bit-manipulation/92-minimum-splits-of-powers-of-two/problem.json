@@ -1,0 +1,49 @@
+{
+  "title": "Minimum Splits of Powers of Two to Form Target",
+  "difficulty": "Hard",
+  "subtopic": "Two Complement",
+  "companies": [
+    "Google",
+    "Amazon",
+    "Meta"
+  ],
+  "description": "You are given an array `nums` in which every element is a non-negative integer power of two (`2^k` for `0 <= k <= 30`), and a positive integer `target`. In one operation, you may choose an element `nums[i] > 1`, remove it from `nums`, and append two copies of `nums[i] / 2`. Return the minimum number of operations needed so that some subsequence of `nums` sums to `target`, or `-1` if it is impossible.",
+  "constraints": [
+    "1 <= nums.length <= 10^5",
+    "1 <= nums[i] <= 2^30 and nums[i] is a power of two.",
+    "1 <= target <= 2^31 - 1"
+  ],
+  "hints": [
+    "A solution exists if and only if the total sum of `nums` is at least `target`. Count how many copies `cnt[b]` of each power `2^b` you hold.",
+    "Process bits `b = 0..30` greedily: if bit `b` of `target` is `1` and `cnt[b] == 0`, borrow the smallest available `j > b` with `cnt[j] > 0` (costing `j - b` splits and populating one copy at each bit `b..j - 1`), then carry `cnt[b] // 2` pairs up to `cnt[b + 1]`."
+  ],
+  "examples": [
+    {
+      "explanation": "Split 8 into 4 + 4 (1 operation) so subsequence [1, 2, 4] sums to 7."
+    },
+    {
+      "explanation": "Combine 1+1+2 = 4, and split 32 -> 16+16 -> 8+8 (2 operations) to reach 4 + 8 = 12."
+    },
+    {
+      "explanation": "The total sum of [1, 32, 1] is 34 < 35, so target 35 is unreachable."
+    }
+  ],
+  "timeComplexity": "O(n + log target)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "minOperationsToFormTarget",
+    "params": [
+      {
+        "name": "nums",
+        "type": "int[]"
+      },
+      {
+        "name": "target",
+        "type": "int"
+      }
+    ],
+    "returns": "int"
+  }
+}

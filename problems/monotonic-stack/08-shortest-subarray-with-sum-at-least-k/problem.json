@@ -1,0 +1,53 @@
+{
+  "title": "Shortest Subarray with Sum at Least K",
+  "difficulty": "Hard",
+  "subtopic": "Sliding Window Max",
+  "companies": [
+    "Google",
+    "Amazon",
+    "Meta",
+    "Goldman Sachs",
+    "Bloomberg"
+  ],
+  "leetcode": 862,
+  "description": "Given an integer array `nums` (which may contain negative numbers, zeros, and positive numbers) and a positive integer `k`, return the length of the shortest **non-empty contiguous subarray** of `nums` whose sum is at least `k`.\n\nIf no contiguous subarray has a sum greater than or equal to `k`, return `-1`.",
+  "constraints": [
+    "1 <= nums.length <= 10^5",
+    "-10^5 <= nums[i] <= 10^5",
+    "1 <= k <= 10^9"
+  ],
+  "hints": [
+    "Because `nums` can contain negative numbers, a standard two-pointer sliding window fails. Rewrite subarray sums using prefix sums `P[j] - P[i] >= k` with `i < j`.",
+    "Maintain a monotonic increasing deque of prefix sum indices. If `P[i] >= P[j]` for `i < j`, then `i` is strictly worse than `j` for all future endpoints (larger prefix sum and farther left), so pop `i` from the back.",
+    "Whenever `P[j] - P[dq[0]] >= k`, update the answer with `j - dq[0]` and pop `dq[0]` from the front because any future `j' > j` would only form a longer subarray with `dq[0]`. Use 64-bit integers (`long`) for prefix sums."
+  ],
+  "examples": [
+    {
+      "explanation": "The single-element subarray [1] has sum 1 >= 1 and length 1."
+    },
+    {
+      "explanation": "Even the full array [1, 2] sums to 3 < 4, so return -1."
+    },
+    {
+      "explanation": "Only the full array [2, -1, 2] reaches sum 3 >= 3, giving length 3."
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "shortestSubarray",
+    "params": [
+      {
+        "name": "nums",
+        "type": "int[]"
+      },
+      {
+        "name": "k",
+        "type": "int"
+      }
+    ],
+    "returns": "int"
+  }
+}

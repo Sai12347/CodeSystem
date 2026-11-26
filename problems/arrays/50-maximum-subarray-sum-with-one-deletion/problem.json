@@ -1,0 +1,43 @@
+{
+  "title": "Maximum Subarray Sum with One Deletion",
+  "difficulty": "Medium",
+  "subtopic": "Subarrays",
+  "companies": [
+    "Amazon",
+    "Google",
+    "Microsoft"
+  ],
+  "description": "Given a non-empty integer array `nums`, choose a non-empty contiguous subarray and optionally delete at most one element from it. After deletion, at least one element must remain. Return the largest possible sum. Input: `nums`. Output: the maximum sum.",
+  "constraints": [
+    "1 <= nums.length <= 100000",
+    "-10000 <= nums[i] <= 10000"
+  ],
+  "hints": [
+    "Scan once to identify the boundary or state where the answer changes.",
+    "Test already ordered, reversed, duplicate, and minimum-size inputs."
+  ],
+  "examples": [
+    {
+      "input": "nums = [1, -2, 0, 3]",
+      "output": "4"
+    },
+    {
+      "input": "nums = [1, -2, -2, 3]",
+      "output": "3"
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "maximumSumWithOneDeletion",
+    "params": [
+      {
+        "name": "nums",
+        "type": "int[]"
+      }
+    ],
+    "returns": "int"
+  }
+}

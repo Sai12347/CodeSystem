@@ -1,0 +1,49 @@
+{
+  "title": "License Key Formatting",
+  "difficulty": "Easy",
+  "subtopic": "Parsing",
+  "companies": [
+    "Google",
+    "Amazon",
+    "Adobe"
+  ],
+  "description": "You are given a license key string `s` consisting of alphanumeric characters and dashes `'-'`, and a positive integer `k`. Reformat the string so that all lowercase letters are converted to uppercase, every group contains exactly `k` characters separated by `'-'`, except the first group which may be shorter than `k` (between 1 and `k` characters). If `s` has no alphanumeric characters, return `\"\"`.",
+  "constraints": [
+    "1 <= s.length <= 10^5",
+    "1 <= k <= 10^4",
+    "s consists of English letters, digits, and dashes '-'."
+  ],
+  "hints": [
+    "Iterate backward through s ignoring dashes, converting letters to uppercase.",
+    "Insert a dash before every k-th appended character (when the current group is full), then reverse at the end."
+  ],
+  "examples": [
+    {
+      "explanation": "Stripping dashes gives 8 characters, split into two groups of 4: \"5F3Z-2E9W\"."
+    },
+    {
+      "explanation": "5 characters with k = 2 produce a first group of 1 followed by two groups of 2: \"2-5G-3J\"."
+    },
+    {
+      "explanation": "No alphanumeric characters exist, so return an empty string."
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "licenseKeyFormatting",
+    "params": [
+      {
+        "name": "s",
+        "type": "String"
+      },
+      {
+        "name": "k",
+        "type": "int"
+      }
+    ],
+    "returns": "String"
+  }
+}

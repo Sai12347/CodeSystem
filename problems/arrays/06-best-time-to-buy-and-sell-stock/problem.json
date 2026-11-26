@@ -1,0 +1,48 @@
+{
+  "title": "Best Time to Buy and Sell Stock",
+  "difficulty": "Easy",
+  "subtopic": "Traversal",
+  "companies": [
+    "Amazon",
+    "Meta",
+    "Google",
+    "Microsoft",
+    "Goldman Sachs",
+    "Bloomberg"
+  ],
+  "leetcode": 121,
+  "description": "You are given an array `prices` where `prices[i]` is the price of a given stock on the `i`-th day.\n\nYou want to maximize your profit by choosing a **single day** to buy one stock and choosing a **different day in the future** to sell that stock. Return the maximum profit you can achieve from this transaction. If no positive profit is possible, return `0`.",
+  "constraints": [
+    "1 <= prices.length <= 10^5",
+    "0 <= prices[i] <= 10^4"
+  ],
+  "hints": [
+    "If you decide to sell on day `i`, the best day to have bought is the day with the minimum price among days `0..i-1`.",
+    "Track the running minimum price seen so far as you scan left to right, and update the maximum profit `prices[i] - minPrice` at each step."
+  ],
+  "examples": [
+    {
+      "explanation": "Buy on day 1 (price = 1) and sell on day 4 (price = 6), profit = 6 - 1 = 5."
+    },
+    {
+      "explanation": "Prices only decrease, so no profitable transaction can be made; return 0."
+    },
+    {
+      "explanation": "Buy on day 0 (price = 2) and sell on day 1 (price = 4) for profit 2. You cannot buy at 1 and sell earlier at 4."
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "maxProfit",
+    "params": [
+      {
+        "name": "prices",
+        "type": "int[]"
+      }
+    ],
+    "returns": "int"
+  }
+}

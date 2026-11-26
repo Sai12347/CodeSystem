@@ -1,0 +1,48 @@
+{
+  "title": "Compare Dotted Version Numbers",
+  "difficulty": "Medium",
+  "subtopic": "Parsing",
+  "companies": [
+    "Amazon",
+    "Google",
+    "Microsoft"
+  ],
+  "description": "Compare two version strings made of non-negative decimal revision numbers separated by dots. Compare revisions from left to right, treating missing trailing revisions as zero and ignoring leading zeroes within each revision. Return -1 if the first version is smaller, 1 if it is larger, or 0 if they are equal. Input: `version1`, `version2`. Output: -1, 0, or 1.",
+  "constraints": [
+    "1 <= version1.length, version2.length <= 10000",
+    "Each revision contains at least one decimal digit",
+    "A version has at most 1000 revisions"
+  ],
+  "hints": [
+    "Keep track of the smallest state needed to continue matching or comparing characters.",
+    "Test empty, one-character, repeated-character, and boundary inputs."
+  ],
+  "examples": [
+    {
+      "input": "version1 = \"1.01\", version2 = \"1.001\"",
+      "output": "0"
+    },
+    {
+      "input": "version1 = \"1.0.1\", version2 = \"1\"",
+      "output": "1"
+    }
+  ],
+  "timeComplexity": "O(m+n)",
+  "spaceComplexity": "O(m+n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "compareVersion",
+    "params": [
+      {
+        "name": "version1",
+        "type": "String"
+      },
+      {
+        "name": "version2",
+        "type": "String"
+      }
+    ],
+    "returns": "int"
+  }
+}

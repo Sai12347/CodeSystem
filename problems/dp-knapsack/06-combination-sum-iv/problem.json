@@ -1,0 +1,45 @@
+{
+  "title": "Combination Sum IV",
+  "difficulty": "Medium",
+  "subtopic": "Unbounded Knapsack",
+  "companies": [
+    "Amazon",
+    "Google",
+    "Microsoft"
+  ],
+  "description": "Given distinct positive integers `nums` and a target, return the number of ordered sequences whose values sum to the target. Different orders count as different sequences.",
+  "constraints": [
+    "1 <= nums.length <= 1000",
+    "1 <= nums[i] <= 1000",
+    "0 <= target <= 1000",
+    "The answer fits in a signed 32-bit integer"
+  ],
+  "hints": [
+    "Use a state indexed by the remaining capacity and the amount of progress toward the required target.",
+    "Process each choice in descending capacity order so it is not reused."
+  ],
+  "examples": [
+    {
+      "input": "nums = [1,2,3], target = 4",
+      "output": "7"
+    }
+  ],
+  "timeComplexity": "O(n*m*n)",
+  "spaceComplexity": "O(m*n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "combinationSum4",
+    "params": [
+      {
+        "name": "nums",
+        "type": "int[]"
+      },
+      {
+        "name": "target",
+        "type": "int"
+      }
+    ],
+    "returns": "int"
+  }
+}

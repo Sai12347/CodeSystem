@@ -1,0 +1,49 @@
+{
+  "title": "Can Place Flowers",
+  "difficulty": "Easy",
+  "subtopic": "Local Optimality",
+  "companies": [
+    "Amazon",
+    "Google",
+    "Microsoft"
+  ],
+  "description": "Return true if `n` new flowers can be planted in `flowerbed` without placing flowers in adjacent plots. A value of 1 means occupied and 0 means empty. Do not modify the input.",
+  "constraints": [
+    "1 <= flowerbed.length <= 2 * 10^4",
+    "flowerbed[i] is 0 or 1",
+    "No two existing flowers are adjacent",
+    "0 <= n <= flowerbed.length"
+  ],
+  "hints": [
+    "Choose locally optimal placements or intervals while maintaining the stated invariant.",
+    "Check boundary values and ties."
+  ],
+  "examples": [
+    {
+      "input": "flowerbed = [1,0,0,0,1], n = 1",
+      "output": "true"
+    },
+    {
+      "input": "flowerbed = [1,0,0,0,1], n = 2",
+      "output": "false"
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "canPlaceFlowers",
+    "params": [
+      {
+        "name": "flowerbed",
+        "type": "int[]"
+      },
+      {
+        "name": "n",
+        "type": "int"
+      }
+    ],
+    "returns": "boolean"
+  }
+}

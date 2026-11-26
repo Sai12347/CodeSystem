@@ -1,0 +1,45 @@
+{
+  "title": "Rearrange Linked List in Zigzag Order",
+  "difficulty": "Medium",
+  "subtopic": "Pointers & Nodes",
+  "companies": [
+    "Amazon",
+    "Microsoft",
+    "Goldman Sachs",
+    "Oracle"
+  ],
+  "description": "Given the `head` of a singly linked list of length `n`, rearrange its node values in a single left-to-right pass so that the list follows the zigzag wave pattern `node[0].val <= node[1].val >= node[2].val <= node[3].val >= ...`.\n\nTo guarantee a unique output, apply the canonical single-pass procedure for index `i = 0, 1, ..., n - 2`: when `i` is even, if `node[i].val > node[i + 1].val`, swap `node[i].val` and `node[i + 1].val`; when `i` is odd, if `node[i].val < node[i + 1].val`, swap `node[i].val` and `node[i + 1].val`.\n\nReturn the head of the rearranged linked list in `O(n)` time and `O(1)` extra space.",
+  "constraints": [
+    "The number of nodes in the list is in the range [0, 10^4].",
+    "-10^5 <= Node.val <= 10^5"
+  ],
+  "hints": [
+    "Maintain a boolean flag `expectLess` starting as `true` (meaning `curr.val <= curr.next.val` is required at even indices) and flip it at every step.",
+    "Swapping `curr.val` with `curr.next.val` when the current pair violates the required inequality never breaks the inequality already established with the previous node."
+  ],
+  "examples": [
+    {
+      "explanation": "Scanning [4, 3, 7, 8, 6, 2, 1]: swap (4,3)->[3,4,...], at odd i=1 swap (4,7)->[3,7,4,8,6,2,1], keep (4,8) and (8,6), at even i=4 swap (6,2)->[3,7,4,8,2,6,1], and keep (6,1)."
+    },
+    {
+      "explanation": "For [1, 2, 3, 4], i=0 keeps (1,2), i=1 swaps (2,3)->[1,3,2,4], and i=2 keeps (2,4)."
+    },
+    {
+      "explanation": "A single-node list [5] trivially satisfies the zigzag condition."
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "zigzagList",
+    "params": [
+      {
+        "name": "head",
+        "type": "ListNode"
+      }
+    ],
+    "returns": "ListNode"
+  }
+}

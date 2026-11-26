@@ -1,0 +1,53 @@
+{
+  "title": "Find All Anagrams in a String",
+  "difficulty": "Medium",
+  "subtopic": "Substring Frequency",
+  "companies": [
+    "Amazon",
+    "Meta",
+    "Google",
+    "Microsoft",
+    "Bloomberg",
+    "Adobe"
+  ],
+  "leetcode": 438,
+  "description": "Given two strings `s` and `p`, return an array of all the start indices of `p`'s **anagrams** in `s`. You may return the answer in **any order**.\n\nAn **anagram** is a string formed by rearranging all the letters of another string, using each original letter with the exact same frequency.",
+  "constraints": [
+    "1 <= s.length, p.length <= 3 * 10^4",
+    "s and p consist of lowercase English letters."
+  ],
+  "hints": [
+    "Every anagram of p in s is a contiguous substring of length len(p) with the exact same 26-letter frequency counts as p.",
+    "Slide a fixed-size window of length len(p) across s, incrementing the count for the incoming character and decrementing the count for the outgoing character.",
+    "Maintain a counter of how many of the 26 letters currently have matching frequencies (or compare the two 26-element arrays in O(1) time per step) to achieve O(n + m) total time."
+  ],
+  "examples": [
+    {
+      "explanation": "The substring starting at index 0 is \"cba\" and the substring starting at index 6 is \"bac\", both anagrams of \"abc\"."
+    },
+    {
+      "explanation": "The substrings starting at indices 0, 1, and 2 are \"ab\", \"ba\", and \"ab\", all anagrams of \"ab\"."
+    },
+    {
+      "explanation": "No substring of \"abcdef\" is an anagram of \"xyz\", so return []."
+    }
+  ],
+  "timeComplexity": "O(n + m)",
+  "spaceComplexity": "O(1)",
+  "compare": "sorted",
+  "signature": {
+    "kind": "function",
+    "method": "findAnagrams",
+    "params": [
+      {
+        "name": "s",
+        "type": "String"
+      },
+      {
+        "name": "p",
+        "type": "String"
+      }
+    ],
+    "returns": "List<Integer>"
+  }
+}

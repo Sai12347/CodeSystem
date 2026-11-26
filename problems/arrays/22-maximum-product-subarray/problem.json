@@ -1,0 +1,47 @@
+{
+  "title": "Maximum Product Subarray",
+  "difficulty": "Medium",
+  "subtopic": "Subarrays",
+  "companies": [
+    "Amazon",
+    "Microsoft",
+    "Meta"
+  ],
+  "description": "Given an integer array `nums`, find a non-empty contiguous subarray with the largest product and return that product. A subarray must contain consecutive elements.",
+  "constraints": [
+    "1 <= nums.length <= 2 * 10^4",
+    "-10 <= nums[i] <= 10",
+    "The product of every contiguous subarray fits in a signed 32-bit integer."
+  ],
+  "hints": [
+    "A negative value can turn the smallest product so far into the largest.",
+    "Track both the maximum and minimum product ending at the current position."
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "maxProduct",
+    "params": [
+      {
+        "name": "nums",
+        "type": "int[]"
+      }
+    ],
+    "returns": "int"
+  },
+  "examples": [
+    {
+      "input": "nums = [2,3,-2,4]",
+      "output": "6",
+      "explanation": "The subarray [2, 3] has product 6, which is maximal."
+    },
+    {
+      "input": "nums = [-2,0,-1]",
+      "output": "0",
+      "explanation": "The best non-empty subarray is [0]."
+    }
+  ],
+  "leetcode": null
+}

@@ -1,0 +1,44 @@
+{
+  "title": "Sum of All Subset XOR Totals",
+  "difficulty": "Easy",
+  "subtopic": "XOR Tricks",
+  "companies": [
+    "Google",
+    "Amazon",
+    "Meta"
+  ],
+  "description": "The XOR total of a subset is defined as the bitwise XOR of all its elements, or `0` if the subset is empty. Given an array `nums` of non-negative integers, return the sum of the XOR totals for every one of the `2^n` subsets of `nums` (counting subsets with identical elements at different indices separately).",
+  "constraints": [
+    "1 <= nums.length <= 30",
+    "0 <= nums[i] <= 10^9"
+  ],
+  "hints": [
+    "Consider each bit position `b` independently: if no element has bit `b` set, it contributes `0`; if at least one element has bit `b` set, exactly half (`2^(n - 1)`) of all subsets have an odd number of 1s at bit `b`.",
+    "Therefore, the sum of all subset XOR totals equals `(nums[0] | nums[1] | ... | nums[n - 1]) << (n - 1)`."
+  ],
+  "examples": [
+    {
+      "explanation": "Subsets {}, {1}, {3}, {1, 3} have XOR totals 0, 1, 3, 2 whose sum is 6."
+    },
+    {
+      "explanation": "The bitwise OR of [5, 1, 6] is 7, and 7 * 2^(3 - 1) = 7 * 4 = 28."
+    },
+    {
+      "explanation": "The bitwise OR of [3, 4, 5, 6, 7, 8] is 15, and 15 * 2^5 = 480."
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "subsetXorSum",
+    "params": [
+      {
+        "name": "nums",
+        "type": "int[]"
+      }
+    ],
+    "returns": "long"
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "title": "Longest Substring Containing Vowels in Even Counts",
+  "difficulty": "Medium",
+  "subtopic": "Substrings",
+  "companies": [
+    "Google",
+    "Amazon",
+    "Meta"
+  ],
+  "description": "Given a lowercase string `s`, return the length of the longest contiguous substring in which each of the five vowels `'a'`, `'e'`, `'i'`, `'o'`, and `'u'` appears an even number of times (zero is even).",
+  "constraints": [
+    "1 <= s.length <= 5 * 10^5",
+    "s contains only lowercase English letters."
+  ],
+  "hints": [
+    "Encode the parity (even/odd) of the 5 vowel counts as a 5-bit integer mask (0..31).",
+    "A substring s[l..r] has all even vowel counts iff prefixMask[r + 1] == prefixMask[l]. Store the earliest index seen for each of the 32 masks."
+  ],
+  "examples": [
+    {
+      "explanation": "\"leetminicowor\" has length 13 and contains 2 'e's, 2 'i's, and 2 'o's (with 0 'a' and 0 'u')."
+    },
+    {
+      "explanation": "\"leetc\" has length 5 and contains 2 'e's and 0 of the other vowels."
+    },
+    {
+      "explanation": "No vowels appear in \"bcbcbc\", so the entire string of length 6 is valid."
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "findTheLongestSubstring",
+    "params": [
+      {
+        "name": "s",
+        "type": "String"
+      }
+    ],
+    "returns": "int"
+  }
+}

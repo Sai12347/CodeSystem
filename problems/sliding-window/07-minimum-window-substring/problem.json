@@ -1,0 +1,54 @@
+{
+  "title": "Minimum Window Substring",
+  "difficulty": "Hard",
+  "subtopic": "Substring Frequency",
+  "companies": [
+    "Meta",
+    "Amazon",
+    "Google",
+    "Microsoft",
+    "Uber",
+    "LinkedIn"
+  ],
+  "leetcode": 76,
+  "description": "Given two strings `s` and `t` of lengths `m` and `n` respectively, return the **minimum window substring** of `s` such that every character in `t` (**including duplicates**) is included in the window. If there is no such substring, return the empty string `\"\"`.\n\nCharacters are case-sensitive (`'a'` and `'A'` are distinct). The test cases are generated such that if a valid window exists, the minimum-length answer is **unique**.",
+  "constraints": [
+    "1 <= s.length, t.length <= 10^5",
+    "s and t consist of uppercase and lowercase English letters.",
+    "If a valid window exists, the minimum window substring is unique."
+  ],
+  "hints": [
+    "Record the required frequency of each character in t. Maintain a sliding window [left, right] over s and track how many distinct characters of t currently meet their required count.",
+    "Expand right until all required characters are satisfied (formed == required). Then try shrinking left to minimize the window length while keeping it valid.",
+    "Since s and t only contain ASCII English letters, fixed-size arrays of length 128 provide O(1) lookups and O(1) extra space."
+  ],
+  "examples": [
+    {
+      "explanation": "The minimum window substring \"BANC\" includes 'A', 'B', and 'C' from string t."
+    },
+    {
+      "explanation": "The entire string s is the minimum window."
+    },
+    {
+      "explanation": "Both 'a's from t must be included in the window. Because s contains only one 'a', return \"\"."
+    }
+  ],
+  "timeComplexity": "O(m + n)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "minWindow",
+    "params": [
+      {
+        "name": "s",
+        "type": "String"
+      },
+      {
+        "name": "t",
+        "type": "String"
+      }
+    ],
+    "returns": "String"
+  }
+}

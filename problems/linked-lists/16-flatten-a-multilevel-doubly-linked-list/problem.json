@@ -1,0 +1,31 @@
+{
+  "title": "Flatten a Multilevel Doubly Linked List",
+  "difficulty": "Medium",
+  "subtopic": "Pointers & Nodes",
+  "companies": ["Amazon", "Bloomberg", "Meta", "Google", "Microsoft", "Uber"],
+  "leetcode": 430,
+  "description": "You are given a doubly linked list in which each node contains `val`, `prev`, `next`, and an additional `child` pointer. This `child` pointer may or may not point to a separate doubly linked list, which may itself have child lists, forming a multilevel data structure.\n\nFlatten the list so that all nodes appear in a **single-level doubly linked list**. Whenever a node `curr` has a non-null `child` list, all nodes in `curr.child` (recursively flattened) must appear **after `curr` and before `curr.next`** in the flattened list.\n\nReturn the `head` of the flattened list. Every node in the returned list must have `child == null`, `head.prev == null`, and properly linked bidirectional `next` and `prev` pointers.\n\nIn the test input notation, each list represents a doubly linked level: an integer creates a node appended to that level, and a nested list immediately following an integer specifies that node's `child` list (for example, `[1, 2, 3, [7, 8, [11, 12], 9, 10], 4, 5, 6]` means node `3` has child list `7-8-9-10` and node `8` has child list `11-12`).",
+  "constraints": [
+    "The total number of nodes in the multilevel list is in the range [0, 1000].",
+    "1 <= Node.val <= 10^5"
+  ],
+  "hints": [
+    "Think of the multilevel list as a binary tree where `child` is the left branch and `next` is the right branch: flattening corresponds to a preorder traversal.",
+    "You can solve this in O(n) time and O(1) extra space iteratively: scan forward with `curr`; whenever `curr.child` is non-null, find the tail of `curr.child` and splice the entire child chain between `curr` and `curr.next`.",
+    "Don't forget to set `curr.child = null`, update `child.prev = curr`, and (if `curr.next` existed) update `childTail.next = next` and `next.prev = childTail`."
+  ],
+  "examples": [
+    {"explanation": "Node 3's child list [7, 8, 9, 10] is spliced after 3 (with 8's child [11, 12] spliced after 8), yielding [1, 2, 3, 7, 8, 11, 12, 9, 10, 4, 5, 6]."},
+    {"explanation": "Node 1's child [3] is spliced between 1 and 2, yielding [1, 3, 2]."},
+    {"explanation": "An empty list flattens to an empty list."}
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "adapter",
+    "inputs": [
+      {"name": "head", "type": "List<Object>", "description": "Nested level representation where a sublist immediately after a value is that node's child list"}
+    ]
+  }
+}

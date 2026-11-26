@@ -1,0 +1,46 @@
+{
+  "title": "Remove Duplicates from Sorted List",
+  "difficulty": "Easy",
+  "subtopic": "Pointers & Nodes",
+  "companies": [
+    "Amazon",
+    "Google",
+    "Meta",
+    "Microsoft"
+  ],
+  "description": "Given the `head` of a singly linked list sorted in non-decreasing order, delete all duplicate nodes such that each distinct value appears only once. Return the head of the resulting sorted linked list.\n\nModify the list in-place in `O(1)` extra space.",
+  "constraints": [
+    "The number of nodes in the list is in the range [0, 3000].",
+    "-100 <= Node.val <= 100",
+    "The list is guaranteed to be sorted in non-decreasing order."
+  ],
+  "hints": [
+    "Because the list is sorted, all duplicates of any value appear consecutively.",
+    "Compare `curr.val` with `curr.next.val`: if equal, bypass `curr.next`; otherwise move `curr` forward by one step."
+  ],
+  "examples": [
+    {
+      "explanation": "The duplicate 1 is removed, yielding [1, 2]."
+    },
+    {
+      "explanation": "Duplicate copies of 1 and 3 are bypassed, leaving [1, 2, 3]."
+    },
+    {
+      "explanation": "An empty list remains empty (null)."
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "deleteDuplicates",
+    "params": [
+      {
+        "name": "head",
+        "type": "ListNode"
+      }
+    ],
+    "returns": "ListNode"
+  }
+}

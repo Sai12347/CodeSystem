@@ -1,0 +1,47 @@
+{
+  "title": "Pascal's Triangle II",
+  "difficulty": "Easy",
+  "subtopic": "Traversal",
+  "companies": [
+    "Amazon",
+    "Google",
+    "Microsoft",
+    "Goldman Sachs",
+    "Adobe"
+  ],
+  "leetcode": 119,
+  "description": "Given an integer `rowIndex`, return the `rowIndex`-th (**0-indexed**) row of Pascal's triangle.\n\nIn Pascal's triangle, row `0` is `[1]`, and each interior element of subsequent rows is the sum of the two numbers directly above it (with `1` at both ends). Aim to solve this using `O(rowIndex)` space.",
+  "constraints": [
+    "0 <= rowIndex <= 33"
+  ],
+  "hints": [
+    "Each entry in row `n` is the binomial coefficient C(n, k) for k = 0, 1, ..., n.",
+    "You can build the row in-place with O(rowIndex) space by updating an array right-to-left, or even compute consecutive binomial coefficients in O(rowIndex) time using C(n, k) = C(n, k - 1) * (n - k + 1) / k.",
+    "In languages with fixed-width 32-bit integers, use a 64-bit integer for the intermediate multiplication `val * (n - k + 1)` to avoid overflow."
+  ],
+  "examples": [
+    {
+      "explanation": "The rows 0..3 are [1], [1, 1], [1, 2, 1], [1, 3, 3, 1]."
+    },
+    {
+      "explanation": "Row 0 is the top of Pascal's triangle: [1]."
+    },
+    {
+      "explanation": "Row 1 consists of two 1s: [1, 1]."
+    }
+  ],
+  "timeComplexity": "O(rowIndex)",
+  "spaceComplexity": "O(rowIndex)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "getRow",
+    "params": [
+      {
+        "name": "rowIndex",
+        "type": "int"
+      }
+    ],
+    "returns": "List<Integer>"
+  }
+}

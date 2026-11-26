@@ -1,0 +1,540 @@
+[
+ {
+  "id": "redundant-connection",
+  "order": 1,
+  "topicId": "dsu",
+  "topic": "Disjoint Set Union (DSU)",
+  "title": "Redundant Connection",
+  "slug": "redundant-connection",
+  "difficulty": "Medium",
+  "subtopic": "Union by Rank",
+  "companies": [
+   "Google",
+   "Amazon",
+   "Meta",
+   "Microsoft",
+   "Bloomberg"
+  ],
+  "leetcode": 684,
+  "description": "In this problem, a tree is an undirected graph that is connected and has no cycles.\n\nYou are given a graph that started as a tree with `n` nodes labeled from `1` to `n`, with one additional edge added. The added edge connects two different vertices chosen from `1` to `n` and was not an edge that already existed. The graph is represented as an array `edges` of length `n` where `edges[i] = [ai, bi]` indicates an undirected edge between nodes `ai` and `bi`.\n\nReturn an edge that can be removed so that the resulting graph is a tree of `n` nodes. If there are multiple valid edges, return the one that occurs last in the input `edges`.",
+  "constraints": [
+   "n == edges.length",
+   "3 <= n <= 1000",
+   "edges[i].length == 2",
+   "1 <= ai < bi <= n",
+   "ai != bi",
+   "There are no repeated edges.",
+   "The given graph is connected."
+  ],
+  "hints": [
+   "A connected graph with n nodes and n edges contains exactly one simple cycle; removing any edge on that cycle restores a tree.",
+   "Process the edges in input order using a Disjoint Set Union (DSU) structure with path compression and union by rank.",
+   "The first edge whose endpoints are already in the same connected component is guaranteed to be the last edge of the unique cycle in the input."
+  ],
+  "timeComplexity": "O(n * alpha(n))",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "examples": [
+   {
+    "input": "edges = [[1,2],[1,3],[2,3]]",
+    "output": "[2,3]",
+    "explanation": "Edges [1, 2] and [1, 3] connect all three nodes without forming a cycle. Edge [2, 3] connects two already-connected nodes and completes the cycle, so removing [2, 3] leaves a valid tree."
+   },
+   {
+    "input": "edges = [[1,2],[2,3],[3,4],[1,4],[1,5]]",
+    "output": "[1,4]",
+    "explanation": "Nodes 1, 2, 3, and 4 form a cycle via [1, 2], [2, 3], [3, 4], and [1, 4]. Among the cycle edges, [1, 4] appears last in the input, so [1, 4] is returned."
+   }
+  ],
+  "starterCode": {
+   "java": "class Solution {\n    public int[] findRedundantConnection(int[][] edges) {\n        // Write your solution here\n        return null;\n    }\n}\n",
+   "python": "class Solution:\n    def findRedundantConnection(self, edges: List[List[int]]) -> List[int]:\n        # Write your solution here\n        pass\n"
+  },
+  "solutionCode": {
+   "java": "class Solution {\n    private int[] parent;\n    private int[] rank;\n\n    private int find(int x) {\n        while (parent[x] != x) {\n            parent[x] = parent[parent[x]];\n            x = parent[x];\n        }\n        return x;\n    }\n\n    private boolean union(int a, int b) {\n        int ra = find(a), rb = find(b);\n        if (ra == rb) return false;\n        if (rank[ra] < rank[rb]) {\n            int tmp = ra;\n            ra = rb;\n            rb = tmp;\n        }\n        parent[rb] = ra;\n        if (rank[ra] == rank[rb]) rank[ra]++;\n        return true;\n    }\n\n    public int[] findRedundantConnection(int[][] edges) {\n        int n = edges.length;\n        parent = new int[n + 1];\n        rank = new int[n + 1];\n        for (int i = 1; i <= n; i++) parent[i] = i;\n\n        for (int[] e : edges) {\n            if (!union(e[0], e[1])) {\n                return new int[]{e[0], e[1]};\n            }\n        }\n        return new int[0];\n    }\n}\n",
+   "python": "class Solution:\n    def findRedundantConnection(self, edges: List[List[int]]) -> List[int]:\n        n = len(edges)\n        parent = list(range(n + 1))\n        rank = [0] * (n + 1)\n\n        def find(x: int) -> int:\n            while parent[x] != x:\n                parent[x] = parent[parent[x]]\n                x = parent[x]\n            return x\n\n        def union(a: int, b: int) -> bool:\n            ra, rb = find(a), find(b)\n            if ra == rb:\n                return False\n            if rank[ra] < rank[rb]:\n                ra, rb = rb, ra\n            parent[rb] = ra\n            if rank[ra] == rank[rb]:\n                rank[ra] += 1\n            return True\n\n        for u, v in edges:\n            if not union(u, v):\n                return [u, v]\n        return []\n"
+  },
+  "sampleArray": [],
+  "visibleTestCount": 2,
+  "hiddenTestCount": 10,
+  "number": 1
+ },
+ {
+  "id": "number-of-connected-components",
+  "order": 2,
+  "topicId": "dsu",
+  "topic": "Disjoint Set Union (DSU)",
+  "title": "Number of Connected Components in an Undirected Graph",
+  "slug": "number-of-connected-components",
+  "difficulty": "Medium",
+  "subtopic": "Connectivity",
+  "companies": [
+   "Amazon",
+   "Google",
+   "Meta",
+   "Microsoft",
+   "LinkedIn"
+  ],
+  "leetcode": 323,
+  "description": "You have an undirected graph of `n` nodes labeled from `0` to `n - 1`. You are given an integer `n` and an array `edges` where `edges[i] = [ai, bi]` indicates that there is an undirected edge between nodes `ai` and `bi` in the graph.\n\nReturn the number of connected components in the graph. An isolated node with no incident edges counts as its own connected component.",
+  "constraints": [
+   "1 <= n <= 2000",
+   "0 <= edges.length <= 5000",
+   "edges[i].length == 2",
+   "0 <= ai < bi < n",
+   "ai != bi",
+   "There are no repeated edges."
+  ],
+  "hints": [
+   "Initially, before adding any edges, each of the n vertices forms its own connected component, so there are n components.",
+   "Use a Disjoint Set Union (DSU) structure to merge the two endpoints of each edge.",
+   "Each time an edge merges two previously distinct components, decrement the component count by 1."
+  ],
+  "timeComplexity": "O(n + m * alpha(n))",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "examples": [
+   {
+    "input": "n = 5, edges = [[0,1],[1,2],[3,4]]",
+    "output": "2",
+    "explanation": "Nodes {0, 1, 2} form one connected component and nodes {3, 4} form a second connected component, giving 2 components in total."
+   },
+   {
+    "input": "n = 5, edges = [[0,1],[1,2],[2,3],[3,4]]",
+    "output": "1",
+    "explanation": "All 5 nodes are chained together into a single connected component."
+   }
+  ],
+  "starterCode": {
+   "java": "class Solution {\n    public int countComponents(int n, int[][] edges) {\n        // Write your solution here\n        return 0;\n    }\n}\n",
+   "python": "class Solution:\n    def countComponents(self, n: int, edges: List[List[int]]) -> int:\n        # Write your solution here\n        pass\n"
+  },
+  "solutionCode": {
+   "java": "class Solution {\n    private int[] parent;\n    private int[] rank;\n\n    private int find(int x) {\n        while (parent[x] != x) {\n            parent[x] = parent[parent[x]];\n            x = parent[x];\n        }\n        return x;\n    }\n\n    public int countComponents(int n, int[][] edges) {\n        parent = new int[n];\n        rank = new int[n];\n        for (int i = 0; i < n; i++) parent[i] = i;\n\n        int components = n;\n        for (int[] e : edges) {\n            int ru = find(e[0]), rv = find(e[1]);\n            if (ru != rv) {\n                if (rank[ru] < rank[rv]) {\n                    int tmp = ru;\n                    ru = rv;\n                    rv = tmp;\n                }\n                parent[rv] = ru;\n                if (rank[ru] == rank[rv]) rank[ru]++;\n                components--;\n            }\n        }\n        return components;\n    }\n}\n",
+   "python": "class Solution:\n    def countComponents(self, n: int, edges: List[List[int]]) -> int:\n        parent = list(range(n))\n        rank = [0] * n\n        components = n\n\n        def find(x: int) -> int:\n            while parent[x] != x:\n                parent[x] = parent[parent[x]]\n                x = parent[x]\n            return x\n\n        for u, v in edges:\n            ru, rv = find(u), find(v)\n            if ru != rv:\n                if rank[ru] < rank[rv]:\n                    ru, rv = rv, ru\n                parent[rv] = ru\n                if rank[ru] == rank[rv]:\n                    rank[ru] += 1\n                components -= 1\n\n        return components\n"
+  },
+  "sampleArray": [],
+  "visibleTestCount": 2,
+  "hiddenTestCount": 10,
+  "number": 2
+ },
+ {
+  "id": "accounts-merge",
+  "order": 3,
+  "topicId": "dsu",
+  "topic": "Disjoint Set Union (DSU)",
+  "title": "Accounts Merge",
+  "slug": "accounts-merge",
+  "difficulty": "Medium",
+  "subtopic": "Equivalence Classes",
+  "companies": [
+   "Meta",
+   "Google",
+   "Amazon",
+   "Microsoft",
+   "Uber",
+   "LinkedIn"
+  ],
+  "leetcode": 721,
+  "description": "Given a list `accounts` where each element `accounts[i]` is a list of strings, `accounts[i][0]` is a person's `name`, and the remaining elements are email addresses belonging to that account.\n\nWe want to merge these accounts. Two accounts belong to the same person if they share at least one common email address. Note that even if two accounts have the same name, they may belong to different people, because different people can share a name. A single person can initially have any number of accounts, and all of their accounts are guaranteed to have the same name.\n\nAfter merging, return the accounts in the following format: the first element of each merged account is the person's name, and the remaining elements are all unique email addresses belonging to that person sorted in ASCII lexicographical order. The merged accounts themselves may be returned in any order.",
+  "constraints": [
+   "1 <= accounts.length <= 1000",
+   "2 <= accounts[i].length <= 10",
+   "1 <= accounts[i][j].length <= 30",
+   "accounts[i][0] consists of English letters.",
+   "accounts[i][j] (for j > 0) is a valid email."
+  ],
+  "hints": [
+   "Treat every email address (or every account index) as a node in a Disjoint Set Union (DSU) structure.",
+   "For each account, union all its emails with the account's first email, and record the owner name for each email.",
+   "Group all unique emails by their DSU root, sort each group lexicographically, and prepend the corresponding owner name."
+  ],
+  "timeComplexity": "O(N * K * log(N * K))",
+  "spaceComplexity": "O(N * K)",
+  "compare": "sorted",
+  "examples": [
+   {
+    "input": "accounts = [[\"John\",\"johnsmith@mail.com\",\"john_newyork@mail.com\"],[\"John\",\"johnsmith@mail.com\",\"john00@mail.com\"],[\"Mary\",\"mary@mail.com\"],[\"John\",\"johnnybravo@mail.com\"]]",
+    "output": "[[\"John\",\"john00@mail.com\",\"john_newyork@mail.com\",\"johnsmith@mail.com\"],[\"Mary\",\"mary@mail.com\"],[\"John\",\"johnnybravo@mail.com\"]]",
+    "explanation": "The first and second John accounts share 'johnsmith@mail.com', so they merge into one account with sorted emails. Mary and the third John account share no emails with any other account, so they remain separate."
+   },
+   {
+    "input": "accounts = [[\"Gabe\",\"Gabe0@m.co\",\"Gabe3@m.co\",\"Gabe1@m.co\"],[\"Kevin\",\"Kevin3@m.co\",\"Kevin5@m.co\",\"Kevin0@m.co\"],[\"Ethan\",\"Ethan5@m.co\",\"Ethan4@m.co\",\"Ethan0@m.co\"],[\"Hanzo\",\"Hanzo3@m.co\",\"Hanzo1@m.co\",\"Hanzo0@m.co\"],[\"Fern\",\"Fern5@m.co\",\"Fern1@m.co\",\"Fern0@m.co\"]]",
+    "output": "[[\"Gabe\",\"Gabe0@m.co\",\"Gabe1@m.co\",\"Gabe3@m.co\"],[\"Kevin\",\"Kevin0@m.co\",\"Kevin3@m.co\",\"Kevin5@m.co\"],[\"Ethan\",\"Ethan0@m.co\",\"Ethan4@m.co\",\"Ethan5@m.co\"],[\"Hanzo\",\"Hanzo0@m.co\",\"Hanzo1@m.co\",\"Hanzo3@m.co\"],[\"Fern\",\"Fern0@m.co\",\"Fern1@m.co\",\"Fern5@m.co\"]]",
+    "explanation": "None of the five accounts share a common email, so each account remains separate with its emails sorted in lexicographical order."
+   }
+  ],
+  "starterCode": {
+   "java": "class Solution {\n    public List<List<String>> accountsMerge(List<List<String>> accounts) {\n        // Write your solution here\n        return null;\n    }\n}\n",
+   "python": "class Solution:\n    def accountsMerge(self, accounts: List[List[str]]) -> List[List[str]]:\n        # Write your solution here\n        pass\n"
+  },
+  "solutionCode": {
+   "java": "class Solution {\n    private int[] parent;\n    private int[] rank;\n\n    private int find(int x) {\n        while (parent[x] != x) {\n            parent[x] = parent[parent[x]];\n            x = parent[x];\n        }\n        return x;\n    }\n\n    private void union(int a, int b) {\n        int ra = find(a), rb = find(b);\n        if (ra == rb) return;\n        if (rank[ra] < rank[rb]) {\n            int tmp = ra;\n            ra = rb;\n            rb = tmp;\n        }\n        parent[rb] = ra;\n        if (rank[ra] == rank[rb]) rank[ra]++;\n    }\n\n    public List<List<String>> accountsMerge(List<List<String>> accounts) {\n        int n = accounts.size();\n        parent = new int[n];\n        rank = new int[n];\n        for (int i = 0; i < n; i++) parent[i] = i;\n\n        Map<String, Integer> emailToAcc = new HashMap<>();\n        for (int i = 0; i < n; i++) {\n            List<String> acc = accounts.get(i);\n            for (int j = 1; j < acc.size(); j++) {\n                String email = acc.get(j);\n                Integer prev = emailToAcc.putIfAbsent(email, i);\n                if (prev != null) {\n                    union(i, prev);\n                }\n            }\n        }\n\n        Map<Integer, List<String>> groups = new HashMap<>();\n        for (Map.Entry<String, Integer> entry : emailToAcc.entrySet()) {\n            int root = find(entry.getValue());\n            groups.computeIfAbsent(root, k -> new ArrayList<>()).add(entry.getKey());\n        }\n\n        List<List<String>> res = new ArrayList<>(groups.size());\n        for (Map.Entry<Integer, List<String>> entry : groups.entrySet()) {\n            List<String> emails = entry.getValue();\n            Collections.sort(emails);\n            List<String> merged = new ArrayList<>(emails.size() + 1);\n            merged.add(accounts.get(entry.getKey()).get(0));\n            merged.addAll(emails);\n            res.add(merged);\n        }\n        return res;\n    }\n}\n",
+   "python": "class Solution:\n    def accountsMerge(self, accounts: List[List[str]]) -> List[List[str]]:\n        n = len(accounts)\n        parent = list(range(n))\n        rank = [0] * n\n\n        def find(x: int) -> int:\n            while parent[x] != x:\n                parent[x] = parent[parent[x]]\n                x = parent[x]\n            return x\n\n        def union(a: int, b: int) -> None:\n            ra, rb = find(a), find(b)\n            if ra == rb:\n                return\n            if rank[ra] < rank[rb]:\n                ra, rb = rb, ra\n            parent[rb] = ra\n            if rank[ra] == rank[rb]:\n                rank[ra] += 1\n\n        email_to_acc = {}\n        for i, acc in enumerate(accounts):\n            for email in acc[1:]:\n                if email in email_to_acc:\n                    union(i, email_to_acc[email])\n                else:\n                    email_to_acc[email] = i\n\n        groups = defaultdict(list)\n        for email, acc_idx in email_to_acc.items():\n            groups[find(acc_idx)].append(email)\n\n        res = []\n        for root, emails in groups.items():\n            emails.sort()\n            res.append([accounts[root][0]] + emails)\n        return res\n"
+  },
+  "sampleArray": [],
+  "visibleTestCount": 2,
+  "hiddenTestCount": 10,
+  "number": 3
+ },
+ {
+  "id": "number-of-islands-ii",
+  "order": 4,
+  "topicId": "dsu",
+  "topic": "Disjoint Set Union (DSU)",
+  "title": "Number of Islands II",
+  "slug": "number-of-islands-ii",
+  "difficulty": "Hard",
+  "subtopic": "Connectivity",
+  "companies": [
+   "Google",
+   "Amazon",
+   "Meta",
+   "Uber",
+   "Microsoft"
+  ],
+  "leetcode": 305,
+  "description": "You are given an empty 2D binary grid of size `m x n`. The grid represents a map where `0` represents water and `1` represents land. Initially, all cells of the grid are water (`0`).\n\nWe perform a sequence of add-land operations given by an array `positions`, where `positions[i] = [ri, ci]` turns the cell `(ri, ci)` into land (`1`).\n\nReturn an array `answer` of length `positions.length`, where `answer[i]` is the number of islands immediately after applying the `i`-th operation.\n\nAn island is surrounded by water and is formed by connecting adjacent land cells horizontally or vertically (4-directionally). You may assume all four edges of the grid are surrounded by water. Note that `positions` may contain duplicate coordinates; adding land to a cell that is already land leaves the grid and the island count unchanged.",
+  "constraints": [
+   "1 <= m, n <= 10^4",
+   "1 <= m * n <= 10^4",
+   "0 <= positions.length <= 10^4",
+   "positions[i].length == 2",
+   "0 <= ri < m",
+   "0 <= ci < n"
+  ],
+  "hints": [
+   "Re-running BFS or DFS after every add-land operation is too slow when there are thousands of operations; instead, maintain islands dynamically with a Disjoint Set Union (DSU) structure.",
+   "Map each grid cell (r, c) to a 1D index r * n + c. Initialize parent[idx] = -1 to distinguish water from land, and ignore duplicate positions where parent[idx] != -1.",
+   "When turning a new water cell into land, increment the island count by 1, then check its four orthogonal neighbors; each successful union with an adjacent land cell decrements the island count by 1."
+  ],
+  "timeComplexity": "O(m * n + k * alpha(m * n))",
+  "spaceComplexity": "O(m * n)",
+  "compare": "exact",
+  "examples": [
+   {
+    "input": "m = 3, n = 3, positions = [[0,0],[0,1],[1,2],[2,1]]",
+    "output": "[1,1,2,3]",
+    "explanation": "Adding (0, 0) creates 1 island. Adding (0, 1) connects to (0, 0), keeping 1 island. Adding (1, 2) creates a 2nd island. Adding (2, 1) creates a 3rd island."
+   },
+   {
+    "input": "m = 1, n = 1, positions = [[0,0]]",
+    "output": "[1]",
+    "explanation": "The 1 x 1 grid becomes a single land cell, resulting in 1 island."
+   }
+  ],
+  "starterCode": {
+   "java": "class Solution {\n    public List<Integer> numIslands2(int m, int n, int[][] positions) {\n        // Write your solution here\n        return null;\n    }\n}\n",
+   "python": "class Solution:\n    def numIslands2(self, m: int, n: int, positions: List[List[int]]) -> List[int]:\n        # Write your solution here\n        pass\n"
+  },
+  "solutionCode": {
+   "java": "class Solution {\n    private int[] parent;\n    private int[] rank;\n\n    private int find(int x) {\n        while (parent[x] != x) {\n            parent[x] = parent[parent[x]];\n            x = parent[x];\n        }\n        return x;\n    }\n\n    public List<Integer> numIslands2(int m, int n, int[][] positions) {\n        parent = new int[m * n];\n        rank = new int[m * n];\n        Arrays.fill(parent, -1);\n\n        int count = 0;\n        List<Integer> ans = new ArrayList<>(positions.length);\n        int[][] dirs = {{-1, 0}, {1, 0}, {0, -1}, {0, 1}};\n\n        for (int[] pos : positions) {\n            int r = pos[0], c = pos[1];\n            int idx = r * n + c;\n            if (parent[idx] != -1) {\n                ans.add(count);\n                continue;\n            }\n            parent[idx] = idx;\n            count++;\n            for (int[] d : dirs) {\n                int nr = r + d[0], nc = c + d[1];\n                if (nr >= 0 && nr < m && nc >= 0 && nc < n) {\n                    int nidx = nr * n + nc;\n                    if (parent[nidx] != -1) {\n                        int ra = find(idx), rb = find(nidx);\n                        if (ra != rb) {\n                            if (rank[ra] < rank[rb]) {\n                                int tmp = ra;\n                                ra = rb;\n                                rb = tmp;\n                            }\n                            parent[rb] = ra;\n                            if (rank[ra] == rank[rb]) rank[ra]++;\n                            count--;\n                        }\n                    }\n                }\n            }\n            ans.add(count);\n        }\n        return ans;\n    }\n}\n",
+   "python": "class Solution:\n    def numIslands2(self, m: int, n: int, positions: List[List[int]]) -> List[int]:\n        parent = [-1] * (m * n)\n        rank = [0] * (m * n)\n\n        def find(x: int) -> int:\n            while parent[x] != x:\n                parent[x] = parent[parent[x]]\n                x = parent[x]\n            return x\n\n        count = 0\n        ans = []\n        for r, c in positions:\n            idx = r * n + c\n            if parent[idx] != -1:\n                ans.append(count)\n                continue\n            parent[idx] = idx\n            count += 1\n            for dr, dc in ((-1, 0), (1, 0), (0, -1), (0, 1)):\n                nr, nc = r + dr, c + dc\n                if 0 <= nr < m and 0 <= nc < n:\n                    nidx = nr * n + nc\n                    if parent[nidx] != -1:\n                        ra, rb = find(idx), find(nidx)\n                        if ra != rb:\n                            if rank[ra] < rank[rb]:\n                                ra, rb = rb, ra\n                            parent[rb] = ra\n                            if rank[ra] == rank[rb]:\n                                rank[ra] += 1\n                            count -= 1\n            ans.append(count)\n        return ans\n"
+  },
+  "sampleArray": [],
+  "visibleTestCount": 2,
+  "hiddenTestCount": 10,
+  "number": 4
+ },
+ {
+  "id": "satisfiability-of-equality-equations",
+  "order": 5,
+  "topicId": "dsu",
+  "topic": "Disjoint Set Union (DSU)",
+  "title": "Satisfiability of Equality Equations",
+  "slug": "satisfiability-of-equality-equations",
+  "difficulty": "Medium",
+  "subtopic": "Equivalence Classes",
+  "companies": [
+   "Google",
+   "Amazon",
+   "Meta",
+   "Microsoft",
+   "Bloomberg"
+  ],
+  "leetcode": 990,
+  "description": "You are given an array of strings `equations` that represent relationships between variables, where each string `equations[i]` has length `4` and takes one of two forms: `\"xi==yi\"` or `\"xi!=yi\"`. Here, `xi` and `yi` are lowercase English letters (not necessarily distinct) representing single-letter variable names.\n\nReturn `true` if it is possible to assign integer values to the variable names so that all given equations are simultaneously satisfied, or `false` otherwise.",
+  "constraints": [
+   "1 <= equations.length <= 500",
+   "equations[i].length == 4",
+   "equations[i][0] is a lowercase letter.",
+   "equations[i][1] is either '=' or '!'.",
+   "equations[i][2] is '='.",
+   "equations[i][3] is a lowercase letter."
+  ],
+  "hints": [
+   "Equality is an equivalence relation (reflexive, symmetric, and transitive), so variables connected by '==' chains must receive the exact same integer value.",
+   "Process all '==' equations first using a Disjoint Set Union (DSU) structure over the 26 lowercase letters.",
+   "In a second pass, inspect every '!=' equation: if its two variables belong to the same equivalence class, return false; if no contradiction is found, return true."
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "examples": [
+   {
+    "input": "equations = [\"a==b\",\"b!=a\"]",
+    "output": "false",
+    "explanation": "If a == b, then a and b must have the same value, which contradicts b != a."
+   },
+   {
+    "input": "equations = [\"b==a\",\"a==b\"]",
+    "output": "true",
+    "explanation": "Assigning a = 1 and b = 1 satisfies both b == a and a == b."
+   }
+  ],
+  "starterCode": {
+   "java": "class Solution {\n    public boolean equationsPossible(String[] equations) {\n        // Write your solution here\n        return false;\n    }\n}\n",
+   "python": "class Solution:\n    def equationsPossible(self, equations: List[str]) -> bool:\n        # Write your solution here\n        pass\n"
+  },
+  "solutionCode": {
+   "java": "class Solution {\n    private int[] parent;\n    private int[] rank;\n\n    private int find(int x) {\n        while (parent[x] != x) {\n            parent[x] = parent[parent[x]];\n            x = parent[x];\n        }\n        return x;\n    }\n\n    private void union(int a, int b) {\n        int ra = find(a), rb = find(b);\n        if (ra == rb) return;\n        if (rank[ra] < rank[rb]) {\n            int tmp = ra;\n            ra = rb;\n            rb = tmp;\n        }\n        parent[rb] = ra;\n        if (rank[ra] == rank[rb]) rank[ra]++;\n    }\n\n    public boolean equationsPossible(String[] equations) {\n        parent = new int[26];\n        rank = new int[26];\n        for (int i = 0; i < 26; i++) parent[i] = i;\n\n        for (String eq : equations) {\n            if (eq.charAt(1) == '=') {\n                union(eq.charAt(0) - 'a', eq.charAt(3) - 'a');\n            }\n        }\n        for (String eq : equations) {\n            if (eq.charAt(1) == '!') {\n                if (find(eq.charAt(0) - 'a') == find(eq.charAt(3) - 'a')) {\n                    return false;\n                }\n            }\n        }\n        return true;\n    }\n}\n",
+   "python": "class Solution:\n    def equationsPossible(self, equations: List[str]) -> bool:\n        parent = list(range(26))\n        rank = [0] * 26\n\n        def find(x: int) -> int:\n            while parent[x] != x:\n                parent[x] = parent[parent[x]]\n                x = parent[x]\n            return x\n\n        def union(a: int, b: int) -> None:\n            ra, rb = find(a), find(b)\n            if ra == rb:\n                return\n            if rank[ra] < rank[rb]:\n                ra, rb = rb, ra\n            parent[rb] = ra\n            if rank[ra] == rank[rb]:\n                rank[ra] += 1\n\n        for eq in equations:\n            if eq[1] == \"=\":\n                union(ord(eq[0]) - 97, ord(eq[3]) - 97)\n\n        for eq in equations:\n            if eq[1] == \"!\":\n                if find(ord(eq[0]) - 97) == find(ord(eq[3]) - 97):\n                    return False\n        return True\n"
+  },
+  "sampleArray": [],
+  "visibleTestCount": 2,
+  "hiddenTestCount": 10,
+  "number": 5
+ },
+ {
+  "id": "similar-string-groups",
+  "order": 6,
+  "topicId": "dsu",
+  "topic": "Disjoint Set Union (DSU)",
+  "title": "Similar String Groups",
+  "slug": "similar-string-groups",
+  "difficulty": "Hard",
+  "subtopic": "Equivalence Classes",
+  "companies": [
+   "Google",
+   "Amazon",
+   "Meta",
+   "Uber",
+   "Atlassian"
+  ],
+  "leetcode": 839,
+  "description": "Two strings `X` and `Y` are considered similar if either they are identical or we can make `X` equal to `Y` by swapping two letters at different positions within `X`.\n\nFor example, `\"tars\"` and `\"rats\"` are similar (swapping indices `0` and `2`), and `\"rats\"` and `\"arts\"` are similar, whereas `\"star\"` is not similar to `\"tars\"`, `\"rats\"`, or `\"arts\"`. Together, these form two connected groups by similarity: `{\"tars\", \"rats\", \"arts\"}` and `{\"star\"}`. Notice that `\"tars\"` and `\"arts\"` belong to the same group through `\"rats\"` even though they are not directly similar.\n\nYou are given a list `strs` of strings where every string is an anagram of every other string in `strs`. Return the number of similarity groups.",
+  "constraints": [
+   "1 <= strs.length <= 300",
+   "1 <= strs[i].length <= 300",
+   "strs[i] consists of lowercase English letters only.",
+   "All words in strs have the same length and are anagrams of each other."
+  ],
+  "hints": [
+   "Because every pair of strings in strs is guaranteed to be an anagram, two strings are similar if and only if they differ in 0 or 2 character positions.",
+   "Model each string as a vertex in a Disjoint Set Union (DSU) structure and union every pair of similar strings.",
+   "Before comparing two strings character-by-character, check if they are already in the same DSU component to skip unnecessary work, and stop scanning as soon as more than 2 mismatched positions are found."
+  ],
+  "timeComplexity": "O(n^2 * L)",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "examples": [
+   {
+    "input": "strs = [\"tars\",\"rats\",\"arts\",\"star\"]",
+    "output": "2",
+    "explanation": "'tars' and 'rats' differ at positions 0 and 2, and 'rats' and 'arts' differ at positions 0 and 1, forming one group of 3. 'star' differs from all three in more than 2 positions, forming a second group."
+   },
+   {
+    "input": "strs = [\"omv\",\"ovm\"]",
+    "output": "1",
+    "explanation": "'omv' and 'ovm' differ at positions 1 and 2, so they belong to the same group."
+   }
+  ],
+  "starterCode": {
+   "java": "class Solution {\n    public int numSimilarGroups(String[] strs) {\n        // Write your solution here\n        return 0;\n    }\n}\n",
+   "python": "class Solution:\n    def numSimilarGroups(self, strs: List[str]) -> int:\n        # Write your solution here\n        pass\n"
+  },
+  "solutionCode": {
+   "java": "class Solution {\n    private int[] parent;\n    private int[] rank;\n\n    private int find(int x) {\n        while (parent[x] != x) {\n            parent[x] = parent[parent[x]];\n            x = parent[x];\n        }\n        return x;\n    }\n\n    private boolean isSimilar(String a, String b) {\n        int diff = 0;\n        int len = a.length();\n        for (int i = 0; i < len; i++) {\n            if (a.charAt(i) != b.charAt(i)) {\n                diff++;\n                if (diff > 2) return false;\n            }\n        }\n        return true;\n    }\n\n    public int numSimilarGroups(String[] strs) {\n        int n = strs.length;\n        parent = new int[n];\n        rank = new int[n];\n        for (int i = 0; i < n; i++) parent[i] = i;\n\n        int groups = n;\n        for (int i = 0; i < n; i++) {\n            for (int j = i + 1; j < n; j++) {\n                int ri = find(i), rj = find(j);\n                if (ri != rj && isSimilar(strs[i], strs[j])) {\n                    if (rank[ri] < rank[rj]) {\n                        int tmp = ri;\n                        ri = rj;\n                        rj = tmp;\n                    }\n                    parent[rj] = ri;\n                    if (rank[ri] == rank[rj]) rank[ri]++;\n                    groups--;\n                }\n            }\n        }\n        return groups;\n    }\n}\n",
+   "python": "class Solution:\n    def numSimilarGroups(self, strs: List[str]) -> int:\n        n = len(strs)\n        parent = list(range(n))\n        rank = [0] * n\n        groups = n\n\n        def find(x: int) -> int:\n            while parent[x] != x:\n                parent[x] = parent[parent[x]]\n                x = parent[x]\n            return x\n\n        def is_similar(a: str, b: str) -> bool:\n            diff = 0\n            for ca, cb in zip(a, b):\n                if ca != cb:\n                    diff += 1\n                    if diff > 2:\n                        return False\n            return True\n\n        for i in range(n):\n            si = strs[i]\n            for j in range(i + 1, n):\n                ri, rj = find(i), find(j)\n                if ri != rj and is_similar(si, strs[j]):\n                    if rank[ri] < rank[rj]:\n                        ri, rj = rj, ri\n                    parent[rj] = ri\n                    if rank[ri] == rank[rj]:\n                        rank[ri] += 1\n                    groups -= 1\n\n        return groups\n"
+  },
+  "sampleArray": [],
+  "visibleTestCount": 2,
+  "hiddenTestCount": 10,
+  "number": 6
+ },
+ {
+  "id": "most-stones-removed",
+  "order": 7,
+  "topicId": "dsu",
+  "topic": "Disjoint Set Union (DSU)",
+  "title": "Most Stones Removed with Same Row or Column",
+  "slug": "most-stones-removed",
+  "difficulty": "Medium",
+  "subtopic": "Connectivity",
+  "companies": [
+   "Google",
+   "Amazon",
+   "Meta",
+   "Microsoft",
+   "Uber"
+  ],
+  "leetcode": 947,
+  "description": "On a 2D plane, we place `n` stones at some integer coordinate points. Each coordinate point may contain at most one stone.\n\nA stone can be removed if it shares either the same row or the same column as another stone that has not yet been removed.\n\nGiven an array `stones` of length `n` where `stones[i] = [xi, yi]` represents the location of the `i`-th stone, return the largest possible number of stones that can be removed.",
+  "constraints": [
+   "1 <= stones.length <= 1000",
+   "0 <= xi, yi <= 10^4",
+   "No two stones are at the same coordinate point."
+  ],
+  "hints": [
+   "View two stones as connected if they share a row or a column. Within any connected component of k stones, you can always remove k - 1 stones (for instance, by repeatedly removing leaves of a spanning tree) and leave 1 stone behind.",
+   "Therefore, the maximum number of removable stones equals total stones minus the number of connected components.",
+   "Instead of connecting stones pairwise in O(n^2), connect each stone's row index x and shifted column index y + 10001 in a Disjoint Set Union (DSU) structure to achieve near-linear O(n * alpha(n)) time."
+  ],
+  "timeComplexity": "O(n * alpha(n))",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "examples": [
+   {
+    "input": "stones = [[0,0],[0,1],[1,0],[1,2],[2,1],[2,2]]",
+    "output": "5",
+    "explanation": "All 6 stones belong to a single connected component via shared rows and columns, so 6 - 1 = 5 stones can be removed (leaving, for example, [0, 0])."
+   },
+   {
+    "input": "stones = [[0,0],[0,2],[1,1],[2,0],[2,2]]",
+    "output": "3",
+    "explanation": "Stones [0, 0], [0, 2], [2, 0], [2, 2] form one component of size 4 (3 removable), and [1, 1] is isolated (0 removable), for a total of 3 stones removed."
+   },
+   {
+    "input": "stones = [[0,0]]",
+    "output": "0",
+    "explanation": "There is only one stone, so it shares a row or column with no other stone and 0 stones can be removed."
+   }
+  ],
+  "starterCode": {
+   "java": "class Solution {\n    public int removeStones(int[][] stones) {\n        // Write your solution here\n        return 0;\n    }\n}\n",
+   "python": "class Solution:\n    def removeStones(self, stones: List[List[int]]) -> int:\n        # Write your solution here\n        pass\n"
+  },
+  "solutionCode": {
+   "java": "class Solution {\n    private static final int OFFSET = 10001;\n    private Map<Integer, Integer> parent;\n    private Map<Integer, Integer> rank;\n\n    private int find(int x) {\n        if (!parent.containsKey(x)) {\n            parent.put(x, x);\n            rank.put(x, 0);\n            return x;\n        }\n        int cur = x;\n        while (parent.get(cur) != cur) {\n            int gp = parent.get(parent.get(cur));\n            parent.put(cur, gp);\n            cur = gp;\n        }\n        return cur;\n    }\n\n    private void union(int a, int b) {\n        int ra = find(a), rb = find(b);\n        if (ra == rb) return;\n        int rka = rank.get(ra), rkb = rank.get(rb);\n        if (rka < rkb) {\n            int tmp = ra;\n            ra = rb;\n            rb = tmp;\n            int tr = rka;\n            rka = rkb;\n            rkb = tr;\n        }\n        parent.put(rb, ra);\n        if (rka == rkb) rank.put(ra, rka + 1);\n    }\n\n    public int removeStones(int[][] stones) {\n        parent = new HashMap<>();\n        rank = new HashMap<>();\n\n        for (int[] s : stones) {\n            union(s[0], s[1] + OFFSET);\n        }\n\n        Set<Integer> roots = new HashSet<>();\n        for (int node : parent.keySet()) {\n            roots.add(find(node));\n        }\n        return stones.length - roots.size();\n    }\n}\n",
+   "python": "class Solution:\n    def removeStones(self, stones: List[List[int]]) -> int:\n        parent = {}\n        rank = {}\n\n        def find(x: int) -> int:\n            if x not in parent:\n                parent[x] = x\n                rank[x] = 0\n                return x\n            while parent[x] != x:\n                parent[x] = parent[parent[x]]\n                x = parent[x]\n            return x\n\n        def union(a: int, b: int) -> None:\n            ra, rb = find(a), find(b)\n            if ra == rb:\n                return\n            if rank[ra] < rank[rb]:\n                ra, rb = rb, ra\n            parent[rb] = ra\n            if rank[ra] == rank[rb]:\n                rank[ra] += 1\n\n        OFFSET = 10001\n        for r, c in stones:\n            union(r, c + OFFSET)\n\n        roots = {find(node) for node in parent}\n        return len(stones) - len(roots)\n"
+  },
+  "sampleArray": [],
+  "visibleTestCount": 3,
+  "hiddenTestCount": 10,
+  "number": 7
+ },
+ {
+  "id": "regions-cut-by-slashes",
+  "order": 8,
+  "topicId": "dsu",
+  "topic": "Disjoint Set Union (DSU)",
+  "title": "Regions Cut By Slashes",
+  "slug": "regions-cut-by-slashes",
+  "difficulty": "Medium",
+  "subtopic": "Path Compression",
+  "companies": [
+   "Google",
+   "Amazon",
+   "Meta",
+   "Uber",
+   "Microsoft"
+  ],
+  "leetcode": 959,
+  "description": "An `n x n` grid is composed of `1 x 1` squares, where each `1 x 1` square contains `'/'`, `'\\'`, or a blank space `' '`. These characters divide the square into contiguous regions.\n\nGiven the grid represented as a string array `grid` of length `n` (where each string has length `n`), return the total number of distinct contiguous regions.\n\nNote that backslash characters are escaped in string literals, so a single backslash is represented as `'\\\\'`.",
+  "constraints": [
+   "grid.length == n",
+   "grid[i].length == n",
+   "1 <= n <= 30",
+   "grid[i][j] is either '/', '\\\\', or ' '."
+  ],
+  "hints": [
+   "Subdivide each 1 x 1 cell into 4 triangular sub-regions: top (0), right (1), bottom (2), and left (3), giving 4 * n * n nodes in a Disjoint Set Union (DSU) structure.",
+   "Inside each cell, union triangles based on its character: '/' unions (0, 3) and (1, 2); '\\\\' unions (0, 1) and (2, 3); and ' ' unions all four triangles together.",
+   "Across neighboring cells, always union the bottom triangle (2) of (r, c) with the top triangle (0) of (r + 1, c), and the right triangle (1) of (r, c) with the left triangle (3) of (r, c + 1). The remaining number of components is the answer."
+  ],
+  "timeComplexity": "O(n^2 * alpha(n^2))",
+  "spaceComplexity": "O(n^2)",
+  "compare": "exact",
+  "examples": [
+   {
+    "input": "grid = [\" /\",\"/ \"]",
+    "output": "2",
+    "explanation": "The two forward slashes connect diagonally from top-right to bottom-left across the 2 x 2 grid, splitting it into 2 regions."
+   },
+   {
+    "input": "grid = [\" /\",\"  \"]",
+    "output": "1",
+    "explanation": "Only the top-right cell has a forward slash; its two sides remain connected through the blank cells, leaving 1 contiguous region."
+   },
+   {
+    "input": "grid = [\"/\\\\\",\"\\\\/\"]",
+    "output": "5",
+    "explanation": "The four slashes form a closed diamond in the center surrounded by 4 corner regions, producing 5 regions in total."
+   }
+  ],
+  "starterCode": {
+   "java": "class Solution {\n    public int regionsBySlashes(String[] grid) {\n        // Write your solution here\n        return 0;\n    }\n}\n",
+   "python": "class Solution:\n    def regionsBySlashes(self, grid: List[str]) -> int:\n        # Write your solution here\n        pass\n"
+  },
+  "solutionCode": {
+   "java": "class Solution {\n    private int[] parent;\n    private int[] rank;\n    private int components;\n\n    private int find(int x) {\n        while (parent[x] != x) {\n            parent[x] = parent[parent[x]];\n            x = parent[x];\n        }\n        return x;\n    }\n\n    private void union(int a, int b) {\n        int ra = find(a), rb = find(b);\n        if (ra == rb) return;\n        if (rank[ra] < rank[rb]) {\n            int tmp = ra;\n            ra = rb;\n            rb = tmp;\n        }\n        parent[rb] = ra;\n        if (rank[ra] == rank[rb]) rank[ra]++;\n        components--;\n    }\n\n    public int regionsBySlashes(String[] grid) {\n        int n = grid.length;\n        int total = 4 * n * n;\n        parent = new int[total];\n        rank = new int[total];\n        for (int i = 0; i < total; i++) parent[i] = i;\n        components = total;\n\n        for (int r = 0; r < n; r++) {\n            String row = grid[r];\n            for (int c = 0; c < n; c++) {\n                int base = 4 * (r * n + c);\n                char ch = row.charAt(c);\n                if (ch == '/') {\n                    union(base + 0, base + 3);\n                    union(base + 1, base + 2);\n                } else if (ch == '\\\\') {\n                    union(base + 0, base + 1);\n                    union(base + 2, base + 3);\n                } else {\n                    union(base + 0, base + 1);\n                    union(base + 1, base + 2);\n                    union(base + 2, base + 3);\n                }\n\n                if (r + 1 < n) {\n                    union(base + 2, 4 * ((r + 1) * n + c) + 0);\n                }\n                if (c + 1 < n) {\n                    union(base + 1, 4 * (r * n + (c + 1)) + 3);\n                }\n            }\n        }\n        return components;\n    }\n}\n",
+   "python": "class Solution:\n    def regionsBySlashes(self, grid: List[str]) -> int:\n        n = len(grid)\n        total = 4 * n * n\n        parent = list(range(total))\n        rank = [0] * total\n        components = total\n\n        def find(x: int) -> int:\n            while parent[x] != x:\n                parent[x] = parent[parent[x]]\n                x = parent[x]\n            return x\n\n        def union(a: int, b: int) -> None:\n            nonlocal components\n            ra, rb = find(a), find(b)\n            if ra == rb:\n                return\n            if rank[ra] < rank[rb]:\n                ra, rb = rb, ra\n            parent[rb] = ra\n            if rank[ra] == rank[rb]:\n                rank[ra] += 1\n            components -= 1\n\n        for r in range(n):\n            row = grid[r]\n            for c in range(n):\n                base = 4 * (r * n + c)\n                ch = row[c]\n                if ch == \"/\":\n                    union(base + 0, base + 3)\n                    union(base + 1, base + 2)\n                elif ch == \"\\\\\":\n                    union(base + 0, base + 1)\n                    union(base + 2, base + 3)\n                else:\n                    union(base + 0, base + 1)\n                    union(base + 1, base + 2)\n                    union(base + 2, base + 3)\n\n                if r + 1 < n:\n                    union(base + 2, 4 * ((r + 1) * n + c) + 0)\n                if c + 1 < n:\n                    union(base + 1, 4 * (r * n + (c + 1)) + 3)\n\n        return components\n"
+  },
+  "sampleArray": [],
+  "visibleTestCount": 3,
+  "hiddenTestCount": 10,
+  "number": 8
+ },
+ {
+  "id": "checking-existence-of-edge-length-limited-paths",
+  "order": 9,
+  "topicId": "dsu",
+  "topic": "Disjoint Set Union (DSU)",
+  "title": "Checking Existence of Edge Length Limited Paths",
+  "slug": "checking-existence-of-edge-length-limited-paths",
+  "difficulty": "Hard",
+  "subtopic": "Path Compression",
+  "companies": [
+   "Google",
+   "Amazon",
+   "Meta",
+   "Microsoft",
+   "Uber"
+  ],
+  "leetcode": 1697,
+  "description": "An undirected graph of `n` nodes labeled from `0` to `n - 1` is defined by `edgeList`, where `edgeList[i] = [ui, vi, disi]` denotes an undirected edge between nodes `ui` and `vi` with distance `disi`. Note that there may be multiple edges between the same pair of nodes.\n\nGiven an array `queries`, where `queries[j] = [pj, qj, limitj]`, determine for each query whether there exists a path between `pj` and `qj` such that every edge on the path has a distance strictly less than `limitj`.\n\nReturn a boolean array `answer` of length `queries.length`, where `answer[j]` is `true` if such a path exists for `queries[j]`, and `false` otherwise.",
+  "constraints": [
+   "2 <= n <= 10^5",
+   "1 <= edgeList.length, queries.length <= 10^5",
+   "edgeList[i].length == 3",
+   "queries[j].length == 3",
+   "0 <= ui, vi, pj, qj <= n - 1",
+   "ui != vi",
+   "pj != qj",
+   "1 <= disi, limitj <= 10^9",
+   "There may be multiple edges between two nodes."
+  ],
+  "hints": [
+   "All queries are given upfront, so you can answer them offline instead of running a separate graph search for each query.",
+   "Sort edgeList in ascending order of edge distance, and sort the queries (keeping track of their original indices) in ascending order of limit.",
+   "Maintain a Disjoint Set Union (DSU) structure and an edge pointer: before answering a query with threshold limit, union all edges with distance strictly less than limit, then check whether find(p) == find(q)."
+  ],
+  "timeComplexity": "O(n + E log E + Q log Q)",
+  "spaceComplexity": "O(n + Q)",
+  "compare": "exact",
+  "examples": [
+   {
+    "input": "n = 3, edgeList = [[0,1,2],[1,2,4],[2,0,8],[1,0,16]], queries = [[0,1,2],[0,2,5]]",
+    "output": "[false,true]",
+    "explanation": "For query [0, 1, 2], no edge has distance strictly less than 2 (the edge [0, 1, 2] has distance equal to 2), so the answer is false. For query [0, 2, 5], edges [0, 1, 2] and [1, 2, 4] both have distance < 5 and connect 0 to 2, so the answer is true."
+   },
+   {
+    "input": "n = 5, edgeList = [[0,1,10],[1,2,5],[2,3,9],[3,4,13]], queries = [[0,4,14],[1,4,13]]",
+    "output": "[true,false]",
+    "explanation": "For query [0, 4, 14], all four edges have distance < 14, connecting 0 to 4 (true). For query [1, 4, 13], edge [3, 4, 13] is not strictly less than 13, leaving node 4 unreachable from node 1 (false)."
+   }
+  ],
+  "starterCode": {
+   "java": "class Solution {\n    public boolean[] distanceLimitedPathsExist(int n, int[][] edgeList, int[][] queries) {\n        // Write your solution here\n        return null;\n    }\n}\n",
+   "python": "class Solution:\n    def distanceLimitedPathsExist(self, n: int, edgeList: List[List[int]], queries: List[List[int]]) -> List[bool]:\n        # Write your solution here\n        pass\n"
+  },
+  "solutionCode": {
+   "java": "class Solution {\n    private int[] parent;\n    private int[] rank;\n\n    private int find(int x) {\n        while (parent[x] != x) {\n            parent[x] = parent[parent[x]];\n            x = parent[x];\n        }\n        return x;\n    }\n\n    private void union(int a, int b) {\n        int ra = find(a), rb = find(b);\n        if (ra == rb) return;\n        if (rank[ra] < rank[rb]) {\n            int tmp = ra;\n            ra = rb;\n            rb = tmp;\n        }\n        parent[rb] = ra;\n        if (rank[ra] == rank[rb]) rank[ra]++;\n    }\n\n    public boolean[] distanceLimitedPathsExist(int n, int[][] edgeList, int[][] queries) {\n        parent = new int[n];\n        rank = new int[n];\n        for (int i = 0; i < n; i++) parent[i] = i;\n\n        Arrays.sort(edgeList, (a, b) -> Integer.compare(a[2], b[2]));\n\n        int qLen = queries.length;\n        Integer[] order = new Integer[qLen];\n        for (int i = 0; i < qLen; i++) order[i] = i;\n        Arrays.sort(order, (i, j) -> Integer.compare(queries[i][2], queries[j][2]));\n\n        boolean[] ans = new boolean[qLen];\n        int ei = 0;\n        int m = edgeList.length;\n        for (int qi : order) {\n            int p = queries[qi][0];\n            int q = queries[qi][1];\n            int limit = queries[qi][2];\n            while (ei < m && edgeList[ei][2] < limit) {\n                union(edgeList[ei][0], edgeList[ei][1]);\n                ei++;\n            }\n            ans[qi] = find(p) == find(q);\n        }\n        return ans;\n    }\n}\n",
+   "python": "class Solution:\n    def distanceLimitedPathsExist(\n        self, n: int, edgeList: List[List[int]], queries: List[List[int]]\n    ) -> List[bool]:\n        parent = list(range(n))\n        rank = [0] * n\n\n        def find(x: int) -> int:\n            while parent[x] != x:\n                parent[x] = parent[parent[x]]\n                x = parent[x]\n            return x\n\n        def union(a: int, b: int) -> None:\n            ra, rb = find(a), find(b)\n            if ra == rb:\n                return\n            if rank[ra] < rank[rb]:\n                ra, rb = rb, ra\n            parent[rb] = ra\n            if rank[ra] == rank[rb]:\n                rank[ra] += 1\n\n        edges = sorted(edgeList, key=lambda e: e[2])\n        order = sorted(range(len(queries)), key=lambda i: queries[i][2])\n\n        ans = [False] * len(queries)\n        ei = 0\n        m = len(edges)\n        for qi in order:\n            p, q, limit = queries[qi]\n            while ei < m and edges[ei][2] < limit:\n                union(edges[ei][0], edges[ei][1])\n                ei += 1\n            ans[qi] = find(p) == find(q)\n\n        return ans\n"
+  },
+  "sampleArray": [],
+  "visibleTestCount": 2,
+  "hiddenTestCount": 10,
+  "number": 9
+ }
+]

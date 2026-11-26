@@ -1,0 +1,888 @@
+[
+ {
+  "id": "running-sum-of-1d-array",
+  "order": 1,
+  "topicId": "prefix-sums",
+  "topic": "Prefix & Suffix Sums",
+  "title": "Running Sum of 1D Array",
+  "slug": "running-sum-of-1d-array",
+  "difficulty": "Easy",
+  "subtopic": "1D Prefix Sum",
+  "companies": [
+   "Google",
+   "Amazon",
+   "Meta",
+   "Microsoft",
+   "Bloomberg"
+  ],
+  "leetcode": 1480,
+  "description": "Given an integer array `nums`, define its running sum as an array `runningSum` of the same length where `runningSum[i] = sum(nums[0] ... nums[i])` for every index `0 <= i < nums.length`.\n\nReturn the running sum array of `nums`.",
+  "constraints": [
+   "1 <= nums.length <= 1000",
+   "-10^6 <= nums[i] <= 10^6"
+  ],
+  "hints": [
+   "Each entry `runningSum[i]` only differs from `runningSum[i - 1]` by adding `nums[i]`.",
+   "Maintain a single running total variable as you iterate once from left to right."
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "examples": [
+   {
+    "input": "nums = [1,2,3,4]",
+    "output": "[1,3,6,10]",
+    "explanation": "Running sum is obtained as follows: [1, 1+2, 1+2+3, 1+2+3+4] = [1, 3, 6, 10]."
+   },
+   {
+    "input": "nums = [1,1,1,1,1]",
+    "output": "[1,2,3,4,5]",
+    "explanation": "Running sum is obtained as follows: [1, 1+1, 1+1+1, 1+1+1+1, 1+1+1+1+1] = [1, 2, 3, 4, 5]."
+   },
+   {
+    "input": "nums = [3,1,2,10,1]",
+    "output": "[3,4,6,16,17]",
+    "explanation": "Running sum is [3, 3+1, 3+1+2, 3+1+2+10, 3+1+2+10+1] = [3, 4, 6, 16, 17]."
+   }
+  ],
+  "starterCode": {
+   "java": "class Solution {\n    public int[] runningSum(int[] nums) {\n        // Write your solution here\n        return null;\n    }\n}\n",
+   "python": "class Solution:\n    def runningSum(self, nums: List[int]) -> List[int]:\n        # Write your solution here\n        pass\n"
+  },
+  "solutionCode": {
+   "java": "class Solution {\n    public int[] runningSum(int[] nums) {\n        int[] res = new int[nums.length];\n        int total = 0;\n        for (int i = 0; i < nums.length; i++) {\n            total += nums[i];\n            res[i] = total;\n        }\n        return res;\n    }\n}\n",
+   "python": "class Solution:\n    def runningSum(self, nums: List[int]) -> List[int]:\n        res = [0] * len(nums)\n        total = 0\n        for i, x in enumerate(nums):\n            total += x\n            res[i] = total\n        return res\n"
+  },
+  "sampleArray": [
+   1,
+   2,
+   3,
+   4
+  ],
+  "visibleTestCount": 3,
+  "hiddenTestCount": 11,
+  "number": 1
+ },
+ {
+  "id": "find-pivot-index",
+  "order": 2,
+  "topicId": "prefix-sums",
+  "topic": "Prefix & Suffix Sums",
+  "title": "Find Pivot Index",
+  "slug": "find-pivot-index",
+  "difficulty": "Easy",
+  "subtopic": "1D Prefix Sum",
+  "companies": [
+   "Google",
+   "Amazon",
+   "Meta",
+   "Microsoft",
+   "Apple",
+   "Goldman Sachs"
+  ],
+  "leetcode": 724,
+  "description": "Given an array of integers `nums`, calculate the **pivot index** of this array.\n\nThe **pivot index** is the index where the sum of all the numbers **strictly** to the left of the index is equal to the sum of all the numbers **strictly** to the right of the index.\n\nIf the index is on the left edge of the array (`i == 0`), the left sum is `0` because there are no elements to the left. This also applies to the right edge of the array (`i == nums.length - 1`), where the right sum is `0`.\n\nReturn the **leftmost** pivot index. If no such index exists, return `-1`.",
+  "constraints": [
+   "1 <= nums.length <= 10^4",
+   "-1000 <= nums[i] <= 1000"
+  ],
+  "hints": [
+   "Compute the total sum `S` of the entire array first.",
+   "As you scan index `i` from left to right maintaining `leftSum`, the sum strictly to the right of `i` is `S - leftSum - nums[i]`.",
+   "Check `leftSum == S - leftSum - nums[i]` before updating `leftSum += nums[i]` so the first match is guaranteed to be the leftmost pivot index."
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "examples": [
+   {
+    "input": "nums = [1,7,3,6,5,6]",
+    "output": "3",
+    "explanation": "The pivot index is 3. Left sum = nums[0] + nums[1] + nums[2] = 1 + 7 + 3 = 11. Right sum = nums[4] + nums[5] = 5 + 6 = 11."
+   },
+   {
+    "input": "nums = [1,2,3]",
+    "output": "-1",
+    "explanation": "There is no index that satisfies the conditions in the problem statement, so return -1."
+   },
+   {
+    "input": "nums = [2,1,-1]",
+    "output": "0",
+    "explanation": "The pivot index is 0. Left sum = 0 (no elements to the left of index 0). Right sum = nums[1] + nums[2] = 1 + (-1) = 0."
+   }
+  ],
+  "starterCode": {
+   "java": "class Solution {\n    public int pivotIndex(int[] nums) {\n        // Write your solution here\n        return 0;\n    }\n}\n",
+   "python": "class Solution:\n    def pivotIndex(self, nums: List[int]) -> int:\n        # Write your solution here\n        pass\n"
+  },
+  "solutionCode": {
+   "java": "class Solution {\n    public int pivotIndex(int[] nums) {\n        int total = 0;\n        for (int x : nums) {\n            total += x;\n        }\n        int left = 0;\n        for (int i = 0; i < nums.length; i++) {\n            if (left == total - left - nums[i]) {\n                return i;\n            }\n            left += nums[i];\n        }\n        return -1;\n    }\n}\n",
+   "python": "class Solution:\n    def pivotIndex(self, nums: List[int]) -> int:\n        total = sum(nums)\n        left = 0\n        for i, x in enumerate(nums):\n            if left == total - left - x:\n                return i\n            left += x\n        return -1\n"
+  },
+  "sampleArray": [
+   1,
+   7,
+   3,
+   6,
+   5,
+   6
+  ],
+  "visibleTestCount": 3,
+  "hiddenTestCount": 12,
+  "number": 2
+ },
+ {
+  "id": "range-sum-query-immutable",
+  "order": 3,
+  "topicId": "prefix-sums",
+  "topic": "Prefix & Suffix Sums",
+  "title": "Range Sum Query - Immutable",
+  "slug": "range-sum-query-immutable",
+  "difficulty": "Easy",
+  "subtopic": "1D Prefix Sum",
+  "companies": [
+   "Google",
+   "Amazon",
+   "Meta",
+   "Microsoft",
+   "Apple",
+   "Bloomberg"
+  ],
+  "leetcode": 303,
+  "description": "Given an integer array `nums`, handle multiple queries of the following type:\n\n- Calculate the **sum** of the elements of `nums` between indices `left` and `right` **inclusive**, where `left <= right`.\n\nImplement the `NumArray` class:\n- `NumArray(int[] nums)` initializes the object with the integer array `nums`.\n- `int sumRange(int left, int right)` returns the sum of the elements of `nums` between indices `left` and `right` inclusive (i.e. `nums[left] + nums[left + 1] + ... + nums[right]`).",
+  "constraints": [
+   "1 <= nums.length <= 10^4",
+   "-10^5 <= nums[i] <= 10^5",
+   "0 <= left <= right < nums.length",
+   "At most 10^4 calls will be made to sumRange."
+  ],
+  "hints": [
+   "Because the array is immutable, you can precompute cumulative sums once inside the constructor.",
+   "Build a prefix sum array `prefix` of length `n + 1` where `prefix[0] = 0` and `prefix[i + 1] = prefix[i] + nums[i]`.",
+   "Then every query `sumRange(left, right)` is answered in O(1) time as `prefix[right + 1] - prefix[left]`."
+  ],
+  "timeComplexity": "O(n) init, O(1) query",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "examples": [
+   {
+    "input": "[\"NumArray\",\"sumRange\",\"sumRange\",\"sumRange\"]\n[[[-2,0,3,-5,2,-1]],[0,2],[2,5],[0,5]]",
+    "output": "[null,1,-1,-3]",
+    "explanation": "sumRange(0, 2) = (-2) + 0 + 3 = 1; sumRange(2, 5) = 3 + (-5) + 2 + (-1) = -1; sumRange(0, 5) = (-2) + 0 + 3 + (-5) + 2 + (-1) = -3."
+   },
+   {
+    "input": "[\"NumArray\",\"sumRange\",\"sumRange\",\"sumRange\"]\n[[[10,20,30,40]],[0,0],[3,3],[0,3]]",
+    "output": "[null,10,40,100]",
+    "explanation": "Single-element queries and full-array queries work seamlessly with the padded prefix sum array."
+   }
+  ],
+  "starterCode": {
+   "java": "class NumArray {\n    public NumArray(int[] nums) {\n        \n    }\n\n    public int sumRange(int left, int right) {\n        return 0;\n    }\n}\n",
+   "python": "class NumArray:\n    def __init__(self, nums: List[int]):\n        pass\n\n    def sumRange(self, left: int, right: int) -> int:\n        pass\n"
+  },
+  "solutionCode": {
+   "java": "class NumArray {\n    private final int[] prefix;\n\n    public NumArray(int[] nums) {\n        prefix = new int[nums.length + 1];\n        for (int i = 0; i < nums.length; i++) {\n            prefix[i + 1] = prefix[i] + nums[i];\n        }\n    }\n\n    public int sumRange(int left, int right) {\n        return prefix[right + 1] - prefix[left];\n    }\n}\n",
+   "python": "class NumArray:\n    def __init__(self, nums: List[int]):\n        self.prefix = [0] * (len(nums) + 1)\n        for i, x in enumerate(nums):\n            self.prefix[i + 1] = self.prefix[i] + x\n\n    def sumRange(self, left: int, right: int) -> int:\n        return self.prefix[right + 1] - self.prefix[left]\n"
+  },
+  "sampleArray": [],
+  "visibleTestCount": 2,
+  "hiddenTestCount": 10,
+  "number": 3
+ },
+ {
+  "id": "range-sum-query-2d-immutable",
+  "order": 4,
+  "topicId": "prefix-sums",
+  "topic": "Prefix & Suffix Sums",
+  "title": "Range Sum Query 2D - Immutable",
+  "slug": "range-sum-query-2d-immutable",
+  "difficulty": "Medium",
+  "subtopic": "2D Submatrix Sum",
+  "companies": [
+   "Meta",
+   "Google",
+   "Amazon",
+   "Microsoft",
+   "Uber",
+   "Bloomberg"
+  ],
+  "leetcode": 304,
+  "description": "Given a 2D integer matrix `matrix`, handle multiple queries of the following type:\n\n- Calculate the **sum** of the elements of `matrix` inside the rectangle defined by its **upper-left corner** `(row1, col1)` and **lower-right corner** `(row2, col2)` (both inclusive).\n\nImplement the `NumMatrix` class:\n- `NumMatrix(int[][] matrix)` initializes the object with the integer matrix `matrix`.\n- `int sumRegion(int row1, int col1, int row2, int col2)` returns the sum of the elements of `matrix` inside the rectangle `(row1, col1)` to `(row2, col2)` inclusive.\n\nYou must design an algorithm where `sumRegion` works in `O(1)` time complexity.",
+  "constraints": [
+   "m == matrix.length",
+   "n == matrix[i].length",
+   "1 <= m, n <= 200",
+   "-10^4 <= matrix[i][j] <= 10^4",
+   "0 <= row1 <= row2 < m",
+   "0 <= col1 <= col2 < n",
+   "At most 10^4 calls will be made to sumRegion."
+  ],
+  "hints": [
+   "Generalize 1D prefix sums to 2D by storing `prefix[r + 1][c + 1]` as the sum of the submatrix from `(0, 0)` to `(r, c)`.",
+   "Using inclusion-exclusion, `prefix[r + 1][c + 1] = matrix[r][c] + prefix[r][c + 1] + prefix[r + 1][c] - prefix[r][c]`.",
+   "For any query `(row1, col1, row2, col2)`, return `prefix[row2 + 1][col2 + 1] - prefix[row1][col2 + 1] - prefix[row2 + 1][col1] + prefix[row1][col1]`."
+  ],
+  "timeComplexity": "O(m * n) init, O(1) query",
+  "spaceComplexity": "O(m * n)",
+  "compare": "exact",
+  "examples": [
+   {
+    "input": "[\"NumMatrix\",\"sumRegion\",\"sumRegion\",\"sumRegion\"]\n[[[[3,0,1,4,2],[5,6,3,2,1],[1,2,0,1,5],[4,1,0,1,7],[1,0,3,0,5]]],[2,1,4,3],[1,1,2,2],[1,2,2,4]]",
+    "output": "[null,8,11,12]",
+    "explanation": "sumRegion(2, 1, 4, 3) = 8, sumRegion(1, 1, 2, 2) = 11, sumRegion(1, 2, 2, 4) = 12."
+   },
+   {
+    "input": "[\"NumMatrix\",\"sumRegion\",\"sumRegion\",\"sumRegion\",\"sumRegion\"]\n[[[[1,2,3],[4,5,6]]],[0,0,0,0],[0,0,0,2],[0,1,1,1],[0,0,1,2]]",
+    "output": "[null,1,6,7,21]",
+    "explanation": "Single-cell, single-row, single-column, and full-matrix regions are all handled in O(1) time."
+   }
+  ],
+  "starterCode": {
+   "java": "class NumMatrix {\n    public NumMatrix(int[][] matrix) {\n        \n    }\n\n    public int sumRegion(int row1, int col1, int row2, int col2) {\n        return 0;\n    }\n}\n",
+   "python": "class NumMatrix:\n    def __init__(self, matrix: List[List[int]]):\n        pass\n\n    def sumRegion(self, row1: int, col1: int, row2: int, col2: int) -> int:\n        pass\n"
+  },
+  "solutionCode": {
+   "java": "class NumMatrix {\n    private final int[][] prefix;\n\n    public NumMatrix(int[][] matrix) {\n        int m = matrix.length;\n        int n = matrix[0].length;\n        prefix = new int[m + 1][n + 1];\n        for (int r = 0; r < m; r++) {\n            for (int c = 0; c < n; c++) {\n                prefix[r + 1][c + 1] = matrix[r][c]\n                        + prefix[r][c + 1]\n                        + prefix[r + 1][c]\n                        - prefix[r][c];\n            }\n        }\n    }\n\n    public int sumRegion(int row1, int col1, int row2, int col2) {\n        return prefix[row2 + 1][col2 + 1]\n                - prefix[row1][col2 + 1]\n                - prefix[row2 + 1][col1]\n                + prefix[row1][col1];\n    }\n}\n",
+   "python": "class NumMatrix:\n    def __init__(self, matrix: List[List[int]]):\n        m, n = len(matrix), len(matrix[0])\n        self.prefix = [[0] * (n + 1) for _ in range(m + 1)]\n        for r in range(m):\n            row = matrix[r]\n            cur = self.prefix[r + 1]\n            prev = self.prefix[r]\n            for c in range(n):\n                cur[c + 1] = row[c] + prev[c + 1] + cur[c] - prev[c]\n\n    def sumRegion(self, row1: int, col1: int, row2: int, col2: int) -> int:\n        p = self.prefix\n        return p[row2 + 1][col2 + 1] - p[row1][col2 + 1] - p[row2 + 1][col1] + p[row1][col1]\n"
+  },
+  "sampleArray": [],
+  "visibleTestCount": 2,
+  "hiddenTestCount": 10,
+  "number": 4
+ },
+ {
+  "id": "subarray-sum-equals-k",
+  "order": 5,
+  "topicId": "prefix-sums",
+  "topic": "Prefix & Suffix Sums",
+  "title": "Subarray Sum Equals K",
+  "slug": "subarray-sum-equals-k",
+  "difficulty": "Medium",
+  "subtopic": "Hash + Prefix",
+  "companies": [
+   "Meta",
+   "Google",
+   "Amazon",
+   "Microsoft",
+   "Apple",
+   "Bloomberg"
+  ],
+  "leetcode": 560,
+  "description": "Given an array of integers `nums` and an integer `k`, return the total number of non-empty **contiguous subarrays** whose sum equals `k`.\n\nNote that `nums` may contain negative numbers and zeros, so a sliding window approach is not sufficient.",
+  "constraints": [
+   "1 <= nums.length <= 2 * 10^4",
+   "-1000 <= nums[i] <= 1000",
+   "-10^7 <= k <= 10^7"
+  ],
+  "hints": [
+   "A subarray `nums[l..r]` sums to `k` if and only if `prefix[r + 1] - prefix[l] == k`, i.e., `prefix[l] == prefix[r + 1] - k`.",
+   "Keep a hash map counting how many times each prefix sum has occurred so far, initialized with `{0: 1}` to account for subarrays starting at index 0.",
+   "At each element, add `counts[curSum - k]` to the answer before incrementing `counts[curSum]`."
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "examples": [
+   {
+    "input": "nums = [1,1,1], k = 2",
+    "output": "2",
+    "explanation": "The two subarrays summing to 2 are [1, 1] at indices [0..1] and [1, 1] at indices [1..2]."
+   },
+   {
+    "input": "nums = [1,2,3], k = 3",
+    "output": "2",
+    "explanation": "The two subarrays summing to 3 are [1, 2] and [3]."
+   },
+   {
+    "input": "nums = [1,-1,0], k = 0",
+    "output": "3",
+    "explanation": "With negative numbers and zeros, [1, -1, 0], [1, -1], and [0] all sum to 0, giving 3 subarrays."
+   }
+  ],
+  "starterCode": {
+   "java": "class Solution {\n    public int subarraySum(int[] nums, int k) {\n        // Write your solution here\n        return 0;\n    }\n}\n",
+   "python": "class Solution:\n    def subarraySum(self, nums: List[int], k: int) -> int:\n        # Write your solution here\n        pass\n"
+  },
+  "solutionCode": {
+   "java": "class Solution {\n    public int subarraySum(int[] nums, int k) {\n        Map<Integer, Integer> counts = new HashMap<>();\n        counts.put(0, 1);\n        int prefix = 0;\n        int ans = 0;\n        for (int x : nums) {\n            prefix += x;\n            ans += counts.getOrDefault(prefix - k, 0);\n            counts.put(prefix, counts.getOrDefault(prefix, 0) + 1);\n        }\n        return ans;\n    }\n}\n",
+   "python": "class Solution:\n    def subarraySum(self, nums: List[int], k: int) -> int:\n        counts = defaultdict(int)\n        counts[0] = 1\n        prefix = 0\n        ans = 0\n        for x in nums:\n            prefix += x\n            ans += counts[prefix - k]\n            counts[prefix] += 1\n        return ans\n"
+  },
+  "sampleArray": [
+   1,
+   1,
+   1
+  ],
+  "visibleTestCount": 3,
+  "hiddenTestCount": 12,
+  "number": 5
+ },
+ {
+  "id": "continuous-subarray-sum",
+  "order": 6,
+  "topicId": "prefix-sums",
+  "topic": "Prefix & Suffix Sums",
+  "title": "Continuous Subarray Sum",
+  "slug": "continuous-subarray-sum",
+  "difficulty": "Medium",
+  "subtopic": "Hash + Prefix",
+  "companies": [
+   "Meta",
+   "Amazon",
+   "Google",
+   "Microsoft",
+   "Bloomberg"
+  ],
+  "leetcode": 523,
+  "description": "Given an integer array `nums` and a positive integer `k`, return `true` if `nums` has a **good subarray**, or `false` otherwise.\n\nA **good subarray** is a contiguous subarray where:\n- Its length is **at least two**, and\n- The sum of the elements of the subarray is a **multiple of `k`**.\n\nNote that an integer `x` is a multiple of `k` if there exists an integer `n` such that `x = n * k`. In particular, `0` is always a multiple of `k`.",
+  "constraints": [
+   "1 <= nums.length <= 10^5",
+   "0 <= nums[i] <= 10^9",
+   "0 <= sum(nums[i]) <= 2^31 - 1",
+   "1 <= k <= 2^31 - 1"
+  ],
+  "hints": [
+   "Two prefix sums `prefix[j]` and `prefix[i]` have a difference divisible by `k` if and only if they share the same remainder modulo `k`.",
+   "Store the earliest index where each remainder `prefix % k` appears in a hash map, seeded with `{0: -1}`.",
+   "Only return `true` when the same remainder is seen again at an index `j` with `j - firstIndex[rem] >= 2`, and never overwrite an earlier index."
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(min(n, k))",
+  "compare": "exact",
+  "examples": [
+   {
+    "input": "nums = [23,2,4,6,7], k = 6",
+    "output": "true",
+    "explanation": "[2, 4] is a contiguous subarray of size 2 whose elements sum up to 6, which is a multiple of 6."
+   },
+   {
+    "input": "nums = [23,2,6,4,7], k = 6",
+    "output": "true",
+    "explanation": "[23, 2, 6, 4, 7] is a contiguous subarray of size 5 whose elements sum up to 42 = 7 * 6."
+   },
+   {
+    "input": "nums = [23,2,6,4,7], k = 13",
+    "output": "false",
+    "explanation": "No contiguous subarray of length at least 2 has a sum divisible by 13."
+   }
+  ],
+  "starterCode": {
+   "java": "class Solution {\n    public boolean checkSubarraySum(int[] nums, int k) {\n        // Write your solution here\n        return false;\n    }\n}\n",
+   "python": "class Solution:\n    def checkSubarraySum(self, nums: List[int], k: int) -> bool:\n        # Write your solution here\n        pass\n"
+  },
+  "solutionCode": {
+   "java": "class Solution {\n    public boolean checkSubarraySum(int[] nums, int k) {\n        Map<Integer, Integer> firstSeen = new HashMap<>();\n        firstSeen.put(0, -1);\n        long prefix = 0;\n        for (int i = 0; i < nums.length; i++) {\n            prefix += nums[i];\n            int rem = (int) (prefix % k);\n            Integer prev = firstSeen.get(rem);\n            if (prev != null) {\n                if (i - prev >= 2) {\n                    return true;\n                }\n            } else {\n                firstSeen.put(rem, i);\n            }\n        }\n        return false;\n    }\n}\n",
+   "python": "class Solution:\n    def checkSubarraySum(self, nums: List[int], k: int) -> bool:\n        first_seen = {0: -1}\n        prefix = 0\n        for i, x in enumerate(nums):\n            prefix = (prefix + x) % k\n            if prefix in first_seen:\n                if i - first_seen[prefix] >= 2:\n                    return True\n            else:\n                first_seen[prefix] = i\n        return False\n"
+  },
+  "sampleArray": [
+   23,
+   2,
+   4,
+   6,
+   7
+  ],
+  "visibleTestCount": 3,
+  "hiddenTestCount": 12,
+  "number": 6
+ },
+ {
+  "id": "subarray-sums-divisible-by-k",
+  "order": 7,
+  "topicId": "prefix-sums",
+  "topic": "Prefix & Suffix Sums",
+  "title": "Subarray Sums Divisible by K",
+  "slug": "subarray-sums-divisible-by-k",
+  "difficulty": "Medium",
+  "subtopic": "Hash + Prefix",
+  "companies": [
+   "Amazon",
+   "Google",
+   "Meta",
+   "Microsoft",
+   "Uber",
+   "Goldman Sachs"
+  ],
+  "leetcode": 974,
+  "description": "Given an integer array `nums` and an integer `k`, return the number of non-empty **contiguous subarrays** whose sum is divisible by `k`.\n\nNote that `nums` can contain negative numbers, and `0` is divisible by every positive integer `k`.",
+  "constraints": [
+   "1 <= nums.length <= 3 * 10^4",
+   "-10^4 <= nums[i] <= 10^4",
+   "2 <= k <= 10^4"
+  ],
+  "hints": [
+   "A subarray `nums[l..r]` has a sum divisible by `k` if and only if `prefix[r + 1] ≡ prefix[l] (mod k)`.",
+   "Be careful with negative prefix sums in languages like Java: normalize remainders into `[0, k - 1]` using `((prefix % k) + k) % k`.",
+   "Maintain a frequency array (or map) of normalized remainders initialized with `count[0] = 1`, and add `count[rem]` to the answer before incrementing `count[rem]`."
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(k)",
+  "compare": "exact",
+  "examples": [
+   {
+    "input": "nums = [4,5,0,-2,-3,1], k = 5",
+    "output": "7",
+    "explanation": "There are 7 subarrays with a sum divisible by 5: [4, 5, 0, -2, -3, 1], [5], [5, 0], [5, 0, -2, -3], [0], [0, -2, -3], [-2, -3]."
+   },
+   {
+    "input": "nums = [5], k = 9",
+    "output": "0",
+    "explanation": "The single subarray [5] has sum 5, which is not divisible by 9, so return 0."
+   },
+   {
+    "input": "nums = [-1,2,9], k = 2",
+    "output": "2",
+    "explanation": "The 2 subarrays with a sum divisible by 2 are [2] (sum 2) and [-1, 2, 9] (sum 10)."
+   }
+  ],
+  "starterCode": {
+   "java": "class Solution {\n    public int subarraysDivByK(int[] nums, int k) {\n        // Write your solution here\n        return 0;\n    }\n}\n",
+   "python": "class Solution:\n    def subarraysDivByK(self, nums: List[int], k: int) -> int:\n        # Write your solution here\n        pass\n"
+  },
+  "solutionCode": {
+   "java": "class Solution {\n    public int subarraysDivByK(int[] nums, int k) {\n        int[] counts = new int[k];\n        counts[0] = 1;\n        int prefix = 0;\n        int ans = 0;\n        for (int x : nums) {\n            prefix = ((prefix + x) % k + k) % k;\n            ans += counts[prefix];\n            counts[prefix]++;\n        }\n        return ans;\n    }\n}\n",
+   "python": "class Solution:\n    def subarraysDivByK(self, nums: List[int], k: int) -> int:\n        counts = [0] * k\n        counts[0] = 1\n        prefix = 0\n        ans = 0\n        for x in nums:\n            prefix = (prefix + x) % k\n            ans += counts[prefix]\n            counts[prefix] += 1\n        return ans\n"
+  },
+  "sampleArray": [
+   4,
+   5,
+   0,
+   -2,
+   -3,
+   1
+  ],
+  "visibleTestCount": 3,
+  "hiddenTestCount": 11,
+  "number": 7
+ },
+ {
+  "id": "contiguous-array",
+  "order": 8,
+  "topicId": "prefix-sums",
+  "topic": "Prefix & Suffix Sums",
+  "title": "Contiguous Array",
+  "slug": "contiguous-array",
+  "difficulty": "Medium",
+  "subtopic": "Hash + Prefix",
+  "companies": [
+   "Meta",
+   "Google",
+   "Amazon",
+   "Microsoft",
+   "Bloomberg"
+  ],
+  "leetcode": 525,
+  "description": "Given a binary array `nums` containing only `0`s and `1`s, return the maximum length of a contiguous subarray with an equal number of `0` and `1`.\n\nA subarray is a contiguous non-empty sequence of elements within an array. If no non-empty subarray has an equal number of `0`s and `1`s, return `0`.",
+  "constraints": [
+   "1 <= nums.length <= 10^5",
+   "nums[i] is either 0 or 1."
+  ],
+  "hints": [
+   "Replace every 0 with -1 mentally: a subarray has an equal number of 0s and 1s if and only if its transformed sum is 0.",
+   "Track the running prefix balance as you scan left to right. If the same balance appears at two indices i and j (i < j), the subarray (i, j] has net balance 0.",
+   "Store only the earliest index where each balance was seen (initializing balance 0 at index -1) to maximize the subarray length."
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "examples": [
+   {
+    "input": "nums = [0,1]",
+    "output": "2",
+    "explanation": "[0, 1] is the longest contiguous subarray with an equal number of 0 and 1, with length 2."
+   },
+   {
+    "input": "nums = [0,1,0]",
+    "output": "2",
+    "explanation": "[0, 1] (or [1, 0]) is a longest contiguous subarray with an equal number of 0 and 1, with length 2."
+   },
+   {
+    "input": "nums = [0,1,1,1,1,1,0,0,0]",
+    "output": "6",
+    "explanation": "The subarray [1, 1, 1, 0, 0, 0] (indices 3 through 8) has three 1s and three 0s, giving a maximum length of 6."
+   }
+  ],
+  "starterCode": {
+   "java": "class Solution {\n    public int findMaxLength(int[] nums) {\n        // Write your solution here\n        return 0;\n    }\n}\n",
+   "python": "class Solution:\n    def findMaxLength(self, nums: List[int]) -> int:\n        # Write your solution here\n        pass\n"
+  },
+  "solutionCode": {
+   "java": "class Solution {\n    public int findMaxLength(int[] nums) {\n        Map<Integer, Integer> firstSeen = new HashMap<>();\n        firstSeen.put(0, -1);\n        int balance = 0;\n        int best = 0;\n        for (int i = 0; i < nums.length; i++) {\n            balance += (nums[i] == 1) ? 1 : -1;\n            Integer prev = firstSeen.get(balance);\n            if (prev != null) {\n                int len = i - prev;\n                if (len > best) {\n                    best = len;\n                }\n            } else {\n                firstSeen.put(balance, i);\n            }\n        }\n        return best;\n    }\n}\n",
+   "python": "class Solution:\n    def findMaxLength(self, nums: List[int]) -> int:\n        first_seen = {0: -1}\n        balance = 0\n        best = 0\n        for i, v in enumerate(nums):\n            balance += 1 if v == 1 else -1\n            if balance in first_seen:\n                length = i - first_seen[balance]\n                if length > best:\n                    best = length\n            else:\n                first_seen[balance] = i\n        return best\n"
+  },
+  "sampleArray": [
+   0,
+   1
+  ],
+  "visibleTestCount": 3,
+  "hiddenTestCount": 11,
+  "number": 8
+ },
+ {
+  "id": "product-of-array-except-self",
+  "order": 9,
+  "topicId": "prefix-sums",
+  "topic": "Prefix & Suffix Sums",
+  "title": "Product of Array Except Self",
+  "slug": "product-of-array-except-self",
+  "difficulty": "Medium",
+  "subtopic": "1D Prefix Sum",
+  "companies": [
+   "Amazon",
+   "Meta",
+   "Google",
+   "Microsoft",
+   "Apple",
+   "Bloomberg"
+  ],
+  "leetcode": 238,
+  "description": "Given an integer array `nums`, return an array `answer` such that `answer[i]` is equal to the product of all the elements of `nums` except `nums[i]`.\n\nThe product of any prefix or suffix of `nums` is guaranteed to fit in a 32-bit signed integer.\n\nYou must write an algorithm that runs in `O(n)` time and without using the division operation. For space complexity analysis, the output array does not count as extra space.",
+  "constraints": [
+   "2 <= nums.length <= 10^5",
+   "-30 <= nums[i] <= 30",
+   "The product of any prefix or suffix of nums is guaranteed to fit in a 32-bit signed integer."
+  ],
+  "hints": [
+   "For each index i, the product of all elements except nums[i] equals (product of elements strictly to the left of i) * (product of elements strictly to the right of i).",
+   "Compute the prefix products in a left-to-right pass directly into the output array.",
+   "Then sweep right-to-left while maintaining a single scalar suffix product and multiply it into the output array for O(1) extra space."
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "examples": [
+   {
+    "input": "nums = [1,2,3,4]",
+    "output": "[24,12,8,6]",
+    "explanation": "For each position: 2*3*4=24, 1*3*4=12, 1*2*4=8, 1*2*3=6."
+   },
+   {
+    "input": "nums = [-1,1,0,-3,3]",
+    "output": "[0,0,9,0,0]",
+    "explanation": "Only index 2 (where nums[2] == 0) has a non-zero product: (-1) * 1 * (-3) * 3 = 9; all other positions include 0 in their product."
+   }
+  ],
+  "starterCode": {
+   "java": "class Solution {\n    public int[] productExceptSelf(int[] nums) {\n        // Write your solution here\n        return null;\n    }\n}\n",
+   "python": "class Solution:\n    def productExceptSelf(self, nums: List[int]) -> List[int]:\n        # Write your solution here\n        pass\n"
+  },
+  "solutionCode": {
+   "java": "class Solution {\n    public int[] productExceptSelf(int[] nums) {\n        int n = nums.length;\n        int[] ans = new int[n];\n        int prefix = 1;\n        for (int i = 0; i < n; i++) {\n            ans[i] = prefix;\n            prefix *= nums[i];\n        }\n        int suffix = 1;\n        for (int i = n - 1; i >= 0; i--) {\n            ans[i] *= suffix;\n            suffix *= nums[i];\n        }\n        return ans;\n    }\n}\n",
+   "python": "class Solution:\n    def productExceptSelf(self, nums: List[int]) -> List[int]:\n        n = len(nums)\n        ans = [1] * n\n        prefix = 1\n        for i in range(n):\n            ans[i] = prefix\n            prefix *= nums[i]\n        suffix = 1\n        for i in range(n - 1, -1, -1):\n            ans[i] *= suffix\n            suffix *= nums[i]\n        return ans\n"
+  },
+  "sampleArray": [
+   1,
+   2,
+   3,
+   4
+  ],
+  "visibleTestCount": 2,
+  "hiddenTestCount": 11,
+  "number": 9
+ },
+ {
+  "id": "car-pooling",
+  "order": 10,
+  "topicId": "prefix-sums",
+  "topic": "Prefix & Suffix Sums",
+  "title": "Car Pooling",
+  "slug": "car-pooling",
+  "difficulty": "Medium",
+  "subtopic": "Difference Array",
+  "companies": [
+   "Amazon",
+   "Google",
+   "Uber",
+   "Meta",
+   "Microsoft"
+  ],
+  "leetcode": 1094,
+  "description": "There is a car with `capacity` empty seats. The vehicle only drives east (it cannot turn around and drive west).\n\nYou are given the integer `capacity` and an array `trips` where `trips[i] = [numPassengers_i, from_i, to_i]` indicates that the `i`-th trip has `numPassengers_i` passengers who are picked up at location `from_i` and dropped off at location `to_i`. Locations are given as the number of kilometers due east from the car's initial position.\n\nAt any location, passengers scheduled to be dropped off leave the car before any new passengers are picked up at that same location. Return `true` if it is possible to pick up and drop off all passengers for all the given trips without ever exceeding `capacity`, or `false` otherwise.",
+  "constraints": [
+   "1 <= trips.length <= 1000",
+   "trips[i].length == 3",
+   "1 <= numPassengers_i <= 100",
+   "0 <= from_i < to_i <= 1000",
+   "1 <= capacity <= 10^5"
+  ],
+  "hints": [
+   "Instead of simulating each trip individually across every kilometer, record only the net change in passenger count at pickup and drop-off locations.",
+   "Use a difference array `diff` indexed by location 0..1000: add `numPassengers` at `from` and subtract `numPassengers` at `to`.",
+   "Take the running prefix sum of `diff` from location 0 to 1000; if the occupancy ever exceeds `capacity`, return false."
+  ],
+  "timeComplexity": "O(n + M)",
+  "spaceComplexity": "O(M)",
+  "compare": "exact",
+  "examples": [
+   {
+    "input": "trips = [[2,1,5],[3,3,7]], capacity = 4",
+    "output": "false",
+    "explanation": "At kilometer 3, both trips are active requiring 2 + 3 = 5 seats, which exceeds capacity 4."
+   },
+   {
+    "input": "trips = [[2,1,5],[3,3,7]], capacity = 5",
+    "output": "true",
+    "explanation": "The peak occupancy is 5 passengers between kilometers 3 and 5, which fits within capacity 5."
+   },
+   {
+    "input": "trips = [[3,2,7],[3,7,9],[8,3,9]], capacity = 11",
+    "output": "true",
+    "explanation": "At kilometer 7, the first trip's 3 passengers drop off before the second trip's 3 passengers board, so peak occupancy is 3 + 8 = 11, fitting within capacity 11."
+   }
+  ],
+  "starterCode": {
+   "java": "class Solution {\n    public boolean carPooling(int[][] trips, int capacity) {\n        // Write your solution here\n        return false;\n    }\n}\n",
+   "python": "class Solution:\n    def carPooling(self, trips: List[List[int]], capacity: int) -> bool:\n        # Write your solution here\n        pass\n"
+  },
+  "solutionCode": {
+   "java": "class Solution {\n    public boolean carPooling(int[][] trips, int capacity) {\n        int[] diff = new int[1001];\n        for (int[] trip : trips) {\n            diff[trip[1]] += trip[0];\n            diff[trip[2]] -= trip[0];\n        }\n        int cur = 0;\n        for (int delta : diff) {\n            cur += delta;\n            if (cur > capacity) {\n                return false;\n            }\n        }\n        return true;\n    }\n}\n",
+   "python": "class Solution:\n    def carPooling(self, trips: List[List[int]], capacity: int) -> bool:\n        diff = [0] * 1001\n        for passengers, start, end in trips:\n            diff[start] += passengers\n            diff[end] -= passengers\n        cur = 0\n        for delta in diff:\n            cur += delta\n            if cur > capacity:\n                return False\n        return True\n"
+  },
+  "sampleArray": [],
+  "visibleTestCount": 3,
+  "hiddenTestCount": 11,
+  "number": 10
+ },
+ {
+  "id": "corporate-flight-bookings",
+  "order": 11,
+  "topicId": "prefix-sums",
+  "topic": "Prefix & Suffix Sums",
+  "title": "Corporate Flight Bookings",
+  "slug": "corporate-flight-bookings",
+  "difficulty": "Medium",
+  "subtopic": "Difference Array",
+  "companies": [
+   "Amazon",
+   "Goldman Sachs",
+   "Google",
+   "Uber",
+   "Microsoft"
+  ],
+  "leetcode": 1109,
+  "description": "There are `n` flights labeled from `1` to `n`.\n\nYou are given an array of flight bookings `bookings`, where `bookings[i] = [first_i, last_i, seats_i]` represents a booking for flights `first_i` through `last_i` (inclusive) with `seats_i` seats reserved for each flight in that range.\n\nReturn an array `answer` of length `n`, where `answer[i]` is the total number of seats reserved for flight `i + 1`.",
+  "constraints": [
+   "1 <= n <= 2 * 10^4",
+   "1 <= bookings.length <= 2 * 10^4",
+   "bookings[i].length == 3",
+   "1 <= first_i <= last_i <= n",
+   "1 <= seats_i <= 10^4"
+  ],
+  "hints": [
+   "Updating every flight in [first, last] for each booking takes O(n * m) time, which is too slow when both n and m are large.",
+   "Use a difference array: add `seats` at index `first - 1`, and if `last < n`, subtract `seats` at index `last`.",
+   "After processing all bookings in O(m) time, compute the running prefix sum across the array in O(n) time to obtain the final seat counts."
+  ],
+  "timeComplexity": "O(n + m)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "examples": [
+   {
+    "input": "bookings = [[1,2,10],[2,3,20],[2,5,25]], n = 5",
+    "output": "[10,55,45,25,25]",
+    "explanation": "Flight 1: 10; Flight 2: 10+20+25=55; Flight 3: 20+25=45; Flight 4: 25; Flight 5: 25."
+   },
+   {
+    "input": "bookings = [[1,2,10],[2,2,15]], n = 2",
+    "output": "[10,25]",
+    "explanation": "Flight 1: 10; Flight 2: 10+15=25."
+   }
+  ],
+  "starterCode": {
+   "java": "class Solution {\n    public int[] corpFlightBookings(int[][] bookings, int n) {\n        // Write your solution here\n        return null;\n    }\n}\n",
+   "python": "class Solution:\n    def corpFlightBookings(self, bookings: List[List[int]], n: int) -> List[int]:\n        # Write your solution here\n        pass\n"
+  },
+  "solutionCode": {
+   "java": "class Solution {\n    public int[] corpFlightBookings(int[][] bookings, int n) {\n        int[] ans = new int[n];\n        for (int[] b : bookings) {\n            ans[b[0] - 1] += b[2];\n            if (b[1] < n) {\n                ans[b[1]] -= b[2];\n            }\n        }\n        for (int i = 1; i < n; i++) {\n            ans[i] += ans[i - 1];\n        }\n        return ans;\n    }\n}\n",
+   "python": "class Solution:\n    def corpFlightBookings(self, bookings: List[List[int]], n: int) -> List[int]:\n        ans = [0] * n\n        for first, last, seats in bookings:\n            ans[first - 1] += seats\n            if last < n:\n                ans[last] -= seats\n        for i in range(1, n):\n            ans[i] += ans[i - 1]\n        return ans\n"
+  },
+  "sampleArray": [],
+  "visibleTestCount": 2,
+  "hiddenTestCount": 11,
+  "number": 11
+ },
+ {
+  "id": "random-pick-with-weight",
+  "order": 12,
+  "topicId": "prefix-sums",
+  "topic": "Prefix & Suffix Sums",
+  "title": "Random Pick with Weight",
+  "slug": "random-pick-with-weight",
+  "difficulty": "Medium",
+  "subtopic": "1D Prefix Sum",
+  "companies": [
+   "Meta",
+   "Google",
+   "Amazon",
+   "Uber",
+   "Microsoft",
+   "Bloomberg"
+  ],
+  "leetcode": 528,
+  "description": "You are given a 0-indexed array of positive integers `w` where `w[i]` describes the weight of the `i`-th index.\n\nImplement the `Solution` class:\n- `Solution(int[] w)` initializes the object with the array `w`.\n- `int pickIndex()` randomly picks an index in the range `[0, w.length - 1]` (inclusive) and returns it. The probability of picking an index `i` must be `w[i] / sum(w)`.\n\nFor example, if `w = [1, 3]`, the probability of picking index `0` is `1 / (1 + 3) = 0.25` (25%), and the probability of picking index `1` is `3 / (1 + 3) = 0.75` (75%).\n\nFor each test case, the judge constructs `Solution(w)`, calls `pickIndex()` `trials` times, and verifies that every returned index is in `[0, w.length - 1]` and that the observed frequencies match the theoretical probabilities `w[i] / sum(w)` within statistical tolerance (returning `true` when valid).",
+  "constraints": [
+   "1 <= w.length <= 10^4",
+   "1 <= w[i] <= 10^5",
+   "pickIndex will be called at most 10^4 times per test case."
+  ],
+  "hints": [
+   "Think of the weights as contiguous intervals on a number line of length sum(w): index i occupies an interval of length w[i].",
+   "Precompute the running prefix sums of w in O(n) time so that prefix[i] = w[0] + w[1] + ... + w[i].",
+   "In pickIndex(), generate a uniform random integer target in [1, total] and use binary search to find the smallest index i with prefix[i] >= target in O(log n) time."
+  ],
+  "timeComplexity": "O(n) init, O(log n) pickIndex",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "examples": [
+   {
+    "input": "w = [1], trials = 100",
+    "output": "true",
+    "explanation": "With a single element w = [1], pickIndex() must always return index 0 (probability 1.0). The validator verifies all 100 trials return 0 and outputs true."
+   },
+   {
+    "input": "w = [1,3], trials = 10000",
+    "output": "true",
+    "explanation": "With w = [1, 3], index 0 has probability 0.25 and index 1 has probability 0.75. Over 10,000 calls, the observed frequencies match within tolerance, so the validator outputs true."
+   }
+  ],
+  "starterCode": {
+   "java": "class Solution {\n    public Solution(int[] w) {\n        // Write your solution here\n    }\n\n    public int pickIndex() {\n        // Write your solution here\n        return 0;\n    }\n}\n",
+   "python": "class Solution:\n    def __init__(self, w: List[int]):\n        # Write your solution here\n        pass\n\n    def pickIndex(self) -> int:\n        # Write your solution here\n        return 0\n"
+  },
+  "solutionCode": {
+   "java": "class Solution {\n    private final int[] prefix;\n    private final int total;\n    private final Random rng;\n\n    public Solution(int[] w) {\n        prefix = new int[w.length];\n        int running = 0;\n        for (int i = 0; i < w.length; i++) {\n            running += w[i];\n            prefix[i] = running;\n        }\n        total = running;\n        rng = new Random();\n    }\n\n    public int pickIndex() {\n        int target = rng.nextInt(total) + 1;\n        int lo = 0, hi = prefix.length - 1;\n        while (lo < hi) {\n            int mid = lo + (hi - lo) / 2;\n            if (prefix[mid] < target) {\n                lo = mid + 1;\n            } else {\n                hi = mid;\n            }\n        }\n        return lo;\n    }\n}\n",
+   "python": "import bisect\nimport random\n\n\nclass Solution:\n    def __init__(self, w: List[int]):\n        self.prefix = []\n        running = 0\n        for weight in w:\n            running += weight\n            self.prefix.append(running)\n        self.total = running\n\n    def pickIndex(self) -> int:\n        target = random.randint(1, self.total)\n        return bisect.bisect_left(self.prefix, target)\n"
+  },
+  "sampleArray": [
+   1
+  ],
+  "visibleTestCount": 2,
+  "hiddenTestCount": 10,
+  "number": 12
+ },
+ {
+  "id": "maximum-size-subarray-sum-equals-k",
+  "order": 13,
+  "topicId": "prefix-sums",
+  "topic": "Prefix & Suffix Sums",
+  "title": "Maximum Size Subarray Sum Equals k",
+  "slug": "maximum-size-subarray-sum-equals-k",
+  "difficulty": "Medium",
+  "subtopic": "Hash + Prefix",
+  "companies": [
+   "Meta",
+   "Google",
+   "Amazon",
+   "Microsoft",
+   "Bloomberg"
+  ],
+  "leetcode": 325,
+  "description": "Given an integer array `nums` and an integer `k`, return the maximum length of a contiguous subarray that sums to `k`. If there is no such subarray, return `0`.\n\nA subarray is a contiguous non-empty sequence of elements within an array.",
+  "constraints": [
+   "1 <= nums.length <= 2 * 10^5",
+   "-10^4 <= nums[i] <= 10^4",
+   "-10^9 <= k <= 10^9"
+  ],
+  "hints": [
+   "Because nums can contain negative numbers and zeros, a standard sliding window does not apply directly.",
+   "Maintain a running prefix sum: a subarray ending at index i sums to k if and only if some earlier prefix sum equaled (prefixSum - k).",
+   "Use a hash map storing only the earliest index where each prefix sum occurs (initialized with {0: -1}) so that i - map[prefixSum - k] is maximized. Use 64-bit integers for prefix sums in fixed-width languages."
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "examples": [
+   {
+    "input": "nums = [1,-1,5,-2,3], k = 3",
+    "output": "4",
+    "explanation": "The subarray [1, -1, 5, -2] sums to 3 and has length 4, which is the longest possible."
+   },
+   {
+    "input": "nums = [-2,-1,2,1], k = 1",
+    "output": "2",
+    "explanation": "The subarray [-1, 2] sums to 1 and has length 2, which is the longest possible."
+   },
+   {
+    "input": "nums = [1,2,3], k = 7",
+    "output": "0",
+    "explanation": "No contiguous subarray sums to 7, so return 0."
+   }
+  ],
+  "starterCode": {
+   "java": "class Solution {\n    public int maxSubArrayLen(int[] nums, int k) {\n        // Write your solution here\n        return 0;\n    }\n}\n",
+   "python": "class Solution:\n    def maxSubArrayLen(self, nums: List[int], k: int) -> int:\n        # Write your solution here\n        pass\n"
+  },
+  "solutionCode": {
+   "java": "class Solution {\n    public int maxSubArrayLen(int[] nums, int k) {\n        Map<Long, Integer> firstSeen = new HashMap<>();\n        firstSeen.put(0L, -1);\n        long prefix = 0L;\n        int best = 0;\n        for (int i = 0; i < nums.length; i++) {\n            prefix += nums[i];\n            Integer prev = firstSeen.get(prefix - k);\n            if (prev != null) {\n                int len = i - prev;\n                if (len > best) {\n                    best = len;\n                }\n            }\n            firstSeen.putIfAbsent(prefix, i);\n        }\n        return best;\n    }\n}\n",
+   "python": "class Solution:\n    def maxSubArrayLen(self, nums: List[int], k: int) -> int:\n        first_seen = {0: -1}\n        prefix = 0\n        best = 0\n        for i, v in enumerate(nums):\n            prefix += v\n            need = prefix - k\n            if need in first_seen:\n                length = i - first_seen[need]\n                if length > best:\n                    best = length\n            if prefix not in first_seen:\n                first_seen[prefix] = i\n        return best\n"
+  },
+  "sampleArray": [
+   1,
+   -1,
+   5,
+   -2,
+   3
+  ],
+  "visibleTestCount": 3,
+  "hiddenTestCount": 11,
+  "number": 13
+ },
+ {
+  "id": "longest-substring-vowels-even-counts",
+  "order": 14,
+  "topicId": "prefix-sums",
+  "topic": "Prefix & Suffix Sums",
+  "title": "Find the Longest Substring Containing Vowels in Even Counts",
+  "slug": "longest-substring-vowels-even-counts",
+  "difficulty": "Medium",
+  "subtopic": "Hash + Prefix",
+  "companies": [
+   "Google",
+   "Amazon",
+   "Meta",
+   "Microsoft",
+   "Apple"
+  ],
+  "leetcode": 1371,
+  "description": "Given the string `s`, return the size of the longest contiguous substring containing each vowel (`'a'`, `'e'`, `'i'`, `'o'`, `'u'`) an even number of times.\n\nThat is, inside the chosen substring, each of the five vowels `'a'`, `'e'`, `'i'`, `'o'`, and `'u'` must appear `0, 2, 4, ...` times. Consonants may appear any number of times. If no non-empty valid substring exists, return `0`.",
+  "constraints": [
+   "1 <= s.length <= 5 * 10^5",
+   "s contains only lowercase English letters."
+  ],
+  "hints": [
+   "You only care about the parity (even or odd) of each vowel's count, not the exact count.",
+   "Encode the parities of the 5 vowels as a 5-bit integer bitmask (32 possible states), toggling the corresponding bit whenever you see a vowel.",
+   "A substring (i, j] has even counts of all 5 vowels if and only if the prefix bitmask at j equals the prefix bitmask at i. Record the first index where each of the 32 masks appears."
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "examples": [
+   {
+    "input": "s = \"eleetminicoworoep\"",
+    "output": "13",
+    "explanation": "The longest valid substring is \"leetminicowor\" (length 13), containing two e's, two i's, two o's, zero a's, and zero u's."
+   },
+   {
+    "input": "s = \"leetcodeisgreat\"",
+    "output": "5",
+    "explanation": "The longest valid substring is \"leetc\" (length 5), containing two e's and zero of all other vowels."
+   },
+   {
+    "input": "s = \"bcbcbc\"",
+    "output": "6",
+    "explanation": "The entire string \"bcbcbc\" (length 6) contains zero of every vowel, which is even for all five vowels."
+   }
+  ],
+  "starterCode": {
+   "java": "class Solution {\n    public int findTheLongestSubstring(String s) {\n        // Write your solution here\n        return 0;\n    }\n}\n",
+   "python": "class Solution:\n    def findTheLongestSubstring(self, s: str) -> int:\n        # Write your solution here\n        pass\n"
+  },
+  "solutionCode": {
+   "java": "class Solution {\n    public int findTheLongestSubstring(String s) {\n        int[] first = new int[32];\n        Arrays.fill(first, -2);\n        first[0] = -1;\n        int mask = 0;\n        int best = 0;\n        for (int i = 0; i < s.length(); i++) {\n            switch (s.charAt(i)) {\n                case 'a' -> mask ^= 1;\n                case 'e' -> mask ^= 2;\n                case 'i' -> mask ^= 4;\n                case 'o' -> mask ^= 8;\n                case 'u' -> mask ^= 16;\n                default -> {}\n            }\n            if (first[mask] != -2) {\n                int len = i - first[mask];\n                if (len > best) {\n                    best = len;\n                }\n            } else {\n                first[mask] = i;\n            }\n        }\n        return best;\n    }\n}\n",
+   "python": "class Solution:\n    def findTheLongestSubstring(self, s: str) -> int:\n        vowel_bit = {\"a\": 1, \"e\": 2, \"i\": 4, \"o\": 8, \"u\": 16}\n        first = [-2] * 32\n        first[0] = -1\n        mask = 0\n        best = 0\n        for i, ch in enumerate(s):\n            bit = vowel_bit.get(ch)\n            if bit:\n                mask ^= bit\n            if first[mask] != -2:\n                length = i - first[mask]\n                if length > best:\n                    best = length\n            else:\n                first[mask] = i\n        return best\n"
+  },
+  "sampleArray": [],
+  "visibleTestCount": 3,
+  "hiddenTestCount": 11,
+  "number": 14
+ }
+]

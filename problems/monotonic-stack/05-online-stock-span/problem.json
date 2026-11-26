@@ -1,0 +1,53 @@
+{
+  "title": "Online Stock Span",
+  "difficulty": "Medium",
+  "subtopic": "Stock Span",
+  "companies": [
+    "Amazon",
+    "Bloomberg",
+    "Goldman Sachs",
+    "Microsoft",
+    "Google"
+  ],
+  "leetcode": 901,
+  "description": "Design an algorithm that collects daily price quotes for a stock and returns the **span** of that stock's price for the current day.\n\nThe **span** of the stock's price on the current day is defined as the maximum number of consecutive days (starting from today and going backward) for which the stock price was **less than or equal to** today's price.\n\nImplement the `StockSpanner` class:\n- `StockSpanner()` initializes the object of the class.\n- `int next(int price)` returns the span of the stock's price given that today's price is `price`.",
+  "constraints": [
+    "1 <= price <= 10^5",
+    "At most 10^4 calls will be made to next."
+  ],
+  "hints": [
+    "If today's price is greater than or equal to yesterday's price, today's span absorbs yesterday's entire span.",
+    "Maintain a monotonic strictly decreasing stack of `(price, span)` pairs.",
+    "For each `next(price)`, initialize `span = 1`, pop all pairs with `top.price <= price` while adding their spans to `span`, then push `(price, span)` and return `span`."
+  ],
+  "examples": [
+    {
+      "explanation": "Prices [100,80,60,70,60,75,85] produce spans [1,1,1,2,1,4,6]. For 75, the 4 consecutive days [60,70,60,75] are all <= 75."
+    },
+    {
+      "explanation": "Each strictly increasing price absorbs all previous days, yielding spans 1, 2, 3, 4."
+    }
+  ],
+  "timeComplexity": "O(1) amortized",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "design",
+    "className": "StockSpanner",
+    "constructor": {
+      "params": []
+    },
+    "methods": [
+      {
+        "name": "next",
+        "params": [
+          {
+            "name": "price",
+            "type": "int"
+          }
+        ],
+        "returns": "int"
+      }
+    ]
+  }
+}

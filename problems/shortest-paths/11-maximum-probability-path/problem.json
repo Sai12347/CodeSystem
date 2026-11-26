@@ -1,0 +1,62 @@
+{
+  "title": "Maximum Probability Path",
+  "difficulty": "Medium",
+  "subtopic": "Dijkstra",
+  "companies": [
+    "Google",
+    "Amazon",
+    "Microsoft"
+  ],
+  "description": "An undirected graph has `n` vertices. Each edge `edges[i] = [u,v]` succeeds with probability `succProb[i]`. The probability of a path is the product of its edge probabilities. Return the maximum probability of reaching `end` from `start`, or 0 if no path exists. Input: `n`, `edges`, `succProb`, `start`, `end`. Output: the maximum probability.",
+  "constraints": [
+    "1 <= n <= 10000",
+    "0 <= edges.length <= 20000",
+    "0 <= succProb[i] <= 1",
+    "0 <= start,end < n",
+    "No parallel edges"
+  ],
+  "hints": [
+    "Represent each edge as a transition whose cost matches the route rule.",
+    "Keep the best distance for each required state and ignore stale priority-queue entries."
+  ],
+  "examples": [
+    {
+      "input": "n = 3, edges = [[0, 1], [1, 2], [0, 2]], succProb = [0.5, 0.5, 0.2], start = 0, end = 2",
+      "output": "0.25"
+    },
+    {
+      "input": "n = 3, edges = [[0, 1]], succProb = [0.5], start = 0, end = 2",
+      "output": "0.0"
+    }
+  ],
+  "timeComplexity": "O((n+m) log n)",
+  "spaceComplexity": "O(n+m)",
+  "compare": "float",
+  "signature": {
+    "kind": "function",
+    "method": "maxProbability",
+    "params": [
+      {
+        "name": "n",
+        "type": "int"
+      },
+      {
+        "name": "edges",
+        "type": "int[][]"
+      },
+      {
+        "name": "succProb",
+        "type": "double[]"
+      },
+      {
+        "name": "start",
+        "type": "int"
+      },
+      {
+        "name": "end",
+        "type": "int"
+      }
+    ],
+    "returns": "double"
+  }
+}

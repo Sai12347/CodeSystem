@@ -1,0 +1,45 @@
+{
+  "title": "Rounds to Make Array Non-Decreasing",
+  "difficulty": "Medium",
+  "subtopic": "LIFO Structure",
+  "companies": [
+    "Google",
+    "Amazon",
+    "Meta",
+    "Uber"
+  ],
+  "description": "You are given an integer array `nums`. In one round, you simultaneously remove every element `nums[i]` (`i >= 1`) that satisfies `nums[i - 1] > nums[i]`.\n\nRepeat this process until `nums` becomes non-decreasing (`nums[i - 1] <= nums[i]` for all valid `i`). Return the total number of rounds performed.",
+  "constraints": [
+    "1 <= nums.length <= 10^5",
+    "1 <= nums[i] <= 10^9"
+  ],
+  "hints": [
+    "Maintain a stack of `(value, roundsToDie)` pairs scanning left to right, representing surviving barriers to the left.",
+    "For each `x`, pop all entries with `value <= x` while tracking `maxRounds = max(maxRounds, popped.rounds)`; if the stack is still non-empty, `x` dies on round `maxRounds + 1`, otherwise `0` (never dies)."
+  ],
+  "examples": [
+    {
+      "explanation": "Round 1 -> [5,4,4,7,6,11,11], Round 2 -> [5,4,7,11,11], Round 3 -> [5,7,11,11] (non-decreasing), taking 3 rounds."
+    },
+    {
+      "explanation": "Already non-decreasing, so 0 rounds are needed."
+    },
+    {
+      "explanation": "10 eliminates 1, 2, 3, 4 one per round over 4 rounds."
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "totalRounds",
+    "params": [
+      {
+        "name": "nums",
+        "type": "int[]"
+      }
+    ],
+    "returns": "int"
+  }
+}

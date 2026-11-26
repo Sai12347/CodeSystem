@@ -1,0 +1,44 @@
+{
+  "title": "Length of Last Word",
+  "difficulty": "Easy",
+  "subtopic": "Parsing",
+  "companies": [
+    "Amazon",
+    "Microsoft",
+    "Google"
+  ],
+  "description": "Given a string `s` of words separated by spaces, return the length of its last word. A word is a maximal non-empty sequence of non-space characters.",
+  "constraints": [
+    "1 <= s.length <= 10^4",
+    "s contains English letters and spaces",
+    "s contains at least one word"
+  ],
+  "hints": [
+    "Scan the string while tracking the needed counts or positions.",
+    "Check repeated characters and boundary cases."
+  ],
+  "examples": [
+    {
+      "input": "s = \"Hello World\"",
+      "output": "5"
+    },
+    {
+      "input": "s = \" fly me to the moon \"",
+      "output": "4"
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "lengthOfLastWord",
+    "params": [
+      {
+        "name": "s",
+        "type": "String"
+      }
+    ],
+    "returns": "int"
+  }
+}

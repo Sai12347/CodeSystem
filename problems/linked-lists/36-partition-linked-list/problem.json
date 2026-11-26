@@ -1,0 +1,51 @@
+{
+  "title": "Partition Linked List",
+  "difficulty": "Medium",
+  "subtopic": "Merge & Sort",
+  "companies": [
+    "Amazon",
+    "Google",
+    "Meta",
+    "Microsoft",
+    "Apple"
+  ],
+  "description": "Given the `head` of a singly linked list and an integer `x`, partition the list so that all nodes with values **strictly less than** `x` come before all nodes with values **greater than or equal to** `x`.\n\nYou must preserve the original relative order of the nodes in each of the two partitions. Solve the problem in `O(n)` time and `O(1)` extra space.",
+  "constraints": [
+    "The number of nodes in the list is in the range [0, 5000].",
+    "-1000 <= Node.val <= 1000",
+    "-1000 <= x <= 1000"
+  ],
+  "hints": [
+    "Maintain two separate dummy-headed lists: `before` for nodes `< x` and `after` for nodes `>= x`.",
+    "After distributing every node, terminate `afterTail.next = null` (to prevent cycles!) and link `beforeTail.next = afterDummy.next`."
+  ],
+  "examples": [
+    {
+      "explanation": "Nodes < 3 are [1, 2, 2] and nodes >= 3 are [4, 3, 5], yielding [1, 2, 2, 4, 3, 5]."
+    },
+    {
+      "explanation": "Nodes < 2 are [1] and nodes >= 2 are [2], yielding [1, 2]."
+    },
+    {
+      "explanation": "An empty list remains empty (null)."
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "partition",
+    "params": [
+      {
+        "name": "head",
+        "type": "ListNode"
+      },
+      {
+        "name": "x",
+        "type": "int"
+      }
+    ],
+    "returns": "ListNode"
+  }
+}

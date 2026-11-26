@@ -1,0 +1,43 @@
+{
+  "title": "Maximum Adjacent Pair Product",
+  "difficulty": "Easy",
+  "subtopic": "Traversal",
+  "companies": [
+    "Amazon",
+    "Microsoft",
+    "Google"
+  ],
+  "description": "Given an integer array `nums` with at least two elements, choose two neighboring positions and return the largest product of their values. Products may be negative or zero. Input: `nums`. Output: the maximum adjacent pair product.",
+  "constraints": [
+    "2 <= nums.length <= 100000",
+    "-10000 <= nums[i] <= 10000"
+  ],
+  "hints": [
+    "Scan the array while retaining only the state needed for the answer.",
+    "Check the first, last, repeated, and all-equal cases."
+  ],
+  "examples": [
+    {
+      "input": "nums = [1, 5, 3, 2]",
+      "output": "15"
+    },
+    {
+      "input": "nums = [-5, -2, 4]",
+      "output": "10"
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "maximumAdjacentProduct",
+    "params": [
+      {
+        "name": "nums",
+        "type": "int[]"
+      }
+    ],
+    "returns": "int"
+  }
+}

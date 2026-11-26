@@ -1,0 +1,43 @@
+{
+  "title": "Smallest Number With All Set Bits",
+  "difficulty": "Easy",
+  "subtopic": "Counting Bits",
+  "companies": [
+    "Amazon",
+    "Google",
+    "Microsoft"
+  ],
+  "description": "Given a positive integer `n`, return the smallest integer `x` greater than or equal to `n` such that the binary representation of `x` consists exclusively of set bits (`1`s), i.e. `x = 2^k - 1` for some positive integer `k`.",
+  "constraints": [
+    "1 <= n <= 10^9"
+  ],
+  "hints": [
+    "If `n` has `b` bits in binary (so `2^(b-1) <= n < 2^b`), what is the smallest all-ones number with at least `b` bits?",
+    "Compute `b = bitLength(n)` and return `(1 << b) - 1`, or smear the highest set bit downward."
+  ],
+  "examples": [
+    {
+      "explanation": "5 in binary is 101; the smallest all-ones number >= 5 is 7 (111)."
+    },
+    {
+      "explanation": "10 in binary is 1010; the smallest all-ones number >= 10 is 15 (1111)."
+    },
+    {
+      "explanation": "3 in binary is already 11, so the answer is 3."
+    }
+  ],
+  "timeComplexity": "O(1)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "smallestAllSetBits",
+    "params": [
+      {
+        "name": "n",
+        "type": "int"
+      }
+    ],
+    "returns": "int"
+  }
+}

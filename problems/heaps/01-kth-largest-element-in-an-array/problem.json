@@ -1,0 +1,53 @@
+{
+  "title": "Kth Largest Element in an Array",
+  "difficulty": "Medium",
+  "subtopic": "Top K Elements",
+  "companies": [
+    "Meta",
+    "Amazon",
+    "Google",
+    "Microsoft",
+    "Apple",
+    "Bloomberg"
+  ],
+  "leetcode": 215,
+  "description": "Given an integer array `nums` and an integer `k`, return the `k`-th largest element in the array.\n\nNote that it is the `k`-th largest element in sorted order, **not** the `k`-th distinct element. For example, in `[3, 2, 3, 1, 2, 4, 5, 5, 6]`, the 4th largest element is `4` because the sorted descending order is `[6, 5, 5, 4, 3, 3, 2, 2, 1]`.\n\nCan you solve it without sorting the entire array?",
+  "constraints": [
+    "1 <= k <= nums.length <= 10^5",
+    "-10^4 <= nums[i] <= 10^4"
+  ],
+  "hints": [
+    "Instead of sorting all n elements in O(n log n) time, think about maintaining only the k largest elements seen so far.",
+    "Use a min-heap of size at most k: push each element and pop the smallest whenever the heap exceeds size k.",
+    "After processing all elements, the root of the min-heap is the k-th largest element in O(n log k) time and O(k) space."
+  ],
+  "examples": [
+    {
+      "explanation": "In descending order [6, 5, 4, 3, 2, 1], the 2nd largest element is 5."
+    },
+    {
+      "explanation": "In descending order [6, 5, 5, 4, 3, 3, 2, 2, 1], the 4th largest element is 4."
+    },
+    {
+      "explanation": "With a single element, the 1st largest element is -7."
+    }
+  ],
+  "timeComplexity": "O(n log k)",
+  "spaceComplexity": "O(k)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "findKthLargest",
+    "params": [
+      {
+        "name": "nums",
+        "type": "int[]"
+      },
+      {
+        "name": "k",
+        "type": "int"
+      }
+    ],
+    "returns": "int"
+  }
+}

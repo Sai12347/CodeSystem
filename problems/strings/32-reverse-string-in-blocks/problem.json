@@ -1,0 +1,48 @@
+{
+  "title": "Reverse String in Blocks",
+  "difficulty": "Easy",
+  "subtopic": "Parsing",
+  "companies": [
+    "Amazon",
+    "Google",
+    "Microsoft"
+  ],
+  "description": "Given a string `s` and positive integer `k`, process consecutive blocks of `2k` characters from left to right. In each block, reverse its first `k` characters and leave the next `k` unchanged. If fewer than `k` characters remain, reverse all of them. Input: `s`, `k`. Output: the transformed string.",
+  "constraints": [
+    "1 <= s.length <= 100000",
+    "1 <= k <= s.length",
+    "s contains lowercase English letters"
+  ],
+  "hints": [
+    "Track only the character counts or prefixes needed to decide the next step.",
+    "Check repeated symbols, empty or minimal cases, and impossible arrangements."
+  ],
+  "examples": [
+    {
+      "input": "s = \"abcdefg\", k = 2",
+      "output": "bacdfeg"
+    },
+    {
+      "input": "s = \"abcd\", k = 2",
+      "output": "bacd"
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "reverseStr",
+    "params": [
+      {
+        "name": "s",
+        "type": "String"
+      },
+      {
+        "name": "k",
+        "type": "int"
+      }
+    ],
+    "returns": "String"
+  }
+}

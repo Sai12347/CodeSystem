@@ -1,0 +1,35 @@
+{
+  "title": "Insert into a Binary Search Tree",
+  "difficulty": "Medium",
+  "subtopic": "BST Validation",
+  "companies": ["Amazon", "Google", "Microsoft", "Meta", "Goldman Sachs"],
+  "leetcode": 701,
+  "description": "You are given the `root` node of a binary search tree (BST) and a value `val` to insert into the tree. Return the root node of the BST after the insertion. It is **guaranteed** that the new value does not exist in the original BST.\n\nNotice that there may exist multiple valid ways for the insertion, as long as the tree remains a valid BST containing all original values plus `val`. You can return **any** valid BST.\n\nThe judge validates that your returned tree is a valid BST with the exact expected set of values (`true`).",
+  "constraints": [
+    "The number of nodes in the tree is in the range [0, 10^4].",
+    "-10^8 <= Node.val <= 10^8",
+    "All values Node.val are unique.",
+    "-10^8 <= val <= 10^8",
+    "It is guaranteed that val does not exist in the original BST."
+  ],
+  "hints": [
+    "If the tree is empty (root is null), create and return a new TreeNode(val).",
+    "Otherwise, walk down the BST comparing val to the current node: go left if val < cur.val, or right if val > cur.val.",
+    "When the chosen child pointer is null, attach the new node there and return the original root."
+  ],
+  "examples": [
+    {"explanation": "Inserting 5 as the left child of 7 yields [4, 2, 7, 1, 3, 5], which is a valid BST containing {1, 2, 3, 4, 5, 7}."},
+    {"explanation": "Inserting 25 as the left child of 30 yields a valid BST containing {10, 20, 25, 30, 40, 50, 60, 70}."},
+    {"explanation": "Inserting 5 into an empty tree produces a single-node BST [5]."}
+  ],
+  "timeComplexity": "O(h)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "adapter",
+    "inputs": [
+      {"name": "root", "type": "TreeNode", "description": "Level-order representation of the BST"},
+      {"name": "val", "type": "int", "description": "New value to insert"}
+    ]
+  }
+}

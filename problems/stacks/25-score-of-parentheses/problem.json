@@ -1,0 +1,46 @@
+{
+  "title": "Score of Parentheses",
+  "difficulty": "Medium",
+  "subtopic": "Valid Parentheses",
+  "companies": [
+    "Amazon",
+    "Google",
+    "Meta",
+    "Bloomberg"
+  ],
+  "description": "Given a balanced parentheses string `s`, return the score of `s` according to the following rules:\n- `\"()\"` has score `1`.\n- `AB` has score `A + B`, where `A` and `B` are balanced parentheses strings.\n- `(A)` has score `2 * A`, where `A` is a balanced parentheses string.",
+  "constraints": [
+    "2 <= s.length <= 50",
+    "s consists only of '(' and ')'.",
+    "s is a balanced parentheses string."
+  ],
+  "hints": [
+    "Use a stack where each frame stores the accumulated score at the current nesting depth.",
+    "When seeing '(', push 0 for the new depth; when seeing ')', pop inner score v and add max(2 * v, 1) to the new stack top."
+  ],
+  "examples": [
+    {
+      "explanation": "A single \"()\" has score 1."
+    },
+    {
+      "explanation": "\"(())\" wraps \"()\" (score 1), so its score is 2 * 1 = 2."
+    },
+    {
+      "explanation": "\"(()(()))\" evaluates to 2 * (1 + 2 * 1) = 6."
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "scoreOfParentheses",
+    "params": [
+      {
+        "name": "s",
+        "type": "String"
+      }
+    ],
+    "returns": "int"
+  }
+}

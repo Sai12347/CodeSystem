@@ -1,0 +1,44 @@
+{
+  "title": "Longest Balanced Bracket Prefix",
+  "difficulty": "Easy",
+  "subtopic": "Valid Parentheses",
+  "companies": [
+    "Google",
+    "Amazon",
+    "Apple"
+  ],
+  "description": "Given a string `s` consisting of the six bracket characters `'('`, `')'`, `'['`, `']'`, `'{'`, and `'}'`, return the length of the longest **prefix** of `s` that is a valid, properly nested balanced bracket string.\n\nIf no non-empty prefix of `s` is balanced, return `0`.",
+  "constraints": [
+    "1 <= s.length <= 10^5",
+    "s consists only of '(', ')', '[', ']', '{', and '}'."
+  ],
+  "hints": [
+    "Track unmatched opening brackets on a stack as you scan from left to right.",
+    "Whenever a closing bracket fails to match the stack top, stop immediately because no longer prefix can recover; whenever the stack becomes empty at index i, update the best length to i + 1."
+  ],
+  "examples": [
+    {
+      "explanation": "The prefix \"()[]{}\" of length 6 is balanced, while the next character ']' cannot match anything."
+    },
+    {
+      "explanation": "The prefix \"([])\" of length 4 is balanced; the trailing '(' never closes."
+    },
+    {
+      "explanation": "The string begins with a closing bracket ')', so no non-empty prefix is balanced."
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "longestBalancedPrefix",
+    "params": [
+      {
+        "name": "s",
+        "type": "String"
+      }
+    ],
+    "returns": "int"
+  }
+}

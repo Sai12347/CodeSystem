@@ -1,0 +1,46 @@
+{
+  "title": "Middle of the Linked List",
+  "difficulty": "Easy",
+  "subtopic": "Fast/Slow Pointer",
+  "companies": [
+    "Amazon",
+    "Google",
+    "Meta",
+    "Apple",
+    "Microsoft"
+  ],
+  "description": "Given the `head` of a non-empty singly linked list, return the middle node of the linked list.\n\nIf the list has an even number of nodes (so there are two middle nodes), return the **second** middle node.",
+  "constraints": [
+    "The number of nodes in the list is in the range [1, 10^4].",
+    "1 <= Node.val <= 10^5"
+  ],
+  "hints": [
+    "Start both `slow` and `fast` pointers at `head`.",
+    "While `fast` and `fast.next` are non-null, advance `slow` by 1 node and `fast` by 2 nodes; when the loop ends, `slow` sits on the exact (or second) middle node."
+  ],
+  "examples": [
+    {
+      "explanation": "For 5 nodes, the middle node is 3, so the returned suffix is [3, 4, 5]."
+    },
+    {
+      "explanation": "For 6 nodes, the two middle nodes are 3 and 4; return the second one, giving [4, 5, 6]."
+    },
+    {
+      "explanation": "A single-node list returns that single node [99]."
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "middleNode",
+    "params": [
+      {
+        "name": "head",
+        "type": "ListNode"
+      }
+    ],
+    "returns": "ListNode"
+  }
+}

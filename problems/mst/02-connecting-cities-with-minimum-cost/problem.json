@@ -1,0 +1,44 @@
+{
+  "title": "Connecting Cities With Minimum Cost",
+  "difficulty": "Medium",
+  "subtopic": "Kruskal Algorithm",
+  "companies": ["Amazon", "Google", "Microsoft", "Bloomberg", "Oracle"],
+  "leetcode": 1135,
+  "description": "There are `n` cities labeled from `1` to `n`. You are given the integer `n` and an array `connections` where `connections[i] = [xi, yi, costi]` indicates that the cost of connecting city `xi` and city `yi` (bidirectional connection) is `costi`.\n\nReturn the minimum cost to connect all the `n` cities such that there is at least one path between each pair of cities. If it is impossible to connect all the `n` cities, return `-1`.\n\nThe cost is the sum of the connections' costs used. Note that multiple connections may exist between the same pair of cities, and `connections` may be empty. If `n == 1`, all cities are already connected with cost `0`.",
+  "constraints": [
+    "1 <= n <= 10^4",
+    "0 <= connections.length <= 10^4",
+    "connections[i].length == 3",
+    "1 <= xi, yi <= n",
+    "xi != yi",
+    "0 <= costi <= 10^5"
+  ],
+  "hints": [
+    "Think of cities as vertices and connections as undirected weighted edges; you want the weight of a Minimum Spanning Tree.",
+    "Sort all connections by cost in ascending order and greedily add an edge whenever it connects two previously disconnected components.",
+    "Use a Disjoint Set Union (Union-Find) data structure with path compression and union by rank/size; after processing edges, verify that all n cities form a single connected component."
+  ],
+  "examples": [
+    {
+      "explanation": "Choosing edges [2,3,1] and [1,2,5] connects all 3 cities with minimum total cost 1 + 5 = 6."
+    },
+    {
+      "explanation": "Cities {1, 2} and {3, 4} cannot be connected into a single component, so return -1."
+    },
+    {
+      "explanation": "Choose edges [1,2,1], [2,3,2], and [3,4,3] (or [1,2,1], [1,3,2], and [3,4,3]) for a total minimum cost of 6."
+    }
+  ],
+  "timeComplexity": "O(m log m)",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "minimumCost",
+    "params": [
+      {"name": "n", "type": "int"},
+      {"name": "connections", "type": "int[][]"}
+    ],
+    "returns": "int"
+  }
+}

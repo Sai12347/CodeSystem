@@ -1,0 +1,46 @@
+{
+  "title": "Plus One Linked List",
+  "difficulty": "Medium",
+  "subtopic": "Reversal",
+  "companies": [
+    "Google",
+    "Amazon",
+    "Meta",
+    "Microsoft"
+  ],
+  "description": "Given a non-negative integer represented as a non-empty singly linked list of decimal digits (with the **most significant digit** at `head` and no leading zeros except for the number `0` itself), add `1` to the integer and return the head of the resulting linked list.\n\nAim for `O(n)` time and `O(1)` extra space.",
+  "constraints": [
+    "The number of nodes in the list is in the range [1, 10^4].",
+    "0 <= Node.val <= 9",
+    "The integer does not contain leading zeros except when it is 0 itself."
+  ],
+  "hints": [
+    "You can reverse the list, add 1 with carry propagation, and reverse back in O(n) time and O(1) space.",
+    "Even better, attach a sentinel `0` node before `head` and find the rightmost node whose value is not `9`; increment that node by 1 and set every trailing `9` after it to `0`."
+  ],
+  "examples": [
+    {
+      "explanation": "123 + 1 = 124."
+    },
+    {
+      "explanation": "999 + 1 = 1000, requiring a new leading 1 node."
+    },
+    {
+      "explanation": "0 + 1 = 1."
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "plusOne",
+    "params": [
+      {
+        "name": "head",
+        "type": "ListNode"
+      }
+    ],
+    "returns": "ListNode"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "title": "Circular Array Loop Detection",
+  "difficulty": "Medium",
+  "subtopic": "Fast/Slow Pointer",
+  "companies": [
+    "Google",
+    "Meta",
+    "Amazon",
+    "Bloomberg"
+  ],
+  "description": "You are given a circular array `nums` of non-zero integers representing an implicit linked list of length `n`, where index `i` points to index `((i + nums[i]) % n + n) % n`.\n\nReturn `true` if there exists a cycle in `nums` such that:\n- Every step in the cycle moves in the **same direction** (either all `nums[idx] > 0` or all `nums[idx] < 0`), and\n- The cycle contains **more than one** distinct index (no self-loops of length 1).\n\nOtherwise, return `false`. Aim for `O(n)` time and `O(1)` extra space.",
+  "constraints": [
+    "1 <= nums.length <= 5000",
+    "-1000 <= nums[i] <= 1000",
+    "nums[i] != 0"
+  ],
+  "hints": [
+    "Run Floyd's fast and slow pointers from each unvisited starting index, stopping immediately if direction changes or a 1-step self-loop is encountered.",
+    "To guarantee O(n) total time with O(1) extra space, whenever a search from index `i` fails to find a valid cycle, walk the same-direction path from `i` and zero out all visited cells so they are never explored again."
+  ],
+  "examples": [
+    {
+      "explanation": "Indices 0 -> 2 -> 3 -> 0 form a forward cycle of length 3 with all positive values."
+    },
+    {
+      "explanation": "Every negative index jumps to index 5 (+6) causing a sign change, and index 5 jumps to itself (a length-1 self-loop), so no valid cycle exists."
+    },
+    {
+      "explanation": "Indices 3 -> 4 -> 3 form a forward cycle of length 2 with all positive values."
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "circularArrayLoop",
+    "params": [
+      {
+        "name": "nums",
+        "type": "int[]"
+      }
+    ],
+    "returns": "boolean"
+  }
+}

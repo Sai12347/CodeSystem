@@ -1,0 +1,51 @@
+{
+  "title": "Trapping Rain Water II",
+  "difficulty": "Hard",
+  "subtopic": "Min/Max Heap",
+  "companies": [
+    "Google",
+    "Amazon",
+    "Meta",
+    "Microsoft",
+    "Bloomberg",
+    "Uber"
+  ],
+  "leetcode": 407,
+  "description": "Given an `m x n` integer matrix `heightMap` representing the height of each unit cell in a 2D elevation map, return the total volume of water it can trap after raining.\n\nWater can flow out of a cell into any of its four orthogonally adjacent neighbors (up, down, left, right) and drains off the outer edges of the grid. A cell `(r, c)` holds water up to the minimum possible maximum elevation along any path from `(r, c)` to the boundary of the matrix.",
+  "constraints": [
+    "m == heightMap.length",
+    "n == heightMap[i].length",
+    "1 <= m, n <= 200",
+    "0 <= heightMap[i][j] <= 2 * 10^4"
+  ],
+  "hints": [
+    "Water cannot be trapped on the outer boundary of the grid. Think of the boundary as a shrinking dam enclosing the unvisited interior.",
+    "Put all boundary cells into a min-heap ordered by effective water level `(height, r, c)` and mark them visited.",
+    "Repeatedly pop the lowest boundary cell `(h, r, c)`. Any unvisited neighbor `(nr, nc)` traps `max(0, h - heightMap[nr][nc])` water and enters the heap with effective wall height `max(h, heightMap[nr][nc])`."
+  ],
+  "examples": [
+    {
+      "explanation": "Interior cells at row 1 fill to water level 3: (1,1) traps 1 unit, (1,2) traps 2 units, and (1,4) traps 1 unit, for a total of 4."
+    },
+    {
+      "explanation": "Surrounded by a height-3 rim, the eight height-2 interior cells each trap 1 unit and the central height-1 cell traps 2 units, totaling 10 units."
+    },
+    {
+      "explanation": "Every cell in a 2x2 grid is on the outer boundary, so no water can be trapped."
+    }
+  ],
+  "timeComplexity": "O(m * n * log(m * n))",
+  "spaceComplexity": "O(m * n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "trapRainWater",
+    "params": [
+      {
+        "name": "heightMap",
+        "type": "int[][]"
+      }
+    ],
+    "returns": "int"
+  }
+}

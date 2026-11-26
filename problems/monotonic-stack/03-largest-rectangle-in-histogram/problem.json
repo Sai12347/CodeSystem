@@ -1,0 +1,49 @@
+{
+  "title": "Largest Rectangle in Histogram",
+  "difficulty": "Hard",
+  "subtopic": "Histogram Area",
+  "companies": [
+    "Amazon",
+    "Google",
+    "Meta",
+    "Microsoft",
+    "Bloomberg",
+    "Adobe"
+  ],
+  "leetcode": 84,
+  "description": "Given an array of non-negative integers `heights` representing the heights of bars in a histogram where the width of each bar is `1`, return the area of the largest axis-aligned rectangle that can be formed completely inside the histogram.\n\nA rectangle spanning contiguous bars `[l, r]` has width `r - l + 1` and maximum possible height `min(heights[l], heights[l + 1], ..., heights[r])`.",
+  "constraints": [
+    "1 <= heights.length <= 10^5",
+    "0 <= heights[i] <= 10^4"
+  ],
+  "hints": [
+    "Any maximal rectangle is bounded in height by at least one bar `i`. Its maximum width extends left to the nearest shorter bar and right to the nearest shorter bar.",
+    "Maintain a monotonic increasing stack of bar indices. When a shorter bar arrives at index `i`, every taller bar popped from the stack has `i` as its right boundary.",
+    "After popping index `idx`, the new stack top (or `-1` if empty) is its left boundary, giving width `i - left - 1`. Append a sentinel `0` height at the end to flush remaining bars."
+  ],
+  "examples": [
+    {
+      "explanation": "Bars at indices 2 and 3 (heights 5 and 6) form a rectangle of height 5 and width 2, giving area 10."
+    },
+    {
+      "explanation": "A rectangle of height 2 spanning both bars has area 2 * 2 = 4, equal to the single bar of height 4."
+    },
+    {
+      "explanation": "The single bar of height 9 forms a rectangle of area 9."
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "largestRectangleArea",
+    "params": [
+      {
+        "name": "heights",
+        "type": "int[]"
+      }
+    ],
+    "returns": "int"
+  }
+}

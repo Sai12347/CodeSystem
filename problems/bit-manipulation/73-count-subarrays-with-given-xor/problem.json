@@ -1,0 +1,48 @@
+{
+  "title": "Count Subarrays With Given XOR",
+  "difficulty": "Medium",
+  "subtopic": "XOR Tricks",
+  "companies": [
+    "Amazon",
+    "Google",
+    "Adobe"
+  ],
+  "description": "Given an array `nums` of non-negative integers and a target non-negative integer `k`, return the total number of non-empty contiguous subarrays of `nums` whose elements have a bitwise XOR equal to `k`.",
+  "constraints": [
+    "1 <= nums.length <= 10^5",
+    "0 <= nums[i], k <= 10^9"
+  ],
+  "hints": [
+    "Maintain the running prefix XOR `pref = nums[0] ^ ... ^ nums[i]`. A subarray `(j..i]` has XOR equal to `k` if and only if `pref[j] ^ pref[i] == k`, i.e., `pref[j] == pref[i] ^ k`.",
+    "Store frequencies of all seen prefix XOR values in a hash map initialized with `{0: 1}` to count valid subarrays ending at each index in O(1) average time."
+  ],
+  "examples": [
+    {
+      "explanation": "The 4 subarrays with XOR 6 are [4, 2], [4, 2, 2, 6, 4], [2, 2, 6], and [6]."
+    },
+    {
+      "explanation": "The 2 subarrays with XOR 5 are [5] and [5, 6, 7, 8, 9]."
+    },
+    {
+      "explanation": "Every one of the 6 non-empty subarrays of [0, 0, 0] has XOR 0."
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "countSubarraysWithXor",
+    "params": [
+      {
+        "name": "nums",
+        "type": "int[]"
+      },
+      {
+        "name": "k",
+        "type": "int"
+      }
+    ],
+    "returns": "long"
+  }
+}

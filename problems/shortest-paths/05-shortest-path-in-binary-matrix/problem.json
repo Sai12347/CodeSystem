@@ -1,0 +1,35 @@
+{
+  "title": "Shortest Path in Binary Matrix",
+  "difficulty": "Medium",
+  "subtopic": "Dijkstra",
+  "companies": ["Meta", "Amazon", "Google", "Microsoft", "Apple"],
+  "leetcode": 1091,
+  "description": "Given an `n x n` binary matrix `grid`, return the length of the shortest **clear path** in the matrix. If there is no clear path, return `-1`.\n\nA **clear path** in a binary matrix is a path from the top-left cell `(0, 0)` to the bottom-right cell `(n - 1, n - 1)` such that:\n- All visited cells of the path have value `0`.\n- Every pair of consecutive visited cells is **8-directionally connected** (they are different and share an edge or a corner).\n\nThe **length** of a clear path is the number of visited cells along the path (including both the starting and ending cells).",
+  "constraints": [
+    "n == grid.length",
+    "n == grid[i].length",
+    "1 <= n <= 100",
+    "grid[i][j] is 0 or 1."
+  ],
+  "hints": [
+    "First check the boundary conditions: if `grid[0][0] == 1` or `grid[n - 1][n - 1] == 1`, no clear path can exist, so return `-1` immediately.",
+    "Because every valid step to any of the 8 neighbors has uniform weight `1`, Breadth-First Search (a unit-weight specialization of Dijkstra's algorithm) discovers `(n - 1, n - 1)` in the minimum number of cells.",
+    "Mark cells as visited when enqueuing them (not when dequeuing) to avoid pushing duplicates into the queue."
+  ],
+  "examples": [
+    {"explanation": "Move diagonally from (0, 0) directly to (1, 1), visiting 2 cells."},
+    {"explanation": "The shortest clear path is (0, 0) -> (0, 1) -> (1, 2) -> (2, 2), which visits 4 cells."},
+    {"explanation": "The starting cell (0, 0) is blocked (1), so no clear path exists."}
+  ],
+  "timeComplexity": "O(n^2)",
+  "spaceComplexity": "O(n^2)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "shortestPathBinaryMatrix",
+    "params": [
+      {"name": "grid", "type": "int[][]"}
+    ],
+    "returns": "int"
+  }
+}

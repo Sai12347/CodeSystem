@@ -1,0 +1,43 @@
+{
+  "title": "Longest Ones Segment After One Deletion",
+  "difficulty": "Medium",
+  "subtopic": "Subarrays",
+  "companies": [
+    "Amazon",
+    "Google",
+    "Microsoft"
+  ],
+  "description": "Given a binary array `nums`, delete exactly one element and return the length of the longest contiguous segment containing only ones in the remaining array. Input: `nums`. Output: the maximum length after the deletion.",
+  "constraints": [
+    "1 <= nums.length <= 100000",
+    "nums[i] is 0 or 1"
+  ],
+  "hints": [
+    "Track the running prefix, window, or frequency information needed by the condition.",
+    "Check duplicates, all-equal values, and boundary-sized windows."
+  ],
+  "examples": [
+    {
+      "input": "nums = [1, 1, 0, 1]",
+      "output": "3"
+    },
+    {
+      "input": "nums = [1, 1, 1]",
+      "output": "2"
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "longestOnesAfterDeletion",
+    "params": [
+      {
+        "name": "nums",
+        "type": "int[]"
+      }
+    ],
+    "returns": "int"
+  }
+}

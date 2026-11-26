@@ -1,0 +1,44 @@
+{
+  "title": "Palindrome Partitioning Minimum Cuts",
+  "difficulty": "Hard",
+  "subtopic": "Palindromes",
+  "companies": [
+    "Google",
+    "Meta",
+    "Amazon"
+  ],
+  "description": "Given a lowercase string `s`, partition `s` such that every substring in the partition is a palindrome. Return the minimum number of cuts needed to create a valid palindromic partitioning of `s`.",
+  "constraints": [
+    "1 <= s.length <= 2000",
+    "s consists of lowercase English letters."
+  ],
+  "hints": [
+    "Let dp[i] be the minimum cuts needed for prefix s[0..i - 1], with dp[0] = -1.",
+    "Expand around every possible palindrome center (odd and even lengths) and relax dp[r + 1] = min(dp[r + 1], dp[l] + 1)."
+  ],
+  "examples": [
+    {
+      "explanation": "Partitioning \"aab\" into [\"aa\", \"b\"] requires 1 cut."
+    },
+    {
+      "explanation": "\"a\" is already a palindrome, needing 0 cuts."
+    },
+    {
+      "explanation": "\"ab\" requires 1 cut into [\"a\", \"b\"]."
+    }
+  ],
+  "timeComplexity": "O(n^2)",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "minCut",
+    "params": [
+      {
+        "name": "s",
+        "type": "String"
+      }
+    ],
+    "returns": "int"
+  }
+}

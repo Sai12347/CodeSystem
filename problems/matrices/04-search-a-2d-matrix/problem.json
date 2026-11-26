@@ -1,0 +1,52 @@
+{
+  "title": "Search a 2D Matrix",
+  "difficulty": "Medium",
+  "subtopic": "2D Search",
+  "companies": [
+    "Amazon",
+    "Microsoft",
+    "Meta",
+    "Google",
+    "Apple",
+    "Adobe"
+  ],
+  "leetcode": 74,
+  "description": "You are given an `m x n` integer `matrix` with the following two properties:\n\n- Each row is sorted in non-decreasing order.\n- The first integer of each row is strictly greater than the last integer of the previous row.\n\nGiven an integer `target`, return `true` if `target` is in `matrix`, or `false` otherwise.\n\nYou should write a solution in `O(log(m * n))` time complexity.",
+  "constraints": [
+    "m == matrix.length",
+    "n == matrix[i].length",
+    "1 <= m, n <= 100",
+    "-10^4 <= matrix[i][j], target <= 10^4"
+  ],
+  "hints": [
+    "Because each row starts strictly greater than the previous row's end, concatenating all rows produces a single sorted 1D array of length m * n.",
+    "Perform standard binary search on index range [0, m * n - 1] without actually flattening the matrix.",
+    "Map a 1D index idx back to 2D coordinates via row = idx // n and col = idx % n."
+  ],
+  "examples": [
+    {
+      "explanation": "3 is present at matrix[0][1], so return true."
+    },
+    {
+      "explanation": "13 falls between 11 and 16 in row 1 and does not exist in the matrix."
+    }
+  ],
+  "timeComplexity": "O(log(m * n))",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "searchMatrix",
+    "params": [
+      {
+        "name": "matrix",
+        "type": "int[][]"
+      },
+      {
+        "name": "target",
+        "type": "int"
+      }
+    ],
+    "returns": "boolean"
+  }
+}

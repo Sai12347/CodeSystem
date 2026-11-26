@@ -1,0 +1,54 @@
+{
+  "title": "Subarray Product Less Than K",
+  "difficulty": "Medium",
+  "subtopic": "Trailing Pointers",
+  "companies": [
+    "Google",
+    "Amazon",
+    "Meta",
+    "Microsoft",
+    "Uber",
+    "Goldman Sachs"
+  ],
+  "leetcode": 713,
+  "description": "Given an array of positive integers `nums` and an integer `k`, return the number of contiguous subarrays where the product of all the elements in the subarray is **strictly less than** `k`.",
+  "constraints": [
+    "1 <= nums.length <= 3 * 10^4",
+    "1 <= nums[i] <= 1000",
+    "0 <= k <= 10^6"
+  ],
+  "hints": [
+    "Because every element in nums is positive (>= 1), expanding a window to the right never decreases its product, and shrinking from the left never increases it.",
+    "Handle k <= 1 immediately by returning 0, since no non-empty subarray of positive integers can have product strictly less than 1.",
+    "For each right index, advance the trailing left pointer while prod >= k; then every subarray ending at right and starting in [left, right] is valid, contributing (right - left + 1) subarrays."
+  ],
+  "examples": [
+    {
+      "explanation": "The 8 subarrays with product strictly less than 100 are: [10], [5], [2], [6], [10, 5], [5, 2], [2, 6], and [5, 2, 6]. Note [10, 5, 2] has product 100, which is not strictly less than 100."
+    },
+    {
+      "explanation": "Because k = 0 and all elements are positive, no subarray can have a product strictly less than 0."
+    },
+    {
+      "explanation": "Every contiguous subarray of [1, 1, 1] has product 1 < 2, giving 3 * 4 / 2 = 6 valid subarrays."
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "numSubarrayProductLessThanK",
+    "params": [
+      {
+        "name": "nums",
+        "type": "int[]"
+      },
+      {
+        "name": "k",
+        "type": "int"
+      }
+    ],
+    "returns": "int"
+  }
+}

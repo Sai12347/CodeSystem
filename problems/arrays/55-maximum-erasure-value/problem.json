@@ -1,0 +1,43 @@
+{
+  "title": "Maximum Erasure Value",
+  "difficulty": "Medium",
+  "subtopic": "Subarrays",
+  "companies": [
+    "Amazon",
+    "Google",
+    "Microsoft"
+  ],
+  "description": "Choose a non-empty contiguous subarray containing no repeated values. Return the maximum possible sum of its elements. Input: a positive integer array `nums`. Output: the largest unique-subarray sum.",
+  "constraints": [
+    "1 <= nums.length <= 100000",
+    "1 <= nums[i] <= 10000"
+  ],
+  "hints": [
+    "Maintain the prefix or window information needed to count candidate ranges.",
+    "Check repeated values, extreme bounds, and cases with no valid segment."
+  ],
+  "examples": [
+    {
+      "input": "nums = [4, 2, 4, 5, 6]",
+      "output": "17"
+    },
+    {
+      "input": "nums = [5, 2, 1, 2, 5, 2, 1, 2, 5]",
+      "output": "8"
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "maximumUniqueSubarray",
+    "params": [
+      {
+        "name": "nums",
+        "type": "int[]"
+      }
+    ],
+    "returns": "int"
+  }
+}

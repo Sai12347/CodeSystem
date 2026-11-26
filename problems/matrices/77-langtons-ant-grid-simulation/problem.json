@@ -1,0 +1,61 @@
+{
+  "title": "Langton's Ant Grid Simulation",
+  "difficulty": "Medium",
+  "subtopic": "Simulation",
+  "companies": [
+    "Google",
+    "Meta",
+    "Microsoft",
+    "Atlassian"
+  ],
+  "description": "You are given an `m x n` binary matrix `grid` (`0` = white, `1` = black), a starting cell `(startRow, startCol)`, and a non-negative integer `steps`.\n\nAn ant starts at `(startRow, startCol)` facing **North (Up)**. In each step (up to `steps` steps):\n1. If the ant's current cell is `0` (white), turn **90 degrees clockwise** and flip the cell to `1`.\n2. If the ant's current cell is `1` (black), turn **90 degrees counter-clockwise** and flip the cell to `0`.\n3. Move one cell forward in the ant's new facing direction.\n4. If moving forward takes the ant outside the `m x n` grid, stop immediately.\n\nReturn the final `m x n` binary grid after all steps complete (or after the ant exits the grid).",
+  "constraints": [
+    "m == grid.length",
+    "n == grid[i].length",
+    "1 <= m, n <= 100",
+    "grid[i][j] is either 0 or 1.",
+    "0 <= startRow < m, 0 <= startCol < n",
+    "0 <= steps <= 10^5"
+  ],
+  "hints": [
+    "Encode the four clockwise directions as 0=North(-1,0), 1=East(0,1), 2=South(1,0), 3=West(0,-1); then clockwise turn is (d + 1) % 4 and counter-clockwise turn is (d + 3) % 4.",
+    "Work on a copy of grid and break out of the step loop immediately whenever the next coordinate (r, c) goes out of bounds."
+  ],
+  "examples": [
+    {
+      "explanation": "Starting at center (1,1) facing North on an all-white 3x3 grid, the ant flips (1,1), turns East to (1,2), flips it, turns South to (2,2), flips it, turns West to (2,1), flips it, and returns to (1,1)."
+    },
+    {
+      "explanation": "On step 1 at (0,0)=0, the ant flips (0,0) to 1 and moves East to (0,1); on step 2 at (0,1)=1, it flips (0,1) to 0, turns North, and exits the grid early."
+    },
+    {
+      "explanation": "With steps = 0, no moves occur and the original grid is returned unchanged."
+    }
+  ],
+  "timeComplexity": "O(m * n + steps)",
+  "spaceComplexity": "O(m * n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "simulateLangtonsAnt",
+    "params": [
+      {
+        "name": "grid",
+        "type": "int[][]"
+      },
+      {
+        "name": "startRow",
+        "type": "int"
+      },
+      {
+        "name": "startCol",
+        "type": "int"
+      },
+      {
+        "name": "steps",
+        "type": "int"
+      }
+    ],
+    "returns": "int[][]"
+  }
+}

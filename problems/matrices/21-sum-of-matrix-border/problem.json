@@ -1,0 +1,43 @@
+{
+  "title": "Sum of the Matrix Border",
+  "difficulty": "Easy",
+  "subtopic": "Simulation",
+  "companies": [
+    "Amazon",
+    "Google",
+    "Microsoft"
+  ],
+  "description": "Given a non-empty rectangular integer matrix, sum the values on its outer border. Count each cell once, including corners. For a single row or column, every cell is on the border. Input: `matrix`. Output: the border sum.",
+  "constraints": [
+    "1 <= rows, columns <= 1000",
+    "-100000 <= matrix[i][j] <= 100000"
+  ],
+  "hints": [
+    "Check each cell using its row and column relationships.",
+    "Handle single-row, single-column, tie, and center-cell cases explicitly."
+  ],
+  "examples": [
+    {
+      "input": "matrix = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]",
+      "output": "40"
+    },
+    {
+      "input": "matrix = [[1, 2, 3, 4]]",
+      "output": "10"
+    }
+  ],
+  "timeComplexity": "O(rows*columns)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "sumMatrixBorder",
+    "params": [
+      {
+        "name": "matrix",
+        "type": "int[][]"
+      }
+    ],
+    "returns": "long"
+  }
+}

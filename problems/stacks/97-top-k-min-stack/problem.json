@@ -1,0 +1,74 @@
+{
+  "title": "Top-K Min Stack",
+  "difficulty": "Hard",
+  "subtopic": "Min Stack",
+  "companies": [
+    "Google",
+    "Meta",
+    "Goldman Sachs",
+    "Bloomberg"
+  ],
+  "description": "Design a stack `TopKMinStack` that supports standard LIFO push/pop, full-stack minimum (`getMin`), and **top-`k` minimum queries (`getTopKMin(k)`)** returning the minimum among the `k` most recently pushed elements currently on the stack \u2014 with `O(log n)` `push` and **`O(1)` `pop`, `getMin`, and `getTopKMin`**!\n\nImplement the `TopKMinStack` class:\n- `TopKMinStack()` initializes an empty stack.\n- `void push(int val)` pushes `val` onto the top of the stack.\n- `int pop()` removes and returns the top element of the stack.\n- `int getMin()` returns the minimum element across the entire stack.\n- `int getTopKMin(int k)` returns the minimum among the top `k` elements (`1 <= k <= currentSize`).",
+  "constraints": [
+    "-10^9 <= val <= 10^9",
+    "Methods pop and getMin are always called on non-empty stacks, and getTopKMin(k) always satisfies 1 <= k <= currentSize.",
+    "At most 2 * 10^4 calls will be made across all methods."
+  ],
+  "hints": [
+    "Maintain a dynamic sparse table on the stack: for each stack position `i`, store `up[i][j]` = minimum of the `2^j` elements ending at index `i` (`2^j <= i + 1`).",
+    "On `push(val)` compute `up[i][j] = min(up[i][j-1], up[i - 2^(j-1)][j-1])` in O(log n); on `pop()` simply remove the last row in O(1); on `getTopKMin(k)`, let `p = floor(log2(k))` and return `min(up[n-1][p], up[n - k + 2^p - 1][p])` in O(1)."
+  ],
+  "examples": [
+    {
+      "explanation": "Stack [1, 5, 3, 7]: top-1 min is 7, top-2 min is min(3,7)=3, top-3 min is min(5,3,7)=3, top-4/getMin is 1."
+    },
+    {
+      "explanation": "After popping 2 from [8, 4, 9, 2], stack is [8, 4, 9] so top-2 min is 4 and top-1 min is 9."
+    },
+    {
+      "explanation": "Single element -5 has getTopKMin(1) = -5 and getMin() = -5."
+    }
+  ],
+  "timeComplexity": "O(log n) push, O(1) pop/getMin/getTopKMin",
+  "spaceComplexity": "O(n log n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "design",
+    "className": "TopKMinStack",
+    "constructor": {
+      "params": []
+    },
+    "methods": [
+      {
+        "name": "push",
+        "params": [
+          {
+            "name": "val",
+            "type": "int"
+          }
+        ],
+        "returns": "void"
+      },
+      {
+        "name": "pop",
+        "params": [],
+        "returns": "int"
+      },
+      {
+        "name": "getMin",
+        "params": [],
+        "returns": "int"
+      },
+      {
+        "name": "getTopKMin",
+        "params": [
+          {
+            "name": "k",
+            "type": "int"
+          }
+        ],
+        "returns": "int"
+      }
+    ]
+  }
+}

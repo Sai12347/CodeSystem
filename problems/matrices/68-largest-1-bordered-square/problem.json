@@ -1,0 +1,47 @@
+{
+  "title": "Largest 1-Bordered Square",
+  "difficulty": "Medium",
+  "subtopic": "2D Search",
+  "companies": [
+    "Google",
+    "Amazon",
+    "Meta",
+    "Salesforce"
+  ],
+  "description": "Given a 2D binary matrix `grid` of `0`s and `1`s, return the **number of elements (area)** in the largest contiguous square subgrid that has all `1`s on its **border** (all four sides consist exclusively of `1`s; interior cells may be `0` or `1`). Return `0` if no such subgrid exists.",
+  "constraints": [
+    "m == grid.length",
+    "n == grid[i].length",
+    "1 <= m, n <= 100",
+    "grid[i][j] is either 0 or 1."
+  ],
+  "hints": [
+    "Precompute two tables: hor[r][c] = consecutive 1s ending at (r, c) moving right, and ver[r][c] = consecutive 1s ending at (r, c) moving down.",
+    "For each bottom-right corner (r, c), test candidate side lengths s from min(hor[r][c], ver[r][c]) down to best + 1; the top and left sides are valid iff hor[r - s + 1][c] >= s and ver[r][c - s + 1] >= s."
+  ],
+  "examples": [
+    {
+      "explanation": "The entire 3x3 grid has 1s around its border (despite the 0 in the center), so the largest area is 3 * 3 = 9."
+    },
+    {
+      "explanation": "The largest 1-bordered square has side length 1, giving area 1."
+    },
+    {
+      "explanation": "There are no 1s in the grid, so the largest area is 0."
+    }
+  ],
+  "timeComplexity": "O(m * n * min(m, n))",
+  "spaceComplexity": "O(m * n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "largest1BorderedSquare",
+    "params": [
+      {
+        "name": "grid",
+        "type": "int[][]"
+      }
+    ],
+    "returns": "int"
+  }
+}

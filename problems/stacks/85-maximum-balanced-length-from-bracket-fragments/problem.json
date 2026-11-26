@@ -1,0 +1,46 @@
+{
+  "title": "Maximum Balanced Length From Bracket Fragments",
+  "difficulty": "Hard",
+  "subtopic": "Valid Parentheses",
+  "companies": [
+    "Google",
+    "Meta",
+    "Amazon",
+    "Goldman Sachs"
+  ],
+  "description": "You are given an array of non-empty bracket strings `fragments`, each consisting of `'('` and `')'`. You may arrange and concatenate **all** strings in `fragments` in any order you choose (using each fragment exactly once).\n\nReturn the **maximum possible length** of a valid balanced parentheses **subsequence** contained in the concatenated string.",
+  "constraints": [
+    "1 <= fragments.length <= 2 * 10^4",
+    "1 <= fragments[i].length <= 10^4",
+    "The sum of lengths of all strings in fragments does not exceed 10^5."
+  ],
+  "hints": [
+    "First reduce every fragment with a stack: each internal matched pair adds 2 to the answer, leaving `c` unmatched ')' followed by `o` unmatched '('.",
+    "Order the reduced `(c, o)` fragments using Johnson's rule: place all fragments with `o >= c` first sorted by `c` ascending, then all fragments with `o < c` sorted by `o` descending, and greedily match cross-fragment pairs."
+  ],
+  "examples": [
+    {
+      "explanation": "Arranging as \"((\" + \")(\" + \"))\" forms \"(()())\", which is completely balanced of length 6."
+    },
+    {
+      "explanation": "\"()\" contributes 2 internal chars; placing \")(\" before \")\" matches 1 extra pair across them for total length 4."
+    },
+    {
+      "explanation": "\"(()\" + \"))\" matches 2 pairs total (1 internal + 1 cross-fragment) for length 4."
+    }
+  ],
+  "timeComplexity": "O(L + m log m)",
+  "spaceComplexity": "O(m)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "maxBalancedLength",
+    "params": [
+      {
+        "name": "fragments",
+        "type": "String[]"
+      }
+    ],
+    "returns": "int"
+  }
+}

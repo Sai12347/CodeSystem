@@ -1,0 +1,37 @@
+{
+  "title": "Text Justification",
+  "difficulty": "Hard",
+  "subtopic": "Parsing",
+  "companies": ["Google", "LinkedIn", "Amazon", "Meta", "Uber"],
+  "leetcode": 68,
+  "description": "Given an array of strings `words` and an integer `maxWidth`, format the text so that every line has exact length `maxWidth` and is fully (left and right) justified.\n\nPack words greedily: place as many words on each line as fit with at least one space between consecutive words, then pad extra `' '` characters to reach `maxWidth` according to these rules:\n- Extra spaces between words must be distributed as evenly as possible. If the total spaces do not divide evenly among the gaps, the leftmost gaps receive one more space than the rightmost gaps.\n- The last line of text must be left-justified, with single spaces between words and trailing spaces padded on the right to reach `maxWidth`.\n- Any line containing only a single word must also be left-justified with trailing spaces padded on the right.",
+  "constraints": [
+    "1 <= words.length <= 300",
+    "1 <= words[i].length <= 20",
+    "words[i] consists of printable ASCII letters, digits, and punctuation (no spaces).",
+    "1 <= maxWidth <= 100",
+    "words[i].length <= maxWidth"
+  ],
+  "hints": [
+    "Greedily collect words[i..j-1] for the current line while the sum of word lengths plus the minimum single spaces between them does not exceed maxWidth.",
+    "Handle two formatting cases: if the line is the last line or contains only one word, join with single spaces and right-pad with spaces; otherwise divide totalSpaces = maxWidth - sum(word lengths) across gaps = numWords - 1.",
+    "Using base = totalSpaces // gaps and extra = totalSpaces % gaps, the first extra gaps get base + 1 spaces and the remaining gaps get base spaces."
+  ],
+  "examples": [
+    {"explanation": "Line 1 packs \"This\", \"is\", \"an\" (8 spaces across 2 gaps -> 4, 4). Line 2 packs \"example\", \"of\", \"text\" (3 spaces across 2 gaps -> 2, 1). Line 3 is the last line and is left-justified."},
+    {"explanation": "Line 2 contains only \"acknowledgment\", so it is left-justified with 2 trailing spaces. Line 3 is the last line and is also left-justified."},
+    {"explanation": "Words are packed greedily up to 20 characters per line with uneven extra spaces assigned to leftmost gaps and the final line left-justified."}
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "fullJustify",
+    "params": [
+      {"name": "words", "type": "String[]"},
+      {"name": "maxWidth", "type": "int"}
+    ],
+    "returns": "List<String>"
+  }
+}

@@ -1,0 +1,49 @@
+{
+  "title": "Minimum Swaps to Make Strings Equal",
+  "difficulty": "Medium",
+  "subtopic": "Anagrams",
+  "companies": [
+    "Amazon",
+    "Microsoft",
+    "Goldman Sachs"
+  ],
+  "description": "You are given two equal-length strings `s1` and `s2` containing only the characters `'x'` and `'y'`. In one swap, you may choose any index `i` in `s1` and any index `j` in `s2` (possibly `i == j`) and swap `s1[i]` with `s2[j]`. Return the minimum number of swaps required to make `s1` and `s2` equal, or `-1` if it is impossible.",
+  "constraints": [
+    "1 <= s1.length <= 10^4",
+    "s1.length == s2.length",
+    "s1 and s2 contain only 'x' and 'y'."
+  ],
+  "hints": [
+    "Ignore positions where s1[i] == s2[i]. Count mismatches of type ('x','y') as xy and ('y','x') as yx.",
+    "If (xy + yx) is odd it is impossible; otherwise pairs of the same mismatch type cost 1 swap each, and one leftover xy + one leftover yx cost 2 swaps."
+  ],
+  "examples": [
+    {
+      "explanation": "Swap s1[0] with s2[1] to turn \"xx\" and \"yy\" into \"yx\" and \"yx\" (1 swap)."
+    },
+    {
+      "explanation": "One ('x','y') and one ('y','x') mismatch require 2 swaps."
+    },
+    {
+      "explanation": "Total mismatches is 1 (odd), so making them equal is impossible."
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "minimumSwap",
+    "params": [
+      {
+        "name": "s1",
+        "type": "String"
+      },
+      {
+        "name": "s2",
+        "type": "String"
+      }
+    ],
+    "returns": "int"
+  }
+}

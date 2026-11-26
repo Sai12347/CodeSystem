@@ -1,0 +1,53 @@
+{
+  "title": "Number of Recent Calls",
+  "difficulty": "Easy",
+  "subtopic": "Deque Operations",
+  "companies": [
+    "Google",
+    "Amazon",
+    "Meta",
+    "Bloomberg",
+    "Apple"
+  ],
+  "leetcode": 933,
+  "description": "You have a `RecentCounter` class that counts the number of recent requests within a 3000-millisecond sliding window.\n\nImplement the `RecentCounter` class:\n- `RecentCounter()` initializes the counter with zero recent requests.\n- `int ping(int t)` adds a new request at time `t` (in milliseconds) and returns the number of requests that have happened in the past 3000 milliseconds (including the new request). Specifically, return the number of requests whose timestamps fall in the inclusive range `[t - 3000, t]`.\n\nIt is guaranteed that every call to `ping` uses a strictly larger value of `t` than the previous call.",
+  "constraints": [
+    "1 <= t <= 10^9",
+    "Each test case calls ping with strictly increasing values of t.",
+    "At most 10^4 calls will be made to ping."
+  ],
+  "hints": [
+    "Because timestamps arrive in strictly increasing order, once a timestamp falls below t - 3000 it can never be inside any future window.",
+    "Store timestamps in a FIFO queue: push t at the back, pop all elements strictly less than t - 3000 from the front, and return the queue size."
+  ],
+  "examples": [
+    {
+      "explanation": "ping(1) -> [1] (1); ping(100) -> [1,100] (2); ping(3001) -> [1,100,3001] (3); ping(3002) expires 1, leaving [100,3001,3002] (3)."
+    },
+    {
+      "explanation": "At t = 3100, timestamp 100 is exactly on the inclusive boundary [100, 3100], so 2 calls remain. At t = 3101, 100 expires."
+    }
+  ],
+  "timeComplexity": "O(1) amortized per call",
+  "spaceComplexity": "O(1) (at most 3001 elements)",
+  "compare": "exact",
+  "signature": {
+    "kind": "design",
+    "className": "RecentCounter",
+    "constructor": {
+      "params": []
+    },
+    "methods": [
+      {
+        "name": "ping",
+        "params": [
+          {
+            "name": "t",
+            "type": "int"
+          }
+        ],
+        "returns": "int"
+      }
+    ]
+  }
+}

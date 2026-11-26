@@ -1,0 +1,53 @@
+{
+  "title": "Combination Sum II",
+  "difficulty": "Medium",
+  "subtopic": "Combinations",
+  "companies": [
+    "Amazon",
+    "Meta",
+    "Google",
+    "Microsoft",
+    "Bloomberg"
+  ],
+  "leetcode": 40,
+  "description": "Given a collection of candidate numbers `candidates` (which may contain duplicates) and a target number `target`, find all unique combinations in `candidates` where the candidate numbers sum to `target`.\n\nEach element in `candidates` may be used at most once in a combination. The solution set must not contain duplicate combinations. You may return the combinations in any order, and the numbers within each combination may be in any order.",
+  "constraints": [
+    "1 <= candidates.length <= 100",
+    "1 <= candidates[i] <= 50",
+    "1 <= target <= 30"
+  ],
+  "hints": [
+    "Sort `candidates` so duplicates are adjacent and values exceeding the remaining target allow immediate pruning.",
+    "Pass `i + 1` to the recursive call so each array element is used at most once.",
+    "Skip duplicate choices at the same recursion depth with `if i > start and candidates[i] == candidates[i - 1]: continue`."
+  ],
+  "examples": [
+    {
+      "explanation": "Using each element at most once, the unique combinations summing to 8 are [1, 1, 6], [1, 2, 5], [1, 7], and [2, 6]."
+    },
+    {
+      "explanation": "The unique combinations summing to 5 are [1, 2, 2] and [5]."
+    },
+    {
+      "explanation": "Every candidate is greater than 2, so no combination sums to 2."
+    }
+  ],
+  "timeComplexity": "O(2^n)",
+  "spaceComplexity": "O(n)",
+  "compare": "sortedDeep",
+  "signature": {
+    "kind": "function",
+    "method": "combinationSum2",
+    "params": [
+      {
+        "name": "candidates",
+        "type": "int[]"
+      },
+      {
+        "name": "target",
+        "type": "int"
+      }
+    ],
+    "returns": "List<List<Integer>>"
+  }
+}

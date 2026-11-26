@@ -1,0 +1,35 @@
+{
+  "title": "Multiply Strings",
+  "difficulty": "Medium",
+  "subtopic": "Parsing",
+  "companies": ["Meta", "Google", "Amazon", "Microsoft", "Bloomberg"],
+  "leetcode": 43,
+  "description": "Given two non-negative integers `num1` and `num2` represented as strings, return the product of `num1` and `num2`, also represented as a string.\n\nYou must implement the multiplication directly on the digit strings without using any built-in arbitrary-precision integer type (such as `BigInteger`) or converting the entire inputs directly to integers.\n\nThe returned string must not have any leading zeros unless the product itself is `\"0\"`.",
+  "constraints": [
+    "1 <= num1.length, num2.length <= 200",
+    "num1 and num2 consist of digits only ('0'-'9').",
+    "Both num1 and num2 do not contain any leading zero, except the number \"0\" itself."
+  ],
+  "hints": [
+    "The product of an m-digit number and an n-digit number has at most m + n digits.",
+    "Multiply each digit num1[i] by each digit num2[j]: their product contributes to positions i + j (carry) and i + j + 1 (ones place) in a result array of length m + n.",
+    "Remember to handle zero inputs cleanly and strip any leading zeros from the final digit array."
+  ],
+  "examples": [
+    {"explanation": "2 * 3 = 6, returned as the string \"6\"."},
+    {"explanation": "123 * 456 = 56088, returned as the string \"56088\"."},
+    {"explanation": "Any number multiplied by \"0\" produces \"0\" with no leading zeros."}
+  ],
+  "timeComplexity": "O(m * n)",
+  "spaceComplexity": "O(m + n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "multiply",
+    "params": [
+      {"name": "num1", "type": "String"},
+      {"name": "num2", "type": "String"}
+    ],
+    "returns": "String"
+  }
+}

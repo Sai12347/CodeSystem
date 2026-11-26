@@ -1,0 +1,47 @@
+{
+  "title": "KMP Substring Search",
+  "difficulty": "Medium",
+  "subtopic": "String Matching",
+  "companies": [
+    "Amazon",
+    "Google",
+    "Microsoft"
+  ],
+  "description": "Given strings `haystack` and `needle`, return the index of the first occurrence of `needle` in `haystack`, or -1 if it does not occur. The empty needle occurs at index 0. Input: two strings. Output: the first matching index or -1.",
+  "constraints": [
+    "0 <= haystack.length, needle.length <= 100000",
+    "Both strings contain lowercase English letters"
+  ],
+  "hints": [
+    "Keep track of the smallest state needed to continue matching or comparing characters.",
+    "Test empty, one-character, repeated-character, and boundary inputs."
+  ],
+  "examples": [
+    {
+      "input": "haystack = \"sadbutsad\", needle = \"sad\"",
+      "output": "0"
+    },
+    {
+      "input": "haystack = \"leetcode\", needle = \"leeto\"",
+      "output": "-1"
+    }
+  ],
+  "timeComplexity": "O(n+m)",
+  "spaceComplexity": "O(m)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "strStr",
+    "params": [
+      {
+        "name": "haystack",
+        "type": "String"
+      },
+      {
+        "name": "needle",
+        "type": "String"
+      }
+    ],
+    "returns": "int"
+  }
+}

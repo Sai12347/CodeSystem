@@ -1,0 +1,43 @@
+{
+  "title": "Longest Strictly Decreasing Run",
+  "difficulty": "Easy",
+  "subtopic": "Traversal",
+  "companies": [
+    "Amazon",
+    "Microsoft",
+    "Google"
+  ],
+  "description": "Given a non-empty integer array `nums`, return the length of its longest contiguous strictly decreasing run. A run is contiguous, and each next value must be smaller than the previous value. Input: `nums`. Output: the maximum run length.",
+  "constraints": [
+    "1 <= nums.length <= 100000",
+    "-1000000000 <= nums[i] <= 1000000000"
+  ],
+  "hints": [
+    "Scan the array while retaining only the state needed for the answer.",
+    "Check the first, last, repeated, and all-equal cases."
+  ],
+  "examples": [
+    {
+      "input": "nums = [9, 7, 4, 5, 3]",
+      "output": "3"
+    },
+    {
+      "input": "nums = [2, 2, 2]",
+      "output": "1"
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "longestDecreasingRun",
+    "params": [
+      {
+        "name": "nums",
+        "type": "int[]"
+      }
+    ],
+    "returns": "int"
+  }
+}

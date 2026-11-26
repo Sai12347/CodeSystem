@@ -1,0 +1,70 @@
+{
+  "title": "Design Linked List Snake Game",
+  "difficulty": "Medium",
+  "subtopic": "LRU Design",
+  "companies": [
+    "Amazon",
+    "Google",
+    "Uber",
+    "Atlassian",
+    "Salesforce"
+  ],
+  "description": "Design a Snake game `SnakeGame` backed by a doubly linked list (deque) for the snake's body and a hash set for `O(1)` collision detection:\n- `SnakeGame(int width, int height, int[][] food)` initializes a board of `height` rows (`0..height-1`) and `width` columns (`0..width-1`). The snake starts at `(0, 0)` with length `1` and score `0`. `food` lists food coordinates `[row, col]` that appear one at a time in order.\n- `int move(String direction)` moves the snake's head one cell in `\"U\"`, `\"D\"`, `\"L\"`, or `\"R\"`. If the head goes out of bounds or collides with the snake's own body (note that moving into the exact cell vacated by the tail on a non-eating move is valid), the game ends and `move` returns `-1` (as do any subsequent `move` calls). If the head lands on the currently active food item, the snake grows by 1 (tail does not move), the score increases by 1, and the next food item appears. Return the current score.",
+  "constraints": [
+    "1 <= width, height <= 10^4",
+    "0 <= food.length <= 200",
+    "food[i].length == 2, 0 <= food[i][0] < height, 0 <= food[i][1] < width",
+    "direction is one of \"U\", \"D\", \"L\", or \"R\".",
+    "At most 2000 calls will be made to move."
+  ],
+  "hints": [
+    "Store the snake's occupied cells in a deque (doubly linked list) from head to tail, and mirror them in a hash set of encoded cell keys `row * width + col`.",
+    "When the new head cell does not hold the active food item, pop the tail from both the deque and the hash set BEFORE checking whether the new head collides with the occupied set."
+  ],
+  "examples": [
+    {
+      "explanation": "The snake eats food at (1,2) and (0,1) to reach score 2, then moves up out of bounds for -1."
+    },
+    {
+      "explanation": "After eating 3 food items in a 2x2 grid, moving up into (0,0) succeeds because the tail vacates (0,0) on the same turn."
+    },
+    {
+      "explanation": "After growing to length 5, moving up into (0,1) collides with an interior body segment, returning -1."
+    }
+  ],
+  "timeComplexity": "O(1) per move",
+  "spaceComplexity": "O(L)",
+  "compare": "exact",
+  "signature": {
+    "kind": "design",
+    "className": "SnakeGame",
+    "constructor": {
+      "params": [
+        {
+          "name": "width",
+          "type": "int"
+        },
+        {
+          "name": "height",
+          "type": "int"
+        },
+        {
+          "name": "food",
+          "type": "int[][]"
+        }
+      ]
+    },
+    "methods": [
+      {
+        "name": "move",
+        "params": [
+          {
+            "name": "direction",
+            "type": "String"
+          }
+        ],
+        "returns": "int"
+      }
+    ]
+  }
+}

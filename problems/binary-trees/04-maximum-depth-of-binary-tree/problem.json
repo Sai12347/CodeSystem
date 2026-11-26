@@ -1,0 +1,49 @@
+{
+  "title": "Maximum Depth of Binary Tree",
+  "difficulty": "Easy",
+  "subtopic": "DFS Traversals",
+  "companies": [
+    "Amazon",
+    "Google",
+    "Microsoft",
+    "Meta",
+    "LinkedIn",
+    "Apple"
+  ],
+  "leetcode": 104,
+  "description": "Given the `root` of a binary tree, return its **maximum depth**.\n\nA binary tree's maximum depth is the number of nodes along the longest path from the root node down to the farthest leaf node. An empty tree has a maximum depth of `0`, and a tree with a single root node has a maximum depth of `1`.",
+  "constraints": [
+    "0 <= number of nodes <= 5000",
+    "-10^4 <= Node.val <= 10^4"
+  ],
+  "hints": [
+    "The maximum depth of an empty tree is 0.",
+    "For any non-empty node, its maximum depth is `1 + max(maxDepth(node.left), maxDepth(node.right))`.",
+    "You can also count levels iteratively with Breadth-First Search (BFS) using a queue."
+  ],
+  "examples": [
+    {
+      "explanation": "The longest root-to-leaf paths are 3 -> 20 -> 15 and 3 -> 20 -> 7, each containing 3 nodes."
+    },
+    {
+      "explanation": "The only root-to-leaf path is 1 -> 2, which has 2 nodes."
+    },
+    {
+      "explanation": "An empty tree has depth 0."
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "maxDepth",
+    "params": [
+      {
+        "name": "root",
+        "type": "TreeNode"
+      }
+    ],
+    "returns": "int"
+  }
+}

@@ -1,0 +1,57 @@
+{
+  "title": "Word Break II",
+  "difficulty": "Hard",
+  "subtopic": "Constraint Pruning",
+  "companies": [
+    "Google",
+    "Amazon",
+    "Meta",
+    "Microsoft",
+    "Bloomberg",
+    "Uber"
+  ],
+  "leetcode": 140,
+  "description": "Given a string `s` and a dictionary of strings `wordDict`, add spaces in `s` to construct a sentence where each word is a valid dictionary word. Return all such possible sentences in any order.\n\nNote that the same word in the dictionary may be reused multiple times in the segmentation. If no valid segmentation exists, return an empty list `[]`.",
+  "constraints": [
+    "1 <= s.length <= 20",
+    "1 <= wordDict.length <= 1000",
+    "1 <= wordDict[i].length <= 10",
+    "s and wordDict[i] consist of only lowercase English letters.",
+    "All the strings of wordDict are unique.",
+    "The input is generated such that the number of valid sentences does not exceed 10^4."
+  ],
+  "hints": [
+    "Store wordDict in a hash set and track the maximum word length so each prefix lookup at index i checks at most maxLen substrings.",
+    "Plain backtracking can repeatedly explore dead-end suffixes (such as \"aaaa...ab\" with words \"a\", \"aa\", ...). Memoize the list of valid sentences starting from each index i.",
+    "For a suffix s[i:], whenever s[i:j] is in the dictionary, combine s[i:j] with every memoized sentence returned for index j."
+  ],
+  "examples": [
+    {
+      "explanation": "\"catsanddog\" can be segmented as \"cats and dog\" or \"cat sand dog\"."
+    },
+    {
+      "explanation": "Words like \"apple\" may be reused, yielding three distinct valid sentences."
+    },
+    {
+      "explanation": "No sequence of dictionary words covers \"catsandog\" completely, so return []."
+    }
+  ],
+  "timeComplexity": "O(n * 2^n + W)",
+  "spaceComplexity": "O(n * 2^n + W)",
+  "compare": "sorted",
+  "signature": {
+    "kind": "function",
+    "method": "wordBreak",
+    "params": [
+      {
+        "name": "s",
+        "type": "String"
+      },
+      {
+        "name": "wordDict",
+        "type": "List<String>"
+      }
+    ],
+    "returns": "List<String>"
+  }
+}

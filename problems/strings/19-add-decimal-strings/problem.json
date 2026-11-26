@@ -1,0 +1,48 @@
+{
+  "title": "Add Decimal Strings",
+  "difficulty": "Medium",
+  "subtopic": "Parsing",
+  "companies": [
+    "Amazon",
+    "Google",
+    "Microsoft"
+  ],
+  "description": "Given two non-negative decimal integers represented as strings, return their sum as a decimal string. Neither input has leading zeroes unless it is exactly `\"0\"`. Do not convert the entire input to a built-in integer type. Input: `num1` and `num2`. Output: their exact sum as a string.",
+  "constraints": [
+    "1 <= num1.length, num2.length <= 10000",
+    "Each input contains only decimal digits",
+    "No leading zeroes unless the input is \"0\""
+  ],
+  "hints": [
+    "Keep track of the smallest state needed to continue matching or comparing characters.",
+    "Test empty, one-character, repeated-character, and boundary inputs."
+  ],
+  "examples": [
+    {
+      "input": "num1 = \"456\", num2 = \"77\"",
+      "output": "\"533\""
+    },
+    {
+      "input": "num1 = \"0\", num2 = \"0\"",
+      "output": "\"0\""
+    }
+  ],
+  "timeComplexity": "O(m+n)",
+  "spaceComplexity": "O(m+n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "addStrings",
+    "params": [
+      {
+        "name": "num1",
+        "type": "String"
+      },
+      {
+        "name": "num2",
+        "type": "String"
+      }
+    ],
+    "returns": "String"
+  }
+}

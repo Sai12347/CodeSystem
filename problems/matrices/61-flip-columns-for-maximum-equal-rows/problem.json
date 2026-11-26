@@ -1,0 +1,47 @@
+{
+  "title": "Flip Columns for Maximum Equal Rows",
+  "difficulty": "Medium",
+  "subtopic": "Matrix Rotation",
+  "companies": [
+    "Google",
+    "Amazon",
+    "Meta",
+    "Bloomberg"
+  ],
+  "description": "You are given an `m x n` binary matrix `matrix` containing only `0`s and `1`s.\n\nYou may choose any number of columns (including zero) and flip every cell in those chosen columns (changing `0` to `1` and `1` to `0`).\n\nReturn the **maximum number of rows** that have all values equal (either all `0`s or all `1`s) after applying an optimal subset of column flips.",
+  "constraints": [
+    "m == matrix.length",
+    "n == matrix[i].length",
+    "1 <= m, n <= 200",
+    "matrix[i][j] is either 0 or 1."
+  ],
+  "hints": [
+    "Two rows can simultaneously become all-equal after the same subset of column flips if and only if they are identical or exact bitwise complements of each other.",
+    "Canonicalize every row by flipping all its bits whenever row[0] == 1, then count the frequency of each canonical pattern with a hash map."
+  ],
+  "examples": [
+    {
+      "explanation": "No matter which columns are flipped, at most 1 row can have all equal values (rows [0,1] and [1,1] are neither equal nor complements)."
+    },
+    {
+      "explanation": "Flipping column 0 turns [0,1] into [1,1] and [1,0] into [0,0], giving 2 all-equal rows."
+    },
+    {
+      "explanation": "Flipping column 0 makes rows 1 and 2 all-equal ([1,1,1] and [0,0,0]), giving 2 rows."
+    }
+  ],
+  "timeComplexity": "O(m * n)",
+  "spaceComplexity": "O(m * n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "maxEqualRowsAfterFlips",
+    "params": [
+      {
+        "name": "matrix",
+        "type": "int[][]"
+      }
+    ],
+    "returns": "int"
+  }
+}

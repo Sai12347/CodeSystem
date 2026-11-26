@@ -1,0 +1,46 @@
+{
+  "title": "Difference of Distinct Values on Diagonals",
+  "difficulty": "Easy",
+  "subtopic": "Spiral Traversal",
+  "companies": [
+    "Google",
+    "Amazon",
+    "Adobe"
+  ],
+  "description": "Given a 0-indexed `m x n` integer matrix `grid`, return an `m x n` integer matrix `answer` where:\n\n`answer[r][c] = |topLeft[r][c] - bottomRight[r][c]|`\n\nHere:\n- `topLeft[r][c]` is the number of **distinct** values strictly on the top-left main diagonal of `(r, c)`, consisting of all in-bounds cells `(r - k, c - k)` with `k >= 1`.\n- `bottomRight[r][c]` is the number of **distinct** values strictly on the bottom-right main diagonal of `(r, c)`, consisting of all in-bounds cells `(r + k, c + k)` with `k >= 1`.",
+  "constraints": [
+    "m == grid.length",
+    "n == grid[i].length",
+    "1 <= m, n <= 50",
+    "1 <= grid[i][j] <= 10^5"
+  ],
+  "hints": [
+    "Walk each main diagonal (cells sharing the same r - c) independently from top-left to bottom-right while maintaining a hash set of seen values to fill topLeft counts in O(1) per cell.",
+    "Then walk each diagonal in reverse (bottom-right to top-left) with a fresh hash set to compute bottomRight counts and take the absolute difference."
+  ],
+  "examples": [
+    {
+      "explanation": "For (0,0), topLeft has 0 distinct values and bottomRight has {1} (1 distinct), giving |0 - 1| = 1; similarly every other cell is evaluated along its main diagonal."
+    },
+    {
+      "explanation": "In a 1x1 matrix both diagonal halves are empty, so answer is [[0]]."
+    },
+    {
+      "explanation": "In a single row, every cell has empty top-left and bottom-right diagonals, so every entry is 0."
+    }
+  ],
+  "timeComplexity": "O(m * n)",
+  "spaceComplexity": "O(m * n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "differenceOfDistinctValues",
+    "params": [
+      {
+        "name": "grid",
+        "type": "int[][]"
+      }
+    ],
+    "returns": "int[][]"
+  }
+}

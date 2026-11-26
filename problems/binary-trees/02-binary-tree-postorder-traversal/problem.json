@@ -1,0 +1,48 @@
+{
+  "title": "Binary Tree Postorder Traversal",
+  "difficulty": "Easy",
+  "subtopic": "DFS Traversals",
+  "companies": [
+    "Amazon",
+    "Google",
+    "Microsoft",
+    "Meta",
+    "Apple"
+  ],
+  "leetcode": 145,
+  "description": "Given the `root` of a binary tree, return the **postorder traversal** of its nodes' values.\n\nIn a postorder traversal, you visit the left subtree first, then the right subtree, and finally the current node (Left -> Right -> Root). If the tree is empty (`root` is `null`), return an empty list.",
+  "constraints": [
+    "0 <= number of nodes <= 2000",
+    "-10^4 <= Node.val <= 10^4"
+  ],
+  "hints": [
+    "Recursively visit `node.left`, then `node.right`, and append `node.val` last.",
+    "For an iterative approach, notice that reversing a modified preorder traversal (Root -> Right -> Left) gives Left -> Right -> Root.",
+    "Alternatively, track the last visited node on a single explicit stack so you only pop a parent after its right subtree has been processed."
+  ],
+  "examples": [
+    {
+      "explanation": "Visit left of 1 (none), go right to 2, visit left child 3, right of 2 (none), then 2, and finally 1 -> [3, 2, 1]."
+    },
+    {
+      "explanation": "Visiting Left -> Right -> Root across every subtree produces [4, 6, 7, 5, 2, 9, 8, 3, 1]."
+    },
+    {
+      "explanation": "An empty tree produces an empty list."
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "postorderTraversal",
+    "params": [
+      {
+        "name": "root",
+        "type": "TreeNode"
+      }
+    ],
+    "returns": "List<Integer>"
+  }
+}

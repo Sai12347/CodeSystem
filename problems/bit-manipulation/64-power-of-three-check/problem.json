@@ -1,0 +1,43 @@
+{
+  "title": "Power of Three Check",
+  "difficulty": "Easy",
+  "subtopic": "Fast Exponentiation",
+  "companies": [
+    "Google",
+    "Amazon",
+    "LinkedIn"
+  ],
+  "description": "Given a signed 32-bit integer `n`, return `true` if `n` is a power of three (meaning there exists an integer `k >= 0` such that `n == 3^k`), and `false` otherwise.",
+  "constraints": [
+    "-2^31 <= n <= 2^31 - 1"
+  ],
+  "hints": [
+    "Because 3 is prime, a positive 32-bit integer is a power of 3 if and only if it divides the largest power of 3 that fits in a signed 32-bit integer.",
+    "The largest power of 3 within `2^31 - 1` is `3^19 = 1162261467`, so check `n > 0 && 1162261467 % n == 0` in O(1) time."
+  ],
+  "examples": [
+    {
+      "explanation": "27 = 3^3, so return true."
+    },
+    {
+      "explanation": "0 is not a power of three."
+    },
+    {
+      "explanation": "Negative integers like -9 can never equal 3^k for any integer k."
+    }
+  ],
+  "timeComplexity": "O(1)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "isPowerOfThree",
+    "params": [
+      {
+        "name": "n",
+        "type": "int"
+      }
+    ],
+    "returns": "boolean"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "title": "Range Sum Query - Immutable",
+  "difficulty": "Easy",
+  "subtopic": "1D Prefix Sum",
+  "companies": [
+    "Google",
+    "Amazon",
+    "Meta",
+    "Microsoft",
+    "Apple",
+    "Bloomberg"
+  ],
+  "leetcode": 303,
+  "description": "Given an integer array `nums`, handle multiple queries of the following type:\n\n- Calculate the **sum** of the elements of `nums` between indices `left` and `right` **inclusive**, where `left <= right`.\n\nImplement the `NumArray` class:\n- `NumArray(int[] nums)` initializes the object with the integer array `nums`.\n- `int sumRange(int left, int right)` returns the sum of the elements of `nums` between indices `left` and `right` inclusive (i.e. `nums[left] + nums[left + 1] + ... + nums[right]`).",
+  "constraints": [
+    "1 <= nums.length <= 10^4",
+    "-10^5 <= nums[i] <= 10^5",
+    "0 <= left <= right < nums.length",
+    "At most 10^4 calls will be made to sumRange."
+  ],
+  "hints": [
+    "Because the array is immutable, you can precompute cumulative sums once inside the constructor.",
+    "Build a prefix sum array `prefix` of length `n + 1` where `prefix[0] = 0` and `prefix[i + 1] = prefix[i] + nums[i]`.",
+    "Then every query `sumRange(left, right)` is answered in O(1) time as `prefix[right + 1] - prefix[left]`."
+  ],
+  "examples": [
+    {
+      "explanation": "sumRange(0, 2) = (-2) + 0 + 3 = 1; sumRange(2, 5) = 3 + (-5) + 2 + (-1) = -1; sumRange(0, 5) = (-2) + 0 + 3 + (-5) + 2 + (-1) = -3."
+    },
+    {
+      "explanation": "Single-element queries and full-array queries work seamlessly with the padded prefix sum array."
+    }
+  ],
+  "timeComplexity": "O(n) init, O(1) query",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "design",
+    "className": "NumArray",
+    "constructor": {
+      "params": [
+        {
+          "name": "nums",
+          "type": "int[]"
+        }
+      ]
+    },
+    "methods": [
+      {
+        "name": "sumRange",
+        "params": [
+          {
+            "name": "left",
+            "type": "int"
+          },
+          {
+            "name": "right",
+            "type": "int"
+          }
+        ],
+        "returns": "int"
+      }
+    ]
+  }
+}

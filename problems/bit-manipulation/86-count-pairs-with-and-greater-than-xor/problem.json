@@ -1,0 +1,44 @@
+{
+  "title": "Count Pairs With Bitwise AND Greater Than XOR",
+  "difficulty": "Medium",
+  "subtopic": "Counting Bits",
+  "companies": [
+    "Google",
+    "Amazon",
+    "Bloomberg"
+  ],
+  "description": "Given an array `nums` of positive integers, return the number of index pairs `(i, j)` with `0 <= i < j < nums.length` such that `(nums[i] & nums[j]) > (nums[i] ^ nums[j])`.",
+  "constraints": [
+    "1 <= nums.length <= 10^5",
+    "1 <= nums[i] <= 10^9"
+  ],
+  "hints": [
+    "Compare `(a & b)` and `(a ^ b)` at the highest set bit of `max(a, b)`: if `a` and `b` share the same most significant `1` bit, that bit is `1` in `a & b` and `0` in `a ^ b`, guaranteeing `(a & b) > (a ^ b)`.",
+    "Conversely, if their highest set bits differ, the highest bit is `0` in `a & b` and `1` in `a ^ b`, so `(a & b) < (a ^ b)`. Bucket elements by their highest set bit position `b` and sum `c * (c - 1) / 2`."
+  ],
+  "examples": [
+    {
+      "explanation": "Only 4 (100) and 7 (111) share the same highest set bit (bit 2), giving 4 & 7 = 4 > 4 ^ 7 = 3."
+    },
+    {
+      "explanation": "All three 1s share highest set bit 0, forming 3 * 2 / 2 = 3 valid pairs."
+    },
+    {
+      "explanation": "1, 2, 4, 8 have distinct highest set bits (0, 1, 2, 3), so 0 pairs satisfy the condition."
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "countAndGreaterThanXor",
+    "params": [
+      {
+        "name": "nums",
+        "type": "int[]"
+      }
+    ],
+    "returns": "long"
+  }
+}

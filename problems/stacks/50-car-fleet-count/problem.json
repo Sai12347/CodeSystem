@@ -1,0 +1,56 @@
+{
+  "title": "Car Fleet Count",
+  "difficulty": "Medium",
+  "subtopic": "LIFO Structure",
+  "companies": [
+    "Google",
+    "Amazon",
+    "Meta",
+    "Uber",
+    "Bloomberg"
+  ],
+  "description": "There are `n` cars driving along a one-lane highway toward a destination at mile `target`. Car `i` starts at mile `position[i]` and moves at constant speed `speed[i]` miles per hour.\n\nA car cannot pass another car ahead of it; if a faster car catches up to a slower car (at or before `target`), they merge into a single **car fleet** moving at the slower car's speed.\n\nReturn the total number of distinct car fleets that arrive at `target`.",
+  "constraints": [
+    "1 <= position.length == speed.length <= 10^5",
+    "0 < target <= 10^6",
+    "0 <= position[i] < target and all position[i] are distinct.",
+    "1 <= speed[i] <= 10^6"
+  ],
+  "hints": [
+    "Sort cars in descending order of starting position so you inspect them from closest to target to farthest.",
+    "Maintain a stack of arrival times: if a trailing car's arrival time is <= the stack top, it merges into that fleet; otherwise push its arrival time as a new fleet."
+  ],
+  "examples": [
+    {
+      "explanation": "Cars at 10 (time 1) and 8 (time 1) meet at 12; car at 5 (time 7) and car at 3 (time 3) merge; car at 0 (time 12) arrives alone, making 3 fleets."
+    },
+    {
+      "explanation": "A single car always forms 1 fleet."
+    },
+    {
+      "explanation": "Car at 4 arrives in 48h, car at 2 arrives in 32.67h (catches car at 4), and car at 0 arrives in 25h (also catches up), yielding 1 fleet."
+    }
+  ],
+  "timeComplexity": "O(n log n)",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "carFleet",
+    "params": [
+      {
+        "name": "target",
+        "type": "int"
+      },
+      {
+        "name": "position",
+        "type": "int[]"
+      },
+      {
+        "name": "speed",
+        "type": "int[]"
+      }
+    ],
+    "returns": "int"
+  }
+}

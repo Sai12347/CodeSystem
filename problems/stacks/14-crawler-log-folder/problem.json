@@ -1,0 +1,46 @@
+{
+  "title": "Crawler Log Folder",
+  "difficulty": "Easy",
+  "subtopic": "LIFO Structure",
+  "companies": [
+    "Microsoft",
+    "Amazon",
+    "Meta"
+  ],
+  "description": "A file system maintains a log each time a user performs a change-folder operation starting from the main (root) folder:\n- `\"../\"`: move to the parent folder of the current folder (if already in the main folder, remain in the main folder).\n- `\"./\"`: remain in the same folder.\n- `\"x/\"`: move to the child folder named `x` (guaranteed to exist).\n\nGiven a list of strings `logs` representing the sequence of operations performed by the user, return the minimum number of operations needed to return to the main folder after all log operations are complete.",
+  "constraints": [
+    "1 <= logs.length <= 10^3",
+    "2 <= logs[i].length <= 10",
+    "logs[i] contains lowercase English letters, digits, '.', and '/'.",
+    "logs[i] follows the format described in the statement."
+  ],
+  "hints": [
+    "Directory navigation follows LIFO order: entering a child folder pushes onto the path stack, and '../' pops if non-empty.",
+    "Since only the final depth is needed, you can either maintain an explicit stack or simply track its size without dropping below 0."
+  ],
+  "examples": [
+    {
+      "explanation": "Entering d1, d2, backing out to d1, entering d21, and staying leaves depth 2."
+    },
+    {
+      "explanation": "Entering d1, d2, staying, entering d3, entering d31 leaves depth 3."
+    },
+    {
+      "explanation": "All parent operations at root stay at depth 0, and moving into d1 then backing out returns to depth 0."
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "minOperations",
+    "params": [
+      {
+        "name": "logs",
+        "type": "String[]"
+      }
+    ],
+    "returns": "int"
+  }
+}

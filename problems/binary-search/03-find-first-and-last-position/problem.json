@@ -1,0 +1,36 @@
+{
+  "title": "Find First and Last Position of Element in Sorted Array",
+  "difficulty": "Medium",
+  "subtopic": "Standard Bisect",
+  "companies": ["Meta", "Google", "Amazon", "Microsoft", "LinkedIn", "Apple"],
+  "leetcode": 34,
+  "description": "Given an array of integers `nums` sorted in non-decreasing order, find the starting and ending 0-based position of a given `target` value.\n\nIf `target` is not found in the array, return `[-1, -1]`.\n\nYou must write an algorithm with `O(log n)` runtime complexity.",
+  "constraints": [
+    "0 <= nums.length <= 10^5",
+    "-10^9 <= nums[i] <= 10^9",
+    "nums is a non-decreasing array.",
+    "-10^9 <= target <= 10^9"
+  ],
+  "hints": [
+    "Instead of expanding linearly after finding one match (which degrades to O(n) when many duplicates exist), run two separate binary searches.",
+    "First find the lower bound (first index where nums[i] >= target). If it is out of range or nums[first] != target, immediately return [-1, -1].",
+    "Then find the upper bound (first index where nums[i] > target) and subtract 1 to obtain the ending position."
+  ],
+  "examples": [
+    {"explanation": "8 first appears at index 3 and last appears at index 4."},
+    {"explanation": "6 does not appear in nums, so return [-1, -1]."},
+    {"explanation": "The array is empty, so return [-1, -1]."}
+  ],
+  "timeComplexity": "O(log n)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "searchRange",
+    "params": [
+      {"name": "nums", "type": "int[]"},
+      {"name": "target", "type": "int"}
+    ],
+    "returns": "int[]"
+  }
+}

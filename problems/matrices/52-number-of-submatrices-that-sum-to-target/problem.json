@@ -1,0 +1,53 @@
+{
+  "title": "Number of Submatrices That Sum to Target",
+  "difficulty": "Hard",
+  "subtopic": "Dynamic Grids",
+  "companies": [
+    "Google",
+    "Meta",
+    "Amazon",
+    "Goldman Sachs",
+    "Apple"
+  ],
+  "description": "Given an `m x n` integer `matrix` and an integer `target`, return the number of non-empty rectangular submatrices whose elements sum to `target`.\n\nA submatrix `(r1, c1, r2, c2)` consists of all cells `(r, c)` with `r1 <= r <= r2` and `c1 <= c <= c2`. Two submatrices are distinct if they differ in any boundary coordinate.",
+  "constraints": [
+    "m == matrix.length",
+    "n == matrix[i].length",
+    "1 <= m, n <= 100",
+    "-1000 <= matrix[i][j] <= 1000",
+    "-10^8 <= target <= 10^8"
+  ],
+  "hints": [
+    "Fix the top row r1 and bottom row r2 (or left/right columns if n < m), compressing each column into a single 1D sum.",
+    "On the resulting 1D array, count subarrays summing to target in O(n) using a running prefix sum and a frequency hash map initialized with {0: 1}."
+  ],
+  "examples": [
+    {
+      "explanation": "Four 1x1 submatrices contain 0: the four corners of the 3x3 matrix."
+    },
+    {
+      "explanation": "Five submatrices sum to 0: two 1x1 cells, two 1x2/2x1 pairs, and the entire 2x2 matrix."
+    },
+    {
+      "explanation": "The single cell [904] does not equal target 0, so the count is 0."
+    }
+  ],
+  "timeComplexity": "O(min(m, n)^2 * max(m, n))",
+  "spaceComplexity": "O(max(m, n))",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "numSubmatrixSumTarget",
+    "params": [
+      {
+        "name": "matrix",
+        "type": "int[][]"
+      },
+      {
+        "name": "target",
+        "type": "int"
+      }
+    ],
+    "returns": "int"
+  }
+}

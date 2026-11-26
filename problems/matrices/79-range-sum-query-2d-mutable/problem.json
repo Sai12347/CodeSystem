@@ -1,0 +1,92 @@
+{
+  "title": "Range Sum Query 2D - Mutable",
+  "difficulty": "Hard",
+  "subtopic": "Dynamic Grids",
+  "companies": [
+    "Google",
+    "Meta",
+    "Amazon",
+    "Bloomberg"
+  ],
+  "description": "Design a data structure `NumMatrix2D` over an `m x n` integer matrix that efficiently handles point updates and rectangular range sum queries:\n\n- `NumMatrix2D(int[][] matrix)` initializes the object with the `m x n` integer matrix `matrix`.\n- `void update(int row, int col, int val)` updates the value at `matrix[row][col]` to `val`.\n- `int sumRegion(int row1, int col1, int row2, int col2)` returns the sum of elements inside the axis-aligned rectangle defined by upper-left corner `(row1, col1)` and lower-right corner `(row2, col2)` inclusive.",
+  "constraints": [
+    "m == matrix.length",
+    "n == matrix[i].length",
+    "1 <= m, n <= 200",
+    "-1000 <= matrix[i][j], val <= 1000",
+    "0 <= row1 <= row2 < m, 0 <= col1 <= col2 < n",
+    "At most 10^4 calls will be made to update and sumRegion."
+  ],
+  "hints": [
+    "Store a 2D Fenwick tree (Binary Indexed Tree) of size (m + 1) x (n + 1) together with the current matrix values so each update(row, col, val) applies delta = val - current[row][col].",
+    "Answer sumRegion(r1, c1, r2, c2) via inclusion-exclusion over four O(log m * log n) 2D prefix queries."
+  ],
+  "examples": [
+    {
+      "explanation": "Initially subgrid [2..4, 1..3] sums to 8; updating cell (3, 2) from 0 to 2 increases that region sum to 10."
+    },
+    {
+      "explanation": "Updating (0, 0) from 1 to 5 changes the 2x2 total sum from 10 to 14."
+    },
+    {
+      "explanation": "On a 1x1 matrix, updating the sole cell from -3 to 7 changes its region sum from -3 to 7."
+    }
+  ],
+  "timeComplexity": "O(log m * log n) per operation",
+  "spaceComplexity": "O(m * n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "design",
+    "className": "NumMatrix2D",
+    "constructor": {
+      "params": [
+        {
+          "name": "matrix",
+          "type": "int[][]"
+        }
+      ]
+    },
+    "methods": [
+      {
+        "name": "update",
+        "params": [
+          {
+            "name": "row",
+            "type": "int"
+          },
+          {
+            "name": "col",
+            "type": "int"
+          },
+          {
+            "name": "val",
+            "type": "int"
+          }
+        ],
+        "returns": "void"
+      },
+      {
+        "name": "sumRegion",
+        "params": [
+          {
+            "name": "row1",
+            "type": "int"
+          },
+          {
+            "name": "col1",
+            "type": "int"
+          },
+          {
+            "name": "row2",
+            "type": "int"
+          },
+          {
+            "name": "col2",
+            "type": "int"
+          }
+        ],
+        "returns": "int"
+      }
+    ]
+  }
+}

@@ -1,0 +1,45 @@
+{
+  "title": "Reverse Segments Between Zero Nodes",
+  "difficulty": "Medium",
+  "subtopic": "Reversal",
+  "companies": [
+    "Amazon",
+    "Google",
+    "Adobe",
+    "Bloomberg"
+  ],
+  "description": "Given the `head` of a singly linked list of integers where nodes with value `0` act as fixed delimiters, reverse every maximal contiguous segment of non-zero nodes in-place while keeping every `0` node at its exact original position.\n\nSegments at the very start of the list (before the first `0`), at the very end (after the last `0`), or when there are no `0` nodes at all are also reversed. Return the head of the modified linked list in `O(n)` time and `O(1)` extra space.",
+  "constraints": [
+    "The number of nodes in the list is in the range [0, 10^4].",
+    "-10^5 <= Node.val <= 10^5"
+  ],
+  "hints": [
+    "Use a sentinel `dummy` node and a `prev` pointer that always points immediately before the current position.",
+    "When `prev.next.val == 0`, simply advance `prev`; otherwise reverse nodes starting at `prev.next` until encountering `0` or `null`, stitch the reversed segment back between `prev` and the delimiter, and move `prev` to the segment's new tail."
+  ],
+  "examples": [
+    {
+      "explanation": "Segments [1, 2, 3], [4, 5], and [6] reverse to [3, 2, 1], [5, 4], and [6], giving [3, 2, 1, 0, 5, 4, 0, 6]."
+    },
+    {
+      "explanation": "Zeros stay fixed while [1, 2] reverses to [2, 1] and [3, 4, 5] reverses to [5, 4, 3]."
+    },
+    {
+      "explanation": "With no zeros, the whole list [7, 8, 9] reverses to [9, 8, 7]."
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "reverseBetweenZeros",
+    "params": [
+      {
+        "name": "head",
+        "type": "ListNode"
+      }
+    ],
+    "returns": "ListNode"
+  }
+}

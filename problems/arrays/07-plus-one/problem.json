@@ -1,0 +1,49 @@
+{
+  "title": "Plus One",
+  "difficulty": "Easy",
+  "subtopic": "In-Place Operations",
+  "companies": [
+    "Google",
+    "Amazon",
+    "Meta",
+    "Microsoft",
+    "Apple"
+  ],
+  "leetcode": 66,
+  "description": "You are given a non-negative integer represented as an integer array `digits`, where each `digits[i]` is the `i`-th digit of the integer ordered from most significant to least significant (left to right). The integer contains no leading zeros except for the single-digit number `[0]` itself.\n\nIncrement the large integer by one and return the resulting array of digits. Note that the integer may be far larger than a 64-bit integer.",
+  "constraints": [
+    "1 <= digits.length <= 1000",
+    "0 <= digits[i] <= 9",
+    "digits does not contain any leading 0's (except [0] itself)."
+  ],
+  "hints": [
+    "Simulate elementary-school addition starting from the least significant digit on the right.",
+    "If a digit is less than 9, increment it and immediately return \u2014 no further carry propagates.",
+    "If a digit is 9, set it to 0 and continue left; if every digit was 9, prepend a leading 1 to a new array of length n + 1."
+  ],
+  "examples": [
+    {
+      "explanation": "123 + 1 = 124, represented as [1, 2, 4]."
+    },
+    {
+      "explanation": "4321 + 1 = 4322, represented as [4, 3, 2, 2]."
+    },
+    {
+      "explanation": "9 + 1 = 10, which carries into a new leading digit to produce [1, 0]."
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "plusOne",
+    "params": [
+      {
+        "name": "digits",
+        "type": "int[]"
+      }
+    ],
+    "returns": "int[]"
+  }
+}

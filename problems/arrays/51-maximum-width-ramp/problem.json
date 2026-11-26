@@ -1,0 +1,43 @@
+{
+  "title": "Maximum Width Ramp",
+  "difficulty": "Medium",
+  "subtopic": "Traversal",
+  "companies": [
+    "Amazon",
+    "Google",
+    "Microsoft"
+  ],
+  "description": "A ramp is a pair of indices `i < j` with `nums[i] <= nums[j]`; its width is `j - i`. Given `nums`, return the maximum ramp width, or 0 if no positive-width ramp exists.",
+  "constraints": [
+    "1 <= nums.length <= 100000",
+    "-100000 <= nums[i] <= 100000"
+  ],
+  "hints": [
+    "Maintain the prefix or window information needed to count candidate ranges.",
+    "Check repeated values, extreme bounds, and cases with no valid segment."
+  ],
+  "examples": [
+    {
+      "input": "nums = [6, 0, 8, 2, 1, 5]",
+      "output": "4"
+    },
+    {
+      "input": "nums = [9, 8, 1, 0, 1, 9]",
+      "output": "5"
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "maxWidthRamp",
+    "params": [
+      {
+        "name": "nums",
+        "type": "int[]"
+      }
+    ],
+    "returns": "int"
+  }
+}

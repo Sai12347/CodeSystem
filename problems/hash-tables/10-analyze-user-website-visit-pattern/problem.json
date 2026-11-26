@@ -1,0 +1,60 @@
+{
+  "title": "Analyze User Website Visit Pattern",
+  "difficulty": "Medium",
+  "subtopic": "Frequency Counting",
+  "companies": [
+    "Amazon",
+    "Google",
+    "Meta",
+    "Bloomberg",
+    "Uber"
+  ],
+  "leetcode": 1152,
+  "description": "You are given two string arrays `username` and `website` and an integer array `timestamp`, all of the same length `n`. The tuple `[username[i], timestamp[i], website[i]]` indicates that user `username[i]` visited website `website[i]` at time `timestamp[i]`.\n\nA **pattern** is a list of **three** websites (not necessarily distinct). A user visits a pattern `(w1, w2, w3)` if they visited `w1`, then later `w2`, and then later `w3` in strictly increasing timestamp order (not necessarily consecutively).\n\nThe **score** of a pattern is the number of **distinct users** who visited all the websites in the pattern in that chronological order. (If the same user matches a pattern multiple times, that user still contributes only `1` to that pattern's score.)\n\nReturn the pattern with the **largest score**. If multiple patterns tie for the largest score, return the **lexicographically smallest** pattern (comparing element 0, then element 1, then element 2 using standard string ordering).",
+  "constraints": [
+    "3 <= username.length <= 50",
+    "1 <= username[i].length <= 10",
+    "timestamp.length == username.length",
+    "1 <= timestamp[i] <= 10^9",
+    "website.length == username.length",
+    "1 <= website[i].length <= 10",
+    "username[i] and website[i] consist of lowercase English letters.",
+    "It is guaranteed that there is at least one user who visited at least three websites.",
+    "No user visits two websites at the same timestamp."
+  ],
+  "hints": [
+    "Input records are not guaranteed to be sorted by timestamp — group visits by username and sort each user's visits by timestamp ascending.",
+    "For each user, enumerate all 3-website combinations (i < j < k) and store them in a per-user set so each user increments a pattern's score at most once.",
+    "Track the pattern with the maximum count, breaking ties by comparing the 3-tuple of website strings lexicographically."
+  ],
+  "examples": [
+    {
+      "explanation": "joe visited [home, about, career], james visited [home, cart, maps, home], mary visited [home, about, career]. Pattern [home, about, career] has score 2 (joe and mary)."
+    },
+    {
+      "explanation": "ua visited [a, b, a] and ub visited [a, b, c]. Both patterns have score 1, and [a, b, a] is lexicographically smaller than [a, b, c]."
+    }
+  ],
+  "timeComplexity": "O(n log n + sum(m_u^3))",
+  "spaceComplexity": "O(n + sum(m_u^3))",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "mostVisitedPattern",
+    "params": [
+      {
+        "name": "username",
+        "type": "String[]"
+      },
+      {
+        "name": "timestamp",
+        "type": "int[]"
+      },
+      {
+        "name": "website",
+        "type": "String[]"
+      }
+    ],
+    "returns": "List<String>"
+  }
+}

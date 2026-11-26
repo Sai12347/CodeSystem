@@ -1,0 +1,32 @@
+{
+  "title": "Copy List with Random Pointer",
+  "difficulty": "Medium",
+  "subtopic": "Pointers & Nodes",
+  "companies": ["Amazon", "Meta", "Google", "Microsoft", "Bloomberg", "Uber"],
+  "leetcode": 138,
+  "description": "A linked list of length `n` is given such that each node contains an additional `random` pointer, which could point to any node in the list, or `null`.\n\nConstruct a **deep copy** of the list. The deep copy should consist of exactly `n` brand-new `Node` objects, where each new node has its `val` set to the value of its corresponding original node. Both the `next` and `random` pointers of the new nodes should point to new nodes in the copied list such that the pointers in the original list and copied list represent the exact same list structure. **None of the pointers in the new list should point to nodes in the original list**, and the original list must remain intact after returning.\n\nReturn the head of the copied linked list.\n\nIn the input/output representation, each node is serialized as `[val, random_index]`, where `random_index` is the 0-based index of the node that `random` points to, or `null` if it does not point to any node.",
+  "constraints": [
+    "0 <= n <= 1000",
+    "-10^4 <= Node.val <= 10^4",
+    "Node.random is null or points to some node in the linked list."
+  ],
+  "hints": [
+    "A straightforward O(n) space solution uses a hash map from each original node to its newly allocated clone, then wires `next` and `random` in a second pass.",
+    "To achieve O(1) extra space, interleave each cloned node immediately after its original node: `A -> A' -> B -> B' -> ...`.",
+    "With interleaved nodes, each clone's random pointer is simply `orig.random.next` (when `orig.random` is non-null). Finally, unweave the list into the restored original list and the copied list."
+  ],
+  "examples": [
+    {"explanation": "All 5 nodes are cloned with matching next and random pointers: node 1 -> node 0, node 2 -> node 4, node 3 -> node 2, node 4 -> node 0."},
+    {"explanation": "Node 0's random points to node 1, and node 1's random points to itself."},
+    {"explanation": "Nodes have identical values (3), so random pointers must point to the exact corresponding cloned node by position/reference."}
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "adapter",
+    "inputs": [
+      {"name": "head", "type": "List<List<Integer>>", "description": "List of [val, random_index] pairs (random_index is null or 0-based index)"}
+    ]
+  }
+}

@@ -1,0 +1,45 @@
+{
+  "title": "Stack Sortable Permutation",
+  "difficulty": "Easy",
+  "subtopic": "LIFO Structure",
+  "companies": [
+    "Google",
+    "Amazon",
+    "Microsoft",
+    "Bloomberg"
+  ],
+  "description": "You are given an integer array `perm` representing a permutation of `1, 2, ..., n` arriving on an input track from left to right. You have a single LIFO siding stack. At each step you may either push the next element of `perm` onto the stack or pop the top element of the stack onto the output track.\n\nReturn `true` if it is possible to emit `[1, 2, ..., n]` in strictly ascending order on the output track, and `false` otherwise.",
+  "constraints": [
+    "1 <= perm.length <= 10^5",
+    "perm is a permutation of integers from 1 to perm.length."
+  ],
+  "hints": [
+    "Maintain the next expected output integer `need` (starting at 1) alongside a simulation stack.",
+    "Push each element of `perm` onto the stack and immediately pop while the stack top equals `need`, incrementing `need`; the permutation is stack-sortable iff `need` reaches `n + 1`."
+  ],
+  "examples": [
+    {
+      "explanation": "Push 3, push 2, push 1, then pop 1, 2, 3 to produce [1, 2, 3]."
+    },
+    {
+      "explanation": "2 must stay on the stack while waiting for 1, which traps 3 above 2 after 1 is popped, making [1, 2, 3] impossible."
+    },
+    {
+      "explanation": "Push 2, push 1, pop 1, pop 2, push 4, push 3, pop 3, pop 4 produces [1, 2, 3, 4]."
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "canSortWithStack",
+    "params": [
+      {
+        "name": "perm",
+        "type": "int[]"
+      }
+    ],
+    "returns": "boolean"
+  }
+}

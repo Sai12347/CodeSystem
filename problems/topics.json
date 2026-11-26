@@ -1,0 +1,308 @@
+[
+  {
+    "id": "arrays",
+    "name": "Arrays",
+    "subtopics": [
+      "Traversal",
+      "In-Place Operations",
+      "Rotations",
+      "Prefix/Suffix",
+      "Subarrays"
+    ]
+  },
+  {
+    "id": "strings",
+    "name": "Strings",
+    "subtopics": [
+      "Palindromes",
+      "Anagrams",
+      "Substrings",
+      "Parsing",
+      "String Matching"
+    ]
+  },
+  {
+    "id": "matrices",
+    "name": "2D Arrays & Matrices",
+    "subtopics": [
+      "Spiral Traversal",
+      "Matrix Rotation",
+      "2D Search",
+      "Simulation",
+      "Dynamic Grids"
+    ]
+  },
+  {
+    "id": "two-pointers",
+    "name": "Two Pointers",
+    "subtopics": [
+      "Converging Pointers",
+      "Fast & Slow",
+      "Trailing Pointers",
+      "Partition Pointers"
+    ]
+  },
+  {
+    "id": "sliding-window",
+    "name": "Sliding Window",
+    "subtopics": [
+      "Fixed Window",
+      "Dynamic Window",
+      "At Most K Elements",
+      "Substring Frequency"
+    ]
+  },
+  {
+    "id": "prefix-sums",
+    "name": "Prefix & Suffix Sums",
+    "subtopics": [
+      "1D Prefix Sum",
+      "2D Submatrix Sum",
+      "Difference Array",
+      "Hash + Prefix"
+    ]
+  },
+  {
+    "id": "binary-search",
+    "name": "Binary Search",
+    "subtopics": [
+      "Standard Bisect",
+      "Rotated Array",
+      "Search on Answer Space",
+      "Matrix Binary Search"
+    ]
+  },
+  {
+    "id": "sorting",
+    "name": "Sorting Algorithms",
+    "subtopics": [
+      "Merge Sort",
+      "Quick Sort",
+      "Heap Sort",
+      "Dutch Flag",
+      "Custom Comparators"
+    ]
+  },
+  {
+    "id": "recursion-backtracking",
+    "name": "Recursion & Backtracking",
+    "subtopics": [
+      "Subsets",
+      "Permutations",
+      "Combinations",
+      "Constraint Pruning",
+      "Board Puzzles"
+    ]
+  },
+  {
+    "id": "linked-lists",
+    "name": "Linked Lists",
+    "subtopics": [
+      "Pointers & Nodes",
+      "Fast/Slow Pointer",
+      "Reversal",
+      "Merge & Sort",
+      "LRU Design"
+    ]
+  },
+  {
+    "id": "stacks",
+    "name": "Stacks",
+    "subtopics": [
+      "LIFO Structure",
+      "Valid Parentheses",
+      "Expression Parsing",
+      "Min Stack"
+    ]
+  },
+  {
+    "id": "monotonic-stack",
+    "name": "Monotonic Stack & Queue",
+    "subtopics": [
+      "Next Greater Element",
+      "Histogram Area",
+      "Sliding Window Max",
+      "Stock Span"
+    ]
+  },
+  {
+    "id": "queues-deques",
+    "name": "Queues & Deques",
+    "subtopics": [
+      "Circular Queue",
+      "Deque Operations",
+      "Task Scheduler",
+      "Queue via Stacks"
+    ]
+  },
+  {
+    "id": "hash-tables",
+    "name": "Hash Tables & Maps",
+    "subtopics": [
+      "Frequency Counting",
+      "Collision Resolution",
+      "Subarray Sums",
+      "Group Anagrams"
+    ]
+  },
+  {
+    "id": "heaps",
+    "name": "Heaps & Priority Queues",
+    "subtopics": [
+      "Min/Max Heap",
+      "Top K Elements",
+      "Two-Heap Median",
+      "Merge K Sorted"
+    ]
+  },
+  {
+    "id": "binary-trees",
+    "name": "Binary Trees & Traversals",
+    "subtopics": [
+      "DFS Traversals",
+      "Level-Order BFS",
+      "Lowest Common Ancestor",
+      "Path Sums"
+    ]
+  },
+  {
+    "id": "bst",
+    "name": "Binary Search Trees (BST)",
+    "subtopics": [
+      "BST Validation",
+      "Kth Element",
+      "Inorder Successor",
+      "Balance Trees"
+    ]
+  },
+  {
+    "id": "tries",
+    "name": "Tries (Prefix Trees)",
+    "subtopics": [
+      "Prefix Search",
+      "Autocomplete",
+      "Wildcard Search",
+      "Bitwise XOR Trie"
+    ]
+  },
+  {
+    "id": "graphs",
+    "name": "Graphs (BFS & DFS)",
+    "subtopics": [
+      "Connected Components",
+      "Cycle Detection",
+      "Flood Fill",
+      "Bipartite Graphs"
+    ]
+  },
+  {
+    "id": "shortest-paths",
+    "name": "Shortest Paths (Dijkstra)",
+    "subtopics": [
+      "Dijkstra",
+      "Bellman-Ford",
+      "Floyd-Warshall",
+      "Network Delays"
+    ]
+  },
+  {
+    "id": "mst",
+    "name": "Minimum Spanning Trees",
+    "subtopics": [
+      "Kruskal Algorithm",
+      "Prim Algorithm",
+      "Manhattan MST",
+      "Min Cost Networks"
+    ]
+  },
+  {
+    "id": "topological-sort",
+    "name": "Topological Sort & DAGs",
+    "subtopics": [
+      "Kahn Algorithm",
+      "In-Degree BFS",
+      "Post-Order DFS",
+      "Alien Dictionary"
+    ]
+  },
+  {
+    "id": "dsu",
+    "name": "Disjoint Set Union (DSU)",
+    "subtopics": [
+      "Path Compression",
+      "Union by Rank",
+      "Connectivity",
+      "Equivalence Classes"
+    ]
+  },
+  {
+    "id": "dp-1d",
+    "name": "Dynamic Programming (1D)",
+    "subtopics": [
+      "Linear States",
+      "Fibonacci Transitions",
+      "House Robber",
+      "Subsequences"
+    ]
+  },
+  {
+    "id": "dp-2d",
+    "name": "2D & Grid DP",
+    "subtopics": [
+      "Grid Paths",
+      "Cost Minimization",
+      "Matrix Chains",
+      "String Edits"
+    ]
+  },
+  {
+    "id": "dp-knapsack",
+    "name": "Knapsack & Subsequence DP",
+    "subtopics": [
+      "0/1 Knapsack",
+      "Unbounded Knapsack",
+      "Subset Sum",
+      "Partition Equal"
+    ]
+  },
+  {
+    "id": "dp-trees",
+    "name": "Tree & Bitmask DP",
+    "subtopics": [
+      "Subtree Optimization",
+      "Tree Rerooting",
+      "Bitmask Traveling Salesperson",
+      "Assignment"
+    ]
+  },
+  {
+    "id": "greedy",
+    "name": "Greedy Algorithms",
+    "subtopics": [
+      "Interval Scheduling",
+      "Local Optimality",
+      "Gas Station",
+      "Huffman Logic"
+    ]
+  },
+  {
+    "id": "bit-manipulation",
+    "name": "Bit Manipulation & Math",
+    "subtopics": [
+      "XOR Tricks",
+      "Counting Bits",
+      "Two Complement",
+      "Fast Exponentiation"
+    ]
+  },
+  {
+    "id": "advanced-trees",
+    "name": "Segment Trees & Fenwick",
+    "subtopics": [
+      "Range Queries",
+      "Lazy Propagation",
+      "Fenwick Tree",
+      "Inversion Counters"
+    ]
+  }
+]

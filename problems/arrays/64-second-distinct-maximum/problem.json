@@ -1,0 +1,43 @@
+{
+  "title": "Second Distinct Maximum",
+  "difficulty": "Easy",
+  "subtopic": "Traversal",
+  "companies": [
+    "Amazon",
+    "Google",
+    "Microsoft"
+  ],
+  "description": "Given an integer array `nums`, return its second-largest distinct value. If fewer than two distinct values exist, return -1. Input: `nums`. Output: the second-largest distinct value or -1.",
+  "constraints": [
+    "1 <= nums.length <= 100000",
+    "-1000000000 <= nums[i] <= 1000000000"
+  ],
+  "hints": [
+    "Track the running prefix, window, or frequency information needed by the condition.",
+    "Check duplicates, all-equal values, and boundary-sized windows."
+  ],
+  "examples": [
+    {
+      "input": "nums = [3, 2, 1]",
+      "output": "2"
+    },
+    {
+      "input": "nums = [2, 2, 2]",
+      "output": "-1"
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "secondDistinctMaximum",
+    "params": [
+      {
+        "name": "nums",
+        "type": "int[]"
+      }
+    ],
+    "returns": "int"
+  }
+}

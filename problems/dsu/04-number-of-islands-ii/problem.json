@@ -1,0 +1,42 @@
+{
+  "title": "Number of Islands II",
+  "difficulty": "Hard",
+  "subtopic": "Connectivity",
+  "companies": ["Google", "Amazon", "Meta", "Uber", "Microsoft"],
+  "leetcode": 305,
+  "description": "You are given an empty 2D binary grid of size `m x n`. The grid represents a map where `0` represents water and `1` represents land. Initially, all cells of the grid are water (`0`).\n\nWe perform a sequence of add-land operations given by an array `positions`, where `positions[i] = [ri, ci]` turns the cell `(ri, ci)` into land (`1`).\n\nReturn an array `answer` of length `positions.length`, where `answer[i]` is the number of islands immediately after applying the `i`-th operation.\n\nAn island is surrounded by water and is formed by connecting adjacent land cells horizontally or vertically (4-directionally). You may assume all four edges of the grid are surrounded by water. Note that `positions` may contain duplicate coordinates; adding land to a cell that is already land leaves the grid and the island count unchanged.",
+  "constraints": [
+    "1 <= m, n <= 10^4",
+    "1 <= m * n <= 10^4",
+    "0 <= positions.length <= 10^4",
+    "positions[i].length == 2",
+    "0 <= ri < m",
+    "0 <= ci < n"
+  ],
+  "hints": [
+    "Re-running BFS or DFS after every add-land operation is too slow when there are thousands of operations; instead, maintain islands dynamically with a Disjoint Set Union (DSU) structure.",
+    "Map each grid cell (r, c) to a 1D index r * n + c. Initialize parent[idx] = -1 to distinguish water from land, and ignore duplicate positions where parent[idx] != -1.",
+    "When turning a new water cell into land, increment the island count by 1, then check its four orthogonal neighbors; each successful union with an adjacent land cell decrements the island count by 1."
+  ],
+  "examples": [
+    {
+      "explanation": "Adding (0, 0) creates 1 island. Adding (0, 1) connects to (0, 0), keeping 1 island. Adding (1, 2) creates a 2nd island. Adding (2, 1) creates a 3rd island."
+    },
+    {
+      "explanation": "The 1 x 1 grid becomes a single land cell, resulting in 1 island."
+    }
+  ],
+  "timeComplexity": "O(m * n + k * alpha(m * n))",
+  "spaceComplexity": "O(m * n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "numIslands2",
+    "params": [
+      {"name": "m", "type": "int"},
+      {"name": "n", "type": "int"},
+      {"name": "positions", "type": "int[][]"}
+    ],
+    "returns": "List<Integer>"
+  }
+}

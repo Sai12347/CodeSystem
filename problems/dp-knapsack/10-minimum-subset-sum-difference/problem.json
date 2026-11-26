@@ -1,0 +1,39 @@
+{
+  "title": "Minimum Subset Sum Difference",
+  "difficulty": "Medium",
+  "subtopic": "Subset Sum",
+  "companies": [
+    "Amazon",
+    "Google",
+    "Microsoft"
+  ],
+  "description": "Partition the array into two subsets, using every value exactly once. Return the smallest possible absolute difference between the two subset sums.",
+  "constraints": [
+    "1 <= nums.length <= 100",
+    "0 <= nums[i] <= 1000"
+  ],
+  "hints": [
+    "Define a state by the capacity, achievable sum, or difference between partial groups.",
+    "Process each item with the usage rule in the statement."
+  ],
+  "examples": [
+    {
+      "input": "nums = [1,6,11,5]",
+      "output": "1"
+    }
+  ],
+  "timeComplexity": "O(n*capacity)",
+  "spaceComplexity": "O(capacity)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "minimumDifference",
+    "params": [
+      {
+        "name": "nums",
+        "type": "int[]"
+      }
+    ],
+    "returns": "int"
+  }
+}

@@ -1,0 +1,43 @@
+{
+  "title": "Minimum Replacements to Reduce Integer to One",
+  "difficulty": "Medium",
+  "subtopic": "Two Complement",
+  "companies": [
+    "Google",
+    "Amazon",
+    "Apple"
+  ],
+  "description": "Given a positive integer `n`, you can repeatedly apply one operation: if `n` is even, replace `n` with `n / 2`; if `n` is odd, replace `n` with either `n + 1` or `n - 1`. Return the minimum number of operations needed for `n` to become `1`.",
+  "constraints": [
+    "1 <= n <= 2^31 - 1"
+  ],
+  "hints": [
+    "When `n` is odd, examine its lowest two bits (`n & 3`): if `(n & 3) == 1` or `n == 3`, decrementing produces more trailing zeros (or reaches 2 directly); otherwise incrementing creates at least two trailing zeros.",
+    "Promote `n` to a 64-bit integer so that adding 1 to `2^31 - 1` does not overflow a signed 32-bit integer."
+  ],
+  "examples": [
+    {
+      "explanation": "8 -> 4 -> 2 -> 1 takes 3 operations."
+    },
+    {
+      "explanation": "7 -> 8 -> 4 -> 2 -> 1 takes 4 operations."
+    },
+    {
+      "explanation": "3 -> 2 -> 1 takes 2 operations."
+    }
+  ],
+  "timeComplexity": "O(log n)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "integerReplacement",
+    "params": [
+      {
+        "name": "n",
+        "type": "int"
+      }
+    ],
+    "returns": "int"
+  }
+}

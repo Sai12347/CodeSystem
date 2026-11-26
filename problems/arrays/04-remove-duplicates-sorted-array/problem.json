@@ -1,0 +1,53 @@
+{
+  "title": "Remove Duplicates from Sorted Array",
+  "difficulty": "Easy",
+  "subtopic": "In-Place Operations",
+  "companies": [
+    "Meta",
+    "Amazon",
+    "Microsoft",
+    "Google",
+    "Apple"
+  ],
+  "leetcode": 26,
+  "description": "Given an integer array `nums` sorted in **non-decreasing order**, remove the duplicates **in-place** such that each unique element appears only once. The relative order of the elements must be kept the same.\n\nReturn `k`, the number of unique elements in `nums`. After your function returns, the first `k` elements of `nums` must contain the unique elements in sorted order; the remaining elements beyond index `k - 1` do not matter.",
+  "constraints": [
+    "1 <= nums.length <= 3 * 10^4",
+    "-10^4 <= nums[i] <= 10^4",
+    "nums is sorted in non-decreasing order."
+  ],
+  "hints": [
+    "Because the array is already sorted, all duplicate copies of a value appear consecutively.",
+    "Maintain a slow write pointer `k` marking the next position for a new unique value, while a fast pointer scans the array.",
+    "Whenever `nums[read] != nums[k - 1]`, write `nums[read]` to `nums[k]` and increment `k`."
+  ],
+  "examples": [
+    {
+      "explanation": "Your function should return k = 2, with the first two elements of nums being [1, 2]."
+    },
+    {
+      "explanation": "Your function should return k = 5, with the first five elements of nums being [0, 1, 2, 3, 4]."
+    },
+    {
+      "explanation": "A single element is already unique, so return k = 1 with prefix [5]."
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "removeDuplicates",
+    "params": [
+      {
+        "name": "nums",
+        "type": "int[]"
+      }
+    ],
+    "returns": "int",
+    "output": {
+      "mode": "prefix",
+      "param": "nums"
+    }
+  }
+}

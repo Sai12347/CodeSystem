@@ -1,0 +1,43 @@
+{
+  "title": "Find All Disappeared Numbers",
+  "difficulty": "Easy",
+  "subtopic": "In-Place Operations",
+  "companies": [
+    "Amazon",
+    "Google",
+    "Microsoft"
+  ],
+  "description": "An array `nums` has length `n`, and each value is in the range 1 through `n`. Return, in increasing order, every value in that range that does not occur in `nums`. Input: `nums`. Output: the list of missing values.",
+  "constraints": [
+    "1 <= nums.length <= 100000",
+    "1 <= nums[i] <= nums.length"
+  ],
+  "hints": [
+    "Scan once to identify the boundary or state where the answer changes.",
+    "Test already ordered, reversed, duplicate, and minimum-size inputs."
+  ],
+  "examples": [
+    {
+      "input": "nums = [4, 3, 2, 7, 8, 2, 3, 1]",
+      "output": "[5, 6]"
+    },
+    {
+      "input": "nums = [4, 4, 4, 4]",
+      "output": "[1, 2, 3]"
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "findDisappearedNumbers",
+    "params": [
+      {
+        "name": "nums",
+        "type": "int[]"
+      }
+    ],
+    "returns": "int[]"
+  }
+}

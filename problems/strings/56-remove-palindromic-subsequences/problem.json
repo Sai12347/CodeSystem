@@ -1,0 +1,44 @@
+{
+  "title": "Remove Palindromic Subsequences",
+  "difficulty": "Easy",
+  "subtopic": "Palindromes",
+  "companies": [
+    "Amazon",
+    "Google",
+    "Bloomberg"
+  ],
+  "description": "You are given a non-empty string `s` consisting only of the letters `'a'` and `'b'`. In a single step you can remove one palindromic subsequence from `s` (not necessarily contiguous). Return the minimum number of steps required to make `s` empty.",
+  "constraints": [
+    "1 <= s.length <= 10^4",
+    "s[i] is either 'a' or 'b'."
+  ],
+  "hints": [
+    "A subsequence of all 'a's is always a palindrome, and a subsequence of all 'b's is also always a palindrome.",
+    "Therefore the answer is 1 if s is already a palindrome, and 2 otherwise."
+  ],
+  "examples": [
+    {
+      "explanation": "\"ababa\" is already a palindrome, so it can be removed in 1 step."
+    },
+    {
+      "explanation": "Remove all 'a's in step 1 and all 'b's in step 2 (2 steps total)."
+    },
+    {
+      "explanation": "Remove \"aba\" or all 'b's first, then the remaining identical letters in step 2."
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "removePalindromeSub",
+    "params": [
+      {
+        "name": "s",
+        "type": "String"
+      }
+    ],
+    "returns": "int"
+  }
+}

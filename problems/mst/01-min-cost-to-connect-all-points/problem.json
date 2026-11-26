@@ -1,0 +1,40 @@
+{
+  "title": "Min Cost to Connect All Points",
+  "difficulty": "Medium",
+  "subtopic": "Manhattan MST",
+  "companies": ["Amazon", "Google", "Microsoft", "Meta", "Uber"],
+  "leetcode": 1584,
+  "description": "You are given an array `points` representing integer coordinates of some points on a 2D-plane, where `points[i] = [xi, yi]`.\n\nThe cost of connecting two points `[xi, yi]` and `[xj, yj]` is the Manhattan distance between them: `|xi - xj| + |yi - yj|`, where `|val|` denotes the absolute value of `val`.\n\nReturn the minimum cost to make all points connected. All points are connected if there is exactly one simple path between any two points (a spanning tree). If there is only one point, the minimum cost is `0`.",
+  "constraints": [
+    "1 <= points.length <= 1000",
+    "-10^6 <= xi, yi <= 10^6",
+    "All pairs (xi, yi) are distinct."
+  ],
+  "hints": [
+    "Model the points as vertices of a complete undirected weighted graph where the edge weight between points i and j is their Manhattan distance.",
+    "The problem asks for the total weight of a Minimum Spanning Tree (MST) on this dense complete graph.",
+    "Because the graph is complete with n <= 1000, an array-based Prim's algorithm runs in O(n^2) time and O(n) extra space without materializing all O(n^2) edges."
+  ],
+  "examples": [
+    {
+      "explanation": "We can connect the points with edges (0,0)-(2,2) [cost 4], (2,2)-(5,2) [cost 3], (5,2)-(7,0) [cost 4], and (2,2)-(3,10) [cost 9] for a total minimum cost of 4 + 3 + 4 + 9 = 20."
+    },
+    {
+      "explanation": "Connect (3,12) to (-2,5) with cost 12 and (-2,5) to (-4,1) with cost 6 for a total cost of 18."
+    },
+    {
+      "explanation": "Connect (0,0) to (1,0) [cost 1], (1,0) to (1,1) [cost 1], and (1,1) to (-1,1) [cost 2] for a total cost of 4."
+    }
+  ],
+  "timeComplexity": "O(n^2)",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "minCostConnectPoints",
+    "params": [
+      {"name": "points", "type": "int[][]"}
+    ],
+    "returns": "int"
+  }
+}

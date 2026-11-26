@@ -1,0 +1,31 @@
+{
+  "title": "Linked List Cycle",
+  "difficulty": "Easy",
+  "subtopic": "Fast/Slow Pointer",
+  "companies": ["Amazon", "Google", "Meta", "Microsoft", "Apple", "Bloomberg"],
+  "leetcode": 141,
+  "description": "Given `head`, the head of a singly linked list, determine if the linked list has a cycle in it.\n\nThere is a cycle in a linked list if there is some node in the list that can be reached again by continuously following the `next` pointer. Internally, `pos` is used to denote the index of the node that the tail's `next` pointer is connected to (`-1` if there is no cycle). Note that `pos` is not passed as a parameter to `hasCycle`.\n\nReturn `true` if there is a cycle in the linked list, otherwise return `false`.",
+  "constraints": [
+    "The number of nodes in the list is in the range [0, 10^4].",
+    "-10^5 <= Node.val <= 10^5",
+    "pos is -1 or a valid index in the linked list."
+  ],
+  "hints": [
+    "Use Floyd's tortoise and hare algorithm with a slow pointer moving 1 step and a fast pointer moving 2 steps.",
+    "If there is a cycle, the fast pointer will eventually lap and meet the slow pointer; otherwise fast reaches null."
+  ],
+  "examples": [
+    {"explanation": "The tail connects to node index 1 (value 2), forming a cycle."},
+    {"explanation": "There is no cycle (pos = -1)."}
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "adapter",
+    "inputs": [
+      {"name": "head", "type": "int[]", "description": "Node values"},
+      {"name": "pos", "type": "int", "description": "Index tail connects to, or -1"}
+    ]
+  }
+}

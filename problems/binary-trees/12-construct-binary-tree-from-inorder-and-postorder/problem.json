@@ -1,0 +1,57 @@
+{
+  "title": "Construct Binary Tree from Inorder and Postorder Traversal",
+  "difficulty": "Medium",
+  "subtopic": "DFS Traversals",
+  "companies": [
+    "Amazon",
+    "Microsoft",
+    "Google",
+    "Meta",
+    "Apple"
+  ],
+  "leetcode": 106,
+  "description": "Given two integer arrays `inorder` and `postorder` where `inorder` is the inorder traversal of a binary tree and `postorder` is the postorder traversal of the same tree, construct and return the binary tree.\n\nAll node values in the tree are guaranteed to be **unique**, so the reconstructed binary tree is uniquely determined.",
+  "constraints": [
+    "1 <= inorder.length <= 3000",
+    "postorder.length == inorder.length",
+    "-3000 <= inorder[i], postorder[i] <= 3000",
+    "inorder and postorder consist of unique values.",
+    "Each value of postorder also appears in inorder.",
+    "inorder is guaranteed to be the inorder traversal of the tree.",
+    "postorder is guaranteed to be the postorder traversal of the tree."
+  ],
+  "hints": [
+    "The last element of `postorder` is always the root of the current subtree.",
+    "Because postorder visits left, then right, then root, reading `postorder` from right to left yields root, then right subtree, then left subtree — so you must recursively build the **right** subtree before the **left** subtree.",
+    "Store each value's index in `inorder` inside a hash map so splitting the subtree range takes O(1) time, giving O(n) total time."
+  ],
+  "examples": [
+    {
+      "explanation": "Root is 3 (last in postorder). In inorder, [9] is left of 3 and [15, 20, 7] is right of 3, yielding tree [3,9,20,null,null,15,7]."
+    },
+    {
+      "explanation": "A single-element traversal produces a single-node tree [-1]."
+    },
+    {
+      "explanation": "Root is 1 (last in postorder), with left child 2 and right child 3."
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "buildTree",
+    "params": [
+      {
+        "name": "inorder",
+        "type": "int[]"
+      },
+      {
+        "name": "postorder",
+        "type": "int[]"
+      }
+    ],
+    "returns": "TreeNode"
+  }
+}

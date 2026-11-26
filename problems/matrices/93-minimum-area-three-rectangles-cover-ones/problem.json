@@ -1,0 +1,47 @@
+{
+  "title": "Minimum Area of Three Rectangles Covering All Ones",
+  "difficulty": "Hard",
+  "subtopic": "2D Search",
+  "companies": [
+    "Google",
+    "Meta",
+    "Amazon",
+    "Apple"
+  ],
+  "description": "You are given an `m x n` binary matrix `grid` containing at least three `1`s.\n\nFind **three non-overlapping** axis-aligned rectangles with positive integer area (whose sides lie along grid lines) such that every `1` in `grid` lies inside at least one of the three rectangles. Return the **minimum possible sum** of the areas of the three rectangles.",
+  "constraints": [
+    "m == grid.length, n == grid[i].length",
+    "1 <= m, n <= 30",
+    "grid[i][j] is either 0 or 1.",
+    "grid contains at least three 1s."
+  ],
+  "hints": [
+    "Any three disjoint axis-aligned rectangles can always be separated by guillotine cuts into one of 6 topologies: two horizontal cuts, two vertical cuts, or one T-shaped cut (four orientations).",
+    "Build a 2D prefix sum of 1s so you can find the tightest bounding box of all 1s inside any sub-rectangle [r1..r2] x [c1..c2] in O(m + n) time, then evaluate all 6 partition families."
+  ],
+  "examples": [
+    {
+      "explanation": "Covering column 0 ((0,0)-(1,0), area 2), cell (1,1) (area 1), and column 2 ((0,2)-(1,2), area 2) yields a minimum total area of 5."
+    },
+    {
+      "explanation": "Each of the three isolated 1s at (0,0), (1,2), and (2,1) is covered by its own 1x1 rectangle, giving minimum sum 3."
+    },
+    {
+      "explanation": "A 1x4 row [1, 0, 1, 1] splits vertically into [0..0] (area 1), [2..2] (area 1), and [3..3] (area 1), totaling 3."
+    }
+  ],
+  "timeComplexity": "O((m^2 + n^2 + m * n) * (m + n))",
+  "spaceComplexity": "O(m * n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "minimumSumThreeRectangles",
+    "params": [
+      {
+        "name": "grid",
+        "type": "int[][]"
+      }
+    ],
+    "returns": "int"
+  }
+}

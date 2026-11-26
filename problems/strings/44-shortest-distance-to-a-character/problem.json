@@ -1,0 +1,49 @@
+{
+  "title": "Shortest Distance to a Character",
+  "difficulty": "Easy",
+  "subtopic": "String Matching",
+  "companies": [
+    "Amazon",
+    "Google",
+    "Uber"
+  ],
+  "description": "Given a lowercase string `s` and a single-character string `c` that is guaranteed to occur at least once in `s`, return an integer array `answer` of length `s.length` where `answer[i]` is the shortest distance from index `i` to the closest occurrence of `c` in `s`.",
+  "constraints": [
+    "1 <= s.length <= 10^4",
+    "c.length == 1",
+    "s and c consist of lowercase English letters, and c occurs at least once in s."
+  ],
+  "hints": [
+    "Run one pass from left to right tracking the most recent index of c.",
+    "Run a second pass from right to left taking the minimum distance to the nearest c on the right."
+  ],
+  "examples": [
+    {
+      "explanation": "The letter 'e' sits at indices 3, 5, 6, and 11, giving minimal distances at every index."
+    },
+    {
+      "explanation": "The letter 'b' is at index 3, so distances decrease from 3 down to 0."
+    },
+    {
+      "explanation": "Every position is already 'a', so all distances are 0."
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "shortestToChar",
+    "params": [
+      {
+        "name": "s",
+        "type": "String"
+      },
+      {
+        "name": "c",
+        "type": "String"
+      }
+    ],
+    "returns": "int[]"
+  }
+}

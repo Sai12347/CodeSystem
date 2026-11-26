@@ -1,0 +1,48 @@
+{
+  "title": "Recover Binary Search Tree",
+  "difficulty": "Medium",
+  "subtopic": "BST Validation",
+  "companies": ["Amazon", "Microsoft", "Google", "Meta", "Bloomberg", "Uber"],
+  "leetcode": 99,
+  "description": "You are given the `root` of a binary search tree (BST) where the values of **exactly two** nodes of the tree were swapped by mistake. Recover the tree **in-place** without changing its structure (only swap the values of the two misplaced nodes).\n\nYour method should not return anything; modify the tree rooted at `root` directly. Can you solve it in `O(1)` auxiliary space?",
+  "constraints": [
+    "2 <= number of nodes in the tree <= 1000",
+    "-2^31 <= Node.val <= 2^31 - 1",
+    "All values in the tree are unique.",
+    "Exactly two nodes in the BST have had their values swapped."
+  ],
+  "hints": [
+    "The inorder traversal of a valid BST produces values in strictly ascending order. Swapping two nodes introduces either one inversion (if they are adjacent in inorder) or two inversions (if they are non-adjacent).",
+    "Track the previously visited node prev during inorder traversal. Whenever prev.val > curr.val, set first = prev (only on the first inversion) and always update second = curr.",
+    "To achieve O(1) extra space instead of O(h) recursion/stack space, perform Morris Inorder Traversal and make sure to finish restoring all temporary right-pointer threads before swapping first.val and second.val."
+  ],
+  "examples": [
+    {
+      "explanation": "Inorder traversal is [3, 2, 1], showing inversions at (3, 2) and (2, 1). Swapping 3 and 1 restores the valid BST [3, 1, null, null, 2]."
+    },
+    {
+      "explanation": "Inorder traversal is [1, 3, 2, 4], showing a single adjacent inversion (3, 2). Swapping 3 and 2 restores [2, 1, 4, null, null, 3]."
+    },
+    {
+      "explanation": "Nodes 3 and 1 are swapped; swapping their values back restores [2, 1, 3]."
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "recoverTree",
+    "params": [
+      {
+        "name": "root",
+        "type": "TreeNode"
+      }
+    ],
+    "returns": "void",
+    "output": {
+      "mode": "param",
+      "param": "root"
+    }
+  }
+}

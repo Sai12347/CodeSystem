@@ -1,0 +1,30 @@
+{
+  "title": "Find Maximum and Minimum Element in Array",
+  "difficulty": "Easy",
+  "subtopic": "Traversal",
+  "companies": ["Amazon", "Microsoft", "Adobe", "Oracle"],
+  "description": "Given a non-empty integer array `nums`, return a two-element array `[minVal, maxVal]` containing the minimum and maximum values in `nums`.\n\nSolve the problem in a single pass with `O(1)` auxiliary space.",
+  "constraints": [
+    "1 <= nums.length <= 10^5",
+    "-10^9 <= nums[i] <= 10^9"
+  ],
+  "hints": [
+    "Initialize both the running minimum and running maximum to nums[0].",
+    "Scan the remaining elements once, updating minVal and maxVal whenever a smaller or larger value is seen."
+  ],
+  "examples": [
+    {"explanation": "The smallest value is 4 and the largest value is 42."},
+    {"explanation": "With a single element, both the minimum and maximum equal -7."}
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "findMinMax",
+    "params": [
+      {"name": "nums", "type": "int[]"}
+    ],
+    "returns": "int[]"
+  }
+}

@@ -1,0 +1,45 @@
+{
+  "title": "Minimum Operations for 90-Degree Rotational Symmetry",
+  "difficulty": "Medium",
+  "subtopic": "Matrix Rotation",
+  "companies": [
+    "Google",
+    "Meta",
+    "Microsoft"
+  ],
+  "description": "You are given an `n x n` integer matrix `grid`. In one operation, you may choose any cell `(r, c)` and either increment `grid[r][c]` by `1` or decrement `grid[r][c]` by `1`.\n\nReturn the **minimum total number of operations** required so that `grid` becomes identical to its own `90`-degree clockwise rotation (i.e., `grid[r][c] == grid[c][n - 1 - r]` for all `0 <= r, c < n`).",
+  "constraints": [
+    "n == grid.length == grid[i].length",
+    "1 <= n <= 200",
+    "-10^9 <= grid[i][j] <= 10^9"
+  ],
+  "hints": [
+    "Under 90-degree clockwise rotation, the matrix splits into disjoint 4-cell orbits {(r, c), (c, n-1-r), (n-1-r, n-1-c), (n-1-c, r)}, plus an invariant center cell when n is odd.",
+    "All four values in an orbit must be made equal; for sorted values a <= b <= c <= d, the minimum L1 cost is achieved at any target in [b, c] and equals (d - a) + (c - b)."
+  ],
+  "examples": [
+    {
+      "explanation": "All four cells form one orbit [1, 2, 3, 4]; bringing them to 2 or 3 costs (4 - 1) + (3 - 2) = 4."
+    },
+    {
+      "explanation": "The matrix is already invariant under 90-degree clockwise rotation, requiring 0 operations."
+    },
+    {
+      "explanation": "Corner orbit [1, 5, 1, 5] costs 8, edge orbit [2, 2, 6, 2] costs 4, and the center cell 9 is invariant, totaling 12."
+    }
+  ],
+  "timeComplexity": "O(n^2)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "minOpsRotationalSymmetry",
+    "params": [
+      {
+        "name": "grid",
+        "type": "int[][]"
+      }
+    ],
+    "returns": "long"
+  }
+}

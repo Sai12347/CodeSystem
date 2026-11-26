@@ -1,0 +1,43 @@
+{
+  "title": "Shortest Palindrome by Prepending",
+  "difficulty": "Hard",
+  "subtopic": "Palindromes",
+  "companies": [
+    "Amazon",
+    "Google",
+    "Microsoft"
+  ],
+  "description": "Given a string `s`, add the fewest characters possible to its front so that the entire result is a palindrome. Added characters must come from `s` in reverse order; characters already in `s` cannot be rearranged. Input: lowercase string `s`. Output: the shortest resulting palindrome.",
+  "constraints": [
+    "0 <= s.length <= 100000",
+    "s contains lowercase English letters"
+  ],
+  "hints": [
+    "Keep track of the smallest state needed to continue matching or comparing characters.",
+    "Test empty, one-character, repeated-character, and boundary inputs."
+  ],
+  "examples": [
+    {
+      "input": "s = \"aacecaaa\"",
+      "output": "\"aaacecaaa\""
+    },
+    {
+      "input": "s = \"abcd\"",
+      "output": "\"dcbabcd\""
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "shortestPalindrome",
+    "params": [
+      {
+        "name": "s",
+        "type": "String"
+      }
+    ],
+    "returns": "String"
+  }
+}

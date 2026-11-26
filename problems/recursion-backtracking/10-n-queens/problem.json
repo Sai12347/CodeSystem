@@ -1,0 +1,45 @@
+{
+  "title": "N-Queens",
+  "difficulty": "Hard",
+  "subtopic": "Board Puzzles",
+  "companies": [
+    "Google",
+    "Amazon",
+    "Meta",
+    "Microsoft",
+    "Apple",
+    "Bloomberg"
+  ],
+  "leetcode": 51,
+  "description": "The n-queens puzzle is the problem of placing `n` queens on an `n x n` chessboard such that no two queens attack each other. Two queens attack each other if they share the same row, column, or diagonal.\n\nGiven an integer `n`, return all distinct solutions to the n-queens puzzle. You may return the solutions in any order. Each solution is represented as a list of `n` strings of length `n` ordered from row `0` to row `n - 1`, where `'Q'` indicates a queen and `'.'` indicates an empty square. If no valid placement exists, return an empty list `[]`.",
+  "constraints": [
+    "1 <= n <= 10"
+  ],
+  "hints": [
+    "Because each row must contain exactly one queen, place queens one row at a time from row 0 to row n - 1.",
+    "Track occupied columns, main diagonals (row - col), and anti-diagonals (row + col) in O(1) using sets, boolean arrays, or bitmasks.",
+    "Bitmasks allow computing all safe columns for the current row in a single bitwise expression and iterating only over valid set bits."
+  ],
+  "examples": [
+    {
+      "explanation": "For n = 4, there are exactly 2 distinct valid board configurations where no two queens share a row, column, or diagonal."
+    },
+    {
+      "explanation": "For n = 1, a single queen placed at (0, 0) forms the unique solution [[\"Q\"]]."
+    }
+  ],
+  "timeComplexity": "O(n!)",
+  "spaceComplexity": "O(n)",
+  "compare": "sorted",
+  "signature": {
+    "kind": "function",
+    "method": "solveNQueens",
+    "params": [
+      {
+        "name": "n",
+        "type": "int"
+      }
+    ],
+    "returns": "List<List<String>>"
+  }
+}

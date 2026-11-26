@@ -1,0 +1,5 @@
+def visible():
+    return [{'in': {'n': 3, 'edges': [[0, 1, 6], [1, 2, 6], [0, 2, 20]], 'source': 0, 'destination': 2}}, {'in': {'n': 2, 'edges': [[0, 1, 7]], 'source': 0, 'destination': 1}}, {'in': {'n': 2, 'edges': [[0, 1, 1]], 'source': 0, 'destination': 1}}]
+
+def hidden():
+    return [{'in': {'n': 3, 'edges': [[0, 1, 10], [1, 2, 10]], 'source': 0, 'destination': 2}}, {'in': {'n': 3, 'edges': [[0, 1, 5], [1, 2, 5], [0, 2, 20]], 'source': 0, 'destination': 2}}, {'in': {'n': 4, 'edges': [[0, 1, 2], [1, 3, 10], [0, 2, 6], [2, 3, 6]], 'source': 0, 'destination': 3}}, {'in': {'n': 4, 'edges': [[0, 1, 100], [1, 2, 1], [2, 3, 1]], 'source': 0, 'destination': 3}}, {'in': {'n': 3, 'edges': [[0, 1, 3], [1, 2, 4]], 'source': 2, 'destination': 0}}, {'in': {'n': 3, 'edges': [[0, 1, 1000000000], [1, 2, 1000000000]], 'source': 0, 'destination': 2}}, {'in': {'n': 4, 'edges': [[0, 1, 3], [1, 2, 3], [2, 3, 3], [0, 3, 20]], 'source': 0, 'destination': 3}}, {'in': {'n': 2, 'edges': [[0, 1, 2]], 'source': 0, 'destination': 0}}]

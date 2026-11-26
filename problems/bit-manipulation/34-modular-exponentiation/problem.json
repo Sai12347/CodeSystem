@@ -1,0 +1,53 @@
+{
+  "title": "Modular Exponentiation",
+  "difficulty": "Easy",
+  "subtopic": "Fast Exponentiation",
+  "companies": [
+    "Google",
+    "Amazon",
+    "Microsoft"
+  ],
+  "description": "Given non-negative integers `base` and `exp` and a positive modulus `mod`, compute `(base^exp) % mod` using binary exponentiation. By convention `0^0 = 1`, so when `exp == 0` the result is `1 % mod`.",
+  "constraints": [
+    "0 <= base <= 10^9",
+    "0 <= exp <= 10^15",
+    "1 <= mod <= 10^9"
+  ],
+  "hints": [
+    "Repeatedly square `base % mod` while shifting `exp` right by 1 bit.",
+    "Whenever the lowest bit of `exp` is `1`, multiply the running answer by the current base power modulo `mod`; initialize the answer to `1 % mod` to handle `mod == 1`."
+  ],
+  "examples": [
+    {
+      "explanation": "2^10 = 1024, and 1024 % 1000 = 24."
+    },
+    {
+      "explanation": "3^0 = 1, and 1 % 7 = 1."
+    },
+    {
+      "explanation": "Any integer modulo 1 is 0."
+    }
+  ],
+  "timeComplexity": "O(log exp)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "modPow",
+    "params": [
+      {
+        "name": "base",
+        "type": "long"
+      },
+      {
+        "name": "exp",
+        "type": "long"
+      },
+      {
+        "name": "mod",
+        "type": "long"
+      }
+    ],
+    "returns": "long"
+  }
+}

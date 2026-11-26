@@ -1,0 +1,43 @@
+{
+  "title": "Reverse Vowels in a String",
+  "difficulty": "Easy",
+  "subtopic": "Parsing",
+  "companies": [
+    "Amazon",
+    "Google",
+    "Microsoft"
+  ],
+  "description": "Given a string `s`, reverse only its vowels and leave every other character in its original position. Vowels are `a`, `e`, `i`, `o`, `u` in either case. Input: an ASCII string `s`. Output: the transformed string.",
+  "constraints": [
+    "1 <= s.length <= 100000",
+    "s contains only ASCII letters and spaces"
+  ],
+  "hints": [
+    "Keep track of the smallest state needed to continue matching or comparing characters.",
+    "Test empty, one-character, repeated-character, and boundary inputs."
+  ],
+  "examples": [
+    {
+      "input": "s = \"hello\"",
+      "output": "\"holle\""
+    },
+    {
+      "input": "s = \"aA\"",
+      "output": "\"Aa\""
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "reverseVowels",
+    "params": [
+      {
+        "name": "s",
+        "type": "String"
+      }
+    ],
+    "returns": "String"
+  }
+}

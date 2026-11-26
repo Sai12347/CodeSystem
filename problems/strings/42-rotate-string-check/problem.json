@@ -1,0 +1,48 @@
+{
+  "title": "Rotate String Check",
+  "difficulty": "Easy",
+  "subtopic": "String Matching",
+  "companies": [
+    "Amazon",
+    "Apple",
+    "Bloomberg"
+  ],
+  "description": "Given two lowercase strings `s` and `goal`, return `true` if and only if `s` can become `goal` after some number of left shifts (possibly zero). A single left shift moves the leftmost character of `s` to the rightmost position.",
+  "constraints": [
+    "1 <= s.length, goal.length <= 1000",
+    "s and goal consist of lowercase English letters."
+  ],
+  "hints": [
+    "Two strings of different lengths can never be rotations of each other.",
+    "Every rotation of s appears as a contiguous substring of s + s."
+  ],
+  "examples": [
+    {
+      "explanation": "Shifting \"abcde\" left twice yields \"cdeab\"."
+    },
+    {
+      "explanation": "No rotation of \"abcde\" produces \"abced\"."
+    },
+    {
+      "explanation": "Zero shifts leaves \"aaa\" equal to \"aaa\"."
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "rotateString",
+    "params": [
+      {
+        "name": "s",
+        "type": "String"
+      },
+      {
+        "name": "goal",
+        "type": "String"
+      }
+    ],
+    "returns": "boolean"
+  }
+}

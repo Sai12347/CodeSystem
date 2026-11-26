@@ -1,0 +1,50 @@
+{
+  "title": "Group Anagrams",
+  "difficulty": "Medium",
+  "subtopic": "Group Anagrams",
+  "companies": [
+    "Amazon",
+    "Google",
+    "Meta",
+    "Microsoft",
+    "Bloomberg",
+    "Apple"
+  ],
+  "leetcode": 49,
+  "description": "Given an array of strings `strs`, group all **anagrams** together. You may return the groups in **any order**, and the strings within each group may also be in **any order**.\n\nAn **anagram** is a word or phrase formed by rearranging the letters of a different word or phrase, using all the original letters exactly once. Duplicate strings are anagrams of each other and must each appear in the resulting group with their original multiplicity.",
+  "constraints": [
+    "1 <= strs.length <= 10^4",
+    "0 <= strs[i].length <= 100",
+    "strs[i] consists of lowercase English letters."
+  ],
+  "hints": [
+    "Two strings are anagrams if and only if they have the exact same character frequencies (or identical sorted character sequences).",
+    "Use a canonical signature for each string as the key in a hash map whose value is the list of strings sharing that signature.",
+    "Using a 26-element letter count tuple/key avoids sorting each string and achieves O(n * k) time where k is the maximum string length."
+  ],
+  "examples": [
+    {
+      "explanation": "\"eat\", \"tea\", and \"ate\" share the letter counts {a:1, e:1, t:1}; \"tan\" and \"nat\" share {a:1, n:1, t:1}; \"bat\" forms its own group."
+    },
+    {
+      "explanation": "A single empty string forms a single group containing [\"\"]."
+    },
+    {
+      "explanation": "A single-character string forms a single group [[\"a\"]]."
+    }
+  ],
+  "timeComplexity": "O(n * k)",
+  "spaceComplexity": "O(n * k)",
+  "compare": "sortedDeep",
+  "signature": {
+    "kind": "function",
+    "method": "groupAnagrams",
+    "params": [
+      {
+        "name": "strs",
+        "type": "String[]"
+      }
+    ],
+    "returns": "List<List<String>>"
+  }
+}

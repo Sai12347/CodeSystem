@@ -1,0 +1,88 @@
+{
+  "title": "Design Front Middle Back Queue",
+  "difficulty": "Medium",
+  "subtopic": "LRU Design",
+  "companies": [
+    "Google",
+    "Amazon",
+    "Meta",
+    "Uber"
+  ],
+  "description": "Design a queue supporting `O(1)` insertions and removals at the **front**, **middle**, and **back**.\n\nImplement the `FrontMiddleBackQueue` class:\n- `FrontMiddleBackQueue()` initializes an empty queue.\n- `void pushFront(int val)` adds `val` to the front of the queue.\n- `void pushMiddle(int val)` inserts `val` at 0-based index `floor(n / 2)` where `n` is the current size.\n- `void pushBack(int val)` adds `val` to the back of the queue.\n- `int popFront()` removes and returns the front element, or `-1` if empty.\n- `int popMiddle()` removes and returns the element at 0-based index `floor((n - 1) / 2)` (the frontmost of the two middle elements when `n` is even), or `-1` if empty.\n- `int popBack()` removes and returns the back element, or `-1` if empty.",
+  "constraints": [
+    "1 <= val <= 10^9",
+    "At most 2000 calls will be made across all operations."
+  ],
+  "hints": [
+    "Split the elements across two doubly linked lists (deques) `left` and `right`, maintaining the invariant `left.size == right.size` or `left.size == right.size + 1`.",
+    "Under this invariant, `popMiddle` always pops the back of `left`, and `pushMiddle` moves the back of `left` to the front of `right` if `left.size > right.size` before appending to `left`."
+  ],
+  "examples": [
+    {
+      "explanation": "Pushes form [1, 4, 3, 2]; pops remove front 1, middle 3, middle 4, back 2, then empty -1."
+    },
+    {
+      "explanation": "Popping from an empty queue always returns -1; pushing to middle on empty inserts at index 0."
+    },
+    {
+      "explanation": "Alternating pushFront, pushMiddle, and pushBack maintains exact middle indices for both even and odd sizes."
+    }
+  ],
+  "timeComplexity": "O(1) per operation",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "design",
+    "className": "FrontMiddleBackQueue",
+    "constructor": {
+      "params": []
+    },
+    "methods": [
+      {
+        "name": "pushFront",
+        "params": [
+          {
+            "name": "val",
+            "type": "int"
+          }
+        ],
+        "returns": "void"
+      },
+      {
+        "name": "pushMiddle",
+        "params": [
+          {
+            "name": "val",
+            "type": "int"
+          }
+        ],
+        "returns": "void"
+      },
+      {
+        "name": "pushBack",
+        "params": [
+          {
+            "name": "val",
+            "type": "int"
+          }
+        ],
+        "returns": "void"
+      },
+      {
+        "name": "popFront",
+        "params": [],
+        "returns": "int"
+      },
+      {
+        "name": "popMiddle",
+        "params": [],
+        "returns": "int"
+      },
+      {
+        "name": "popBack",
+        "params": [],
+        "returns": "int"
+      }
+    ]
+  }
+}

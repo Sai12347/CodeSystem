@@ -1,0 +1,48 @@
+{
+  "title": "Orderly Queue",
+  "difficulty": "Hard",
+  "subtopic": "String Matching",
+  "companies": [
+    "Google",
+    "Amazon",
+    "Microsoft"
+  ],
+  "description": "You are given a lowercase string `s` and an integer `k`. In one move, you may pick any one of the first `k` characters of `s` and append it to the end of `s`. Return the lexicographically smallest string achievable after applying any number of moves.",
+  "constraints": [
+    "1 <= k <= s.length <= 1000",
+    "s consists of lowercase English letters."
+  ],
+  "hints": [
+    "When k == 1, you can only rotate the string cyclically, so return the lexicographically smallest rotation.",
+    "When k >= 2, you can swap any two adjacent characters (bubble sort), which means any permutation is reachable\u2014simply sort s."
+  ],
+  "examples": [
+    {
+      "explanation": "With k = 1, the rotations of \"cba\" are \"cba\", \"bac\", and \"acb\"; \"acb\" is smallest."
+    },
+    {
+      "explanation": "With k = 3 (>= 2), any permutation is reachable, so sorting gives \"aaabc\"."
+    },
+    {
+      "explanation": "With k = 2, sorting \"dcba\" produces \"abcd\"."
+    }
+  ],
+  "timeComplexity": "O(n^2) for k=1, O(n log n) for k>=2",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "orderlyQueue",
+    "params": [
+      {
+        "name": "s",
+        "type": "String"
+      },
+      {
+        "name": "k",
+        "type": "int"
+      }
+    ],
+    "returns": "String"
+  }
+}

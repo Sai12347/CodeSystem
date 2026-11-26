@@ -1,0 +1,45 @@
+{
+  "title": "Subtract Second Half From First",
+  "difficulty": "Medium",
+  "subtopic": "Fast/Slow Pointer",
+  "companies": [
+    "Amazon",
+    "Google",
+    "Bloomberg",
+    "Atlassian"
+  ],
+  "description": "Given the `head` of a singly linked list of length `n`, modify the first `floor(n / 2)` nodes in-place so that for each 0-based index `0 <= i < floor(n / 2)`, the `i`-th node's value becomes `node[i].val - node[n - 1 - i].val`, where `node[n - 1 - i]` is its mirror node in the second half.\n\nLeave the middle node (when `n` is odd) and all nodes in the second half unchanged, and return the head of the modified list. Solve in `O(n)` time and `O(1)` extra space.",
+  "constraints": [
+    "The number of nodes in the list is in the range [0, 10^4].",
+    "-10^5 <= Node.val <= 10^5"
+  ],
+  "hints": [
+    "Use fast and slow pointers (`while fast.next and fast.next.next`) so `slow` stops at the last node before the strict second half (`slow.next` has length `floor(n / 2)`).",
+    "Reverse `slow.next`, walk the first half and reversed second half in lockstep to subtract values, then reverse the second half back and re-attach it to `slow.next`."
+  ],
+  "examples": [
+    {
+      "explanation": "Pairs (10, 40) and (20, 30) update the first two nodes to 10-40=-30 and 20-30=-10, keeping [30, 40]."
+    },
+    {
+      "explanation": "First 2 nodes subtract mirror nodes [5, 4] giving [1-5, 2-4] = [-4, -2]; middle 3 and second half [4, 5] stay unchanged."
+    },
+    {
+      "explanation": "With 1 node, floor(1/2) = 0 nodes change, so [7] stays [7]."
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "subtractSecondHalf",
+    "params": [
+      {
+        "name": "head",
+        "type": "ListNode"
+      }
+    ],
+    "returns": "ListNode"
+  }
+}

@@ -1,0 +1,47 @@
+{
+  "title": "Reverse String",
+  "difficulty": "Easy",
+  "subtopic": "String Matching",
+  "companies": [
+    "Amazon",
+    "Microsoft",
+    "Google"
+  ],
+  "description": "Reverse the character array `s` in-place. Use constant extra space.",
+  "constraints": [
+    "0 <= s.length <= 10^5",
+    "s[i] is a printable ASCII character"
+  ],
+  "hints": [
+    "Scan the string while tracking the needed counts or positions.",
+    "Check repeated characters and boundary cases."
+  ],
+  "examples": [
+    {
+      "input": "s = [\"h\",\"e\",\"l\",\"l\",\"o\"]",
+      "output": "[\"o\",\"l\",\"l\",\"e\",\"h\"]"
+    },
+    {
+      "input": "s = [\"H\",\"a\",\"n\",\"n\",\"a\",\"h\"]",
+      "output": "[\"h\",\"a\",\"n\",\"n\",\"a\",\"H\"]"
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "reverseString",
+    "params": [
+      {
+        "name": "s",
+        "type": "char[]"
+      }
+    ],
+    "returns": "void",
+    "output": {
+      "mode": "param",
+      "param": "s"
+    }
+  }
+}

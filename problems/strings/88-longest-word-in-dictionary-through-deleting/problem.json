@@ -1,0 +1,49 @@
+{
+  "title": "Longest Word in Dictionary through Deleting",
+  "difficulty": "Medium",
+  "subtopic": "String Matching",
+  "companies": [
+    "Google",
+    "Amazon",
+    "Bloomberg"
+  ],
+  "description": "Given a lowercase string `s` and an array of lowercase strings `dictionary`, return the longest string in `dictionary` that can be formed by deleting zero or more characters from `s` (i.e., is a subsequence of `s`). If multiple words tie for the longest length, return the lexicographically smallest one; if none qualify, return `\"\"`.",
+  "constraints": [
+    "1 <= s.length <= 1000",
+    "1 <= dictionary.length <= 1000",
+    "1 <= dictionary[i].length <= 1000"
+  ],
+  "hints": [
+    "You can test whether word w is a subsequence of s in O(|s|) time with a two-pointer scan.",
+    "Only run the subsequence check if w is strictly better than the current best answer (longer, or equal length and lexicographically smaller)."
+  ],
+  "examples": [
+    {
+      "explanation": "\"ale\", \"apple\", and \"plea\" are subsequences of \"abpcplea\", and \"apple\" is the longest (length 5)."
+    },
+    {
+      "explanation": "\"a\", \"b\", and \"c\" all have length 1; \"a\" is lexicographically smallest."
+    },
+    {
+      "explanation": "No dictionary word is a subsequence of \"xyz\", so return \"\"."
+    }
+  ],
+  "timeComplexity": "O(sum(|s|))",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "findLongestWord",
+    "params": [
+      {
+        "name": "s",
+        "type": "String"
+      },
+      {
+        "name": "dictionary",
+        "type": "String[]"
+      }
+    ],
+    "returns": "String"
+  }
+}

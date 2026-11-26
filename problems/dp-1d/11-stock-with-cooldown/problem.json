@@ -1,0 +1,39 @@
+{
+  "title": "Best Time to Buy and Sell Stock with Cooldown",
+  "difficulty": "Medium",
+  "subtopic": "Linear States",
+  "companies": [
+    "Amazon",
+    "Google",
+    "Microsoft"
+  ],
+  "description": "You may buy and sell a stock multiple times, but after selling you must wait one full day before buying again. Return the maximum profit. You may hold at most one share at a time.",
+  "constraints": [
+    "1 <= prices.length <= 5000",
+    "0 <= prices[i] <= 1000"
+  ],
+  "hints": [
+    "Define a small state for the best answer ending at each position.",
+    "Update the state from the allowed previous positions."
+  ],
+  "examples": [
+    {
+      "input": "prices = [1,2,3,0,2]",
+      "output": "3"
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "maxProfit",
+    "params": [
+      {
+        "name": "prices",
+        "type": "int[]"
+      }
+    ],
+    "returns": "int"
+  }
+}

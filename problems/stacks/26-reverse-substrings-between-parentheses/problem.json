@@ -1,0 +1,46 @@
+{
+  "title": "Reverse Substrings Between Parentheses",
+  "difficulty": "Medium",
+  "subtopic": "Valid Parentheses",
+  "companies": [
+    "Meta",
+    "Google",
+    "Amazon",
+    "Adobe"
+  ],
+  "description": "You are given a string `s` consisting of lowercase English letters and balanced parentheses `'('` and `')'`.\n\nReverse the substrings enclosed inside each pair of matching parentheses, starting from the innermost pair, and remove all parentheses from the final result. Return the resulting string.",
+  "constraints": [
+    "1 <= s.length <= 2000",
+    "s contains only lowercase English letters and parentheses '(' and ')'.",
+    "All parentheses in s are guaranteed to be balanced."
+  ],
+  "hints": [
+    "First match each '(' with its corresponding ')' using a stack, storing bidirectional jumps pair[open] = close and pair[close] = open.",
+    "Walk through s starting at index 0 with direction +1; whenever you hit a parenthesis, teleport to pair[i] and flip your traversal direction to achieve O(n) total time."
+  ],
+  "examples": [
+    {
+      "explanation": "Reversing \"abcd\" inside the single pair of parentheses produces \"dcba\"."
+    },
+    {
+      "explanation": "First \"love\" reverses to \"evol\", then \"uevoli\" reverses to \"iloveu\"."
+    },
+    {
+      "explanation": "Innermost \"oc\" -> \"co\", then \"etco\" -> \"octe\", then \"edocteel\" -> \"leetcode\"."
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "reverseParentheses",
+    "params": [
+      {
+        "name": "s",
+        "type": "String"
+      }
+    ],
+    "returns": "String"
+  }
+}

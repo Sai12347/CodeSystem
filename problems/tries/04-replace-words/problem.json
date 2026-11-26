@@ -1,0 +1,56 @@
+{
+  "title": "Replace Words",
+  "difficulty": "Medium",
+  "subtopic": "Prefix Search",
+  "companies": [
+    "Uber",
+    "Google",
+    "Amazon",
+    "Microsoft",
+    "LinkedIn"
+  ],
+  "leetcode": 648,
+  "description": "In English, we have a concept called **root**, which can be followed by some other word to form another longer word called a **derivative**. For example, when the root `\"help\"` is followed by `\"ful\"`, we can form the derivative `\"helpful\"`.\n\nGiven a `dictionary` consisting of many roots and a `sentence` consisting of words separated by single spaces, replace all derivatives in the sentence with the root forming it. If a derivative can be replaced by more than one root, replace it with the root that has the **shortest length**.\n\nReturn the resulting sentence after the replacements.",
+  "constraints": [
+    "1 <= dictionary.length <= 1000",
+    "1 <= dictionary[i].length <= 100",
+    "dictionary[i] consists of only lowercase English letters.",
+    "1 <= sentence.length <= 10^6",
+    "sentence consists of only lowercase English letters and spaces.",
+    "The number of words in sentence is in the range [1, 1000].",
+    "The length of each word in sentence is in the range [1, 1000].",
+    "Every two consecutive words in sentence are separated by a single space.",
+    "sentence does not have leading or trailing spaces."
+  ],
+  "hints": [
+    "Insert all roots from the dictionary into a trie.",
+    "For each word in the sentence, walk down the trie character by character from the root.",
+    "Stop immediately at the first trie node marked as a word end — that guarantees you select the shortest matching root. If you fall off the trie without hitting a word end, keep the original word."
+  ],
+  "examples": [
+    {
+      "explanation": "\"cattle\" is replaced by \"cat\", \"rattled\" by \"rat\", and \"battery\" by \"bat\"; all other words have no matching root."
+    },
+    {
+      "explanation": "Every word begins with one of the single-letter roots \"a\", \"b\", or \"c\", so each word is replaced by its first letter."
+    }
+  ],
+  "timeComplexity": "O(D * L + S)",
+  "spaceComplexity": "O(D * L + S)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "replaceWords",
+    "params": [
+      {
+        "name": "dictionary",
+        "type": "List<String>"
+      },
+      {
+        "name": "sentence",
+        "type": "String"
+      }
+    ],
+    "returns": "String"
+  }
+}

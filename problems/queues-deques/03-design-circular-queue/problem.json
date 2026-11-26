@@ -1,0 +1,85 @@
+{
+  "title": "Design Circular Queue",
+  "difficulty": "Medium",
+  "subtopic": "Circular Queue",
+  "companies": [
+    "Amazon",
+    "Meta",
+    "Google",
+    "Microsoft",
+    "Apple",
+    "Uber"
+  ],
+  "leetcode": 622,
+  "description": "Design your implementation of a circular queue (ring buffer). A circular queue is a linear data structure in which operations follow the FIFO (First In First Out) principle and the last position connects back to the first position to form a circle, allowing freed slots at the front to be reused.\n\nImplement the `MyCircularQueue` class:\n- `MyCircularQueue(int k)` initializes the object with a fixed capacity of `k`.\n- `boolean enQueue(int value)` inserts an element into the circular queue. Returns `true` if the operation is successful, or `false` if the queue is full.\n- `boolean deQueue()` deletes an element from the circular queue. Returns `true` if the operation is successful, or `false` if the queue is empty.\n- `int Front()` gets the front item from the queue. If the queue is empty, return `-1`.\n- `int Rear()` gets the last item from the queue. If the queue is empty, return `-1`.\n- `boolean isEmpty()` checks whether the circular queue is empty.\n- `boolean isFull()` checks whether the circular queue is full.\n\nYou must solve the problem without using a built-in queue data structure.",
+  "constraints": [
+    "1 <= k <= 1000",
+    "0 <= value <= 1000",
+    "At most 3000 calls will be made to enQueue, deQueue, Front, Rear, isEmpty, and isFull."
+  ],
+  "hints": [
+    "Use a fixed-size array of length k together with a head index and a current element count.",
+    "Tracking count avoids any ambiguity between the empty and full states when head and tail meet.",
+    "The tail index for insertion is (head + count) % k, and the rear element sits at (head + count - 1) % k."
+  ],
+  "examples": [
+    {
+      "explanation": "With capacity 3, enQueue(1), enQueue(2), enQueue(3) succeed while enQueue(4) fails. After deQueue(), one slot frees up so enQueue(4) succeeds and Rear() becomes 4."
+    },
+    {
+      "explanation": "Querying Front, Rear, or deQueue on an empty queue returns -1 or false. With k = 1, a single element is both Front and Rear."
+    }
+  ],
+  "timeComplexity": "O(1) per op",
+  "spaceComplexity": "O(k)",
+  "compare": "exact",
+  "signature": {
+    "kind": "design",
+    "className": "MyCircularQueue",
+    "constructor": {
+      "params": [
+        {
+          "name": "k",
+          "type": "int"
+        }
+      ]
+    },
+    "methods": [
+      {
+        "name": "enQueue",
+        "params": [
+          {
+            "name": "value",
+            "type": "int"
+          }
+        ],
+        "returns": "boolean"
+      },
+      {
+        "name": "deQueue",
+        "params": [],
+        "returns": "boolean"
+      },
+      {
+        "name": "Front",
+        "params": [],
+        "returns": "int"
+      },
+      {
+        "name": "Rear",
+        "params": [],
+        "returns": "int"
+      },
+      {
+        "name": "isEmpty",
+        "params": [],
+        "returns": "boolean"
+      },
+      {
+        "name": "isFull",
+        "params": [],
+        "returns": "boolean"
+      }
+    ]
+  }
+}

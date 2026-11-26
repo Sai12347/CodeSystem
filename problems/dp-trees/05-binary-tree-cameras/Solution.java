@@ -1,0 +1,1 @@
+class Solution { int cams; int dfs(TreeNode n){if(n==null)return 1;int l=dfs(n.left),r=dfs(n.right);if(l==0||r==0){cams++;return 2;}if(l==2||r==2)return 1;return 0;} public int minCameraCover(TreeNode root){cams=0;if(dfs(root)==0)cams++;return cams;} }

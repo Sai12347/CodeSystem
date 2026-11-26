@@ -1,0 +1,48 @@
+{
+  "title": "Valid Palindrome",
+  "difficulty": "Easy",
+  "subtopic": "Palindromes",
+  "companies": [
+    "Meta",
+    "Amazon",
+    "Microsoft",
+    "Apple",
+    "Bloomberg"
+  ],
+  "leetcode": 125,
+  "description": "A phrase is a **palindrome** if, after converting all uppercase English letters into lowercase English letters and removing all non-alphanumeric characters, it reads the same forward and backward. Alphanumeric characters include ASCII letters (`'a'`–`'z'`, `'A'`–`'Z'`) and digits (`'0'`–`'9'`).\n\nGiven a string `s`, return `true` if it is a palindrome, or `false` otherwise. Note that if no alphanumeric characters remain after filtering, the resulting empty string is considered a valid palindrome.",
+  "constraints": [
+    "1 <= s.length <= 2 * 10^5",
+    "s consists only of printable ASCII characters."
+  ],
+  "hints": [
+    "You do not need to allocate a filtered copy of the string to check whether it is a palindrome.",
+    "Place two pointers at the start and end of `s`, skipping non-alphanumeric characters as they move inward.",
+    "Compare the lowercased characters at both pointers; if any pair differs, return false immediately."
+  ],
+  "examples": [
+    {
+      "explanation": "After filtering and lowercasing, the string becomes \"amanaplanacanalpanama\", which is a palindrome."
+    },
+    {
+      "explanation": "After filtering and lowercasing, the string becomes \"raceacar\", which is not a palindrome."
+    },
+    {
+      "explanation": "After removing non-alphanumeric characters, the string is empty (\"\"), which reads the same forward and backward."
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "isPalindrome",
+    "params": [
+      {
+        "name": "s",
+        "type": "String"
+      }
+    ],
+    "returns": "boolean"
+  }
+}

@@ -1,0 +1,61 @@
+{
+  "title": "Maximum Frequency Stack",
+  "difficulty": "Hard",
+  "subtopic": "Min Stack",
+  "companies": [
+    "Amazon",
+    "Google",
+    "Meta",
+    "Microsoft",
+    "Bloomberg",
+    "Apple"
+  ],
+  "description": "Design a stack-like data structure `FreqStack` that pushes elements to the stack and pops the most frequent element from the stack.\n\nImplement the `FreqStack` class:\n- `FreqStack()` constructs an empty frequency stack.\n- `void push(int val)` pushes an integer `val` onto the top of the stack.\n- `int pop()` removes and returns the most frequent element in the stack. If there is a tie for the most frequent element, the element closest to the stack's top is removed and returned.\n\nBoth `push` and `pop` must run in `O(1)` time.",
+  "constraints": [
+    "0 <= val <= 10^9",
+    "At most 2 * 10^4 calls will be made to push and pop.",
+    "It is guaranteed that there will be at least one element in the stack before calling pop."
+  ],
+  "hints": [
+    "Maintain a frequency map freq[val] and a map of stacks group[f] storing all values pushed at frequency level f in push order.",
+    "Track maxFreq: pop always removes the top of group[maxFreq], decrements freq[val], and decrements maxFreq whenever group[maxFreq] becomes empty."
+  ],
+  "examples": [
+    {
+      "explanation": "After pushing [5,7,5,7,4,5], 5 has freq 3 so pop returns 5; then 5 and 7 tie at freq 2 with 7 closer to top so pop returns 7; next 5 (freq 2), then 4 (closest to top among freq 1)."
+    },
+    {
+      "explanation": "When all values are distinct, FreqStack behaves identically to a standard LIFO stack."
+    },
+    {
+      "explanation": "After popping down to empty and pushing again, frequencies reset cleanly."
+    }
+  ],
+  "timeComplexity": "O(1) per op",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "design",
+    "className": "FreqStack",
+    "constructor": {
+      "params": []
+    },
+    "methods": [
+      {
+        "name": "push",
+        "params": [
+          {
+            "name": "val",
+            "type": "int"
+          }
+        ],
+        "returns": "void"
+      },
+      {
+        "name": "pop",
+        "params": [],
+        "returns": "int"
+      }
+    ]
+  }
+}

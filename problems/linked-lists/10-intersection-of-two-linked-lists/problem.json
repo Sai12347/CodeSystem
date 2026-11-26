@@ -1,0 +1,38 @@
+{
+  "title": "Intersection of Two Linked Lists",
+  "difficulty": "Easy",
+  "subtopic": "Pointers & Nodes",
+  "companies": ["Amazon", "Google", "Meta", "Microsoft", "Apple", "Bloomberg"],
+  "leetcode": 160,
+  "description": "Given the heads of two singly linked lists `headA` and `headB`, return the node at which the two lists intersect. If the two linked lists have no intersection at all, return `null`.\n\nTwo lists intersect if they share a common node **by reference** (not merely by equal node values). Once two singly linked lists intersect, they share all subsequent nodes until the end.\n\nThe test inputs specify `listA`, `listB`, `skipA` (number of nodes in `listA` before the intersection), and `skipB` (number of nodes in `listB` before the intersection); if there is no intersection, `skipA == listA.length` and `skipB == listB.length`. These skip values are used only by the judge to construct the lists and are **not** passed to your function.\n\nThe linked lists must retain their original structure after the function returns. The judge verifies that the returned node is the exact intersecting node reference and outputs its value (or `null` if there is no intersection).",
+  "constraints": [
+    "The number of nodes of listA is in the range [1, 3 * 10^4].",
+    "The number of nodes of listB is in the range [1, 3 * 10^4].",
+    "1 <= Node.val <= 10^5",
+    "0 <= skipA <= listA.length",
+    "0 <= skipB <= listB.length",
+    "There are no cycles anywhere in the entire linked structure."
+  ],
+  "hints": [
+    "If you concatenate list A followed by list B (length m + n) and list B followed by list A (length n + m), both paths have the exact same total length and align at their shared suffix.",
+    "Maintain two pointers `pA` starting at `headA` and `pB` starting at `headB`. When a pointer reaches `null`, redirect it to the head of the other list.",
+    "After at most m + n steps, `pA` and `pB` will either meet at the exact first intersecting node or both become `null` simultaneously if there is no intersection."
+  ],
+  "examples": [
+    {"explanation": "The two lists intersect at the node with value 8 (after skipping 2 nodes in listA and 3 nodes in listB). Note that the earlier nodes with value 1 are distinct node objects."},
+    {"explanation": "The two lists intersect at the node with value 2 (after skipping 3 nodes in listA and 1 node in listB)."},
+    {"explanation": "The two lists do not share any node, so return null."}
+  ],
+  "timeComplexity": "O(m + n)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "adapter",
+    "inputs": [
+      {"name": "listA", "type": "int[]", "description": "Node values of list A"},
+      {"name": "listB", "type": "int[]", "description": "Node values of list B"},
+      {"name": "skipA", "type": "int", "description": "Nodes in list A before intersection (or listA.length if none)"},
+      {"name": "skipB", "type": "int", "description": "Nodes in list B before intersection (or listB.length if none)"}
+    ]
+  }
+}

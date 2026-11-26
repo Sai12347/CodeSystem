@@ -1,0 +1,587 @@
+[
+ {
+  "id": "implement-queue-using-stacks",
+  "order": 1,
+  "topicId": "queues-deques",
+  "topic": "Queues & Deques",
+  "title": "Implement Queue using Stacks",
+  "slug": "implement-queue-using-stacks",
+  "difficulty": "Easy",
+  "subtopic": "Queue via Stacks",
+  "companies": [
+   "Amazon",
+   "Microsoft",
+   "Google",
+   "Meta",
+   "Apple",
+   "Bloomberg"
+  ],
+  "leetcode": 232,
+  "description": "Implement a first-in-first-out (FIFO) queue using only two stacks. The implemented queue should support all standard queue operations (`push`, `peek`, `pop`, and `empty`).\n\nImplement the `MyQueue` class:\n- `MyQueue()` initializes an empty queue.\n- `void push(int x)` pushes element `x` to the back of the queue.\n- `int pop()` removes the element from the front of the queue and returns it.\n- `int peek()` returns the element at the front of the queue without removing it.\n- `boolean empty()` returns `true` if the queue is empty, and `false` otherwise.\n\nNotes:\n- You must use only standard stack operations: push to top, peek/pop from top, size, and isEmpty.\n- Follow-up: Can you implement the queue such that each operation has amortized `O(1)` time complexity?",
+  "constraints": [
+   "-10^5 <= x <= 10^5",
+   "At most 2000 calls will be made to push, pop, peek, and empty.",
+   "All calls to pop and peek are valid (the queue is guaranteed to be non-empty)."
+  ],
+  "hints": [
+   "Maintain two stacks: an input stack for incoming pushes and an output stack for outgoing pops and peeks.",
+   "Only transfer elements from the input stack to the output stack when the output stack becomes empty.",
+   "Because each element is pushed onto the input stack once, moved to the output stack at most once, and popped once, every operation runs in amortized O(1) time."
+  ],
+  "timeComplexity": "O(1) amortized per op",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "examples": [
+   {
+    "input": "[\"MyQueue\",\"push\",\"push\",\"peek\",\"pop\",\"empty\"]\n[[],[1],[2],[],[],[]]",
+    "output": "[null,null,null,1,1,false]",
+    "explanation": "Push 1 then 2 onto the queue. peek() returns 1 (front), pop() removes and returns 1, and empty() returns false since 2 remains."
+   },
+   {
+    "input": "[\"MyQueue\",\"push\",\"pop\",\"empty\",\"push\",\"push\",\"peek\",\"pop\",\"pop\",\"empty\"]\n[[],[10],[],[],[20],[30],[],[],[],[]]",
+    "output": "[null,null,10,true,null,null,20,20,30,true]",
+    "explanation": "After popping 10, the queue becomes empty. Pushing 20 and 30 afterwards maintains FIFO order, so peek() returns 20."
+   }
+  ],
+  "starterCode": {
+   "java": "class MyQueue {\n    public MyQueue() {\n        \n    }\n\n    public void push(int x) {\n        \n    }\n\n    public int pop() {\n        return 0;\n    }\n\n    public int peek() {\n        return 0;\n    }\n\n    public boolean empty() {\n        return false;\n    }\n}\n",
+   "python": "class MyQueue:\n    def __init__(self):\n        pass\n\n    def push(self, x: int) -> None:\n        pass\n\n    def pop(self) -> int:\n        pass\n\n    def peek(self) -> int:\n        pass\n\n    def empty(self) -> bool:\n        pass\n"
+  },
+  "solutionCode": {
+   "java": "class MyQueue {\n    private final Deque<Integer> inStack = new ArrayDeque<>();\n    private final Deque<Integer> outStack = new ArrayDeque<>();\n\n    public MyQueue() {}\n\n    private void shift() {\n        if (outStack.isEmpty()) {\n            while (!inStack.isEmpty()) {\n                outStack.push(inStack.pop());\n            }\n        }\n    }\n\n    public void push(int x) {\n        inStack.push(x);\n    }\n\n    public int pop() {\n        shift();\n        return outStack.pop();\n    }\n\n    public int peek() {\n        shift();\n        return outStack.peek();\n    }\n\n    public boolean empty() {\n        return inStack.isEmpty() && outStack.isEmpty();\n    }\n}\n",
+   "python": "class MyQueue:\n    def __init__(self):\n        self.in_stack = []\n        self.out_stack = []\n\n    def _shift(self) -> None:\n        if not self.out_stack:\n            while self.in_stack:\n                self.out_stack.append(self.in_stack.pop())\n\n    def push(self, x: int) -> None:\n        self.in_stack.append(x)\n\n    def pop(self) -> int:\n        self._shift()\n        return self.out_stack.pop()\n\n    def peek(self) -> int:\n        self._shift()\n        return self.out_stack[-1]\n\n    def empty(self) -> bool:\n        return not self.in_stack and not self.out_stack\n"
+  },
+  "sampleArray": [],
+  "visibleTestCount": 2,
+  "hiddenTestCount": 10,
+  "number": 1
+ },
+ {
+  "id": "implement-stack-using-queues",
+  "order": 2,
+  "topicId": "queues-deques",
+  "topic": "Queues & Deques",
+  "title": "Implement Stack using Queues",
+  "slug": "implement-stack-using-queues",
+  "difficulty": "Easy",
+  "subtopic": "Queue via Stacks",
+  "companies": [
+   "Amazon",
+   "Microsoft",
+   "Google",
+   "Bloomberg",
+   "Apple"
+  ],
+  "leetcode": 225,
+  "description": "Implement a last-in-first-out (LIFO) stack using only queues. The implemented stack should support all functions of a normal stack (`push`, `top`, `pop`, and `empty`).\n\nImplement the `MyStack` class:\n- `MyStack()` initializes an empty stack.\n- `void push(int x)` pushes element `x` to the top of the stack.\n- `int pop()` removes the element on the top of the stack and returns it.\n- `int top()` returns the element on the top of the stack without removing it.\n- `boolean empty()` returns `true` if the stack is empty, and `false` otherwise.\n\nNotes:\n- You must use only standard queue operations: push to back, peek/pop from front, size, and isEmpty.\n- Follow-up: Can you implement the stack using only one queue?",
+  "constraints": [
+   "-10^5 <= x <= 10^5",
+   "At most 1000 calls will be made to push, pop, top, and empty.",
+   "All calls to pop and top are valid (the stack is guaranteed to be non-empty)."
+  ],
+  "hints": [
+   "If you maintain a single queue in LIFO order, pop() and top() are simply O(1) front operations.",
+   "When pushing a new element x to the back of a queue of size s, rotate the previous s elements from front to back so x moves to the front."
+  ],
+  "timeComplexity": "O(n) push, O(1) pop/top/empty",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "examples": [
+   {
+    "input": "[\"MyStack\",\"push\",\"push\",\"top\",\"pop\",\"empty\"]\n[[],[1],[2],[],[],[]]",
+    "output": "[null,null,null,2,2,false]",
+    "explanation": "Push 1 then 2. top() returns 2 (most recently pushed), pop() removes and returns 2, and empty() returns false because 1 is still in the stack."
+   },
+   {
+    "input": "[\"MyStack\",\"push\",\"push\",\"push\",\"pop\",\"pop\",\"push\",\"top\",\"pop\",\"pop\",\"empty\"]\n[[],[10],[20],[30],[],[],[40],[],[],[],[]]",
+    "output": "[null,null,null,null,30,20,null,40,40,10,true]",
+    "explanation": "After pushing 10, 20, 30 and popping 30 and 20, pushing 40 places 40 on top. Popping 40 then 10 leaves the stack empty."
+   }
+  ],
+  "starterCode": {
+   "java": "class MyStack {\n    public MyStack() {\n        \n    }\n\n    public void push(int x) {\n        \n    }\n\n    public int pop() {\n        return 0;\n    }\n\n    public int top() {\n        return 0;\n    }\n\n    public boolean empty() {\n        return false;\n    }\n}\n",
+   "python": "class MyStack:\n    def __init__(self):\n        pass\n\n    def push(self, x: int) -> None:\n        pass\n\n    def pop(self) -> int:\n        pass\n\n    def top(self) -> int:\n        pass\n\n    def empty(self) -> bool:\n        pass\n"
+  },
+  "solutionCode": {
+   "java": "class MyStack {\n    private final Queue<Integer> q = new ArrayDeque<>();\n\n    public MyStack() {}\n\n    public void push(int x) {\n        q.offer(x);\n        for (int i = q.size() - 1; i > 0; i--) {\n            q.offer(q.poll());\n        }\n    }\n\n    public int pop() {\n        return q.poll();\n    }\n\n    public int top() {\n        return q.peek();\n    }\n\n    public boolean empty() {\n        return q.isEmpty();\n    }\n}\n",
+   "python": "class MyStack:\n    def __init__(self):\n        self.q = deque()\n\n    def push(self, x: int) -> None:\n        self.q.append(x)\n        for _ in range(len(self.q) - 1):\n            self.q.append(self.q.popleft())\n\n    def pop(self) -> int:\n        return self.q.popleft()\n\n    def top(self) -> int:\n        return self.q[0]\n\n    def empty(self) -> bool:\n        return len(self.q) == 0\n"
+  },
+  "sampleArray": [],
+  "visibleTestCount": 2,
+  "hiddenTestCount": 10,
+  "number": 2
+ },
+ {
+  "id": "design-circular-queue",
+  "order": 3,
+  "topicId": "queues-deques",
+  "topic": "Queues & Deques",
+  "title": "Design Circular Queue",
+  "slug": "design-circular-queue",
+  "difficulty": "Medium",
+  "subtopic": "Circular Queue",
+  "companies": [
+   "Amazon",
+   "Meta",
+   "Google",
+   "Microsoft",
+   "Apple",
+   "Uber"
+  ],
+  "leetcode": 622,
+  "description": "Design your implementation of a circular queue (ring buffer). A circular queue is a linear data structure in which operations follow the FIFO (First In First Out) principle and the last position connects back to the first position to form a circle, allowing freed slots at the front to be reused.\n\nImplement the `MyCircularQueue` class:\n- `MyCircularQueue(int k)` initializes the object with a fixed capacity of `k`.\n- `boolean enQueue(int value)` inserts an element into the circular queue. Returns `true` if the operation is successful, or `false` if the queue is full.\n- `boolean deQueue()` deletes an element from the circular queue. Returns `true` if the operation is successful, or `false` if the queue is empty.\n- `int Front()` gets the front item from the queue. If the queue is empty, return `-1`.\n- `int Rear()` gets the last item from the queue. If the queue is empty, return `-1`.\n- `boolean isEmpty()` checks whether the circular queue is empty.\n- `boolean isFull()` checks whether the circular queue is full.\n\nYou must solve the problem without using a built-in queue data structure.",
+  "constraints": [
+   "1 <= k <= 1000",
+   "0 <= value <= 1000",
+   "At most 3000 calls will be made to enQueue, deQueue, Front, Rear, isEmpty, and isFull."
+  ],
+  "hints": [
+   "Use a fixed-size array of length k together with a head index and a current element count.",
+   "Tracking count avoids any ambiguity between the empty and full states when head and tail meet.",
+   "The tail index for insertion is (head + count) % k, and the rear element sits at (head + count - 1) % k."
+  ],
+  "timeComplexity": "O(1) per op",
+  "spaceComplexity": "O(k)",
+  "compare": "exact",
+  "examples": [
+   {
+    "input": "[\"MyCircularQueue\",\"enQueue\",\"enQueue\",\"enQueue\",\"enQueue\",\"Rear\",\"isFull\",\"deQueue\",\"enQueue\",\"Rear\"]\n[[3],[1],[2],[3],[4],[],[],[],[4],[]]",
+    "output": "[null,true,true,true,false,3,true,true,true,4]",
+    "explanation": "With capacity 3, enQueue(1), enQueue(2), enQueue(3) succeed while enQueue(4) fails. After deQueue(), one slot frees up so enQueue(4) succeeds and Rear() becomes 4."
+   },
+   {
+    "input": "[\"MyCircularQueue\",\"isEmpty\",\"isFull\",\"Front\",\"Rear\",\"deQueue\",\"enQueue\",\"Front\",\"Rear\",\"isFull\"]\n[[1],[],[],[],[],[],[7],[],[],[]]",
+    "output": "[null,true,false,-1,-1,false,true,7,7,true]",
+    "explanation": "Querying Front, Rear, or deQueue on an empty queue returns -1 or false. With k = 1, a single element is both Front and Rear."
+   }
+  ],
+  "starterCode": {
+   "java": "class MyCircularQueue {\n    public MyCircularQueue(int k) {\n        \n    }\n\n    public boolean enQueue(int value) {\n        return false;\n    }\n\n    public boolean deQueue() {\n        return false;\n    }\n\n    public int Front() {\n        return 0;\n    }\n\n    public int Rear() {\n        return 0;\n    }\n\n    public boolean isEmpty() {\n        return false;\n    }\n\n    public boolean isFull() {\n        return false;\n    }\n}\n",
+   "python": "class MyCircularQueue:\n    def __init__(self, k: int):\n        pass\n\n    def enQueue(self, value: int) -> bool:\n        pass\n\n    def deQueue(self) -> bool:\n        pass\n\n    def Front(self) -> int:\n        pass\n\n    def Rear(self) -> int:\n        pass\n\n    def isEmpty(self) -> bool:\n        pass\n\n    def isFull(self) -> bool:\n        pass\n"
+  },
+  "solutionCode": {
+   "java": "class MyCircularQueue {\n    private final int[] buf;\n    private final int cap;\n    private int head;\n    private int count;\n\n    public MyCircularQueue(int k) {\n        this.buf = new int[k];\n        this.cap = k;\n        this.head = 0;\n        this.count = 0;\n    }\n\n    public boolean enQueue(int value) {\n        if (count == cap) return false;\n        buf[(head + count) % cap] = value;\n        count++;\n        return true;\n    }\n\n    public boolean deQueue() {\n        if (count == 0) return false;\n        head = (head + 1) % cap;\n        count--;\n        return true;\n    }\n\n    public int Front() {\n        return count == 0 ? -1 : buf[head];\n    }\n\n    public int Rear() {\n        return count == 0 ? -1 : buf[(head + count - 1) % cap];\n    }\n\n    public boolean isEmpty() {\n        return count == 0;\n    }\n\n    public boolean isFull() {\n        return count == cap;\n    }\n}\n",
+   "python": "class MyCircularQueue:\n    def __init__(self, k: int):\n        self.buf = [0] * k\n        self.cap = k\n        self.head = 0\n        self.count = 0\n\n    def enQueue(self, value: int) -> bool:\n        if self.count == self.cap:\n            return False\n        self.buf[(self.head + self.count) % self.cap] = value\n        self.count += 1\n        return True\n\n    def deQueue(self) -> bool:\n        if self.count == 0:\n            return False\n        self.head = (self.head + 1) % self.cap\n        self.count -= 1\n        return True\n\n    def Front(self) -> int:\n        return -1 if self.count == 0 else self.buf[self.head]\n\n    def Rear(self) -> int:\n        return -1 if self.count == 0 else self.buf[(self.head + self.count - 1) % self.cap]\n\n    def isEmpty(self) -> bool:\n        return self.count == 0\n\n    def isFull(self) -> bool:\n        return self.count == self.cap\n"
+  },
+  "sampleArray": [],
+  "visibleTestCount": 2,
+  "hiddenTestCount": 10,
+  "number": 3
+ },
+ {
+  "id": "design-circular-deque",
+  "order": 4,
+  "topicId": "queues-deques",
+  "topic": "Queues & Deques",
+  "title": "Design Circular Deque",
+  "slug": "design-circular-deque",
+  "difficulty": "Medium",
+  "subtopic": "Deque Operations",
+  "companies": [
+   "Amazon",
+   "Google",
+   "Meta",
+   "Microsoft",
+   "Bloomberg"
+  ],
+  "leetcode": 641,
+  "description": "Design your implementation of a circular double-ended queue (deque) with fixed maximum capacity `k`.\n\nImplement the `MyCircularDeque` class:\n- `MyCircularDeque(int k)` initializes the deque with a maximum size of `k`.\n- `boolean insertFront(int value)` adds an item at the front of the deque. Returns `true` if successful, or `false` if the deque is full.\n- `boolean insertLast(int value)` adds an item at the rear of the deque. Returns `true` if successful, or `false` if the deque is full.\n- `boolean deleteFront()` deletes an item from the front of the deque. Returns `true` if successful, or `false` if the deque is empty.\n- `boolean deleteLast()` deletes an item from the rear of the deque. Returns `true` if successful, or `false` if the deque is empty.\n- `int getFront()` returns the front item from the deque, or `-1` if the deque is empty.\n- `int getRear()` returns the last item from the deque, or `-1` if the deque is empty.\n- `boolean isEmpty()` returns `true` if the deque is empty, or `false` otherwise.\n- `boolean isFull()` returns `true` if the deque is full, or `false` otherwise.\n\nYou must solve the problem without using a built-in deque data structure.",
+  "constraints": [
+   "1 <= k <= 1000",
+   "0 <= value <= 1000",
+   "At most 2000 calls will be made to insertFront, insertLast, deleteFront, deleteLast, getFront, getRear, isEmpty, and isFull."
+  ],
+  "hints": [
+   "Use a fixed-size circular array of length k with a head pointer and an element count.",
+   "To insert at the front, move head backward modulo k: head = (head - 1 + k) % k, then write value to buf[head].",
+   "To insert or delete at the rear, only the tail position (head + count) % k and count change—head does not move."
+  ],
+  "timeComplexity": "O(1) per op",
+  "spaceComplexity": "O(k)",
+  "compare": "exact",
+  "examples": [
+   {
+    "input": "[\"MyCircularDeque\",\"insertLast\",\"insertLast\",\"insertFront\",\"insertFront\",\"getRear\",\"isFull\",\"deleteLast\",\"insertFront\",\"getFront\"]\n[[3],[1],[2],[3],[4],[],[],[],[4],[]]",
+    "output": "[null,true,true,true,false,2,true,true,true,4]",
+    "explanation": "With k = 3, inserting 1 and 2 at the rear and 3 at the front yields [3, 1, 2]. insertFront(4) fails because the deque is full. After deleteLast(), insertFront(4) succeeds and getFront() returns 4."
+   },
+   {
+    "input": "[\"MyCircularDeque\",\"getFront\",\"getRear\",\"deleteFront\",\"deleteLast\",\"insertFront\",\"getRear\",\"deleteLast\",\"isEmpty\"]\n[[2],[],[],[],[],[9],[],[],[]]",
+    "output": "[null,-1,-1,false,false,true,9,true,true]",
+    "explanation": "Operations on an empty deque return -1 for getters and false for deletes. Inserting at the front and deleting from the rear works symmetrically."
+   }
+  ],
+  "starterCode": {
+   "java": "class MyCircularDeque {\n    public MyCircularDeque(int k) {\n        \n    }\n\n    public boolean insertFront(int value) {\n        return false;\n    }\n\n    public boolean insertLast(int value) {\n        return false;\n    }\n\n    public boolean deleteFront() {\n        return false;\n    }\n\n    public boolean deleteLast() {\n        return false;\n    }\n\n    public int getFront() {\n        return 0;\n    }\n\n    public int getRear() {\n        return 0;\n    }\n\n    public boolean isEmpty() {\n        return false;\n    }\n\n    public boolean isFull() {\n        return false;\n    }\n}\n",
+   "python": "class MyCircularDeque:\n    def __init__(self, k: int):\n        pass\n\n    def insertFront(self, value: int) -> bool:\n        pass\n\n    def insertLast(self, value: int) -> bool:\n        pass\n\n    def deleteFront(self) -> bool:\n        pass\n\n    def deleteLast(self) -> bool:\n        pass\n\n    def getFront(self) -> int:\n        pass\n\n    def getRear(self) -> int:\n        pass\n\n    def isEmpty(self) -> bool:\n        pass\n\n    def isFull(self) -> bool:\n        pass\n"
+  },
+  "solutionCode": {
+   "java": "class MyCircularDeque {\n    private final int[] buf;\n    private final int cap;\n    private int head;\n    private int count;\n\n    public MyCircularDeque(int k) {\n        this.buf = new int[k];\n        this.cap = k;\n        this.head = 0;\n        this.count = 0;\n    }\n\n    public boolean insertFront(int value) {\n        if (count == cap) return false;\n        head = (head - 1 + cap) % cap;\n        buf[head] = value;\n        count++;\n        return true;\n    }\n\n    public boolean insertLast(int value) {\n        if (count == cap) return false;\n        buf[(head + count) % cap] = value;\n        count++;\n        return true;\n    }\n\n    public boolean deleteFront() {\n        if (count == 0) return false;\n        head = (head + 1) % cap;\n        count--;\n        return true;\n    }\n\n    public boolean deleteLast() {\n        if (count == 0) return false;\n        count--;\n        return true;\n    }\n\n    public int getFront() {\n        return count == 0 ? -1 : buf[head];\n    }\n\n    public int getRear() {\n        return count == 0 ? -1 : buf[(head + count - 1) % cap];\n    }\n\n    public boolean isEmpty() {\n        return count == 0;\n    }\n\n    public boolean isFull() {\n        return count == cap;\n    }\n}\n",
+   "python": "class MyCircularDeque:\n    def __init__(self, k: int):\n        self.buf = [0] * k\n        self.cap = k\n        self.head = 0\n        self.count = 0\n\n    def insertFront(self, value: int) -> bool:\n        if self.count == self.cap:\n            return False\n        self.head = (self.head - 1) % self.cap\n        self.buf[self.head] = value\n        self.count += 1\n        return True\n\n    def insertLast(self, value: int) -> bool:\n        if self.count == self.cap:\n            return False\n        self.buf[(self.head + self.count) % self.cap] = value\n        self.count += 1\n        return True\n\n    def deleteFront(self) -> bool:\n        if self.count == 0:\n            return False\n        self.head = (self.head + 1) % self.cap\n        self.count -= 1\n        return True\n\n    def deleteLast(self) -> bool:\n        if self.count == 0:\n            return False\n        self.count -= 1\n        return True\n\n    def getFront(self) -> int:\n        return -1 if self.count == 0 else self.buf[self.head]\n\n    def getRear(self) -> int:\n        return -1 if self.count == 0 else self.buf[(self.head + self.count - 1) % self.cap]\n\n    def isEmpty(self) -> bool:\n        return self.count == 0\n\n    def isFull(self) -> bool:\n        return self.count == self.cap\n"
+  },
+  "sampleArray": [],
+  "visibleTestCount": 2,
+  "hiddenTestCount": 10,
+  "number": 4
+ },
+ {
+  "id": "number-of-recent-calls",
+  "order": 5,
+  "topicId": "queues-deques",
+  "topic": "Queues & Deques",
+  "title": "Number of Recent Calls",
+  "slug": "number-of-recent-calls",
+  "difficulty": "Easy",
+  "subtopic": "Deque Operations",
+  "companies": [
+   "Google",
+   "Amazon",
+   "Meta",
+   "Bloomberg",
+   "Apple"
+  ],
+  "leetcode": 933,
+  "description": "You have a `RecentCounter` class that counts the number of recent requests within a 3000-millisecond sliding window.\n\nImplement the `RecentCounter` class:\n- `RecentCounter()` initializes the counter with zero recent requests.\n- `int ping(int t)` adds a new request at time `t` (in milliseconds) and returns the number of requests that have happened in the past 3000 milliseconds (including the new request). Specifically, return the number of requests whose timestamps fall in the inclusive range `[t - 3000, t]`.\n\nIt is guaranteed that every call to `ping` uses a strictly larger value of `t` than the previous call.",
+  "constraints": [
+   "1 <= t <= 10^9",
+   "Each test case calls ping with strictly increasing values of t.",
+   "At most 10^4 calls will be made to ping."
+  ],
+  "hints": [
+   "Because timestamps arrive in strictly increasing order, once a timestamp falls below t - 3000 it can never be inside any future window.",
+   "Store timestamps in a FIFO queue: push t at the back, pop all elements strictly less than t - 3000 from the front, and return the queue size."
+  ],
+  "timeComplexity": "O(1) amortized per call",
+  "spaceComplexity": "O(1) (at most 3001 elements)",
+  "compare": "exact",
+  "examples": [
+   {
+    "input": "[\"RecentCounter\",\"ping\",\"ping\",\"ping\",\"ping\"]\n[[],[1],[100],[3001],[3002]]",
+    "output": "[null,1,2,3,3]",
+    "explanation": "ping(1) -> [1] (1); ping(100) -> [1,100] (2); ping(3001) -> [1,100,3001] (3); ping(3002) expires 1, leaving [100,3001,3002] (3)."
+   },
+   {
+    "input": "[\"RecentCounter\",\"ping\",\"ping\",\"ping\",\"ping\"]\n[[],[100],[3100],[3101],[6101]]",
+    "output": "[null,1,2,2,2]",
+    "explanation": "At t = 3100, timestamp 100 is exactly on the inclusive boundary [100, 3100], so 2 calls remain. At t = 3101, 100 expires."
+   }
+  ],
+  "starterCode": {
+   "java": "class RecentCounter {\n    public RecentCounter() {\n        \n    }\n\n    public int ping(int t) {\n        return 0;\n    }\n}\n",
+   "python": "class RecentCounter:\n    def __init__(self):\n        pass\n\n    def ping(self, t: int) -> int:\n        pass\n"
+  },
+  "solutionCode": {
+   "java": "class RecentCounter {\n    private final Deque<Integer> q = new ArrayDeque<>();\n\n    public RecentCounter() {}\n\n    public int ping(int t) {\n        q.offerLast(t);\n        int cutoff = t - 3000;\n        while (q.peekFirst() < cutoff) {\n            q.pollFirst();\n        }\n        return q.size();\n    }\n}\n",
+   "python": "class RecentCounter:\n    def __init__(self):\n        self.q = deque()\n\n    def ping(self, t: int) -> int:\n        self.q.append(t)\n        cutoff = t - 3000\n        while self.q[0] < cutoff:\n            self.q.popleft()\n        return len(self.q)\n"
+  },
+  "sampleArray": [],
+  "visibleTestCount": 2,
+  "hiddenTestCount": 10,
+  "number": 5
+ },
+ {
+  "id": "design-hit-counter",
+  "order": 6,
+  "topicId": "queues-deques",
+  "topic": "Queues & Deques",
+  "title": "Design Hit Counter",
+  "slug": "design-hit-counter",
+  "difficulty": "Medium",
+  "subtopic": "Deque Operations",
+  "companies": [
+   "Amazon",
+   "Google",
+   "Meta",
+   "Uber",
+   "Bloomberg",
+   "Microsoft"
+  ],
+  "leetcode": 362,
+  "description": "Design a hit counter which counts the number of hits received in the past 5 minutes (i.e., the past 300 seconds).\n\nYour system accepts a `timestamp` parameter (in seconds granularity), and you may assume that calls are being made to the system in chronological order (i.e., `timestamp` is monotonically non-decreasing). Several hits may arrive at the same timestamp.\n\nImplement the `HitCounter` class:\n- `HitCounter()` initializes the object of the hit counter system.\n- `void hit(int timestamp)` records a hit that happened at `timestamp` (in seconds).\n- `int getHits(int timestamp)` returns the number of hits in the past 5 minutes from `timestamp` (i.e., strictly greater than `timestamp - 300` and less than or equal to `timestamp`: `(timestamp - 300, timestamp]`).",
+  "constraints": [
+   "1 <= timestamp <= 2 * 10^9",
+   "All calls are made to the system in chronological order (timestamp is monotonically non-decreasing).",
+   "At most 10^4 calls will be made to hit and getHits."
+  ],
+  "hints": [
+   "Store pairs of (timestamp, count) in a deque along with a running total so multiple hits at the same second collapse into one entry.",
+   "Before returning from getHits(timestamp) (and optionally on hit), pop entries from the front whose timestamp is <= timestamp - 300 and subtract their counts from the running total.",
+   "Because there are at most 300 distinct seconds in the active window, the deque uses O(1) bounded space and amortized O(1) time per operation."
+  ],
+  "timeComplexity": "O(1) amortized per call",
+  "spaceComplexity": "O(1) (at most 300 buckets)",
+  "compare": "exact",
+  "examples": [
+   {
+    "input": "[\"HitCounter\",\"hit\",\"hit\",\"hit\",\"getHits\",\"hit\",\"getHits\",\"getHits\"]\n[[],[1],[2],[3],[4],[300],[300],[301]]",
+    "output": "[null,null,null,null,3,null,4,3]",
+    "explanation": "Hits at 1, 2, 3 give 3 hits at t = 4. After a hit at 300, getHits(300) returns 4 (range (0, 300]). At t = 301, timestamp 1 expires (1 <= 301 - 300), leaving 3 hits."
+   },
+   {
+    "input": "[\"HitCounter\",\"hit\",\"hit\",\"hit\",\"getHits\",\"getHits\",\"getHits\"]\n[[],[10],[10],[10],[10],[309],[310]]",
+    "output": "[null,null,null,null,3,3,0]",
+    "explanation": "Multiple hits at timestamp 10 all count together and expire simultaneously once getHits(310) is called."
+   }
+  ],
+  "starterCode": {
+   "java": "class HitCounter {\n    public HitCounter() {\n        \n    }\n\n    public void hit(int timestamp) {\n        \n    }\n\n    public int getHits(int timestamp) {\n        return 0;\n    }\n}\n",
+   "python": "class HitCounter:\n    def __init__(self):\n        pass\n\n    def hit(self, timestamp: int) -> None:\n        pass\n\n    def getHits(self, timestamp: int) -> int:\n        pass\n"
+  },
+  "solutionCode": {
+   "java": "class HitCounter {\n    private final Deque<int[]> q = new ArrayDeque<>();\n    private int total = 0;\n\n    public HitCounter() {}\n\n    private void evict(int timestamp) {\n        int cutoff = timestamp - 300;\n        while (!q.isEmpty() && q.peekFirst()[0] <= cutoff) {\n            total -= q.pollFirst()[1];\n        }\n    }\n\n    public void hit(int timestamp) {\n        evict(timestamp);\n        if (!q.isEmpty() && q.peekLast()[0] == timestamp) {\n            q.peekLast()[1]++;\n        } else {\n            q.offerLast(new int[]{timestamp, 1});\n        }\n        total++;\n    }\n\n    public int getHits(int timestamp) {\n        evict(timestamp);\n        return total;\n    }\n}\n",
+   "python": "class HitCounter:\n    def __init__(self):\n        self.q = deque()\n        self.total = 0\n\n    def _evict(self, timestamp: int) -> None:\n        cutoff = timestamp - 300\n        while self.q and self.q[0][0] <= cutoff:\n            self.total -= self.q.popleft()[1]\n\n    def hit(self, timestamp: int) -> None:\n        self._evict(timestamp)\n        if self.q and self.q[-1][0] == timestamp:\n            self.q[-1][1] += 1\n        else:\n            self.q.append([timestamp, 1])\n        self.total += 1\n\n    def getHits(self, timestamp: int) -> int:\n        self._evict(timestamp)\n        return self.total\n"
+  },
+  "sampleArray": [],
+  "visibleTestCount": 2,
+  "hiddenTestCount": 10,
+  "number": 6
+ },
+ {
+  "id": "dota2-senate",
+  "order": 7,
+  "topicId": "queues-deques",
+  "topic": "Queues & Deques",
+  "title": "Dota2 Senate",
+  "slug": "dota2-senate",
+  "difficulty": "Medium",
+  "subtopic": "Deque Operations",
+  "companies": [
+   "Google",
+   "Amazon",
+   "Meta",
+   "Microsoft",
+   "Uber"
+  ],
+  "leetcode": 649,
+  "description": "In the world of Dota2, there are two parties: the Radiant (`'R'`) and the Dire (`'D'`).\n\nThe Dota2 senate consists of senators from both parties arranged in a round-based voting order given by a string `senate`, where `senate[i]` is either `'R'` or `'D'`. In each round, every remaining senator takes their turn in left-to-right order and may exercise one of two rights:\n1. **Ban one senator's right**: Permanently remove any one opposing senator's rights for the current and all subsequent rounds.\n2. **Announce victory**: If all remaining senators with rights belong to the same party, announce victory and end the game.\n\nAssuming every senator plays optimally to help their party win, predict which party will finally announce victory. Return `\"Radiant\"` or `\"Dire\"`.",
+  "constraints": [
+   "1 <= senate.length <= 10^4",
+   "senate[i] is either 'R' or 'D'."
+  ],
+  "hints": [
+   "Greedily, a senator should always ban the next opposing senator who has yet to act in the circular order.",
+   "Maintain two FIFO queues—one for Radiant indices and one for Dire indices.",
+   "Repeatedly compare the front indices of both queues: the senator with the smaller index bans the other and re-enters their queue with index + n for the next round."
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "examples": [
+   {
+    "input": "senate = \"RD\"",
+    "output": "\"Radiant\"",
+    "explanation": "Round 1: The first senator (R) bans the second senator (D). Round 2: Only R remains and announces Radiant victory."
+   },
+   {
+    "input": "senate = \"RDD\"",
+    "output": "\"Dire\"",
+    "explanation": "Round 1: R at index 0 bans D at index 1; D at index 2 bans R at index 0. Round 2: Only D at index 2 remains and announces Dire victory."
+   },
+   {
+    "input": "senate = \"DDRRR\"",
+    "output": "\"Dire\"",
+    "explanation": "The two initial Dire senators ban the first two Radiant senators; the last Radiant senator bans one Dire senator, and in round 2 the remaining Dire senator bans the last Radiant senator."
+   }
+  ],
+  "starterCode": {
+   "java": "class Solution {\n    public String predictPartyVictory(String senate) {\n        // Write your solution here\n        return null;\n    }\n}\n",
+   "python": "class Solution:\n    def predictPartyVictory(self, senate: str) -> str:\n        # Write your solution here\n        pass\n"
+  },
+  "solutionCode": {
+   "java": "class Solution {\n    public String predictPartyVictory(String senate) {\n        int n = senate.length();\n        Deque<Integer> radiant = new ArrayDeque<>();\n        Deque<Integer> dire = new ArrayDeque<>();\n        for (int i = 0; i < n; i++) {\n            if (senate.charAt(i) == 'R') {\n                radiant.offerLast(i);\n            } else {\n                dire.offerLast(i);\n            }\n        }\n        while (!radiant.isEmpty() && !dire.isEmpty()) {\n            int r = radiant.pollFirst();\n            int d = dire.pollFirst();\n            if (r < d) {\n                radiant.offerLast(r + n);\n            } else {\n                dire.offerLast(d + n);\n            }\n        }\n        return radiant.isEmpty() ? \"Dire\" : \"Radiant\";\n    }\n}\n",
+   "python": "class Solution:\n    def predictPartyVictory(self, senate: str) -> str:\n        n = len(senate)\n        radiant = deque()\n        dire = deque()\n        for i, ch in enumerate(senate):\n            if ch == 'R':\n                radiant.append(i)\n            else:\n                dire.append(i)\n        while radiant and dire:\n            r = radiant.popleft()\n            d = dire.popleft()\n            if r < d:\n                radiant.append(r + n)\n            else:\n                dire.append(d + n)\n        return \"Radiant\" if radiant else \"Dire\"\n"
+  },
+  "sampleArray": [],
+  "visibleTestCount": 3,
+  "hiddenTestCount": 12,
+  "number": 7
+ },
+ {
+  "id": "jump-game-vi",
+  "order": 8,
+  "topicId": "queues-deques",
+  "topic": "Queues & Deques",
+  "title": "Jump Game VI",
+  "slug": "jump-game-vi",
+  "difficulty": "Medium",
+  "subtopic": "Deque Operations",
+  "companies": [
+   "Amazon",
+   "Google",
+   "Meta",
+   "Microsoft",
+   "Goldman Sachs"
+  ],
+  "leetcode": 1696,
+  "description": "You are given a 0-indexed integer array `nums` and an integer `k`.\n\nYou are initially standing at index `0`. In one move, you can jump at most `k` steps forward without going outside the boundaries of the array. That is, from index `i`, you can jump to any index in the range `[i + 1, min(n - 1, i + k)]` inclusive.\n\nYou want to reach the last index of the array (index `n - 1`). Your score is the sum of `nums[j]` for every index `j` you visit along the path (including indices `0` and `n - 1`).\n\nReturn the maximum score you can get.",
+  "constraints": [
+   "1 <= nums.length, k <= 10^5",
+   "-10^4 <= nums[i] <= 10^4"
+  ],
+  "hints": [
+   "Let dp[i] be the maximum score to reach index i. Then dp[i] = nums[i] + max(dp[j] for i - k <= j < i).",
+   "A naive DP transition takes O(k) per index, giving O(nk) time—too slow when both n and k are large.",
+   "Maintain a monotonic decreasing deque of (index, dp[index]) pairs over the sliding window [i - k, i - 1] so the maximum is always at the front in O(1) amortized time."
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(min(n, k))",
+  "compare": "exact",
+  "examples": [
+   {
+    "input": "nums = [1,-1,-2,4,-7,3], k = 2",
+    "output": "7",
+    "explanation": "Choose the path 1 -> -1 -> 4 -> 3 (indices 0, 1, 3, 5) for a total score of 7."
+   },
+   {
+    "input": "nums = [10,-5,-2,4,0,3], k = 3",
+    "output": "17",
+    "explanation": "Choose the path 10 -> 4 -> 3 (indices 0, 3, 5) for a total score of 17."
+   },
+   {
+    "input": "nums = [1,-5,-20,4,-1,3,-6,-3], k = 2",
+    "output": "0",
+    "explanation": "Choose the path 1 -> -5 -> 4 -> 3 -> -3 (indices 0, 1, 3, 5, 7) for a total score of 0."
+   }
+  ],
+  "starterCode": {
+   "java": "class Solution {\n    public int maxResult(int[] nums, int k) {\n        // Write your solution here\n        return 0;\n    }\n}\n",
+   "python": "class Solution:\n    def maxResult(self, nums: List[int], k: int) -> int:\n        # Write your solution here\n        pass\n"
+  },
+  "solutionCode": {
+   "java": "class Solution {\n    public int maxResult(int[] nums, int k) {\n        Deque<int[]> dq = new ArrayDeque<>();\n        dq.offerLast(new int[]{0, nums[0]});\n        for (int i = 1; i < nums.length; i++) {\n            while (dq.peekFirst()[0] < i - k) {\n                dq.pollFirst();\n            }\n            int cur = nums[i] + dq.peekFirst()[1];\n            while (!dq.isEmpty() && dq.peekLast()[1] <= cur) {\n                dq.pollLast();\n            }\n            dq.offerLast(new int[]{i, cur});\n        }\n        return dq.peekLast()[1];\n    }\n}\n",
+   "python": "class Solution:\n    def maxResult(self, nums: List[int], k: int) -> int:\n        dq = deque([(0, nums[0])])\n        for i in range(1, len(nums)):\n            while dq[0][0] < i - k:\n                dq.popleft()\n            cur = nums[i] + dq[0][1]\n            while dq and dq[-1][1] <= cur:\n                dq.pop()\n            dq.append((i, cur))\n        return dq[-1][1]\n"
+  },
+  "sampleArray": [
+   1,
+   -1,
+   -2,
+   4,
+   -7,
+   3
+  ],
+  "visibleTestCount": 3,
+  "hiddenTestCount": 11,
+  "number": 8
+ },
+ {
+  "id": "reveal-cards-in-increasing-order",
+  "order": 9,
+  "topicId": "queues-deques",
+  "topic": "Queues & Deques",
+  "title": "Reveal Cards In Increasing Order",
+  "slug": "reveal-cards-in-increasing-order",
+  "difficulty": "Medium",
+  "subtopic": "Deque Operations",
+  "companies": [
+   "Google",
+   "Amazon",
+   "Meta",
+   "Bloomberg",
+   "Apple"
+  ],
+  "leetcode": 950,
+  "description": "You are given an integer array `deck` where every card has a unique integer value. You may order the deck in any order you want. Initially, all cards start face down in one deck.\n\nYou will repeatedly perform the following steps until all cards are revealed:\n1. Take the top card of the deck, reveal it, and remove it from the deck.\n2. If there are still cards in the deck, move the next top card to the bottom of the deck.\n3. Repeat from step 1 while unrevealed cards remain.\n\nReturn an ordering of the deck that reveals the cards in strictly increasing order. Note that the first entry in the returned array is considered the top of the deck.",
+  "constraints": [
+   "1 <= deck.length <= 1000",
+   "1 <= deck[i] <= 10^6",
+   "All values of deck are unique."
+  ],
+  "hints": [
+   "Simulate the reveal process on a deque of slot indices [0, 1, ..., n - 1] instead of on the cards themselves.",
+   "Sort the deck in ascending order: each time an index is popped from the front of the deque, assign the next smallest card to that index, then move the new front index to the back."
+  ],
+  "timeComplexity": "O(n log n)",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "examples": [
+   {
+    "input": "deck = [17,13,11,2,3,5,7]",
+    "output": "[2,13,3,11,5,17,7]",
+    "explanation": "Starting with [2,13,3,11,5,17,7]: reveal 2 (move 13 to back), reveal 3 (move 11 to back), reveal 5 (move 17 to back), reveal 7 (move 13 to back), reveal 11 (move 17 to back), reveal 13, reveal 17."
+   },
+   {
+    "input": "deck = [1,1000]",
+    "output": "[1,1000]",
+    "explanation": "With 2 cards, revealing 1 then moving 1000 to the bottom reveals [1, 1000] in increasing order."
+   }
+  ],
+  "starterCode": {
+   "java": "class Solution {\n    public int[] deckRevealedIncreasing(int[] deck) {\n        // Write your solution here\n        return null;\n    }\n}\n",
+   "python": "class Solution:\n    def deckRevealedIncreasing(self, deck: List[int]) -> List[int]:\n        # Write your solution here\n        pass\n"
+  },
+  "solutionCode": {
+   "java": "class Solution {\n    public int[] deckRevealedIncreasing(int[] deck) {\n        int n = deck.length;\n        int[] sorted = deck.clone();\n        Arrays.sort(sorted);\n        Deque<Integer> q = new ArrayDeque<>(n);\n        for (int i = 0; i < n; i++) {\n            q.offerLast(i);\n        }\n        int[] res = new int[n];\n        for (int card : sorted) {\n            res[q.pollFirst()] = card;\n            if (!q.isEmpty()) {\n                q.offerLast(q.pollFirst());\n            }\n        }\n        return res;\n    }\n}\n",
+   "python": "class Solution:\n    def deckRevealedIncreasing(self, deck: List[int]) -> List[int]:\n        n = len(deck)\n        q = deque(range(n))\n        res = [0] * n\n        for card in sorted(deck):\n            res[q.popleft()] = card\n            if q:\n                q.append(q.popleft())\n        return res\n"
+  },
+  "sampleArray": [
+   17,
+   13,
+   11,
+   2,
+   3,
+   5,
+   7
+  ],
+  "visibleTestCount": 2,
+  "hiddenTestCount": 10,
+  "number": 9
+ },
+ {
+  "id": "logger-rate-limiter",
+  "order": 10,
+  "topicId": "queues-deques",
+  "topic": "Queues & Deques",
+  "title": "Logger Rate Limiter",
+  "slug": "logger-rate-limiter",
+  "difficulty": "Easy",
+  "subtopic": "Task Scheduler",
+  "companies": [
+   "Google",
+   "Amazon",
+   "Meta",
+   "Uber",
+   "Atlassian",
+   "Microsoft"
+  ],
+  "leetcode": 359,
+  "description": "Design a logger system that receives a stream of messages along with their timestamps. Each unique message should only be printed at most once every 10 seconds—that is, a message printed at timestamp `t` prevents any identical message from being printed until timestamp `t + 10` (inclusive).\n\nAll messages arrive in chronological order (timestamps are monotonically non-decreasing). Several messages may arrive at the same timestamp.\n\nImplement the `Logger` class:\n- `Logger()` initializes the logger object.\n- `boolean shouldPrintMessage(int timestamp, String message)` returns `true` if `message` should be printed at `timestamp`, otherwise returns `false`. Note that a rejected (`false`) call does not extend the 10-second cooldown.",
+  "constraints": [
+   "0 <= timestamp <= 10^9",
+   "Every timestamp is passed in non-decreasing (chronological) order.",
+   "1 <= message.length <= 30",
+   "At most 10^4 calls will be made to shouldPrintMessage."
+  ],
+  "hints": [
+   "A hash map storing each message's next allowed timestamp works in O(1) time, but keeps expired messages in memory forever.",
+   "To bound memory to only the last 10 seconds, pair a FIFO queue of (timestamp, message) entries with a hash set of active messages.",
+   "On each call, evict all queue entries with timestamp <= currentTimestamp - 10 from both the queue and the set before checking membership."
+  ],
+  "timeComplexity": "O(1) amortized per call",
+  "spaceComplexity": "O(W) where W is unique messages printed in the last 10s",
+  "compare": "exact",
+  "examples": [
+   {
+    "input": "[\"Logger\",\"shouldPrintMessage\",\"shouldPrintMessage\",\"shouldPrintMessage\",\"shouldPrintMessage\",\"shouldPrintMessage\",\"shouldPrintMessage\"]\n[[],[1,\"foo\"],[2,\"bar\"],[3,\"foo\"],[8,\"bar\"],[10,\"foo\"],[11,\"foo\"]]",
+    "output": "[null,true,true,false,false,false,true]",
+    "explanation": "foo prints at t=1 (blocked until t=11); bar prints at t=2 (blocked until t=12). foo at t=3 and t=10 and bar at t=8 are rejected. At t=11, foo is allowed again."
+   },
+   {
+    "input": "[\"Logger\",\"shouldPrintMessage\",\"shouldPrintMessage\",\"shouldPrintMessage\",\"shouldPrintMessage\",\"shouldPrintMessage\"]\n[[],[0,\"init\"],[9,\"init\"],[10,\"init\"],[19,\"init\"],[20,\"init\"]]",
+    "output": "[null,true,false,true,false,true]",
+    "explanation": "A message printed at t=0 is rejected at t=9, and allowed again at exactly t=10."
+   }
+  ],
+  "starterCode": {
+   "java": "class Logger {\n    public Logger() {\n        \n    }\n\n    public boolean shouldPrintMessage(int timestamp, String message) {\n        return false;\n    }\n}\n",
+   "python": "class Logger:\n    def __init__(self):\n        pass\n\n    def shouldPrintMessage(self, timestamp: int, message: str) -> bool:\n        pass\n"
+  },
+  "solutionCode": {
+   "java": "class Logger {\n    private record Entry(int ts, String msg) {}\n\n    private final Deque<Entry> q = new ArrayDeque<>();\n    private final Set<String> active = new HashSet<>();\n\n    public Logger() {}\n\n    public boolean shouldPrintMessage(int timestamp, String message) {\n        int cutoff = timestamp - 10;\n        while (!q.isEmpty() && q.peekFirst().ts() <= cutoff) {\n            active.remove(q.pollFirst().msg());\n        }\n        if (active.contains(message)) {\n            return false;\n        }\n        active.add(message);\n        q.offerLast(new Entry(timestamp, message));\n        return true;\n    }\n}\n",
+   "python": "class Logger:\n    def __init__(self):\n        self.q = deque()\n        self.active = set()\n\n    def shouldPrintMessage(self, timestamp: int, message: str) -> bool:\n        cutoff = timestamp - 10\n        while self.q and self.q[0][0] <= cutoff:\n            _, old_msg = self.q.popleft()\n            self.active.remove(old_msg)\n        if message in self.active:\n            return False\n        self.active.add(message)\n        self.q.append((timestamp, message))\n        return True\n"
+  },
+  "sampleArray": [],
+  "visibleTestCount": 2,
+  "hiddenTestCount": 10,
+  "number": 10
+ }
+]

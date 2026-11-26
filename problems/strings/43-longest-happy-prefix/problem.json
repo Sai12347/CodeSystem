@@ -1,0 +1,44 @@
+{
+  "title": "Longest Happy Prefix",
+  "difficulty": "Hard",
+  "subtopic": "String Matching",
+  "companies": [
+    "Google",
+    "Meta",
+    "Microsoft"
+  ],
+  "description": "A string is called a happy prefix if it is a non-empty proper prefix of `s` that is also a suffix of `s` (excluding `s` itself). Given a lowercase string `s`, return its longest happy prefix, or an empty string `\"\"` if no happy prefix exists.",
+  "constraints": [
+    "1 <= s.length <= 10^5",
+    "s contains only lowercase English letters."
+  ],
+  "hints": [
+    "The KMP prefix function (LPS array) computes, for every prefix, the length of its longest proper border.",
+    "The answer is simply the first lps[n - 1] characters of s."
+  ],
+  "examples": [
+    {
+      "explanation": "The prefix \"l\" of length 1 is also a suffix of \"level\"."
+    },
+    {
+      "explanation": "The prefix \"abab\" of length 4 is also a suffix of \"ababab\"."
+    },
+    {
+      "explanation": "No non-empty proper prefix of \"leetcode\" is also a suffix."
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "longestPrefix",
+    "params": [
+      {
+        "name": "s",
+        "type": "String"
+      }
+    ],
+    "returns": "String"
+  }
+}

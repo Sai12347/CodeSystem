@@ -1,0 +1,44 @@
+{
+  "title": "Find Original Array of Prefix XOR",
+  "difficulty": "Medium",
+  "subtopic": "XOR Tricks",
+  "companies": [
+    "Amazon",
+    "Microsoft",
+    "Apple"
+  ],
+  "description": "You are given an integer array `pref` of length `n`. Find and return the unique array `arr` of length `n` such that `pref[i] = arr[0] ^ arr[1] ^ ... ^ arr[i]` for every `0 <= i < n`.",
+  "constraints": [
+    "1 <= pref.length <= 10^5",
+    "0 <= pref[i] <= 10^6"
+  ],
+  "hints": [
+    "Since `pref[i] = pref[i - 1] ^ arr[i]`, XOR both sides with `pref[i - 1]`.",
+    "That gives `arr[0] = pref[0]` and `arr[i] = pref[i] ^ pref[i - 1]` for all `i >= 1`."
+  ],
+  "examples": [
+    {
+      "explanation": "arr = [5, 7, 2, 3, 2] produces prefix XORs [5, 2, 0, 3, 1]."
+    },
+    {
+      "explanation": "A single-element prefix array equals the original array [13]."
+    },
+    {
+      "explanation": "Zero prefix XORs mean every original element is 0."
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "findOriginalPrefixXor",
+    "params": [
+      {
+        "name": "pref",
+        "type": "int[]"
+      }
+    ],
+    "returns": "int[]"
+  }
+}

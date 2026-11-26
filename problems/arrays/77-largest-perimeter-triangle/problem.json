@@ -1,0 +1,43 @@
+{
+  "title": "Largest Perimeter Triangle",
+  "difficulty": "Easy",
+  "subtopic": "Traversal",
+  "companies": [
+    "Amazon",
+    "Google",
+    "Microsoft"
+  ],
+  "description": "Choose three elements of `nums` that can form a non-degenerate triangle. Return the largest possible perimeter, or 0 if no valid triangle exists. Input: positive side lengths `nums`. Output: the largest valid perimeter.",
+  "constraints": [
+    "3 <= nums.length <= 100000",
+    "1 <= nums[i] <= 1000000"
+  ],
+  "hints": [
+    "Sort once or track a compact running state to avoid checking every possible group.",
+    "Test duplicates, extreme ordering, and cases with no feasible candidate."
+  ],
+  "examples": [
+    {
+      "input": "nums = [2, 1, 2]",
+      "output": "5"
+    },
+    {
+      "input": "nums = [1, 2, 1]",
+      "output": "0"
+    }
+  ],
+  "timeComplexity": "O(n log n)",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "largestPerimeter",
+    "params": [
+      {
+        "name": "nums",
+        "type": "int[]"
+      }
+    ],
+    "returns": "int"
+  }
+}

@@ -1,0 +1,52 @@
+{
+  "title": "Maximum Side Length of Square Within Threshold",
+  "difficulty": "Medium",
+  "subtopic": "2D Search",
+  "companies": [
+    "Google",
+    "Amazon",
+    "Meta",
+    "Microsoft"
+  ],
+  "description": "Given an `m x n` integer matrix `mat` containing non-negative integers and an integer `threshold`, return the **maximum side length** of a contiguous square subgrid (`k x k`) whose sum of elements is less than or equal to `threshold`, or `0` if no such square exists.",
+  "constraints": [
+    "m == mat.length",
+    "n == mat[i].length",
+    "1 <= m, n <= 300",
+    "0 <= mat[i][j] <= 10^4",
+    "0 <= threshold <= 10^5"
+  ],
+  "hints": [
+    "Build a 2D prefix sum table so the sum of any k x k square ending at (r, c) can be computed in O(1) time.",
+    "Because all entries are non-negative, while scanning cells (r, c) you only ever need to test side length (best + 1): if it fits and has sum <= threshold, increment best by 1 for an O(m * n) solution."
+  ],
+  "examples": [
+    {
+      "explanation": "The 2x2 square of all 1s has sum 4 <= 4, while every 3x3 square has sum > 4, so the answer is 2."
+    },
+    {
+      "explanation": "Every single cell is 2 > threshold 1, so no valid square exists and the answer is 0."
+    },
+    {
+      "explanation": "The entire 2x2 matrix sums to 10 <= 10, giving side length 2."
+    }
+  ],
+  "timeComplexity": "O(m * n)",
+  "spaceComplexity": "O(m * n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "maxSideLength",
+    "params": [
+      {
+        "name": "mat",
+        "type": "int[][]"
+      },
+      {
+        "name": "threshold",
+        "type": "int"
+      }
+    ],
+    "returns": "int"
+  }
+}

@@ -1,0 +1,45 @@
+{
+  "title": "Checking Existence of Edge Length Limited Paths",
+  "difficulty": "Hard",
+  "subtopic": "Path Compression",
+  "companies": ["Google", "Amazon", "Meta", "Microsoft", "Uber"],
+  "leetcode": 1697,
+  "description": "An undirected graph of `n` nodes labeled from `0` to `n - 1` is defined by `edgeList`, where `edgeList[i] = [ui, vi, disi]` denotes an undirected edge between nodes `ui` and `vi` with distance `disi`. Note that there may be multiple edges between the same pair of nodes.\n\nGiven an array `queries`, where `queries[j] = [pj, qj, limitj]`, determine for each query whether there exists a path between `pj` and `qj` such that every edge on the path has a distance strictly less than `limitj`.\n\nReturn a boolean array `answer` of length `queries.length`, where `answer[j]` is `true` if such a path exists for `queries[j]`, and `false` otherwise.",
+  "constraints": [
+    "2 <= n <= 10^5",
+    "1 <= edgeList.length, queries.length <= 10^5",
+    "edgeList[i].length == 3",
+    "queries[j].length == 3",
+    "0 <= ui, vi, pj, qj <= n - 1",
+    "ui != vi",
+    "pj != qj",
+    "1 <= disi, limitj <= 10^9",
+    "There may be multiple edges between two nodes."
+  ],
+  "hints": [
+    "All queries are given upfront, so you can answer them offline instead of running a separate graph search for each query.",
+    "Sort edgeList in ascending order of edge distance, and sort the queries (keeping track of their original indices) in ascending order of limit.",
+    "Maintain a Disjoint Set Union (DSU) structure and an edge pointer: before answering a query with threshold limit, union all edges with distance strictly less than limit, then check whether find(p) == find(q)."
+  ],
+  "examples": [
+    {
+      "explanation": "For query [0, 1, 2], no edge has distance strictly less than 2 (the edge [0, 1, 2] has distance equal to 2), so the answer is false. For query [0, 2, 5], edges [0, 1, 2] and [1, 2, 4] both have distance < 5 and connect 0 to 2, so the answer is true."
+    },
+    {
+      "explanation": "For query [0, 4, 14], all four edges have distance < 14, connecting 0 to 4 (true). For query [1, 4, 13], edge [3, 4, 13] is not strictly less than 13, leaving node 4 unreachable from node 1 (false)."
+    }
+  ],
+  "timeComplexity": "O(n + E log E + Q log Q)",
+  "spaceComplexity": "O(n + Q)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "distanceLimitedPathsExist",
+    "params": [
+      {"name": "n", "type": "int"},
+      {"name": "edgeList", "type": "int[][]"},
+      {"name": "queries", "type": "int[][]"}
+    ],
+    "returns": "boolean[]"
+  }
+}

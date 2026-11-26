@@ -1,0 +1,89 @@
+{
+  "title": "Two Stacks in One Array",
+  "difficulty": "Easy",
+  "subtopic": "LIFO Structure",
+  "companies": [
+    "Amazon",
+    "Microsoft",
+    "Oracle",
+    "Adobe"
+  ],
+  "description": "Design a data structure `TwoStacks` that implements two independent stacks sharing a single fixed-capacity storage of size `capacity`.\n\nImplement the `TwoStacks` class:\n- `TwoStacks(int capacity)` initializes two empty stacks sharing total capacity `capacity`.\n- `boolean push1(int val)` pushes non-negative integer `val` onto Stack 1 if total elements across both stacks is strictly less than `capacity`, returning `true`; otherwise does nothing and returns `false`.\n- `boolean push2(int val)` pushes non-negative integer `val` onto Stack 2 if total elements across both stacks is strictly less than `capacity`, returning `true`; otherwise does nothing and returns `false`.\n- `int pop1()` removes and returns the top element of Stack 1, or `-1` if Stack 1 is empty.\n- `int pop2()` removes and returns the top element of Stack 2, or `-1` if Stack 2 is empty.\n- `int size1()` returns the current number of elements in Stack 1.\n- `int size2()` returns the current number of elements in Stack 2.\n\nAll operations must run in `O(1)` time.",
+  "constraints": [
+    "1 <= capacity <= 10^4",
+    "0 <= val <= 10^9",
+    "At most 2 * 10^4 calls will be made across all methods."
+  ],
+  "hints": [
+    "Allocate a single array of length capacity and let Stack 1 grow forward from index 0 while Stack 2 grows backward from index capacity - 1.",
+    "The shared storage is full if and only if top1 + 1 == top2."
+  ],
+  "examples": [
+    {
+      "explanation": "With capacity 3, pushing 10 and 20 onto Stack 1 and 30 onto Stack 2 fills the buffer, so pushing 40 returns false. Popping Stack 1 frees a slot so pushing 40 onto Stack 2 succeeds."
+    },
+    {
+      "explanation": "Popping from empty stacks returns -1 and sizes remain 0."
+    },
+    {
+      "explanation": "With capacity 1, either stack can occupy the single slot and release it for the other."
+    }
+  ],
+  "timeComplexity": "O(1) per op",
+  "spaceComplexity": "O(capacity)",
+  "compare": "exact",
+  "signature": {
+    "kind": "design",
+    "className": "TwoStacks",
+    "constructor": {
+      "params": [
+        {
+          "name": "capacity",
+          "type": "int"
+        }
+      ]
+    },
+    "methods": [
+      {
+        "name": "push1",
+        "params": [
+          {
+            "name": "val",
+            "type": "int"
+          }
+        ],
+        "returns": "boolean"
+      },
+      {
+        "name": "push2",
+        "params": [
+          {
+            "name": "val",
+            "type": "int"
+          }
+        ],
+        "returns": "boolean"
+      },
+      {
+        "name": "pop1",
+        "params": [],
+        "returns": "int"
+      },
+      {
+        "name": "pop2",
+        "params": [],
+        "returns": "int"
+      },
+      {
+        "name": "size1",
+        "params": [],
+        "returns": "int"
+      },
+      {
+        "name": "size2",
+        "params": [],
+        "returns": "int"
+      }
+    ]
+  }
+}

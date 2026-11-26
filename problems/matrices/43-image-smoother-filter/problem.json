@@ -1,0 +1,47 @@
+{
+  "title": "Image Smoother Filter",
+  "difficulty": "Easy",
+  "subtopic": "Simulation",
+  "companies": [
+    "Amazon",
+    "Apple",
+    "Microsoft",
+    "Adobe"
+  ],
+  "description": "An image smoother is a `3 x 3` averaging filter applied to every pixel of an `m x n` grayscale integer matrix `img`.\n\nThe smoothed value at cell `(r, c)` is the **floor** of the average of `(r, c)` and all of its valid in-bounds 8-directional neighbors (corners average 4 cells, non-corner borders average 6 cells, and interior cells average 9 cells; single-row or single-column grids average fewer cells accordingly).\n\nReturn the smoothed `m x n` integer matrix.",
+  "constraints": [
+    "m == img.length",
+    "n == img[i].length",
+    "1 <= m, n <= 100",
+    "0 <= img[i][j] <= 255"
+  ],
+  "hints": [
+    "For each cell (r, c), loop over nr in [max(0, r - 1), min(m - 1, r + 1)] and nc in [max(0, c - 1), min(n - 1, c + 1)].",
+    "Accumulate both the sum and the count of valid cells, then store sum // count in a new result matrix so updates do not affect neighbor reads."
+  ],
+  "examples": [
+    {
+      "explanation": "Every corner averages 3 ones and 1 zero (floor(3/4) = 0), every edge averages 5 ones and 1 zero (floor(5/6) = 0), and the center averages 8 ones and 1 zero (floor(8/9) = 0)."
+    },
+    {
+      "explanation": "Averaging each 3x3 neighborhood of [[100,200,100],[200,50,200],[100,200,100]] produces [[137,141,137],[141,138,141],[137,141,137]]."
+    },
+    {
+      "explanation": "A 1x1 image has only itself in its neighborhood, so its value stays unchanged."
+    }
+  ],
+  "timeComplexity": "O(m * n)",
+  "spaceComplexity": "O(m * n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "imageSmoother",
+    "params": [
+      {
+        "name": "img",
+        "type": "int[][]"
+      }
+    ],
+    "returns": "int[][]"
+  }
+}

@@ -1,0 +1,43 @@
+{
+  "title": "Toeplitz Matrix Check",
+  "difficulty": "Easy",
+  "subtopic": "Simulation",
+  "companies": [
+    "Amazon",
+    "Google",
+    "Microsoft"
+  ],
+  "description": "A matrix is Toeplitz when every entry other than one in the first row or first column equals the entry immediately above and to its left. Given a rectangular integer matrix `matrix`, return whether it is Toeplitz. Input: `matrix`. Output: true or false.",
+  "constraints": [
+    "1 <= rows, columns <= 1000",
+    "-100000 <= matrix[i][j] <= 100000"
+  ],
+  "hints": [
+    "Check each cell using its row and column relationships.",
+    "Handle single-row, single-column, tie, and center-cell cases explicitly."
+  ],
+  "examples": [
+    {
+      "input": "matrix = [[1, 2, 3, 4], [5, 1, 2, 3], [9, 5, 1, 2]]",
+      "output": "true"
+    },
+    {
+      "input": "matrix = [[1, 2], [2, 2]]",
+      "output": "false"
+    }
+  ],
+  "timeComplexity": "O(rows*columns)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "isToeplitzMatrix",
+    "params": [
+      {
+        "name": "matrix",
+        "type": "int[][]"
+      }
+    ],
+    "returns": "boolean"
+  }
+}

@@ -1,0 +1,47 @@
+{
+  "title": "Sort Characters By Frequency",
+  "difficulty": "Medium",
+  "subtopic": "Top K Elements",
+  "companies": [
+    "Amazon",
+    "Google",
+    "Meta",
+    "Microsoft",
+    "Bloomberg"
+  ],
+  "leetcode": 451,
+  "description": "Given a string `s`, sort it in **decreasing order** based on the **frequency** of the characters. The frequency of a character is the number of times it appears in the string.\n\nAll occurrences of the same character must be grouped together consecutively. Note that uppercase and lowercase letters are treated as **different** characters (`'A'` and `'a'` are distinct).\n\nIf multiple valid answers exist (when two characters have the same frequency), return **any** of them. The judge validates that your returned string is a permutation of `s` with identical characters grouped together in non-increasing frequency order (`true`).",
+  "constraints": [
+    "1 <= s.length <= 5 * 10^5",
+    "s consists of uppercase and lowercase English letters and digits."
+  ],
+  "hints": [
+    "Count the frequency of every character in s using a hash map or fixed-size frequency array.",
+    "Push `(frequency, char)` pairs into a max-heap so the highest-frequency characters are popped first.",
+    "For each popped `(freq, char)`, append `char` repeated `freq` times to build the result in O(n + k log k) time (where k <= 62)."
+  ],
+  "examples": [
+    {
+      "explanation": "'e' appears twice while 'r' and 't' each appear once, so both \"eert\" and \"eetr\" are valid answers."
+    },
+    {
+      "explanation": "Both 'c' and 'a' appear three times, so \"cccaaa\" and \"aaaccc\" are valid, whereas \"cacaca\" is invalid because identical characters must be grouped together."
+    },
+    {
+      "explanation": "'b' appears twice while 'A' and 'a' are distinct characters appearing once each, so \"bbAa\" and \"bbaA\" are valid."
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "adapter",
+    "inputs": [
+      {
+        "name": "s",
+        "type": "String",
+        "description": "String of English letters and digits to sort by descending frequency"
+      }
+    ]
+  }
+}

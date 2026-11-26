@@ -1,0 +1,41 @@
+{
+  "title": "Find Shortest Superstring",
+  "difficulty": "Hard",
+  "subtopic": "Bitmask Traveling Salesperson",
+  "companies": [
+    "Google",
+    "Amazon",
+    "Microsoft"
+  ],
+  "description": "Return a shortest string that contains every input word as a contiguous substring. If several shortest strings exist, return the lexicographically smallest. No input word is a substring of another input word.",
+  "constraints": [
+    "1 <= words.length <= 10",
+    "1 <= words[i].length <= 20",
+    "words contain lowercase English letters",
+    "No word is a substring of another"
+  ],
+  "hints": [
+    "Use a compact state to summarize each subtree or set of chosen items.",
+    "Combine partial states and cache repeated subproblems."
+  ],
+  "examples": [
+    {
+      "input": "words = [\"alex\",\"loves\",\"leetcode\"]",
+      "output": "\"alexlovesleetcode\""
+    }
+  ],
+  "timeComplexity": "O(n^2*2^n)",
+  "spaceComplexity": "O(n*2^n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "shortestSuperstring",
+    "params": [
+      {
+        "name": "words",
+        "type": "String[]"
+      }
+    ],
+    "returns": "String"
+  }
+}

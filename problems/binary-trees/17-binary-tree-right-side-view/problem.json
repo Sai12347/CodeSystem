@@ -1,0 +1,49 @@
+{
+  "title": "Binary Tree Right Side View",
+  "difficulty": "Medium",
+  "subtopic": "Level-Order BFS",
+  "companies": [
+    "Meta",
+    "Amazon",
+    "Google",
+    "Microsoft",
+    "Bloomberg",
+    "Uber"
+  ],
+  "leetcode": 199,
+  "description": "Given the `root` of a binary tree, imagine yourself standing on the **right side** of it. Return the values of the nodes you can see ordered from **top to bottom**.\n\nAt each depth level of the tree, the visible node is the rightmost non-null node at that depth (which may reside in the left subtree if the right subtree does not reach that depth).",
+  "constraints": [
+    "The number of nodes in the tree is in the range [0, 2000].",
+    "-100 <= Node.val <= 100"
+  ],
+  "hints": [
+    "You need exactly one node value per level of the binary tree: the rightmost node at that level.",
+    "In a level-order BFS, process all `levelSize` nodes of the current depth; the last node popped in each level is visible from the right side.",
+    "Alternatively, a right-first DFS (`node.right` before `node.left`) that records the first node encountered at each new depth solves it in O(n) time and O(h) space."
+  ],
+  "examples": [
+    {
+      "explanation": "Level 0 rightmost is 1, level 1 rightmost is 3, and level 2 rightmost is 4."
+    },
+    {
+      "explanation": "The right subtree stops at depth 1 (node 3), so nodes 4 and 5 from the deeper left subtree are visible from the right."
+    },
+    {
+      "explanation": "An empty tree has no visible nodes."
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "rightSideView",
+    "params": [
+      {
+        "name": "root",
+        "type": "TreeNode"
+      }
+    ],
+    "returns": "List<Integer>"
+  }
+}

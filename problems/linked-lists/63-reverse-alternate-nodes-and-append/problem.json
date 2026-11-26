@@ -1,0 +1,45 @@
+{
+  "title": "Reverse Alternate Nodes and Append",
+  "difficulty": "Medium",
+  "subtopic": "Reversal",
+  "companies": [
+    "Amazon",
+    "Microsoft",
+    "Bloomberg",
+    "Uber"
+  ],
+  "description": "Given the `head` of a singly linked list, extract all nodes at **even 1-based positions** (the 2nd, 4th, 6th, ... nodes), reverse their order, and append them to the end of the remaining odd-positioned nodes (the 1st, 3rd, 5th, ... nodes).\n\nReturn the head of the modified linked list in `O(n)` time and `O(1)` extra space.",
+  "constraints": [
+    "The number of nodes in the list is in the range [0, 10^4].",
+    "-10^5 <= Node.val <= 10^5"
+  ],
+  "hints": [
+    "Walk along the odd-positioned chain with pointer `odd`, detaching each successor `even = odd.next` as you go.",
+    "Prepend each detached `even` node to the front of a `revEven` list (`even.next = revEven; revEven = even`) so it is automatically built in reversed order, then attach `odd.next = revEven` at the end."
+  ],
+  "examples": [
+    {
+      "explanation": "Odd positions [10, 9, 7, 5] stay first; even positions [4, 1, 3] reverse to [3, 1, 4] and append."
+    },
+    {
+      "explanation": "Odd positions [1, 3, 5] followed by reversed even positions [4, 2] gives [1, 3, 5, 4, 2]."
+    },
+    {
+      "explanation": "Odd [1, 3] followed by reversed even [4, 2] gives [1, 3, 4, 2]."
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "reverseAlternateAndAppend",
+    "params": [
+      {
+        "name": "head",
+        "type": "ListNode"
+      }
+    ],
+    "returns": "ListNode"
+  }
+}

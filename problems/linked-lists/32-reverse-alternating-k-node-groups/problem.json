@@ -1,0 +1,51 @@
+{
+  "title": "Reverse Alternating K-Node Groups",
+  "difficulty": "Hard",
+  "subtopic": "Reversal",
+  "companies": [
+    "Google",
+    "Amazon",
+    "Meta",
+    "Microsoft",
+    "Uber"
+  ],
+  "description": "Given the `head` of a singly linked list and a positive integer `k`, partition the list into consecutive groups of `k` nodes (the final group may have fewer than `k` nodes).\n\nNumbering the groups `1, 2, 3, ...`, **reverse every odd-numbered group** (groups `1, 3, 5, ...` \u2014 including a trailing partial group if it falls on an odd group number) and **leave every even-numbered group** (`2, 4, 6, ...`) in its original order. Return the head of the modified list in `O(1)` extra space.",
+  "constraints": [
+    "The number of nodes in the list is in the range [0, 5000].",
+    "-10^4 <= Node.val <= 10^4",
+    "1 <= k <= 5000"
+  ],
+  "hints": [
+    "Toggle a boolean flag `shouldReverse` (starting `true`) after each group of up to `k` nodes.",
+    "When `shouldReverse` is true, reverse up to `k` nodes in-place and connect the previous tail to the reversed group's new head; when false, simply advance `prev` up to `k` steps."
+  ],
+  "examples": [
+    {
+      "explanation": "Group 1 [1, 2, 3] reverses to [3, 2, 1], group 2 [4, 5, 6] stays [4, 5, 6], and partial odd group 3 [7, 8] reverses to [8, 7]."
+    },
+    {
+      "explanation": "With k = 2, group 1 [1, 2] -> [2, 1], group 2 [3, 4] stays, group 3 [5, 6] -> [6, 5], group 4 [7] stays."
+    },
+    {
+      "explanation": "With k = 1, every group has length 1 so the list is unchanged."
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "reverseAlternatingKGroup",
+    "params": [
+      {
+        "name": "head",
+        "type": "ListNode"
+      },
+      {
+        "name": "k",
+        "type": "int"
+      }
+    ],
+    "returns": "ListNode"
+  }
+}

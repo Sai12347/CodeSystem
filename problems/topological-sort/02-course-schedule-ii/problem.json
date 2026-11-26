@@ -1,0 +1,43 @@
+{
+  "title": "Course Schedule II",
+  "difficulty": "Medium",
+  "subtopic": "Kahn Algorithm",
+  "companies": [
+    "Amazon",
+    "Google",
+    "Microsoft"
+  ],
+  "description": "Return an ordering of all courses that satisfies the prerequisite pairs `[course, prerequisite]`. If multiple valid orders exist, return the lexicographically smallest one. Return an empty array if no valid ordering exists.",
+  "constraints": [
+    "1 <= numCourses <= 2000",
+    "0 <= prerequisites.length <= 5000"
+  ],
+  "hints": [
+    "Represent prerequisites as directed edges and process zero in-degree vertices.",
+    "A cycle prevents a complete ordering; unique orderings require a single available choice at each step."
+  ],
+  "examples": [
+    {
+      "input": "numCourses = 2, prerequisites = [[1,0]]",
+      "output": "[0,1]"
+    }
+  ],
+  "timeComplexity": "O(V+E)",
+  "spaceComplexity": "O(V+E)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "findOrder",
+    "params": [
+      {
+        "name": "numCourses",
+        "type": "int"
+      },
+      {
+        "name": "prerequisites",
+        "type": "int[][]"
+      }
+    ],
+    "returns": "int[]"
+  }
+}

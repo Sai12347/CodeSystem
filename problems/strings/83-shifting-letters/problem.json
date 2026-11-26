@@ -1,0 +1,49 @@
+{
+  "title": "Shifting Letters",
+  "difficulty": "Medium",
+  "subtopic": "Parsing",
+  "companies": [
+    "Amazon",
+    "Google",
+    "Bloomberg"
+  ],
+  "description": "You are given a lowercase string `s` and an integer array `shifts` of the same length. Shifting a letter moves it forward in the English alphabet cyclically (`'z'` wraps to `'a'`). For each `i` from `0` to `n - 1`, shift the first `i + 1` letters of `s` by `shifts[i]` positions. Return the final string after all shifts are applied.",
+  "constraints": [
+    "1 <= s.length <= 10^5",
+    "shifts.length == s.length",
+    "0 <= shifts[i] <= 10^9"
+  ],
+  "hints": [
+    "Character s[i] is shifted by the suffix sum shifts[i] + shifts[i + 1] + ... + shifts[n - 1].",
+    "Traverse from right to left accumulating the suffix sum modulo 26."
+  ],
+  "examples": [
+    {
+      "explanation": "Total shifts are [17, 14, 9]: 'a'+17='r', 'b'+14='p', 'c'+9='l'."
+    },
+    {
+      "explanation": "Total shifts are [6, 5, 3]: 'a'+6='g', 'a'+5='f', 'a'+3='d'."
+    },
+    {
+      "explanation": "Shifting 'z' by 1 wraps around to 'a'."
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "shiftingLetters",
+    "params": [
+      {
+        "name": "s",
+        "type": "String"
+      },
+      {
+        "name": "shifts",
+        "type": "int[]"
+      }
+    ],
+    "returns": "String"
+  }
+}

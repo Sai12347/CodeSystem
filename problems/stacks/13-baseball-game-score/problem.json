@@ -1,0 +1,47 @@
+{
+  "title": "Baseball Game Score",
+  "difficulty": "Easy",
+  "subtopic": "LIFO Structure",
+  "companies": [
+    "Amazon",
+    "Google",
+    "Bloomberg"
+  ],
+  "description": "You are keeping the scores for a baseball game with unusual rules. At the beginning of the game, you start with an empty record.\n\nYou are given a list of strings `operations`, where `operations[i]` is the `i`-th operation you must apply to the record and is one of the following:\n- An integer `x`: record a new score of `x`.\n- `'+'`: record a new score that is the sum of the previous two scores.\n- `'D'`: record a new score that is double the previous score.\n- `'C'`: invalidate the previous score, removing it from the record.\n\nReturn the sum of all the scores remaining on the record after applying all operations.",
+  "constraints": [
+    "1 <= operations.length <= 1000",
+    "operations[i] is 'C', 'D', '+', or a string representing an integer in [-3 * 10^4, 3 * 10^4].",
+    "For '+', there are always at least two previous scores on the record.",
+    "For 'C' and 'D', there is always at least one previous score on the record.",
+    "All intermediate calculations and the final sum fit in a 32-bit signed integer."
+  ],
+  "hints": [
+    "Maintain a stack of active scores so the most recent one or two scores are always accessible in O(1) time.",
+    "For 'C', pop the top element; for 'D', push 2 * stack[-1]; for '+', push stack[-1] + stack[-2]."
+  ],
+  "examples": [
+    {
+      "explanation": "Record evolves: [5] -> [5, 2] -> [5] -> [5, 10] -> [5, 10, 15], sum = 30."
+    },
+    {
+      "explanation": "Record evolves: [5] -> [5, -2] -> [5, -2, 4] -> [5, -2] (C) -> [5, -2, -4] (D) -> [5, -2, -4, 9] -> [5, -2, -4, 9, 5] (+) -> [5, -2, -4, 9, 5, 14] (+), totaling 27."
+    },
+    {
+      "explanation": "The single score 1 is invalidated by 'C', leaving an empty record with sum 0."
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "calPoints",
+    "params": [
+      {
+        "name": "operations",
+        "type": "String[]"
+      }
+    ],
+    "returns": "int"
+  }
+}

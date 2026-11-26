@@ -1,0 +1,48 @@
+{
+  "title": "Ransom Note Construction",
+  "difficulty": "Easy",
+  "subtopic": "Anagrams",
+  "companies": [
+    "Amazon",
+    "Meta",
+    "Apple"
+  ],
+  "description": "Given two lowercase strings `ransomNote` and `magazine`, return `true` if `ransomNote` can be constructed by using the letters from `magazine` and `false` otherwise. Each letter in `magazine` can only be used once in `ransomNote`.",
+  "constraints": [
+    "1 <= ransomNote.length, magazine.length <= 10^5",
+    "ransomNote and magazine consist of lowercase English letters."
+  ],
+  "hints": [
+    "Count the frequency of each of the 26 lowercase letters in magazine.",
+    "Decrement counts for each character in ransomNote; if any count drops below zero, return false."
+  ],
+  "examples": [
+    {
+      "explanation": "'a' does not appear in \"b\"."
+    },
+    {
+      "explanation": "\"ab\" only contains one 'a', but \"aa\" needs two."
+    },
+    {
+      "explanation": "\"aab\" has two 'a's, enough to build \"aa\"."
+    }
+  ],
+  "timeComplexity": "O(n + m)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "canConstruct",
+    "params": [
+      {
+        "name": "ransomNote",
+        "type": "String"
+      },
+      {
+        "name": "magazine",
+        "type": "String"
+      }
+    ],
+    "returns": "boolean"
+  }
+}

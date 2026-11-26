@@ -1,0 +1,48 @@
+{
+  "title": "Subsets II",
+  "difficulty": "Medium",
+  "subtopic": "Subsets",
+  "companies": [
+    "Meta",
+    "Amazon",
+    "Bloomberg",
+    "Microsoft",
+    "Google"
+  ],
+  "leetcode": 90,
+  "description": "Given an integer array `nums` that may contain duplicates, return all possible subsets (the power set).\n\nThe solution set must not contain duplicate subsets. Two subsets are considered identical if they contain the same elements with the same multiplicities. You may return the subsets in any order, and the elements within each subset may also be in any order.",
+  "constraints": [
+    "1 <= nums.length <= 10",
+    "-10 <= nums[i] <= 10"
+  ],
+  "hints": [
+    "Sort the input array first so identical elements become adjacent.",
+    "During backtracking at recursion level starting at `start`, if `i > start` and `nums[i] == nums[i - 1]`, skip `nums[i]` to avoid generating duplicate subsets at the same depth.",
+    "Notice that skipping only when `i > start` still allows using duplicate values in deeper recursion levels (e.g., [2, 2])."
+  ],
+  "examples": [
+    {
+      "explanation": "The unique subsets of [1, 2, 2] are [], [1], [2], [1, 2], [2, 2], and [1, 2, 2]. Duplicate [1, 2] and [2] are excluded."
+    },
+    {
+      "explanation": "The single-element array [0] has 2 unique subsets: [] and [0]."
+    },
+    {
+      "explanation": "Sorting gives [1, 4, 4, 4, 4]; every subset picks 0 or 1 copy of 1 and between 0 and 4 copies of 4, yielding 2 * 5 = 10 unique subsets."
+    }
+  ],
+  "timeComplexity": "O(n * 2^n)",
+  "spaceComplexity": "O(n)",
+  "compare": "sortedDeep",
+  "signature": {
+    "kind": "function",
+    "method": "subsetsWithDup",
+    "params": [
+      {
+        "name": "nums",
+        "type": "int[]"
+      }
+    ],
+    "returns": "List<List<Integer>>"
+  }
+}

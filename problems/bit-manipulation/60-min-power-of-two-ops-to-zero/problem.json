@@ -1,0 +1,43 @@
+{
+  "title": "Minimum Power-of-Two Operations to Zero",
+  "difficulty": "Medium",
+  "subtopic": "Two Complement",
+  "companies": [
+    "Amazon",
+    "Google",
+    "Uber"
+  ],
+  "description": "You are given a positive integer `n`. In one operation, you may add or subtract any power of two (`2^i` for any integer `i >= 0`) to or from `n`. Return the minimum number of operations required to reduce `n` to `0`.",
+  "constraints": [
+    "1 <= n <= 10^9"
+  ],
+  "hints": [
+    "Inspect the lowest set bit `low = n & -n` using two's complement.",
+    "If the next bit `(low << 1)` is also set (a run of two or more consecutive `1`s), adding `low` collapses the entire run into a single higher bit; otherwise subtracting `low` eliminates that isolated bit."
+  ],
+  "examples": [
+    {
+      "explanation": "39 + 1 = 40, 40 - 8 = 32, 32 - 32 = 0 (3 operations)."
+    },
+    {
+      "explanation": "54 + 2 = 56, 56 + 8 = 64, 64 - 64 = 0 (3 operations)."
+    },
+    {
+      "explanation": "16 is already a power of two, so 16 - 16 = 0 takes 1 operation."
+    }
+  ],
+  "timeComplexity": "O(log n)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "minOpsToZero",
+    "params": [
+      {
+        "name": "n",
+        "type": "int"
+      }
+    ],
+    "returns": "int"
+  }
+}

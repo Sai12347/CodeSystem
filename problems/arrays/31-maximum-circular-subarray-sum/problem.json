@@ -1,0 +1,43 @@
+{
+  "title": "Maximum Circular Subarray Sum",
+  "difficulty": "Medium",
+  "subtopic": "Subarrays",
+  "companies": [
+    "Amazon",
+    "Microsoft",
+    "Google"
+  ],
+  "description": "Given a non-empty integer array `nums` arranged in a circle, return the largest sum of a non-empty contiguous segment. A segment may wrap from the last element to the first, but it may contain each array position at most once. Input: `nums`. Output: the maximum segment sum.",
+  "constraints": [
+    "1 <= nums.length <= 100000",
+    "-10000 <= nums[i] <= 10000"
+  ],
+  "hints": [
+    "Scan the array while retaining only the state needed for the answer.",
+    "Check the first, last, repeated, and all-equal cases."
+  ],
+  "examples": [
+    {
+      "input": "nums = [5, -3, 5]",
+      "output": "10"
+    },
+    {
+      "input": "nums = [1, -2, 3, -2]",
+      "output": "3"
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "maxCircularSubarraySum",
+    "params": [
+      {
+        "name": "nums",
+        "type": "int[]"
+      }
+    ],
+    "returns": "int"
+  }
+}

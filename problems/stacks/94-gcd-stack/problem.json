@@ -1,0 +1,69 @@
+{
+  "title": "GCD Stack",
+  "difficulty": "Easy",
+  "subtopic": "Min Stack",
+  "companies": [
+    "Google",
+    "Amazon",
+    "Meta",
+    "Goldman Sachs"
+  ],
+  "description": "Design a stack `GcdStack` of positive integers that supports standard LIFO operations alongside retrieving the **Greatest Common Divisor (GCD)** of all elements currently in the stack in `O(1)` time.\n\nImplement the `GcdStack` class:\n- `GcdStack()` initializes an empty stack.\n- `void push(int val)` pushes positive integer `val` onto the top of the stack.\n- `void pop()` removes the top element of the stack.\n- `int top()` returns the top element of the stack.\n- `int getGcd()` returns the GCD of all elements currently in the stack.",
+  "constraints": [
+    "1 <= val <= 10^9",
+    "Methods pop, top, and getGcd are always called on non-empty stacks.",
+    "At most 3 * 10^4 calls will be made across all methods."
+  ],
+  "hints": [
+    "Just like `min`, `gcd` is associative, so maintaining a parallel prefix-GCD stack lets every `pop`, `top`, and `getGcd` run in O(1).",
+    "On `push(val)`, push `val` onto the value stack and `gcd(val, gcdStack[-1])` (or `val` if empty) onto the GCD stack."
+  ],
+  "examples": [
+    {
+      "explanation": "gcd(12) = 12, gcd(12, 18) = 6, gcd(12, 18, 9) = 3; after popping 9, gcd(12, 18) returns to 6."
+    },
+    {
+      "explanation": "After pushing 7 and 14, gcd is 7; pushing 15 drops gcd to 1; popping 15 restores gcd to 7."
+    },
+    {
+      "explanation": "A single element 100 has gcd 100 and top 100."
+    }
+  ],
+  "timeComplexity": "O(log M) push, O(1) pop/top/getGcd",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "design",
+    "className": "GcdStack",
+    "constructor": {
+      "params": []
+    },
+    "methods": [
+      {
+        "name": "push",
+        "params": [
+          {
+            "name": "val",
+            "type": "int"
+          }
+        ],
+        "returns": "void"
+      },
+      {
+        "name": "pop",
+        "params": [],
+        "returns": "void"
+      },
+      {
+        "name": "top",
+        "params": [],
+        "returns": "int"
+      },
+      {
+        "name": "getGcd",
+        "params": [],
+        "returns": "int"
+      }
+    ]
+  }
+}

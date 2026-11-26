@@ -1,0 +1,53 @@
+{
+  "title": "Minimum Edge Reversals From Source",
+  "difficulty": "Medium",
+  "subtopic": "Dijkstra",
+  "companies": [
+    "Google",
+    "Amazon",
+    "Microsoft"
+  ],
+  "description": "Each directed edge `[u,v]` can be traversed from `u` to `v` at cost 0, or from `v` to `u` after reversing it at cost 1. For every vertex, find the minimum number of edge reversals needed for a route from `source`; return -1 when no route exists even after reversals. Input: `n`, `directedEdges`, `source`. Output: one minimum cost per vertex.",
+  "constraints": [
+    "1 <= n <= 10000",
+    "0 <= directedEdges.length <= 50000",
+    "0 <= u,v < n and u != v",
+    "There are no duplicate directed edges"
+  ],
+  "hints": [
+    "Represent each edge as a transition whose cost matches the route rule.",
+    "Keep the best distance for each required state and ignore stale priority-queue entries."
+  ],
+  "examples": [
+    {
+      "input": "n = 4, directedEdges = [[0, 1], [2, 1], [2, 3]], source = 0",
+      "output": "[0,0,1,1]"
+    },
+    {
+      "input": "n = 3, directedEdges = [[1, 2]], source = 0",
+      "output": "[0,-1,-1]"
+    }
+  ],
+  "timeComplexity": "O((n+m) log n)",
+  "spaceComplexity": "O(n+m)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "minimumReversalsFromSource",
+    "params": [
+      {
+        "name": "n",
+        "type": "int"
+      },
+      {
+        "name": "directedEdges",
+        "type": "int[][]"
+      },
+      {
+        "name": "source",
+        "type": "int"
+      }
+    ],
+    "returns": "int[]"
+  }
+}

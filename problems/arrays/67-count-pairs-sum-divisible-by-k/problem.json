@@ -1,0 +1,48 @@
+{
+  "title": "Count Pairs With Sum Divisible by K",
+  "difficulty": "Medium",
+  "subtopic": "Traversal",
+  "companies": [
+    "Amazon",
+    "Google",
+    "Microsoft"
+  ],
+  "description": "Count index pairs `(i, j)` with `i < j` such that `nums[i] + nums[j]` is divisible by positive integer `k`. Input: non-negative array `nums` and `k`. Output: the exact pair count.",
+  "constraints": [
+    "1 <= nums.length <= 100000",
+    "0 <= nums[i] <= 1000000000",
+    "1 <= k <= 100000"
+  ],
+  "hints": [
+    "Track the running prefix, window, or frequency information needed by the condition.",
+    "Check duplicates, all-equal values, and boundary-sized windows."
+  ],
+  "examples": [
+    {
+      "input": "nums = [1, 2, 3, 4, 5, 6], k = 5",
+      "output": "3"
+    },
+    {
+      "input": "nums = [2, 2, 2, 2], k = 4",
+      "output": "6"
+    }
+  ],
+  "timeComplexity": "O(n+k)",
+  "spaceComplexity": "O(k)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "countPairsDivisibleByK",
+    "params": [
+      {
+        "name": "nums",
+        "type": "int[]"
+      },
+      {
+        "name": "k",
+        "type": "int"
+      }
+    ],
+    "returns": "long"
+  }
+}

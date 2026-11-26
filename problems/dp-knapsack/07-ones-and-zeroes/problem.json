@@ -1,0 +1,49 @@
+{
+  "title": "Ones and Zeroes",
+  "difficulty": "Medium",
+  "subtopic": "0/1 Knapsack",
+  "companies": [
+    "Amazon",
+    "Google",
+    "Microsoft"
+  ],
+  "description": "Choose the largest subset of binary strings whose total number of zeroes is at most `m` and total number of ones is at most `n`. Each string may be used at most once. Return the subset size.",
+  "constraints": [
+    "1 <= strs.length <= 600",
+    "1 <= strs[i].length <= 100",
+    "0 <= m,n <= 100",
+    "strs[i] contains only 0 and 1"
+  ],
+  "hints": [
+    "Use a state indexed by the remaining capacity and the amount of progress toward the required target.",
+    "Process each choice in descending capacity order so it is not reused."
+  ],
+  "examples": [
+    {
+      "input": "strs = [\"10\",\"0001\",\"111001\",\"1\",\"0\"], m = 5, n = 3",
+      "output": "4"
+    }
+  ],
+  "timeComplexity": "O(n*m*n)",
+  "spaceComplexity": "O(m*n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "findMaxForm",
+    "params": [
+      {
+        "name": "strs",
+        "type": "String[]"
+      },
+      {
+        "name": "m",
+        "type": "int"
+      },
+      {
+        "name": "n",
+        "type": "int"
+      }
+    ],
+    "returns": "int"
+  }
+}

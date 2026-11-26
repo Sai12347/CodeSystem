@@ -1,0 +1,85 @@
+{
+  "title": "Transactional Min Stack",
+  "difficulty": "Hard",
+  "subtopic": "Min Stack",
+  "companies": [
+    "Atlassian",
+    "Bloomberg",
+    "Google",
+    "Meta",
+    "Oracle"
+  ],
+  "description": "Design a min-stack `TransactionalStack` that supports nested database-style transactions (`begin`, `rollback`, `commit`) alongside `O(1)` minimum queries.\n\nImplement the `TransactionalStack` class:\n- `TransactionalStack()` initializes an empty stack with no active transaction.\n- `void push(int val)` pushes `val` onto the stack.\n- `int pop()` removes and returns the top element of the stack.\n- `int top()` returns the top element of the stack.\n- `int getMin()` returns the minimum element currently in the stack.\n- `void begin()` opens a new nested transaction block.\n- `boolean rollback()` reverts all `push` and `pop` operations performed since the most recent open `begin()` and closes that transaction; returns `true` if a transaction was active, or `false` if no transaction is open.\n- `boolean commit()` merges the most recent open transaction's changes into its enclosing transaction (or base state) and closes it; returns `true` if a transaction was active, or `false` otherwise.",
+  "constraints": [
+    "-10^9 <= val <= 10^9",
+    "Methods pop, top, and getMin are always called on non-empty stacks.",
+    "At most 5 * 10^4 calls will be made across all methods."
+  ],
+  "hints": [
+    "Maintain a standard O(1) min-stack plus a stack of transaction undo logs, where each undo log records the inverse of every push or pop performed during that transaction.",
+    "Store each transaction's undo log as a singly linked list in reverse chronological order with (head, tail) pointers so push/pop prepend in O(1), commit splices into the parent list in O(1), and rollback replays from head in amortized O(1)."
+  ],
+  "examples": [
+    {
+      "explanation": "Push 5 -> begin -> push 2 (min 2) -> rollback restores [5] (min 5); next begin -> push 1 -> commit makes [5, 1] permanent (min 1)."
+    },
+    {
+      "explanation": "Calling rollback or commit when no transaction is open returns false."
+    },
+    {
+      "explanation": "Nested transactions allow committing an inner block into an outer block and later rolling back both together."
+    }
+  ],
+  "timeComplexity": "O(1) amortized per op",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "design",
+    "className": "TransactionalStack",
+    "constructor": {
+      "params": []
+    },
+    "methods": [
+      {
+        "name": "push",
+        "params": [
+          {
+            "name": "val",
+            "type": "int"
+          }
+        ],
+        "returns": "void"
+      },
+      {
+        "name": "pop",
+        "params": [],
+        "returns": "int"
+      },
+      {
+        "name": "top",
+        "params": [],
+        "returns": "int"
+      },
+      {
+        "name": "getMin",
+        "params": [],
+        "returns": "int"
+      },
+      {
+        "name": "begin",
+        "params": [],
+        "returns": "void"
+      },
+      {
+        "name": "rollback",
+        "params": [],
+        "returns": "boolean"
+      },
+      {
+        "name": "commit",
+        "params": [],
+        "returns": "boolean"
+      }
+    ]
+  }
+}

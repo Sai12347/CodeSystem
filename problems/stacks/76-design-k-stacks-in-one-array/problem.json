@@ -1,0 +1,99 @@
+{
+  "title": "Design K Stacks in One Array",
+  "difficulty": "Hard",
+  "subtopic": "LIFO Structure",
+  "companies": [
+    "Google",
+    "Amazon",
+    "Meta",
+    "Microsoft",
+    "Bloomberg"
+  ],
+  "description": "Design a space-efficient data structure `KStacks` that implements `k` independent LIFO stacks (`0` through `k - 1`) sharing a single fixed-capacity pool of `capacity` slots, with every operation running in `O(1)` time.\n\nImplement the `KStacks` class:\n- `KStacks(int k, int capacity)` initializes `k` empty stacks sharing `capacity` total slots.\n- `boolean push(int stackId, int val)` pushes `val` (`0 <= val <= 10^9`) onto stack `stackId` and returns `true` if a free slot is available; otherwise leaves all stacks unchanged and returns `false`.\n- `int pop(int stackId)` pops and returns the top element of stack `stackId`, or returns `-1` if stack `stackId` is empty.\n- `int peek(int stackId)` returns the top element of stack `stackId` without removing it, or returns `-1` if empty.\n- `int size(int stackId)` returns the current number of elements in stack `stackId`.",
+  "constraints": [
+    "1 <= k <= 1000",
+    "1 <= capacity <= 2 * 10^4",
+    "0 <= stackId < k and 0 <= val <= 10^9",
+    "At most 3 * 10^4 method calls will be made."
+  ],
+  "hints": [
+    "Maintain three flat arrays of length `capacity`: `data` for values, `next` linking both free slots and per-stack chains, plus `top` and `sizes` of length `k` and a `freeHead` pointer.",
+    "On `push`, unlink `slot = freeHead`, advance `freeHead = next[slot]`, link `next[slot] = top[stackId]`, and set `top[stackId] = slot`; on `pop`, reverse those exact links to return the slot to the free list in O(1)."
+  ],
+  "examples": [
+    {
+      "explanation": "With capacity 3 across 2 stacks, pushing 10 and 20 onto stack 0 and 30 onto stack 1 fills the pool; the next push returns false until a pop frees a slot."
+    },
+    {
+      "explanation": "Popping and peeking an empty stack return -1, while size returns 0."
+    },
+    {
+      "explanation": "Freed slots from stack 0 are immediately reused by stack 2 in O(1)."
+    }
+  ],
+  "timeComplexity": "O(1) per op",
+  "spaceComplexity": "O(capacity + k)",
+  "compare": "exact",
+  "signature": {
+    "kind": "design",
+    "className": "KStacks",
+    "constructor": {
+      "params": [
+        {
+          "name": "k",
+          "type": "int"
+        },
+        {
+          "name": "capacity",
+          "type": "int"
+        }
+      ]
+    },
+    "methods": [
+      {
+        "name": "push",
+        "params": [
+          {
+            "name": "stackId",
+            "type": "int"
+          },
+          {
+            "name": "val",
+            "type": "int"
+          }
+        ],
+        "returns": "boolean"
+      },
+      {
+        "name": "pop",
+        "params": [
+          {
+            "name": "stackId",
+            "type": "int"
+          }
+        ],
+        "returns": "int"
+      },
+      {
+        "name": "peek",
+        "params": [
+          {
+            "name": "stackId",
+            "type": "int"
+          }
+        ],
+        "returns": "int"
+      },
+      {
+        "name": "size",
+        "params": [
+          {
+            "name": "stackId",
+            "type": "int"
+          }
+        ],
+        "returns": "int"
+      }
+    ]
+  }
+}

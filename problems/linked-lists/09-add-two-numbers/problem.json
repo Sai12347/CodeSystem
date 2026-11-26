@@ -1,0 +1,35 @@
+{
+  "title": "Add Two Numbers",
+  "difficulty": "Medium",
+  "subtopic": "Pointers & Nodes",
+  "companies": ["Amazon", "Google", "Meta", "Microsoft", "Apple", "Bloomberg"],
+  "leetcode": 2,
+  "description": "You are given two non-empty singly linked lists `l1` and `l2` representing two non-negative integers. The digits are stored in **reverse order**, and each of their nodes contains a single digit (`0` through `9`).\n\nAdd the two numbers and return the sum as a linked list in the same reverse order.\n\nYou may assume the two numbers do not contain any leading zero, except the number `0` itself.",
+  "constraints": [
+    "The number of nodes in each linked list is in the range [1, 100].",
+    "0 <= Node.val <= 9",
+    "It is guaranteed that the list represents a number that does not have leading zeros (except the number 0 itself)."
+  ],
+  "hints": [
+    "Simulate grade-school addition from the least significant digit (head of both lists) to the most significant digit, tracking a `carry` variable.",
+    "Use a dummy head node so you can append new sum digits uniformly without special-casing the first node.",
+    "Remember to continue the loop while either list still has nodes OR `carry` is non-zero (for example, `5 + 5` produces an extra carry node)."
+  ],
+  "examples": [
+    {"explanation": "342 + 465 = 807, represented in reverse order as [7, 0, 8]."},
+    {"explanation": "0 + 0 = 0."},
+    {"explanation": "9999999 + 9999 = 10009998, represented in reverse order as [8, 9, 9, 9, 0, 0, 0, 1]."}
+  ],
+  "timeComplexity": "O(max(m, n))",
+  "spaceComplexity": "O(max(m, n))",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "addTwoNumbers",
+    "params": [
+      {"name": "l1", "type": "ListNode"},
+      {"name": "l2", "type": "ListNode"}
+    ],
+    "returns": "ListNode"
+  }
+}

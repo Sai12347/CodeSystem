@@ -1,0 +1,52 @@
+{
+  "title": "Set Matrix Zeroes",
+  "difficulty": "Medium",
+  "subtopic": "Simulation",
+  "companies": [
+    "Amazon",
+    "Meta",
+    "Microsoft",
+    "Google",
+    "Oracle",
+    "Salesforce"
+  ],
+  "leetcode": 73,
+  "description": "Given an `m x n` integer `matrix`, if an element is `0`, set its entire row and column to `0`.\n\nYou must modify `matrix` **in-place**. All zeroes present in the original matrix take effect simultaneously; cells that become `0` as a result of another cell must not trigger additional rows or columns to be zeroed.\n\nAim for a solution using `O(1)` auxiliary space.",
+  "constraints": [
+    "m == matrix.length",
+    "n == matrix[0].length",
+    "1 <= m, n <= 200",
+    "-2^31 <= matrix[i][j] <= 2^31 - 1"
+  ],
+  "hints": [
+    "A straightforward approach records which rows and columns contain a 0 in O(m + n) extra space.",
+    "To achieve O(1) space, repurpose the first row and first column of the matrix itself as marker arrays.",
+    "Before overwriting the first row and column with markers, record two booleans indicating whether row 0 or column 0 originally contained a 0, and apply those last."
+  ],
+  "examples": [
+    {
+      "explanation": "Only cell (1, 1) is 0, so row 1 and column 1 are set to 0."
+    },
+    {
+      "explanation": "Zeroes at (0, 0) and (0, 3) zero out row 0, column 0, and column 3."
+    }
+  ],
+  "timeComplexity": "O(m * n)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "setZeroes",
+    "params": [
+      {
+        "name": "matrix",
+        "type": "int[][]"
+      }
+    ],
+    "returns": "void",
+    "output": {
+      "mode": "param",
+      "param": "matrix"
+    }
+  }
+}

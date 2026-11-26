@@ -1,0 +1,51 @@
+{
+  "title": "Matrix Similarity After Cyclic Shifts",
+  "difficulty": "Easy",
+  "subtopic": "Matrix Rotation",
+  "companies": [
+    "Amazon",
+    "Adobe",
+    "Oracle"
+  ],
+  "description": "You are given an `m x n` integer matrix `mat` and a non-negative integer `k`. Perform the following step `k` times:\n- Shift every **even-indexed row** (`0, 2, 4, ...`) cyclically **left** by `1` position.\n- Shift every **odd-indexed row** (`1, 3, 5, ...`) cyclically **right** by `1` position.\n\nReturn `true` if the matrix obtained after all `k` steps is identical to the initial matrix `mat`, and `false` otherwise.",
+  "constraints": [
+    "m == mat.length",
+    "n == mat[i].length",
+    "1 <= m, n <= 50",
+    "1 <= mat[i][j] <= 100",
+    "0 <= k <= 10^9"
+  ],
+  "hints": [
+    "Shifting a row of length n by k steps only depends on shift = k % n.",
+    "A row is unchanged under a cyclic left shift by shift if and only if it is unchanged under a cyclic right shift by shift: simply check mat[r][c] == mat[r][(c + shift) % n] for every cell."
+  ],
+  "examples": [
+    {
+      "explanation": "Each row has length 4 and repeats every 2 positions, so shifting by k = 2 leaves every row unchanged."
+    },
+    {
+      "explanation": "Row [1, 2, 1, 2] is periodic with period 2, but k = 1 shifts it to [2, 1, 2, 1], which differs from the original."
+    },
+    {
+      "explanation": "With k = 3 on a 3-column matrix, k % 3 == 0 so every row completes a full rotation and matches."
+    }
+  ],
+  "timeComplexity": "O(m * n)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "areSimilarAfterShifts",
+    "params": [
+      {
+        "name": "mat",
+        "type": "int[][]"
+      },
+      {
+        "name": "k",
+        "type": "int"
+      }
+    ],
+    "returns": "boolean"
+  }
+}

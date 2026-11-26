@@ -1,0 +1,54 @@
+{
+  "title": "4Sum",
+  "difficulty": "Medium",
+  "subtopic": "Converging Pointers",
+  "companies": [
+    "Amazon",
+    "Google",
+    "Meta",
+    "Microsoft",
+    "Apple",
+    "Uber"
+  ],
+  "leetcode": 18,
+  "description": "Given an array `nums` of `n` integers and an integer `target`, return an array of all the **unique** quadruplets `[nums[a], nums[b], nums[c], nums[d]]` such that:\n\n- `0 <= a, b, c, d < n`\n- `a`, `b`, `c`, and `d` are distinct.\n- `nums[a] + nums[b] + nums[c] + nums[d] == target`\n\nYou may return the quadruplets in any order, and the values within each quadruplet may be in any order. The result must not contain duplicate quadruplets. Note that the sum of four elements may exceed the 32-bit signed integer range.",
+  "constraints": [
+    "1 <= nums.length <= 200",
+    "-10^9 <= nums[i] <= 10^9",
+    "-10^9 <= target <= 10^9"
+  ],
+  "hints": [
+    "Sort nums first so duplicate quadruplets can be skipped easily and the innermost two numbers can be found with converging pointers.",
+    "Fix the first two indices i and j in nested loops (skipping repeated values at each level), then run left = j + 1 and right = n - 1 to find pairs summing to target - nums[i] - nums[j].",
+    "Use 64-bit integers (long in Java) when adding four values to avoid 32-bit integer overflow, and prune loops early when the minimum or maximum possible four-element sum cannot reach target."
+  ],
+  "examples": [
+    {
+      "explanation": "The three unique quadruplets summing to 0 are [-2, -1, 1, 2], [-2, 0, 0, 2], and [-1, 0, 0, 1]."
+    },
+    {
+      "explanation": "Although multiple index combinations sum to 8, all of them produce the same unique quadruplet [2, 2, 2, 2]."
+    },
+    {
+      "explanation": "With fewer than 4 elements in nums, no quadruplet can be formed."
+    }
+  ],
+  "timeComplexity": "O(n^3)",
+  "spaceComplexity": "O(log n)",
+  "compare": "sortedDeep",
+  "signature": {
+    "kind": "function",
+    "method": "fourSum",
+    "params": [
+      {
+        "name": "nums",
+        "type": "int[]"
+      },
+      {
+        "name": "target",
+        "type": "int"
+      }
+    ],
+    "returns": "List<List<Integer>>"
+  }
+}

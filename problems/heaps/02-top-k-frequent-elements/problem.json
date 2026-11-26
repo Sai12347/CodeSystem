@@ -1,0 +1,55 @@
+{
+  "title": "Top K Frequent Elements",
+  "difficulty": "Medium",
+  "subtopic": "Top K Elements",
+  "companies": [
+    "Amazon",
+    "Meta",
+    "Google",
+    "Microsoft",
+    "Uber",
+    "Oracle"
+  ],
+  "leetcode": 347,
+  "description": "Given an integer array `nums` and an integer `k`, return the `k` most frequent elements. You may return the answer in **any order**.\n\nIt is guaranteed that the answer is **unique** (there is no frequency tie separating the `k`-th most frequent element from the `(k + 1)`-th most frequent element).\n\nYour algorithm's time complexity must be better than `O(n log n)`, where `n` is the array's size.",
+  "constraints": [
+    "1 <= nums.length <= 10^5",
+    "-10^4 <= nums[i] <= 10^4",
+    "k is in the range [1, the number of unique elements in the array].",
+    "It is guaranteed that the answer is unique."
+  ],
+  "hints": [
+    "First count the frequency of every distinct value in nums using a hash map in O(n) time.",
+    "Maintain a min-heap of size at most k keyed by frequency so you can discard less-frequent elements in O(log k) time each.",
+    "Alternatively, bucket sort by frequency (from 1 to n) achieves O(n) time."
+  ],
+  "examples": [
+    {
+      "explanation": "1 appears 3 times, 2 appears 2 times, and 3 appears 1 time. The 2 most frequent elements are 1 and 2."
+    },
+    {
+      "explanation": "Only one unique element exists, so return [1]."
+    },
+    {
+      "explanation": "-1 appears 3 times and 4 appears 2 times, while 2 and 0 each appear once."
+    }
+  ],
+  "timeComplexity": "O(n log k)",
+  "spaceComplexity": "O(n)",
+  "compare": "sorted",
+  "signature": {
+    "kind": "function",
+    "method": "topKFrequent",
+    "params": [
+      {
+        "name": "nums",
+        "type": "int[]"
+      },
+      {
+        "name": "k",
+        "type": "int"
+      }
+    ],
+    "returns": "int[]"
+  }
+}

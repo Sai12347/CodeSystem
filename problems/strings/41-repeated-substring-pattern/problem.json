@@ -1,0 +1,44 @@
+{
+  "title": "Repeated Substring Pattern",
+  "difficulty": "Easy",
+  "subtopic": "String Matching",
+  "companies": [
+    "Google",
+    "Amazon",
+    "Microsoft"
+  ],
+  "description": "Given a non-empty lowercase string `s`, determine whether `s` can be constructed by taking a non-empty proper substring of `s` and concatenating two or more copies of it together. Return `true` if such a repeating pattern exists, otherwise `false`.",
+  "constraints": [
+    "1 <= s.length <= 10^4",
+    "s consists of lowercase English letters."
+  ],
+  "hints": [
+    "If s is a repetition of a smaller block, what happens when you concatenate s with itself?",
+    "Check whether s appears inside (s + s) after trimming the first and last characters."
+  ],
+  "examples": [
+    {
+      "explanation": "The substring \"ab\" repeated twice forms \"abab\"."
+    },
+    {
+      "explanation": "No proper substring can be repeated to form \"aba\"."
+    },
+    {
+      "explanation": "The substring \"abc\" repeated four times forms \"abcabcabcabc\"."
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "repeatedSubstringPattern",
+    "params": [
+      {
+        "name": "s",
+        "type": "String"
+      }
+    ],
+    "returns": "boolean"
+  }
+}

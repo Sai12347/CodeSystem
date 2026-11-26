@@ -1,0 +1,44 @@
+{
+  "title": "Number of Segments in a String",
+  "difficulty": "Easy",
+  "subtopic": "Parsing",
+  "companies": [
+    "Amazon",
+    "Microsoft",
+    "Adobe"
+  ],
+  "description": "Given a string `s`, return the number of segments in the string. A segment is defined as a maximal contiguous sequence of non-space characters.",
+  "constraints": [
+    "0 <= s.length <= 10^4",
+    "s consists of printable ASCII characters including spaces."
+  ],
+  "hints": [
+    "A new segment starts at index i whenever s[i] is not a space and either i == 0 or s[i - 1] is a space.",
+    "Be careful with empty strings, strings containing only spaces, and multiple consecutive spaces."
+  ],
+  "examples": [
+    {
+      "explanation": "The five segments are \"Hello,\", \"my\", \"name\", \"is\", and \"John\"."
+    },
+    {
+      "explanation": "There is a single segment \"Hello\"."
+    },
+    {
+      "explanation": "A string with only spaces has 0 segments."
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "countSegments",
+    "params": [
+      {
+        "name": "s",
+        "type": "String"
+      }
+    ],
+    "returns": "int"
+  }
+}

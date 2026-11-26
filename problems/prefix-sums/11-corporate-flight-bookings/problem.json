@@ -1,0 +1,36 @@
+{
+  "title": "Corporate Flight Bookings",
+  "difficulty": "Medium",
+  "subtopic": "Difference Array",
+  "companies": ["Amazon", "Goldman Sachs", "Google", "Uber", "Microsoft"],
+  "leetcode": 1109,
+  "description": "There are `n` flights labeled from `1` to `n`.\n\nYou are given an array of flight bookings `bookings`, where `bookings[i] = [first_i, last_i, seats_i]` represents a booking for flights `first_i` through `last_i` (inclusive) with `seats_i` seats reserved for each flight in that range.\n\nReturn an array `answer` of length `n`, where `answer[i]` is the total number of seats reserved for flight `i + 1`.",
+  "constraints": [
+    "1 <= n <= 2 * 10^4",
+    "1 <= bookings.length <= 2 * 10^4",
+    "bookings[i].length == 3",
+    "1 <= first_i <= last_i <= n",
+    "1 <= seats_i <= 10^4"
+  ],
+  "hints": [
+    "Updating every flight in [first, last] for each booking takes O(n * m) time, which is too slow when both n and m are large.",
+    "Use a difference array: add `seats` at index `first - 1`, and if `last < n`, subtract `seats` at index `last`.",
+    "After processing all bookings in O(m) time, compute the running prefix sum across the array in O(n) time to obtain the final seat counts."
+  ],
+  "examples": [
+    {"explanation": "Flight 1: 10; Flight 2: 10+20+25=55; Flight 3: 20+25=45; Flight 4: 25; Flight 5: 25."},
+    {"explanation": "Flight 1: 10; Flight 2: 10+15=25."}
+  ],
+  "timeComplexity": "O(n + m)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "corpFlightBookings",
+    "params": [
+      {"name": "bookings", "type": "int[][]"},
+      {"name": "n", "type": "int"}
+    ],
+    "returns": "int[]"
+  }
+}

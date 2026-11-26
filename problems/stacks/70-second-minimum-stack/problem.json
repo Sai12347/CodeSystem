@@ -1,0 +1,75 @@
+{
+  "title": "Second Minimum Stack",
+  "difficulty": "Easy",
+  "subtopic": "Min Stack",
+  "companies": [
+    "Amazon",
+    "Microsoft",
+    "Bloomberg",
+    "Apple"
+  ],
+  "description": "Design a stack `SecondMinStack` that supports standard stack operations plus retrieving both the smallest and the second smallest values currently in the stack in `O(1)` time.\n\nImplement the `SecondMinStack` class:\n- `SecondMinStack()` initializes an empty stack.\n- `void push(int val)` pushes `val` onto the stack.\n- `void pop()` removes the top element of the stack.\n- `int top()` returns the top element of the stack.\n- `int getMin()` returns the smallest value in the stack.\n- `int getSecondMin()` returns the second smallest value in the stack (counting duplicates; e.g., for `[2, 5, 2]`, the sorted elements are `[2, 2, 5]`, so `getMin()` is `2` and `getSecondMin()` is `2`).",
+  "constraints": [
+    "-10^9 <= val <= 10^9",
+    "Methods pop, top, and getMin are called only when the stack has at least 1 element.",
+    "Method getSecondMin is called only when the stack has at least 2 elements.",
+    "At most 5 * 10^4 calls will be made across all methods."
+  ],
+  "hints": [
+    "Alongside each pushed value, store the running smallest (min1) and running second smallest (min2) at that stack depth.",
+    "When pushing val: if val < min1 then (newMin1, newMin2) = (val, min1); else if val < min2 then (min1, val); else keep (min1, min2)."
+  ],
+  "examples": [
+    {
+      "explanation": "After pushing 5, 2, 8, sorted values are [2, 5, 8] -> min 2, secondMin 5; pushing 1 makes [1, 2, 5, 8] -> min 1, secondMin 2; popping 1 restores min 2, secondMin 5."
+    },
+    {
+      "explanation": "With duplicate minimums [3, 3, 7], both getMin and getSecondMin return 3."
+    },
+    {
+      "explanation": "Negative values and decreasing pushes update min1 and min2 in O(1) per operation."
+    }
+  ],
+  "timeComplexity": "O(1) per op",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "design",
+    "className": "SecondMinStack",
+    "constructor": {
+      "params": []
+    },
+    "methods": [
+      {
+        "name": "push",
+        "params": [
+          {
+            "name": "val",
+            "type": "int"
+          }
+        ],
+        "returns": "void"
+      },
+      {
+        "name": "pop",
+        "params": [],
+        "returns": "void"
+      },
+      {
+        "name": "top",
+        "params": [],
+        "returns": "int"
+      },
+      {
+        "name": "getMin",
+        "params": [],
+        "returns": "int"
+      },
+      {
+        "name": "getSecondMin",
+        "params": [],
+        "returns": "int"
+      }
+    ]
+  }
+}

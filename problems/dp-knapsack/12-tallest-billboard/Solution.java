@@ -1,0 +1,1 @@
+class Solution { public int tallestBillboard(int[] rods){Map<Integer,Integer>d=new HashMap<>();d.put(0,0);for(int h:rods){Map<Integer,Integer>n=new HashMap<>(d);for(Map.Entry<Integer,Integer>e:d.entrySet()){int diff=e.getKey(),s=e.getValue();n.merge(diff+h,s,Math::max);n.merge(Math.abs(diff-h),s+Math.min(diff,h),Math::max);}d=n;}return d.get(0);} }

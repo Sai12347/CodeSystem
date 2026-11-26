@@ -1,0 +1,69 @@
+{
+  "title": "Merge Sorted Array",
+  "difficulty": "Easy",
+  "subtopic": "In-Place Operations",
+  "companies": [
+    "Meta",
+    "Amazon",
+    "Microsoft",
+    "Google",
+    "Apple",
+    "Bloomberg"
+  ],
+  "leetcode": 88,
+  "description": "You are given two integer arrays `nums1` and `nums2`, sorted in **non-decreasing order**, and two integers `m` and `n`, representing the number of initialized elements in `nums1` and `nums2` respectively.\n\nMerge `nums1` and `nums2` into a single array sorted in non-decreasing order. The final sorted array must not be returned; instead, store it **in-place** inside `nums1`. To accommodate this, `nums1` has length `m + n`, where the first `m` elements are the elements to merge and the last `n` elements are set to `0` and should be ignored. `nums2` has length `n`.",
+  "constraints": [
+    "nums1.length == m + n",
+    "nums2.length == n",
+    "0 <= m, n <= 2000",
+    "1 <= m + n <= 4000",
+    "-10^9 <= nums1[i], nums2[j] <= 10^9",
+    "nums1[0..m-1] and nums2[0..n-1] are sorted in non-decreasing order."
+  ],
+  "hints": [
+    "Merging from the front of `nums1` would overwrite elements of `nums1` that haven't been compared yet.",
+    "Instead, fill `nums1` from the back (index `m + n - 1` down to `0`) using two read pointers starting at `m - 1` and `n - 1`.",
+    "Once `nums2` is exhausted, any remaining elements in `nums1` are already in their correct positions."
+  ],
+  "examples": [
+    {
+      "explanation": "Merging [1, 2, 3] and [2, 5, 6] in-place into nums1 yields [1, 2, 2, 3, 5, 6]."
+    },
+    {
+      "explanation": "nums2 is empty, so nums1 stays [1]."
+    },
+    {
+      "explanation": "nums1 has m = 0 valid elements, so [1] from nums2 fills nums1."
+    }
+  ],
+  "timeComplexity": "O(m + n)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "merge",
+    "params": [
+      {
+        "name": "nums1",
+        "type": "int[]"
+      },
+      {
+        "name": "m",
+        "type": "int"
+      },
+      {
+        "name": "nums2",
+        "type": "int[]"
+      },
+      {
+        "name": "n",
+        "type": "int"
+      }
+    ],
+    "returns": "void",
+    "output": {
+      "mode": "param",
+      "param": "nums1"
+    }
+  }
+}

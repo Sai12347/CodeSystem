@@ -1,0 +1,73 @@
+{
+  "title": "Design Clock Replacement Cache",
+  "difficulty": "Medium",
+  "subtopic": "LRU Design",
+  "companies": [
+    "Google",
+    "Microsoft",
+    "Apple",
+    "Oracle"
+  ],
+  "description": "Design a **Clock (Second-Chance)** page replacement cache `ClockCache` backed by a circular doubly linked list of frames and a `hand` pointer:\n- `ClockCache(int capacity)` initializes an empty cache of positive `capacity`.\n- `int get(int key)` returns the value of `key` if present and sets its reference bit `ref = 1` (without moving `hand`); otherwise returns `-1`.\n- `void put(int key, int value)`:\n  - If `key` already exists: update its value and set its reference bit `ref = 1` (without moving `hand`).\n  - If `key` is new and `size < capacity`: insert a new frame `(key, value, ref = 1)` immediately **before** `hand` in clockwise order (if the ring was empty, this single frame points to itself and `hand` points to it).\n  - If `key` is new and `size == capacity`: sweep `hand` clockwise \u2014 while `hand.ref == 1`, set `hand.ref = 0` and advance `hand = hand.next`. Once a frame with `hand.ref == 0` is found, evict its key, overwrite that frame in-place with `(key, value, ref = 1)`, and advance `hand = hand.next`.\n\nAim for `O(1)` amortized time per operation.",
+  "constraints": [
+    "1 <= capacity <= 1000",
+    "0 <= key, value <= 10^5",
+    "At most 2000 calls will be made to get and put."
+  ],
+  "hints": [
+    "Maintain a circular doubly linked list of frames with a `hand` pointer and a hash map `key -> Node(key, val, ref)`.",
+    "Inserting a new frame directly before `hand` preserves FIFO order from `hand`; during eviction, each `ref` bit cleared from `1` to `0` was set by a prior `get` or `put`, guaranteeing `O(1)` amortized cost."
+  ],
+  "examples": [
+    {
+      "explanation": "Ring starts 1(1)->2(1) with hand at 1. put(3,30) clears 1 and 2 to ref=0, replaces 1 with 3(1), hand moves to 2(0). put(4,40) immediately replaces 2(0) with 4(1)."
+    },
+    {
+      "explanation": "After put(3,30) leaves hand at 2(0), get(2) sets 2.ref=1, so put(4,40) sweeps past 2 and 3, then replaces 2 (the first frame encountered again with ref=0)."
+    },
+    {
+      "explanation": "With capacity 1, put(2, 20) clears 1's ref bit and replaces it in-place."
+    }
+  ],
+  "timeComplexity": "O(1) amortized",
+  "spaceComplexity": "O(capacity)",
+  "compare": "exact",
+  "signature": {
+    "kind": "design",
+    "className": "ClockCache",
+    "constructor": {
+      "params": [
+        {
+          "name": "capacity",
+          "type": "int"
+        }
+      ]
+    },
+    "methods": [
+      {
+        "name": "get",
+        "params": [
+          {
+            "name": "key",
+            "type": "int"
+          }
+        ],
+        "returns": "int"
+      },
+      {
+        "name": "put",
+        "params": [
+          {
+            "name": "key",
+            "type": "int"
+          },
+          {
+            "name": "value",
+            "type": "int"
+          }
+        ],
+        "returns": "void"
+      }
+    ]
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "title": "Verify Preorder Serialization",
+  "difficulty": "Medium",
+  "subtopic": "Expression Parsing",
+  "companies": [
+    "Google",
+    "Amazon",
+    "Meta",
+    "Microsoft"
+  ],
+  "description": "One way to serialize a binary tree is to use preorder traversal: record each non-null node's integer value, and record `'#'` for every null sentinel child.\n\nGiven a string `preorder` of comma-separated values, return `true` if it is a valid preorder traversal serialization of a binary tree, and `false` otherwise, without reconstructing the tree.",
+  "constraints": [
+    "1 <= preorder.length <= 2 * 10^4",
+    "preorder consists of comma-separated non-negative integers and '#' characters.",
+    "Input is guaranteed to be well-formatted with no leading, trailing, or consecutive commas."
+  ],
+  "hints": [
+    "Using a stack, push each token; whenever the top three tokens are [non-'#', '#', '#'], that leaf subtree is complete and can be collapsed into a single '#'.",
+    "Repeat the collapse after every push; the serialization is valid if and only if the final stack is exactly ['#']."
+  ],
+  "examples": [
+    {
+      "explanation": "Every non-null node has exactly two subtrees that collapse cleanly to a single '#'."
+    },
+    {
+      "explanation": "Node 1 only has one child sentinel '#', leaving its right child missing."
+    },
+    {
+      "explanation": "After collapsing \"9,#,#\" into \"#\", an extra dangling \"1\" remains, which is invalid."
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "isValidSerialization",
+    "params": [
+      {
+        "name": "preorder",
+        "type": "String"
+      }
+    ],
+    "returns": "boolean"
+  }
+}

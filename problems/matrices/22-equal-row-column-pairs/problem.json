@@ -1,0 +1,43 @@
+{
+  "title": "Equal Row and Column Pairs",
+  "difficulty": "Medium",
+  "subtopic": "Simulation",
+  "companies": [
+    "Amazon",
+    "Google",
+    "Microsoft"
+  ],
+  "description": "Given an `n x n` integer grid, count ordered pairs `(r,c)` such that row `r` and column `c` contain exactly the same sequence of values. Repeated equal rows or columns count as separate pairs. Input: square `grid`. Output: the pair count.",
+  "constraints": [
+    "1 <= n <= 200",
+    "-100000 <= grid[i][j] <= 100000"
+  ],
+  "hints": [
+    "Check each cell using its row and column relationships.",
+    "Handle single-row, single-column, tie, and center-cell cases explicitly."
+  ],
+  "examples": [
+    {
+      "input": "grid = [[3, 2, 1], [1, 7, 6], [2, 7, 7]]",
+      "output": "1"
+    },
+    {
+      "input": "grid = [[2, 1], [1, 2]]",
+      "output": "2"
+    }
+  ],
+  "timeComplexity": "O(n^2)",
+  "spaceComplexity": "O(n^2)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "equalPairs",
+    "params": [
+      {
+        "name": "grid",
+        "type": "int[][]"
+      }
+    ],
+    "returns": "int"
+  }
+}

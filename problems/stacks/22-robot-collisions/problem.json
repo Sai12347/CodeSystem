@@ -1,0 +1,55 @@
+{
+  "title": "Robot Collisions",
+  "difficulty": "Hard",
+  "subtopic": "LIFO Structure",
+  "companies": [
+    "Google",
+    "Meta",
+    "Amazon",
+    "Uber"
+  ],
+  "description": "There are `n` robots on a 1D line, each with a distinct initial position `positions[i]`, an integer health `healths[i]`, and a movement direction `directions[i]` (`'L'` for left or `'R'` for right). All robots start moving simultaneously at the same speed.\n\nWhenever two robots meet at the same point, they collide:\n- The robot with lower health is removed from the line, and the robot with higher health has its health decreased by `1` and continues moving.\n- If both robots have the same health, both are removed from the line.\n\nReturn a list containing the final healths of all surviving robots in the exact order they appeared in the input (or an empty list if none survive).",
+  "constraints": [
+    "1 <= positions.length == healths.length == directions.length <= 10^5",
+    "1 <= positions[i], healths[i] <= 10^9",
+    "All values in positions are distinct.",
+    "directions[i] is either 'L' or 'R'."
+  ],
+  "hints": [
+    "Sort the robot indices by their starting position from left to right so collisions occur strictly between adjacent moving fronts.",
+    "Maintain a stack of indices of surviving right-moving robots; each left-moving robot collides with the top of the stack until it is destroyed or the stack becomes empty."
+  ],
+  "examples": [
+    {
+      "explanation": "All robots move right, so no collisions occur and healths remain [2, 17, 9, 15, 10]."
+    },
+    {
+      "explanation": "Sorted by position: 2(R,15), 3(R,10), 5(L,15), 6(L,12). Robot at 5 destroys robot at 3 (becoming hp 14) then loses to robot at 2 (leaving hp 14); robot at 6 then loses to robot at 2, leaving [13]."
+    },
+    {
+      "explanation": "Adjacent opposing pairs (pos 1 vs 2 with hp 10, and pos 5 vs 6 with hp 11) have equal health and destroy each other, leaving []."
+    }
+  ],
+  "timeComplexity": "O(n log n)",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "survivedRobotsHealths",
+    "params": [
+      {
+        "name": "positions",
+        "type": "int[]"
+      },
+      {
+        "name": "healths",
+        "type": "int[]"
+      },
+      {
+        "name": "directions",
+        "type": "String"
+      }
+    ],
+    "returns": "List<Integer>"
+  }
+}

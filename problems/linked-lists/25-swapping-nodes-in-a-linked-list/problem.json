@@ -1,0 +1,49 @@
+{
+  "title": "Swapping Nodes in a Linked List",
+  "difficulty": "Medium",
+  "subtopic": "Fast/Slow Pointer",
+  "companies": [
+    "Amazon",
+    "Meta",
+    "Microsoft",
+    "Bloomberg"
+  ],
+  "description": "You are given the `head` of a singly linked list and a 1-indexed integer `k`.\n\nSwap the **values** of the `k`-th node from the beginning and the `k`-th node from the end of the list, and return the `head` of the list. Solve the problem in a single traversal using `O(1)` extra space.",
+  "constraints": [
+    "The number of nodes in the list is n, with 1 <= k <= n <= 10^4.",
+    "0 <= Node.val <= 10^5"
+  ],
+  "hints": [
+    "Walk a `lead` pointer `k - 1` steps from `head` to locate `first`, the `k`-th node from the start.",
+    "Then start `second` at `head` and advance `lead` and `second` together until `lead.next` is null; `second` lands on the `k`-th node from the end."
+  ],
+  "examples": [
+    {
+      "explanation": "The 2nd node from the start (2) and 2nd node from the end (4) swap values to produce [1, 4, 3, 2, 5]."
+    },
+    {
+      "explanation": "The 5th node from the start (9) and 5th node from the end (0) swap values."
+    },
+    {
+      "explanation": "When k = 1 on a 1-node list, both pointers refer to the same node so the list is unchanged."
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "swapNodes",
+    "params": [
+      {
+        "name": "head",
+        "type": "ListNode"
+      },
+      {
+        "name": "k",
+        "type": "int"
+      }
+    ],
+    "returns": "ListNode"
+  }
+}

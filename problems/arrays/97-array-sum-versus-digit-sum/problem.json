@@ -1,0 +1,43 @@
+{
+  "title": "Array Sum Versus Digit Sum",
+  "difficulty": "Easy",
+  "subtopic": "Traversal",
+  "companies": [
+    "Amazon",
+    "Google",
+    "Microsoft"
+  ],
+  "description": "For each positive integer in `nums`, add its decimal digits to a digit sum. Return the absolute difference between the sum of the array elements and the total of all their digit sums. Input: `nums`. Output: the absolute difference.",
+  "constraints": [
+    "1 <= nums.length <= 1000",
+    "1 <= nums[i] <= 1000000"
+  ],
+  "hints": [
+    "Keep a running total or frequency count rather than recomputing over all prefixes.",
+    "Test repeated values, zeros, and minimum-size inputs."
+  ],
+  "examples": [
+    {
+      "input": "nums = [1, 15, 6, 3]",
+      "output": "9"
+    },
+    {
+      "input": "nums = [1, 2, 3, 4]",
+      "output": "0"
+    }
+  ],
+  "timeComplexity": "O(n*d)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "differenceOfSumAndDigitSum",
+    "params": [
+      {
+        "name": "nums",
+        "type": "int[]"
+      }
+    ],
+    "returns": "int"
+  }
+}

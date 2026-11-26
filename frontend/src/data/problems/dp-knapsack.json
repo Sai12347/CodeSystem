@@ -1,0 +1,775 @@
+[
+ {
+  "id": "zero-one-knapsack",
+  "order": 1,
+  "topicId": "dp-knapsack",
+  "topic": "Knapsack & Subsequence DP",
+  "title": "0/1 Knapsack Maximum Value",
+  "slug": "zero-one-knapsack",
+  "difficulty": "Medium",
+  "subtopic": "0/1 Knapsack",
+  "companies": [
+   "Amazon",
+   "Google",
+   "Microsoft"
+  ],
+  "leetcode": null,
+  "description": "Each item has a positive weight and value and may be selected at most once. Given parallel arrays `weights` and `values` and a capacity, return the maximum total value whose selected weights do not exceed the capacity.",
+  "constraints": [
+   "1 <= item count <= 100",
+   "weights[i] > 0",
+   "0 <= values[i] <= 10^6",
+   "0 <= capacity <= 10000"
+  ],
+  "hints": [
+   "Define a state by the capacity or sum achievable after processing a prefix.",
+   "For 0/1 choices, update capacities in descending order so an item is not reused."
+  ],
+  "timeComplexity": "O(n*capacity)",
+  "spaceComplexity": "O(capacity)",
+  "compare": "exact",
+  "examples": [
+   {
+    "input": "weights = [1,3,4,5], values = [1,4,5,7], capacity = 7",
+    "output": "9"
+   },
+   {
+    "input": "weights = [2,3,4], values = [4,5,6], capacity = 5",
+    "output": "9"
+   },
+   {
+    "input": "weights = [5], values = [10], capacity = 4",
+    "output": "0"
+   }
+  ],
+  "starterCode": {
+   "java": "class Solution {\n    public int knapSack(int[] weights, int[] values, int capacity) {\n        // Write your solution here\n        return 0;\n    }\n}\n",
+   "python": "class Solution:\n    def knapSack(self, weights: List[int], values: List[int], capacity: int) -> int:\n        # Write your solution here\n        pass\n"
+  },
+  "solutionCode": {
+   "java": "class Solution { public int knapSack(int[] w,int[] v,int c) { int[] d=new int[c+1];for(int i=0;i<w.length;i++)for(int x=c;x>=w[i];x--)d[x]=Math.max(d[x],d[x-w[i]]+v[i]);return d[c];} }\n",
+   "python": "class Solution:\n    def knapSack(self, weights: List[int], values: List[int], capacity: int) -> int:\n        dp=[0]*(capacity+1)\n        for w,v in zip(weights,values):\n            for c in range(capacity,w-1,-1): dp[c]=max(dp[c],dp[c-w]+v)\n        return dp[capacity]\n"
+  },
+  "sampleArray": [
+   1,
+   3,
+   4,
+   5
+  ],
+  "visibleTestCount": 3,
+  "hiddenTestCount": 8,
+  "number": 1
+ },
+ {
+  "id": "rod-cutting",
+  "order": 2,
+  "topicId": "dp-knapsack",
+  "topic": "Knapsack & Subsequence DP",
+  "title": "Rod Cutting",
+  "slug": "rod-cutting",
+  "difficulty": "Medium",
+  "subtopic": "Unbounded Knapsack",
+  "companies": [
+   "Amazon",
+   "Google",
+   "Microsoft"
+  ],
+  "leetcode": null,
+  "description": "`prices[i]` is the price of a rod piece of length `i + 1`. A rod of length `n` may be cut into any number of integer-length pieces. Return the maximum obtainable total price.",
+  "constraints": [
+   "1 <= n <= prices.length <= 1000",
+   "0 <= prices[i] <= 10^6"
+  ],
+  "hints": [
+   "Define a state by the capacity or sum achievable after processing a prefix.",
+   "For 0/1 choices, update capacities in descending order so an item is not reused."
+  ],
+  "timeComplexity": "O(n*capacity)",
+  "spaceComplexity": "O(capacity)",
+  "compare": "exact",
+  "examples": [
+   {
+    "input": "prices = [1,5,8,9,10,17,17,20], n = 8",
+    "output": "22"
+   },
+   {
+    "input": "prices = [2,5,7,8], n = 4",
+    "output": "10"
+   },
+   {
+    "input": "prices = [5], n = 1",
+    "output": "5"
+   }
+  ],
+  "starterCode": {
+   "java": "class Solution {\n    public int cutRod(int[] prices, int n) {\n        // Write your solution here\n        return 0;\n    }\n}\n",
+   "python": "class Solution:\n    def cutRod(self, prices: List[int], n: int) -> int:\n        # Write your solution here\n        pass\n"
+  },
+  "solutionCode": {
+   "java": "class Solution { public int cutRod(int[] p,int n) { int[] d=new int[n+1];for(int len=1;len<=n;len++)for(int k=1;k<=len;k++)d[len]=Math.max(d[len],p[k-1]+d[len-k]);return d[n];} }\n",
+   "python": "class Solution:\n    def cutRod(self, prices: List[int], n: int) -> int:\n        dp=[0]*(n+1)\n        for length in range(1,n+1):\n            for piece in range(1,length+1): dp[length]=max(dp[length],prices[piece-1]+dp[length-piece])\n        return dp[n]\n"
+  },
+  "sampleArray": [
+   1,
+   5,
+   8,
+   9,
+   10,
+   17,
+   17,
+   20
+  ],
+  "visibleTestCount": 3,
+  "hiddenTestCount": 8,
+  "number": 2
+ },
+ {
+  "id": "partition-equal-subset-sum",
+  "order": 3,
+  "topicId": "dp-knapsack",
+  "topic": "Knapsack & Subsequence DP",
+  "title": "Partition Equal Subset Sum",
+  "slug": "partition-equal-subset-sum",
+  "difficulty": "Medium",
+  "subtopic": "Partition Equal",
+  "companies": [
+   "Amazon",
+   "Google",
+   "Microsoft"
+  ],
+  "leetcode": null,
+  "description": "Return true if the array can be split into two subsets whose sums are equal. Each array element must belong to exactly one subset.",
+  "constraints": [
+   "1 <= nums.length <= 200",
+   "1 <= nums[i] <= 100"
+  ],
+  "hints": [
+   "Define a state by the capacity or sum achievable after processing a prefix.",
+   "For 0/1 choices, update capacities in descending order so an item is not reused."
+  ],
+  "timeComplexity": "O(n*capacity)",
+  "spaceComplexity": "O(capacity)",
+  "compare": "exact",
+  "examples": [
+   {
+    "input": "nums = [1,5,11,5]",
+    "output": "true"
+   },
+   {
+    "input": "nums = [1,2,3,5]",
+    "output": "false"
+   },
+   {
+    "input": "nums = [2,2]",
+    "output": "true"
+   }
+  ],
+  "starterCode": {
+   "java": "class Solution {\n    public boolean canPartition(int[] nums) {\n        // Write your solution here\n        return false;\n    }\n}\n",
+   "python": "class Solution:\n    def canPartition(self, nums: List[int]) -> bool:\n        # Write your solution here\n        pass\n"
+  },
+  "solutionCode": {
+   "java": "class Solution { public boolean canPartition(int[] a) { int sum=0;for(int x:a)sum+=x;if(sum%2!=0)return false;int t=sum/2;boolean[] d=new boolean[t+1];d[0]=true;for(int x:a)for(int s=t;s>=x;s--)d[s]|=d[s-x];return d[t];} }\n",
+   "python": "class Solution:\n    def canPartition(self, nums: List[int]) -> bool:\n        total=sum(nums)\n        if total%2: return False\n        target=total//2; dp={0}\n        for x in nums: dp |= {s+x for s in list(dp) if s+x<=target}\n        return target in dp\n"
+  },
+  "sampleArray": [
+   1,
+   5,
+   11,
+   5
+  ],
+  "visibleTestCount": 3,
+  "hiddenTestCount": 8,
+  "number": 3
+ },
+ {
+  "id": "target-sum",
+  "order": 4,
+  "topicId": "dp-knapsack",
+  "topic": "Knapsack & Subsequence DP",
+  "title": "Target Sum",
+  "slug": "target-sum",
+  "difficulty": "Medium",
+  "subtopic": "Subset Sum",
+  "companies": [
+   "Amazon",
+   "Google",
+   "Microsoft"
+  ],
+  "leetcode": null,
+  "description": "Place either a plus or minus sign before each value in `nums`. Return the number of sign assignments whose resulting sum equals `target`.",
+  "constraints": [
+   "1 <= nums.length <= 20",
+   "0 <= nums[i] <= 1000",
+   "-1000 <= target <= 1000"
+  ],
+  "hints": [
+   "Define a state by the capacity or sum achievable after processing a prefix.",
+   "For 0/1 choices, update capacities in descending order so an item is not reused."
+  ],
+  "timeComplexity": "O(n*capacity)",
+  "spaceComplexity": "O(capacity)",
+  "compare": "exact",
+  "examples": [
+   {
+    "input": "nums = [1,1,1,1,1], target = 3",
+    "output": "5"
+   },
+   {
+    "input": "nums = [1], target = 1",
+    "output": "1"
+   },
+   {
+    "input": "nums = [1], target = 0",
+    "output": "0"
+   }
+  ],
+  "starterCode": {
+   "java": "class Solution {\n    public int findTargetSumWays(int[] nums, int target) {\n        // Write your solution here\n        return 0;\n    }\n}\n",
+   "python": "class Solution:\n    def findTargetSumWays(self, nums: List[int], target: int) -> int:\n        # Write your solution here\n        pass\n"
+  },
+  "solutionCode": {
+   "java": "class Solution { public int findTargetSumWays(int[] a,int target) { Map<Integer,Integer>d=new HashMap<>();d.put(0,1);for(int x:a){Map<Integer,Integer> n=new HashMap<>();for(var e:d.entrySet()){n.merge(e.getKey()+x,e.getValue(),Integer::sum);n.merge(e.getKey()-x,e.getValue(),Integer::sum);}d=n;}return d.getOrDefault(target,0);} }\n",
+   "python": "class Solution:\n    def findTargetSumWays(self, nums: List[int], target: int) -> int:\n        dp={0:1}\n        for x in nums:\n            nxt={}\n            for s,count in dp.items():\n                nxt[s+x]=nxt.get(s+x,0)+count\n                nxt[s-x]=nxt.get(s-x,0)+count\n            dp=nxt\n        return dp.get(target,0)\n"
+  },
+  "sampleArray": [
+   1,
+   1,
+   1,
+   1,
+   1
+  ],
+  "visibleTestCount": 3,
+  "hiddenTestCount": 8,
+  "number": 4
+ },
+ {
+  "id": "last-stone-weight-ii",
+  "order": 5,
+  "topicId": "dp-knapsack",
+  "topic": "Knapsack & Subsequence DP",
+  "title": "Last Stone Weight II",
+  "slug": "last-stone-weight-ii",
+  "difficulty": "Medium",
+  "subtopic": "Subset Sum",
+  "companies": [
+   "Amazon",
+   "Google",
+   "Microsoft"
+  ],
+  "leetcode": null,
+  "description": "Repeatedly divide the stones into two groups whose total weights are as close as possible; the remaining weight is the absolute difference between the group sums. Return the smallest possible remaining weight.",
+  "constraints": [
+   "1 <= stones.length <= 30",
+   "1 <= stones[i] <= 100"
+  ],
+  "hints": [
+   "Define a state by the capacity or sum achievable after processing a prefix.",
+   "For 0/1 choices, update capacities in descending order so an item is not reused."
+  ],
+  "timeComplexity": "O(n*capacity)",
+  "spaceComplexity": "O(capacity)",
+  "compare": "exact",
+  "examples": [
+   {
+    "input": "stones = [2,7,4,1,8,1]",
+    "output": "1"
+   },
+   {
+    "input": "stones = [31,26,33,21,40]",
+    "output": "5"
+   },
+   {
+    "input": "stones = [1]",
+    "output": "1"
+   }
+  ],
+  "starterCode": {
+   "java": "class Solution {\n    public int lastStoneWeightII(int[] stones) {\n        // Write your solution here\n        return 0;\n    }\n}\n",
+   "python": "class Solution:\n    def lastStoneWeightII(self, stones: List[int]) -> int:\n        # Write your solution here\n        pass\n"
+  },
+  "solutionCode": {
+   "java": "class Solution { public int lastStoneWeightII(int[] a) { int sum=0;for(int x:a)sum+=x;int h=sum/2;boolean[] d=new boolean[h+1];d[0]=true;for(int x:a)for(int s=h;s>=x;s--)d[s]|=d[s-x];for(int s=h;s>=0;s--)if(d[s])return sum-2*s;return 0;} }\n",
+   "python": "class Solution:\n    def lastStoneWeightII(self, stones: List[int]) -> int:\n        half=sum(stones)//2; dp={0}\n        for x in stones: dp |= {s+x for s in list(dp) if s+x<=half}\n        return sum(stones)-2*max(dp)\n"
+  },
+  "sampleArray": [
+   2,
+   7,
+   4,
+   1,
+   8,
+   1
+  ],
+  "visibleTestCount": 3,
+  "hiddenTestCount": 8,
+  "number": 5
+ },
+ {
+  "id": "combination-sum-iv",
+  "order": 6,
+  "topicId": "dp-knapsack",
+  "topic": "Knapsack & Subsequence DP",
+  "title": "Combination Sum IV",
+  "slug": "combination-sum-iv",
+  "difficulty": "Medium",
+  "subtopic": "Unbounded Knapsack",
+  "companies": [
+   "Amazon",
+   "Google",
+   "Microsoft"
+  ],
+  "leetcode": null,
+  "description": "Given distinct positive integers `nums` and a target, return the number of ordered sequences whose values sum to the target. Different orders count as different sequences.",
+  "constraints": [
+   "1 <= nums.length <= 1000",
+   "1 <= nums[i] <= 1000",
+   "0 <= target <= 1000",
+   "The answer fits in a signed 32-bit integer"
+  ],
+  "hints": [
+   "Use a state indexed by the remaining capacity and the amount of progress toward the required target.",
+   "Process each choice in descending capacity order so it is not reused."
+  ],
+  "timeComplexity": "O(n*m*n)",
+  "spaceComplexity": "O(m*n)",
+  "compare": "exact",
+  "examples": [
+   {
+    "input": "nums = [1,2,3], target = 4",
+    "output": "7"
+   },
+   {
+    "input": "nums = [9], target = 3",
+    "output": "0"
+   },
+   {
+    "input": "nums = [1], target = 0",
+    "output": "1"
+   }
+  ],
+  "starterCode": {
+   "java": "class Solution {\n    public int combinationSum4(int[] nums, int target) {\n        // Write your solution here\n        return 0;\n    }\n}\n",
+   "python": "class Solution:\n    def combinationSum4(self, nums: List[int], target: int) -> int:\n        # Write your solution here\n        pass\n"
+  },
+  "solutionCode": {
+   "java": "class Solution { public int combinationSum4(int[] a,int t) { int[] d=new int[t+1];d[0]=1;for(int s=1;s<=t;s++)for(int x:a)if(x<=s)d[s]+=d[s-x];return d[t];} }\n",
+   "python": "class Solution:\n    def combinationSum4(self, nums: List[int], target: int) -> int:\n        dp=[0]*(target+1);dp[0]=1\n        for total in range(1,target+1):\n            for x in nums:\n                if x<=total:dp[total]+=dp[total-x]\n        return dp[target]\n"
+  },
+  "sampleArray": [
+   1,
+   2,
+   3
+  ],
+  "visibleTestCount": 3,
+  "hiddenTestCount": 8,
+  "number": 6
+ },
+ {
+  "id": "ones-and-zeroes",
+  "order": 7,
+  "topicId": "dp-knapsack",
+  "topic": "Knapsack & Subsequence DP",
+  "title": "Ones and Zeroes",
+  "slug": "ones-and-zeroes",
+  "difficulty": "Medium",
+  "subtopic": "0/1 Knapsack",
+  "companies": [
+   "Amazon",
+   "Google",
+   "Microsoft"
+  ],
+  "leetcode": null,
+  "description": "Choose the largest subset of binary strings whose total number of zeroes is at most `m` and total number of ones is at most `n`. Each string may be used at most once. Return the subset size.",
+  "constraints": [
+   "1 <= strs.length <= 600",
+   "1 <= strs[i].length <= 100",
+   "0 <= m,n <= 100",
+   "strs[i] contains only 0 and 1"
+  ],
+  "hints": [
+   "Use a state indexed by the remaining capacity and the amount of progress toward the required target.",
+   "Process each choice in descending capacity order so it is not reused."
+  ],
+  "timeComplexity": "O(n*m*n)",
+  "spaceComplexity": "O(m*n)",
+  "compare": "exact",
+  "examples": [
+   {
+    "input": "strs = [\"10\",\"0001\",\"111001\",\"1\",\"0\"], m = 5, n = 3",
+    "output": "4"
+   },
+   {
+    "input": "strs = [\"10\",\"0\",\"1\"], m = 1, n = 1",
+    "output": "2"
+   },
+   {
+    "input": "strs = [\"0\"], m = 0, n = 0",
+    "output": "0"
+   }
+  ],
+  "starterCode": {
+   "java": "class Solution {\n    public int findMaxForm(String[] strs, int m, int n) {\n        // Write your solution here\n        return 0;\n    }\n}\n",
+   "python": "class Solution:\n    def findMaxForm(self, strs: List[str], m: int, n: int) -> int:\n        # Write your solution here\n        pass\n"
+  },
+  "solutionCode": {
+   "java": "class Solution { public int findMaxForm(String[] a,int m,int n) { int[][] d=new int[m+1][n+1];for(String s:a){int z=0;for(char c:s.toCharArray())if(c=='0')z++;int o=s.length()-z;for(int i=m;i>=z;i--)for(int j=n;j>=o;j--)d[i][j]=Math.max(d[i][j],d[i-z][j-o]+1);}return d[m][n];} }\n",
+   "python": "class Solution:\n    def findMaxForm(self, strs: List[str], m: int, n: int) -> int:\n        d=[[0]*(n+1) for _ in range(m+1)]\n        for s in strs:\n            z=s.count('0');o=len(s)-z\n            for i in range(m,z-1,-1):\n                for j in range(n,o-1,-1):d[i][j]=max(d[i][j],d[i-z][j-o]+1)\n        return d[m][n]\n"
+  },
+  "sampleArray": [],
+  "visibleTestCount": 3,
+  "hiddenTestCount": 8,
+  "number": 7
+ },
+ {
+  "id": "profitable-schemes",
+  "order": 8,
+  "topicId": "dp-knapsack",
+  "topic": "Knapsack & Subsequence DP",
+  "title": "Profitable Schemes",
+  "slug": "profitable-schemes",
+  "difficulty": "Hard",
+  "subtopic": "0/1 Knapsack",
+  "companies": [
+   "Amazon",
+   "Google",
+   "Microsoft"
+  ],
+  "leetcode": null,
+  "description": "There are crimes with corresponding member requirements and profits. Count subsets of crimes that use at most `n` members and earn at least `minProfit` total profit. Return the count modulo 1,000,000,007. Each crime may be selected at most once.",
+  "constraints": [
+   "1 <= n <= 100",
+   "0 <= minProfit <= 100",
+   "group.length == profit.length <= 100",
+   "1 <= group[i] <= 100",
+   "0 <= profit[i] <= 100"
+  ],
+  "hints": [
+   "Use a state indexed by the remaining capacity and the amount of progress toward the required target.",
+   "Process each choice in descending capacity order so it is not reused."
+  ],
+  "timeComplexity": "O(n*m*target)",
+  "spaceComplexity": "O(n*target)",
+  "compare": "exact",
+  "examples": [
+   {
+    "input": "n = 5, minProfit = 3, group = [2,2], profit = [2,3]",
+    "output": "2"
+   },
+   {
+    "input": "n = 10, minProfit = 5, group = [2,3,5], profit = [6,7,8]",
+    "output": "7"
+   },
+   {
+    "input": "n = 1, minProfit = 1, group = [1], profit = [1]",
+    "output": "1"
+   }
+  ],
+  "starterCode": {
+   "java": "class Solution {\n    public int profitableSchemes(int n, int minProfit, int[] group, int[] profit) {\n        // Write your solution here\n        return 0;\n    }\n}\n",
+   "python": "class Solution:\n    def profitableSchemes(self, n: int, minProfit: int, group: List[int], profit: List[int]) -> int:\n        # Write your solution here\n        pass\n"
+  },
+  "solutionCode": {
+   "java": "class Solution { public int profitableSchemes(int n,int minProfit,int[] g,int[] p) { int mod=1000000007;int[][] d=new int[minProfit+1][n+1];Arrays.fill(d[0],1);for(int k=0;k<g.length;k++)for(int need=minProfit;need>=0;need--)for(int people=n;people>=g[k];people--)d[need][people]=(d[need][people]+d[Math.max(0,need-p[k])][people-g[k]])%mod;return d[minProfit][n];} }\n",
+   "python": "class Solution:\n    def profitableSchemes(self, n: int, minProfit: int, group: List[int], profit: List[int]) -> int:\n        mod=10**9+7;d=[[0]*(n+1) for _ in range(minProfit+1)];d[0]=[1]*(n+1)\n        for g,p in zip(group,profit):\n            for need in range(minProfit,-1,-1):\n                for people in range(n,g-1,-1):\n                    d[need][people]=(d[need][people]+d[max(0,need-p)][people-g])%mod\n        return d[minProfit][n]\n"
+  },
+  "sampleArray": [
+   2,
+   2
+  ],
+  "visibleTestCount": 3,
+  "hiddenTestCount": 8,
+  "number": 8
+ },
+ {
+  "id": "unbounded-knapsack",
+  "order": 9,
+  "topicId": "dp-knapsack",
+  "topic": "Knapsack & Subsequence DP",
+  "title": "Unbounded Knapsack Maximum Value",
+  "slug": "unbounded-knapsack",
+  "difficulty": "Medium",
+  "subtopic": "Unbounded Knapsack",
+  "companies": [
+   "Amazon",
+   "Google",
+   "Microsoft"
+  ],
+  "leetcode": null,
+  "description": "Each item has a positive weight and value and may be chosen any number of times. Given parallel arrays `weights` and `values` and a capacity, return the maximum total value whose total weight does not exceed the capacity.",
+  "constraints": [
+   "1 <= item count <= 100",
+   "1 <= weights[i] <= 1000",
+   "0 <= values[i] <= 10^6",
+   "0 <= capacity <= 10^4"
+  ],
+  "hints": [
+   "Define a state by the capacity, achievable sum, or difference between partial groups.",
+   "Process each item with the usage rule in the statement."
+  ],
+  "timeComplexity": "O(n*capacity)",
+  "spaceComplexity": "O(capacity)",
+  "compare": "exact",
+  "examples": [
+   {
+    "input": "weights = [2,3,4], values = [4,5,7], capacity = 7",
+    "output": "13"
+   },
+   {
+    "input": "weights = [1], values = [3], capacity = 4",
+    "output": "12"
+   },
+   {
+    "input": "weights = [2], values = [5], capacity = 3",
+    "output": "5"
+   }
+  ],
+  "starterCode": {
+   "java": "class Solution {\n    public int unboundedKnapsack(int[] weights, int[] values, int capacity) {\n        // Write your solution here\n        return 0;\n    }\n}\n",
+   "python": "class Solution:\n    def unboundedKnapsack(self, weights: List[int], values: List[int], capacity: int) -> int:\n        # Write your solution here\n        pass\n"
+  },
+  "solutionCode": {
+   "java": "class Solution { public int unboundedKnapsack(int[]w,int[]v,int c){int[]d=new int[c+1];for(int i=0;i<w.length;i++)for(int x=w[i];x<=c;x++)d[x]=Math.max(d[x],d[x-w[i]]+v[i]);return d[c];} }\n",
+   "python": "class Solution:\n    def unboundedKnapsack(self, weights: List[int], values: List[int], capacity: int) -> int:\n        d=[0]*(capacity+1)\n        for w,v in zip(weights,values):\n            for c in range(w,capacity+1):d[c]=max(d[c],d[c-w]+v)\n        return d[capacity]\n"
+  },
+  "sampleArray": [
+   2,
+   3,
+   4
+  ],
+  "visibleTestCount": 3,
+  "hiddenTestCount": 8,
+  "number": 9
+ },
+ {
+  "id": "minimum-subset-sum-difference",
+  "order": 10,
+  "topicId": "dp-knapsack",
+  "topic": "Knapsack & Subsequence DP",
+  "title": "Minimum Subset Sum Difference",
+  "slug": "minimum-subset-sum-difference",
+  "difficulty": "Medium",
+  "subtopic": "Subset Sum",
+  "companies": [
+   "Amazon",
+   "Google",
+   "Microsoft"
+  ],
+  "leetcode": null,
+  "description": "Partition the array into two subsets, using every value exactly once. Return the smallest possible absolute difference between the two subset sums.",
+  "constraints": [
+   "1 <= nums.length <= 100",
+   "0 <= nums[i] <= 1000"
+  ],
+  "hints": [
+   "Define a state by the capacity, achievable sum, or difference between partial groups.",
+   "Process each item with the usage rule in the statement."
+  ],
+  "timeComplexity": "O(n*capacity)",
+  "spaceComplexity": "O(capacity)",
+  "compare": "exact",
+  "examples": [
+   {
+    "input": "nums = [1,6,11,5]",
+    "output": "1"
+   },
+   {
+    "input": "nums = [1,2,3,9]",
+    "output": "3"
+   },
+   {
+    "input": "nums = [1]",
+    "output": "1"
+   }
+  ],
+  "starterCode": {
+   "java": "class Solution {\n    public int minimumDifference(int[] nums) {\n        // Write your solution here\n        return 0;\n    }\n}\n",
+   "python": "class Solution:\n    def minimumDifference(self, nums: List[int]) -> int:\n        # Write your solution here\n        pass\n"
+  },
+  "solutionCode": {
+   "java": "class Solution { public int minimumDifference(int[]a){int sum=0;for(int x:a)sum+=x;boolean[]d=new boolean[sum/2+1];d[0]=true;for(int x:a)for(int s=sum/2;s>=x;s--)d[s]|=d[s-x];for(int s=sum/2;s>=0;s--)if(d[s])return sum-2*s;return sum;} }\n",
+   "python": "class Solution:\n    def minimumDifference(self, nums: List[int]) -> int:\n        total=sum(nums);possible={0}\n        for x in nums:possible|={s+x for s in tuple(possible) if s+x<=total//2}\n        return total-2*max(possible)\n"
+  },
+  "sampleArray": [
+   1,
+   6,
+   11,
+   5
+  ],
+  "visibleTestCount": 3,
+  "hiddenTestCount": 8,
+  "number": 10
+ },
+ {
+  "id": "count-subsets-with-given-difference",
+  "order": 11,
+  "topicId": "dp-knapsack",
+  "topic": "Knapsack & Subsequence DP",
+  "title": "Count Subsets With Given Difference",
+  "slug": "count-subsets-with-given-difference",
+  "difficulty": "Medium",
+  "subtopic": "Subset Sum",
+  "companies": [
+   "Amazon",
+   "Google",
+   "Microsoft"
+  ],
+  "leetcode": null,
+  "description": "Assign every non-negative array value to one of two groups. Return the number of assignments for which the first group sum minus the second group sum equals `difference`. Equal-valued elements at different indices are distinct choices.",
+  "constraints": [
+   "1 <= nums.length <= 30",
+   "0 <= nums[i] <= 1000",
+   "0 <= difference <= sum(nums)",
+   "The result fits in a signed 32-bit integer"
+  ],
+  "hints": [
+   "Define a state by the capacity, achievable sum, or difference between partial groups.",
+   "Process each item with the usage rule in the statement."
+  ],
+  "timeComplexity": "O(n*capacity)",
+  "spaceComplexity": "O(capacity)",
+  "compare": "exact",
+  "examples": [
+   {
+    "input": "nums = [1,1,2,3], difference = 1",
+    "output": "3"
+   },
+   {
+    "input": "nums = [1,2,3,4], difference = 0",
+    "output": "2"
+   },
+   {
+    "input": "nums = [1], difference = 1",
+    "output": "1"
+   }
+  ],
+  "starterCode": {
+   "java": "class Solution {\n    public int countPartitions(int[] nums, int difference) {\n        // Write your solution here\n        return 0;\n    }\n}\n",
+   "python": "class Solution:\n    def countPartitions(self, nums: List[int], difference: int) -> int:\n        # Write your solution here\n        pass\n"
+  },
+  "solutionCode": {
+   "java": "class Solution { public int countPartitions(int[]a,int diff){int sum=0;for(int x:a)sum+=x;if(diff>sum||(sum+diff)%2!=0)return 0;int t=(sum+diff)/2;int[]d=new int[t+1];d[0]=1;for(int x:a)for(int s=t;s>=x;s--)d[s]+=d[s-x];return d[t];} }\n",
+   "python": "class Solution:\n    def countPartitions(self, nums: List[int], difference: int) -> int:\n        total=sum(nums)\n        if difference>total or (total+difference)%2:return 0\n        target=(total+difference)//2;d=[0]*(target+1);d[0]=1\n        for x in nums:\n            for s in range(target,x-1,-1):d[s]+=d[s-x]\n        return d[target]\n"
+  },
+  "sampleArray": [
+   1,
+   1,
+   2,
+   3
+  ],
+  "visibleTestCount": 3,
+  "hiddenTestCount": 8,
+  "number": 11
+ },
+ {
+  "id": "tallest-billboard",
+  "order": 12,
+  "topicId": "dp-knapsack",
+  "topic": "Knapsack & Subsequence DP",
+  "title": "Tallest Billboard",
+  "slug": "tallest-billboard",
+  "difficulty": "Hard",
+  "subtopic": "0/1 Knapsack",
+  "companies": [
+   "Amazon",
+   "Google",
+   "Microsoft"
+  ],
+  "leetcode": null,
+  "description": "Use each rod at most once to build two supports of equal height. Return the maximum possible common height. Rods that are not used may be discarded.",
+  "constraints": [
+   "1 <= rods.length <= 20",
+   "1 <= rods[i] <= 1000"
+  ],
+  "hints": [
+   "Define a state by the capacity, achievable sum, or difference between partial groups.",
+   "Process each item with the usage rule in the statement."
+  ],
+  "timeComplexity": "O(n*capacity)",
+  "spaceComplexity": "O(capacity)",
+  "compare": "exact",
+  "examples": [
+   {
+    "input": "rods = [1,2,3,6]",
+    "output": "6"
+   },
+   {
+    "input": "rods = [1,2,3,4,5,6]",
+    "output": "10"
+   },
+   {
+    "input": "rods = [1,2]",
+    "output": "0"
+   }
+  ],
+  "starterCode": {
+   "java": "class Solution {\n    public int tallestBillboard(int[] rods) {\n        // Write your solution here\n        return 0;\n    }\n}\n",
+   "python": "class Solution:\n    def tallestBillboard(self, rods: List[int]) -> int:\n        # Write your solution here\n        pass\n"
+  },
+  "solutionCode": {
+   "java": "class Solution { public int tallestBillboard(int[] rods){Map<Integer,Integer>d=new HashMap<>();d.put(0,0);for(int h:rods){Map<Integer,Integer>n=new HashMap<>(d);for(Map.Entry<Integer,Integer>e:d.entrySet()){int diff=e.getKey(),s=e.getValue();n.merge(diff+h,s,Math::max);n.merge(Math.abs(diff-h),s+Math.min(diff,h),Math::max);}d=n;}return d.get(0);} }\n",
+   "python": "class Solution:\n    def tallestBillboard(self, rods: List[int]) -> int:\n        d={0:0}\n        for h in rods:\n            nd=dict(d)\n            for diff,short in d.items():\n                nd[diff+h]=max(nd.get(diff+h,0),short)\n                nd[abs(diff-h)]=max(nd.get(abs(diff-h),0),short+min(diff,h))\n            d=nd\n        return d[0]\n"
+  },
+  "sampleArray": [
+   1,
+   2,
+   3,
+   6
+  ],
+  "visibleTestCount": 3,
+  "hiddenTestCount": 8,
+  "number": 12
+ },
+ {
+  "id": "perfect-squares-knapsack",
+  "order": 13,
+  "topicId": "dp-knapsack",
+  "topic": "Knapsack & Subsequence DP",
+  "title": "Perfect Squares as Unbounded Knapsack",
+  "slug": "perfect-squares-knapsack",
+  "difficulty": "Medium",
+  "subtopic": "Unbounded Knapsack",
+  "companies": [
+   "Amazon",
+   "Google",
+   "Microsoft"
+  ],
+  "leetcode": null,
+  "description": "Return the least number of perfect-square positive integers whose sum is `n`. A square number may be used more than once.",
+  "constraints": [
+   "1 <= n <= 10^4"
+  ],
+  "hints": [
+   "Define a state by the capacity, achievable sum, or difference between partial groups.",
+   "Process each item with the usage rule in the statement."
+  ],
+  "timeComplexity": "O(n*capacity)",
+  "spaceComplexity": "O(capacity)",
+  "compare": "exact",
+  "examples": [
+   {
+    "input": "n = 12",
+    "output": "3"
+   },
+   {
+    "input": "n = 13",
+    "output": "2"
+   },
+   {
+    "input": "n = 1",
+    "output": "1"
+   }
+  ],
+  "starterCode": {
+   "java": "class Solution {\n    public int numSquares(int n) {\n        // Write your solution here\n        return 0;\n    }\n}\n",
+   "python": "class Solution:\n    def numSquares(self, n: int) -> int:\n        # Write your solution here\n        pass\n"
+  },
+  "solutionCode": {
+   "java": "class Solution { public int numSquares(int n){int[]d=new int[n+1];Arrays.fill(d,n+1);d[0]=0;for(int x=1;x*x<=n;x++)for(int s=x*x;s<=n;s++)d[s]=Math.min(d[s],d[s-x*x]+1);return d[n];} }\n",
+   "python": "class Solution:\n    def numSquares(self, n: int) -> int:\n        d=[0]+[n+1]*n\n        for x in range(1,int(n**0.5)+1):\n            sq=x*x\n            for s in range(sq,n+1):d[s]=min(d[s],d[s-sq]+1)\n        return d[n]\n"
+  },
+  "sampleArray": [],
+  "visibleTestCount": 3,
+  "hiddenTestCount": 8,
+  "number": 13
+ }
+]

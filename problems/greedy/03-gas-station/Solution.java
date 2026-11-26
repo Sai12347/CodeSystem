@@ -1,0 +1,1 @@
+class Solution { public int canCompleteCircuit(int[] g,int[] c) { int total=0,cur=0,start=0;for(int i=0;i<g.length;i++){total+=g[i]-c[i];cur+=g[i]-c[i];if(cur<0){start=i+1;cur=0;}}return total>=0?start:-1;} }

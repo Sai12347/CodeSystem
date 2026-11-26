@@ -1,0 +1,49 @@
+{
+  "title": "Balanced Binary Tree",
+  "difficulty": "Easy",
+  "subtopic": "DFS Traversals",
+  "companies": [
+    "Amazon",
+    "Google",
+    "Meta",
+    "Microsoft",
+    "Bloomberg",
+    "Apple"
+  ],
+  "leetcode": 110,
+  "description": "Given a binary tree `root`, determine if it is **height-balanced**.\n\nA binary tree is height-balanced if, for **every** node in the tree, the heights of its left and right subtrees differ by at most `1`. An empty tree is considered height-balanced (`true`).",
+  "constraints": [
+    "0 <= number of nodes <= 5000",
+    "-10^4 <= Node.val <= 10^4"
+  ],
+  "hints": [
+    "Checking only that the root's left and right subtree heights differ by at most 1 is not enough — every subtree must also be balanced.",
+    "A naive top-down check recomputes subtree heights repeatedly in O(n^2) time in the worst case.",
+    "Use a bottom-up post-order DFS that returns the subtree height if balanced, or a sentinel like `-1` as soon as an imbalance is found, achieving O(n) time."
+  ],
+  "examples": [
+    {
+      "explanation": "At node 20 heights are (1, 1); at root 3 heights are (1, 2). Every node's subtrees differ in height by at most 1."
+    },
+    {
+      "explanation": "At root 1, the left subtree has height 3 while the right subtree has height 1 (difference is 2 > 1)."
+    },
+    {
+      "explanation": "An empty tree is trivially height-balanced."
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "isBalanced",
+    "params": [
+      {
+        "name": "root",
+        "type": "TreeNode"
+      }
+    ],
+    "returns": "boolean"
+  }
+}

@@ -1,0 +1,43 @@
+{
+  "title": "Minimum Swaps to Group All Ones",
+  "difficulty": "Medium",
+  "subtopic": "Traversal",
+  "companies": [
+    "Amazon",
+    "Google",
+    "Microsoft"
+  ],
+  "description": "Given a binary array `nums`, group all its ones into one contiguous segment using swaps of any two positions. Return the minimum number of swaps. Input: `nums`. Output: the minimum swaps, or 0 if there are no ones.",
+  "constraints": [
+    "1 <= nums.length <= 100000",
+    "nums[i] is 0 or 1"
+  ],
+  "hints": [
+    "Track the running prefix, window, or frequency information needed by the condition.",
+    "Check duplicates, all-equal values, and boundary-sized windows."
+  ],
+  "examples": [
+    {
+      "input": "nums = [1, 0, 1, 0, 1]",
+      "output": "1"
+    },
+    {
+      "input": "nums = [0, 0, 0]",
+      "output": "0"
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "minSwapsToGroupOnes",
+    "params": [
+      {
+        "name": "nums",
+        "type": "int[]"
+      }
+    ],
+    "returns": "int"
+  }
+}

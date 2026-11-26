@@ -1,0 +1,49 @@
+{
+  "title": "Restore IP Addresses",
+  "difficulty": "Medium",
+  "subtopic": "Constraint Pruning",
+  "companies": [
+    "Google",
+    "Amazon",
+    "Meta",
+    "Microsoft",
+    "Apple",
+    "Oracle"
+  ],
+  "leetcode": 93,
+  "description": "A valid IPv4 address consists of exactly four integers separated by single dots `'.'`. Each integer must be between `0` and `255` (inclusive) and cannot have leading zeros (for example, `\"0.1.2.201\"` and `\"192.168.1.1\"` are valid, whereas `\"0.011.255.245\"` and `\"192.168.1.312\"` are invalid).\n\nGiven a string `s` containing only digits, return all possible valid IPv4 addresses that can be formed by inserting three dots into `s`. You cannot reorder or remove any digits in `s`. You may return the valid IP addresses in any order.",
+  "constraints": [
+    "1 <= s.length <= 20",
+    "s consists of digits '0'-'9' only."
+  ],
+  "hints": [
+    "An IPv4 address has 4 segments, each 1 to 3 digits long, so strings shorter than 4 or longer than 12 characters can never form a valid IP.",
+    "Backtrack by placing 4 segments one at a time, pruning whenever the remaining digits cannot fit in the remaining segments (remaining < partsLeft or remaining > 3 * partsLeft).",
+    "A segment of length > 1 is invalid if it starts with '0', and a 3-digit segment is invalid if its numeric value exceeds 255."
+  ],
+  "examples": [
+    {
+      "explanation": "The two valid ways to insert three dots into \"25525511135\" are \"255.255.11.135\" and \"255.255.111.35\"."
+    },
+    {
+      "explanation": "Each single '0' forms one valid octet, producing \"0.0.0.0\"."
+    },
+    {
+      "explanation": "All five splits respect the 0..255 range and forbid multi-digit octets with leading zeros."
+    }
+  ],
+  "timeComplexity": "O(1)",
+  "spaceComplexity": "O(1)",
+  "compare": "sorted",
+  "signature": {
+    "kind": "function",
+    "method": "restoreIpAddresses",
+    "params": [
+      {
+        "name": "s",
+        "type": "String"
+      }
+    ],
+    "returns": "List<String>"
+  }
+}

@@ -1,0 +1,45 @@
+{
+  "title": "Unique Email Addresses",
+  "difficulty": "Easy",
+  "subtopic": "Parsing",
+  "companies": [
+    "Google",
+    "Amazon",
+    "Adobe"
+  ],
+  "description": "Every valid email address consists of a local name and a domain name separated by `'@'`. In the local name, periods `'.'` are ignored, and everything from the first `'+'` onward is ignored (these rules do not apply to the domain name). Given an array of valid email strings `emails`, return the number of distinct canonical addresses that actually receive mail.",
+  "constraints": [
+    "1 <= emails.length <= 500",
+    "1 <= emails[i].length <= 100",
+    "Each email contains exactly one '@' with non-empty local and domain parts."
+  ],
+  "hints": [
+    "Split each email at '@': keep the domain verbatim.",
+    "In the local part, truncate at the first '+' (if any), remove all '.', then insert local + '@' + domain into a set."
+  ],
+  "examples": [
+    {
+      "explanation": "The first two emails normalize to \"testemail@leetcode.com\" and the third to \"testemail@lee.tcode.com\", giving 2 unique addresses."
+    },
+    {
+      "explanation": "All three addresses have different local names, giving 3."
+    },
+    {
+      "explanation": "Dots and plus-tags in the local name normalize all three to \"user@domain.com\"."
+    }
+  ],
+  "timeComplexity": "O(sum(|emails[i]|))",
+  "spaceComplexity": "O(sum(|emails[i]|))",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "numUniqueEmails",
+    "params": [
+      {
+        "name": "emails",
+        "type": "String[]"
+      }
+    ],
+    "returns": "int"
+  }
+}

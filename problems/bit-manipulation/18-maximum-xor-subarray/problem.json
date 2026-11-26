@@ -1,0 +1,44 @@
+{
+  "title": "Maximum XOR Subarray",
+  "difficulty": "Hard",
+  "subtopic": "XOR Tricks",
+  "companies": [
+    "Google",
+    "Meta",
+    "Uber"
+  ],
+  "description": "Given an integer array `nums` of non-negative integers, find the maximum possible bitwise XOR value among all non-empty contiguous subarrays `nums[l..r]` (`0 <= l <= r < nums.length`).",
+  "constraints": [
+    "1 <= nums.length <= 2 * 10^4",
+    "0 <= nums[i] <= 10^9"
+  ],
+  "hints": [
+    "Every subarray XOR `nums[l..r]` equals `pref[r + 1] ^ pref[l]`, reducing the problem to finding the maximum XOR between two prefix XORs (including `pref[0] = 0`).",
+    "Insert prefix XORs from MSB (bit 29) to LSB (bit 0) into a binary trie and greedily take the opposite bit branch at each level when querying."
+  ],
+  "examples": [
+    {
+      "explanation": "The subarray [1, 2, 12] has XOR 1 ^ 2 ^ 12 = 15, which is the maximum possible."
+    },
+    {
+      "explanation": "The entire array [4, 6] has XOR 4 ^ 6 = 2, while single subarray [6] has XOR 6."
+    },
+    {
+      "explanation": "The subarray [1, 2, 3, 4] has XOR 4, while [3, 4] has XOR 7."
+    }
+  ],
+  "timeComplexity": "O(n log M)",
+  "spaceComplexity": "O(n log M)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "maxXorSubarray",
+    "params": [
+      {
+        "name": "nums",
+        "type": "int[]"
+      }
+    ],
+    "returns": "int"
+  }
+}

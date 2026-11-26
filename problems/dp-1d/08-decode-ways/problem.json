@@ -1,0 +1,39 @@
+{
+  "title": "Decode Ways",
+  "difficulty": "Medium",
+  "subtopic": "Linear States",
+  "companies": [
+    "Amazon",
+    "Google",
+    "Microsoft"
+  ],
+  "description": "Digits 1 through 26 map to letters A through Z. Return the number of ways to decode `s`. A code cannot start with zero, and the input contains only digits.",
+  "constraints": [
+    "1 <= s.length <= 100",
+    "s contains only digits"
+  ],
+  "hints": [
+    "Define a small state for the best answer ending at each position.",
+    "Update the state from the allowed previous positions."
+  ],
+  "examples": [
+    {
+      "input": "s = \"226\"",
+      "output": "3"
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "numDecodings",
+    "params": [
+      {
+        "name": "s",
+        "type": "String"
+      }
+    ],
+    "returns": "int"
+  }
+}

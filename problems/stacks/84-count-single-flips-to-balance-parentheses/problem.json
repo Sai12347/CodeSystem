@@ -1,0 +1,45 @@
+{
+  "title": "Count Single Flips to Balance Parentheses",
+  "difficulty": "Medium",
+  "subtopic": "Valid Parentheses",
+  "companies": [
+    "Google",
+    "Amazon",
+    "Meta",
+    "Bloomberg"
+  ],
+  "description": "Given a string `s` of length `n` consisting of `'('` and `')'`, return the number of indices `i` (`0 <= i < n`) such that flipping `s[i]` (changing `'('` to `')'` or `')'` to `'('`) transforms `s` into a **valid balanced parentheses string**.",
+  "constraints": [
+    "1 <= s.length <= 2 * 10^5",
+    "s consists only of '(' and ')'."
+  ],
+  "hints": [
+    "Flipping one character changes the total balance by -2 (for '(' -> ')') or +2 (for ')' -> '('), so a valid flip can only exist when the initial total balance is +2 or -2.",
+    "Precompute prefix balance `pref[i]`, prefix minimum `prefMin[i]`, and suffix minimum `sufMin[i]`: flipping index `i` keeps every prefix non-negative iff `prefMin[i - 1] >= 0` and `sufMin[i] >= 2` (when total == +2) or `sufMin[i] >= -2` (when total == -2)."
+  ],
+  "examples": [
+    {
+      "explanation": "Flipping index 1 produces \"()()\" and flipping index 2 produces \"(())\", giving 2 valid indices."
+    },
+    {
+      "explanation": "Flipping index 1 produces \"(()())\" and flipping index 2 produces \"()(())\", giving 2 valid indices."
+    },
+    {
+      "explanation": "Already balanced (total balance 0), so any single flip makes it unbalanced (0 valid indices)."
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "countSingleFlips",
+    "params": [
+      {
+        "name": "s",
+        "type": "String"
+      }
+    ],
+    "returns": "int"
+  }
+}

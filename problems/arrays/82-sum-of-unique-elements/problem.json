@@ -1,0 +1,43 @@
+{
+  "title": "Sum of Unique Elements",
+  "difficulty": "Easy",
+  "subtopic": "Traversal",
+  "companies": [
+    "Amazon",
+    "Google",
+    "Microsoft"
+  ],
+  "description": "Given an integer array `nums`, return the sum of values that occur exactly once. If no value occurs exactly once, return 0. Input: `nums`. Output: the unique-value sum.",
+  "constraints": [
+    "1 <= nums.length <= 1000",
+    "1 <= nums[i] <= 1000"
+  ],
+  "hints": [
+    "Sort or count values once, then process each candidate in a single pass.",
+    "Check duplicates, all-equal inputs, and boundary values for `k`."
+  ],
+  "examples": [
+    {
+      "input": "nums = [1, 2, 3, 2]",
+      "output": "4"
+    },
+    {
+      "input": "nums = [1, 1, 1]",
+      "output": "0"
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "sumOfUnique",
+    "params": [
+      {
+        "name": "nums",
+        "type": "int[]"
+      }
+    ],
+    "returns": "int"
+  }
+}

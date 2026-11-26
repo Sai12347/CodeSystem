@@ -1,0 +1,58 @@
+{
+  "title": "Grumpy Bookstore Owner",
+  "difficulty": "Medium",
+  "subtopic": "Fixed Window",
+  "companies": [
+    "Amazon",
+    "Google",
+    "Meta",
+    "Microsoft",
+    "Bloomberg"
+  ],
+  "leetcode": 1052,
+  "description": "There is a bookstore owner whose store is open for `n` minutes. You are given an integer array `customers` of length `n`, where `customers[i]` is the number of customers that enter the store at the start of the `i`-th minute and leave after that minute ends.\n\nOn some minutes, the bookstore owner is grumpy. You are given a binary array `grumpy` of length `n`, where `grumpy[i]` is `1` if the owner is grumpy during the `i`-th minute, and `0` otherwise. Customers entering during a grumpy minute are not satisfied; otherwise, they are satisfied.\n\nThe bookstore owner knows a secret technique to remain **not grumpy** for `minutes` consecutive minutes, which can be used at most once. Return the maximum number of customers that can be satisfied throughout the day.",
+  "constraints": [
+    "n == customers.length == grumpy.length",
+    "1 <= minutes <= n <= 2 * 10^4",
+    "0 <= customers[i] <= 1000",
+    "grumpy[i] is either 0 or 1."
+  ],
+  "hints": [
+    "Customers who arrive when grumpy[i] == 0 are always satisfied regardless of where you apply the secret technique.",
+    "Applying the technique on a window of length minutes only rescues customers who arrive during grumpy minutes inside that window.",
+    "Compute the baseline sum of always-satisfied customers, then use a fixed-size sliding window of length minutes to find the maximum sum of customers[i] * grumpy[i]."
+  ],
+  "examples": [
+    {
+      "explanation": "The owner already satisfies 1 + 1 + 1 + 7 = 10 customers on calm minutes. Using the 3-minute technique on the last 3 minutes rescues 1 + 5 = 6 additional customers, for 16 total."
+    },
+    {
+      "explanation": "The owner is already not grumpy during the only minute, so 1 customer is satisfied."
+    },
+    {
+      "explanation": "Using the 2-minute technique on minutes 0 and 1 rescues 4 + 10 = 14 customers, adding to the 10 already satisfied at minute 2 for 24 total."
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "maxSatisfied",
+    "params": [
+      {
+        "name": "customers",
+        "type": "int[]"
+      },
+      {
+        "name": "grumpy",
+        "type": "int[]"
+      },
+      {
+        "name": "minutes",
+        "type": "int"
+      }
+    ],
+    "returns": "int"
+  }
+}

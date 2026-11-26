@@ -1,0 +1,50 @@
+{
+  "title": "Majority Element",
+  "difficulty": "Easy",
+  "subtopic": "Traversal",
+  "companies": [
+    "Amazon",
+    "Google",
+    "Meta",
+    "Microsoft",
+    "Apple",
+    "Adobe"
+  ],
+  "leetcode": 169,
+  "description": "Given an array `nums` of size `n`, return the **majority element**.\n\nThe majority element is the element that appears strictly more than `floor(n / 2)` times. You may assume that the majority element always exists in `nums`.\n\nCan you solve the problem in linear time and `O(1)` extra space?",
+  "constraints": [
+    "1 <= nums.length <= 5 * 10^4",
+    "-10^9 <= nums[i] <= 10^9",
+    "The majority element always exists in nums."
+  ],
+  "hints": [
+    "Counting frequencies with a hash map takes O(n) time and O(n) space, while sorting takes O(n log n) time.",
+    "Think about pairing off each occurrence of the majority element with a different element: since the majority element appears more than n / 2 times, it will always survive all cancellations.",
+    "Boyer-Moore Voting tracks a `candidate` and a `count`: increment `count` when seeing `candidate`, decrement otherwise, and pick a new `candidate` whenever `count` reaches 0."
+  ],
+  "examples": [
+    {
+      "explanation": "3 appears 2 times out of 3 elements (2 > 1), so 3 is the majority element."
+    },
+    {
+      "explanation": "2 appears 4 times out of 7 elements (4 > 3), so 2 is the majority element."
+    },
+    {
+      "explanation": "With a single element, 7 appears 1 time (1 > 0)."
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "majorityElement",
+    "params": [
+      {
+        "name": "nums",
+        "type": "int[]"
+      }
+    ],
+    "returns": "int"
+  }
+}

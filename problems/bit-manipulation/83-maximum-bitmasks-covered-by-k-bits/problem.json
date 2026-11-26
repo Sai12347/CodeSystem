@@ -1,0 +1,54 @@
+{
+  "title": "Maximum Bitmasks Covered by K Bits",
+  "difficulty": "Medium",
+  "subtopic": "Counting Bits",
+  "companies": [
+    "Google",
+    "Amazon",
+    "Salesforce"
+  ],
+  "description": "You are given an array `masks` of non-negative integers (each strictly less than `2^m`), an integer bit-width `m`, and an integer `k`. An element `x` in `masks` is covered by a chosen bitmask `S` if every `1` bit of `x` is also a `1` bit of `S` (that is, `(x & S) == x`). Choose a bitmask `S` in `[0, 2^m - 1]` with **exact** population count `k` to maximize the number of covered elements in `masks`, and return that maximum count.",
+  "constraints": [
+    "1 <= masks.length <= 10^4",
+    "1 <= m <= 15",
+    "0 <= k <= m",
+    "0 <= masks[i] < 2^m"
+  ],
+  "hints": [
+    "Count the frequency of each bitmask in an array `dp` of size `2^m`.",
+    "Apply Sum Over Subsets (SOS) DP across each bit `0..m - 1` so `dp[S]` holds the exact number of elements in `masks` that are submasks of `S`, then take the maximum of `dp[S]` over all `S` with `popcount(S) == k`."
+  ],
+  "examples": [
+    {
+      "explanation": "Choosing S = 5 (binary 101) with k = 2 set bits covers 4 (100), 5 (101), and 1 (001) for a total of 3."
+    },
+    {
+      "explanation": "With k = 1, any single bit covers at most 1 of {1, 2, 4}."
+    },
+    {
+      "explanation": "With k = 0, S = 0 covers both 0s in [0, 0, 3], giving 2."
+    }
+  ],
+  "timeComplexity": "O(n + m * 2^m)",
+  "spaceComplexity": "O(2^m)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "maxCoveredBitmasks",
+    "params": [
+      {
+        "name": "masks",
+        "type": "int[]"
+      },
+      {
+        "name": "m",
+        "type": "int"
+      },
+      {
+        "name": "k",
+        "type": "int"
+      }
+    ],
+    "returns": "int"
+  }
+}

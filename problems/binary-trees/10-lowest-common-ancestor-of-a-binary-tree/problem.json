@@ -1,0 +1,61 @@
+{
+  "title": "Lowest Common Ancestor of a Binary Tree",
+  "difficulty": "Medium",
+  "subtopic": "Lowest Common Ancestor",
+  "companies": [
+    "Meta",
+    "Amazon",
+    "Google",
+    "Microsoft",
+    "LinkedIn",
+    "Bloomberg"
+  ],
+  "leetcode": 236,
+  "description": "Given a binary tree, find the **lowest common ancestor (LCA)** of two given nodes `p` and `q` in the tree.\n\nAccording to the definition of LCA on Wikipedia: *\"The lowest common ancestor is defined between two nodes `p` and `q` as the lowest node in `T` that has both `p` and `q` as descendants (where we allow **a node to be a descendant of itself**).\"*\n\nReturn the `TreeNode` reference to the lowest common ancestor of `p` and `q`. All node values in the tree are unique, `p` and `q` are distinct nodes guaranteed to exist in the tree, and you must return the actual node from the input tree without modifying any node values.",
+  "constraints": [
+    "The number of nodes in the tree is in the range [2, 10^5].",
+    "-10^9 <= Node.val <= 10^9",
+    "All Node.val are unique.",
+    "p != q",
+    "p and q will exist in the tree."
+  ],
+  "hints": [
+    "Think recursively: for a given subtree rooted at `node`, what does returning `node`, `left`, or `right` tell its parent?",
+    "If `node` is `None`, `p`, or `q`, you can immediately return `node`. Otherwise recurse on both left and right subtrees.",
+    "If both recursive calls return non-null nodes, `p` and `q` lie in opposite subtrees, so the current `node` is their lowest common ancestor; otherwise propagate whichever side is non-null."
+  ],
+  "examples": [
+    {
+      "explanation": "The LCA of nodes 5 and 1 is 3, since 5 is in the left subtree of 3 and 1 is in the right subtree of 3."
+    },
+    {
+      "explanation": "The LCA of nodes 5 and 4 is 5, because a node can be a descendant of itself."
+    },
+    {
+      "explanation": "Node 1 is the parent of node 2, so the LCA of 1 and 2 is 1."
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(h)",
+  "compare": "exact",
+  "signature": {
+    "kind": "adapter",
+    "inputs": [
+      {
+        "name": "root",
+        "type": "TreeNode",
+        "description": "Level-order array representation of the binary tree"
+      },
+      {
+        "name": "p",
+        "type": "int",
+        "description": "Value of the first target node p"
+      },
+      {
+        "name": "q",
+        "type": "int",
+        "description": "Value of the second target node q"
+      }
+    ]
+  }
+}

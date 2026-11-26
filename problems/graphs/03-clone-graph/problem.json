@@ -1,0 +1,38 @@
+{
+  "title": "Clone Graph",
+  "difficulty": "Medium",
+  "subtopic": "Connected Components",
+  "companies": ["Meta", "Google", "Amazon", "Microsoft", "Bloomberg", "Apple"],
+  "leetcode": 133,
+  "description": "Given a reference of a node in a **connected** undirected graph, return a **deep copy** (clone) of the graph.\n\nEach node in the graph contains a value (`int val`) and a list (`List<Node> neighbors`) of its adjacent nodes. Every node's value equals its 1-based index (`1` to `n`).\n\nEvery node in the returned graph must be a brand-new `Node` instance — none of the nodes or neighbor references may point to any node in the original graph, and the original graph must not be modified. If the input node is `null`, return `null`.\n\nIn the test format, a graph is represented as a 1-indexed adjacency list `adjList`, where `adjList[i - 1]` lists the neighbors of node `i`, and the starting node passed to `cloneGraph` is node `1` (or `null` when `adjList` is empty).",
+  "constraints": [
+    "The number of nodes in the graph is in the range [0, 100].",
+    "1 <= Node.val <= 100",
+    "Node.val is unique for each node.",
+    "There are no repeated edges and no self-loops in the graph.",
+    "The graph is connected and all nodes can be visited starting from the given node."
+  ],
+  "hints": [
+    "A graph can contain cycles, so naively recursing on neighbors without tracking visited nodes will cause infinite recursion.",
+    "Maintain a hash map mapping each original `Node` reference to its newly created cloned `Node`.",
+    "Create and store the clone in the map *before* recursively cloning (or enqueuing) its neighbors, so back-edges and cycles immediately link to the existing clone."
+  ],
+  "examples": [
+    {"explanation": "All 4 nodes and all 4 undirected edges of the cycle (1-2-3-4-1) are deep-copied into fresh Node instances."},
+    {"explanation": "A single node with value 1 and no neighbors is cloned into a new Node(1, [])."},
+    {"explanation": "The graph is empty (null input), so cloneGraph returns null."}
+  ],
+  "timeComplexity": "O(V + E)",
+  "spaceComplexity": "O(V)",
+  "compare": "exact",
+  "signature": {
+    "kind": "adapter",
+    "inputs": [
+      {
+        "name": "adjList",
+        "type": "List<List<Integer>>",
+        "description": "1-indexed adjacency list representing a connected undirected graph"
+      }
+    ]
+  }
+}

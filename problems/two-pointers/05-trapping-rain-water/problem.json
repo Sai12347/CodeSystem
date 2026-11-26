@@ -1,0 +1,50 @@
+{
+  "title": "Trapping Rain Water",
+  "difficulty": "Hard",
+  "subtopic": "Converging Pointers",
+  "companies": [
+    "Google",
+    "Amazon",
+    "Meta",
+    "Microsoft",
+    "Goldman Sachs",
+    "Bloomberg"
+  ],
+  "leetcode": 42,
+  "description": "Given `n` non-negative integers `height` representing an elevation map where the width of each bar is `1`, compute how much total rainwater can be trapped between the bars after raining.\n\nWater trapped above bar `i` is bounded by the shorter of the tallest bar to its left and the tallest bar to its right.",
+  "constraints": [
+    "n == height.length",
+    "1 <= n <= 2 * 10^4",
+    "0 <= height[i] <= 10^5"
+  ],
+  "hints": [
+    "At any index i, the water level is min(maxLeft[i], maxRight[i]), contributing max(0, waterLevel - height[i]) units of water.",
+    "You can eliminate the O(n) prefix/suffix arrays by maintaining two converging pointers left and right along with running maxima leftMax and rightMax.",
+    "Whenever height[left] <= height[right], the limiting wall for left is guaranteed to be leftMax (since there is a bar at least as tall on the right), so you can safely accumulate water at left and advance it."
+  ],
+  "examples": [
+    {
+      "explanation": "Water pools between the elevation peaks for a total of 1 + 1 + 2 + 1 + 1 = 6 units."
+    },
+    {
+      "explanation": "The bars form pockets holding 2 + 4 + 1 + 2 = 9 units of water."
+    },
+    {
+      "explanation": "A strictly increasing elevation map has no right boundary lower than a left wall, so 0 units of water are trapped."
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "trap",
+    "params": [
+      {
+        "name": "height",
+        "type": "int[]"
+      }
+    ],
+    "returns": "int"
+  }
+}

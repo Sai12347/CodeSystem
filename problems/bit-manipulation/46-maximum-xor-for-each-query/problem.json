@@ -1,0 +1,49 @@
+{
+  "title": "Maximum XOR for Each Query",
+  "difficulty": "Medium",
+  "subtopic": "XOR Tricks",
+  "companies": [
+    "Google",
+    "Meta",
+    "Adobe"
+  ],
+  "description": "You are given an integer array `nums` of length `n` and an integer `maximumBit` such that every element satisfies `0 <= nums[i] < 2^maximumBit`. You perform `n` queries: for the `i`-th query (0-indexed), find the non-negative integer `k < 2^maximumBit` that maximizes `nums[0] XOR nums[1] XOR ... XOR nums[n - 1 - i] XOR k`, and record `k` as `answer[i]` (removing the last remaining element after each query). Return the array `answer`.",
+  "constraints": [
+    "1 <= nums.length <= 10^5",
+    "1 <= maximumBit <= 20",
+    "0 <= nums[i] < 2^maximumBit"
+  ],
+  "hints": [
+    "The maximum possible XOR value representable with `maximumBit` bits is `mask = (1 << maximumBit) - 1` (all ones).",
+    "For any prefix XOR `p`, choosing `k = p ^ mask` achieves `p ^ k = mask`, and you can shrink the prefix XOR from the right in O(1) per query."
+  ],
+  "examples": [
+    {
+      "explanation": "mask = 3. Prefix XORs from full array down are 3, 0, 1, 0, giving k = [0, 3, 2, 3]."
+    },
+    {
+      "explanation": "mask = 7. Prefix XORs are 2, 5, 1, 2, giving k = 5, 2, 6, 5."
+    },
+    {
+      "explanation": "mask = 7. Prefix XORs from full array down are 3, 4, 1, 3, 1, 0, giving k = [4, 3, 6, 4, 6, 7]."
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "getMaximumXor",
+    "params": [
+      {
+        "name": "nums",
+        "type": "int[]"
+      },
+      {
+        "name": "maximumBit",
+        "type": "int"
+      }
+    ],
+    "returns": "int[]"
+  }
+}

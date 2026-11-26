@@ -1,0 +1,39 @@
+{
+  "title": "Lucky Numbers in a Matrix",
+  "difficulty": "Easy",
+  "subtopic": "Simulation",
+  "companies": [
+    "Amazon",
+    "Microsoft",
+    "Google"
+  ],
+  "description": "A value is lucky if it is the minimum value in its row and the maximum value in its column. Return all lucky values in any order.",
+  "constraints": [
+    "1 <= rows, columns <= 50",
+    "-100 <= matrix[i][j] <= 100"
+  ],
+  "hints": [
+    "Use row and column structure to identify the required values.",
+    "Check single-row, single-column, and tie cases."
+  ],
+  "examples": [
+    {
+      "input": "matrix = [[3,7,8],[9,11,13],[15,16,17]]",
+      "output": "[15]"
+    }
+  ],
+  "timeComplexity": "O(r*c)",
+  "spaceComplexity": "O(r+c)",
+  "compare": "sorted",
+  "signature": {
+    "kind": "function",
+    "method": "luckyNumbers",
+    "params": [
+      {
+        "name": "matrix",
+        "type": "int[][]"
+      }
+    ],
+    "returns": "List<Integer>"
+  }
+}

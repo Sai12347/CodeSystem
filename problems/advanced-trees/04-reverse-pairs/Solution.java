@@ -1,0 +1,2 @@
+class Solution { int sum(int[] b,int i){int s=0;for(;i>0;i-=i&-i)s+=b[i];return s;}void add(int[] b,int i){for(;i<b.length;i+=i&-i)b[i]++;}int upper(int[] a,int n,long x){int l=0,r=n;while(l<r){int m=(l+r)/2;if(a[m]<=x)l=m+1;else r=m;}return l;}public int reversePairs(int[] a){int[] v=a.clone();Arrays.sort(v);int n=0;for(int x:v)if(n==0||v[n-1]!=x)v[n++]=x;int[] b=new int[n+1];int ans=0;for(int k=a.length-1;k>=0;k--){int q=upper(v,n,Math.floorDiv((long)a[k]-1,2));ans+=sum(b,q);int r=Arrays.binarySearch(v,0,n,a[k])+1;add(b,r);}return ans;} }
+

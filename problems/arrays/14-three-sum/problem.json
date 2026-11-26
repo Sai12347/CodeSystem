@@ -1,0 +1,49 @@
+{
+  "title": "3Sum",
+  "difficulty": "Medium",
+  "subtopic": "Subarrays",
+  "companies": [
+    "Meta",
+    "Amazon",
+    "Google",
+    "Microsoft",
+    "Apple",
+    "Bloomberg"
+  ],
+  "leetcode": 15,
+  "description": "Given an integer array `nums`, return all unique triplets `[nums[i], nums[j], nums[k]]` such that `i != j`, `i != k`, `j != k`, and `nums[i] + nums[j] + nums[k] == 0`.\n\nThe solution set must not contain duplicate triplets. You may return the triplets, and the elements within each triplet, in any order.",
+  "constraints": [
+    "3 <= nums.length <= 3000",
+    "-10^5 <= nums[i] <= 10^5"
+  ],
+  "hints": [
+    "Sort the array first. Fixing the smallest element nums[i] turns the remaining problem into a sorted Two Sum with target -nums[i].",
+    "Use two pointers l = i + 1 and r = n - 1 that move inward depending on whether the current sum is less than, greater than, or equal to zero.",
+    "To avoid duplicate triplets without a hash set, skip repeated values of nums[i] and advance l and r past duplicate values after recording a valid triplet."
+  ],
+  "examples": [
+    {
+      "explanation": "The distinct triplets summing to 0 are [-1, -1, 2] and [-1, 0, 1]."
+    },
+    {
+      "explanation": "The only triplet is [0, 1, 1], whose sum is 2 != 0."
+    },
+    {
+      "explanation": "The only possible triplet [0, 0, 0] sums to 0."
+    }
+  ],
+  "timeComplexity": "O(n^2)",
+  "spaceComplexity": "O(n)",
+  "compare": "sortedDeep",
+  "signature": {
+    "kind": "function",
+    "method": "threeSum",
+    "params": [
+      {
+        "name": "nums",
+        "type": "int[]"
+      }
+    ],
+    "returns": "List<List<Integer>>"
+  }
+}

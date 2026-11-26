@@ -1,0 +1,52 @@
+{
+  "title": "Ways to Cut a Matrix Into K Pieces",
+  "difficulty": "Hard",
+  "subtopic": "Dynamic Grids",
+  "companies": [
+    "Google",
+    "Meta",
+    "Amazon",
+    "Netflix"
+  ],
+  "description": "You are given an `m x n` grid represented as an array of strings `grid` where `'A'` marks a cell containing an apple and `'.'` marks an empty cell, along with an integer `k`.\n\nYou need to cut the grid into exactly `k` pieces using `k - 1` sequential cuts. Each cut is either:\n- **Horizontal**: pick a row split, give away the **top** portion, and keep the remaining **bottom** submatrix.\n- **Vertical**: pick a column split, give away the **left** portion, and keep the remaining **right** submatrix.\n\nThe final remaining piece is given away as the `k`-th piece. Return the number of valid cutting sequences such that **every** piece contains at least one `'A'`, modulo `10^9 + 7`.",
+  "constraints": [
+    "1 <= grid.length <= 50",
+    "1 <= grid[i].length <= 50",
+    "All strings in grid have equal length.",
+    "grid[i][j] is either 'A' or '.'.",
+    "1 <= k <= 10"
+  ],
+  "hints": [
+    "Because each cut discards either a top strip or a left strip, every remaining submatrix is always a bottom-right suffix [r..m-1] x [c..n-1].",
+    "Precompute 2D suffix apple counts apples[r][c], then run bottom-up DP where dp[pieces][r][c] sums dp[pieces - 1][nr][c] over horizontal cuts with apples[r][c] > apples[nr][c] and dp[pieces - 1][r][nc] over vertical cuts with apples[r][c] > apples[r][nc]."
+  ],
+  "examples": [
+    {
+      "explanation": "With k = 3 on [\"A..\", \"AAA\", \"...\"], there are 3 valid ways to split the grid so each piece has an apple."
+    },
+    {
+      "explanation": "With k = 3 on [\"A..\", \"AA.\", \"...\"], there is only 1 valid sequence of two cuts."
+    },
+    {
+      "explanation": "With k = 1, no cuts are made and the whole grid already contains an apple, so there is 1 way."
+    }
+  ],
+  "timeComplexity": "O(k * m * n * (m + n))",
+  "spaceComplexity": "O(m * n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "waysToCutMatrix",
+    "params": [
+      {
+        "name": "grid",
+        "type": "String[]"
+      },
+      {
+        "name": "k",
+        "type": "int"
+      }
+    ],
+    "returns": "int"
+  }
+}

@@ -1,0 +1,45 @@
+{
+  "title": "Reverse Nodes in Even Length Groups",
+  "difficulty": "Medium",
+  "subtopic": "Reversal",
+  "companies": [
+    "Amazon",
+    "Google",
+    "Meta",
+    "Oracle"
+  ],
+  "description": "You are given the `head` of a non-empty singly linked list. The nodes are sequentially partitioned into contiguous groups whose target lengths are the natural numbers `1, 2, 3, 4, ...`. The final group may contain fewer nodes than its target length if the list ends early.\n\nReverse the nodes in every group whose **actual** length is **even**, and leave every group of odd actual length unchanged. Return the `head` of the modified list in `O(1)` extra space.",
+  "constraints": [
+    "The number of nodes in the list is in the range [1, 10^4].",
+    "0 <= Node.val <= 10^5"
+  ],
+  "hints": [
+    "For each group with target size `g`, first count how many nodes `actual` are actually available (at most `g`) before deciding whether to reverse.",
+    "If `actual % 2 == 0`, reverse exactly `actual` nodes starting from `prev.next` and update `prev` to the new tail of the group; otherwise simply advance `prev` by `actual` steps."
+  ],
+  "examples": [
+    {
+      "explanation": "Groups are [5] (len 1), [2, 6] (len 2, reversed -> [6, 2]), [3, 9, 1] (len 3), [7, 3, 8, 4] (len 4, reversed -> [4, 8, 3, 7])."
+    },
+    {
+      "explanation": "Groups are [1] (len 1), [1, 0] (len 2, reversed -> [0, 1]), [6] (len 1, odd so unchanged)."
+    },
+    {
+      "explanation": "Groups are [1] (len 1), [1, 0] (len 2, reversed -> [0, 1]), [6, 5] (len 2, actual length is even so reversed -> [5, 6])."
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "reverseEvenLengthGroups",
+    "params": [
+      {
+        "name": "head",
+        "type": "ListNode"
+      }
+    ],
+    "returns": "ListNode"
+  }
+}

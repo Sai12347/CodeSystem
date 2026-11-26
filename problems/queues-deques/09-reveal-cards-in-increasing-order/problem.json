@@ -1,0 +1,45 @@
+{
+  "title": "Reveal Cards In Increasing Order",
+  "difficulty": "Medium",
+  "subtopic": "Deque Operations",
+  "companies": [
+    "Google",
+    "Amazon",
+    "Meta",
+    "Bloomberg",
+    "Apple"
+  ],
+  "leetcode": 950,
+  "description": "You are given an integer array `deck` where every card has a unique integer value. You may order the deck in any order you want. Initially, all cards start face down in one deck.\n\nYou will repeatedly perform the following steps until all cards are revealed:\n1. Take the top card of the deck, reveal it, and remove it from the deck.\n2. If there are still cards in the deck, move the next top card to the bottom of the deck.\n3. Repeat from step 1 while unrevealed cards remain.\n\nReturn an ordering of the deck that reveals the cards in strictly increasing order. Note that the first entry in the returned array is considered the top of the deck.",
+  "constraints": [
+    "1 <= deck.length <= 1000",
+    "1 <= deck[i] <= 10^6",
+    "All values of deck are unique."
+  ],
+  "hints": [
+    "Simulate the reveal process on a deque of slot indices [0, 1, ..., n - 1] instead of on the cards themselves.",
+    "Sort the deck in ascending order: each time an index is popped from the front of the deque, assign the next smallest card to that index, then move the new front index to the back."
+  ],
+  "examples": [
+    {
+      "explanation": "Starting with [2,13,3,11,5,17,7]: reveal 2 (move 13 to back), reveal 3 (move 11 to back), reveal 5 (move 17 to back), reveal 7 (move 13 to back), reveal 11 (move 17 to back), reveal 13, reveal 17."
+    },
+    {
+      "explanation": "With 2 cards, revealing 1 then moving 1000 to the bottom reveals [1, 1000] in increasing order."
+    }
+  ],
+  "timeComplexity": "O(n log n)",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "deckRevealedIncreasing",
+    "params": [
+      {
+        "name": "deck",
+        "type": "int[]"
+      }
+    ],
+    "returns": "int[]"
+  }
+}

@@ -1,0 +1,47 @@
+{
+  "title": "Minimum Flips for Palindromic Grid II",
+  "difficulty": "Hard",
+  "subtopic": "Matrix Rotation",
+  "companies": [
+    "Google",
+    "Meta",
+    "Amazon",
+    "Apple"
+  ],
+  "description": "You are given an `m x n` binary matrix `grid` containing only `0`s and `1`s.\n\nIn a single operation, you can flip any cell (`0` to `1`, or `1` to `0`). Return the **minimum number of flips** required so that ALL of the following conditions hold simultaneously:\n1. Every **row** is palindromic.\n2. Every **column** is palindromic.\n3. The **total number of `1`s** in the entire grid is divisible by `4`.",
+  "constraints": [
+    "m == grid.length",
+    "n == grid[i].length",
+    "1 <= m, n <= 200",
+    "grid[i][j] is either 0 or 1."
+  ],
+  "hints": [
+    "Every non-middle cell (r, c) belongs to a 4-cell symmetry orbit {(r, c), (r, n-1-c), (m-1-r, c), (m-1-r, n-1-c)} that must all share the same value (contributing 0 or 4 ones), costing min(ones, 4 - ones).",
+    "Handle the middle row (when m is odd), middle column (when n is odd), and the single center cell (which must be 0 when both m and n are odd): if the number of (1, 1) symmetric pairs is odd and there are no differing (0, 1) pairs to absorb the parity adjustment, add 2 extra flips."
+  ],
+  "examples": [
+    {
+      "explanation": "Flipping (0,0), (1,1), and (2,2) leaves all zeros (0 is divisible by 4) in 3 flips, which is optimal."
+    },
+    {
+      "explanation": "Flipping (0,0) and (2,0) to 0 makes all rows and columns palindromic with 0 ones in 2 flips (flipping (1,0) would leave 3 ones, not divisible by 4)."
+    },
+    {
+      "explanation": "Flipping the single 1 in the 1x1 grid to 0 makes total ones equal to 0 (divisible by 4) in 1 flip."
+    }
+  ],
+  "timeComplexity": "O(m * n)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "minFlipsFullPalindrome",
+    "params": [
+      {
+        "name": "grid",
+        "type": "int[][]"
+      }
+    ],
+    "returns": "int"
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "title": "Minimize the Maximum Pair Sum",
+  "difficulty": "Medium",
+  "subtopic": "Traversal",
+  "companies": [
+    "Amazon",
+    "Google",
+    "Microsoft"
+  ],
+  "description": "Pair every element of an even-length array with exactly one other element. The pair sum is the sum of its two values. Return the smallest possible value of the largest pair sum. Input: `nums`. Output: the minimized largest pair sum.",
+  "constraints": [
+    "2 <= nums.length <= 100000",
+    "nums.length is even",
+    "1 <= nums[i] <= 100000"
+  ],
+  "hints": [
+    "Sort or count values once, then process each candidate in a single pass.",
+    "Check duplicates, all-equal inputs, and boundary values for `k`."
+  ],
+  "examples": [
+    {
+      "input": "nums = [3, 5, 2, 3]",
+      "output": "7"
+    },
+    {
+      "input": "nums = [3, 5, 4, 2, 4, 6]",
+      "output": "8"
+    }
+  ],
+  "timeComplexity": "O(n log n)",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "minPairSum",
+    "params": [
+      {
+        "name": "nums",
+        "type": "int[]"
+      }
+    ],
+    "returns": "int"
+  }
+}

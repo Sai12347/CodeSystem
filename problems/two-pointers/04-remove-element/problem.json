@@ -1,0 +1,57 @@
+{
+  "title": "Remove Element",
+  "difficulty": "Easy",
+  "subtopic": "Trailing Pointers",
+  "companies": [
+    "Amazon",
+    "Google",
+    "Microsoft",
+    "Meta",
+    "Adobe"
+  ],
+  "leetcode": 27,
+  "description": "Given an integer array `nums` and an integer `val`, remove all occurrences of `val` in `nums` **in-place**. The relative order of the remaining elements may be changed.\n\nReturn `k`, the number of elements in `nums` that are not equal to `val`, and modify `nums` so that the first `k` elements of `nums` contain those remaining elements. Elements at index `k` and beyond do not matter.\n\nThe judge evaluates your solution by inspecting the first `k` elements of `nums` (ignoring their order).",
+  "constraints": [
+    "0 <= nums.length <= 10^4",
+    "-10^4 <= nums[i] <= 10^4",
+    "-10^4 <= val <= 10^4"
+  ],
+  "hints": [
+    "Use a trailing write pointer k that marks where the next kept element should be placed.",
+    "Scan the array with a read pointer; whenever nums[i] != val, write nums[k] = nums[i] and increment k.",
+    "Alternatively, because order does not matter, you can swap occurrences of val with the last active element and shrink the effective array length."
+  ],
+  "examples": [
+    {
+      "explanation": "After removing all occurrences of 3, k = 2 and the first two elements of nums are [2, 2]."
+    },
+    {
+      "explanation": "After removing all occurrences of 2, k = 5 and the first five elements of nums are [0, 1, 3, 0, 4] (any order is accepted)."
+    },
+    {
+      "explanation": "The input array is empty, so k = 0 and the resulting prefix is []."
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(1)",
+  "compare": "sorted",
+  "signature": {
+    "kind": "function",
+    "method": "removeElement",
+    "params": [
+      {
+        "name": "nums",
+        "type": "int[]"
+      },
+      {
+        "name": "val",
+        "type": "int"
+      }
+    ],
+    "returns": "int",
+    "output": {
+      "mode": "prefix",
+      "param": "nums"
+    }
+  }
+}

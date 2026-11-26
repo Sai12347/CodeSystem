@@ -1,0 +1,44 @@
+{
+  "title": "Clear Digits With Left Letters",
+  "difficulty": "Easy",
+  "subtopic": "LIFO Structure",
+  "companies": [
+    "Amazon",
+    "Google",
+    "Bloomberg"
+  ],
+  "description": "You are given a string `s` consisting of lowercase English letters and digits (`'0'`-`'9'`).\n\nRepeatedly perform the following operation while any digit remains in `s`:\n- Find the leftmost digit in `s` and delete it, together with the closest remaining non-digit character to its left (if one exists).\n\nReturn the resulting string after all digits have been removed.",
+  "constraints": [
+    "1 <= s.length <= 10^4",
+    "s consists only of lowercase English letters and digits '0'-'9'."
+  ],
+  "hints": [
+    "Process characters from left to right using a stack of surviving letters.",
+    "Push each letter onto the stack; whenever you see a digit, pop the top letter if the stack is non-empty."
+  ],
+  "examples": [
+    {
+      "explanation": "\"abc\" has no digits, so all characters remain."
+    },
+    {
+      "explanation": "Digit '3' removes 'b' (leaving \"c4\"), then digit '4' removes 'c', leaving \"\"."
+    },
+    {
+      "explanation": "Digit '1' removes 'b' and digit '2' removes 'a', leaving \"cd\"."
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "clearDigits",
+    "params": [
+      {
+        "name": "s",
+        "type": "String"
+      }
+    ],
+    "returns": "String"
+  }
+}

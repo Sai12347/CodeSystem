@@ -1,0 +1,43 @@
+{
+  "title": "Increasing Triplet Subsequence",
+  "difficulty": "Medium",
+  "subtopic": "Traversal",
+  "companies": [
+    "Amazon",
+    "Google",
+    "Microsoft"
+  ],
+  "description": "Given an integer array `nums`, determine whether there are indices `i < j < k` such that `nums[i] < nums[j] < nums[k]`. The selected indices need not be adjacent. Input: `nums`. Output: true if such a triplet exists, otherwise false.",
+  "constraints": [
+    "1 <= nums.length <= 100000",
+    "-1000000000 <= nums[i] <= 1000000000"
+  ],
+  "hints": [
+    "Scan once to identify the boundary or state where the answer changes.",
+    "Test already ordered, reversed, duplicate, and minimum-size inputs."
+  ],
+  "examples": [
+    {
+      "input": "nums = [1, 2, 3, 4, 5]",
+      "output": "true"
+    },
+    {
+      "input": "nums = [5, 4, 3, 2, 1]",
+      "output": "false"
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "increasingTriplet",
+    "params": [
+      {
+        "name": "nums",
+        "type": "int[]"
+      }
+    ],
+    "returns": "boolean"
+  }
+}

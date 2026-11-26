@@ -1,0 +1,39 @@
+{
+  "title": "Longest Increasing Path in a Matrix",
+  "difficulty": "Hard",
+  "subtopic": "Post-Order DFS",
+  "companies": [
+    "Google",
+    "Amazon",
+    "Microsoft"
+  ],
+  "description": "Return the length of the longest path of strictly increasing values in a matrix. From each cell you may move up, down, left, or right. You may not move diagonally or revisit a cell in a path.",
+  "constraints": [
+    "1 <= rows, columns <= 200",
+    "-2^31 <= matrix[i][j] <= 2^31 - 1"
+  ],
+  "hints": [
+    "Model each ordering rule as a directed edge.",
+    "Use indegrees to process prerequisites and identify cycles or forced choices."
+  ],
+  "examples": [
+    {
+      "input": "matrix = [[9,9,4],[6,6,8],[2,1,1]]",
+      "output": "4"
+    }
+  ],
+  "timeComplexity": "O(V+E)",
+  "spaceComplexity": "O(V+E)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "longestIncreasingPath",
+    "params": [
+      {
+        "name": "matrix",
+        "type": "int[][]"
+      }
+    ],
+    "returns": "int"
+  }
+}

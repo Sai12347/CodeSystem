@@ -1,0 +1,47 @@
+{
+  "title": "Almost Equivalent Strings",
+  "difficulty": "Easy",
+  "subtopic": "Anagrams",
+  "companies": [
+    "Amazon",
+    "Google",
+    "Microsoft"
+  ],
+  "description": "Two lowercase strings are almost equivalent when, for every English letter, the absolute difference between its frequency in the strings is at most 3. Given `word1` and `word2`, return whether they are almost equivalent. Input: the two strings. Output: true or false.",
+  "constraints": [
+    "1 <= word1.length, word2.length <= 100000",
+    "word1 and word2 contain only lowercase English letters"
+  ],
+  "hints": [
+    "Count the 26 letters in each string.",
+    "Check each frequency difference independently."
+  ],
+  "examples": [
+    {
+      "input": "word1 = \"abc\", word2 = \"abc\"",
+      "output": "true"
+    },
+    {
+      "input": "word1 = \"aaaa\", word2 = \"b\"",
+      "output": "false"
+    }
+  ],
+  "timeComplexity": "O(n+m)",
+  "spaceComplexity": "O(1) for the alphabet",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "checkAlmostEquivalent",
+    "params": [
+      {
+        "name": "word1",
+        "type": "String"
+      },
+      {
+        "name": "word2",
+        "type": "String"
+      }
+    ],
+    "returns": "boolean"
+  }
+}

@@ -1,0 +1,1 @@
+class Solution { int[] dp(TreeNode n){if(n==null)return new int[]{0,0};int[] l=dp(n.left),r=dp(n.right);return new int[]{n.val+l[1]+r[1],Math.max(l[0],l[1])+Math.max(r[0],r[1])};} public int rob(TreeNode root){int[] a=dp(root);return Math.max(a[0],a[1]);} }

@@ -1,0 +1,93 @@
+{
+  "title": "Design In-Memory File System",
+  "difficulty": "Hard",
+  "subtopic": "Prefix Search",
+  "companies": [
+    "Amazon",
+    "Google",
+    "Meta",
+    "Microsoft",
+    "Uber",
+    "Salesforce",
+    "Atlassian"
+  ],
+  "leetcode": 588,
+  "description": "Design a data structure that simulates an in-memory file system.\n\nImplement the `FileSystem` class:\n- `FileSystem()` initializes the object of the system with an empty root directory `\"/\"`.\n- `List<String> ls(String path)`:\n  - If `path` is a file path, returns a list containing only this file's name.\n  - If `path` is a directory path, returns the list of file and directory names directly inside this directory, sorted in **lexicographical order**.\n- `void mkdir(String path)` creates a new directory at the given `path`. If middle directories in the path do not exist, create them as well.\n- `void addContentToFile(String filePath, String content)`:\n  - If `filePath` does not exist, creates that file containing `content`.\n  - If `filePath` already exists, appends `content` to its existing content.\n- `String readContentFromFile(String filePath)` returns the content of the file at `filePath`.",
+  "constraints": [
+    "1 <= path.length, filePath.length <= 100",
+    "path and filePath are absolute paths starting with '/' and do not end with '/' except when the path is '/' itself.",
+    "All directory and file names consist only of lowercase English letters, and no two entries in the same directory share the same name.",
+    "All operations are valid: ls is only called on existing paths, readContentFromFile is only called on existing files, and mkdir is never called on an existing file path.",
+    "1 <= content.length <= 50",
+    "At most 300 calls in total will be made to ls, mkdir, addContentToFile, and readContentFromFile."
+  ],
+  "hints": [
+    "Model the directory hierarchy as a trie where each edge is a path segment (directory or file name) rather than a single character.",
+    "Each trie node stores a map from child name to child node, a boolean flag marking whether it is a file, and a string buffer holding its content if it is a file.",
+    "Using a sorted map (such as TreeMap in Java) or sorting child keys on ls ensures directory listings are always returned in lexicographical order."
+  ],
+  "examples": [
+    {
+      "explanation": "Initially \"/\" is empty. After mkdir(\"/a/b/c\") and adding \"hello\" to \"/a/b/c/d\", ls(\"/\") returns [\"a\"] and reading \"/a/b/c/d\" returns \"hello\"."
+    },
+    {
+      "explanation": "ls(\"/\") returns files and directories sorted lexicographically as [\"a\",\"m\",\"z\"]. Appending to \"/m\" concatenates the content, and ls(\"/m\") returns only the file name [\"m\"]."
+    }
+  ],
+  "timeComplexity": "O(P + K log K) for ls, O(P + C) for file ops",
+  "spaceComplexity": "O(total paths + total content)",
+  "compare": "exact",
+  "signature": {
+    "kind": "design",
+    "className": "FileSystem",
+    "constructor": {
+      "params": []
+    },
+    "methods": [
+      {
+        "name": "ls",
+        "params": [
+          {
+            "name": "path",
+            "type": "String"
+          }
+        ],
+        "returns": "List<String>"
+      },
+      {
+        "name": "mkdir",
+        "params": [
+          {
+            "name": "path",
+            "type": "String"
+          }
+        ],
+        "returns": "void"
+      },
+      {
+        "name": "addContentToFile",
+        "params": [
+          {
+            "name": "filePath",
+            "type": "String"
+          },
+          {
+            "name": "content",
+            "type": "String"
+          }
+        ],
+        "returns": "void"
+      },
+      {
+        "name": "readContentFromFile",
+        "params": [
+          {
+            "name": "filePath",
+            "type": "String"
+          }
+        ],
+        "returns": "String"
+      }
+    ]
+  }
+}

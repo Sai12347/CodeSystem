@@ -1,0 +1,54 @@
+{
+  "title": "Split Array Largest Sum",
+  "difficulty": "Hard",
+  "subtopic": "Search on Answer Space",
+  "companies": [
+    "Google",
+    "Meta",
+    "Amazon",
+    "Microsoft",
+    "Apple",
+    "Bloomberg"
+  ],
+  "leetcode": 410,
+  "description": "Given an integer array `nums` and an integer `k`, split `nums` into `k` non-empty contiguous subarrays such that the largest sum of any of the `k` subarrays is minimized.\n\nReturn the minimized largest sum of the split. A subarray is a contiguous part of the array.",
+  "constraints": [
+    "1 <= nums.length <= 1000",
+    "0 <= nums[i] <= 10^6",
+    "1 <= k <= min(50, nums.length)"
+  ],
+  "hints": [
+    "Think about the feasibility version of the problem: given a maximum allowed subarray sum X, can we partition nums into at most k contiguous subarrays each with sum <= X?",
+    "Since every element is non-negative, greedily packing as many elements as possible into the current subarray minimizes the number of subarrays needed for a given limit X.",
+    "Binary search X over [max(nums), sum(nums)] to find the minimum feasible limit. Note that if fewer than k subarrays are needed, we can always split multi-element subarrays without increasing the maximum sum."
+  ],
+  "examples": [
+    {
+      "explanation": "Splitting into [7, 2, 5] and [10, 8] gives subarray sums 14 and 18, whose maximum 18 is the minimum possible."
+    },
+    {
+      "explanation": "Splitting into [1, 2, 3] and [4, 5] gives subarray sums 6 and 9, minimizing the largest sum to 9."
+    },
+    {
+      "explanation": "With k = 3 and 3 elements, each element forms its own subarray ([1], [4], [4]), so the largest sum is 4."
+    }
+  ],
+  "timeComplexity": "O(n log S)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "splitArray",
+    "params": [
+      {
+        "name": "nums",
+        "type": "int[]"
+      },
+      {
+        "name": "k",
+        "type": "int"
+      }
+    ],
+    "returns": "int"
+  }
+}

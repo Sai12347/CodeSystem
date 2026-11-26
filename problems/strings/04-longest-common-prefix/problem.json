@@ -1,0 +1,50 @@
+{
+  "title": "Longest Common Prefix",
+  "difficulty": "Easy",
+  "subtopic": "String Matching",
+  "companies": [
+    "Google",
+    "Amazon",
+    "Meta",
+    "Microsoft",
+    "Apple",
+    "Adobe"
+  ],
+  "leetcode": 14,
+  "description": "Write a function to find the longest common prefix string shared by all strings in an array `strs`.\n\nIf there is no common prefix among the strings (or if any string in `strs` is empty), return an empty string `\"\"`.",
+  "constraints": [
+    "1 <= strs.length <= 200",
+    "0 <= strs[i].length <= 200",
+    "strs[i] consists of only lowercase English letters if it is non-empty."
+  ],
+  "hints": [
+    "Compare characters column by column (vertical scanning) starting from index 0 using the first string as a reference.",
+    "Stop as soon as any string ends or has a character that differs from the reference string at the current column.",
+    "Alternatively, sorting the array means you only need to compare the lexicographically smallest and largest strings."
+  ],
+  "examples": [
+    {
+      "explanation": "All three strings start with \"fl\", and the third characters ('o', 'o', 'i') differ."
+    },
+    {
+      "explanation": "There is no common prefix among the input strings."
+    },
+    {
+      "explanation": "All three strings share the prefix \"inters\" before diverging at index 6."
+    }
+  ],
+  "timeComplexity": "O(S)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "longestCommonPrefix",
+    "params": [
+      {
+        "name": "strs",
+        "type": "String[]"
+      }
+    ],
+    "returns": "String"
+  }
+}

@@ -1,0 +1,43 @@
+{
+  "title": "Longest Turbulent Subarray",
+  "difficulty": "Medium",
+  "subtopic": "Subarrays",
+  "companies": [
+    "Amazon",
+    "Google",
+    "Microsoft"
+  ],
+  "description": "A contiguous subarray is turbulent when each adjacent comparison is strict and the comparison signs alternate between greater-than and less-than. Given `nums`, return the length of the longest turbulent subarray. Input: `nums`. Output: that length.",
+  "constraints": [
+    "1 <= nums.length <= 100000",
+    "0 <= nums[i] <= 1000000000"
+  ],
+  "hints": [
+    "Sort once or track a compact running state to avoid checking every possible group.",
+    "Test duplicates, extreme ordering, and cases with no feasible candidate."
+  ],
+  "examples": [
+    {
+      "input": "nums = [9, 4, 2, 10, 7, 8, 8, 1, 9]",
+      "output": "5"
+    },
+    {
+      "input": "nums = [4, 8, 12, 16]",
+      "output": "2"
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "maxTurbulenceSize",
+    "params": [
+      {
+        "name": "nums",
+        "type": "int[]"
+      }
+    ],
+    "returns": "int"
+  }
+}

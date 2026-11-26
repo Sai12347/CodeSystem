@@ -1,0 +1,36 @@
+{
+  "title": "Kth Smallest Element in a BST",
+  "difficulty": "Medium",
+  "subtopic": "Kth Element",
+  "companies": ["Amazon", "Google", "Meta", "Microsoft", "Uber", "Bloomberg"],
+  "leetcode": 230,
+  "description": "Given the `root` of a binary search tree (BST) and an integer `k`, return the `k`-th smallest value (**1-indexed**) among all the node values in the tree.\n\nAll node values in the BST are distinct.",
+  "constraints": [
+    "The number of nodes in the tree is n.",
+    "1 <= k <= n <= 10^4",
+    "-10^5 <= Node.val <= 10^5",
+    "All node values in the BST are unique."
+  ],
+  "hints": [
+    "An inorder traversal (left, root, right) of a BST visits nodes in strictly ascending order.",
+    "Use an iterative stack-based inorder traversal so you can stop immediately upon visiting the k-th node instead of traversing the entire tree.",
+    "This achieves O(h + k) time and O(h) space, where h is the height of the tree."
+  ],
+  "examples": [
+    {"explanation": "The sorted values in the BST are [1, 2, 3, 4], so the 1st smallest element is 1."},
+    {"explanation": "The sorted values are [1, 2, 3, 4, 5, 6], so the 3rd smallest element is 3."},
+    {"explanation": "The sorted values are [2, 5, 7, 10, 12, 15, 20], so the 6th smallest element is 15."}
+  ],
+  "timeComplexity": "O(h + k)",
+  "spaceComplexity": "O(h)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "kthSmallest",
+    "params": [
+      {"name": "root", "type": "TreeNode"},
+      {"name": "k", "type": "int"}
+    ],
+    "returns": "int"
+  }
+}

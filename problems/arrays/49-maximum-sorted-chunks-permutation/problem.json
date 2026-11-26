@@ -1,0 +1,43 @@
+{
+  "title": "Maximum Sorted Chunks in a Permutation",
+  "difficulty": "Medium",
+  "subtopic": "In-Place Operations",
+  "companies": [
+    "Amazon",
+    "Google",
+    "Microsoft"
+  ],
+  "description": "The array `nums` is a permutation of all integers from 0 through `n - 1`. Split it into the largest number of contiguous chunks such that sorting each chunk individually and concatenating the chunks produces the fully sorted array. Return the number of chunks. Input: the permutation `nums`. Output: the maximum chunk count.",
+  "constraints": [
+    "1 <= nums.length <= 100000",
+    "nums is a permutation of [0, nums.length - 1]"
+  ],
+  "hints": [
+    "Scan once to identify the boundary or state where the answer changes.",
+    "Test already ordered, reversed, duplicate, and minimum-size inputs."
+  ],
+  "examples": [
+    {
+      "input": "nums = [4, 3, 2, 1, 0]",
+      "output": "1"
+    },
+    {
+      "input": "nums = [1, 0, 2, 3, 4]",
+      "output": "4"
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "maxChunksToSorted",
+    "params": [
+      {
+        "name": "nums",
+        "type": "int[]"
+      }
+    ],
+    "returns": "int"
+  }
+}

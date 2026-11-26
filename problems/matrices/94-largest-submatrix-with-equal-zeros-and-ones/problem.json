@@ -1,0 +1,46 @@
+{
+  "title": "Largest Submatrix With Equal Zeros and Ones",
+  "difficulty": "Medium",
+  "subtopic": "2D Search",
+  "companies": [
+    "Amazon",
+    "Microsoft",
+    "Meta",
+    "Goldman Sachs"
+  ],
+  "description": "Given an `m x n` binary matrix `grid` consisting of `0`s and `1`s, return the **maximum area** (number of cells) of a contiguous axis-aligned submatrix that contains an equal number of `0`s and `1`s.\n\nIf no such submatrix exists, return `0`.",
+  "constraints": [
+    "m == grid.length, n == grid[i].length",
+    "1 <= m, n <= 120",
+    "grid[i][j] is either 0 or 1."
+  ],
+  "hints": [
+    "Replace every 0 conceptually with -1; then a submatrix has equal counts of 0s and 1s if and only if its sum is 0.",
+    "Fix top and bottom rows (r1, r2), compress each column between r1 and r2 into a 1D array of column sums, and find the longest zero-sum subarray in O(n) using a hash map of first-seen prefix sums."
+  ],
+  "examples": [
+    {
+      "explanation": "The entire 2x3 matrix has three 0s and three 1s, giving area 6."
+    },
+    {
+      "explanation": "No submatrix has equal 0s and 1s because all cells are 1, so the answer is 0."
+    },
+    {
+      "explanation": "The largest balanced submatrix has 3 rows and 2 columns (6 cells: three 0s and three 1s)."
+    }
+  ],
+  "timeComplexity": "O(min(m, n)^2 * max(m, n))",
+  "spaceComplexity": "O(max(m, n))",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "largestEqualZeroOneSubmatrix",
+    "params": [
+      {
+        "name": "grid",
+        "type": "int[][]"
+      }
+    ],
+    "returns": "int"
+  }
+}

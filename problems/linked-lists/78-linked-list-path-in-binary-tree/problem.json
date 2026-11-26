@@ -1,0 +1,50 @@
+{
+  "title": "Linked List Path in Binary Tree",
+  "difficulty": "Medium",
+  "subtopic": "Pointers & Nodes",
+  "companies": [
+    "Google",
+    "Amazon",
+    "Meta",
+    "Microsoft"
+  ],
+  "description": "Given the `head` of a non-empty singly linked list and the `root` of a binary tree, return `true` if all elements in the linked list starting from `head` correspond to some **downward path** connected in the binary tree, and `false` otherwise.\n\nA downward path means a sequence of tree nodes starting at any node in the tree where each subsequent node is either the left child or the right child of the previous node.",
+  "constraints": [
+    "The number of nodes in the linked list is in the range [1, 100].",
+    "The number of nodes in the binary tree is in the range [1, 2500].",
+    "1 <= Node.val <= 100"
+  ],
+  "hints": [
+    "Extract the linked list values into a pattern array and compute its KMP failure table (`lps`).",
+    "Run a DFS over the binary tree carrying the current KMP matched prefix length `j`; on each tree node advance `j` via `lps` and return `true` as soon as `j == len(pattern)`."
+  ],
+  "examples": [
+    {
+      "explanation": "The downward path 4 -> 2 -> 8 exists in the right subtree of root 1."
+    },
+    {
+      "explanation": "The downward path 1 -> 4 -> 2 -> 6 exists starting from the root."
+    },
+    {
+      "explanation": "No downward path matches 1 -> 4 -> 2 -> 6 -> 8."
+    }
+  ],
+  "timeComplexity": "O(n * min(m, h))",
+  "spaceComplexity": "O(m + h)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "isSubPath",
+    "params": [
+      {
+        "name": "head",
+        "type": "ListNode"
+      },
+      {
+        "name": "root",
+        "type": "TreeNode"
+      }
+    ],
+    "returns": "boolean"
+  }
+}

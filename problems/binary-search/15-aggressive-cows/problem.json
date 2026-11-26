@@ -1,0 +1,54 @@
+{
+  "title": "Aggressive Cows",
+  "difficulty": "Medium",
+  "subtopic": "Search on Answer Space",
+  "companies": [
+    "Google",
+    "Amazon",
+    "Meta",
+    "Microsoft",
+    "Adobe",
+    "Uber"
+  ],
+  "leetcode": 1552,
+  "description": "You are given an array `stalls` of `n` distinct integer positions representing the locations of stalls along a straight line (not necessarily in sorted order), and an integer `cows` representing the number of aggressive cows to place in the stalls.\n\nTo keep the cows from fighting, you want to assign each cow to a stall such that the minimum distance between any two cows is as large as possible. Return the largest possible minimum distance between any two cows.",
+  "constraints": [
+    "2 <= cows <= stalls.length <= 10^5",
+    "0 <= stalls[i] <= 10^9",
+    "All values in stalls are distinct."
+  ],
+  "hints": [
+    "Sort the stall positions first so distances between consecutive placed cows are easy to measure.",
+    "For a candidate minimum distance d, greedily place the first cow at stalls[0] and each subsequent cow at the earliest stall at least d units away from the previous cow.",
+    "If placing all cows at distance d is feasible, every smaller distance is also feasible. Binary search for the largest feasible d in [1, stalls[-1] - stalls[0]]."
+  ],
+  "examples": [
+    {
+      "explanation": "After sorting to [1, 2, 4, 8, 9], placing 3 cows at stalls 1, 4, and 8 (or 1, 4, and 9) yields a minimum distance of 3."
+    },
+    {
+      "explanation": "Placing 3 cows at stalls 1, 4, and 7 gives pairwise distances 3, 3, and 6, so the minimum distance is 3."
+    },
+    {
+      "explanation": "With 2 cows, place them at the extreme stalls 1 and 1000000000 for a distance of 999999999."
+    }
+  ],
+  "timeComplexity": "O(n log n + n log D)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "maxMinDistance",
+    "params": [
+      {
+        "name": "stalls",
+        "type": "int[]"
+      },
+      {
+        "name": "cows",
+        "type": "int"
+      }
+    ],
+    "returns": "int"
+  }
+}

@@ -1,0 +1,1 @@
+class Solution { public int uniquePathsWithObstacles(int[][] g) { int[] d=new int[g[0].length];d[0]=1;for(int[] row:g)for(int j=0;j<row.length;j++){if(row[j]==1)d[j]=0;else if(j>0)d[j]+=d[j-1];}return d[d.length-1];} }

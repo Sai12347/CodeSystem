@@ -1,0 +1,48 @@
+{
+  "title": "Minimum Steps to Make Two Strings Anagram II",
+  "difficulty": "Medium",
+  "subtopic": "Anagrams",
+  "companies": [
+    "Amazon",
+    "Google",
+    "Oracle"
+  ],
+  "description": "You are given two lowercase strings `s` and `t`. In one step, you can append any lowercase letter to either `s` or `t`. Return the minimum number of steps required to make `s` and `t` anagrams of each other.",
+  "constraints": [
+    "1 <= s.length, t.length <= 10^5",
+    "s and t consist of lowercase English letters."
+  ],
+  "hints": [
+    "Since you can only append characters, each letter's final count must be at least max(count_s[c], count_t[c]).",
+    "The total number of appends equals the sum of |count_s[c] - count_t[c]| over all 26 letters."
+  ],
+  "examples": [
+    {
+      "explanation": "Append \"co\" and \"ts\" appropriately: total frequency mismatch across all letters is 7."
+    },
+    {
+      "explanation": "Both strings are already anagrams, so 0 appends are needed."
+    },
+    {
+      "explanation": "\"abc\" and \"def\" share no letters, requiring 6 appends total."
+    }
+  ],
+  "timeComplexity": "O(n + m)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "minStepsToAnagram",
+    "params": [
+      {
+        "name": "s",
+        "type": "String"
+      },
+      {
+        "name": "t",
+        "type": "String"
+      }
+    ],
+    "returns": "int"
+  }
+}

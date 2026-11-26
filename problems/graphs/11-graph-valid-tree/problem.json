@@ -1,0 +1,38 @@
+{
+  "title": "Graph Valid Tree",
+  "difficulty": "Medium",
+  "subtopic": "Cycle Detection",
+  "companies": ["Google", "Amazon", "Meta", "LinkedIn", "Microsoft"],
+  "leetcode": 261,
+  "description": "You have a graph of `n` nodes labeled from `0` to `n - 1`. You are given an integer `n` and a list of `edges` where `edges[i] = [a_i, b_i]` indicates that there is an undirected edge between nodes `a_i` and `b_i` in the graph.\n\nReturn `true` if the edges of the given graph make up a **valid tree**, and `false` otherwise.\n\nRecall that an undirected graph is a valid tree if and only if it is **fully connected** (there is a path between every pair of nodes) and **acyclic** (it contains no cycles).",
+  "constraints": [
+    "1 <= n <= 2000",
+    "0 <= edges.length <= 5000",
+    "edges[i].length == 2",
+    "0 <= a_i, b_i < n",
+    "a_i != b_i",
+    "There are no self-loops or repeated edges."
+  ],
+  "hints": [
+    "A fundamental graph-theory characterization: an undirected graph on `n` vertices is a tree if and only if it has **exactly `n - 1` edges** AND is **fully connected** (equivalently, has `n - 1` edges and contains no cycle).",
+    "First check `edges.length == n - 1` — if not, you can immediately return `false` (fewer edges means disconnected; more edges guarantees a cycle).",
+    "With `edges.length == n - 1`, build an adjacency list and run BFS or DFS from node `0`, counting visited nodes. The graph is a valid tree if and only if all `n` nodes are visited."
+  ],
+  "examples": [
+    {"explanation": "The 5 nodes are connected by 4 edges with no cycles, forming a valid tree."},
+    {"explanation": "Nodes 1, 2, and 3 form a cycle (1 - 2 - 3 - 1), so the graph is not a valid tree."},
+    {"explanation": "A single node with no edges is connected and acyclic, so it is a valid tree."}
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "validTree",
+    "params": [
+      {"name": "n", "type": "int"},
+      {"name": "edges", "type": "int[][]"}
+    ],
+    "returns": "boolean"
+  }
+}

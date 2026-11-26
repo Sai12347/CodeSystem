@@ -1,0 +1,44 @@
+{
+  "title": "Reverse Words in a String",
+  "difficulty": "Medium",
+  "subtopic": "Parsing",
+  "companies": [
+    "Microsoft",
+    "Amazon",
+    "Apple"
+  ],
+  "description": "Given an input string `s` containing words separated by one or more spaces (possibly with leading or trailing spaces), return a string of the words in reverse order separated by a single space with no leading or trailing spaces.",
+  "constraints": [
+    "1 <= s.length <= 10^4",
+    "s contains English letters, digits, and spaces, and contains at least one word."
+  ],
+  "hints": [
+    "Scan from the right end skipping spaces, extract each word's [start, end] slice, and append it to the result.",
+    "Alternatively split on whitespace, reverse the list of non-empty tokens, and join with a single space."
+  ],
+  "examples": [
+    {
+      "explanation": "Reversing the four words gives \"blue is sky the\"."
+    },
+    {
+      "explanation": "Leading and trailing spaces are removed when reversing."
+    },
+    {
+      "explanation": "Multiple spaces between \"good\" and \"example\" collapse into a single space."
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "reverseWords",
+    "params": [
+      {
+        "name": "s",
+        "type": "String"
+      }
+    ],
+    "returns": "String"
+  }
+}

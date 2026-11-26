@@ -1,0 +1,53 @@
+{
+  "title": "Delete N Nodes After M Nodes",
+  "difficulty": "Easy",
+  "subtopic": "Pointers & Nodes",
+  "companies": [
+    "Microsoft",
+    "Amazon",
+    "Oracle"
+  ],
+  "description": "Given the `head` of a singly linked list and two positive integers `m` and `n`, traverse the list from the beginning by repeating the following steps until reaching the end:\n1. Keep the next `m` nodes (including the current node).\n2. Remove the next `n` nodes.\n\nReturn the `head` of the modified linked list after all removals.",
+  "constraints": [
+    "The number of nodes in the list is in the range [1, 10^4].",
+    "1 <= Node.val <= 10^6",
+    "1 <= m, n <= 1000"
+  ],
+  "hints": [
+    "Walk `m - 1` steps from the start of each kept block to land on the last node to keep.",
+    "From that node, advance a second pointer `n` steps forward (stopping early if `null` is reached), then rewire `lastKept.next` to skip the deleted segment."
+  ],
+  "examples": [
+    {
+      "explanation": "Keep [1, 2], delete [3, 4, 5], keep [6, 7], delete [8, 9, 10], keep [11, 12], delete [13]."
+    },
+    {
+      "explanation": "Keep [1], delete [2, 3, 4], keep [5], delete [6, 7, 8], keep [9], delete [10, 11]."
+    },
+    {
+      "explanation": "Keeping 3 nodes already reaches the end of the 3-node list, so nothing is deleted."
+    }
+  ],
+  "timeComplexity": "O(L)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "deleteNodes",
+    "params": [
+      {
+        "name": "head",
+        "type": "ListNode"
+      },
+      {
+        "name": "m",
+        "type": "int"
+      },
+      {
+        "name": "n",
+        "type": "int"
+      }
+    ],
+    "returns": "ListNode"
+  }
+}

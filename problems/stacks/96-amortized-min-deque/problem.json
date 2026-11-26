@@ -1,0 +1,80 @@
+{
+  "title": "Amortized Min Deque",
+  "difficulty": "Hard",
+  "subtopic": "Min Stack",
+  "companies": [
+    "Google",
+    "Meta",
+    "Amazon",
+    "Bloomberg",
+    "Uber"
+  ],
+  "description": "Design a double-ended queue `MinDeque` using **two min-stacks** that supports insertions and removals at **both ends** as well as retrieving the current minimum element, all in **amortized `O(1)` time** per operation.\n\nImplement the `MinDeque` class:\n- `MinDeque()` initializes an empty deque.\n- `void pushFront(int val)` inserts `val` at the front of the deque.\n- `void pushBack(int val)` inserts `val` at the back of the deque.\n- `int popFront()` removes and returns the front element.\n- `int popBack()` removes and returns the back element.\n- `int getMin()` returns the minimum element currently in the deque.",
+  "constraints": [
+    "-10^9 <= val <= 10^9",
+    "Methods popFront, popBack, and getMin are always called on non-empty deques.",
+    "At most 5 * 10^4 calls will be made across all methods."
+  ],
+  "hints": [
+    "Maintain two min-stacks: `left` (whose top is the deque front) and `right` (whose top is the deque back), so `getMin()` is simply `min(left.min, right.min)`.",
+    "When popping from an empty stack while the other stack has `m` elements, move only the bottom `ceil(m / 2)` elements (reversed) to the empty stack and rebuild prefix minimums on both halves; by potential `||left| - |right||`, every operation is amortized O(1)."
+  ],
+  "examples": [
+    {
+      "explanation": "Deque becomes [3, 5, 1] (min 1); popBack removes 1 -> [3, 5] (min 3); popFront removes 3 -> [5] (min 5)."
+    },
+    {
+      "explanation": "Pushing 10, 20, 30 to back then alternating popFront (10) and popBack (30) leaves [20] with min 20."
+    },
+    {
+      "explanation": "Single element pushed to front can be popped from back cleanly."
+    }
+  ],
+  "timeComplexity": "O(1) amortized per op",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "design",
+    "className": "MinDeque",
+    "constructor": {
+      "params": []
+    },
+    "methods": [
+      {
+        "name": "pushFront",
+        "params": [
+          {
+            "name": "val",
+            "type": "int"
+          }
+        ],
+        "returns": "void"
+      },
+      {
+        "name": "pushBack",
+        "params": [
+          {
+            "name": "val",
+            "type": "int"
+          }
+        ],
+        "returns": "void"
+      },
+      {
+        "name": "popFront",
+        "params": [],
+        "returns": "int"
+      },
+      {
+        "name": "popBack",
+        "params": [],
+        "returns": "int"
+      },
+      {
+        "name": "getMin",
+        "params": [],
+        "returns": "int"
+      }
+    ]
+  }
+}

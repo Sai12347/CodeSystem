@@ -1,0 +1,44 @@
+{
+  "title": "Neighboring Bitwise XOR",
+  "difficulty": "Medium",
+  "subtopic": "XOR Tricks",
+  "companies": [
+    "Google",
+    "Meta",
+    "Oracle"
+  ],
+  "description": "A 0-indexed binary array `derived` of length `n` is formed from a hidden binary array `original` of length `n` by taking the cyclic pairwise XOR of adjacent elements: for `0 <= i < n - 1`, `derived[i] = original[i] XOR original[i + 1]`, and for `i = n - 1`, `derived[n - 1] = original[n - 1] XOR original[0]`. Given `derived`, return `true` if there exists at least one valid binary array `original` that produces `derived`, or `false` otherwise.",
+  "constraints": [
+    "1 <= derived.length <= 10^5",
+    "derived[i] is either 0 or 1."
+  ],
+  "hints": [
+    "Take the XOR of all elements in `derived`: every `original[i]` appears exactly twice in the product.",
+    "Because each `original[i]` cancels itself out, a valid `original` exists if and only if the XOR of all entries in `derived` equals 0."
+  ],
+  "examples": [
+    {
+      "explanation": "original = [0, 1, 0] gives [0^1, 1^0, 0^0] = [1, 1, 0]."
+    },
+    {
+      "explanation": "original = [0, 1] gives [0^1, 1^0] = [1, 1]."
+    },
+    {
+      "explanation": "Total XOR of [1, 0] is 1 != 0, so no cyclic binary array can produce it."
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "doesValidArrayExist",
+    "params": [
+      {
+        "name": "derived",
+        "type": "int[]"
+      }
+    ],
+    "returns": "boolean"
+  }
+}

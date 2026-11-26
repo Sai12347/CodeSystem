@@ -1,0 +1,36 @@
+{
+  "title": "Decode String",
+  "difficulty": "Medium",
+  "subtopic": "Expression Parsing",
+  "companies": ["Google", "Amazon", "Meta", "Microsoft", "Bloomberg", "Uber"],
+  "leetcode": 394,
+  "description": "Given an encoded string `s`, return its decoded string.\n\nThe encoding rule is: `k[encoded_string]`, where the `encoded_string` inside the square brackets is repeated exactly `k` times. Note that `k` is guaranteed to be a positive integer.\n\nYou may assume that the input string is always valid: there are no extra white spaces, square brackets are well-formed, and encoded substrings may be nested arbitrarily deeply. Furthermore, the original data does not contain any digits — digits are only used for the repeat numbers `k` (for example, inputs like `3a` or `2[4]` will not occur).\n\nTest cases are generated so that the length of the decoded output will never exceed `10^5`.",
+  "constraints": [
+    "1 <= s.length <= 100",
+    "s consists of lowercase English letters, digits, and square brackets '[' and ']'.",
+    "s is guaranteed to be a valid encoded string.",
+    "All repeat counts k are integers in the range [1, 300].",
+    "The length of the decoded output will not exceed 10^5."
+  ],
+  "hints": [
+    "Because encoded blocks can be nested inside other encoded blocks, think about saving your current string prefix and repeat count whenever you enter '['.",
+    "Maintain a stack of (previous_string, repeat_count) pairs (or two parallel stacks). Remember that repeat counts k can have multiple digits.",
+    "When you see ']', pop the saved prefix and repeat count, repeat the current string k times, and append it to the saved prefix."
+  ],
+  "examples": [
+    {"explanation": "\"a\" is repeated 3 times and \"bc\" is repeated 2 times, producing \"aaabcbc\"."},
+    {"explanation": "The inner \"2[c]\" decodes to \"cc\", so \"a2[c]\" becomes \"acc\", repeated 3 times to give \"accaccacc\"."},
+    {"explanation": "\"abc\" repeated 2 times + \"cd\" repeated 3 times + \"ef\" = \"abcabccdcdcdef\"."}
+  ],
+  "timeComplexity": "O(n + m)",
+  "spaceComplexity": "O(n + m)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "decodeString",
+    "params": [
+      {"name": "s", "type": "String"}
+    ],
+    "returns": "String"
+  }
+}

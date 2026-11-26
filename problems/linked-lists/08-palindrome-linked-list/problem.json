@@ -1,0 +1,33 @@
+{
+  "title": "Palindrome Linked List",
+  "difficulty": "Easy",
+  "subtopic": "Fast/Slow Pointer",
+  "companies": ["Amazon", "Meta", "Google", "Microsoft", "Apple", "Adobe"],
+  "leetcode": 234,
+  "description": "Given the `head` of a singly linked list, return `true` if the sequence of node values reads the same forward and backward (i.e., forms a palindrome), or `false` otherwise.\n\nTry to solve the problem in `O(n)` time and `O(1)` extra space.",
+  "constraints": [
+    "The number of nodes in the list is in the range [1, 10^5].",
+    "0 <= Node.val <= 9"
+  ],
+  "hints": [
+    "Copying all node values into an array and using two pointers works in O(n) time and O(n) space.",
+    "To achieve O(1) extra space, use slow and fast pointers to find the midpoint of the list.",
+    "Reverse the second half in-place, compare the two halves node by node, and optionally reverse the second half back to restore the list."
+  ],
+  "examples": [
+    {"explanation": "1 -> 2 -> 2 -> 1 reads the same forward and backward."},
+    {"explanation": "1 -> 2 reversed is 2 -> 1, which differs from the original list."},
+    {"explanation": "1 -> 2 -> 3 -> 2 -> 1 is an odd-length palindrome centered at 3."}
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "isPalindrome",
+    "params": [
+      {"name": "head", "type": "ListNode"}
+    ],
+    "returns": "boolean"
+  }
+}

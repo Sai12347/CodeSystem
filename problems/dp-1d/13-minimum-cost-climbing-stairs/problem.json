@@ -1,0 +1,39 @@
+{
+  "title": "Min Cost Climbing Stairs",
+  "difficulty": "Easy",
+  "subtopic": "Fibonacci Transitions",
+  "companies": [
+    "Amazon",
+    "Google",
+    "Microsoft"
+  ],
+  "description": "Each stair has a cost. After paying the cost of a stair, you may climb one or two steps. You may start at index 0 or 1. Return the minimum cost to reach the step just beyond the last stair.",
+  "constraints": [
+    "2 <= cost.length <= 1000",
+    "0 <= cost[i] <= 10^5"
+  ],
+  "hints": [
+    "Define a small state for the best answer ending at each position.",
+    "Update the state from the allowed previous positions."
+  ],
+  "examples": [
+    {
+      "input": "cost = [10,15,20]",
+      "output": "15"
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "minCostClimbingStairs",
+    "params": [
+      {
+        "name": "cost",
+        "type": "int[]"
+      }
+    ],
+    "returns": "int"
+  }
+}

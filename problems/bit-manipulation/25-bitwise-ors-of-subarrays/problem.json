@@ -1,0 +1,44 @@
+{
+  "title": "Bitwise ORs of Subarrays",
+  "difficulty": "Medium",
+  "subtopic": "Counting Bits",
+  "companies": [
+    "Google",
+    "Meta",
+    "Microsoft"
+  ],
+  "description": "Given an integer array `arr` of non-negative integers, consider the bitwise OR of every non-empty contiguous subarray `arr[i..j]` (`0 <= i <= j < arr.length`). Return the number of distinct bitwise OR results across all subarrays.",
+  "constraints": [
+    "1 <= arr.length <= 5 * 10^4",
+    "0 <= arr[i] <= 10^9"
+  ],
+  "hints": [
+    "Maintain the set `cur` of all distinct bitwise ORs of subarrays ending at the current index `j`.",
+    "As a subarray extends leftward, its bitwise OR can only turn `0` bits into `1` bits, so `cur` holds at most 32 distinct values at any step."
+  ],
+  "examples": [
+    {
+      "explanation": "The only non-empty subarray is [0], giving 1 distinct value: {0}."
+    },
+    {
+      "explanation": "Subarrays give ORs 1, 1, 2, 1|1=1, 1|2=3, 1|1|2=3 -> 3 distinct values: {1, 2, 3}."
+    },
+    {
+      "explanation": "The distinct subarray ORs are {1, 2, 3, 4, 6, 7}, totaling 6."
+    }
+  ],
+  "timeComplexity": "O(n log M)",
+  "spaceComplexity": "O(n log M)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "subarrayBitwiseORs",
+    "params": [
+      {
+        "name": "arr",
+        "type": "int[]"
+      }
+    ],
+    "returns": "int"
+  }
+}

@@ -1,0 +1,79 @@
+{
+  "title": "Range Module",
+  "difficulty": "Hard",
+  "subtopic": "Lazy Propagation",
+  "companies": [
+    "Google",
+    "Amazon",
+    "Microsoft"
+  ],
+  "description": "Implement a data structure that tracks a set of real-number intervals. `addRange(left,right)` adds every point in the half-open interval `[left,right)`. `queryRange(left,right)` returns true only if every point in the interval is currently tracked. `removeRange(left,right)` removes every point in that interval.",
+  "constraints": [
+    "0 <= left < right <= 10^9",
+    "At most 10^3 operations are called."
+  ],
+  "hints": [
+    "Store tracked intervals as sorted, disjoint ranges.",
+    "Merge overlapping ranges on insertion and split ranges when removing an interior segment."
+  ],
+  "examples": [
+    {
+      "input": "ops = [\"RangeModule\",\"addRange\",\"queryRange\",\"removeRange\",\"queryRange\"], args = [[],[10,20],[10,14],[14,16],[10,20]]",
+      "output": "[null,null,true,null,false]"
+    }
+  ],
+  "timeComplexity": "O(n) per operation",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "design",
+    "className": "RangeModule",
+    "constructor": {
+      "params": []
+    },
+    "methods": [
+      {
+        "name": "addRange",
+        "params": [
+          {
+            "name": "left",
+            "type": "int"
+          },
+          {
+            "name": "right",
+            "type": "int"
+          }
+        ],
+        "returns": "void"
+      },
+      {
+        "name": "queryRange",
+        "params": [
+          {
+            "name": "left",
+            "type": "int"
+          },
+          {
+            "name": "right",
+            "type": "int"
+          }
+        ],
+        "returns": "boolean"
+      },
+      {
+        "name": "removeRange",
+        "params": [
+          {
+            "name": "left",
+            "type": "int"
+          },
+          {
+            "name": "right",
+            "type": "int"
+          }
+        ],
+        "returns": "void"
+      }
+    ]
+  }
+}

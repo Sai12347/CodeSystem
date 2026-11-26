@@ -1,0 +1,50 @@
+{
+  "title": "Meeting Rooms II",
+  "difficulty": "Medium",
+  "subtopic": "Heap Sort",
+  "companies": [
+    "Amazon",
+    "Google",
+    "Meta",
+    "Microsoft",
+    "Bloomberg",
+    "Uber"
+  ],
+  "leetcode": 253,
+  "description": "Given an array of meeting time intervals `intervals` where `intervals[i] = [start_i, end_i]`, return the minimum number of conference rooms required so that all meetings can take place.\n\nA room vacated at time `t` can be immediately reused by another meeting starting at time `t` (i.e., intervals `[a, b]` and `[b, c]` do not overlap).",
+  "constraints": [
+    "1 <= intervals.length <= 10^4",
+    "intervals[i].length == 2",
+    "0 <= start_i < end_i <= 10^6"
+  ],
+  "hints": [
+    "Sort the meetings chronologically by start time so you allocate rooms in the order meetings begin.",
+    "Keep a min-heap storing the end times of all currently active meetings. The top of the heap is the room that frees up earliest.",
+    "When a new meeting starts at time s, if the earliest end time in the heap is <= s, pop it (reuse that room), then push the new meeting's end time."
+  ],
+  "examples": [
+    {
+      "explanation": "Meeting [0, 30] overlaps with [5, 10] and [15, 20], while [5, 10] and [15, 20] can share a room; 2 rooms are needed."
+    },
+    {
+      "explanation": "[2, 4] finishes before [7, 10] begins, so 1 room suffices."
+    },
+    {
+      "explanation": "Back-to-back meetings [1, 5], [5, 10], and [10, 15] touch at endpoints and can all reuse a single room."
+    }
+  ],
+  "timeComplexity": "O(n log n)",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "minMeetingRooms",
+    "params": [
+      {
+        "name": "intervals",
+        "type": "int[][]"
+      }
+    ],
+    "returns": "int"
+  }
+}

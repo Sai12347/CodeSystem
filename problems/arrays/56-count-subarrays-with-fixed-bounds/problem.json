@@ -1,0 +1,52 @@
+{
+  "title": "Count Subarrays With Fixed Bounds",
+  "difficulty": "Hard",
+  "subtopic": "Subarrays",
+  "companies": [
+    "Amazon",
+    "Google",
+    "Microsoft"
+  ],
+  "description": "Given an integer array `nums` and bounds `minK` and `maxK`, count non-empty contiguous subarrays whose minimum equals `minK` and maximum equals `maxK`. Return the count. Input: `nums`, `minK`, and `maxK`. Output: the number of qualifying subarrays.",
+  "constraints": [
+    "1 <= nums.length <= 100000",
+    "-1000000000 <= minK <= maxK <= 1000000000",
+    "-1000000000 <= nums[i] <= 1000000000"
+  ],
+  "hints": [
+    "Maintain the prefix or window information needed to count candidate ranges.",
+    "Check repeated values, extreme bounds, and cases with no valid segment."
+  ],
+  "examples": [
+    {
+      "input": "nums = [1, 3, 5, 2, 7, 5], minK = 1, maxK = 5",
+      "output": "2"
+    },
+    {
+      "input": "nums = [1, 1, 1, 1], minK = 1, maxK = 1",
+      "output": "10"
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "countSubarraysWithFixedBounds",
+    "params": [
+      {
+        "name": "nums",
+        "type": "int[]"
+      },
+      {
+        "name": "minK",
+        "type": "int"
+      },
+      {
+        "name": "maxK",
+        "type": "int"
+      }
+    ],
+    "returns": "long"
+  }
+}

@@ -1,0 +1,52 @@
+{
+  "title": "Count Submatrices with Top-Left Sum at Most K",
+  "difficulty": "Medium",
+  "subtopic": "2D Search",
+  "companies": [
+    "Amazon",
+    "Google",
+    "Microsoft",
+    "Oracle"
+  ],
+  "description": "You are given a 0-indexed `m x n` integer matrix `grid` of non-negative integers and an integer `k`.\n\nReturn the number of contiguous submatrices that **contain the top-left element `(0, 0)`** (i.e., submatrices `[0..r, 0..c]` for `0 <= r < m, 0 <= c < n`) whose sum of elements is less than or equal to `k`.",
+  "constraints": [
+    "m == grid.length",
+    "n == grid[i].length",
+    "1 <= m, n <= 200",
+    "0 <= grid[i][j] <= 10^4",
+    "0 <= k <= 10^9"
+  ],
+  "hints": [
+    "Every submatrix anchored at (0, 0) is uniquely defined by its bottom-right corner (r, c), and its sum is simply the 2D prefix sum pref[r][c].",
+    "Maintain running column sums col[c] across rows and accumulate row-wise prefix sums; since all values are non-negative, break out of the inner column loop early as soon as the sum exceeds k."
+  ],
+  "examples": [
+    {
+      "explanation": "The 4 valid top-left submatrices end at (0,0) sum 7, (0,1) sum 13, (0,2) sum 16, and (1,0) sum 13; all others exceed 18."
+    },
+    {
+      "explanation": "Six submatrices anchored at (0,0) have sums <= 20."
+    },
+    {
+      "explanation": "Because grid[0][0] = 5 > k = 4, no top-left submatrix qualifies, returning 0."
+    }
+  ],
+  "timeComplexity": "O(m * n)",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "countSubmatrices",
+    "params": [
+      {
+        "name": "grid",
+        "type": "int[][]"
+      },
+      {
+        "name": "k",
+        "type": "int"
+      }
+    ],
+    "returns": "int"
+  }
+}

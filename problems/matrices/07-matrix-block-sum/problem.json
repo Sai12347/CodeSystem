@@ -1,0 +1,52 @@
+{
+  "title": "Matrix Block Sum",
+  "difficulty": "Medium",
+  "subtopic": "Dynamic Grids",
+  "companies": [
+    "Google",
+    "Amazon",
+    "Meta",
+    "Uber",
+    "Microsoft"
+  ],
+  "leetcode": 1314,
+  "description": "Given an `m x n` integer matrix `mat` and an integer `k`, return an `m x n` matrix `answer` where each `answer[i][j]` is the sum of all elements `mat[r][c]` such that:\n\n- `i - k <= r <= i + k`\n- `j - k <= c <= j + k`\n- `(r, c)` is a valid position in `mat` (`0 <= r < m` and `0 <= c < n`).",
+  "constraints": [
+    "m == mat.length",
+    "n == mat[i].length",
+    "1 <= m, n <= 100",
+    "0 <= k <= 100",
+    "-100 <= mat[i][j] <= 100"
+  ],
+  "hints": [
+    "Recomputing each (2k + 1) x (2k + 1) block directly takes O(m * n * k^2) time.",
+    "Build a 2D prefix sum table pref of dimensions (m + 1) x (n + 1), where pref[r + 1][c + 1] stores the sum of the submatrix from (0, 0) to (r, c).",
+    "For each cell (i, j), clamp the rectangle corners to r1 = max(0, i - k), c1 = max(0, j - k), r2 = min(m - 1, i + k), c2 = min(n - 1, j + k), and answer in O(1) using inclusion-exclusion."
+  ],
+  "examples": [
+    {
+      "explanation": "For (0,0), the valid block covers rows 0..1 and cols 0..1: 1 + 2 + 4 + 5 = 12. For (1,1), all 9 cells sum to 45."
+    },
+    {
+      "explanation": "With k = 2 on a 3x3 matrix, every cell's block covers the entire matrix whose total sum is 45."
+    }
+  ],
+  "timeComplexity": "O(m * n)",
+  "spaceComplexity": "O(m * n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "matrixBlockSum",
+    "params": [
+      {
+        "name": "mat",
+        "type": "int[][]"
+      },
+      {
+        "name": "k",
+        "type": "int"
+      }
+    ],
+    "returns": "int[][]"
+  }
+}

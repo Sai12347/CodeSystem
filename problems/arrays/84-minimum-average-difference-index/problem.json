@@ -1,0 +1,43 @@
+{
+  "title": "Minimum Average Difference Index",
+  "difficulty": "Medium",
+  "subtopic": "Prefix/Suffix",
+  "companies": [
+    "Amazon",
+    "Google",
+    "Microsoft"
+  ],
+  "description": "For each index `i`, compute the absolute difference between the integer average of elements `0..i` and the integer average of elements `i+1..n-1`. Use floor division; the right average is 0 when the right side is empty. Return the smallest index with the minimum difference. Input: `nums`. Output: the selected index.",
+  "constraints": [
+    "1 <= nums.length <= 100000",
+    "0 <= nums[i] <= 100000"
+  ],
+  "hints": [
+    "Sort or count values once, then process each candidate in a single pass.",
+    "Check duplicates, all-equal inputs, and boundary values for `k`."
+  ],
+  "examples": [
+    {
+      "input": "nums = [2, 5, 3, 9, 5, 3]",
+      "output": "3"
+    },
+    {
+      "input": "nums = [0]",
+      "output": "0"
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "minimumAverageDifference",
+    "params": [
+      {
+        "name": "nums",
+        "type": "int[]"
+      }
+    ],
+    "returns": "int"
+  }
+}

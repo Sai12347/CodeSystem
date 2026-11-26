@@ -1,0 +1,54 @@
+{
+  "title": "Max Consecutive Ones III",
+  "difficulty": "Medium",
+  "subtopic": "Dynamic Window",
+  "companies": [
+    "Meta",
+    "Google",
+    "Amazon",
+    "Microsoft",
+    "Apple",
+    "Uber"
+  ],
+  "leetcode": 1004,
+  "description": "Given a binary array `nums` and an integer `k`, return the maximum number of consecutive `1`s in the array if you can flip at most `k` `0`s to `1`s.",
+  "constraints": [
+    "1 <= nums.length <= 10^5",
+    "nums[i] is either 0 or 1.",
+    "0 <= k <= nums.length"
+  ],
+  "hints": [
+    "Flipping at most k zeros to ones is equivalent to finding the longest contiguous subarray that contains at most k zeros.",
+    "Use two pointers forming a sliding window [left, right] and track how many zeros are currently inside the window.",
+    "Whenever the number of zeros exceeds k, advance left until the window again has at most k zeros, updating the maximum window length at each step."
+  ],
+  "examples": [
+    {
+      "explanation": "Flipping the zeros at indices 5 and 10 yields a contiguous block of 6 ones from index 5 through index 10: [1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 1]."
+    },
+    {
+      "explanation": "Flipping the zeros at indices 4, 5, and 9 produces a contiguous block of 10 ones from index 2 through index 11."
+    },
+    {
+      "explanation": "With k = 0 no zeros can be flipped, and there are no 1s in the array, so the maximum length is 0."
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "longestOnes",
+    "params": [
+      {
+        "name": "nums",
+        "type": "int[]"
+      },
+      {
+        "name": "k",
+        "type": "int"
+      }
+    ],
+    "returns": "int"
+  }
+}

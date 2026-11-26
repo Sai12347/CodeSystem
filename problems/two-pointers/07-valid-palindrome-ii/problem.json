@@ -1,0 +1,48 @@
+{
+  "title": "Valid Palindrome II",
+  "difficulty": "Easy",
+  "subtopic": "Converging Pointers",
+  "companies": [
+    "Meta",
+    "Amazon",
+    "Google",
+    "Microsoft",
+    "Uber"
+  ],
+  "leetcode": 680,
+  "description": "Given a string `s`, return `true` if `s` can become a palindrome after deleting **at most one** character from it, and `false` otherwise.\n\nA string is a palindrome if it reads the same forward and backward.",
+  "constraints": [
+    "1 <= s.length <= 10^5",
+    "s consists of lowercase English letters."
+  ],
+  "hints": [
+    "Use two converging pointers left and right to match characters from the outside inward.",
+    "At the very first mismatch where s[left] != s[right], one of those two characters must be deleted to make a palindrome.",
+    "Check both remaining substrings s[left + 1 .. right] and s[left .. right - 1] strictly (without any further deletions); do not greedily commit to just one side."
+  ],
+  "examples": [
+    {
+      "explanation": "\"aba\" is already a palindrome (zero deletions needed)."
+    },
+    {
+      "explanation": "Deleting 'c' yields \"aba\" (or deleting 'b' yields \"aca\"), which is a palindrome."
+    },
+    {
+      "explanation": "No single character deletion turns \"abc\" into a palindrome."
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "validPalindrome",
+    "params": [
+      {
+        "name": "s",
+        "type": "String"
+      }
+    ],
+    "returns": "boolean"
+  }
+}

@@ -1,0 +1,79 @@
+{
+  "title": "Min Stack With Add-All Offset",
+  "difficulty": "Medium",
+  "subtopic": "Min Stack",
+  "companies": [
+    "Amazon",
+    "Google",
+    "Goldman Sachs",
+    "Uber"
+  ],
+  "description": "Design a stack `OffsetMinStack` that supports standard stack operations, adding a constant `delta` to **every** element currently in the stack, and querying the current minimum \u2014 all in strict `O(1)` time.\n\nImplement the `OffsetMinStack` class:\n- `OffsetMinStack()` initializes an empty stack.\n- `void push(int val)` pushes `val` onto the stack (prior `addAll` calls do NOT affect newly pushed values).\n- `void pop()` removes the top element of the stack.\n- `void addAll(int delta)` adds `delta` (which may be negative) to every element currently in the stack.\n- `long top()` returns the current value of the top element.\n- `long getMin()` returns the current minimum value across all elements in the stack.",
+  "constraints": [
+    "-10^9 <= val, delta <= 10^9",
+    "Methods pop, top, and getMin are always called on non-empty stacks.",
+    "At most 5 * 10^4 calls will be made across all methods."
+  ],
+  "hints": [
+    "Maintain a single 64-bit global lazy offset; addAll(delta) simply adds delta to offset in O(1).",
+    "When pushing val, store adjusted = val - offset together with the running minimum of adjusted values; since shifting all elements by offset preserves their ordering, top() = topAdj + offset and getMin() = topMinAdj + offset."
+  ],
+  "examples": [
+    {
+      "explanation": "Push 5, 2 -> min 2; addAll(10) shifts elements to [15, 12] -> getMin 12; push(3) gives [15, 12, 3] -> top 3, getMin 3; pop removes 3 leaving [15, 12] -> getMin 12."
+    },
+    {
+      "explanation": "Negative addAll shifts all stored elements downward without affecting future pushes."
+    },
+    {
+      "explanation": "When the stack empties and refills, the global offset continues working seamlessly."
+    }
+  ],
+  "timeComplexity": "O(1) per op",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "design",
+    "className": "OffsetMinStack",
+    "constructor": {
+      "params": []
+    },
+    "methods": [
+      {
+        "name": "push",
+        "params": [
+          {
+            "name": "val",
+            "type": "int"
+          }
+        ],
+        "returns": "void"
+      },
+      {
+        "name": "pop",
+        "params": [],
+        "returns": "void"
+      },
+      {
+        "name": "addAll",
+        "params": [
+          {
+            "name": "delta",
+            "type": "int"
+          }
+        ],
+        "returns": "void"
+      },
+      {
+        "name": "top",
+        "params": [],
+        "returns": "long"
+      },
+      {
+        "name": "getMin",
+        "params": [],
+        "returns": "long"
+      }
+    ]
+  }
+}

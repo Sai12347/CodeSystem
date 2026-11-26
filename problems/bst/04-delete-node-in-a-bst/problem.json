@@ -1,0 +1,35 @@
+{
+  "title": "Delete Node in a BST",
+  "difficulty": "Medium",
+  "subtopic": "BST Validation",
+  "companies": ["Amazon", "Google", "Microsoft", "Meta", "Apple", "Oracle"],
+  "leetcode": 450,
+  "description": "Given a `root` node reference of a binary search tree (BST) and an integer `key`, delete the node with the given key in the BST. Return the **root node reference** (possibly updated) of the BST.\n\nBasically, the deletion can be divided into two stages:\n1. Search for a node to remove.\n2. If the node is found, delete the node while preserving the BST property.\n\nIf `key` is not present in the BST, return the tree unchanged. When deleting a node with two children, replacing it with either its inorder successor or inorder predecessor (or any other restructuring that yields a valid BST with the remaining values) is acceptable.\n\nThe judge validates that your returned tree is a valid BST containing the exact remaining set of values (`true`).",
+  "constraints": [
+    "The number of nodes in the tree is in the range [0, 10^4].",
+    "-10^5 <= Node.val <= 10^5",
+    "Each node has a unique value.",
+    "root is a valid binary search tree.",
+    "-10^5 <= key <= 10^5"
+  ],
+  "hints": [
+    "First locate the node with value equal to key using BST search (recurse left if key < root.val, right if key > root.val).",
+    "If the target node has at most one child, simply return that child (or null for a leaf) to replace the node.",
+    "If the target node has two children, find its inorder successor (the leftmost node in its right subtree), copy that successor's value into the target node, and recursively delete the successor from the right subtree."
+  ],
+  "examples": [
+    {"explanation": "Deleting node 3 (which has children 2 and 4) can replace it with its inorder successor 4, yielding [5, 4, 6, 2, null, null, 7], or with its predecessor 2, yielding [5, 2, 6, null, 4, null, 7]. Both pass validation."},
+    {"explanation": "Key 0 does not exist in the BST, so the original tree [5, 3, 6, 2, 4, null, 7] remains valid."},
+    {"explanation": "Deleting from an empty tree returns an empty tree (null)."}
+  ],
+  "timeComplexity": "O(h)",
+  "spaceComplexity": "O(h)",
+  "compare": "exact",
+  "signature": {
+    "kind": "adapter",
+    "inputs": [
+      {"name": "root", "type": "TreeNode", "description": "Level-order representation of the BST"},
+      {"name": "key", "type": "int", "description": "Value of the node to delete"}
+    ]
+  }
+}

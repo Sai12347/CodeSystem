@@ -1,0 +1,44 @@
+{
+  "title": "Largest Combination With Bitwise AND Greater Than Zero",
+  "difficulty": "Medium",
+  "subtopic": "Counting Bits",
+  "companies": [
+    "Amazon",
+    "Meta",
+    "Microsoft"
+  ],
+  "description": "Given an array of positive integers `candidates`, evaluate the bitwise AND of any non-empty subset (combination) of `candidates`. Return the maximum size of a subset whose bitwise AND is strictly greater than `0`.",
+  "constraints": [
+    "1 <= candidates.length <= 10^5",
+    "1 <= candidates[i] <= 10^7"
+  ],
+  "hints": [
+    "A subset has bitwise AND > 0 if and only if there exists at least one bit position `b` where every chosen element has a `1`.",
+    "For each bit position `b` from 0 to 23, count how many elements of `candidates` have bit `b` set, and return the maximum count."
+  ],
+  "examples": [
+    {
+      "explanation": "The subset [16, 17, 62, 24] all have bit 4 (value 16) set, giving a size-4 combination with AND > 0."
+    },
+    {
+      "explanation": "Both 8 and 8 share bit 3, giving size 2."
+    },
+    {
+      "explanation": "Powers of two have disjoint set bits, so at most 1 element can be chosen."
+    }
+  ],
+  "timeComplexity": "O(n log M)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "largestCombination",
+    "params": [
+      {
+        "name": "candidates",
+        "type": "int[]"
+      }
+    ],
+    "returns": "int"
+  }
+}

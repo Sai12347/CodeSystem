@@ -1,0 +1,49 @@
+{
+  "title": "Flatten Nested List Iterator",
+  "difficulty": "Medium",
+  "subtopic": "LIFO Structure",
+  "companies": [
+    "Meta",
+    "Google",
+    "Amazon",
+    "Microsoft",
+    "LinkedIn",
+    "Apple"
+  ],
+  "leetcode": 341,
+  "description": "You are given a nested list of integers `nestedList`. Each element is either an integer or a list whose elements may also be integers or other lists. Implement an iterator to flatten it.\n\nImplement the `NestedIterator` class:\n- `NestedIterator(List<NestedInteger> nestedList)` initializes the iterator with the nested list `nestedList`.\n- `int next()` returns the next integer in the nested list.\n- `boolean hasNext()` returns `true` if there are still some integers in the nested list and `false` otherwise.\n\nYour code will be tested with the following pseudocode:\n```text\ninitialize iterator with nestedList\nres = []\nwhile iterator.hasNext():\n    append iterator.next() to the end of res\nreturn res\n```\nNote that nested lists may contain empty lists (even nested empty lists like `[[]]`), so `hasNext()` must advance past any empty lists and accurately report whether another integer exists.",
+  "constraints": [
+    "1 <= nestedList.length <= 500",
+    "The values of the integers in the nested list are in the range [-10^6, 10^6].",
+    "The total number of integers and nested lists does not exceed 10^4."
+  ],
+  "hints": [
+    "Think about how an explicit stack can simulate recursive DFS traversal lazily without flattening the entire nested structure up front.",
+    "Store (list, index) pairs (or list iterators) on a stack. Keep only the path from the root to the current position, which uses O(d) space where d is the maximum nesting depth.",
+    "In hasNext(), advance through the stack until either an integer is found (cache it for next() and return true) or the stack becomes empty (return false), automatically skipping empty nested lists."
+  ],
+  "examples": [
+    {
+      "explanation": "Calling next repeatedly until hasNext returns false produces [1, 1, 2, 1, 1]."
+    },
+    {
+      "explanation": "Flattening [1, [4, [6]]] yields [1, 4, 6]."
+    },
+    {
+      "explanation": "Empty nested lists are skipped, so only 5 and 9 are yielded."
+    }
+  ],
+  "timeComplexity": "O(n + l) total, O(1) amortized per call",
+  "spaceComplexity": "O(d)",
+  "compare": "exact",
+  "signature": {
+    "kind": "adapter",
+    "inputs": [
+      {
+        "name": "nestedList",
+        "type": "List<NestedInteger>",
+        "description": "Nested list of integers where each element is an integer or another nested list"
+      }
+    ]
+  }
+}

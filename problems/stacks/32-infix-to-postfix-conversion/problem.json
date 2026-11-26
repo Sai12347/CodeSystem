@@ -1,0 +1,46 @@
+{
+  "title": "Infix to Postfix Conversion",
+  "difficulty": "Medium",
+  "subtopic": "Expression Parsing",
+  "companies": [
+    "Google",
+    "Microsoft",
+    "Amazon",
+    "Oracle"
+  ],
+  "description": "Given an array of strings `tokens` representing a valid mathematical expression in standard infix notation, convert it to Reverse Polish Notation (postfix notation) using Dijkstra's Shunting-Yard algorithm and return the resulting list of tokens.\n\nEach token is one of:\n- An operand (alphanumeric identifier or integer literal).\n- A binary operator in `{\"+\", \"-\", \"*\", \"/\", \"^\"}`.\n- A parenthesis `\"(\"` or `\")\"`.\n\nOperator precedence and associativity:\n- `\"^\"` has highest precedence (`3`) and is **right-associative** (e.g., `a ^ b ^ c` groups as `a ^ (b ^ c)`).\n- `\"*\"` and `\"/\"` have precedence (`2`) and are **left-associative**.\n- `\"+\"` and `\"-\"` have lowest precedence (`1`) and are **left-associative**.",
+  "constraints": [
+    "1 <= tokens.length <= 10^4",
+    "tokens represents a valid infix expression with balanced parentheses.",
+    "Every operand consists of alphanumeric characters."
+  ],
+  "hints": [
+    "Append operands directly to the output list, and use an operator stack to defer operators until higher-precedence subexpressions finish.",
+    "When pushing operator op, pop operators from the stack to output while the stack top is an operator with strictly higher precedence, or equal precedence when op is left-associative (i.e., op != '^')."
+  ],
+  "examples": [
+    {
+      "explanation": "Multiplication binds tighter than addition, yielding [\"a\", \"b\", \"c\", \"*\", \"+\"]."
+    },
+    {
+      "explanation": "Parentheses force a + b to evaluate before multiplying by c, yielding [\"a\", \"b\", \"+\", \"c\", \"*\"]."
+    },
+    {
+      "explanation": "Exponentiation is right-associative, so a ^ b ^ c evaluates b ^ c first: [\"a\", \"b\", \"c\", \"^\", \"^\"]."
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "infixToPostfix",
+    "params": [
+      {
+        "name": "tokens",
+        "type": "String[]"
+      }
+    ],
+    "returns": "List<String>"
+  }
+}

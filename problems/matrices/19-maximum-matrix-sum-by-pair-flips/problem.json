@@ -1,0 +1,44 @@
+{
+  "title": "Maximum Matrix Sum by Pair Flips",
+  "difficulty": "Medium",
+  "subtopic": "Simulation",
+  "companies": [
+    "Amazon",
+    "Google",
+    "Microsoft"
+  ],
+  "description": "In one operation, choose two distinct cells of a matrix and negate both values. You may repeat the operation any number of times. Given a square integer matrix, return the maximum total sum that can be achieved. Input: `matrix`. Output: the maximum sum after choosing the flips.",
+  "constraints": [
+    "1 <= matrix.length <= 1000",
+    "matrix is square",
+    "-100000 <= matrix[i][j] <= 100000"
+  ],
+  "hints": [
+    "Check each cell using its row and column relationships.",
+    "Handle single-row, single-column, tie, and center-cell cases explicitly."
+  ],
+  "examples": [
+    {
+      "input": "matrix = [[1, -1], [-1, 1]]",
+      "output": "4"
+    },
+    {
+      "input": "matrix = [[1, 2, 3], [-1, -2, -3], [-1, 2, 3]]",
+      "output": "18"
+    }
+  ],
+  "timeComplexity": "O(n^2)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "maxMatrixSum",
+    "params": [
+      {
+        "name": "matrix",
+        "type": "int[][]"
+      }
+    ],
+    "returns": "long"
+  }
+}

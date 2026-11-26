@@ -1,0 +1,39 @@
+{
+  "title": "Jump Game",
+  "difficulty": "Medium",
+  "subtopic": "Local Optimality",
+  "companies": [
+    "Amazon",
+    "Google",
+    "Microsoft"
+  ],
+  "description": "Each array value is the maximum forward jump length from that position. Return true if you can reach the last index starting from index 0.",
+  "constraints": [
+    "1 <= nums.length <= 10^4",
+    "0 <= nums[i] <= 10^5"
+  ],
+  "hints": [
+    "Sort or scan while maintaining the best feasible choice.",
+    "Check tie values and cases where no feasible choice remains."
+  ],
+  "examples": [
+    {
+      "input": "nums = [2,3,1,1,4]",
+      "output": "true"
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(1) extra",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "canJump",
+    "params": [
+      {
+        "name": "nums",
+        "type": "int[]"
+      }
+    ],
+    "returns": "boolean"
+  }
+}

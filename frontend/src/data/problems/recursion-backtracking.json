@@ -1,0 +1,1003 @@
+[
+ {
+  "id": "subsets",
+  "order": 1,
+  "topicId": "recursion-backtracking",
+  "topic": "Recursion & Backtracking",
+  "title": "Subsets",
+  "slug": "subsets",
+  "difficulty": "Medium",
+  "subtopic": "Subsets",
+  "companies": [
+   "Meta",
+   "Amazon",
+   "Google",
+   "Microsoft",
+   "Bloomberg"
+  ],
+  "leetcode": 78,
+  "description": "Given an integer array `nums` of unique elements, return all possible subsets (the power set).\n\nThe solution set must not contain duplicate subsets. You may return the subsets in any order, and the elements within each subset may also be in any order.",
+  "constraints": [
+   "1 <= nums.length <= 10",
+   "-10 <= nums[i] <= 10",
+   "All the numbers of nums are unique."
+  ],
+  "hints": [
+   "Each element in nums has two independent choices: either include it in the current subset or exclude it.",
+   "Use backtracking with a start index so every subset is generated in increasing index order, preventing duplicate subsets.",
+   "Alternatively, iterate over all integers from 0 to 2^n - 1 and interpret each bitmask as a subset selection."
+  ],
+  "timeComplexity": "O(n * 2^n)",
+  "spaceComplexity": "O(n)",
+  "compare": "sortedDeep",
+  "examples": [
+   {
+    "input": "nums = [1,2,3]",
+    "output": "[[],[1],[1,2],[1,2,3],[1,3],[2],[2,3],[3]]",
+    "explanation": "All 2^3 = 8 subsets of [1, 2, 3] are [], [1], [2], [3], [1, 2], [1, 3], [2, 3], and [1, 2, 3]."
+   },
+   {
+    "input": "nums = [0]",
+    "output": "[[],[0]]",
+    "explanation": "A single-element array [0] has 2^1 = 2 subsets: [] and [0]."
+   },
+   {
+    "input": "nums = [-1,2]",
+    "output": "[[],[-1],[-1,2],[2]]",
+    "explanation": "All 2^2 = 4 subsets of [-1, 2] are [], [-1], [2], and [-1, 2]."
+   }
+  ],
+  "starterCode": {
+   "java": "class Solution {\n    public List<List<Integer>> subsets(int[] nums) {\n        // Write your solution here\n        return null;\n    }\n}\n",
+   "python": "class Solution:\n    def subsets(self, nums: List[int]) -> List[List[int]]:\n        # Write your solution here\n        pass\n"
+  },
+  "solutionCode": {
+   "java": "class Solution {\n    public List<List<Integer>> subsets(int[] nums) {\n        List<List<Integer>> res = new ArrayList<>();\n        List<Integer> path = new ArrayList<>();\n        dfs(nums, 0, path, res);\n        return res;\n    }\n\n    private void dfs(int[] nums, int start, List<Integer> path, List<List<Integer>> res) {\n        res.add(new ArrayList<>(path));\n        for (int i = start; i < nums.length; i++) {\n            path.add(nums[i]);\n            dfs(nums, i + 1, path, res);\n            path.remove(path.size() - 1);\n        }\n    }\n}\n",
+   "python": "class Solution:\n    def subsets(self, nums: List[int]) -> List[List[int]]:\n        res: List[List[int]] = []\n        path: List[int] = []\n        n = len(nums)\n\n        def dfs(start: int) -> None:\n            res.append(path.copy())\n            for i in range(start, n):\n                path.append(nums[i])\n                dfs(i + 1)\n                path.pop()\n\n        dfs(0)\n        return res\n"
+  },
+  "sampleArray": [
+   1,
+   2,
+   3
+  ],
+  "visibleTestCount": 3,
+  "hiddenTestCount": 10,
+  "number": 1
+ },
+ {
+  "id": "subsets-ii",
+  "order": 2,
+  "topicId": "recursion-backtracking",
+  "topic": "Recursion & Backtracking",
+  "title": "Subsets II",
+  "slug": "subsets-ii",
+  "difficulty": "Medium",
+  "subtopic": "Subsets",
+  "companies": [
+   "Meta",
+   "Amazon",
+   "Bloomberg",
+   "Microsoft",
+   "Google"
+  ],
+  "leetcode": 90,
+  "description": "Given an integer array `nums` that may contain duplicates, return all possible subsets (the power set).\n\nThe solution set must not contain duplicate subsets. Two subsets are considered identical if they contain the same elements with the same multiplicities. You may return the subsets in any order, and the elements within each subset may also be in any order.",
+  "constraints": [
+   "1 <= nums.length <= 10",
+   "-10 <= nums[i] <= 10"
+  ],
+  "hints": [
+   "Sort the input array first so identical elements become adjacent.",
+   "During backtracking at recursion level starting at `start`, if `i > start` and `nums[i] == nums[i - 1]`, skip `nums[i]` to avoid generating duplicate subsets at the same depth.",
+   "Notice that skipping only when `i > start` still allows using duplicate values in deeper recursion levels (e.g., [2, 2])."
+  ],
+  "timeComplexity": "O(n * 2^n)",
+  "spaceComplexity": "O(n)",
+  "compare": "sortedDeep",
+  "examples": [
+   {
+    "input": "nums = [1,2,2]",
+    "output": "[[],[1],[1,2],[1,2,2],[2],[2,2]]",
+    "explanation": "The unique subsets of [1, 2, 2] are [], [1], [2], [1, 2], [2, 2], and [1, 2, 2]. Duplicate [1, 2] and [2] are excluded."
+   },
+   {
+    "input": "nums = [0]",
+    "output": "[[],[0]]",
+    "explanation": "The single-element array [0] has 2 unique subsets: [] and [0]."
+   },
+   {
+    "input": "nums = [4,4,4,1,4]",
+    "output": "[[],[1],[1,4],[1,4,4],[1,4,4,4],[1,4,4,4,4],[4],[4,4],[4,4,4],[4,4,4,4]]",
+    "explanation": "Sorting gives [1, 4, 4, 4, 4]; every subset picks 0 or 1 copy of 1 and between 0 and 4 copies of 4, yielding 2 * 5 = 10 unique subsets."
+   }
+  ],
+  "starterCode": {
+   "java": "class Solution {\n    public List<List<Integer>> subsetsWithDup(int[] nums) {\n        // Write your solution here\n        return null;\n    }\n}\n",
+   "python": "class Solution:\n    def subsetsWithDup(self, nums: List[int]) -> List[List[int]]:\n        # Write your solution here\n        pass\n"
+  },
+  "solutionCode": {
+   "java": "class Solution {\n    public List<List<Integer>> subsetsWithDup(int[] nums) {\n        Arrays.sort(nums);\n        List<List<Integer>> res = new ArrayList<>();\n        List<Integer> path = new ArrayList<>();\n        dfs(nums, 0, path, res);\n        return res;\n    }\n\n    private void dfs(int[] nums, int start, List<Integer> path, List<List<Integer>> res) {\n        res.add(new ArrayList<>(path));\n        for (int i = start; i < nums.length; i++) {\n            if (i > start && nums[i] == nums[i - 1]) {\n                continue;\n            }\n            path.add(nums[i]);\n            dfs(nums, i + 1, path, res);\n            path.remove(path.size() - 1);\n        }\n    }\n}\n",
+   "python": "class Solution:\n    def subsetsWithDup(self, nums: List[int]) -> List[List[int]]:\n        nums.sort()\n        res: List[List[int]] = []\n        path: List[int] = []\n        n = len(nums)\n\n        def dfs(start: int) -> None:\n            res.append(path.copy())\n            for i in range(start, n):\n                if i > start and nums[i] == nums[i - 1]:\n                    continue\n                path.append(nums[i])\n                dfs(i + 1)\n                path.pop()\n\n        dfs(0)\n        return res\n"
+  },
+  "sampleArray": [
+   1,
+   2,
+   2
+  ],
+  "visibleTestCount": 3,
+  "hiddenTestCount": 10,
+  "number": 2
+ },
+ {
+  "id": "permutations",
+  "order": 3,
+  "topicId": "recursion-backtracking",
+  "topic": "Recursion & Backtracking",
+  "title": "Permutations",
+  "slug": "permutations",
+  "difficulty": "Medium",
+  "subtopic": "Permutations",
+  "companies": [
+   "Microsoft",
+   "Amazon",
+   "Meta",
+   "Google",
+   "LinkedIn"
+  ],
+  "leetcode": 46,
+  "description": "Given an array `nums` of distinct integers, return all possible permutations of its elements.\n\nEach permutation must contain every element of `nums` exactly once in a specific order. You may return the list of permutations in any order.",
+  "constraints": [
+   "1 <= nums.length <= 6",
+   "-10 <= nums[i] <= 10",
+   "All the integers of nums are unique."
+  ],
+  "hints": [
+   "Build each permutation position by position using recursion, keeping track of which elements are already placed.",
+   "You can either maintain a boolean `used` array of length `n` or swap each remaining candidate into the current index `first` and swap back on return."
+  ],
+  "timeComplexity": "O(n * n!)",
+  "spaceComplexity": "O(n)",
+  "compare": "sorted",
+  "examples": [
+   {
+    "input": "nums = [1,2,3]",
+    "output": "[[1,2,3],[1,3,2],[2,1,3],[2,3,1],[3,1,2],[3,2,1]]",
+    "explanation": "There are 3! = 6 permutations of [1, 2, 3]: [1,2,3], [1,3,2], [2,1,3], [2,3,1], [3,1,2], and [3,2,1]."
+   },
+   {
+    "input": "nums = [0,1]",
+    "output": "[[0,1],[1,0]]",
+    "explanation": "There are 2! = 2 permutations of [0, 1]: [0, 1] and [1, 0]."
+   },
+   {
+    "input": "nums = [1]",
+    "output": "[[1]]",
+    "explanation": "A single-element array [1] has only 1! = 1 permutation: [1]."
+   }
+  ],
+  "starterCode": {
+   "java": "class Solution {\n    public List<List<Integer>> permute(int[] nums) {\n        // Write your solution here\n        return null;\n    }\n}\n",
+   "python": "class Solution:\n    def permute(self, nums: List[int]) -> List[List[int]]:\n        # Write your solution here\n        pass\n"
+  },
+  "solutionCode": {
+   "java": "class Solution {\n    public List<List<Integer>> permute(int[] nums) {\n        List<List<Integer>> res = new ArrayList<>();\n        List<Integer> path = new ArrayList<>();\n        boolean[] used = new boolean[nums.length];\n        dfs(nums, used, path, res);\n        return res;\n    }\n\n    private void dfs(int[] nums, boolean[] used, List<Integer> path, List<List<Integer>> res) {\n        if (path.size() == nums.length) {\n            res.add(new ArrayList<>(path));\n            return;\n        }\n        for (int i = 0; i < nums.length; i++) {\n            if (!used[i]) {\n                used[i] = true;\n                path.add(nums[i]);\n                dfs(nums, used, path, res);\n                path.remove(path.size() - 1);\n                used[i] = false;\n            }\n        }\n    }\n}\n",
+   "python": "class Solution:\n    def permute(self, nums: List[int]) -> List[List[int]]:\n        n = len(nums)\n        res: List[List[int]] = []\n        path: List[int] = []\n        used = [False] * n\n\n        def dfs() -> None:\n            if len(path) == n:\n                res.append(path.copy())\n                return\n            for i in range(n):\n                if not used[i]:\n                    used[i] = True\n                    path.append(nums[i])\n                    dfs()\n                    path.pop()\n                    used[i] = False\n\n        dfs()\n        return res\n"
+  },
+  "sampleArray": [
+   1,
+   2,
+   3
+  ],
+  "visibleTestCount": 3,
+  "hiddenTestCount": 10,
+  "number": 3
+ },
+ {
+  "id": "permutations-ii",
+  "order": 4,
+  "topicId": "recursion-backtracking",
+  "topic": "Recursion & Backtracking",
+  "title": "Permutations II",
+  "slug": "permutations-ii",
+  "difficulty": "Medium",
+  "subtopic": "Permutations",
+  "companies": [
+   "LinkedIn",
+   "Microsoft",
+   "Amazon",
+   "Meta",
+   "Google"
+  ],
+  "leetcode": 47,
+  "description": "Given a collection of numbers `nums` that might contain duplicates, return all possible unique permutations in any order.\n\nEach permutation must have the same length and element multiplicities as `nums`, and no two returned permutations may be identical.",
+  "constraints": [
+   "1 <= nums.length <= 8",
+   "-10 <= nums[i] <= 10"
+  ],
+  "hints": [
+   "Sort `nums` first so duplicate values sit next to each other.",
+   "Track used indices with a boolean array `used`. To ensure identical values are placed in a single canonical order, skip index `i` when `i > 0 and nums[i] == nums[i - 1] and not used[i - 1]`.",
+   "Alternatively, count frequencies of each unique value in a map and branch once per unique value with remaining count > 0."
+  ],
+  "timeComplexity": "O(n * n!)",
+  "spaceComplexity": "O(n)",
+  "compare": "sorted",
+  "examples": [
+   {
+    "input": "nums = [1,1,2]",
+    "output": "[[1,1,2],[1,2,1],[2,1,1]]",
+    "explanation": "There are 3! / 2! = 3 unique permutations of [1, 1, 2]: [1, 1, 2], [1, 2, 1], and [2, 1, 1]."
+   },
+   {
+    "input": "nums = [1,2,3]",
+    "output": "[[1,2,3],[1,3,2],[2,1,3],[2,3,1],[3,1,2],[3,2,1]]",
+    "explanation": "All elements are distinct, so all 3! = 6 permutations are returned."
+   },
+   {
+    "input": "nums = [2,2,1,1]",
+    "output": "[[1,1,2,2],[1,2,1,2],[1,2,2,1],[2,1,1,2],[2,1,2,1],[2,2,1,1]]",
+    "explanation": "There are 4! / (2! * 2!) = 6 unique permutations of [2, 2, 1, 1]."
+   }
+  ],
+  "starterCode": {
+   "java": "class Solution {\n    public List<List<Integer>> permuteUnique(int[] nums) {\n        // Write your solution here\n        return null;\n    }\n}\n",
+   "python": "class Solution:\n    def permuteUnique(self, nums: List[int]) -> List[List[int]]:\n        # Write your solution here\n        pass\n"
+  },
+  "solutionCode": {
+   "java": "class Solution {\n    public List<List<Integer>> permuteUnique(int[] nums) {\n        Arrays.sort(nums);\n        List<List<Integer>> res = new ArrayList<>();\n        List<Integer> path = new ArrayList<>();\n        boolean[] used = new boolean[nums.length];\n        dfs(nums, used, path, res);\n        return res;\n    }\n\n    private void dfs(int[] nums, boolean[] used, List<Integer> path, List<List<Integer>> res) {\n        if (path.size() == nums.length) {\n            res.add(new ArrayList<>(path));\n            return;\n        }\n        for (int i = 0; i < nums.length; i++) {\n            if (used[i]) {\n                continue;\n            }\n            if (i > 0 && nums[i] == nums[i - 1] && !used[i - 1]) {\n                continue;\n            }\n            used[i] = true;\n            path.add(nums[i]);\n            dfs(nums, used, path, res);\n            path.remove(path.size() - 1);\n            used[i] = false;\n        }\n    }\n}\n",
+   "python": "class Solution:\n    def permuteUnique(self, nums: List[int]) -> List[List[int]]:\n        nums.sort()\n        n = len(nums)\n        res: List[List[int]] = []\n        path: List[int] = []\n        used = [False] * n\n\n        def dfs() -> None:\n            if len(path) == n:\n                res.append(path.copy())\n                return\n            for i in range(n):\n                if used[i]:\n                    continue\n                if i > 0 and nums[i] == nums[i - 1] and not used[i - 1]:\n                    continue\n                used[i] = True\n                path.append(nums[i])\n                dfs()\n                path.pop()\n                used[i] = False\n\n        dfs()\n        return res\n"
+  },
+  "sampleArray": [
+   1,
+   1,
+   2
+  ],
+  "visibleTestCount": 3,
+  "hiddenTestCount": 11,
+  "number": 4
+ },
+ {
+  "id": "combination-sum",
+  "order": 5,
+  "topicId": "recursion-backtracking",
+  "topic": "Recursion & Backtracking",
+  "title": "Combination Sum",
+  "slug": "combination-sum",
+  "difficulty": "Medium",
+  "subtopic": "Combinations",
+  "companies": [
+   "Amazon",
+   "Meta",
+   "Google",
+   "Microsoft",
+   "Uber",
+   "Apple"
+  ],
+  "leetcode": 39,
+  "description": "Given an array of distinct positive integers `candidates` and a target integer `target`, return a list of all unique combinations of `candidates` where the chosen numbers sum to `target`.\n\nThe same number may be chosen from `candidates` an unlimited number of times. Two combinations are unique if the frequency of at least one of the chosen numbers is different. You may return the combinations in any order, and the numbers inside each combination may be in any order.",
+  "constraints": [
+   "1 <= candidates.length <= 30",
+   "2 <= candidates[i] <= 40",
+   "All elements of candidates are distinct.",
+   "1 <= target <= 40",
+   "The number of unique combinations summing to target is less than 150 for every test case."
+  ],
+  "hints": [
+   "Sort `candidates` so you can stop exploring a branch as soon as the current candidate exceeds the remaining target.",
+   "Pass a `start` index into your recursive helper so combinations are built in non-decreasing index order and permutations of the same multiset are never repeated.",
+   "Because each candidate may be reused, pass `i` (not `i + 1`) as the next `start` index when recursing after picking `candidates[i]`."
+  ],
+  "timeComplexity": "O(n^(T/M + 1))",
+  "spaceComplexity": "O(T/M)",
+  "compare": "sortedDeep",
+  "examples": [
+   {
+    "input": "candidates = [2,3,6,7], target = 7",
+    "output": "[[2,2,3],[7]]",
+    "explanation": "2 + 2 + 3 = 7 and 7 = 7 are the only two unique combinations summing to 7."
+   },
+   {
+    "input": "candidates = [2,3,5], target = 8",
+    "output": "[[2,2,2,2],[2,3,3],[3,5]]",
+    "explanation": "The unique combinations summing to 8 are [2, 2, 2, 2], [2, 3, 3], and [3, 5]."
+   },
+   {
+    "input": "candidates = [2], target = 1",
+    "output": "[]",
+    "explanation": "Since every candidate is at least 2, no combination can sum to 1, so return []."
+   }
+  ],
+  "starterCode": {
+   "java": "class Solution {\n    public List<List<Integer>> combinationSum(int[] candidates, int target) {\n        // Write your solution here\n        return null;\n    }\n}\n",
+   "python": "class Solution:\n    def combinationSum(self, candidates: List[int], target: int) -> List[List[int]]:\n        # Write your solution here\n        pass\n"
+  },
+  "solutionCode": {
+   "java": "class Solution {\n    public List<List<Integer>> combinationSum(int[] candidates, int target) {\n        Arrays.sort(candidates);\n        List<List<Integer>> res = new ArrayList<>();\n        List<Integer> path = new ArrayList<>();\n        dfs(candidates, 0, target, path, res);\n        return res;\n    }\n\n    private void dfs(int[] candidates, int start, int rem, List<Integer> path, List<List<Integer>> res) {\n        if (rem == 0) {\n            res.add(new ArrayList<>(path));\n            return;\n        }\n        for (int i = start; i < candidates.length; i++) {\n            if (candidates[i] > rem) {\n                break;\n            }\n            path.add(candidates[i]);\n            dfs(candidates, i, rem - candidates[i], path, res);\n            path.remove(path.size() - 1);\n        }\n    }\n}\n",
+   "python": "class Solution:\n    def combinationSum(self, candidates: List[int], target: int) -> List[List[int]]:\n        candidates.sort()\n        res: List[List[int]] = []\n        path: List[int] = []\n        n = len(candidates)\n\n        def dfs(start: int, rem: int) -> None:\n            if rem == 0:\n                res.append(path.copy())\n                return\n            for i in range(start, n):\n                val = candidates[i]\n                if val > rem:\n                    break\n                path.append(val)\n                dfs(i, rem - val)\n                path.pop()\n\n        dfs(0, target)\n        return res\n"
+  },
+  "sampleArray": [
+   2,
+   3,
+   6,
+   7
+  ],
+  "visibleTestCount": 3,
+  "hiddenTestCount": 10,
+  "number": 5
+ },
+ {
+  "id": "combination-sum-ii",
+  "order": 6,
+  "topicId": "recursion-backtracking",
+  "topic": "Recursion & Backtracking",
+  "title": "Combination Sum II",
+  "slug": "combination-sum-ii",
+  "difficulty": "Medium",
+  "subtopic": "Combinations",
+  "companies": [
+   "Amazon",
+   "Meta",
+   "Google",
+   "Microsoft",
+   "Bloomberg"
+  ],
+  "leetcode": 40,
+  "description": "Given a collection of candidate numbers `candidates` (which may contain duplicates) and a target number `target`, find all unique combinations in `candidates` where the candidate numbers sum to `target`.\n\nEach element in `candidates` may be used at most once in a combination. The solution set must not contain duplicate combinations. You may return the combinations in any order, and the numbers within each combination may be in any order.",
+  "constraints": [
+   "1 <= candidates.length <= 100",
+   "1 <= candidates[i] <= 50",
+   "1 <= target <= 30"
+  ],
+  "hints": [
+   "Sort `candidates` so duplicates are adjacent and values exceeding the remaining target allow immediate pruning.",
+   "Pass `i + 1` to the recursive call so each array element is used at most once.",
+   "Skip duplicate choices at the same recursion depth with `if i > start and candidates[i] == candidates[i - 1]: continue`."
+  ],
+  "timeComplexity": "O(2^n)",
+  "spaceComplexity": "O(n)",
+  "compare": "sortedDeep",
+  "examples": [
+   {
+    "input": "candidates = [10,1,2,7,6,1,5], target = 8",
+    "output": "[[1,1,6],[1,2,5],[1,7],[2,6]]",
+    "explanation": "Using each element at most once, the unique combinations summing to 8 are [1, 1, 6], [1, 2, 5], [1, 7], and [2, 6]."
+   },
+   {
+    "input": "candidates = [2,5,2,1,2], target = 5",
+    "output": "[[1,2,2],[5]]",
+    "explanation": "The unique combinations summing to 5 are [1, 2, 2] and [5]."
+   },
+   {
+    "input": "candidates = [3,4,5], target = 2",
+    "output": "[]",
+    "explanation": "Every candidate is greater than 2, so no combination sums to 2."
+   }
+  ],
+  "starterCode": {
+   "java": "class Solution {\n    public List<List<Integer>> combinationSum2(int[] candidates, int target) {\n        // Write your solution here\n        return null;\n    }\n}\n",
+   "python": "class Solution:\n    def combinationSum2(self, candidates: List[int], target: int) -> List[List[int]]:\n        # Write your solution here\n        pass\n"
+  },
+  "solutionCode": {
+   "java": "class Solution {\n    public List<List<Integer>> combinationSum2(int[] candidates, int target) {\n        Arrays.sort(candidates);\n        List<List<Integer>> res = new ArrayList<>();\n        List<Integer> path = new ArrayList<>();\n        dfs(candidates, 0, target, path, res);\n        return res;\n    }\n\n    private void dfs(int[] candidates, int start, int rem, List<Integer> path, List<List<Integer>> res) {\n        if (rem == 0) {\n            res.add(new ArrayList<>(path));\n            return;\n        }\n        for (int i = start; i < candidates.length; i++) {\n            if (i > start && candidates[i] == candidates[i - 1]) {\n                continue;\n            }\n            if (candidates[i] > rem) {\n                break;\n            }\n            path.add(candidates[i]);\n            dfs(candidates, i + 1, rem - candidates[i], path, res);\n            path.remove(path.size() - 1);\n        }\n    }\n}\n",
+   "python": "class Solution:\n    def combinationSum2(self, candidates: List[int], target: int) -> List[List[int]]:\n        candidates.sort()\n        res: List[List[int]] = []\n        path: List[int] = []\n        n = len(candidates)\n\n        def dfs(start: int, rem: int) -> None:\n            if rem == 0:\n                res.append(path.copy())\n                return\n            for i in range(start, n):\n                if i > start and candidates[i] == candidates[i - 1]:\n                    continue\n                val = candidates[i]\n                if val > rem:\n                    break\n                path.append(val)\n                dfs(i + 1, rem - val)\n                path.pop()\n\n        dfs(0, target)\n        return res\n"
+  },
+  "sampleArray": [
+   10,
+   1,
+   2,
+   7,
+   6,
+   1,
+   5
+  ],
+  "visibleTestCount": 3,
+  "hiddenTestCount": 10,
+  "number": 6
+ },
+ {
+  "id": "combination-sum-iii",
+  "order": 7,
+  "topicId": "recursion-backtracking",
+  "topic": "Recursion & Backtracking",
+  "title": "Combination Sum III",
+  "slug": "combination-sum-iii",
+  "difficulty": "Medium",
+  "subtopic": "Combinations",
+  "companies": [
+   "Amazon",
+   "Google",
+   "Microsoft",
+   "Meta",
+   "Bloomberg"
+  ],
+  "leetcode": 216,
+  "description": "Find all valid combinations of `k` distinct numbers that sum up to `n` such that the following conditions are true:\n\n- Only numbers `1` through `9` are used.\n- Each number is used at most once.\n\nReturn a list of all possible valid combinations. The list must not contain the same combination twice, and the combinations (as well as elements inside each combination) may be returned in any order.",
+  "constraints": [
+   "2 <= k <= 9",
+   "1 <= n <= 60"
+  ],
+  "hints": [
+   "Pick digits in strictly increasing order from 1 to 9 so every digit is used at most once and combinations are automatically unique.",
+   "Prune branches early: if `need` digits remain to be chosen starting at `start`, stop when `9 - start + 1 < need` or when the smallest possible sum exceeds the remaining target."
+  ],
+  "timeComplexity": "O(k * C(9, k))",
+  "spaceComplexity": "O(k)",
+  "compare": "sortedDeep",
+  "examples": [
+   {
+    "input": "k = 3, n = 7",
+    "output": "[[1,2,4]]",
+    "explanation": "1 + 2 + 4 = 7 is the only combination of 3 distinct digits from 1..9 summing to 7."
+   },
+   {
+    "input": "k = 3, n = 9",
+    "output": "[[1,2,6],[1,3,5],[2,3,4]]",
+    "explanation": "The three valid combinations of 3 distinct digits summing to 9 are [1, 2, 6], [1, 3, 5], and [2, 3, 4]."
+   },
+   {
+    "input": "k = 4, n = 1",
+    "output": "[]",
+    "explanation": "The smallest possible sum of 4 distinct digits from 1..9 is 1 + 2 + 3 + 4 = 10, so no combination sums to 1."
+   }
+  ],
+  "starterCode": {
+   "java": "class Solution {\n    public List<List<Integer>> combinationSum3(int k, int n) {\n        // Write your solution here\n        return null;\n    }\n}\n",
+   "python": "class Solution:\n    def combinationSum3(self, k: int, n: int) -> List[List[int]]:\n        # Write your solution here\n        pass\n"
+  },
+  "solutionCode": {
+   "java": "class Solution {\n    public List<List<Integer>> combinationSum3(int k, int n) {\n        List<List<Integer>> res = new ArrayList<>();\n        List<Integer> path = new ArrayList<>();\n        dfs(1, k, n, path, res);\n        return res;\n    }\n\n    private void dfs(int start, int need, int rem, List<Integer> path, List<List<Integer>> res) {\n        if (need == 0) {\n            if (rem == 0) {\n                res.add(new ArrayList<>(path));\n            }\n            return;\n        }\n        int maxStart = 10 - need;\n        for (int num = start; num <= maxStart; num++) {\n            int minSum = need * (2 * num + need - 1) / 2;\n            if (minSum > rem) {\n                break;\n            }\n            int maxSum = num + (need - 1) * (20 - need) / 2;\n            if (maxSum < rem) {\n                continue;\n            }\n            path.add(num);\n            dfs(num + 1, need - 1, rem - num, path, res);\n            path.remove(path.size() - 1);\n        }\n    }\n}\n",
+   "python": "class Solution:\n    def combinationSum3(self, k: int, n: int) -> List[List[int]]:\n        res: List[List[int]] = []\n        path: List[int] = []\n\n        def dfs(start: int, need: int, rem: int) -> None:\n            if need == 0:\n                if rem == 0:\n                    res.append(path.copy())\n                return\n            max_start = 10 - need\n            for num in range(start, max_start + 1):\n                # Smallest possible sum choosing `need` numbers starting from `num`\n                min_sum = need * (2 * num + need - 1) // 2\n                if min_sum > rem:\n                    break\n                # Largest possible sum choosing `num` plus `need - 1` largest digits\n                max_sum = num + (need - 1) * (20 - need) // 2\n                if max_sum < rem:\n                    continue\n                path.append(num)\n                dfs(num + 1, need - 1, rem - num)\n                path.pop()\n\n        dfs(1, k, n)\n        return res\n"
+  },
+  "sampleArray": [],
+  "visibleTestCount": 3,
+  "hiddenTestCount": 11,
+  "number": 7
+ },
+ {
+  "id": "letter-combinations-of-a-phone-number",
+  "order": 8,
+  "topicId": "recursion-backtracking",
+  "topic": "Recursion & Backtracking",
+  "title": "Letter Combinations of a Phone Number",
+  "slug": "letter-combinations-of-a-phone-number",
+  "difficulty": "Medium",
+  "subtopic": "Combinations",
+  "companies": [
+   "Amazon",
+   "Google",
+   "Meta",
+   "Microsoft",
+   "Apple",
+   "Uber"
+  ],
+  "leetcode": 17,
+  "description": "Given a string `digits` containing digits from `'2'` to `'9'` inclusive, return all possible letter combinations that the number could represent on a standard telephone keypad:\n\n- `'2'` -> `\"abc\"`, `'3'` -> `\"def\"`, `'4'` -> `\"ghi\"`, `'5'` -> `\"jkl\"`\n- `'6'` -> `\"mno\"`, `'7'` -> `\"pqrs\"`, `'8'` -> `\"tuv\"`, `'9'` -> `\"wxyz\"`\n\nIf `digits` is empty, return an empty list `[]`. You may return the combinations in any order.",
+  "constraints": [
+   "0 <= digits.length <= 4",
+   "digits[i] is a digit in the range ['2', '9']."
+  ],
+  "hints": [
+   "Handle the empty input `\"\"` explicitly by returning `[]` rather than `[\"\"]`.",
+   "Use backtracking indexed by position `idx` in `digits`: for each letter mapped to `digits[idx]`, append it, recurse to `idx + 1`, and backtrack."
+  ],
+  "timeComplexity": "O(n * 4^n)",
+  "spaceComplexity": "O(n)",
+  "compare": "sorted",
+  "examples": [
+   {
+    "input": "digits = \"23\"",
+    "output": "[\"ad\",\"ae\",\"af\",\"bd\",\"be\",\"bf\",\"cd\",\"ce\",\"cf\"]",
+    "explanation": "Digit '2' maps to a/b/c and '3' maps to d/e/f, producing 3 * 3 = 9 combinations."
+   },
+   {
+    "input": "digits = \"\"",
+    "output": "[]",
+    "explanation": "An empty digit string produces no letter combinations, so return []."
+   },
+   {
+    "input": "digits = \"2\"",
+    "output": "[\"a\",\"b\",\"c\"]",
+    "explanation": "Digit '2' maps to the three single-letter strings \"a\", \"b\", and \"c\"."
+   }
+  ],
+  "starterCode": {
+   "java": "class Solution {\n    public List<String> letterCombinations(String digits) {\n        // Write your solution here\n        return null;\n    }\n}\n",
+   "python": "class Solution:\n    def letterCombinations(self, digits: str) -> List[str]:\n        # Write your solution here\n        pass\n"
+  },
+  "solutionCode": {
+   "java": "class Solution {\n    private static final String[] KEYPAD = {\n        \"\", \"\", \"abc\", \"def\", \"ghi\", \"jkl\", \"mno\", \"pqrs\", \"tuv\", \"wxyz\"\n    };\n\n    public List<String> letterCombinations(String digits) {\n        List<String> res = new ArrayList<>();\n        if (digits == null || digits.isEmpty()) {\n            return res;\n        }\n        StringBuilder path = new StringBuilder();\n        dfs(digits, 0, path, res);\n        return res;\n    }\n\n    private void dfs(String digits, int idx, StringBuilder path, List<String> res) {\n        if (idx == digits.length()) {\n            res.add(path.toString());\n            return;\n        }\n        String letters = KEYPAD[digits.charAt(idx) - '0'];\n        for (int i = 0; i < letters.length(); i++) {\n            path.append(letters.charAt(i));\n            dfs(digits, idx + 1, path, res);\n            path.deleteCharAt(path.length() - 1);\n        }\n    }\n}\n",
+   "python": "class Solution:\n    def letterCombinations(self, digits: str) -> List[str]:\n        if not digits:\n            return []\n        keypad = {\n            \"2\": \"abc\",\n            \"3\": \"def\",\n            \"4\": \"ghi\",\n            \"5\": \"jkl\",\n            \"6\": \"mno\",\n            \"7\": \"pqrs\",\n            \"8\": \"tuv\",\n            \"9\": \"wxyz\",\n        }\n        res: List[str] = []\n        path: List[str] = []\n        n = len(digits)\n\n        def dfs(idx: int) -> None:\n            if idx == n:\n                res.append(\"\".join(path))\n                return\n            for ch in keypad[digits[idx]]:\n                path.append(ch)\n                dfs(idx + 1)\n                path.pop()\n\n        dfs(0)\n        return res\n"
+  },
+  "sampleArray": [],
+  "visibleTestCount": 3,
+  "hiddenTestCount": 10,
+  "number": 8
+ },
+ {
+  "id": "generate-parentheses",
+  "order": 9,
+  "topicId": "recursion-backtracking",
+  "topic": "Recursion & Backtracking",
+  "title": "Generate Parentheses",
+  "slug": "generate-parentheses",
+  "difficulty": "Medium",
+  "subtopic": "Constraint Pruning",
+  "companies": [
+   "Google",
+   "Amazon",
+   "Meta",
+   "Microsoft",
+   "Bloomberg",
+   "Uber"
+  ],
+  "leetcode": 22,
+  "description": "Given `n` pairs of parentheses, write a function to generate all combinations of well-formed (balanced) parentheses strings of length `2 * n`.\n\nA string of `'('` and `')'` is well-formed if every opening parenthesis `'('` has a matching closing parenthesis `')'` and no prefix of the string contains more `')'` characters than `'('` characters. For `n = 0`, return `[\"\"]` (a list containing a single empty string). You may return the valid strings in any order.",
+  "constraints": [
+   "0 <= n <= 9"
+  ],
+  "hints": [
+   "Build each string one character at a time while tracking how many '(' and ')' have been placed so far.",
+   "You can place '(' whenever openCount < n, and you can place ')' only when closeCount < openCount.",
+   "Pruning invalid prefixes early guarantees every leaf reached at length 2 * n is a valid combination, avoiding wasted work."
+  ],
+  "timeComplexity": "O(4^n / sqrt(n))",
+  "spaceComplexity": "O(n)",
+  "compare": "sorted",
+  "examples": [
+   {
+    "input": "n = 3",
+    "output": "[\"((()))\",\"(()())\",\"(())()\",\"()(())\",\"()()()\"]",
+    "explanation": "There are 5 distinct well-formed combinations using 3 pairs of parentheses (the 3rd Catalan number, C_3 = 5)."
+   },
+   {
+    "input": "n = 1",
+    "output": "[\"()\"]",
+    "explanation": "With 1 pair of parentheses, the only valid combination is \"()\"."
+   }
+  ],
+  "starterCode": {
+   "java": "class Solution {\n    public List<String> generateParenthesis(int n) {\n        // Write your solution here\n        return null;\n    }\n}\n",
+   "python": "class Solution:\n    def generateParenthesis(self, n: int) -> List[str]:\n        # Write your solution here\n        pass\n"
+  },
+  "solutionCode": {
+   "java": "class Solution {\n    public List<String> generateParenthesis(int n) {\n        List<String> res = new ArrayList<>();\n        char[] buf = new char[2 * n];\n        backtrack(n, 0, 0, buf, res);\n        return res;\n    }\n\n    private void backtrack(int n, int open, int close, char[] buf, List<String> res) {\n        int idx = open + close;\n        if (idx == buf.length) {\n            res.add(new String(buf));\n            return;\n        }\n        if (open < n) {\n            buf[idx] = '(';\n            backtrack(n, open + 1, close, buf, res);\n        }\n        if (close < open) {\n            buf[idx] = ')';\n            backtrack(n, open, close + 1, buf, res);\n        }\n    }\n}\n",
+   "python": "class Solution:\n    def generateParenthesis(self, n: int) -> List[str]:\n        res: List[str] = []\n        buf: List[str] = []\n\n        def backtrack(open_cnt: int, close_cnt: int) -> None:\n            if len(buf) == 2 * n:\n                res.append(\"\".join(buf))\n                return\n            if open_cnt < n:\n                buf.append(\"(\")\n                backtrack(open_cnt + 1, close_cnt)\n                buf.pop()\n            if close_cnt < open_cnt:\n                buf.append(\")\")\n                backtrack(open_cnt, close_cnt + 1)\n                buf.pop()\n\n        backtrack(0, 0)\n        return res\n"
+  },
+  "sampleArray": [],
+  "visibleTestCount": 2,
+  "hiddenTestCount": 8,
+  "number": 9
+ },
+ {
+  "id": "n-queens",
+  "order": 10,
+  "topicId": "recursion-backtracking",
+  "topic": "Recursion & Backtracking",
+  "title": "N-Queens",
+  "slug": "n-queens",
+  "difficulty": "Hard",
+  "subtopic": "Board Puzzles",
+  "companies": [
+   "Google",
+   "Amazon",
+   "Meta",
+   "Microsoft",
+   "Apple",
+   "Bloomberg"
+  ],
+  "leetcode": 51,
+  "description": "The n-queens puzzle is the problem of placing `n` queens on an `n x n` chessboard such that no two queens attack each other. Two queens attack each other if they share the same row, column, or diagonal.\n\nGiven an integer `n`, return all distinct solutions to the n-queens puzzle. You may return the solutions in any order. Each solution is represented as a list of `n` strings of length `n` ordered from row `0` to row `n - 1`, where `'Q'` indicates a queen and `'.'` indicates an empty square. If no valid placement exists, return an empty list `[]`.",
+  "constraints": [
+   "1 <= n <= 10"
+  ],
+  "hints": [
+   "Because each row must contain exactly one queen, place queens one row at a time from row 0 to row n - 1.",
+   "Track occupied columns, main diagonals (row - col), and anti-diagonals (row + col) in O(1) using sets, boolean arrays, or bitmasks.",
+   "Bitmasks allow computing all safe columns for the current row in a single bitwise expression and iterating only over valid set bits."
+  ],
+  "timeComplexity": "O(n!)",
+  "spaceComplexity": "O(n)",
+  "compare": "sorted",
+  "examples": [
+   {
+    "input": "n = 4",
+    "output": "[[\".Q..\",\"...Q\",\"Q...\",\"..Q.\"],[\"..Q.\",\"Q...\",\"...Q\",\".Q..\"]]",
+    "explanation": "For n = 4, there are exactly 2 distinct valid board configurations where no two queens share a row, column, or diagonal."
+   },
+   {
+    "input": "n = 1",
+    "output": "[[\"Q\"]]",
+    "explanation": "For n = 1, a single queen placed at (0, 0) forms the unique solution [[\"Q\"]]."
+   }
+  ],
+  "starterCode": {
+   "java": "class Solution {\n    public List<List<String>> solveNQueens(int n) {\n        // Write your solution here\n        return null;\n    }\n}\n",
+   "python": "class Solution:\n    def solveNQueens(self, n: int) -> List[List[str]]:\n        # Write your solution here\n        pass\n"
+  },
+  "solutionCode": {
+   "java": "class Solution {\n    public List<List<String>> solveNQueens(int n) {\n        List<List<String>> res = new ArrayList<>();\n        int[] queens = new int[n];\n        String[] rowStrs = new String[n];\n        for (int c = 0; c < n; c++) {\n            char[] arr = new char[n];\n            Arrays.fill(arr, '.');\n            arr[c] = 'Q';\n            rowStrs[c] = new String(arr);\n        }\n        int full = (1 << n) - 1;\n        backtrack(0, n, full, 0, 0, 0, queens, rowStrs, res);\n        return res;\n    }\n\n    private void backtrack(int row, int n, int full, int cols, int d1, int d2,\n                           int[] queens, String[] rowStrs, List<List<String>> res) {\n        if (row == n) {\n            List<String> board = new ArrayList<>(n);\n            for (int r = 0; r < n; r++) {\n                board.add(rowStrs[queens[r]]);\n            }\n            res.add(board);\n            return;\n        }\n        int avail = full & ~(cols | d1 | d2);\n        while (avail != 0) {\n            int bit = avail & -avail;\n            avail ^= bit;\n            queens[row] = Integer.numberOfTrailingZeros(bit);\n            backtrack(row + 1, n, full, cols | bit, (d1 | bit) << 1, (d2 | bit) >> 1, queens, rowStrs, res);\n        }\n    }\n}\n",
+   "python": "class Solution:\n    def solveNQueens(self, n: int) -> List[List[str]]:\n        res: List[List[str]] = []\n        queens = [-1] * n\n        full = (1 << n) - 1\n        row_strs = [\".\" * c + \"Q\" + \".\" * (n - 1 - c) for c in range(n)]\n\n        def backtrack(row: int, cols: int, d1: int, d2: int) -> None:\n            if row == n:\n                res.append([row_strs[c] for c in queens])\n                return\n            avail = full & ~(cols | d1 | d2)\n            while avail:\n                bit = avail & -avail\n                avail ^= bit\n                col = bit.bit_length() - 1\n                queens[row] = col\n                backtrack(row + 1, cols | bit, (d1 | bit) << 1, (d2 | bit) >> 1)\n\n        backtrack(0, 0, 0, 0)\n        return res\n"
+  },
+  "sampleArray": [],
+  "visibleTestCount": 2,
+  "hiddenTestCount": 8,
+  "number": 10
+ },
+ {
+  "id": "sudoku-solver",
+  "order": 11,
+  "topicId": "recursion-backtracking",
+  "topic": "Recursion & Backtracking",
+  "title": "Sudoku Solver",
+  "slug": "sudoku-solver",
+  "difficulty": "Hard",
+  "subtopic": "Board Puzzles",
+  "companies": [
+   "Google",
+   "Amazon",
+   "Meta",
+   "Microsoft",
+   "Uber",
+   "Apple"
+  ],
+  "leetcode": 37,
+  "description": "Write a program to solve a `9 x 9` Sudoku puzzle by filling the empty cells in-place.\n\nA Sudoku solution must satisfy all of the following rules:\n1. Each of the digits `'1'-'9'` must occur exactly once in each row.\n2. Each of the digits `'1'-'9'` must occur exactly once in each column.\n3. Each of the digits `'1'-'9'` must occur exactly once in each of the nine `3 x 3` sub-boxes of the grid.\n\nThe `'.'` character indicates an empty cell. Modify `board` in-place so that it contains the unique valid solution; do not return anything.",
+  "constraints": [
+   "board.length == 9",
+   "board[i].length == 9",
+   "board[i][j] is a digit '1'-'9' or '.'.",
+   "It is guaranteed that the input board has a single unique solution."
+  ],
+  "hints": [
+   "Maintain three 9-element bitmask arrays (for rows, columns, and 3x3 boxes) to check valid candidate digits for cell (r, c) in O(1) time.",
+   "The 3x3 box index for cell (r, c) is (r // 3) * 3 + (c // 3).",
+   "To solve hard Sudokus rapidly, apply the Minimum Remaining Values (MRV) heuristic: always branch next on the empty cell with the fewest legal candidates."
+  ],
+  "timeComplexity": "O(9^m)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "examples": [
+   {
+    "input": "board = [[\"5\",\"3\",\".\",\".\",\"7\",\".\",\".\",\".\",\".\"],[\"6\",\".\",\".\",\"1\",\"9\",\"5\",\".\",\".\",\".\"],[\".\",\"9\",\"8\",\".\",\".\",\".\",\".\",\"6\",\".\"],[\"8\",\".\",\".\",\".\",\"6\",\".\",\".\",\".\",\"3\"],[\"4\",\".\",\".\",\"8\",\".\",\"3\",\".\",\".\",\"1\"],[\"7\",\".\",\".\",\".\",\"2\",\".\",\".\",\".\",\"6\"],[\".\",\"6\",\".\",\".\",\".\",\".\",\"2\",\"8\",\".\"],[\".\",\".\",\".\",\"4\",\"1\",\"9\",\".\",\".\",\"5\"],[\".\",\".\",\".\",\".\",\"8\",\".\",\".\",\"7\",\"9\"]]",
+    "output": "[[\"5\",\"3\",\"4\",\"6\",\"7\",\"8\",\"9\",\"1\",\"2\"],[\"6\",\"7\",\"2\",\"1\",\"9\",\"5\",\"3\",\"4\",\"8\"],[\"1\",\"9\",\"8\",\"3\",\"4\",\"2\",\"5\",\"6\",\"7\"],[\"8\",\"5\",\"9\",\"7\",\"6\",\"1\",\"4\",\"2\",\"3\"],[\"4\",\"2\",\"6\",\"8\",\"5\",\"3\",\"7\",\"9\",\"1\"],[\"7\",\"1\",\"3\",\"9\",\"2\",\"4\",\"8\",\"5\",\"6\"],[\"9\",\"6\",\"1\",\"5\",\"3\",\"7\",\"2\",\"8\",\"4\"],[\"2\",\"8\",\"7\",\"4\",\"1\",\"9\",\"6\",\"3\",\"5\"],[\"3\",\"4\",\"5\",\"2\",\"8\",\"6\",\"1\",\"7\",\"9\"]]",
+    "explanation": "Each empty '.' cell is filled in-place so every row, column, and 3x3 sub-box contains the digits '1' through '9' exactly once."
+   },
+   {
+    "input": "board = [[\"2\",\".\",\".\",\".\",\"8\",\".\",\"3\",\".\",\".\"],[\".\",\"6\",\".\",\".\",\"7\",\".\",\".\",\"8\",\"4\"],[\".\",\"3\",\".\",\"5\",\".\",\".\",\"2\",\".\",\"9\"],[\".\",\".\",\".\",\"1\",\".\",\"5\",\"4\",\".\",\"8\"],[\".\",\".\",\".\",\".\",\".\",\".\",\".\",\".\",\".\"],[\"4\",\".\",\"2\",\"7\",\".\",\"6\",\".\",\".\",\".\"],[\"3\",\".\",\"1\",\".\",\".\",\"7\",\".\",\"4\",\".\"],[\"7\",\"2\",\".\",\".\",\"4\",\".\",\".\",\"6\",\".\"],[\".\",\".\",\"4\",\".\",\"1\",\".\",\".\",\".\",\"3\"]]",
+    "output": "[[\"2\",\"4\",\"5\",\"9\",\"8\",\"1\",\"3\",\"7\",\"6\"],[\"1\",\"6\",\"9\",\"2\",\"7\",\"3\",\"5\",\"8\",\"4\"],[\"8\",\"3\",\"7\",\"5\",\"6\",\"4\",\"2\",\"1\",\"9\"],[\"9\",\"7\",\"6\",\"1\",\"2\",\"5\",\"4\",\"3\",\"8\"],[\"5\",\"1\",\"3\",\"4\",\"9\",\"8\",\"6\",\"2\",\"7\"],[\"4\",\"8\",\"2\",\"7\",\"3\",\"6\",\"9\",\"5\",\"1\"],[\"3\",\"9\",\"1\",\"6\",\"5\",\"7\",\"8\",\"4\",\"2\"],[\"7\",\"2\",\"8\",\"3\",\"4\",\"9\",\"1\",\"6\",\"5\"],[\"6\",\"5\",\"4\",\"8\",\"1\",\"2\",\"7\",\"9\",\"3\"]]",
+    "explanation": "Even with an entirely blank middle row, constraint propagation and backtracking determine the unique valid completion."
+   }
+  ],
+  "starterCode": {
+   "java": "class Solution {\n    public void solveSudoku(char[][] board) {\n        // Write your solution here\n    }\n}\n",
+   "python": "class Solution:\n    def solveSudoku(self, board: List[List[str]]) -> None:\n        # Write your solution here\n        pass\n"
+  },
+  "solutionCode": {
+   "java": "class Solution {\n    public void solveSudoku(char[][] board) {\n        int[] rows = new int[9];\n        int[] cols = new int[9];\n        int[] boxes = new int[9];\n        int[] emptyR = new int[81];\n        int[] emptyC = new int[81];\n        int emptyCount = 0;\n\n        for (int r = 0; r < 9; r++) {\n            for (int c = 0; c < 9; c++) {\n                char ch = board[r][c];\n                if (ch == '.') {\n                    emptyR[emptyCount] = r;\n                    emptyC[emptyCount] = c;\n                    emptyCount++;\n                } else {\n                    int bit = 1 << (ch - '1');\n                    rows[r] |= bit;\n                    cols[c] |= bit;\n                    boxes[(r / 3) * 3 + (c / 3)] |= bit;\n                }\n            }\n        }\n\n        dfs(0, emptyCount, emptyR, emptyC, board, rows, cols, boxes);\n    }\n\n    private boolean dfs(int idx, int n, int[] emptyR, int[] emptyC,\n                        char[][] board, int[] rows, int[] cols, int[] boxes) {\n        if (idx == n) return true;\n\n        int best = idx;\n        int bestCnt = 10;\n        int bestMask = 0;\n        for (int i = idx; i < n; i++) {\n            int r = emptyR[i];\n            int c = emptyC[i];\n            int bi = (r / 3) * 3 + (c / 3);\n            int avail = 0x1FF & ~(rows[r] | cols[c] | boxes[bi]);\n            int cnt = Integer.bitCount(avail);\n            if (cnt == 0) return false;\n            if (cnt < bestCnt) {\n                bestCnt = cnt;\n                best = i;\n                bestMask = avail;\n                if (cnt == 1) break;\n            }\n        }\n\n        int tr = emptyR[idx]; emptyR[idx] = emptyR[best]; emptyR[best] = tr;\n        int tc = emptyC[idx]; emptyC[idx] = emptyC[best]; emptyC[best] = tc;\n\n        int r = emptyR[idx];\n        int c = emptyC[idx];\n        int bi = (r / 3) * 3 + (c / 3);\n        int m = bestMask;\n        while (m != 0) {\n            int bit = m & -m;\n            m ^= bit;\n            int d = Integer.numberOfTrailingZeros(bit);\n            board[r][c] = (char) ('1' + d);\n            rows[r] |= bit;\n            cols[c] |= bit;\n            boxes[bi] |= bit;\n            if (dfs(idx + 1, n, emptyR, emptyC, board, rows, cols, boxes)) {\n                return true;\n            }\n            rows[r] ^= bit;\n            cols[c] ^= bit;\n            boxes[bi] ^= bit;\n            board[r][c] = '.';\n        }\n\n        tr = emptyR[idx]; emptyR[idx] = emptyR[best]; emptyR[best] = tr;\n        tc = emptyC[idx]; emptyC[idx] = emptyC[best]; emptyC[best] = tc;\n        return false;\n    }\n}\n",
+   "python": "class Solution:\n    def solveSudoku(self, board: List[List[str]]) -> None:\n        rows = [0] * 9\n        cols = [0] * 9\n        boxes = [0] * 9\n        empties: List[tuple[int, int]] = []\n\n        for r in range(9):\n            for c in range(9):\n                ch = board[r][c]\n                if ch == \".\":\n                    empties.append((r, c))\n                else:\n                    bit = 1 << (ord(ch) - ord(\"1\"))\n                    rows[r] |= bit\n                    cols[c] |= bit\n                    boxes[(r // 3) * 3 + (c // 3)] |= bit\n\n        n = len(empties)\n\n        def dfs(idx: int) -> bool:\n            if idx == n:\n                return True\n            best = idx\n            best_cnt = 10\n            best_mask = 0\n            for i in range(idx, n):\n                r, c = empties[i]\n                bi = (r // 3) * 3 + (c // 3)\n                avail = 0x1FF & ~(rows[r] | cols[c] | boxes[bi])\n                cnt = avail.bit_count()\n                if cnt == 0:\n                    return False\n                if cnt < best_cnt:\n                    best_cnt = cnt\n                    best = i\n                    best_mask = avail\n                    if cnt == 1:\n                        break\n\n            empties[idx], empties[best] = empties[best], empties[idx]\n            r, c = empties[idx]\n            bi = (r // 3) * 3 + (c // 3)\n            m = best_mask\n            while m:\n                bit = m & -m\n                m ^= bit\n                digit = bit.bit_length()\n                board[r][c] = chr(ord(\"0\") + digit)\n                rows[r] |= bit\n                cols[c] |= bit\n                boxes[bi] |= bit\n                if dfs(idx + 1):\n                    return True\n                rows[r] ^= bit\n                cols[c] ^= bit\n                boxes[bi] ^= bit\n                board[r][c] = \".\"\n            empties[idx], empties[best] = empties[best], empties[idx]\n            return False\n\n        dfs(0)\n"
+  },
+  "sampleArray": [],
+  "visibleTestCount": 2,
+  "hiddenTestCount": 11,
+  "number": 11
+ },
+ {
+  "id": "word-search",
+  "order": 12,
+  "topicId": "recursion-backtracking",
+  "topic": "Recursion & Backtracking",
+  "title": "Word Search",
+  "slug": "word-search",
+  "difficulty": "Medium",
+  "subtopic": "Board Puzzles",
+  "companies": [
+   "Google",
+   "Amazon",
+   "Meta",
+   "Microsoft",
+   "Bloomberg",
+   "Apple"
+  ],
+  "leetcode": 79,
+  "description": "Given an `m x n` grid of characters `board` and a string `word`, return `true` if `word` exists in the grid, and `false` otherwise.\n\nThe word can be constructed from letters of sequentially adjacent cells, where adjacent cells are horizontally or vertically neighboring (diagonal moves are not allowed). The same cell may not be used more than once in forming the word. Character matching is case-sensitive.",
+  "constraints": [
+   "1 <= board.length <= 6",
+   "1 <= board[i].length <= 6",
+   "1 <= word.length <= 15",
+   "board and word consist only of lowercase and uppercase English letters."
+  ],
+  "hints": [
+   "Start a depth-first search from every cell matching word[0], exploring up, down, left, and right neighbors.",
+   "Mark the current cell as visited (for example, temporarily overwriting it in-place with a sentinel like '#') before recursing, and restore its original character when backtracking.",
+   "Prune impossible searches early: verify the board has enough occurrences of every character in word, and consider reversing word when its last character is rarer on the board than its first."
+  ],
+  "timeComplexity": "O(m * n * 3^L)",
+  "spaceComplexity": "O(L)",
+  "compare": "exact",
+  "examples": [
+   {
+    "input": "board = [[\"A\",\"B\",\"C\",\"E\"],[\"S\",\"F\",\"C\",\"S\"],[\"A\",\"D\",\"E\",\"E\"]], word = \"ABCCED\"",
+    "output": "true",
+    "explanation": "The path (0,0)->(0,1)->(0,2)->(1,2)->(2,2)->(2,1) spells \"ABCCED\" without reusing any cell."
+   },
+   {
+    "input": "board = [[\"A\",\"B\",\"C\",\"E\"],[\"S\",\"F\",\"C\",\"S\"],[\"A\",\"D\",\"E\",\"E\"]], word = \"SEE\"",
+    "output": "true",
+    "explanation": "The path (1,3)->(2,3)->(2,2) spells \"SEE\"."
+   },
+   {
+    "input": "board = [[\"A\",\"B\",\"C\",\"E\"],[\"S\",\"F\",\"C\",\"S\"],[\"A\",\"D\",\"E\",\"E\"]], word = \"ABCB\"",
+    "output": "false",
+    "explanation": "\"ABCB\" cannot be formed because moving back from 'C' to 'B' would reuse cell (0,1)."
+   }
+  ],
+  "starterCode": {
+   "java": "class Solution {\n    public boolean exist(char[][] board, String word) {\n        // Write your solution here\n        return false;\n    }\n}\n",
+   "python": "class Solution:\n    def exist(self, board: List[List[str]], word: str) -> bool:\n        # Write your solution here\n        pass\n"
+  },
+  "solutionCode": {
+   "java": "class Solution {\n    public boolean exist(char[][] board, String word) {\n        int m = board.length;\n        int n = board[0].length;\n        int len = word.length();\n        if (len > m * n) return false;\n\n        int[] boardCnt = new int[128];\n        for (int r = 0; r < m; r++) {\n            for (int c = 0; c < n; c++) {\n                boardCnt[board[r][c]]++;\n            }\n        }\n        int[] wordCnt = new int[128];\n        for (int i = 0; i < len; i++) {\n            char ch = word.charAt(i);\n            if (++wordCnt[ch] > boardCnt[ch]) return false;\n        }\n\n        char[] chars = word.toCharArray();\n        if (boardCnt[chars[0]] > boardCnt[chars[len - 1]]) {\n            for (int l = 0, r = len - 1; l < r; l++, r--) {\n                char tmp = chars[l];\n                chars[l] = chars[r];\n                chars[r] = tmp;\n            }\n        }\n\n        for (int r = 0; r < m; r++) {\n            for (int c = 0; c < n; c++) {\n                if (board[r][c] == chars[0] && dfs(board, chars, r, c, 0, m, n)) {\n                    return true;\n                }\n            }\n        }\n        return false;\n    }\n\n    private boolean dfs(char[][] board, char[] word, int r, int c, int idx, int m, int n) {\n        if (board[r][c] != word[idx]) return false;\n        if (idx == word.length - 1) return true;\n        char saved = board[r][c];\n        board[r][c] = '#';\n        int nxt = idx + 1;\n        boolean found = (r > 0 && dfs(board, word, r - 1, c, nxt, m, n))\n                || (r + 1 < m && dfs(board, word, r + 1, c, nxt, m, n))\n                || (c > 0 && dfs(board, word, r, c - 1, nxt, m, n))\n                || (c + 1 < n && dfs(board, word, r, c + 1, nxt, m, n));\n        board[r][c] = saved;\n        return found;\n    }\n}\n",
+   "python": "class Solution:\n    def exist(self, board: List[List[str]], word: str) -> bool:\n        m, n = len(board), len(board[0])\n        L = len(word)\n        if L > m * n:\n            return False\n\n        board_cnt = Counter(ch for row in board for ch in row)\n        word_cnt = Counter(word)\n        for ch, need in word_cnt.items():\n            if board_cnt[ch] < need:\n                return False\n\n        if board_cnt[word[0]] > board_cnt[word[-1]]:\n            word = word[::-1]\n\n        def dfs(r: int, c: int, idx: int) -> bool:\n            if board[r][c] != word[idx]:\n                return False\n            if idx == L - 1:\n                return True\n            saved = board[r][c]\n            board[r][c] = \"#\"\n            nxt = idx + 1\n            if r > 0 and dfs(r - 1, c, nxt):\n                board[r][c] = saved\n                return True\n            if r + 1 < m and dfs(r + 1, c, nxt):\n                board[r][c] = saved\n                return True\n            if c > 0 and dfs(r, c - 1, nxt):\n                board[r][c] = saved\n                return True\n            if c + 1 < n and dfs(r, c + 1, nxt):\n                board[r][c] = saved\n                return True\n            board[r][c] = saved\n            return False\n\n        for r in range(m):\n            for c in range(n):\n                if board[r][c] == word[0] and dfs(r, c, 0):\n                    return True\n        return False\n"
+  },
+  "sampleArray": [],
+  "visibleTestCount": 3,
+  "hiddenTestCount": 11,
+  "number": 12
+ },
+ {
+  "id": "palindrome-partitioning",
+  "order": 13,
+  "topicId": "recursion-backtracking",
+  "topic": "Recursion & Backtracking",
+  "title": "Palindrome Partitioning",
+  "slug": "palindrome-partitioning",
+  "difficulty": "Medium",
+  "subtopic": "Subsets",
+  "companies": [
+   "Google",
+   "Amazon",
+   "Meta",
+   "Microsoft",
+   "Apple",
+   "Bloomberg"
+  ],
+  "leetcode": 131,
+  "description": "Given a string `s`, partition `s` such that every substring of the partition is a palindrome. Return all possible palindrome partitionings of `s`.\n\nYou may return the list of partitionings in any order, but within each partitioning the substrings must appear in left-to-right order so that concatenating them reproduces `s`.",
+  "constraints": [
+   "1 <= s.length <= 16",
+   "s contains only lowercase English letters."
+  ],
+  "hints": [
+   "Use backtracking starting at index 0: try every prefix s[start..end] that is a palindrome, append it to the current path, and recurse from end + 1.",
+   "Precompute an n x n boolean DP table isPal[i][j] indicating whether s[i..j] is a palindrome so each palindrome check during backtracking takes O(1) time.",
+   "A substring s[i..j] is a palindrome if s[i] == s[j] and either j - i <= 2 or isPal[i + 1][j - 1] is true."
+  ],
+  "timeComplexity": "O(n * 2^n)",
+  "spaceComplexity": "O(n^2)",
+  "compare": "sorted",
+  "examples": [
+   {
+    "input": "s = \"aab\"",
+    "output": "[[\"a\",\"a\",\"b\"],[\"aa\",\"b\"]]",
+    "explanation": "\"aab\" can be partitioned into [\"a\",\"a\",\"b\"] or [\"aa\",\"b\"]."
+   },
+   {
+    "input": "s = \"a\"",
+    "output": "[[\"a\"]]",
+    "explanation": "A single character is always a palindrome, giving [[\"a\"]]."
+   },
+   {
+    "input": "s = \"aba\"",
+    "output": "[[\"a\",\"b\",\"a\"],[\"aba\"]]",
+    "explanation": "\"aba\" can be split into three single-character palindromes or kept whole as [\"aba\"]."
+   }
+  ],
+  "starterCode": {
+   "java": "class Solution {\n    public List<List<String>> partition(String s) {\n        // Write your solution here\n        return null;\n    }\n}\n",
+   "python": "class Solution:\n    def partition(self, s: str) -> List[List[str]]:\n        # Write your solution here\n        pass\n"
+  },
+  "solutionCode": {
+   "java": "class Solution {\n    public List<List<String>> partition(String s) {\n        int n = s.length();\n        boolean[][] isPal = new boolean[n][n];\n        for (int i = n - 1; i >= 0; i--) {\n            for (int j = i; j < n; j++) {\n                if (s.charAt(i) == s.charAt(j) && (j - i <= 2 || isPal[i + 1][j - 1])) {\n                    isPal[i][j] = true;\n                }\n            }\n        }\n\n        List<List<String>> res = new ArrayList<>();\n        List<String> path = new ArrayList<>();\n        backtrack(s, 0, n, isPal, path, res);\n        return res;\n    }\n\n    private void backtrack(String s, int start, int n, boolean[][] isPal,\n                           List<String> path, List<List<String>> res) {\n        if (start == n) {\n            res.add(new ArrayList<>(path));\n            return;\n        }\n        for (int end = start; end < n; end++) {\n            if (isPal[start][end]) {\n                path.add(s.substring(start, end + 1));\n                backtrack(s, end + 1, n, isPal, path, res);\n                path.remove(path.size() - 1);\n            }\n        }\n    }\n}\n",
+   "python": "class Solution:\n    def partition(self, s: str) -> List[List[str]]:\n        n = len(s)\n        is_pal = [[False] * n for _ in range(n)]\n        for i in range(n - 1, -1, -1):\n            for j in range(i, n):\n                if s[i] == s[j] and (j - i <= 2 or is_pal[i + 1][j - 1]):\n                    is_pal[i][j] = True\n\n        res: List[List[str]] = []\n        path: List[str] = []\n\n        def backtrack(start: int) -> None:\n            if start == n:\n                res.append(path.copy())\n                return\n            for end in range(start, n):\n                if is_pal[start][end]:\n                    path.append(s[start : end + 1])\n                    backtrack(end + 1)\n                    path.pop()\n\n        backtrack(0)\n        return res\n"
+  },
+  "sampleArray": [],
+  "visibleTestCount": 3,
+  "hiddenTestCount": 11,
+  "number": 13
+ },
+ {
+  "id": "restore-ip-addresses",
+  "order": 14,
+  "topicId": "recursion-backtracking",
+  "topic": "Recursion & Backtracking",
+  "title": "Restore IP Addresses",
+  "slug": "restore-ip-addresses",
+  "difficulty": "Medium",
+  "subtopic": "Constraint Pruning",
+  "companies": [
+   "Google",
+   "Amazon",
+   "Meta",
+   "Microsoft",
+   "Apple",
+   "Oracle"
+  ],
+  "leetcode": 93,
+  "description": "A valid IPv4 address consists of exactly four integers separated by single dots `'.'`. Each integer must be between `0` and `255` (inclusive) and cannot have leading zeros (for example, `\"0.1.2.201\"` and `\"192.168.1.1\"` are valid, whereas `\"0.011.255.245\"` and `\"192.168.1.312\"` are invalid).\n\nGiven a string `s` containing only digits, return all possible valid IPv4 addresses that can be formed by inserting three dots into `s`. You cannot reorder or remove any digits in `s`. You may return the valid IP addresses in any order.",
+  "constraints": [
+   "1 <= s.length <= 20",
+   "s consists of digits '0'-'9' only."
+  ],
+  "hints": [
+   "An IPv4 address has 4 segments, each 1 to 3 digits long, so strings shorter than 4 or longer than 12 characters can never form a valid IP.",
+   "Backtrack by placing 4 segments one at a time, pruning whenever the remaining digits cannot fit in the remaining segments (remaining < partsLeft or remaining > 3 * partsLeft).",
+   "A segment of length > 1 is invalid if it starts with '0', and a 3-digit segment is invalid if its numeric value exceeds 255."
+  ],
+  "timeComplexity": "O(1)",
+  "spaceComplexity": "O(1)",
+  "compare": "sorted",
+  "examples": [
+   {
+    "input": "s = \"25525511135\"",
+    "output": "[\"255.255.11.135\",\"255.255.111.35\"]",
+    "explanation": "The two valid ways to insert three dots into \"25525511135\" are \"255.255.11.135\" and \"255.255.111.35\"."
+   },
+   {
+    "input": "s = \"0000\"",
+    "output": "[\"0.0.0.0\"]",
+    "explanation": "Each single '0' forms one valid octet, producing \"0.0.0.0\"."
+   },
+   {
+    "input": "s = \"101023\"",
+    "output": "[\"1.0.10.23\",\"1.0.102.3\",\"10.1.0.23\",\"10.10.2.3\",\"101.0.2.3\"]",
+    "explanation": "All five splits respect the 0..255 range and forbid multi-digit octets with leading zeros."
+   }
+  ],
+  "starterCode": {
+   "java": "class Solution {\n    public List<String> restoreIpAddresses(String s) {\n        // Write your solution here\n        return null;\n    }\n}\n",
+   "python": "class Solution:\n    def restoreIpAddresses(self, s: str) -> List[str]:\n        # Write your solution here\n        pass\n"
+  },
+  "solutionCode": {
+   "java": "class Solution {\n    public List<String> restoreIpAddresses(String s) {\n        int n = s.length();\n        List<String> res = new ArrayList<>();\n        if (n < 4 || n > 12) return res;\n        String[] parts = new String[4];\n        backtrack(s, n, 0, 0, parts, res);\n        return res;\n    }\n\n    private void backtrack(String s, int n, int start, int seg, String[] parts, List<String> res) {\n        int remChars = n - start;\n        int remSegs = 4 - seg;\n        if (remChars < remSegs || remChars > 3 * remSegs) return;\n        if (seg == 4) {\n            res.add(parts[0] + \".\" + parts[1] + \".\" + parts[2] + \".\" + parts[3]);\n            return;\n        }\n        int val = 0;\n        int maxLen = Math.min(3, remChars);\n        for (int len = 1; len <= maxLen; len++) {\n            if (len > 1 && s.charAt(start) == '0') break;\n            val = val * 10 + (s.charAt(start + len - 1) - '0');\n            if (val > 255) break;\n            parts[seg] = s.substring(start, start + len);\n            backtrack(s, n, start + len, seg + 1, parts, res);\n        }\n    }\n}\n",
+   "python": "class Solution:\n    def restoreIpAddresses(self, s: str) -> List[str]:\n        n = len(s)\n        if n < 4 or n > 12:\n            return []\n        res: List[str] = []\n        parts: List[str] = []\n\n        def backtrack(start: int, seg: int) -> None:\n            rem_chars = n - start\n            rem_segs = 4 - seg\n            if rem_chars < rem_segs or rem_chars > 3 * rem_segs:\n                return\n            if seg == 4:\n                res.append(\".\".join(parts))\n                return\n            for length in range(1, min(3, rem_chars) + 1):\n                if length > 1 and s[start] == \"0\":\n                    break\n                piece = s[start : start + length]\n                if int(piece) <= 255:\n                    parts.append(piece)\n                    backtrack(start + length, seg + 1)\n                    parts.pop()\n\n        backtrack(0, 0)\n        return res\n"
+  },
+  "sampleArray": [],
+  "visibleTestCount": 3,
+  "hiddenTestCount": 11,
+  "number": 14
+ },
+ {
+  "id": "word-break-ii",
+  "order": 15,
+  "topicId": "recursion-backtracking",
+  "topic": "Recursion & Backtracking",
+  "title": "Word Break II",
+  "slug": "word-break-ii",
+  "difficulty": "Hard",
+  "subtopic": "Constraint Pruning",
+  "companies": [
+   "Google",
+   "Amazon",
+   "Meta",
+   "Microsoft",
+   "Bloomberg",
+   "Uber"
+  ],
+  "leetcode": 140,
+  "description": "Given a string `s` and a dictionary of strings `wordDict`, add spaces in `s` to construct a sentence where each word is a valid dictionary word. Return all such possible sentences in any order.\n\nNote that the same word in the dictionary may be reused multiple times in the segmentation. If no valid segmentation exists, return an empty list `[]`.",
+  "constraints": [
+   "1 <= s.length <= 20",
+   "1 <= wordDict.length <= 1000",
+   "1 <= wordDict[i].length <= 10",
+   "s and wordDict[i] consist of only lowercase English letters.",
+   "All the strings of wordDict are unique.",
+   "The input is generated such that the number of valid sentences does not exceed 10^4."
+  ],
+  "hints": [
+   "Store wordDict in a hash set and track the maximum word length so each prefix lookup at index i checks at most maxLen substrings.",
+   "Plain backtracking can repeatedly explore dead-end suffixes (such as \"aaaa...ab\" with words \"a\", \"aa\", ...). Memoize the list of valid sentences starting from each index i.",
+   "For a suffix s[i:], whenever s[i:j] is in the dictionary, combine s[i:j] with every memoized sentence returned for index j."
+  ],
+  "timeComplexity": "O(n * 2^n + W)",
+  "spaceComplexity": "O(n * 2^n + W)",
+  "compare": "sorted",
+  "examples": [
+   {
+    "input": "s = \"catsanddog\", wordDict = [\"cat\",\"cats\",\"and\",\"sand\",\"dog\"]",
+    "output": "[\"cat sand dog\",\"cats and dog\"]",
+    "explanation": "\"catsanddog\" can be segmented as \"cats and dog\" or \"cat sand dog\"."
+   },
+   {
+    "input": "s = \"pineapplepenapple\", wordDict = [\"apple\",\"pen\",\"applepen\",\"pine\",\"pineapple\"]",
+    "output": "[\"pine apple pen apple\",\"pine applepen apple\",\"pineapple pen apple\"]",
+    "explanation": "Words like \"apple\" may be reused, yielding three distinct valid sentences."
+   },
+   {
+    "input": "s = \"catsandog\", wordDict = [\"cats\",\"dog\",\"sand\",\"and\",\"cat\"]",
+    "output": "[]",
+    "explanation": "No sequence of dictionary words covers \"catsandog\" completely, so return []."
+   }
+  ],
+  "starterCode": {
+   "java": "class Solution {\n    public List<String> wordBreak(String s, List<String> wordDict) {\n        // Write your solution here\n        return null;\n    }\n}\n",
+   "python": "class Solution:\n    def wordBreak(self, s: str, wordDict: List[str]) -> List[str]:\n        # Write your solution here\n        pass\n"
+  },
+  "solutionCode": {
+   "java": "class Solution {\n    public List<String> wordBreak(String s, List<String> wordDict) {\n        Set<String> words = new HashSet<>(wordDict);\n        int maxLen = 0;\n        for (String w : words) {\n            maxLen = Math.max(maxLen, w.length());\n        }\n        Map<Integer, List<String>> memo = new HashMap<>();\n        return dfs(s, 0, maxLen, words, memo);\n    }\n\n    private List<String> dfs(String s, int start, int maxLen, Set<String> words,\n                             Map<Integer, List<String>> memo) {\n        if (memo.containsKey(start)) return memo.get(start);\n        List<String> res = new ArrayList<>();\n        int n = s.length();\n        if (start == n) {\n            res.add(\"\");\n            return res;\n        }\n        int limit = Math.min(n, start + maxLen);\n        for (int end = start + 1; end <= limit; end++) {\n            String w = s.substring(start, end);\n            if (words.contains(w)) {\n                for (String tail : dfs(s, end, maxLen, words, memo)) {\n                    res.add(tail.isEmpty() ? w : w + \" \" + tail);\n                }\n            }\n        }\n        memo.put(start, res);\n        return res;\n    }\n}\n",
+   "python": "class Solution:\n    def wordBreak(self, s: str, wordDict: List[str]) -> List[str]:\n        words = set(wordDict)\n        n = len(s)\n        max_len = max((len(w) for w in words), default=0)\n        memo: dict[int, List[str]] = {}\n\n        def dfs(start: int) -> List[str]:\n            if start in memo:\n                return memo[start]\n            if start == n:\n                return [\"\"]\n            res: List[str] = []\n            limit = min(n, start + max_len)\n            for end in range(start + 1, limit + 1):\n                w = s[start:end]\n                if w in words:\n                    for tail in dfs(end):\n                        res.append(w if not tail else f\"{w} {tail}\")\n            memo[start] = res\n            return res\n\n        return dfs(0)\n"
+  },
+  "sampleArray": [],
+  "visibleTestCount": 3,
+  "hiddenTestCount": 10,
+  "number": 15
+ },
+ {
+  "id": "partition-to-k-equal-sum-subsets",
+  "order": 16,
+  "topicId": "recursion-backtracking",
+  "topic": "Recursion & Backtracking",
+  "title": "Partition to K Equal Sum Subsets",
+  "slug": "partition-to-k-equal-sum-subsets",
+  "difficulty": "Medium",
+  "subtopic": "Constraint Pruning",
+  "companies": [
+   "Google",
+   "Amazon",
+   "Meta",
+   "Microsoft",
+   "LinkedIn",
+   "Apple"
+  ],
+  "leetcode": 698,
+  "description": "Given an integer array `nums` and an integer `k`, return `true` if it is possible to divide this array into `k` non-empty subsets whose sums are all equal, and `false` otherwise.\n\nEvery element of `nums` must be assigned to exactly one of the `k` subsets.",
+  "constraints": [
+   "1 <= k <= nums.length <= 16",
+   "1 <= nums[i] <= 10^4"
+  ],
+  "hints": [
+   "First check quick necessary conditions: the total sum must be divisible by k, and the largest element cannot exceed target = sum(nums) / k.",
+   "Sort nums in descending order so larger elements fail early, and fill one bucket to target at a time. When starting a new empty bucket, force the first unused element into it to eliminate k! permutations of identical buckets.",
+   "Because n <= 16, represent the set of used elements as a bitmask and memoize failed bitmasks (the current bucket's partial sum is uniquely determined by the bitmask as usedSum % target)."
+  ],
+  "timeComplexity": "O(n * 2^n)",
+  "spaceComplexity": "O(2^n)",
+  "compare": "exact",
+  "examples": [
+   {
+    "input": "nums = [4,3,2,3,5,2,1], k = 4",
+    "output": "true",
+    "explanation": "The array sums to 20 and can be partitioned into 4 subsets of sum 5: (5), (1, 4), (2, 3), and (2, 3)."
+   },
+   {
+    "input": "nums = [1,2,3,4], k = 3",
+    "output": "false",
+    "explanation": "The total sum is 10, which is not divisible by k = 3, so no equal-sum partition exists."
+   },
+   {
+    "input": "nums = [2,2,2,2,3,4,5], k = 4",
+    "output": "false",
+    "explanation": "Although 2+2+2+2+3+4+5 = 20 is divisible by 4 (target 5), the four 2s cannot all be combined into subsets of sum 5 with the remaining elements."
+   }
+  ],
+  "starterCode": {
+   "java": "class Solution {\n    public boolean canPartitionKSubsets(int[] nums, int k) {\n        // Write your solution here\n        return false;\n    }\n}\n",
+   "python": "class Solution:\n    def canPartitionKSubsets(self, nums: List[int], k: int) -> bool:\n        # Write your solution here\n        pass\n"
+  },
+  "solutionCode": {
+   "java": "class Solution {\n    public boolean canPartitionKSubsets(int[] nums, int k) {\n        int total = 0;\n        for (int x : nums) total += x;\n        if (total % k != 0) return false;\n        int target = total / k;\n\n        Arrays.sort(nums);\n        int n = nums.length;\n        for (int l = 0, r = n - 1; l < r; l++, r--) {\n            int tmp = nums[l];\n            nums[l] = nums[r];\n            nums[r] = tmp;\n        }\n        if (nums[0] > target) return false;\n        if (k == 1) return true;\n\n        boolean[] failed = new boolean[1 << n];\n        return dfs(0, 0, nums, target, (1 << n) - 1, failed);\n    }\n\n    private boolean dfs(int mask, int curSum, int[] nums, int target, int full, boolean[] failed) {\n        if (mask == full) return true;\n        if (failed[mask]) return false;\n\n        int n = nums.length;\n        if (curSum == 0) {\n            for (int i = 0; i < n; i++) {\n                if ((mask & (1 << i)) == 0) {\n                    int nxt = nums[i];\n                    if (dfs(mask | (1 << i), nxt == target ? 0 : nxt, nums, target, full, failed)) {\n                        return true;\n                    }\n                    break;\n                }\n            }\n        } else {\n            for (int i = 0; i < n; i++) {\n                if ((mask & (1 << i)) != 0) continue;\n                if (i > 0 && nums[i] == nums[i - 1] && (mask & (1 << (i - 1))) == 0) continue;\n                int nxt = curSum + nums[i];\n                if (nxt > target) continue;\n                if (dfs(mask | (1 << i), nxt == target ? 0 : nxt, nums, target, full, failed)) {\n                    return true;\n                }\n            }\n        }\n\n        failed[mask] = true;\n        return false;\n    }\n}\n",
+   "python": "class Solution:\n    def canPartitionKSubsets(self, nums: List[int], k: int) -> bool:\n        total = sum(nums)\n        if total % k != 0:\n            return False\n        target = total // k\n        nums.sort(reverse=True)\n        if nums[0] > target:\n            return False\n        if k == 1:\n            return True\n\n        n = len(nums)\n        full = (1 << n) - 1\n        failed = bytearray(1 << n)\n\n        def dfs(mask: int, cur_sum: int) -> bool:\n            if mask == full:\n                return True\n            if failed[mask]:\n                return False\n\n            if cur_sum == 0:\n                for i in range(n):\n                    if not (mask & (1 << i)):\n                        nxt = nums[i]\n                        if dfs(mask | (1 << i), 0 if nxt == target else nxt):\n                            return True\n                        break\n            else:\n                for i in range(n):\n                    if mask & (1 << i):\n                        continue\n                    if i > 0 and nums[i] == nums[i - 1] and not (mask & (1 << (i - 1))):\n                        continue\n                    nxt = cur_sum + nums[i]\n                    if nxt > target:\n                        continue\n                    if dfs(mask | (1 << i), 0 if nxt == target else nxt):\n                        return True\n\n            failed[mask] = 1\n            return False\n\n        return dfs(0, 0)\n"
+  },
+  "sampleArray": [
+   4,
+   3,
+   2,
+   3,
+   5,
+   2,
+   1
+  ],
+  "visibleTestCount": 3,
+  "hiddenTestCount": 11,
+  "number": 16
+ }
+]

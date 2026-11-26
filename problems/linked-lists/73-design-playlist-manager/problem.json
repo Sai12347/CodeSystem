@@ -1,0 +1,88 @@
+{
+  "title": "Design Music Playlist Manager",
+  "difficulty": "Medium",
+  "subtopic": "LRU Design",
+  "companies": [
+    "Apple",
+    "Amazon",
+    "Netflix",
+    "Uber"
+  ],
+  "description": "Design a music playlist manager `PlaylistManager` supporting `O(1)` song navigation, arbitrary song removal, and reordering:\n- `PlaylistManager()` initializes an empty playlist with no current song.\n- `void addSong(int songId)` appends `songId` to the end of the playlist (if `songId` is not already present). If the playlist was empty, `songId` becomes the current song.\n- `void playNext()` moves the current song pointer to the next song in the playlist if one exists; otherwise does nothing.\n- `void playPrev()` moves the current song pointer to the previous song in the playlist if one exists; otherwise does nothing.\n- `void removeSong(int songId)` removes `songId` if it is in the playlist. If the removed song was the current song, advance current to its next song if one exists, otherwise to its previous song if one exists, otherwise the playlist becomes empty.\n- `void moveToFront(int songId)` moves `songId` to the front of the playlist if it is present, while keeping the current pointer on the exact same song node it was already pointing to.\n- `int getCurrent()` returns the `songId` of the current song, or `-1` if the playlist is empty.",
+  "constraints": [
+    "1 <= songId <= 10^5",
+    "At most 2000 calls will be made across all operations."
+  ],
+  "hints": [
+    "Use a doubly linked list with sentinel `head` and `tail` nodes, a hash map `songId -> Node` for O(1) lookup, and a `curr` node reference.",
+    "Because `curr` points directly to a node object, `moveToFront(songId)` only needs to unlink the node and insert it after `head` without changing `curr`."
+  ],
+  "examples": [
+    {
+      "explanation": "List [10,20,30], curr=10 -> playNext curr=20 -> moveToFront(30) gives [30,10,20] with curr=20 -> playPrev gives 10 -> playPrev gives 30."
+    },
+    {
+      "explanation": "Removing current song 1 advances current to next song 2; removing 2 empties the playlist so getCurrent() returns -1."
+    },
+    {
+      "explanation": "When current song 6 is the tail, removing 6 falls back to previous song 5."
+    }
+  ],
+  "timeComplexity": "O(1) per operation",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "design",
+    "className": "PlaylistManager",
+    "constructor": {
+      "params": []
+    },
+    "methods": [
+      {
+        "name": "addSong",
+        "params": [
+          {
+            "name": "songId",
+            "type": "int"
+          }
+        ],
+        "returns": "void"
+      },
+      {
+        "name": "playNext",
+        "params": [],
+        "returns": "void"
+      },
+      {
+        "name": "playPrev",
+        "params": [],
+        "returns": "void"
+      },
+      {
+        "name": "removeSong",
+        "params": [
+          {
+            "name": "songId",
+            "type": "int"
+          }
+        ],
+        "returns": "void"
+      },
+      {
+        "name": "moveToFront",
+        "params": [
+          {
+            "name": "songId",
+            "type": "int"
+          }
+        ],
+        "returns": "void"
+      },
+      {
+        "name": "getCurrent",
+        "params": [],
+        "returns": "int"
+      }
+    ]
+  }
+}

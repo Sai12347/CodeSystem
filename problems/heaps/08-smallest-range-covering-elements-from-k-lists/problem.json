@@ -1,0 +1,52 @@
+{
+  "title": "Smallest Range Covering Elements from K Lists",
+  "difficulty": "Hard",
+  "subtopic": "Merge K Sorted",
+  "companies": [
+    "Google",
+    "Amazon",
+    "Meta",
+    "Microsoft",
+    "Apple",
+    "LinkedIn"
+  ],
+  "leetcode": 632,
+  "description": "You have `k` lists of sorted integers in **non-decreasing order**. Find the **smallest** closed range `[a, b]` that includes at least one number from each of the `k` lists.\n\nWe define the range `[a, b]` to be smaller than range `[c, d]` if `b - a < d - c`, or if `b - a == d - c` and `a < c`.\n\nReturn the smallest range as a two-element integer array `[a, b]`.",
+  "constraints": [
+    "nums.length == k",
+    "1 <= k <= 3500",
+    "1 <= nums[i].length <= 50",
+    "-10^5 <= nums[i][j] <= 10^5",
+    "nums[i] is sorted in non-decreasing order."
+  ],
+  "hints": [
+    "Maintain one active element from each of the k lists. The tightest range covering those k chosen elements is `[min_val, max_val]`.",
+    "To potentially shrink `[min_val, max_val]`, you must advance the pointer of whichever list currently holds `min_val` (advancing any other list can only increase `max_val`).",
+    "Use a min-heap of size k storing `(value, listIndex, elemIndex)` while tracking the running `curMax`. Stop as soon as the list supplying the minimum runs out of elements."
+  ],
+  "examples": [
+    {
+      "explanation": "Range [20, 24] contains 24 from list 1, 20 from list 2, and 22 from list 3, with length 4."
+    },
+    {
+      "explanation": "Every list contains 1, so the zero-width range [1, 1] covers all three lists."
+    },
+    {
+      "explanation": "Ranges [1, 3], [3, 5], and [5, 7] all cover both lists with length 2, and [1, 3] wins the tie-breaker because 1 < 3 < 5."
+    }
+  ],
+  "timeComplexity": "O(N log k)",
+  "spaceComplexity": "O(k)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "smallestRange",
+    "params": [
+      {
+        "name": "nums",
+        "type": "List<List<Integer>>"
+      }
+    ],
+    "returns": "int[]"
+  }
+}

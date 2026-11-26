@@ -1,0 +1,47 @@
+{
+  "title": "Convert Sorted List to BST",
+  "difficulty": "Medium",
+  "subtopic": "Fast/Slow Pointer",
+  "companies": [
+    "Google",
+    "Amazon",
+    "Meta",
+    "Microsoft",
+    "Apple"
+  ],
+  "description": "Given the `head` of a singly linked list whose elements are sorted in **strictly increasing** order, convert it to a height-balanced binary search tree (BST) and return its root.\n\nTo guarantee a unique output tree, for every contiguous sublist of `m` nodes (0-indexed `0 .. m - 1`), select the node at index `floor(m / 2)` as the root of that subtree (for even `m`, this is the right-middle node reached by standard slow/fast pointers both initialized at the sublist head).",
+  "constraints": [
+    "The number of nodes in the list is in the range [0, 2000].",
+    "-10^5 <= Node.val <= 10^5",
+    "Values in the linked list are strictly increasing."
+  ],
+  "hints": [
+    "Using slow/fast pointers to split each sublist at index `floor(m / 2)` builds the exact tree in O(n log n) time.",
+    "To reach O(n) time, count the total length `n` first, then simulate an in-order traversal over index range `[lo, hi]` with `mid = (lo + hi + 1) // 2`, advancing a single list cursor once per node."
+  ],
+  "examples": [
+    {
+      "explanation": "Middle of [-10, -3, 0, 5, 9] is 0; left [-10, -3] picks right-middle -3 and right [5, 9] picks right-middle 9."
+    },
+    {
+      "explanation": "An empty list converts to an empty tree (null)."
+    },
+    {
+      "explanation": "For [1, 2, 3, 4], index 4//2 = 2 (value 3) is root, left [1, 2] has root 2 with left child 1, and right [4] is 4."
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(log n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "sortedListToBST",
+    "params": [
+      {
+        "name": "head",
+        "type": "ListNode"
+      }
+    ],
+    "returns": "TreeNode"
+  }
+}

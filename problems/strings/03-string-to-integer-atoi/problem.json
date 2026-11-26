@@ -1,0 +1,49 @@
+{
+  "title": "String to Integer (atoi)",
+  "difficulty": "Medium",
+  "subtopic": "Parsing",
+  "companies": [
+    "Meta",
+    "Amazon",
+    "Microsoft",
+    "Google",
+    "Bloomberg",
+    "Apple"
+  ],
+  "leetcode": 8,
+  "description": "Implement the `myAtoi(s)` function, which converts a string `s` to a 32-bit signed integer following these four steps in exact order:\n\n1. **Whitespace**: Ignore any leading space characters (`' '`).\n2. **Signedness**: Check if the next character is `'-'` or `'+'` to determine the sign (if neither is present, assume positive).\n3. **Conversion**: Read consecutive digits (`'0'`–`'9'`) while skipping leading zeros, stopping at the first non-digit character or the end of the string. If no digits were read, the result is `0`.\n4. **Rounding (Clamping)**: If the parsed integer falls outside the 32-bit signed integer range `[-2^31, 2^31 - 1]` (`[-2147483648, 2147483647]`), clamp it to the nearest bound: values less than `-2^31` become `-2147483648`, and values greater than `2^31 - 1` become `2147483647`.\n\nReturn the final 32-bit signed integer.",
+  "constraints": [
+    "0 <= s.length <= 200",
+    "s consists of English letters (lower-case and upper-case), digits (0-9), ' ', '+', '-', and '.'."
+  ],
+  "hints": [
+    "Process the string in a single left-to-right pass using an index pointer: first skip spaces, then check for at most one sign character, then accumulate digits.",
+    "Stop reading as soon as you encounter any non-digit character (including spaces, letters, signs, or decimal points).",
+    "To avoid 32-bit integer overflow while accumulating digits, check whether `res > INT_MAX / 10` or `(res == INT_MAX / 10 && digit > 7)` before multiplying `res` by 10."
+  ],
+  "examples": [
+    {
+      "explanation": "No leading whitespace or sign; digits \"42\" are read directly."
+    },
+    {
+      "explanation": "Leading spaces are skipped, '-' sets the negative sign, leading zero is ignored, and \"42\" yields -42."
+    },
+    {
+      "explanation": "Digits \"1337\" are read and parsing stops at the non-digit character 'c'."
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "myAtoi",
+    "params": [
+      {
+        "name": "s",
+        "type": "String"
+      }
+    ],
+    "returns": "int"
+  }
+}

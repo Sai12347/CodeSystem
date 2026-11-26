@@ -1,0 +1,49 @@
+{
+  "title": "0/1 Knapsack Maximum Value",
+  "difficulty": "Medium",
+  "subtopic": "0/1 Knapsack",
+  "companies": [
+    "Amazon",
+    "Google",
+    "Microsoft"
+  ],
+  "description": "Each item has a positive weight and value and may be selected at most once. Given parallel arrays `weights` and `values` and a capacity, return the maximum total value whose selected weights do not exceed the capacity.",
+  "constraints": [
+    "1 <= item count <= 100",
+    "weights[i] > 0",
+    "0 <= values[i] <= 10^6",
+    "0 <= capacity <= 10000"
+  ],
+  "hints": [
+    "Define a state by the capacity or sum achievable after processing a prefix.",
+    "For 0/1 choices, update capacities in descending order so an item is not reused."
+  ],
+  "examples": [
+    {
+      "input": "weights = [1,3,4,5], values = [1,4,5,7], capacity = 7",
+      "output": "9"
+    }
+  ],
+  "timeComplexity": "O(n*capacity)",
+  "spaceComplexity": "O(capacity)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "knapSack",
+    "params": [
+      {
+        "name": "weights",
+        "type": "int[]"
+      },
+      {
+        "name": "values",
+        "type": "int[]"
+      },
+      {
+        "name": "capacity",
+        "type": "int"
+      }
+    ],
+    "returns": "int"
+  }
+}

@@ -1,0 +1,56 @@
+{
+  "title": "Word Search II",
+  "difficulty": "Hard",
+  "subtopic": "Prefix Search",
+  "companies": [
+    "Amazon",
+    "Google",
+    "Meta",
+    "Microsoft",
+    "Uber",
+    "Apple"
+  ],
+  "leetcode": 212,
+  "description": "Given an `m x n` grid of characters `board` and an array of unique strings `words`, return all words from `words` that can be constructed from letters of sequentially adjacent cells on the board.\n\nAdjacent cells are horizontally or vertically neighboring. The same cell may not be used more than once in a single word. You may return the found words in any order, without duplicates.",
+  "constraints": [
+    "m == board.length",
+    "n == board[i].length",
+    "1 <= m, n <= 12",
+    "board[i][j] is a lowercase English letter.",
+    "1 <= words.length <= 3 * 10^4",
+    "1 <= words[i].length <= 10",
+    "words[i] consists of lowercase English letters.",
+    "All strings in words are unique."
+  ],
+  "hints": [
+    "Searching each word independently repeats huge amounts of backtracking work. Insert all candidate words into a trie first.",
+    "Run DFS from every cell on the board, advancing through the board and the trie simultaneously so branches that match no prefix are pruned immediately.",
+    "Mark cells temporarily as visited during DFS and restore them on backtrack. Clear a trie node's stored word once found (and optionally prune empty leaf nodes) to avoid duplicate results and speed up later searches."
+  ],
+  "examples": [
+    {
+      "explanation": "Both \"oath\" ((0,0) -> (0,1) -> (1,1) -> (2,1)) and \"eat\" ((1,3) -> (1,2) -> (1,1)) exist on the board, while \"pea\" and \"rain\" do not."
+    },
+    {
+      "explanation": "No valid horizontally or vertically adjacent path spells \"abcb\" without reusing cells."
+    }
+  ],
+  "timeComplexity": "O(m * n * 3^L)",
+  "spaceComplexity": "O(W * L)",
+  "compare": "sorted",
+  "signature": {
+    "kind": "function",
+    "method": "findWords",
+    "params": [
+      {
+        "name": "board",
+        "type": "char[][]"
+      },
+      {
+        "name": "words",
+        "type": "String[]"
+      }
+    ],
+    "returns": "List<String>"
+  }
+}

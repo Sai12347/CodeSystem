@@ -1,0 +1,44 @@
+{
+  "title": "Ways to Make Array With Product",
+  "difficulty": "Hard",
+  "subtopic": "Fast Exponentiation",
+  "companies": [
+    "Google",
+    "Meta",
+    "Goldman Sachs"
+  ],
+  "description": "You are given a 2D integer array `queries` where `queries[i] = [n, k]`. For each query, return the number of different arrays of length `n` consisting of positive integers whose elements multiply to `k`, modulo `10^9 + 7`. Two arrays are different if they differ at any index.",
+  "constraints": [
+    "1 <= queries.length <= 10^4",
+    "1 <= n, k <= 10^4"
+  ],
+  "hints": [
+    "Factorize `k = p1^e1 * p2^e2 * ... * pr^er`. Distributing `e` identical copies of a prime into `n` distinct positions can be done in `C(n + e - 1, e)` ways (stars and bars), independently for each prime.",
+    "Precompute factorials up to `max(n) + 14` and their modular inverses via Fermat's Little Theorem (`fact[M]^(MOD - 2) mod MOD`) using fast exponentiation, plus a smallest-prime-factor sieve for O(log k) factorization per query."
+  ],
+  "examples": [
+    {
+      "explanation": "[2, 6]: [1,6],[6,1],[2,3],[3,2] -> 4; [5, 1]: only [1,1,1,1,1] -> 1; [73, 660]: 660 = 2^2 * 3 * 5 * 11 gives 50734910."
+    },
+    {
+      "explanation": "Any array of length 1 multiplying to k must be [k], giving 1 way for every query."
+    },
+    {
+      "explanation": "4 = 2^2 gives C(3+2-1, 2) = 6 ways; 8 = 2^3 gives C(2+3-1, 3) = 4 ways."
+    }
+  ],
+  "timeComplexity": "O(M + Q log K)",
+  "spaceComplexity": "O(M)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "waysToFillArray",
+    "params": [
+      {
+        "name": "queries",
+        "type": "int[][]"
+      }
+    ],
+    "returns": "int[]"
+  }
+}

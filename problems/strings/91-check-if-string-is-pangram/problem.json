@@ -1,0 +1,44 @@
+{
+  "title": "Check if the Sentence Is Pangram",
+  "difficulty": "Easy",
+  "subtopic": "Anagrams",
+  "companies": [
+    "Amazon",
+    "Apple",
+    "Adobe"
+  ],
+  "description": "A pangram is a sentence in which every letter of the English alphabet (`'a'` through `'z'`) appears at least once. Given a lowercase string `sentence`, return `true` if `sentence` is a pangram, and `false` otherwise.",
+  "constraints": [
+    "1 <= sentence.length <= 10^4",
+    "sentence consists of lowercase English letters."
+  ],
+  "hints": [
+    "Track seen letters using a 26-bit integer bitmask.",
+    "Return true as soon as the mask equals (1 << 26) - 1."
+  ],
+  "examples": [
+    {
+      "explanation": "\"thequickbrownfoxjumpsoverthelazydog\" contains all 26 letters."
+    },
+    {
+      "explanation": "\"leetcode\" is missing most letters of the alphabet."
+    },
+    {
+      "explanation": "\"abcdefghijklmnopqrstuvwxyz\" has every letter exactly once."
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "checkIfPangram",
+    "params": [
+      {
+        "name": "sentence",
+        "type": "String"
+      }
+    ],
+    "returns": "boolean"
+  }
+}

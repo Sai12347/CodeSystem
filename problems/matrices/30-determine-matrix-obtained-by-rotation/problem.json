@@ -1,0 +1,50 @@
+{
+  "title": "Matrix Obtained By Rotation",
+  "difficulty": "Easy",
+  "subtopic": "Matrix Rotation",
+  "companies": [
+    "Amazon",
+    "Google",
+    "Apple"
+  ],
+  "description": "Given two `n x n` integer matrices `mat` and `target`, return `true` if it is possible to make `mat` identical to `target` by rotating `mat` in 90-degree clockwise increments (0, 90, 180, or 270 degrees), or `false` otherwise.",
+  "constraints": [
+    "n == mat.length == target.length",
+    "n == mat[i].length == target[i].length",
+    "1 <= n <= 50",
+    "0 <= mat[i][j], target[i][j] <= 100"
+  ],
+  "hints": [
+    "There are only 4 distinct orientations obtained by rotating 90 degrees clockwise: 0, 90, 180, and 270 degrees.",
+    "You can check all 4 orientations directly in a single pass using index mappings without allocating rotated copies."
+  ],
+  "examples": [
+    {
+      "explanation": "Rotating mat 90 degrees clockwise once matches target."
+    },
+    {
+      "explanation": "None of the four 90-degree rotations of mat equals target."
+    },
+    {
+      "explanation": "Rotating mat 180 degrees (twice by 90 degrees) matches target."
+    }
+  ],
+  "timeComplexity": "O(n^2)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "findRotation",
+    "params": [
+      {
+        "name": "mat",
+        "type": "int[][]"
+      },
+      {
+        "name": "target",
+        "type": "int[][]"
+      }
+    ],
+    "returns": "boolean"
+  }
+}

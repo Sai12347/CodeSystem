@@ -1,0 +1,1 @@
+class Solution { int sum(int[] b,int i){int s=0;for(;i>0;i-=i&-i)s+=b[i];return s;}void add(int[] b,int i){for(;i<b.length;i+=i&-i)b[i]++;}public int createSortedArray(int[] a){int[] b=new int[100001];long ans=0;for(int i=0;i<a.length;i++){int x=a[i],less=sum(b,x-1),greater=i-sum(b,x);ans=(ans+Math.min(less,greater))%1000000007;add(b,x);}return (int)ans;} }

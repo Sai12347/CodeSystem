@@ -1,0 +1,52 @@
+{
+  "title": "Constrained Subsequence Sum",
+  "difficulty": "Hard",
+  "subtopic": "Sliding Window Max",
+  "companies": [
+    "Google",
+    "Amazon",
+    "Meta",
+    "Microsoft",
+    "Uber"
+  ],
+  "leetcode": 1425,
+  "description": "Given an integer array `nums` and an integer `k`, return the maximum sum of a **non-empty** subsequence of `nums` such that for every two consecutive elements `nums[i]` and `nums[j]` in the subsequence (with `i < j`), the index gap satisfies `j - i <= k`.\n\nA subsequence of an array is obtained by deleting zero or more elements from the array while preserving the relative order of the remaining elements.",
+  "constraints": [
+    "1 <= k <= nums.length <= 10^5",
+    "-10^4 <= nums[i] <= 10^4"
+  ],
+  "hints": [
+    "Let `dp[i]` be the maximum constrained subsequence sum ending at index `i`. Then `dp[i] = nums[i] + max(0, max_{i-k <= j < i} dp[j])`.",
+    "Computing `max_{i-k <= j < i} dp[j]` directly takes `O(k)` per index, which is too slow when `k` is large.",
+    "Use a monotonic decreasing deque of indices `(j, dp[j])` over the sliding window `[i - k, i - 1]` to retrieve the maximum previous `dp` value in `O(1)` amortized time."
+  ],
+  "examples": [
+    {
+      "explanation": "Pick subsequence [10, 2, 5, 20] (indices 0, 1, 3, 4; all consecutive gaps <= 2), yielding 10 + 2 + 5 + 20 = 37."
+    },
+    {
+      "explanation": "The subsequence must be non-empty, so choosing the single largest element [-1] gives -1."
+    },
+    {
+      "explanation": "Pick [10, -2, -5, 20] (indices 0, 1, 3, 4; all gaps <= 2), yielding 10 - 2 - 5 + 20 = 23."
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(k)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "constrainedSubsetSum",
+    "params": [
+      {
+        "name": "nums",
+        "type": "int[]"
+      },
+      {
+        "name": "k",
+        "type": "int"
+      }
+    ],
+    "returns": "int"
+  }
+}

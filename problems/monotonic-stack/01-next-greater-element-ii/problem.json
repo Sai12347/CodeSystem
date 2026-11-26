@@ -1,0 +1,48 @@
+{
+  "title": "Next Greater Element II",
+  "difficulty": "Medium",
+  "subtopic": "Next Greater Element",
+  "companies": [
+    "Amazon",
+    "Google",
+    "Meta",
+    "Microsoft",
+    "Bloomberg"
+  ],
+  "leetcode": 503,
+  "description": "Given a circular integer array `nums` (meaning the element immediately after `nums[nums.length - 1]` is `nums[0]`), return an array `result` of the same length where `result[i]` is the **next greater number** for `nums[i]`.\n\nThe next greater number of `nums[i]` is the first element strictly greater than `nums[i]` encountered when traversing forward from index `i` in circular order (wrapping around from the end of the array back to index `0`). If no such strictly greater element exists in the entire array, set `result[i]` to `-1`.",
+  "constraints": [
+    "1 <= nums.length <= 10^4",
+    "-10^9 <= nums[i] <= 10^9"
+  ],
+  "hints": [
+    "Simulate the circular array by conceptually iterating through the array twice (`0` to `2n - 1`) using modulo indexing `i % n`.",
+    "Maintain a monotonic decreasing stack of indices whose next greater element has not yet been found.",
+    "When the current element `nums[i % n]` is strictly greater than `nums[stack[-1]]`, pop from the stack and record `nums[i % n]` as its answer. Only push indices during the first pass (`i < n`)."
+  ],
+  "examples": [
+    {
+      "explanation": "For nums[0] = 1, the next greater element is 2. For nums[1] = 2, no greater element exists (-1). For nums[2] = 1, wrapping around yields 2."
+    },
+    {
+      "explanation": "Each element finds the next strictly larger value clockwise; 4 is the maximum so its answer is -1, while the trailing 3 wraps around to 4."
+    },
+    {
+      "explanation": "5 has no greater element (-1). Every other element wraps around the circular array to reach 5."
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "nextGreaterElements",
+    "params": [
+      {
+        "name": "nums",
+        "type": "int[]"
+      }
+    ],
+    "returns": "int[]"
+  }
+}

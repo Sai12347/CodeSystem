@@ -1,0 +1,48 @@
+{
+  "title": "Median of a Row-Wise Sorted Matrix",
+  "difficulty": "Medium",
+  "subtopic": "2D Search",
+  "companies": [
+    "Google",
+    "Amazon",
+    "Microsoft",
+    "Bloomberg"
+  ],
+  "description": "Given an `m x n` integer matrix `grid` where **both `m` and `n` are odd** and every row is sorted in **non-decreasing** order, return the **median** of all `m * n` elements in the matrix.\n\nBecause `m * n` is guaranteed to be odd, the median is the unique middle element at 0-based index `(m * n) // 2` when all elements of `grid` are sorted.",
+  "constraints": [
+    "m == grid.length, n == grid[i].length",
+    "1 <= m, n <= 300",
+    "m and n are both odd integers.",
+    "-10^9 <= grid[i][j] <= 10^9",
+    "Every row grid[r] is sorted in non-decreasing order."
+  ],
+  "hints": [
+    "Binary search on the value range [min(first column), max(last column)] instead of flattening and sorting all m * n elements.",
+    "For any candidate value mid, count how many elements across all rows are <= mid using binary search (upper bound) in each sorted row; the median is the smallest mid whose count is at least (m * n + 1) / 2."
+  ],
+  "examples": [
+    {
+      "explanation": "All elements sorted are [1, 2, 3, 3, 5, 6, 6, 9, 9]; the middle (5th) element is 5."
+    },
+    {
+      "explanation": "Sorted elements are [1, 1, 2, 2, 3, 3, 4, 5, 6]; the 5th element is 3."
+    },
+    {
+      "explanation": "A 1x5 sorted row has its median directly at index 2, which is -2."
+    }
+  ],
+  "timeComplexity": "O(m * log n * log(maxVal - minVal))",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "matrixMedian",
+    "params": [
+      {
+        "name": "grid",
+        "type": "int[][]"
+      }
+    ],
+    "returns": "int"
+  }
+}

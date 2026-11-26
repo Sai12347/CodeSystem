@@ -1,0 +1,76 @@
+{
+  "title": "Max Stack",
+  "difficulty": "Hard",
+  "subtopic": "Min Stack",
+  "companies": [
+    "LinkedIn",
+    "Amazon",
+    "Meta",
+    "Google",
+    "Microsoft",
+    "Bloomberg"
+  ],
+  "description": "Design a max stack data structure `MaxStack` that supports standard stack operations and also supports finding and removing the stack's maximum element.\n\nImplement the `MaxStack` class:\n- `MaxStack()` initializes the stack object.\n- `void push(int x)` pushes element `x` onto the stack.\n- `int pop()` removes and returns the element on top of the stack.\n- `int top()` returns the element on top of the stack without removing it.\n- `int peekMax()` retrieves the maximum element in the stack without removing it.\n- `int popMax()` retrieves the maximum element in the stack and removes it. If there is more than one maximum element, remove only the **top-most** one.\n\nAim for `O(log n)` time per operation (`O(1)` amortized for `top`).",
+  "constraints": [
+    "-2^31 <= x <= 2^31 - 1",
+    "Methods pop, top, peekMax, and popMax are always called on non-empty stacks.",
+    "At most 3 * 10^4 calls will be made across all methods."
+  ],
+  "hints": [
+    "Assign a strictly increasing sequence ID to every pushed element so ties in value are broken by largest ID (closest to the top).",
+    "Maintain both a regular stack and a max-heap storing (value, id), along with a set of lazily deleted IDs that are skipped whenever they surface at the top of either structure."
+  ],
+  "examples": [
+    {
+      "explanation": "Stack is [5, 1, 5]: top is 5, popMax removes the top-most 5 leaving [5, 1], top is 1, peekMax is 5, pop returns 1, and top is 5."
+    },
+    {
+      "explanation": "Duplicate maximums are removed from top-most to bottom-most by repeated popMax calls."
+    },
+    {
+      "explanation": "Extreme 32-bit signed integers are compared without overflow."
+    }
+  ],
+  "timeComplexity": "O(log n) amortized per op",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "design",
+    "className": "MaxStack",
+    "constructor": {
+      "params": []
+    },
+    "methods": [
+      {
+        "name": "push",
+        "params": [
+          {
+            "name": "x",
+            "type": "int"
+          }
+        ],
+        "returns": "void"
+      },
+      {
+        "name": "pop",
+        "params": [],
+        "returns": "int"
+      },
+      {
+        "name": "top",
+        "params": [],
+        "returns": "int"
+      },
+      {
+        "name": "peekMax",
+        "params": [],
+        "returns": "int"
+      },
+      {
+        "name": "popMax",
+        "params": [],
+        "returns": "int"
+      }
+    ]
+  }
+}

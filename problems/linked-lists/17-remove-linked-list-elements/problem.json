@@ -1,0 +1,50 @@
+{
+  "title": "Remove Linked List Elements",
+  "difficulty": "Easy",
+  "subtopic": "Pointers & Nodes",
+  "companies": [
+    "Amazon",
+    "Microsoft",
+    "Bloomberg",
+    "Apple"
+  ],
+  "description": "Given the `head` of a singly linked list and an integer `val`, remove all nodes of the linked list that have `Node.val == val`, and return the new head of the modified list.\n\nIf all nodes are removed or the input list is empty, return `null` (`None` in Python).",
+  "constraints": [
+    "The number of nodes in the list is in the range [0, 10^4].",
+    "1 <= Node.val <= 50",
+    "0 <= val <= 50"
+  ],
+  "hints": [
+    "Attach a sentinel dummy node before `head` so removing the original head node follows the exact same pointer update as removing any interior node.",
+    "Advance the `curr` pointer only when `curr.next.val != val`; when deleting `curr.next`, re-link `curr.next = curr.next.next` and inspect the new successor on the next iteration."
+  ],
+  "examples": [
+    {
+      "explanation": "Both nodes with value 6 (at positions 3 and 7) are removed, leaving [1, 2, 3, 4, 5]."
+    },
+    {
+      "explanation": "An empty list has no nodes to remove, so return null."
+    },
+    {
+      "explanation": "Every node has value 7, so removing all of them produces an empty list (null)."
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "removeElements",
+    "params": [
+      {
+        "name": "head",
+        "type": "ListNode"
+      },
+      {
+        "name": "val",
+        "type": "int"
+      }
+    ],
+    "returns": "ListNode"
+  }
+}

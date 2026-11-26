@@ -1,0 +1,49 @@
+{
+  "title": "Sort an Array",
+  "difficulty": "Medium",
+  "subtopic": "Merge Sort",
+  "companies": [
+    "Google",
+    "Amazon",
+    "Microsoft",
+    "Meta",
+    "Apple",
+    "Bloomberg"
+  ],
+  "leetcode": 912,
+  "description": "Given an array of integers `nums`, sort the array in ascending order and return it.\n\nYou must solve the problem **without using any built-in sorting functions** in `O(n log n)` worst-case time complexity and with minimal extra space.",
+  "constraints": [
+    "1 <= nums.length <= 5 * 10^4",
+    "-5 * 10^4 <= nums[i] <= 5 * 10^4"
+  ],
+  "hints": [
+    "A naive Quick Sort degrades to O(n^2) on already-sorted or duplicate-heavy inputs unless carefully randomized and 3-way partitioned.",
+    "Merge Sort divides the array into two halves, recursively sorts each half, and merges the two sorted halves in O(n) time, guaranteeing O(n log n) worst-case performance.",
+    "Pre-allocate a single temporary buffer of length n and reuse it across merge calls to avoid repeated allocations."
+  ],
+  "examples": [
+    {
+      "explanation": "Sorting [5, 2, 3, 1] in ascending order produces [1, 2, 3, 5]."
+    },
+    {
+      "explanation": "Duplicate values are preserved in sorted order: [0, 0, 1, 1, 2, 5]."
+    },
+    {
+      "explanation": "Negative values precede zero and positive values in ascending order."
+    }
+  ],
+  "timeComplexity": "O(n log n)",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "sortArray",
+    "params": [
+      {
+        "name": "nums",
+        "type": "int[]"
+      }
+    ],
+    "returns": "int[]"
+  }
+}

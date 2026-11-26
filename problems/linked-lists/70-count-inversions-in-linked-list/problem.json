@@ -1,0 +1,46 @@
+{
+  "title": "Count Inversions in Linked List",
+  "difficulty": "Hard",
+  "subtopic": "Merge & Sort",
+  "companies": [
+    "Google",
+    "Amazon",
+    "Meta",
+    "Microsoft",
+    "Bloomberg"
+  ],
+  "description": "Given the `head` of a singly linked list of integers, return the total number of **inversions** in the list. A pair of 0-based indices `(i, j)` forms an inversion if `i < j` and `node[i].val > node[j].val`.\n\nBecause the answer can be large, return it as a 64-bit integer (`long` in Java, `int` in Python). Aim for `O(n log n)` time using merge sort directly on the linked list.",
+  "constraints": [
+    "The number of nodes in the list is in the range [0, 10^4].",
+    "-10^5 <= Node.val <= 10^5"
+  ],
+  "hints": [
+    "Count the list length `n` first, then run top-down merge sort passing `(head, length)` so splitting into `leftLen = length // 2` and `rightLen = length - leftLen` is exact and gives you the exact remaining left count during merging.",
+    "While merging two sorted sublists `left` and `right`, whenever `right.val < left.val`, every remaining node in `left` (`leftRem` nodes) forms an inversion with `right`, so add `leftRem` to the total."
+  ],
+  "examples": [
+    {
+      "explanation": "In [2, 4, 1, 3, 5], the inversions are (2, 1), (4, 1), and (4, 3): 3 total."
+    },
+    {
+      "explanation": "A strictly decreasing list of length 4 has 4*3/2 = 6 inversions."
+    },
+    {
+      "explanation": "An already sorted list [1, 2, 2, 3] has 0 inversions (equal values do not count)."
+    }
+  ],
+  "timeComplexity": "O(n log n)",
+  "spaceComplexity": "O(log n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "countInversions",
+    "params": [
+      {
+        "name": "head",
+        "type": "ListNode"
+      }
+    ],
+    "returns": "long"
+  }
+}

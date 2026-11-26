@@ -1,0 +1,48 @@
+{
+  "title": "Spiral Walk with Obstacles",
+  "difficulty": "Medium",
+  "subtopic": "Spiral Traversal",
+  "companies": [
+    "Amazon",
+    "Uber",
+    "Microsoft",
+    "Atlassian"
+  ],
+  "description": "You are given an `m x n` integer matrix `grid`, where `grid[r][c] >= 0` represents a passable cell with a value and `grid[r][c] == -1` represents an impassable obstacle. The starting cell `(0, 0)` is guaranteed to be passable (`grid[0][0] >= 0`).\n\nA robot starts at `(0, 0)` facing **Right** (East), records `grid[0][0]`, and marks `(0, 0)` as visited. At each step, the robot tries to move one cell forward in its current direction. If the target cell is out of bounds, an obstacle (`-1`), or already visited, the robot rotates 90 degrees clockwise (`Right -> Down -> Left -> Up -> Right`) and checks again, repeating up to 3 rotations. It moves into the first valid unvisited passable cell found, updates its facing direction accordingly, marks that cell visited, and records its value. If all four directions are blocked or already visited, the robot halts.\n\nReturn an integer array of all recorded values in the exact order the robot visited them.",
+  "constraints": [
+    "m == grid.length",
+    "n == grid[i].length",
+    "1 <= m, n <= 100",
+    "-1 <= grid[i][j] <= 10^4",
+    "grid[0][0] >= 0"
+  ],
+  "hints": [
+    "Store the four clockwise direction vectors [(0, 1), (1, 0), (0, -1), (-1, 0)] and track a visited boolean matrix.",
+    "From the current cell and direction d, try offsets k = 0, 1, 2, 3 using nd = (d + k) % 4; take the first valid unvisited open cell, or terminate if none exists."
+  ],
+  "examples": [
+    {
+      "explanation": "Starting at (0,0)=1 facing right, the robot visits 2, hits the obstacle at (0,2), turns down through 5 and 8, turns left to 7, turns up to 4, and halts because every neighbor of (1,0) is visited or out of bounds."
+    },
+    {
+      "explanation": "With obstacles blocking both right and down from (0,0), the robot cannot move and returns [9]."
+    },
+    {
+      "explanation": "With no obstacles, the robot performs a standard full clockwise spiral returning [1,2,3,6,5,4]."
+    }
+  ],
+  "timeComplexity": "O(m * n)",
+  "spaceComplexity": "O(m * n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "spiralWalkWithObstacles",
+    "params": [
+      {
+        "name": "grid",
+        "type": "int[][]"
+      }
+    ],
+    "returns": "int[]"
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "title": "Contiguous Array",
+  "difficulty": "Medium",
+  "subtopic": "Hash + Prefix",
+  "companies": ["Meta", "Google", "Amazon", "Microsoft", "Bloomberg"],
+  "leetcode": 525,
+  "description": "Given a binary array `nums` containing only `0`s and `1`s, return the maximum length of a contiguous subarray with an equal number of `0` and `1`.\n\nA subarray is a contiguous non-empty sequence of elements within an array. If no non-empty subarray has an equal number of `0`s and `1`s, return `0`.",
+  "constraints": [
+    "1 <= nums.length <= 10^5",
+    "nums[i] is either 0 or 1."
+  ],
+  "hints": [
+    "Replace every 0 with -1 mentally: a subarray has an equal number of 0s and 1s if and only if its transformed sum is 0.",
+    "Track the running prefix balance as you scan left to right. If the same balance appears at two indices i and j (i < j), the subarray (i, j] has net balance 0.",
+    "Store only the earliest index where each balance was seen (initializing balance 0 at index -1) to maximize the subarray length."
+  ],
+  "examples": [
+    {"explanation": "[0, 1] is the longest contiguous subarray with an equal number of 0 and 1, with length 2."},
+    {"explanation": "[0, 1] (or [1, 0]) is a longest contiguous subarray with an equal number of 0 and 1, with length 2."},
+    {"explanation": "The subarray [1, 1, 1, 0, 0, 0] (indices 3 through 8) has three 1s and three 0s, giving a maximum length of 6."}
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "findMaxLength",
+    "params": [
+      {"name": "nums", "type": "int[]"}
+    ],
+    "returns": "int"
+  }
+}

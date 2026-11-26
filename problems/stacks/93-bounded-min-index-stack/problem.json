@@ -1,0 +1,79 @@
+{
+  "title": "Bounded Min Index Stack",
+  "difficulty": "Easy",
+  "subtopic": "Min Stack",
+  "companies": [
+    "Amazon",
+    "Microsoft",
+    "Bloomberg",
+    "Oracle"
+  ],
+  "description": "Design a fixed-capacity stack `BoundedMinStack` supporting `O(1)` minimum value and minimum index queries.\n\nImplement the `BoundedMinStack` class:\n- `BoundedMinStack(int capacity)` initializes an empty stack holding at most `capacity` elements.\n- `boolean push(int val)` pushes `val` (`0 <= val <= 10^9`) onto the top and returns `true` if `size < capacity`; otherwise leaves the stack unchanged and returns `false`.\n- `int pop()` removes and returns the top element, or returns `-1` if the stack is empty.\n- `int top()` returns the top element without removing it, or returns `-1` if the stack is empty.\n- `int getMin()` returns the minimum element currently in the stack, or returns `-1` if empty.\n- `int getMinIndex()` returns the **0-based index from the bottom** of the earliest (deepest) occurrence of the current minimum element, or returns `-1` if empty.",
+  "constraints": [
+    "1 <= capacity <= 10^4",
+    "0 <= val <= 10^9",
+    "At most 3 * 10^4 calls will be made across all methods."
+  ],
+  "hints": [
+    "Store `(val, runningMin, runningMinIndex)` for each pushed element.",
+    "Update `(runningMin, runningMinIndex)` only when `val < previousMin` (strict inequality) so ties always preserve the deepest 0-based index."
+  ],
+  "examples": [
+    {
+      "explanation": "Stack becomes [5, 2, 2] (capacity 3); pushing 1 fails. Current min is 2 at earliest index 1. After two pops, only [5] remains with min 5 at index 0."
+    },
+    {
+      "explanation": "All queries on an empty stack return -1."
+    },
+    {
+      "explanation": "After pushing 7 then 3, min is 3 at index 1; popping 3 restores min 7 at index 0."
+    }
+  ],
+  "timeComplexity": "O(1) per op",
+  "spaceComplexity": "O(capacity)",
+  "compare": "exact",
+  "signature": {
+    "kind": "design",
+    "className": "BoundedMinStack",
+    "constructor": {
+      "params": [
+        {
+          "name": "capacity",
+          "type": "int"
+        }
+      ]
+    },
+    "methods": [
+      {
+        "name": "push",
+        "params": [
+          {
+            "name": "val",
+            "type": "int"
+          }
+        ],
+        "returns": "boolean"
+      },
+      {
+        "name": "pop",
+        "params": [],
+        "returns": "int"
+      },
+      {
+        "name": "top",
+        "params": [],
+        "returns": "int"
+      },
+      {
+        "name": "getMin",
+        "params": [],
+        "returns": "int"
+      },
+      {
+        "name": "getMinIndex",
+        "params": [],
+        "returns": "int"
+      }
+    ]
+  }
+}

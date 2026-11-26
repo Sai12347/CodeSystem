@@ -1,0 +1,48 @@
+{
+  "title": "Contains Duplicate",
+  "difficulty": "Easy",
+  "subtopic": "Traversal",
+  "companies": [
+    "Amazon",
+    "Google",
+    "Microsoft",
+    "Meta",
+    "Apple"
+  ],
+  "leetcode": 217,
+  "description": "Given an integer array `nums`, return `true` if any value appears at least twice in the array, and return `false` if every element is distinct.\n\nAim for an `O(n)` average-time algorithm using a hash set.",
+  "constraints": [
+    "1 <= nums.length <= 10^5",
+    "-10^9 <= nums[i] <= 10^9"
+  ],
+  "hints": [
+    "A brute-force check compares every pair of elements in O(n^2) time, or sorts a copy in O(n log n) time to inspect adjacent elements.",
+    "Maintain a hash set of values seen so far while scanning left to right.",
+    "If the current element is already in the set, return true immediately; otherwise insert it and continue."
+  ],
+  "examples": [
+    {
+      "explanation": "The value 1 appears at indices 0 and 3, so return true."
+    },
+    {
+      "explanation": "All four elements are distinct, so return false."
+    },
+    {
+      "explanation": "Several values (1, 2, 3, and 4) appear more than once, so return true."
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "containsDuplicate",
+    "params": [
+      {
+        "name": "nums",
+        "type": "int[]"
+      }
+    ],
+    "returns": "boolean"
+  }
+}

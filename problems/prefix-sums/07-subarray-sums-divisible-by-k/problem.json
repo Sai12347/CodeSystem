@@ -1,0 +1,54 @@
+{
+  "title": "Subarray Sums Divisible by K",
+  "difficulty": "Medium",
+  "subtopic": "Hash + Prefix",
+  "companies": [
+    "Amazon",
+    "Google",
+    "Meta",
+    "Microsoft",
+    "Uber",
+    "Goldman Sachs"
+  ],
+  "leetcode": 974,
+  "description": "Given an integer array `nums` and an integer `k`, return the number of non-empty **contiguous subarrays** whose sum is divisible by `k`.\n\nNote that `nums` can contain negative numbers, and `0` is divisible by every positive integer `k`.",
+  "constraints": [
+    "1 <= nums.length <= 3 * 10^4",
+    "-10^4 <= nums[i] <= 10^4",
+    "2 <= k <= 10^4"
+  ],
+  "hints": [
+    "A subarray `nums[l..r]` has a sum divisible by `k` if and only if `prefix[r + 1] ≡ prefix[l] (mod k)`.",
+    "Be careful with negative prefix sums in languages like Java: normalize remainders into `[0, k - 1]` using `((prefix % k) + k) % k`.",
+    "Maintain a frequency array (or map) of normalized remainders initialized with `count[0] = 1`, and add `count[rem]` to the answer before incrementing `count[rem]`."
+  ],
+  "examples": [
+    {
+      "explanation": "There are 7 subarrays with a sum divisible by 5: [4, 5, 0, -2, -3, 1], [5], [5, 0], [5, 0, -2, -3], [0], [0, -2, -3], [-2, -3]."
+    },
+    {
+      "explanation": "The single subarray [5] has sum 5, which is not divisible by 9, so return 0."
+    },
+    {
+      "explanation": "The 2 subarrays with a sum divisible by 2 are [2] (sum 2) and [-1, 2, 9] (sum 10)."
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(k)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "subarraysDivByK",
+    "params": [
+      {
+        "name": "nums",
+        "type": "int[]"
+      },
+      {
+        "name": "k",
+        "type": "int"
+      }
+    ],
+    "returns": "int"
+  }
+}

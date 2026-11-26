@@ -1,0 +1,44 @@
+{
+  "title": "Number of Substrings Containing All Three Characters",
+  "difficulty": "Medium",
+  "subtopic": "Substrings",
+  "companies": [
+    "Google",
+    "Amazon",
+    "Bloomberg"
+  ],
+  "description": "Given a string `s` consisting only of the characters `'a'`, `'b'`, and `'c'`, return the total number of contiguous substrings that contain at least one occurrence of all three characters `'a'`, `'b'`, and `'c'`.",
+  "constraints": [
+    "3 <= s.length <= 5 * 10^4",
+    "s consists only of 'a', 'b', or 'c'."
+  ],
+  "hints": [
+    "For every right endpoint i, track the most recent index where each of 'a', 'b', and 'c' appeared.",
+    "Any starting index from 0 up to min(lastA, lastB, lastC) forms a valid substring ending at i."
+  ],
+  "examples": [
+    {
+      "explanation": "There are 10 substrings in \"abcabc\" containing 'a', 'b', and 'c'."
+    },
+    {
+      "explanation": "The valid substrings of \"aaacb\" are \"aaacb\", \"aacb\", and \"acb\"."
+    },
+    {
+      "explanation": "Only the full string \"abc\" contains all three letters."
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "numberOfSubstrings",
+    "params": [
+      {
+        "name": "s",
+        "type": "String"
+      }
+    ],
+    "returns": "int"
+  }
+}

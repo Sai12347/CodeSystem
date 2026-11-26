@@ -1,0 +1,46 @@
+{
+  "title": "Longest Balanced Multi-Bracket Substring",
+  "difficulty": "Medium",
+  "subtopic": "Valid Parentheses",
+  "companies": [
+    "Amazon",
+    "Google",
+    "Meta",
+    "Microsoft",
+    "Bloomberg"
+  ],
+  "description": "Given a string `s` consisting of the six bracket types `'('`, `')'`, `'['`, `']'`, `'{'`, and `'}'`, return the length of the longest contiguous substring of `s` that is validly balanced across all three bracket types.",
+  "constraints": [
+    "0 <= s.length <= 10^5",
+    "s consists only of '(', ')', '[', ']', '{', and '}'."
+  ],
+  "hints": [
+    "Push (bracketChar, index) pairs onto a stack initialized with a sentinel ('#', -1).",
+    "When a closing bracket matches the top opening bracket, pop it and update the answer with i - stack.top.index; if it does not match, push the closing bracket itself as a new boundary barrier."
+  ],
+  "examples": [
+    {
+      "explanation": "The substring \"[()]\" has length 4, while the mismatched ']' at index 5 breaks any longer valid span."
+    },
+    {
+      "explanation": "The substring \"{[()]}[]\" from index 1 to 8 has length 8."
+    },
+    {
+      "explanation": "No pair of matching brackets is validly nested in \"([)]\", so the answer is 0."
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "longestMultiBracketSubstring",
+    "params": [
+      {
+        "name": "s",
+        "type": "String"
+      }
+    ],
+    "returns": "int"
+  }
+}

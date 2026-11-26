@@ -1,0 +1,40 @@
+{
+  "title": "Jump Game II",
+  "difficulty": "Medium",
+  "subtopic": "Linear States",
+  "companies": [
+    "Amazon",
+    "Google",
+    "Microsoft"
+  ],
+  "description": "Starting at index 0, each value gives the maximum forward distance you may jump. The last index is reachable. Return the minimum number of jumps needed to reach it.",
+  "constraints": [
+    "1 <= nums.length <= 10^4",
+    "0 <= nums[i] <= 1000",
+    "The last index is reachable"
+  ],
+  "hints": [
+    "Define a small state for the best answer ending at each position.",
+    "Update the state from the allowed previous positions."
+  ],
+  "examples": [
+    {
+      "input": "nums = [2,3,1,1,4]",
+      "output": "2"
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "jump",
+    "params": [
+      {
+        "name": "nums",
+        "type": "int[]"
+      }
+    ],
+    "returns": "int"
+  }
+}

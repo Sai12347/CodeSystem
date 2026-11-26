@@ -1,0 +1,51 @@
+{
+  "title": "My Calendar III",
+  "difficulty": "Hard",
+  "subtopic": "Range Queries",
+  "companies": [
+    "Google",
+    "Amazon",
+    "Microsoft"
+  ],
+  "description": "Implement `MyCalendarThree`. Each `book(start, end)` adds a half-open event interval `[start, end)`. After each booking, return the maximum number of events that overlap at any time.",
+  "constraints": [
+    "0 <= start < end <= 10^9",
+    "At most 400 bookings are made."
+  ],
+  "hints": [
+    "A booking adds +1 at its start and -1 at its end.",
+    "The maximum overlap is the maximum prefix sum of the ordered event deltas."
+  ],
+  "examples": [
+    {
+      "input": "ops = [\"MyCalendarThree\",\"book\",\"book\",\"book\",\"book\",\"book\",\"book\"], args = [[],[10,20],[50,60],[10,40],[5,15],[5,10],[25,55]]",
+      "output": "[null,1,1,2,3,3,3]"
+    }
+  ],
+  "timeComplexity": "O(n) per booking",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "design",
+    "className": "MyCalendarThree",
+    "constructor": {
+      "params": []
+    },
+    "methods": [
+      {
+        "name": "book",
+        "params": [
+          {
+            "name": "start",
+            "type": "int"
+          },
+          {
+            "name": "end",
+            "type": "int"
+          }
+        ],
+        "returns": "int"
+      }
+    ]
+  }
+}

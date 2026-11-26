@@ -1,0 +1,45 @@
+{
+  "title": "Remove Parentheses From Sign Expression",
+  "difficulty": "Medium",
+  "subtopic": "Expression Parsing",
+  "companies": [
+    "Amazon",
+    "Microsoft",
+    "Bloomberg",
+    "Adobe"
+  ],
+  "description": "Given a valid algebraic expression string `s` consisting of single lowercase variables (`'a'`-`'z'`), `'+'`, `'-'`, `'('`, and `')'` (with no spaces and no consecutive binary operators outside parentheses; unary `'-'` may appear at the start of `s` or immediately after `'('`), remove all parentheses while preserving exact mathematical equivalence by propagating outer signs.\n\nReturn the simplified parenthesization-free string with no leading `'+'` sign (for example, `\"-(a-b)\"` becomes `\"-a+b\"`, and `\"-(-a)\"` becomes `\"a\"`).",
+  "constraints": [
+    "1 <= s.length <= 10^5",
+    "s is a valid expression of lowercase letters 'a'-'z', '+', '-', '(', and ')' with at least one variable."
+  ],
+  "hints": [
+    "Maintain a stack of active sign multipliers (+1 or -1), initialized with [1], along with a local sign variable for the operator immediately preceding the next term or '('.",
+    "When seeing '(', push (stack.top * localSign) and reset localSign to +1; on ')', pop the stack; on a variable, apply effectiveSign = stack.top * localSign."
+  ],
+  "examples": [
+    {
+      "explanation": "The outer minus negates b and double-negates (c+d), yielding \"a-b+c+d\"."
+    },
+    {
+      "explanation": "Negating (a-b) flips 'a' to '-a' and '-b' to '+b', giving \"-a+b\"."
+    },
+    {
+      "explanation": "Two nested negations cancel on 'a', and leading '+' is omitted, yielding \"a\"."
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "removeParentheses",
+    "params": [
+      {
+        "name": "s",
+        "type": "String"
+      }
+    ],
+    "returns": "String"
+  }
+}

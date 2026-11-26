@@ -1,0 +1,52 @@
+{
+  "title": "Intersection of Two Arrays",
+  "difficulty": "Easy",
+  "subtopic": "Traversal",
+  "companies": [
+    "Meta",
+    "Amazon",
+    "Google",
+    "Apple",
+    "LinkedIn"
+  ],
+  "leetcode": 349,
+  "description": "Given two integer arrays `nums1` and `nums2`, return an array of their intersection.\n\nEach element in the result must be unique, and you may return the result in any order. If the two arrays share no common elements, return an empty array.",
+  "constraints": [
+    "1 <= nums1.length, nums2.length <= 1000",
+    "0 <= nums1[i], nums2[i] <= 1000"
+  ],
+  "hints": [
+    "Because duplicates in the output must be removed, converting the inputs to hash sets simplifies membership checks.",
+    "Insert the smaller array into a hash set to minimize extra space.",
+    "Scan the other array; whenever an element is found in the set, add it to the answer and remove it from the set so it is recorded only once."
+  ],
+  "examples": [
+    {
+      "explanation": "2 is the only value present in both arrays; duplicates are omitted."
+    },
+    {
+      "explanation": "Both 4 and 9 appear in both arrays (either [4, 9] or [9, 4] is accepted)."
+    },
+    {
+      "explanation": "The arrays share no common values, so return an empty array."
+    }
+  ],
+  "timeComplexity": "O(n + m)",
+  "spaceComplexity": "O(min(n, m))",
+  "compare": "sorted",
+  "signature": {
+    "kind": "function",
+    "method": "intersection",
+    "params": [
+      {
+        "name": "nums1",
+        "type": "int[]"
+      },
+      {
+        "name": "nums2",
+        "type": "int[]"
+      }
+    ],
+    "returns": "int[]"
+  }
+}

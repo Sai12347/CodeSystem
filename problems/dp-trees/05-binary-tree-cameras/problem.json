@@ -1,0 +1,39 @@
+{
+  "title": "Binary Tree Cameras",
+  "difficulty": "Hard",
+  "subtopic": "Subtree Optimization",
+  "companies": [
+    "Amazon",
+    "Google",
+    "Microsoft"
+  ],
+  "description": "A camera placed at a node monitors that node, its parent, and its direct children. Return the minimum number of cameras needed to monitor every node.",
+  "constraints": [
+    "0 <= number of nodes <= 1000",
+    "-10^4 <= node.val <= 10^4"
+  ],
+  "hints": [
+    "Solve the tree recursively from the leaves toward the root.",
+    "Return the smallest state needed by the parent and combine child results."
+  ],
+  "examples": [
+    {
+      "input": "root = [0,0,null,0,0]",
+      "output": "1"
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(h)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "minCameraCover",
+    "params": [
+      {
+        "name": "root",
+        "type": "TreeNode"
+      }
+    ],
+    "returns": "int"
+  }
+}

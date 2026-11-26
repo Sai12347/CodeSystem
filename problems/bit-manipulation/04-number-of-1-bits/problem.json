@@ -1,0 +1,37 @@
+{
+  "title": "Number of 1 Bits",
+  "difficulty": "Easy",
+  "subtopic": "Counting Bits",
+  "companies": [
+    "Amazon",
+    "Google",
+    "Microsoft"
+  ],
+  "description": "Given a non-negative integer `n`, return the number of 1 bits in its binary representation.",
+  "constraints": [
+    "0 <= n <= 10^5"
+  ],
+  "hints": [
+    "Remove the lowest set bit repeatedly; each iteration removes one 1-bit."
+  ],
+  "examples": [
+    {
+      "input": "n = 11",
+      "output": "3"
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "hammingWeight",
+    "params": [
+      {
+        "name": "n",
+        "type": "int"
+      }
+    ],
+    "returns": "int"
+  }
+}

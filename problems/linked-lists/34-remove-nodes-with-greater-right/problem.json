@@ -1,0 +1,45 @@
+{
+  "title": "Remove Nodes with Greater Right",
+  "difficulty": "Medium",
+  "subtopic": "Reversal",
+  "companies": [
+    "Amazon",
+    "Google",
+    "Meta",
+    "Microsoft"
+  ],
+  "description": "You are given the `head` of a non-empty singly linked list. Remove every node that has another node with a **strictly greater** value anywhere to its right in the list.\n\nReturn the head of the modified linked list. Note that the remaining node values will form a non-increasing sequence. Solve this in `O(n)` time and `O(1)` extra space.",
+  "constraints": [
+    "The number of nodes in the list is in the range [1, 10^4].",
+    "1 <= Node.val <= 10^5"
+  ],
+  "hints": [
+    "Scanning right-to-left lets you maintain a single running maximum `maxSoFar` and discard any node with `val < maxSoFar`.",
+    "To scan right-to-left in O(1) extra space, reverse the list, filter out nodes smaller than the running maximum, and reverse the filtered list back."
+  ],
+  "examples": [
+    {
+      "explanation": "Nodes 5, 2, and 3 all have 13 or 8 to their right and are removed, leaving [13, 8]."
+    },
+    {
+      "explanation": "All values are equal (1), so no node has a strictly greater value to its right: [1, 1, 1, 1]."
+    },
+    {
+      "explanation": "The list is strictly increasing, so only the rightmost node [5] survives."
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "removeNodes",
+    "params": [
+      {
+        "name": "head",
+        "type": "ListNode"
+      }
+    ],
+    "returns": "ListNode"
+  }
+}

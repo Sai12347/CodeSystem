@@ -1,0 +1,46 @@
+{
+  "title": "Minimum Swaps to Form Chessboard",
+  "difficulty": "Hard",
+  "subtopic": "Matrix Rotation",
+  "companies": [
+    "Google",
+    "Meta",
+    "Goldman Sachs",
+    "Amazon"
+  ],
+  "description": "You are given an `n x n` binary grid `board`. In each move, you can swap any two rows with each other, or swap any two columns with each other.\n\nReturn the **minimum number of moves** required to transform `board` into a valid **chessboard**\u2014a board where no two horizontally or vertically adjacent cells have the same value (`0` or `1`). If it is impossible to transform `board` into a chessboard, return `-1`.",
+  "constraints": [
+    "n == board.length == board[i].length",
+    "2 <= n <= 30",
+    "board[i][j] is either 0 or 1."
+  ],
+  "hints": [
+    "Row and column swaps preserve the rectangle parity invariant: for every (r, c), board[0][0] ^ board[r][0] ^ board[0][c] ^ board[r][c] must equal 0 (meaning every row equals row 0 or its bitwise complement).",
+    "Verify that both the first row and first column have either floor(n/2) or ceil(n/2) ones; then count misaligned rows and columns independently to find the minimum swaps."
+  ],
+  "examples": [
+    {
+      "explanation": "Swap columns 0 and 1, then swap rows 1 and 2 to obtain a valid 4x4 chessboard in 2 moves."
+    },
+    {
+      "explanation": "The 2x2 board is already a valid chessboard, requiring 0 moves."
+    },
+    {
+      "explanation": "Row 0 has [1,0] while row 1 has [1,1], which violates the complement invariant, so no chessboard is possible (-1)."
+    }
+  ],
+  "timeComplexity": "O(n^2)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "movesToChessboard",
+    "params": [
+      {
+        "name": "board",
+        "type": "int[][]"
+      }
+    ],
+    "returns": "int"
+  }
+}

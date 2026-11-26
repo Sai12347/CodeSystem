@@ -1,0 +1,43 @@
+{
+  "title": "Count Strictly Increasing Subarrays",
+  "difficulty": "Medium",
+  "subtopic": "Subarrays",
+  "companies": [
+    "Amazon",
+    "Google",
+    "Microsoft"
+  ],
+  "description": "A strictly increasing subarray is a non-empty contiguous segment in which each value is greater than the preceding value. Count all such subarrays in `nums`. Input: `nums`. Output: the exact count.",
+  "constraints": [
+    "1 <= nums.length <= 100000",
+    "-1000000000 <= nums[i] <= 1000000000"
+  ],
+  "hints": [
+    "Track the running prefix, window, or frequency information needed by the condition.",
+    "Check duplicates, all-equal values, and boundary-sized windows."
+  ],
+  "examples": [
+    {
+      "input": "nums = [1, 3, 5, 4]",
+      "output": "7"
+    },
+    {
+      "input": "nums = [2, 2, 2]",
+      "output": "3"
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "countIncreasingSubarrays",
+    "params": [
+      {
+        "name": "nums",
+        "type": "int[]"
+      }
+    ],
+    "returns": "long"
+  }
+}

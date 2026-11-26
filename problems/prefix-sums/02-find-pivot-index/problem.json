@@ -1,0 +1,49 @@
+{
+  "title": "Find Pivot Index",
+  "difficulty": "Easy",
+  "subtopic": "1D Prefix Sum",
+  "companies": [
+    "Google",
+    "Amazon",
+    "Meta",
+    "Microsoft",
+    "Apple",
+    "Goldman Sachs"
+  ],
+  "leetcode": 724,
+  "description": "Given an array of integers `nums`, calculate the **pivot index** of this array.\n\nThe **pivot index** is the index where the sum of all the numbers **strictly** to the left of the index is equal to the sum of all the numbers **strictly** to the right of the index.\n\nIf the index is on the left edge of the array (`i == 0`), the left sum is `0` because there are no elements to the left. This also applies to the right edge of the array (`i == nums.length - 1`), where the right sum is `0`.\n\nReturn the **leftmost** pivot index. If no such index exists, return `-1`.",
+  "constraints": [
+    "1 <= nums.length <= 10^4",
+    "-1000 <= nums[i] <= 1000"
+  ],
+  "hints": [
+    "Compute the total sum `S` of the entire array first.",
+    "As you scan index `i` from left to right maintaining `leftSum`, the sum strictly to the right of `i` is `S - leftSum - nums[i]`.",
+    "Check `leftSum == S - leftSum - nums[i]` before updating `leftSum += nums[i]` so the first match is guaranteed to be the leftmost pivot index."
+  ],
+  "examples": [
+    {
+      "explanation": "The pivot index is 3. Left sum = nums[0] + nums[1] + nums[2] = 1 + 7 + 3 = 11. Right sum = nums[4] + nums[5] = 5 + 6 = 11."
+    },
+    {
+      "explanation": "There is no index that satisfies the conditions in the problem statement, so return -1."
+    },
+    {
+      "explanation": "The pivot index is 0. Left sum = 0 (no elements to the left of index 0). Right sum = nums[1] + nums[2] = 1 + (-1) = 0."
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "pivotIndex",
+    "params": [
+      {
+        "name": "nums",
+        "type": "int[]"
+      }
+    ],
+    "returns": "int"
+  }
+}

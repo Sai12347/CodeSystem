@@ -1,0 +1,46 @@
+{
+  "title": "Maximum Diagonal Sum by Ring Rotations",
+  "difficulty": "Hard",
+  "subtopic": "Matrix Rotation",
+  "companies": [
+    "Google",
+    "Goldman Sachs",
+    "Uber",
+    "Meta"
+  ],
+  "description": "You are given an `n x n` integer matrix `matrix`. Before computing the sum of its two main diagonals, you may independently rotate **each concentric square ring** of `matrix` clockwise by any non-negative number of positions (rotating a ring shifts only the perimeter cells of that ring along its cyclic boundary).\n\nReturn the **maximum possible sum** of all cells lying on the primary diagonal (`r == c`) or the secondary diagonal (`r + c == n - 1`), counting the center cell once when `n` is odd.",
+  "constraints": [
+    "n == matrix.length == matrix[i].length",
+    "1 <= n <= 200",
+    "-10^9 <= matrix[i][j] <= 10^9"
+  ],
+  "hints": [
+    "Concentric rings can be rotated completely independently, and each ring k of side length L = n - 2k >= 2 contributes exactly its 4 corner cells to the two diagonals.",
+    "In cyclic order around ring k, the 4 corner slots are spaced S = L - 1 positions apart, so any rotation places the quadruple {(k, k+i), (k+i, k+S), (k+S, k+S-i), (k+S-i, k)} onto the corners for some 0 <= i < S."
+  ],
+  "examples": [
+    {
+      "explanation": "Rotating the outer 3x3 ring by 1 step moves the four edge midpoints (10, 10, 10, 10) onto the four corners; adding the center cell 5 gives 45."
+    },
+    {
+      "explanation": "In a 2x2 matrix, all four cells always lie on the diagonals regardless of rotation: 1 + 2 + 3 + 4 = 10."
+    },
+    {
+      "explanation": "In a 4x4 matrix, outer ring picks the best of 3 phases and inner 2x2 ring always contributes all 4 of its cells."
+    }
+  ],
+  "timeComplexity": "O(n^2)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "maxDiagonalSumAfterRingRotations",
+    "params": [
+      {
+        "name": "matrix",
+        "type": "int[][]"
+      }
+    ],
+    "returns": "long"
+  }
+}

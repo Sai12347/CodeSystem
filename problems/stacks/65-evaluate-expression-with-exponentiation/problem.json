@@ -1,0 +1,46 @@
+{
+  "title": "Evaluate Expression With Exponentiation",
+  "difficulty": "Medium",
+  "subtopic": "Expression Parsing",
+  "companies": [
+    "Google",
+    "Amazon",
+    "Meta",
+    "Oracle"
+  ],
+  "description": "Given a valid mathematical expression string `s` consisting of non-negative integers, binary operators `'+'`, `'-'`, `'*'`, and `'^'` (exponentiation), parentheses `'('` and `')'`, and optional spaces `' '`, evaluate `s` and return its 64-bit integer result (`long`).\n\nPrecedence and associativity rules:\n- `'^'` has the highest precedence and is **right-associative** (so `2^3^2 = 2^(3^2) = 512`, and `0^0 = 1`).\n- `'*'` has medium precedence and is left-associative.\n- `'+'` and `'-'` have the lowest precedence and are left-associative.\n\nAll exponents are non-negative integers, and all intermediate and final values fit in a 64-bit signed integer.",
+  "constraints": [
+    "1 <= s.length <= 10^4",
+    "s contains digits, '+', '-', '*', '^', '(', ')', and ' ' (no unary minus).",
+    "Every exponent is non-negative and every intermediate/final value fits in a 64-bit signed integer."
+  ],
+  "hints": [
+    "Use Shunting-Yard with an operand value stack and an operator stack.",
+    "Before pushing a left-associative operator (+, -, *), pop and evaluate top operators with precedence >= current; before pushing right-associative '^', pop only operators with strictly greater precedence."
+  ],
+  "examples": [
+    {
+      "explanation": "Because '^' is right-associative, 2^3^2 evaluates as 2^(3^2) = 2^9 = 512."
+    },
+    {
+      "explanation": "2^3 = 8, 3 * 8 = 24, then 24 + 4 = 28."
+    },
+    {
+      "explanation": "(2 + 1)^(1 + 2) * 2 - 5 = 3^3 * 2 - 5 = 54 - 5 = 49."
+    }
+  ],
+  "timeComplexity": "O(n log E)",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "evalWithPower",
+    "params": [
+      {
+        "name": "s",
+        "type": "String"
+      }
+    ],
+    "returns": "long"
+  }
+}

@@ -1,0 +1,50 @@
+{
+  "title": "Container With Most Water",
+  "difficulty": "Medium",
+  "subtopic": "Converging Pointers",
+  "companies": [
+    "Amazon",
+    "Google",
+    "Meta",
+    "Microsoft",
+    "Apple",
+    "Bloomberg"
+  ],
+  "leetcode": 11,
+  "description": "You are given an integer array `height` of length `n`. There are `n` vertical lines drawn such that the two endpoints of the `i`-th line are `(i, 0)` and `(i, height[i])`.\n\nFind two distinct lines that together with the x-axis form a container that holds the most water. The area of water formed by lines `i` and `j` (`i < j`) is `min(height[i], height[j]) * (j - i)`. You may not slant the container.\n\nReturn the maximum amount of water a container can store.",
+  "constraints": [
+    "n == height.length",
+    "2 <= n <= 10^5",
+    "0 <= height[i] <= 10^4"
+  ],
+  "hints": [
+    "Start with the widest possible container using pointers at left = 0 and right = n - 1.",
+    "The container height is capped by min(height[left], height[right]). Moving the taller pointer inward shrinks the width without ever increasing the limiting height.",
+    "Therefore, always move the shorter pointer inward in search of a taller line that can compensate for the reduced width."
+  ],
+  "examples": [
+    {
+      "explanation": "Choosing lines at indices 1 (height 8) and 8 (height 7) gives area min(8, 7) * (8 - 1) = 49."
+    },
+    {
+      "explanation": "With only two lines of height 1 at distance 1, the maximum area is 1 * 1 = 1."
+    },
+    {
+      "explanation": "Choosing the two outer lines of height 4 at indices 0 and 4 gives area 4 * 4 = 16."
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "maxArea",
+    "params": [
+      {
+        "name": "height",
+        "type": "int[]"
+      }
+    ],
+    "returns": "int"
+  }
+}

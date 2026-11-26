@@ -1,0 +1,1 @@
+class Solution { int best; int dfs(TreeNode n){if(n==null)return 0;int l=Math.max(0,dfs(n.left)),r=Math.max(0,dfs(n.right));best=Math.max(best,n.val+l+r);return n.val+Math.max(l,r);} public int maxPathSum(TreeNode root){best=Integer.MIN_VALUE;dfs(root);return best;} }

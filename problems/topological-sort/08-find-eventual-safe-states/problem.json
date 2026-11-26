@@ -1,0 +1,39 @@
+{
+  "title": "Find Eventual Safe States",
+  "difficulty": "Medium",
+  "subtopic": "In-Degree BFS",
+  "companies": [
+    "Google",
+    "Amazon",
+    "Microsoft"
+  ],
+  "description": "A node is safe if every possible path starting from it eventually reaches a terminal node (a node with no outgoing edges). Return all safe node labels in increasing order.",
+  "constraints": [
+    "1 <= graph.length <= 10^4",
+    "Each edge goes to a valid node; the graph may contain cycles"
+  ],
+  "hints": [
+    "Model each ordering rule as a directed edge.",
+    "Use indegrees to process prerequisites and identify cycles or forced choices."
+  ],
+  "examples": [
+    {
+      "input": "graph = [[1,2],[2,3],[5],[0],[5],[],[]]",
+      "output": "[2,4,5,6]"
+    }
+  ],
+  "timeComplexity": "O(V+E)",
+  "spaceComplexity": "O(V+E)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "eventualSafeNodes",
+    "params": [
+      {
+        "name": "graph",
+        "type": "int[][]"
+      }
+    ],
+    "returns": "List<Integer>"
+  }
+}

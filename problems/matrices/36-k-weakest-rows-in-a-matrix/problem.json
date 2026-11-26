@@ -1,0 +1,52 @@
+{
+  "title": "The K Weakest Rows in a Matrix",
+  "difficulty": "Easy",
+  "subtopic": "2D Search",
+  "companies": [
+    "Amazon",
+    "Google",
+    "Apple",
+    "Bloomberg"
+  ],
+  "description": "You are given an `m x n` binary matrix `mat` of `1`s (representing soldiers) and `0`s (representing civilians). In every row, all `1`s appear strictly to the left of all `0`s.\n\nA row `i` is **weaker** than a row `j` if either:\n- The number of soldiers in row `i` is strictly less than the number of soldiers in row `j`, or\n- Both rows have the same number of soldiers and `i < j`.\n\nReturn the indices of the `k` weakest rows in the matrix ordered from weakest to strongest.",
+  "constraints": [
+    "m == mat.length",
+    "n == mat[i].length",
+    "2 <= n, m <= 100",
+    "1 <= k <= m",
+    "Each row consists of some number of 1s followed by some number of 0s."
+  ],
+  "hints": [
+    "Because every row has all 1s before all 0s, binary search finds the soldier count of each row in O(log n) time.",
+    "Sort the (soldierCount, rowIndex) pairs and take the first k row indices."
+  ],
+  "examples": [
+    {
+      "explanation": "Soldier counts per row are [2, 4, 1, 2, 5]; the 3 weakest rows are 2 (1), 0 (2), and 3 (2)."
+    },
+    {
+      "explanation": "Soldier counts are [1, 4, 1, 1]; the 2 weakest rows by index tie-breaking are 0 and 2."
+    },
+    {
+      "explanation": "All rows have 0 soldiers, so the weakest 2 rows are simply 0 and 1."
+    }
+  ],
+  "timeComplexity": "O(m * (log n + log m))",
+  "spaceComplexity": "O(m)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "kWeakestRows",
+    "params": [
+      {
+        "name": "mat",
+        "type": "int[][]"
+      },
+      {
+        "name": "k",
+        "type": "int"
+      }
+    ],
+    "returns": "int[]"
+  }
+}

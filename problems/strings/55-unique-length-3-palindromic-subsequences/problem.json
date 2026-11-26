@@ -1,0 +1,44 @@
+{
+  "title": "Unique Length-3 Palindromic Subsequences",
+  "difficulty": "Medium",
+  "subtopic": "Palindromes",
+  "companies": [
+    "Meta",
+    "Google",
+    "Amazon"
+  ],
+  "description": "Given a lowercase string `s`, return the number of unique palindromes of length 3 that are subsequences of `s`. Even if the same 3-character palindrome can be formed in multiple index combinations, count it only once.",
+  "constraints": [
+    "3 <= s.length <= 10^5",
+    "s consists of only lowercase English letters."
+  ],
+  "hints": [
+    "A length-3 palindrome has the form X Y X, where X appears at least twice and Y appears strictly between two occurrences of X.",
+    "For each of the 26 letters X, find its first and last occurrence in s and count how many distinct characters appear strictly between them."
+  ],
+  "examples": [
+    {
+      "explanation": "The unique length-3 palindromic subsequences of \"aabca\" are \"aba\", \"aaa\", and \"aca\"."
+    },
+    {
+      "explanation": "No character repeats in \"adc\", so there are 0 length-3 palindromes."
+    },
+    {
+      "explanation": "The unique palindromes in \"bbcbaba\" are \"bbb\", \"bcb\", \"bab\", and \"aba\"."
+    }
+  ],
+  "timeComplexity": "O(26 * n)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "countPalindromicSubsequence",
+    "params": [
+      {
+        "name": "s",
+        "type": "String"
+      }
+    ],
+    "returns": "int"
+  }
+}

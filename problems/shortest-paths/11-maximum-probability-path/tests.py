@@ -1,0 +1,5 @@
+def visible():
+    return [{'in': {'n': 3, 'edges': [[0, 1], [1, 2], [0, 2]], 'succProb': [0.5, 0.5, 0.2], 'start': 0, 'end': 2}}, {'in': {'n': 3, 'edges': [[0, 1]], 'succProb': [0.5], 'start': 0, 'end': 2}}, {'in': {'n': 1, 'edges': [], 'succProb': [], 'start': 0, 'end': 0}}]
+
+def hidden():
+    return [{'in': {'n': 2, 'edges': [[0, 1]], 'succProb': [1.0], 'start': 0, 'end': 1}}, {'in': {'n': 2, 'edges': [[0, 1]], 'succProb': [0.0], 'start': 0, 'end': 1}}, {'in': {'n': 4, 'edges': [[0, 1], [1, 3], [0, 2], [2, 3]], 'succProb': [0.5, 0.5, 0.8, 0.4], 'start': 0, 'end': 3}}, {'in': {'n': 3, 'edges': [[0, 1], [1, 2]], 'succProb': [0.9, 0.9], 'start': 0, 'end': 2}}, {'in': {'n': 4, 'edges': [[0, 1], [1, 2], [2, 3], [0, 3]], 'succProb': [0.9, 0.9, 0.9, 0.5], 'start': 0, 'end': 3}}, {'in': {'n': 3, 'edges': [[0, 1], [0, 2]], 'succProb': [0.2, 0.7], 'start': 0, 'end': 2}}, {'in': {'n': 5, 'edges': [[0, 1], [1, 4], [0, 2], [2, 3], [3, 4]], 'succProb': [0.8, 0.8, 0.9, 0.9, 0.9], 'start': 0, 'end': 4}}, {'in': {'n': 4, 'edges': [[0, 1], [1, 2]], 'succProb': [0.7, 0.6], 'start': 2, 'end': 0}}]

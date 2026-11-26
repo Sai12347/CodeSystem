@@ -1,0 +1,46 @@
+{
+  "title": "Maximum Value Sum by Placing Three Rooks",
+  "difficulty": "Hard",
+  "subtopic": "Dynamic Grids",
+  "companies": [
+    "Google",
+    "Meta",
+    "Goldman Sachs",
+    "Uber"
+  ],
+  "description": "You are given an `m x n` integer matrix `board` representing cell values on a chessboard. You must place **three rooks** on three cells of `board` such that no two rooks can attack each other (that is, no two rooks share the same row or the same column).\n\nReturn the **maximum possible sum** of the values of the three cells occupied by the rooks.",
+  "constraints": [
+    "m == board.length, n == board[i].length",
+    "3 <= m, n <= 100",
+    "-10^9 <= board[i][j] <= 10^9"
+  ],
+  "hints": [
+    "In any single row, you only ever need its top 3 largest values (with their column indices), because the other two rooks can block at most 2 columns.",
+    "Fix the middle rook's row r in [1..m-2]; precompute pref[r - 1] (the top 3 distinct-column maximums across rows 0..r-1) and suff[r + 1] (across rows r+1..m-1), then test all 3 x 3 x 3 column-disjoint triples in O(1) per row for O(m * n) total time."
+  ],
+  "examples": [
+    {
+      "explanation": "Placing rooks at (0, 2) = 1, (1, 3) = 1, and (2, 1) = 2 uses three distinct rows and columns for a maximum sum of 4."
+    },
+    {
+      "explanation": "Placing rooks at (0, 2) = 3, (1, 1) = 5, and (2, 0) = 7 gives 3 + 5 + 7 = 15 (every valid 3-rook placement on this board sums to 15)."
+    },
+    {
+      "explanation": "All cells equal 1, so any three non-attacking cells sum to 3."
+    }
+  ],
+  "timeComplexity": "O(m * n)",
+  "spaceComplexity": "O(m)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "maximumThreeRooksSum",
+    "params": [
+      {
+        "name": "board",
+        "type": "int[][]"
+      }
+    ],
+    "returns": "long"
+  }
+}

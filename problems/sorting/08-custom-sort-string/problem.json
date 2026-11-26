@@ -1,0 +1,54 @@
+{
+  "title": "Custom Sort String",
+  "difficulty": "Medium",
+  "subtopic": "Custom Comparators",
+  "companies": [
+    "Meta",
+    "Amazon",
+    "Google",
+    "Bloomberg",
+    "Microsoft"
+  ],
+  "leetcode": 791,
+  "description": "You are given two strings `order` and `s`. All the characters of `order` are **unique** and were sorted in some custom order previously.\n\nPermute the characters of `s` so that they match the order that `order` was sorted. More specifically, if a character `x` occurs before a character `y` in `order`, then every occurrence of `x` should occur before every occurrence of `y` in the permuted string.\n\nCharacters in `s` that do not appear in `order` can be placed at any position. Return **any** permutation of `s` that satisfies this property. The judge validates that your returned string is a permutation of `s` and respects the relative order defined by `order` (`true`).",
+  "constraints": [
+    "1 <= order.length <= 26",
+    "1 <= s.length <= 200",
+    "order and s consist of lowercase English letters.",
+    "All the characters of order are unique."
+  ],
+  "hints": [
+    "You can sort the characters of s using a custom comparator that maps each character in order to its index (and unranked characters to 26).",
+    "For an even faster O(n + m) solution, count the frequency of each character in s using an array of size 26.",
+    "Iterate through order and append each character as many times as it appears in s, then append all remaining characters that were not in order."
+  ],
+  "examples": [
+    {
+      "explanation": "Characters 'c', 'b', and 'a' appear in order as c -> b -> a, so \"cbad\" (or \"dcba\", \"cdba\", etc.) is valid."
+    },
+    {
+      "explanation": "'b', 'c', and 'a' must appear in that relative order; 'd' is not in order and can go anywhere, e.g. \"bcad\"."
+    },
+    {
+      "explanation": "Following order \"kqep\", the permutation \"kqeep\" places 'k', 'q', both 'e's, then 'p'."
+    }
+  ],
+  "timeComplexity": "O(n + m)",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "adapter",
+    "inputs": [
+      {
+        "name": "order",
+        "type": "String",
+        "description": "Unique lowercase characters defining the custom rank order"
+      },
+      {
+        "name": "s",
+        "type": "String",
+        "description": "Target lowercase string to permute"
+      }
+    ]
+  }
+}

@@ -1,0 +1,51 @@
+{
+  "title": "Reverse an Array In-Place",
+  "difficulty": "Easy",
+  "subtopic": "In-Place Operations",
+  "companies": [
+    "Amazon",
+    "Microsoft",
+    "Meta",
+    "Apple",
+    "Adobe"
+  ],
+  "leetcode": null,
+  "description": "Given an integer array `nums`, reverse the elements of `nums` **in-place** so that the first element becomes the last, the second becomes the second-to-last, and so on.\n\nDo not return anything; modify `nums` directly using `O(1)` extra space.",
+  "constraints": [
+    "0 <= nums.length <= 10^5",
+    "-10^9 <= nums[i] <= 10^9"
+  ],
+  "hints": [
+    "Use two pointers starting at the two ends of the array: `left = 0` and `right = nums.length - 1`.",
+    "Swap `nums[left]` and `nums[right]`, then move `left` forward and `right` backward until they meet or cross."
+  ],
+  "examples": [
+    {
+      "explanation": "Swapping symmetric pairs (1 with 5, 2 with 4) leaves 3 in the middle and yields [5, 4, 3, 2, 1]."
+    },
+    {
+      "explanation": "Reversing [10, -2, 7, 0] produces [0, 7, -2, 10]."
+    },
+    {
+      "explanation": "A single-element array remains unchanged after reversal."
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "reverseArray",
+    "params": [
+      {
+        "name": "nums",
+        "type": "int[]"
+      }
+    ],
+    "returns": "void",
+    "output": {
+      "mode": "param",
+      "param": "nums"
+    }
+  }
+}

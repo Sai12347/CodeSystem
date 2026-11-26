@@ -1,0 +1,46 @@
+{
+  "title": "Sort Bitonic Linked List",
+  "difficulty": "Medium",
+  "subtopic": "Merge & Sort",
+  "companies": [
+    "Amazon",
+    "Microsoft",
+    "Goldman Sachs",
+    "Google"
+  ],
+  "description": "A singly linked list is called **bitonic** if its values are first **non-decreasing** up to some peak node and then **non-increasing** from that peak to the tail (this includes lists that are purely non-decreasing or purely non-increasing).\n\nGiven the `head` of a bitonic singly linked list, sort it in **non-decreasing** order and return its new head in `O(n)` time and `O(1)` extra space.",
+  "constraints": [
+    "The number of nodes in the list is in the range [0, 10^4].",
+    "-10^5 <= Node.val <= 10^5",
+    "The input list is guaranteed to be bitonic (non-decreasing prefix followed by non-increasing suffix)."
+  ],
+  "hints": [
+    "Scan forward from `head` to find the first node `peak` where `peak.val > peak.next.val`; split the list right after `peak` into an ascending first half and a descending second half.",
+    "Reverse the descending second half in O(n) time and O(1) space, then merge the two non-decreasing linked lists."
+  ],
+  "examples": [
+    {
+      "explanation": "Ascending prefix [2, 5, 7, 12] and descending suffix [10, 6, 4, 1] (reversed to [1, 4, 6, 10]) merge into [1, 2, 4, 5, 6, 7, 10, 12]."
+    },
+    {
+      "explanation": "Purely non-increasing [5, 4, 3, 2, 1] splits into [5] and [4, 3, 2, 1] -> [1, 2, 3, 4, 5]."
+    },
+    {
+      "explanation": "Already non-decreasing [1, 3, 3, 5] needs no change."
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "sortBitonicList",
+    "params": [
+      {
+        "name": "head",
+        "type": "ListNode"
+      }
+    ],
+    "returns": "ListNode"
+  }
+}

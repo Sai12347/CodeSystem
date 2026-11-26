@@ -1,0 +1,78 @@
+{
+  "title": "Design HashMap",
+  "difficulty": "Easy",
+  "subtopic": "Collision Resolution",
+  "companies": [
+    "Amazon",
+    "Microsoft",
+    "Meta",
+    "Google",
+    "LinkedIn",
+    "Apple"
+  ],
+  "leetcode": 706,
+  "description": "Design a HashMap **without using any built-in hash table libraries**.\n\nImplement the `MyHashMap` class:\n- `MyHashMap()` initializes the object with an empty map.\n- `void put(int key, int value)` inserts a `(key, value)` pair into the HashMap. If the `key` already exists in the map, update the corresponding `value`.\n- `int get(int key)` returns the `value` to which the specified `key` is mapped, or `-1` if this map contains no mapping for the `key`.\n- `void remove(int key)` removes the `key` and its corresponding `value` if the map contains a mapping for the `key`.",
+  "constraints": [
+    "0 <= key, value <= 10^6",
+    "At most 10^4 calls will be made to put, get, and remove."
+  ],
+  "hints": [
+    "Allocate a fixed array of buckets whose length is a prime number (such as 2069) to minimize clustering.",
+    "Map each key to a bucket via key % numBuckets, and resolve collisions inside each bucket using separate chaining (a linked list or small list of (key, value) pairs).",
+    "Remember that 0 is a valid stored value, so only return -1 when the key is genuinely absent from its bucket."
+  ],
+  "examples": [
+    {
+      "explanation": "put(1,1), put(2,2), get(1)->1, get(3)->-1, put(2,1) updates key 2, get(2)->1, remove(2), get(2)->-1."
+    },
+    {
+      "explanation": "Storing value 0 at key 0 must return 0 (not -1), and removing a missing key is a no-op."
+    }
+  ],
+  "timeComplexity": "O(1) average per op",
+  "spaceComplexity": "O(n + B)",
+  "compare": "exact",
+  "signature": {
+    "kind": "design",
+    "className": "MyHashMap",
+    "constructor": {
+      "params": []
+    },
+    "methods": [
+      {
+        "name": "put",
+        "params": [
+          {
+            "name": "key",
+            "type": "int"
+          },
+          {
+            "name": "value",
+            "type": "int"
+          }
+        ],
+        "returns": "void"
+      },
+      {
+        "name": "get",
+        "params": [
+          {
+            "name": "key",
+            "type": "int"
+          }
+        ],
+        "returns": "int"
+      },
+      {
+        "name": "remove",
+        "params": [
+          {
+            "name": "key",
+            "type": "int"
+          }
+        ],
+        "returns": "void"
+      }
+    ]
+  }
+}

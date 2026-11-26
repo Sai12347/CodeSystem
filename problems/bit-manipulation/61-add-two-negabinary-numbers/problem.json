@@ -1,0 +1,49 @@
+{
+  "title": "Add Two Negabinary Numbers",
+  "difficulty": "Medium",
+  "subtopic": "Two Complement",
+  "companies": [
+    "Google",
+    "Bloomberg",
+    "Microsoft"
+  ],
+  "description": "Given two numbers `arr1` and `arr2` represented in base `-2` (negabinary) as arrays of `0`s and `1`s from most significant bit to least significant bit with no leading zeros (except `[0]` for zero), return their sum in the same base `-2` format with no leading zeros.",
+  "constraints": [
+    "1 <= arr1.length, arr2.length <= 1000",
+    "arr1[i] and arr2[i] are either 0 or 1.",
+    "arr1 and arr2 have no leading zeros unless representing 0 as [0]."
+  ],
+  "hints": [
+    "Add from right to left while keeping a signed `carry` that can be `-1`, `0`, or `1`.",
+    "At each digit with total `s = bit1 + bit2 + carry`, emit `s & 1` and propagate `carry = -(s >> 1)` because `2 * (-2)^k = (-1) * (-2)^(k+1)` and `(-1) * (-2)^k = 1 * (-2)^k + 1 * (-2)^(k+1)`."
+  ],
+  "examples": [
+    {
+      "explanation": "[1,1,1,1,1] is 11 and [1,0,1] is 5; their sum 16 in base -2 is [1,0,0,0,0]."
+    },
+    {
+      "explanation": "0 + 0 = 0, represented as [0]."
+    },
+    {
+      "explanation": "[1,1] (-1) + [1] (1) = 0, represented as [0] after stripping leading zeros."
+    }
+  ],
+  "timeComplexity": "O(n + m)",
+  "spaceComplexity": "O(n + m)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "addNegabinary",
+    "params": [
+      {
+        "name": "arr1",
+        "type": "int[]"
+      },
+      {
+        "name": "arr2",
+        "type": "int[]"
+      }
+    ],
+    "returns": "int[]"
+  }
+}

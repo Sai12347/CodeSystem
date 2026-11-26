@@ -1,0 +1,47 @@
+{
+  "title": "Repeated String Match",
+  "difficulty": "Medium",
+  "subtopic": "String Matching",
+  "companies": [
+    "Amazon",
+    "Google",
+    "Microsoft"
+  ],
+  "description": "Given non-empty strings `a` and `b`, repeat `a` the fewest number of times so that `b` appears as a contiguous substring of the repeated string. Return that repetition count, or -1 if no repetition can contain `b`. Input: `a`, `b`. Output: the minimum count or -1.",
+  "constraints": [
+    "1 <= a.length, b.length <= 1000",
+    "a and b contain lowercase English letters"
+  ],
+  "hints": [
+    "Track only the character counts or prefixes needed to decide the next step.",
+    "Check repeated symbols, empty or minimal cases, and impossible arrangements."
+  ],
+  "examples": [
+    {
+      "input": "a = \"abcd\", b = \"cdabcdab\"",
+      "output": "3"
+    },
+    {
+      "input": "a = \"a\", b = \"aaab\"",
+      "output": "-1"
+    }
+  ],
+  "timeComplexity": "O(|a| * |b|)",
+  "spaceComplexity": "O(|a| + |b|)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "repeatedStringMatch",
+    "params": [
+      {
+        "name": "a",
+        "type": "String"
+      },
+      {
+        "name": "b",
+        "type": "String"
+      }
+    ],
+    "returns": "int"
+  }
+}

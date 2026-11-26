@@ -1,0 +1,49 @@
+{
+  "title": "Daily Temperatures",
+  "difficulty": "Medium",
+  "subtopic": "Next Greater Element",
+  "companies": [
+    "Amazon",
+    "Meta",
+    "Google",
+    "Microsoft",
+    "Apple",
+    "Bloomberg"
+  ],
+  "leetcode": 739,
+  "description": "Given an array of integers `temperatures` representing the daily temperatures, return an array `answer` of the same length such that `answer[i]` is the number of days you must wait after the `i`-th day to observe a strictly warmer temperature.\n\nIf there is no future day with a strictly warmer temperature than `temperatures[i]`, set `answer[i]` to `0`.",
+  "constraints": [
+    "1 <= temperatures.length <= 10^5",
+    "30 <= temperatures[i] <= 100"
+  ],
+  "hints": [
+    "For each day, you need the index of the first subsequent day with a strictly higher temperature.",
+    "Keep a monotonic decreasing stack of day indices whose warmer day has not yet been seen.",
+    "Whenever today's temperature exceeds the temperature at the top index of the stack, pop that index `prev` and set `answer[prev] = i - prev`."
+  ],
+  "examples": [
+    {
+      "explanation": "Day 0 (73) waits 1 day for 74; day 2 (75) waits 4 days for 76; days 6 (76) and 7 (73) have no warmer future day."
+    },
+    {
+      "explanation": "Temperatures increase every day, so every day except the last waits exactly 1 day."
+    },
+    {
+      "explanation": "Each day is immediately followed by a warmer day except the final day."
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "dailyTemperatures",
+    "params": [
+      {
+        "name": "temperatures",
+        "type": "int[]"
+      }
+    ],
+    "returns": "int[]"
+  }
+}

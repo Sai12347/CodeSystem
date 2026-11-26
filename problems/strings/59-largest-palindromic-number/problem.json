@@ -1,0 +1,44 @@
+{
+  "title": "Largest Palindromic Number",
+  "difficulty": "Medium",
+  "subtopic": "Palindromes",
+  "companies": [
+    "Amazon",
+    "Microsoft",
+    "Goldman Sachs"
+  ],
+  "description": "You are given a string `num` consisting of digits `'0'` through `'9'`. Return the largest palindromic integer (as a string) that can be formed using any subset of digits from `num` in any order, using each digit at most as many times as it appears in `num`. The result must not have leading zeros (except for the single digit `\"0\"`).",
+  "constraints": [
+    "1 <= num.length <= 10^5",
+    "num consists of digits '0' through '9'."
+  ],
+  "hints": [
+    "Greedily place pairs of the largest available digits from '9' down to '0' in the left half, skipping '0' if the left half is still empty.",
+    "Place the largest remaining unused digit (if any) in the center; if both left half and center are empty, return \"0\"."
+  ],
+  "examples": [
+    {
+      "explanation": "Using pairs of '7' and '4' with '9' in the middle gives \"7449447\"."
+    },
+    {
+      "explanation": "Only one '9' is available and leading zeros are forbidden, so \"9\" is optimal."
+    },
+    {
+      "explanation": "When only zeros exist, the largest valid palindromic integer is \"0\"."
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "largestPalindromic",
+    "params": [
+      {
+        "name": "num",
+        "type": "String"
+      }
+    ],
+    "returns": "String"
+  }
+}

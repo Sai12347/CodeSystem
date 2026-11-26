@@ -1,0 +1,45 @@
+{
+  "title": "Min and Max Distance Between Critical Points",
+  "difficulty": "Medium",
+  "subtopic": "Fast/Slow Pointer",
+  "companies": [
+    "Google",
+    "Amazon",
+    "Microsoft",
+    "Bloomberg"
+  ],
+  "description": "A critical point in a singly linked list is a node that is either a **local maximum** (`prev.val < curr.val > next.val`) or a **local minimum** (`prev.val > curr.val < next.val`). The first and last nodes cannot be critical points because they lack both neighbors.\n\nGiven the `head` of a linked list, return an integer array of length 2 `[minDistance, maxDistance]` representing the minimum and maximum distances (difference in node positions) between any two distinct critical points. If there are fewer than two critical points, return `[-1, -1]`.",
+  "constraints": [
+    "The number of nodes in the list is in the range [2, 10^4].",
+    "1 <= Node.val <= 10^5"
+  ],
+  "hints": [
+    "Slide three consecutive pointers (`prev`, `curr`, `curr.next`) across the list in a single pass while tracking the current index.",
+    "The maximum distance is always between the first and last critical points; the minimum distance is the smallest gap between any two consecutive critical points."
+  ],
+  "examples": [
+    {
+      "explanation": "The list [3, 1] has no interior nodes, hence 0 critical points and [-1, -1]."
+    },
+    {
+      "explanation": "Critical points are at indices 2 (val 1), 4 (val 5), and 5 (val 1), giving min distance 5-4=1 and max distance 5-2=3."
+    },
+    {
+      "explanation": "Critical points are at indices 1 (val 3) and 4 (val 3), so both min and max distance are 4-1=3."
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "nodesBetweenCriticalPoints",
+    "params": [
+      {
+        "name": "head",
+        "type": "ListNode"
+      }
+    ],
+    "returns": "int[]"
+  }
+}

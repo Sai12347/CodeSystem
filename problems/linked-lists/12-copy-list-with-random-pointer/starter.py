@@ -1,0 +1,10 @@
+# Definition for a Node (provided by the judge).
+# class Node:
+#     def __init__(self, x: int, next: 'Optional[Node]' = None, random: 'Optional[Node]' = None):
+#         self.val = int(x)
+#         self.next = next
+#         self.random = random
+class Solution:
+    def copyRandomList(self, head: "Optional[Node]") -> "Optional[Node]":
+        # Write your solution here
+        return None

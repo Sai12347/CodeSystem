@@ -1,0 +1,46 @@
+{
+  "title": "Decode XORed Permutation",
+  "difficulty": "Medium",
+  "subtopic": "XOR Tricks",
+  "companies": [
+    "Google",
+    "Amazon",
+    "Meta"
+  ],
+  "description": "There is a hidden integer array `perm` that is a permutation of the first `n` positive integers (`1` through `n`), where `n` is guaranteed to be odd. It was encoded into an array `encoded` of length `n - 1` such that `encoded[i] = perm[i] ^ perm[i + 1]` for all `0 <= i < n - 1`. Given `encoded`, reconstruct and return the original permutation `perm`.",
+  "constraints": [
+    "3 <= n <= 10^5",
+    "n is odd.",
+    "encoded.length == n - 1",
+    "A unique valid permutation perm of 1..n is guaranteed to exist."
+  ],
+  "hints": [
+    "Compute `total = 1 ^ 2 ^ ... ^ n`, which equals `perm[0] ^ perm[1] ^ ... ^ perm[n - 1]`.",
+    "XORing the odd-indexed entries `encoded[1] ^ encoded[3] ^ ... ^ encoded[n - 2]` equals `perm[1] ^ perm[2] ^ ... ^ perm[n - 1]`, immediately revealing `perm[0]`."
+  ],
+  "examples": [
+    {
+      "explanation": "perm = [1, 2, 3] encodes to [1^2, 2^3] = [3, 1]."
+    },
+    {
+      "explanation": "perm = [2, 4, 1, 5, 3] encodes to [6, 5, 4, 6]."
+    },
+    {
+      "explanation": "perm = [3, 1, 2] encodes to [3^1, 1^2] = [2, 3]."
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "decodeXoredPermutation",
+    "params": [
+      {
+        "name": "encoded",
+        "type": "int[]"
+      }
+    ],
+    "returns": "int[]"
+  }
+}

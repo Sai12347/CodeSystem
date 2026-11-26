@@ -1,0 +1,38 @@
+{
+  "title": "Is Graph Bipartite?",
+  "difficulty": "Medium",
+  "subtopic": "Bipartite Graphs",
+  "companies": ["Meta", "Google", "Amazon", "Microsoft", "Uber"],
+  "leetcode": 785,
+  "description": "There is an undirected graph with `n` nodes, where each node is numbered between `0` and `n - 1`. You are given a 2D array `graph`, where `graph[u]` is an array of nodes that node `u` is adjacent to. More formally, for each `v` in `graph[u]`, there is an undirected edge between node `u` and node `v`.\n\nThe graph has the following properties:\n- There are no self-edges (`graph[u]` does not contain `u`).\n- There are no parallel edges (`graph[u]` does not contain duplicate values).\n- If `v` is in `graph[u]`, then `u` is in `graph[v]` (the graph is undirected).\n- The graph may not be connected, meaning there may be two nodes `u` and `v` such that there is no path between them.\n\nA graph is **bipartite** if the nodes can be partitioned into two independent sets `A` and `B` such that every edge in the graph connects a node in set `A` and a node in set `B`.\n\nReturn `true` if and only if the graph is bipartite.",
+  "constraints": [
+    "graph.length == n",
+    "1 <= n <= 1000",
+    "0 <= graph[u].length < n",
+    "0 <= graph[u][i] <= n - 1",
+    "graph[u] does not contain u.",
+    "All values of graph[u] are unique.",
+    "If graph[u] contains v, then graph[v] contains u."
+  ],
+  "hints": [
+    "A graph is bipartite if and only if its vertices can be 2-colored so that no two adjacent vertices share the same color (equivalently, it contains no odd-length cycle).",
+    "Run BFS or DFS from every uncolored node, assigning it color `1` and assigning every neighbor the opposite color `-1`. If you ever encounter a neighbor that already has the same color as the current node, return `false`.",
+    "Remember that the graph may have multiple connected components, so iterate through all nodes `0 .. n - 1` and start a traversal from each uncolored node."
+  ],
+  "examples": [
+    {"explanation": "Nodes 0, 1, and 2 form a triangle (odd cycle of length 3), so there is no way to partition the nodes into two independent sets."},
+    {"explanation": "We can partition the nodes into two sets: {0, 2} and {1, 3}. Every edge connects a node in {0, 2} to a node in {1, 3}."},
+    {"explanation": "A single isolated node with no edges is trivially bipartite."}
+  ],
+  "timeComplexity": "O(V + E)",
+  "spaceComplexity": "O(V)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "isBipartite",
+    "params": [
+      {"name": "graph", "type": "int[][]"}
+    ],
+    "returns": "boolean"
+  }
+}

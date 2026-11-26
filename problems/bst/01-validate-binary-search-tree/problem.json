@@ -1,0 +1,33 @@
+{
+  "title": "Validate Binary Search Tree",
+  "difficulty": "Medium",
+  "subtopic": "BST Validation",
+  "companies": ["Amazon", "Meta", "Microsoft", "Google", "Bloomberg", "Apple"],
+  "leetcode": 98,
+  "description": "Given the `root` of a binary tree, determine if it is a valid **binary search tree (BST)**.\n\nA valid BST is defined as follows:\n- The left subtree of a node contains only nodes with keys **strictly less** than the node's key.\n- The right subtree of a node contains only nodes with keys **strictly greater** than the node's key.\n- Both the left and right subtrees must also be binary search trees.\n\nNote that checking only immediate children is insufficient: every node in a left subtree must be strictly less than all ancestors for which it lies on the left, and every node in a right subtree must be strictly greater than all ancestors for which it lies on the right.",
+  "constraints": [
+    "The number of nodes in the tree is in the range [1, 10^4].",
+    "-2^31 <= Node.val <= 2^31 - 1"
+  ],
+  "hints": [
+    "Checking only root.left.val < root.val < root.right.val fails when a deeper descendant violates an ancestor's bound.",
+    "Pass an allowed open interval (low, high) down the recursion: going left tightens high to node.val, and going right tightens low to node.val.",
+    "Be careful with 32-bit integer extremes (-2^31 and 2^31 - 1): use 64-bit bounds (or nullable bounds) so extreme node values are handled strictly."
+  ],
+  "examples": [
+    {"explanation": "The left child 1 is less than 2 and the right child 3 is greater than 2, so the tree is a valid BST."},
+    {"explanation": "The root is 5, but its right child has value 4 which is not strictly greater than 5."},
+    {"explanation": "Node 3 lies in the right subtree of root 5; even though 3 < 6, it violates the requirement that all nodes in 5's right subtree be strictly greater than 5."}
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(h)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "isValidBST",
+    "params": [
+      {"name": "root", "type": "TreeNode"}
+    ],
+    "returns": "boolean"
+  }
+}

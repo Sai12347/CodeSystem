@@ -1,0 +1,44 @@
+{
+  "title": "Minimum XOR Value of Any Pair",
+  "difficulty": "Medium",
+  "subtopic": "XOR Tricks",
+  "companies": [
+    "Google",
+    "Amazon",
+    "Goldman Sachs"
+  ],
+  "description": "Given an integer array `nums` containing at least two non-negative integers, find and return the minimum possible value of `nums[i] ^ nums[j]` over all distinct index pairs `0 <= i < j < nums.length`.",
+  "constraints": [
+    "2 <= nums.length <= 10^5",
+    "0 <= nums[i] <= 10^9"
+  ],
+  "hints": [
+    "For any three sorted integers `a <= b <= c`, consider the highest bit where `a` and `c` differ: `b` must agree with either `a` or `c` on that bit, so `min(a ^ b, b ^ c) <= a ^ c`.",
+    "Sort the array and take the minimum bitwise XOR over adjacent pairs `(nums[i], nums[i + 1])`."
+  ],
+  "examples": [
+    {
+      "explanation": "Pair (3, 5) has XOR 3 ^ 5 = 6, which is smaller than 9 ^ 5 = 12 and 9 ^ 3 = 10."
+    },
+    {
+      "explanation": "Pair (4, 7) achieves the minimum XOR 4 ^ 7 = 3."
+    },
+    {
+      "explanation": "The duplicate elements 8 and 8 produce 8 ^ 8 = 0."
+    }
+  ],
+  "timeComplexity": "O(n log n)",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "minXorPair",
+    "params": [
+      {
+        "name": "nums",
+        "type": "int[]"
+      }
+    ],
+    "returns": "int"
+  }
+}

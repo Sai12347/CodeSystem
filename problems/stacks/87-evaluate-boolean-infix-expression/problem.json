@@ -1,0 +1,45 @@
+{
+  "title": "Evaluate Boolean Infix Expression",
+  "difficulty": "Medium",
+  "subtopic": "Expression Parsing",
+  "companies": [
+    "Google",
+    "Meta",
+    "Microsoft",
+    "Bloomberg"
+  ],
+  "description": "Given a valid infix boolean expression string `expr` containing boolean literals `'T'` (`true`) and `'F'` (`false`), operators `'!'` (unary NOT), `'&'` (AND), `'^'` (XOR), `'|'` (OR), parentheses `'('` and `')'`, and optional spaces, evaluate `expr` and return its boolean result.\n\nOperator precedence (from highest to lowest):\n1. `'!'` (unary prefix NOT, right-associative so `!!T == T`)\n2. `'&'` (logical AND, left-associative)\n3. `'^'` (logical XOR, left-associative)\n4. `'|'` (logical OR, left-associative)",
+  "constraints": [
+    "1 <= expr.length <= 2 * 10^4",
+    "expr is a syntactically valid infix boolean expression containing 'T', 'F', '!', '&', '^', '|', '(', ')', and ' '."
+  ],
+  "hints": [
+    "Use Shunting-Yard with a boolean value stack and an operator stack with precedences {'|': 1, '^': 2, '&': 3, '!': 4}.",
+    "Because unary '!' is right-associative with the highest precedence, push '!' directly onto the operator stack; for binary operators, evaluate while the top operator has precedence >= current, popping 1 value for '!' and 2 values for binary ops."
+  ],
+  "examples": [
+    {
+      "explanation": "'!' has highest precedence (!F = T), then '&' (T & T = T), then '|' (T | F = T)."
+    },
+    {
+      "explanation": "Inside parentheses T & !F = T & T = T, then !!T = T."
+    },
+    {
+      "explanation": "'&' binds tighter than '^' and '|': T & F = F, then T ^ F = T, then F | T = T."
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "evalBooleanInfix",
+    "params": [
+      {
+        "name": "expr",
+        "type": "String"
+      }
+    ],
+    "returns": "boolean"
+  }
+}

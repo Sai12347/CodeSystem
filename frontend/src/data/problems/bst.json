@@ -1,0 +1,770 @@
+[
+ {
+  "id": "validate-binary-search-tree",
+  "order": 1,
+  "topicId": "bst",
+  "topic": "Binary Search Trees (BST)",
+  "title": "Validate Binary Search Tree",
+  "slug": "validate-binary-search-tree",
+  "difficulty": "Medium",
+  "subtopic": "BST Validation",
+  "companies": [
+   "Amazon",
+   "Meta",
+   "Microsoft",
+   "Google",
+   "Bloomberg",
+   "Apple"
+  ],
+  "leetcode": 98,
+  "description": "Given the `root` of a binary tree, determine if it is a valid **binary search tree (BST)**.\n\nA valid BST is defined as follows:\n- The left subtree of a node contains only nodes with keys **strictly less** than the node's key.\n- The right subtree of a node contains only nodes with keys **strictly greater** than the node's key.\n- Both the left and right subtrees must also be binary search trees.\n\nNote that checking only immediate children is insufficient: every node in a left subtree must be strictly less than all ancestors for which it lies on the left, and every node in a right subtree must be strictly greater than all ancestors for which it lies on the right.",
+  "constraints": [
+   "The number of nodes in the tree is in the range [1, 10^4].",
+   "-2^31 <= Node.val <= 2^31 - 1"
+  ],
+  "hints": [
+   "Checking only root.left.val < root.val < root.right.val fails when a deeper descendant violates an ancestor's bound.",
+   "Pass an allowed open interval (low, high) down the recursion: going left tightens high to node.val, and going right tightens low to node.val.",
+   "Be careful with 32-bit integer extremes (-2^31 and 2^31 - 1): use 64-bit bounds (or nullable bounds) so extreme node values are handled strictly."
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(h)",
+  "compare": "exact",
+  "examples": [
+   {
+    "input": "root = [2,1,3]",
+    "output": "true",
+    "explanation": "The left child 1 is less than 2 and the right child 3 is greater than 2, so the tree is a valid BST."
+   },
+   {
+    "input": "root = [5,1,4,null,null,3,6]",
+    "output": "false",
+    "explanation": "The root is 5, but its right child has value 4 which is not strictly greater than 5."
+   },
+   {
+    "input": "root = [5,4,6,null,null,3,7]",
+    "output": "false",
+    "explanation": "Node 3 lies in the right subtree of root 5; even though 3 < 6, it violates the requirement that all nodes in 5's right subtree be strictly greater than 5."
+   }
+  ],
+  "starterCode": {
+   "java": "/**\n * Definition for a binary tree node (provided by the judge).\n * public class TreeNode {\n *     int val;\n *     TreeNode left;\n *     TreeNode right;\n *     TreeNode() {}\n *     TreeNode(int val) { this.val = val; }\n *     TreeNode(int val, TreeNode left, TreeNode right) { this.val = val; this.left = left; this.right = right; }\n * }\n */\nclass Solution {\n    public boolean isValidBST(TreeNode root) {\n        // Write your solution here\n        return false;\n    }\n}\n",
+   "python": "# Definition for a binary tree node (provided by the judge).\n# class TreeNode:\n#     def __init__(self, val=0, left=None, right=None):\n#         self.val = val\n#         self.left = left\n#         self.right = right\nclass Solution:\n    def isValidBST(self, root: Optional[TreeNode]) -> bool:\n        # Write your solution here\n        pass\n"
+  },
+  "solutionCode": {
+   "java": "class Solution {\n    public boolean isValidBST(TreeNode root) {\n        return validate(root, Long.MIN_VALUE, Long.MAX_VALUE);\n    }\n\n    private boolean validate(TreeNode node, long low, long high) {\n        if (node == null) {\n            return true;\n        }\n        if (node.val <= low || node.val >= high) {\n            return false;\n        }\n        return validate(node.left, low, node.val) && validate(node.right, node.val, high);\n    }\n}\n",
+   "python": "class Solution:\n    def isValidBST(self, root: Optional[TreeNode]) -> bool:\n        def dfs(node: Optional[TreeNode], low: float, high: float) -> bool:\n            if not node:\n                return True\n            if not (low < node.val < high):\n                return False\n            return dfs(node.left, low, node.val) and dfs(node.right, node.val, high)\n\n        return dfs(root, float(\"-inf\"), float(\"inf\"))\n"
+  },
+  "sampleArray": [
+   2,
+   1,
+   3
+  ],
+  "visibleTestCount": 3,
+  "hiddenTestCount": 13,
+  "number": 1
+ },
+ {
+  "id": "search-in-a-binary-search-tree",
+  "order": 2,
+  "topicId": "bst",
+  "topic": "Binary Search Trees (BST)",
+  "title": "Search in a Binary Search Tree",
+  "slug": "search-in-a-binary-search-tree",
+  "difficulty": "Easy",
+  "subtopic": "BST Validation",
+  "companies": [
+   "Amazon",
+   "Google",
+   "Microsoft",
+   "Meta",
+   "Oracle"
+  ],
+  "leetcode": 700,
+  "description": "You are given the `root` of a binary search tree (BST) and an integer `val`.\n\nFind the node in the BST whose value equals `val` and return the subtree rooted at that node. If no such node exists in the BST, return `null`.\n\nAll node values in the BST are distinct.",
+  "constraints": [
+   "The number of nodes in the tree is in the range [1, 5000].",
+   "-10^7 <= Node.val <= 10^7",
+   "root is a valid binary search tree with unique values.",
+   "-10^7 <= val <= 10^7"
+  ],
+  "hints": [
+   "Compare val with the current node's value to decide which single branch to follow.",
+   "If val < cur.val, move to cur.left; if val > cur.val, move to cur.right; if equal, return cur.",
+   "An iterative loop achieves O(1) auxiliary space instead of O(h) recursion stack space."
+  ],
+  "timeComplexity": "O(h)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "examples": [
+   {
+    "input": "root = [4,2,7,1,3], val = 2",
+    "output": "[2,1,3]",
+    "explanation": "Node 2 is found as the left child of root 4, so return the subtree [2, 1, 3]."
+   },
+   {
+    "input": "root = [4,2,7,1,3], val = 5",
+    "output": "null",
+    "explanation": "Value 5 does not exist in the BST, so return null."
+   },
+   {
+    "input": "root = [10,5,15,2,7,null,20], val = 15",
+    "output": "[15,null,20]",
+    "explanation": "Node 15 is the right child of 10 and has right child 20, so return [15, null, 20]."
+   }
+  ],
+  "starterCode": {
+   "java": "/**\n * Definition for a binary tree node (provided by the judge).\n * public class TreeNode {\n *     int val;\n *     TreeNode left;\n *     TreeNode right;\n *     TreeNode() {}\n *     TreeNode(int val) { this.val = val; }\n *     TreeNode(int val, TreeNode left, TreeNode right) { this.val = val; this.left = left; this.right = right; }\n * }\n */\nclass Solution {\n    public TreeNode searchBST(TreeNode root, int val) {\n        // Write your solution here\n        return null;\n    }\n}\n",
+   "python": "# Definition for a binary tree node (provided by the judge).\n# class TreeNode:\n#     def __init__(self, val=0, left=None, right=None):\n#         self.val = val\n#         self.left = left\n#         self.right = right\nclass Solution:\n    def searchBST(self, root: Optional[TreeNode], val: int) -> Optional[TreeNode]:\n        # Write your solution here\n        pass\n"
+  },
+  "solutionCode": {
+   "java": "class Solution {\n    public TreeNode searchBST(TreeNode root, int val) {\n        TreeNode cur = root;\n        while (cur != null) {\n            if (cur.val == val) {\n                return cur;\n            }\n            cur = val < cur.val ? cur.left : cur.right;\n        }\n        return null;\n    }\n}\n",
+   "python": "class Solution:\n    def searchBST(self, root: Optional[TreeNode], val: int) -> Optional[TreeNode]:\n        cur = root\n        while cur is not None:\n            if cur.val == val:\n                return cur\n            if val < cur.val:\n                cur = cur.left\n            else:\n                cur = cur.right\n        return None\n"
+  },
+  "sampleArray": [
+   4,
+   2,
+   7,
+   1,
+   3
+  ],
+  "visibleTestCount": 3,
+  "hiddenTestCount": 12,
+  "number": 2
+ },
+ {
+  "id": "insert-into-a-binary-search-tree",
+  "order": 3,
+  "topicId": "bst",
+  "topic": "Binary Search Trees (BST)",
+  "title": "Insert into a Binary Search Tree",
+  "slug": "insert-into-a-binary-search-tree",
+  "difficulty": "Medium",
+  "subtopic": "BST Validation",
+  "companies": [
+   "Amazon",
+   "Google",
+   "Microsoft",
+   "Meta",
+   "Goldman Sachs"
+  ],
+  "leetcode": 701,
+  "description": "You are given the `root` node of a binary search tree (BST) and a value `val` to insert into the tree. Return the root node of the BST after the insertion. It is **guaranteed** that the new value does not exist in the original BST.\n\nNotice that there may exist multiple valid ways for the insertion, as long as the tree remains a valid BST containing all original values plus `val`. You can return **any** valid BST.\n\nThe judge validates that your returned tree is a valid BST with the exact expected set of values (`true`).",
+  "constraints": [
+   "The number of nodes in the tree is in the range [0, 10^4].",
+   "-10^8 <= Node.val <= 10^8",
+   "All values Node.val are unique.",
+   "-10^8 <= val <= 10^8",
+   "It is guaranteed that val does not exist in the original BST."
+  ],
+  "hints": [
+   "If the tree is empty (root is null), create and return a new TreeNode(val).",
+   "Otherwise, walk down the BST comparing val to the current node: go left if val < cur.val, or right if val > cur.val.",
+   "When the chosen child pointer is null, attach the new node there and return the original root."
+  ],
+  "timeComplexity": "O(h)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "examples": [
+   {
+    "input": "root = [4,2,7,1,3], val = 5",
+    "output": "true",
+    "explanation": "Inserting 5 as the left child of 7 yields [4, 2, 7, 1, 3, 5], which is a valid BST containing {1, 2, 3, 4, 5, 7}."
+   },
+   {
+    "input": "root = [40,20,60,10,30,50,70], val = 25",
+    "output": "true",
+    "explanation": "Inserting 25 as the left child of 30 yields a valid BST containing {10, 20, 25, 30, 40, 50, 60, 70}."
+   },
+   {
+    "input": "root = [], val = 5",
+    "output": "true",
+    "explanation": "Inserting 5 into an empty tree produces a single-node BST [5]."
+   }
+  ],
+  "starterCode": {
+   "java": "/**\n * Definition for a binary tree node (provided by the judge).\n * public class TreeNode {\n *     int val;\n *     TreeNode left;\n *     TreeNode right;\n *     TreeNode() {}\n *     TreeNode(int val) { this.val = val; }\n *     TreeNode(int val, TreeNode left, TreeNode right) { this.val = val; this.left = left; this.right = right; }\n * }\n */\nclass Solution {\n    public TreeNode insertIntoBST(TreeNode root, int val) {\n        // Write your solution here\n        return null;\n    }\n}\n",
+   "python": "# Definition for a binary tree node (provided by the judge).\n# class TreeNode:\n#     def __init__(self, val=0, left=None, right=None):\n#         self.val = val\n#         self.left = left\n#         self.right = right\nclass Solution:\n    def insertIntoBST(self, root: Optional[TreeNode], val: int) -> Optional[TreeNode]:\n        # Write your solution here\n        return None\n"
+  },
+  "solutionCode": {
+   "java": "class Solution {\n    public TreeNode insertIntoBST(TreeNode root, int val) {\n        if (root == null) {\n            return new TreeNode(val);\n        }\n        TreeNode cur = root;\n        while (true) {\n            if (val < cur.val) {\n                if (cur.left == null) {\n                    cur.left = new TreeNode(val);\n                    return root;\n                }\n                cur = cur.left;\n            } else {\n                if (cur.right == null) {\n                    cur.right = new TreeNode(val);\n                    return root;\n                }\n                cur = cur.right;\n            }\n        }\n    }\n}\n",
+   "python": "class Solution:\n    def insertIntoBST(self, root: Optional[TreeNode], val: int) -> Optional[TreeNode]:\n        if root is None:\n            return TreeNode(val)\n        cur = root\n        while True:\n            if val < cur.val:\n                if cur.left is None:\n                    cur.left = TreeNode(val)\n                    return root\n                cur = cur.left\n            else:\n                if cur.right is None:\n                    cur.right = TreeNode(val)\n                    return root\n                cur = cur.right\n"
+  },
+  "sampleArray": [
+   4,
+   2,
+   7,
+   1,
+   3
+  ],
+  "visibleTestCount": 3,
+  "hiddenTestCount": 10,
+  "number": 3
+ },
+ {
+  "id": "delete-node-in-a-bst",
+  "order": 4,
+  "topicId": "bst",
+  "topic": "Binary Search Trees (BST)",
+  "title": "Delete Node in a BST",
+  "slug": "delete-node-in-a-bst",
+  "difficulty": "Medium",
+  "subtopic": "BST Validation",
+  "companies": [
+   "Amazon",
+   "Google",
+   "Microsoft",
+   "Meta",
+   "Apple",
+   "Oracle"
+  ],
+  "leetcode": 450,
+  "description": "Given a `root` node reference of a binary search tree (BST) and an integer `key`, delete the node with the given key in the BST. Return the **root node reference** (possibly updated) of the BST.\n\nBasically, the deletion can be divided into two stages:\n1. Search for a node to remove.\n2. If the node is found, delete the node while preserving the BST property.\n\nIf `key` is not present in the BST, return the tree unchanged. When deleting a node with two children, replacing it with either its inorder successor or inorder predecessor (or any other restructuring that yields a valid BST with the remaining values) is acceptable.\n\nThe judge validates that your returned tree is a valid BST containing the exact remaining set of values (`true`).",
+  "constraints": [
+   "The number of nodes in the tree is in the range [0, 10^4].",
+   "-10^5 <= Node.val <= 10^5",
+   "Each node has a unique value.",
+   "root is a valid binary search tree.",
+   "-10^5 <= key <= 10^5"
+  ],
+  "hints": [
+   "First locate the node with value equal to key using BST search (recurse left if key < root.val, right if key > root.val).",
+   "If the target node has at most one child, simply return that child (or null for a leaf) to replace the node.",
+   "If the target node has two children, find its inorder successor (the leftmost node in its right subtree), copy that successor's value into the target node, and recursively delete the successor from the right subtree."
+  ],
+  "timeComplexity": "O(h)",
+  "spaceComplexity": "O(h)",
+  "compare": "exact",
+  "examples": [
+   {
+    "input": "root = [5,3,6,2,4,null,7], key = 3",
+    "output": "true",
+    "explanation": "Deleting node 3 (which has children 2 and 4) can replace it with its inorder successor 4, yielding [5, 4, 6, 2, null, null, 7], or with its predecessor 2, yielding [5, 2, 6, null, 4, null, 7]. Both pass validation."
+   },
+   {
+    "input": "root = [5,3,6,2,4,null,7], key = 0",
+    "output": "true",
+    "explanation": "Key 0 does not exist in the BST, so the original tree [5, 3, 6, 2, 4, null, 7] remains valid."
+   },
+   {
+    "input": "root = [], key = 0",
+    "output": "true",
+    "explanation": "Deleting from an empty tree returns an empty tree (null)."
+   }
+  ],
+  "starterCode": {
+   "java": "/**\n * Definition for a binary tree node (provided by the judge).\n * public class TreeNode {\n *     int val;\n *     TreeNode left;\n *     TreeNode right;\n *     TreeNode() {}\n *     TreeNode(int val) { this.val = val; }\n *     TreeNode(int val, TreeNode left, TreeNode right) { this.val = val; this.left = left; this.right = right; }\n * }\n */\nclass Solution {\n    public TreeNode deleteNode(TreeNode root, int key) {\n        // Write your solution here\n        return null;\n    }\n}\n",
+   "python": "# Definition for a binary tree node (provided by the judge).\n# class TreeNode:\n#     def __init__(self, val=0, left=None, right=None):\n#         self.val = val\n#         self.left = left\n#         self.right = right\nclass Solution:\n    def deleteNode(self, root: Optional[TreeNode], key: int) -> Optional[TreeNode]:\n        # Write your solution here\n        return None\n"
+  },
+  "solutionCode": {
+   "java": "class Solution {\n    public TreeNode deleteNode(TreeNode root, int key) {\n        if (root == null) {\n            return null;\n        }\n        if (key < root.val) {\n            root.left = deleteNode(root.left, key);\n        } else if (key > root.val) {\n            root.right = deleteNode(root.right, key);\n        } else {\n            if (root.left == null) {\n                return root.right;\n            }\n            if (root.right == null) {\n                return root.left;\n            }\n            TreeNode succ = root.right;\n            while (succ.left != null) {\n                succ = succ.left;\n            }\n            root.val = succ.val;\n            root.right = deleteNode(root.right, succ.val);\n        }\n        return root;\n    }\n}\n",
+   "python": "class Solution:\n    def deleteNode(self, root: Optional[TreeNode], key: int) -> Optional[TreeNode]:\n        if root is None:\n            return None\n        if key < root.val:\n            root.left = self.deleteNode(root.left, key)\n        elif key > root.val:\n            root.right = self.deleteNode(root.right, key)\n        else:\n            if root.left is None:\n                return root.right\n            if root.right is None:\n                return root.left\n            succ = root.right\n            while succ.left is not None:\n                succ = succ.left\n            root.val = succ.val\n            root.right = self.deleteNode(root.right, succ.val)\n        return root\n"
+  },
+  "sampleArray": [],
+  "visibleTestCount": 3,
+  "hiddenTestCount": 12,
+  "number": 4
+ },
+ {
+  "id": "kth-smallest-element-in-a-bst",
+  "order": 5,
+  "topicId": "bst",
+  "topic": "Binary Search Trees (BST)",
+  "title": "Kth Smallest Element in a BST",
+  "slug": "kth-smallest-element-in-a-bst",
+  "difficulty": "Medium",
+  "subtopic": "Kth Element",
+  "companies": [
+   "Amazon",
+   "Google",
+   "Meta",
+   "Microsoft",
+   "Uber",
+   "Bloomberg"
+  ],
+  "leetcode": 230,
+  "description": "Given the `root` of a binary search tree (BST) and an integer `k`, return the `k`-th smallest value (**1-indexed**) among all the node values in the tree.\n\nAll node values in the BST are distinct.",
+  "constraints": [
+   "The number of nodes in the tree is n.",
+   "1 <= k <= n <= 10^4",
+   "-10^5 <= Node.val <= 10^5",
+   "All node values in the BST are unique."
+  ],
+  "hints": [
+   "An inorder traversal (left, root, right) of a BST visits nodes in strictly ascending order.",
+   "Use an iterative stack-based inorder traversal so you can stop immediately upon visiting the k-th node instead of traversing the entire tree.",
+   "This achieves O(h + k) time and O(h) space, where h is the height of the tree."
+  ],
+  "timeComplexity": "O(h + k)",
+  "spaceComplexity": "O(h)",
+  "compare": "exact",
+  "examples": [
+   {
+    "input": "root = [3,1,4,null,2], k = 1",
+    "output": "1",
+    "explanation": "The sorted values in the BST are [1, 2, 3, 4], so the 1st smallest element is 1."
+   },
+   {
+    "input": "root = [5,3,6,2,4,null,null,1], k = 3",
+    "output": "3",
+    "explanation": "The sorted values are [1, 2, 3, 4, 5, 6], so the 3rd smallest element is 3."
+   },
+   {
+    "input": "root = [10,5,15,2,7,12,20], k = 6",
+    "output": "15",
+    "explanation": "The sorted values are [2, 5, 7, 10, 12, 15, 20], so the 6th smallest element is 15."
+   }
+  ],
+  "starterCode": {
+   "java": "/**\n * Definition for a binary tree node (provided by the judge).\n * public class TreeNode {\n *     int val;\n *     TreeNode left;\n *     TreeNode right;\n *     TreeNode() {}\n *     TreeNode(int val) { this.val = val; }\n *     TreeNode(int val, TreeNode left, TreeNode right) { this.val = val; this.left = left; this.right = right; }\n * }\n */\nclass Solution {\n    public int kthSmallest(TreeNode root, int k) {\n        // Write your solution here\n        return 0;\n    }\n}\n",
+   "python": "# Definition for a binary tree node (provided by the judge).\n# class TreeNode:\n#     def __init__(self, val=0, left=None, right=None):\n#         self.val = val\n#         self.left = left\n#         self.right = right\nclass Solution:\n    def kthSmallest(self, root: Optional[TreeNode], k: int) -> int:\n        # Write your solution here\n        pass\n"
+  },
+  "solutionCode": {
+   "java": "class Solution {\n    public int kthSmallest(TreeNode root, int k) {\n        Deque<TreeNode> stack = new ArrayDeque<>();\n        TreeNode cur = root;\n        while (cur != null || !stack.isEmpty()) {\n            while (cur != null) {\n                stack.push(cur);\n                cur = cur.left;\n            }\n            cur = stack.pop();\n            if (--k == 0) {\n                return cur.val;\n            }\n            cur = cur.right;\n        }\n        return -1;\n    }\n}\n",
+   "python": "class Solution:\n    def kthSmallest(self, root: Optional[TreeNode], k: int) -> int:\n        stack = []\n        cur = root\n        while cur is not None or stack:\n            while cur is not None:\n                stack.append(cur)\n                cur = cur.left\n            cur = stack.pop()\n            k -= 1\n            if k == 0:\n                return cur.val\n            cur = cur.right\n        return -1\n"
+  },
+  "sampleArray": [],
+  "visibleTestCount": 3,
+  "hiddenTestCount": 10,
+  "number": 5
+ },
+ {
+  "id": "lowest-common-ancestor-of-a-bst",
+  "order": 6,
+  "topicId": "bst",
+  "topic": "Binary Search Trees (BST)",
+  "title": "Lowest Common Ancestor of a Binary Search Tree",
+  "slug": "lowest-common-ancestor-of-a-bst",
+  "difficulty": "Medium",
+  "subtopic": "BST Validation",
+  "companies": [
+   "Meta",
+   "Amazon",
+   "Google",
+   "Microsoft",
+   "LinkedIn",
+   "Apple"
+  ],
+  "leetcode": 235,
+  "description": "Given a binary search tree (BST), find the **lowest common ancestor (LCA)** node of two given nodes `p` and `q` in the BST.\n\nThe lowest common ancestor is defined between two nodes `p` and `q` as the lowest node in the tree `T` that has both `p` and `q` as descendants (where we allow **a node to be a descendant of itself**).\n\nYour method receives the `root` of the BST along with references to the two target nodes `p` and `q`, and must return the `TreeNode` reference to their LCA in the tree. In test inputs, `p` and `q` are shown by their unique node values, and the output shows the LCA node's value.",
+  "constraints": [
+   "The number of nodes in the tree is in the range [2, 10^5].",
+   "-10^9 <= Node.val <= 10^9",
+   "All Node.val are unique.",
+   "p != q",
+   "p and q will exist in the BST."
+  ],
+  "hints": [
+   "Use the BST ordering property: if both p.val and q.val are strictly smaller than cur.val, the LCA must lie in cur.left.",
+   "If both p.val and q.val are strictly greater than cur.val, the LCA must lie in cur.right.",
+   "The first node where p and q split to different sides—or where cur equals p or q—is the lowest common ancestor."
+  ],
+  "timeComplexity": "O(h)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "examples": [
+   {
+    "input": "root = [6,2,8,0,4,7,9,null,null,3,5], p = 2, q = 8",
+    "output": "6",
+    "explanation": "Nodes 2 and 8 lie in the left and right subtrees of 6 respectively, so their LCA is 6."
+   },
+   {
+    "input": "root = [6,2,8,0,4,7,9,null,null,3,5], p = 2, q = 4",
+    "output": "2",
+    "explanation": "Node 4 is in the right subtree of 2, and a node is a descendant of itself, so the LCA of 2 and 4 is 2."
+   },
+   {
+    "input": "root = [2,1], p = 2, q = 1",
+    "output": "2",
+    "explanation": "Node 1 is the left child of root 2, so the LCA of 2 and 1 is 2."
+   }
+  ],
+  "starterCode": {
+   "java": "/**\n * Definition for a binary tree node (provided by the judge).\n * public class TreeNode {\n *     int val;\n *     TreeNode left;\n *     TreeNode right;\n *     TreeNode() {}\n *     TreeNode(int val) { this.val = val; }\n *     TreeNode(int val, TreeNode left, TreeNode right) { this.val = val; this.left = left; this.right = right; }\n * }\n */\nclass Solution {\n    public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {\n        // Write your solution here\n        return null;\n    }\n}\n",
+   "python": "# Definition for a binary tree node (provided by the judge).\n# class TreeNode:\n#     def __init__(self, val=0, left=None, right=None):\n#         self.val = val\n#         self.left = left\n#         self.right = right\nclass Solution:\n    def lowestCommonAncestor(self, root: TreeNode, p: TreeNode, q: TreeNode) -> TreeNode:\n        # Write your solution here\n        return None\n"
+  },
+  "solutionCode": {
+   "java": "class Solution {\n    public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {\n        TreeNode cur = root;\n        int pv = p.val;\n        int qv = q.val;\n        while (cur != null) {\n            if (pv < cur.val && qv < cur.val) {\n                cur = cur.left;\n            } else if (pv > cur.val && qv > cur.val) {\n                cur = cur.right;\n            } else {\n                return cur;\n            }\n        }\n        return null;\n    }\n}\n",
+   "python": "class Solution:\n    def lowestCommonAncestor(self, root: TreeNode, p: TreeNode, q: TreeNode) -> TreeNode:\n        cur = root\n        pv, qv = p.val, q.val\n        while cur is not None:\n            if pv < cur.val and qv < cur.val:\n                cur = cur.left\n            elif pv > cur.val and qv > cur.val:\n                cur = cur.right\n            else:\n                return cur\n        return cur\n"
+  },
+  "sampleArray": [],
+  "visibleTestCount": 3,
+  "hiddenTestCount": 10,
+  "number": 6
+ },
+ {
+  "id": "convert-sorted-array-to-bst",
+  "order": 7,
+  "topicId": "bst",
+  "topic": "Binary Search Trees (BST)",
+  "title": "Convert Sorted Array to Binary Search Tree",
+  "slug": "convert-sorted-array-to-bst",
+  "difficulty": "Easy",
+  "subtopic": "Balance Trees",
+  "companies": [
+   "Google",
+   "Amazon",
+   "Microsoft",
+   "Meta",
+   "Apple",
+   "Bloomberg"
+  ],
+  "leetcode": 108,
+  "description": "Given an integer array `nums` whose elements are sorted in **strictly ascending order**, convert it into a **height-balanced** binary search tree (BST).\n\nA binary tree is **height-balanced** if, for every node in the tree, the depths of its left and right subtrees differ by at most `1`. A binary search tree satisfies that for every node, all values in its left subtree are strictly less than the node's value and all values in its right subtree are strictly greater than the node's value.\n\nIf multiple height-balanced BSTs are possible, you may return **any** valid one. The judge validates that your returned tree is a valid BST containing the exact elements of `nums` and is height-balanced (`true`).",
+  "constraints": [
+   "1 <= nums.length <= 10^4",
+   "-10^4 <= nums[i] <= 10^4",
+   "nums is sorted in a strictly increasing order."
+  ],
+  "hints": [
+   "To keep the tree height-balanced, both subtrees of every node should contain nearly the same number of elements.",
+   "Choosing the middle element of the current subarray as the root splits the remaining elements evenly into the left half (all smaller) and the right half (all larger).",
+   "Recursively build the left and right subtrees using index bounds [lo, hi] rather than slicing arrays so the total work stays O(n)."
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(log n)",
+  "compare": "exact",
+  "examples": [
+   {
+    "input": "nums = [-10,-3,0,5,9]",
+    "output": "true",
+    "explanation": "Choosing 0 as root yields [-10, -3] on the left and [5, 9] on the right; both [0,-3,9,-10,null,5] and [0,-10,5,null,-3,null,9] are valid height-balanced BSTs."
+   },
+   {
+    "input": "nums = [1,3]",
+    "output": "true",
+    "explanation": "Both [1,null,3] and [3,1] are valid height-balanced BSTs for [1, 3]."
+   },
+   {
+    "input": "nums = [0]",
+    "output": "true",
+    "explanation": "A single-element array forms a single-node BST [0], which is trivially height-balanced."
+   }
+  ],
+  "starterCode": {
+   "java": "/**\n * Definition for a binary tree node (provided by the judge).\n * public class TreeNode {\n *     int val;\n *     TreeNode left;\n *     TreeNode right;\n *     TreeNode() {}\n *     TreeNode(int val) { this.val = val; }\n *     TreeNode(int val, TreeNode left, TreeNode right) { this.val = val; this.left = left; this.right = right; }\n * }\n */\nclass Solution {\n    public TreeNode sortedArrayToBST(int[] nums) {\n        // Write your solution here\n        return null;\n    }\n}\n",
+   "python": "# Definition for a binary tree node (provided by the judge).\n# class TreeNode:\n#     def __init__(self, val=0, left=None, right=None):\n#         self.val = val\n#         self.left = left\n#         self.right = right\nclass Solution:\n    def sortedArrayToBST(self, nums: List[int]) -> Optional[TreeNode]:\n        # Write your solution here\n        return None\n"
+  },
+  "solutionCode": {
+   "java": "class Solution {\n    public TreeNode sortedArrayToBST(int[] nums) {\n        return build(nums, 0, nums.length - 1);\n    }\n\n    private TreeNode build(int[] nums, int lo, int hi) {\n        if (lo > hi) {\n            return null;\n        }\n        int mid = lo + (hi - lo) / 2;\n        return new TreeNode(nums[mid], build(nums, lo, mid - 1), build(nums, mid + 1, hi));\n    }\n}\n",
+   "python": "class Solution:\n    def sortedArrayToBST(self, nums: List[int]) -> Optional[TreeNode]:\n        def build(lo: int, hi: int) -> Optional[TreeNode]:\n            if lo > hi:\n                return None\n            mid = (lo + hi) // 2\n            return TreeNode(nums[mid], build(lo, mid - 1), build(mid + 1, hi))\n\n        return build(0, len(nums) - 1)\n"
+  },
+  "sampleArray": [
+   -10,
+   -3,
+   0,
+   5,
+   9
+  ],
+  "visibleTestCount": 3,
+  "hiddenTestCount": 10,
+  "number": 7
+ },
+ {
+  "id": "convert-bst-to-greater-tree",
+  "order": 8,
+  "topicId": "bst",
+  "topic": "Binary Search Trees (BST)",
+  "title": "Convert BST to Greater Tree",
+  "slug": "convert-bst-to-greater-tree",
+  "difficulty": "Medium",
+  "subtopic": "Kth Element",
+  "companies": [
+   "Amazon",
+   "Google",
+   "Meta",
+   "Microsoft",
+   "Bloomberg"
+  ],
+  "leetcode": 538,
+  "description": "Given the `root` of a Binary Search Tree (BST), convert it to a **Greater Tree** such that every key of the original BST is changed to the original key plus the sum of all keys greater than the original key in the BST.\n\nAs a reminder, a binary search tree is a tree that satisfies these constraints:\n- The left subtree of a node contains only nodes with keys strictly less than the node's key.\n- The right subtree of a node contains only nodes with keys strictly greater than the node's key.\n- Both the left and right subtrees must also be binary search trees.\n\nIf the input tree is empty (`root` is `null`), return `null`. Return the root of the modified tree.",
+  "constraints": [
+   "0 <= number of nodes in the tree <= 10^4",
+   "-10^4 <= Node.val <= 10^4",
+   "All values in the tree are unique.",
+   "root is guaranteed to be a valid binary search tree."
+  ],
+  "hints": [
+   "An inorder traversal (left, node, right) visits BST nodes in ascending order; reversing it (right, node, left) visits them in descending order.",
+   "During a reverse inorder traversal, every node visited before the current node has a strictly larger key, so maintaining a single running sum gives each node's new value immediately.",
+   "For O(1) auxiliary space, use Reverse Morris Traversal by temporarily threading each node's inorder successor (leftmost node of its right subtree) back to the current node."
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "examples": [
+   {
+    "input": "root = [4,1,6,0,2,5,7,null,null,null,3,null,null,null,8]",
+    "output": "[30,36,21,36,35,26,15,null,null,null,33,null,null,null,8]",
+    "explanation": "Visiting nodes from largest to smallest (8, 7, 6, 5, 4, 3, 2, 1, 0) accumulates suffix sums 8, 15, 21, 26, 30, 33, 35, 36, 36."
+   },
+   {
+    "input": "root = [0,null,1]",
+    "output": "[1,null,1]",
+    "explanation": "Node 1 stays 1 (no greater keys), and node 0 becomes 0 + 1 = 1."
+   },
+   {
+    "input": "root = [3,2,4,1]",
+    "output": "[7,9,4,10]",
+    "explanation": "Visiting 4 -> 3 -> 2 -> 1 yields new values 4, 7, 9, 10 respectively."
+   }
+  ],
+  "starterCode": {
+   "java": "/**\n * Definition for a binary tree node (provided by the judge).\n * public class TreeNode {\n *     int val;\n *     TreeNode left;\n *     TreeNode right;\n *     TreeNode() {}\n *     TreeNode(int val) { this.val = val; }\n *     TreeNode(int val, TreeNode left, TreeNode right) { this.val = val; this.left = left; this.right = right; }\n * }\n */\nclass Solution {\n    public TreeNode convertBST(TreeNode root) {\n        // Write your solution here\n        return null;\n    }\n}\n",
+   "python": "# Definition for a binary tree node (provided by the judge).\n# class TreeNode:\n#     def __init__(self, val=0, left=None, right=None):\n#         self.val = val\n#         self.left = left\n#         self.right = right\nclass Solution:\n    def convertBST(self, root: Optional[TreeNode]) -> Optional[TreeNode]:\n        # Write your solution here\n        pass\n"
+  },
+  "solutionCode": {
+   "java": "class Solution {\n    public TreeNode convertBST(TreeNode root) {\n        int runningSum = 0;\n        TreeNode curr = root;\n        while (curr != null) {\n            if (curr.right == null) {\n                runningSum += curr.val;\n                curr.val = runningSum;\n                curr = curr.left;\n            } else {\n                TreeNode succ = curr.right;\n                while (succ.left != null && succ.left != curr) {\n                    succ = succ.left;\n                }\n                if (succ.left == null) {\n                    succ.left = curr;\n                    curr = curr.right;\n                } else {\n                    succ.left = null;\n                    runningSum += curr.val;\n                    curr.val = runningSum;\n                    curr = curr.left;\n                }\n            }\n        }\n        return root;\n    }\n}\n",
+   "python": "class Solution:\n    def convertBST(self, root: Optional[TreeNode]) -> Optional[TreeNode]:\n        running_sum = 0\n        curr = root\n        while curr is not None:\n            if curr.right is None:\n                running_sum += curr.val\n                curr.val = running_sum\n                curr = curr.left\n            else:\n                succ = curr.right\n                while succ.left is not None and succ.left is not curr:\n                    succ = succ.left\n                if succ.left is None:\n                    succ.left = curr\n                    curr = curr.right\n                else:\n                    succ.left = None\n                    running_sum += curr.val\n                    curr.val = running_sum\n                    curr = curr.left\n        return root\n"
+  },
+  "sampleArray": [],
+  "visibleTestCount": 3,
+  "hiddenTestCount": 10,
+  "number": 8
+ },
+ {
+  "id": "inorder-successor-in-bst",
+  "order": 9,
+  "topicId": "bst",
+  "topic": "Binary Search Trees (BST)",
+  "title": "Inorder Successor in BST",
+  "slug": "inorder-successor-in-bst",
+  "difficulty": "Medium",
+  "subtopic": "Inorder Successor",
+  "companies": [
+   "Meta",
+   "Google",
+   "Amazon",
+   "Microsoft",
+   "Bloomberg",
+   "LinkedIn"
+  ],
+  "leetcode": 285,
+  "description": "Given the `root` of a binary search tree (BST) and a node `p` in it, return the **inorder successor** of that node in the BST. If the given node has no inorder successor in the tree, return `null`.\n\nThe **successor** of a node `p` is the node with the **smallest key strictly greater than `p.val`**.\n\nIn the test inputs, `p` is specified by its unique integer value; the judge locates the corresponding `TreeNode` reference inside `root` and passes that node reference to your method. You must return the existing `TreeNode` reference from the tree (or `null` if none exists) without modifying node values; the judge displays the returned node's value (or `null`).",
+  "constraints": [
+   "1 <= number of nodes in the tree <= 10^4",
+   "-10^5 <= Node.val <= 10^5",
+   "All nodes have unique values.",
+   "p is guaranteed to exist in the BST."
+  ],
+  "hints": [
+   "Instead of traversing the entire tree in O(n), leverage the BST ordering property to search directly from the root in O(h) time.",
+   "Maintain a candidate successor initialized to null. At the current node, if p.val < curr.val, then curr is a valid candidate successor — record it and move left to look for a smaller one.",
+   "Otherwise (p.val >= curr.val), curr and its entire left subtree cannot be the successor, so move right."
+  ],
+  "timeComplexity": "O(h)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "examples": [
+   {
+    "input": "root = [2,1,3], p = 1",
+    "output": "2",
+    "explanation": "The inorder traversal is [1, 2, 3], so the successor of node 1 is node 2."
+   },
+   {
+    "input": "root = [5,3,6,2,4,null,null,1], p = 6",
+    "output": "null",
+    "explanation": "Node 6 is the maximum value in the BST, so it has no inorder successor (null)."
+   },
+   {
+    "input": "root = [5,3,6,2,4,null,null,1], p = 4",
+    "output": "5",
+    "explanation": "Node 4 has no right child; its inorder successor is the lowest ancestor whose left subtree contains 4, which is node 5."
+   }
+  ],
+  "starterCode": {
+   "java": "/**\n * Definition for a binary tree node (provided by the judge).\n * public class TreeNode {\n *     int val;\n *     TreeNode left;\n *     TreeNode right;\n *     TreeNode() {}\n *     TreeNode(int val) { this.val = val; }\n *     TreeNode(int val, TreeNode left, TreeNode right) { this.val = val; this.left = left; this.right = right; }\n * }\n */\nclass Solution {\n    public TreeNode inorderSuccessor(TreeNode root, TreeNode p) {\n        // Write your solution here\n        return null;\n    }\n}\n",
+   "python": "# Definition for a binary tree node (provided by the judge).\n# class TreeNode:\n#     def __init__(self, val=0, left=None, right=None):\n#         self.val = val\n#         self.left = left\n#         self.right = right\nclass Solution:\n    def inorderSuccessor(self, root: Optional[TreeNode], p: Optional[TreeNode]) -> Optional[TreeNode]:\n        # Write your solution here\n        return None\n"
+  },
+  "solutionCode": {
+   "java": "class Solution {\n    public TreeNode inorderSuccessor(TreeNode root, TreeNode p) {\n        TreeNode succ = null;\n        TreeNode curr = root;\n        while (curr != null) {\n            if (p.val < curr.val) {\n                succ = curr;\n                curr = curr.left;\n            } else {\n                curr = curr.right;\n            }\n        }\n        return succ;\n    }\n}\n",
+   "python": "class Solution:\n    def inorderSuccessor(self, root: Optional[TreeNode], p: Optional[TreeNode]) -> Optional[TreeNode]:\n        succ = None\n        curr = root\n        while curr is not None:\n            if p.val < curr.val:\n                succ = curr\n                curr = curr.left\n            else:\n                curr = curr.right\n        return succ\n"
+  },
+  "sampleArray": [
+   2,
+   1,
+   3
+  ],
+  "visibleTestCount": 3,
+  "hiddenTestCount": 10,
+  "number": 9
+ },
+ {
+  "id": "recover-binary-search-tree",
+  "order": 10,
+  "topicId": "bst",
+  "topic": "Binary Search Trees (BST)",
+  "title": "Recover Binary Search Tree",
+  "slug": "recover-binary-search-tree",
+  "difficulty": "Medium",
+  "subtopic": "BST Validation",
+  "companies": [
+   "Amazon",
+   "Microsoft",
+   "Google",
+   "Meta",
+   "Bloomberg",
+   "Uber"
+  ],
+  "leetcode": 99,
+  "description": "You are given the `root` of a binary search tree (BST) where the values of **exactly two** nodes of the tree were swapped by mistake. Recover the tree **in-place** without changing its structure (only swap the values of the two misplaced nodes).\n\nYour method should not return anything; modify the tree rooted at `root` directly. Can you solve it in `O(1)` auxiliary space?",
+  "constraints": [
+   "2 <= number of nodes in the tree <= 1000",
+   "-2^31 <= Node.val <= 2^31 - 1",
+   "All values in the tree are unique.",
+   "Exactly two nodes in the BST have had their values swapped."
+  ],
+  "hints": [
+   "The inorder traversal of a valid BST produces values in strictly ascending order. Swapping two nodes introduces either one inversion (if they are adjacent in inorder) or two inversions (if they are non-adjacent).",
+   "Track the previously visited node prev during inorder traversal. Whenever prev.val > curr.val, set first = prev (only on the first inversion) and always update second = curr.",
+   "To achieve O(1) extra space instead of O(h) recursion/stack space, perform Morris Inorder Traversal and make sure to finish restoring all temporary right-pointer threads before swapping first.val and second.val."
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "examples": [
+   {
+    "input": "root = [1,3,null,null,2]",
+    "output": "[3,1,null,null,2]",
+    "explanation": "Inorder traversal is [3, 2, 1], showing inversions at (3, 2) and (2, 1). Swapping 3 and 1 restores the valid BST [3, 1, null, null, 2]."
+   },
+   {
+    "input": "root = [3,1,4,null,null,2]",
+    "output": "[2,1,4,null,null,3]",
+    "explanation": "Inorder traversal is [1, 3, 2, 4], showing a single adjacent inversion (3, 2). Swapping 3 and 2 restores [2, 1, 4, null, null, 3]."
+   },
+   {
+    "input": "root = [2,3,1]",
+    "output": "[2,1,3]",
+    "explanation": "Nodes 3 and 1 are swapped; swapping their values back restores [2, 1, 3]."
+   }
+  ],
+  "starterCode": {
+   "java": "/**\n * Definition for a binary tree node (provided by the judge).\n * public class TreeNode {\n *     int val;\n *     TreeNode left;\n *     TreeNode right;\n *     TreeNode() {}\n *     TreeNode(int val) { this.val = val; }\n *     TreeNode(int val, TreeNode left, TreeNode right) { this.val = val; this.left = left; this.right = right; }\n * }\n */\nclass Solution {\n    public void recoverTree(TreeNode root) {\n        // Write your solution here\n    }\n}\n",
+   "python": "# Definition for a binary tree node (provided by the judge).\n# class TreeNode:\n#     def __init__(self, val=0, left=None, right=None):\n#         self.val = val\n#         self.left = left\n#         self.right = right\nclass Solution:\n    def recoverTree(self, root: Optional[TreeNode]) -> None:\n        # Write your solution here\n        pass\n"
+  },
+  "solutionCode": {
+   "java": "class Solution {\n    public void recoverTree(TreeNode root) {\n        TreeNode first = null;\n        TreeNode second = null;\n        TreeNode prev = null;\n        TreeNode curr = root;\n\n        while (curr != null) {\n            if (curr.left == null) {\n                if (prev != null && prev.val > curr.val) {\n                    if (first == null) {\n                        first = prev;\n                    }\n                    second = curr;\n                }\n                prev = curr;\n                curr = curr.right;\n            } else {\n                TreeNode pred = curr.left;\n                while (pred.right != null && pred.right != curr) {\n                    pred = pred.right;\n                }\n                if (pred.right == null) {\n                    pred.right = curr;\n                    curr = curr.left;\n                } else {\n                    pred.right = null;\n                    if (prev != null && prev.val > curr.val) {\n                        if (first == null) {\n                            first = prev;\n                        }\n                        second = curr;\n                    }\n                    prev = curr;\n                    curr = curr.right;\n                }\n            }\n        }\n\n        if (first != null && second != null) {\n            int tmp = first.val;\n            first.val = second.val;\n            second.val = tmp;\n        }\n    }\n}\n",
+   "python": "class Solution:\n    def recoverTree(self, root: Optional[TreeNode]) -> None:\n        first = second = prev = None\n        curr = root\n        while curr is not None:\n            if curr.left is None:\n                if prev is not None and prev.val > curr.val:\n                    if first is None:\n                        first = prev\n                    second = curr\n                prev = curr\n                curr = curr.right\n            else:\n                pred = curr.left\n                while pred.right is not None and pred.right is not curr:\n                    pred = pred.right\n                if pred.right is None:\n                    pred.right = curr\n                    curr = curr.left\n                else:\n                    pred.right = None\n                    if prev is not None and prev.val > curr.val:\n                        if first is None:\n                            first = prev\n                        second = curr\n                    prev = curr\n                    curr = curr.right\n        if first is not None and second is not None:\n            first.val, second.val = second.val, first.val\n"
+  },
+  "sampleArray": [],
+  "visibleTestCount": 3,
+  "hiddenTestCount": 10,
+  "number": 10
+ },
+ {
+  "id": "unique-binary-search-trees",
+  "order": 11,
+  "topicId": "bst",
+  "topic": "Binary Search Trees (BST)",
+  "title": "Unique Binary Search Trees",
+  "slug": "unique-binary-search-trees",
+  "difficulty": "Medium",
+  "subtopic": "Balance Trees",
+  "companies": [
+   "Amazon",
+   "Google",
+   "Microsoft",
+   "Meta",
+   "Apple",
+   "Bloomberg"
+  ],
+  "leetcode": 96,
+  "description": "Given an integer `n`, return the number of **structurally unique** binary search trees (BSTs) which have exactly `n` nodes containing the unique values from `1` to `n`.\n\nTwo BSTs are considered structurally unique if they differ in shape (equivalently, if they have different root values or differ structurally in either their left or right subtrees). The answer is guaranteed to fit in a 32-bit signed integer for all valid inputs.",
+  "constraints": [
+   "1 <= n <= 19"
+  ],
+  "hints": [
+   "Fix each value i from 1 to n as the root: the left subtree must contain the i - 1 values {1, ..., i - 1}, and the right subtree must contain the n - i values {i + 1, ..., n}.",
+   "Because the number of structurally unique BSTs depends only on the count of distinct keys (not their specific values), G(n) = sum_{i=1..n} G(i - 1) * G(n - i) with G(0) = 1.",
+   "This sequence is the Catalan numbers, which can also be computed in O(n) time and O(1) space using C_{k+1} = C_k * 2 * (2k + 1) / (k + 2) with 64-bit intermediate arithmetic to avoid overflow."
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "examples": [
+   {
+    "input": "n = 3",
+    "output": "5",
+    "explanation": "With values {1, 2, 3}, there are 5 structurally unique BSTs: 2 with root 1, 1 with root 2, and 2 with root 3."
+   },
+   {
+    "input": "n = 1",
+    "output": "1",
+    "explanation": "A single value {1} forms exactly 1 unique BST."
+   },
+   {
+    "input": "n = 4",
+    "output": "14",
+    "explanation": "G(4) = G(0)*G(3) + G(1)*G(2) + G(2)*G(1) + G(3)*G(0) = 5 + 2 + 2 + 5 = 14."
+   }
+  ],
+  "starterCode": {
+   "java": "class Solution {\n    public int numTrees(int n) {\n        // Write your solution here\n        return 0;\n    }\n}\n",
+   "python": "class Solution:\n    def numTrees(self, n: int) -> int:\n        # Write your solution here\n        pass\n"
+  },
+  "solutionCode": {
+   "java": "class Solution {\n    public int numTrees(int n) {\n        long c = 1;\n        for (int i = 0; i < n; i++) {\n            c = c * 2 * (2 * i + 1) / (i + 2);\n        }\n        return (int) c;\n    }\n}\n",
+   "python": "class Solution:\n    def numTrees(self, n: int) -> int:\n        c = 1\n        for i in range(n):\n            c = c * 2 * (2 * i + 1) // (i + 2)\n        return c\n"
+  },
+  "sampleArray": [],
+  "visibleTestCount": 3,
+  "hiddenTestCount": 12,
+  "number": 11
+ },
+ {
+  "id": "unique-binary-search-trees-ii",
+  "order": 12,
+  "topicId": "bst",
+  "topic": "Binary Search Trees (BST)",
+  "title": "Unique Binary Search Trees II",
+  "slug": "unique-binary-search-trees-ii",
+  "difficulty": "Medium",
+  "subtopic": "Balance Trees",
+  "companies": [
+   "Amazon",
+   "Google",
+   "Microsoft",
+   "Meta",
+   "Adobe",
+   "Bloomberg"
+  ],
+  "leetcode": 95,
+  "description": "Given an integer `n`, return all the **structurally unique** binary search trees (BSTs) which have exactly `n` nodes containing the unique values from `1` to `n`. You may return the answer in **any order**.\n\nIf `n = 0`, return an empty list `[]`. Each returned tree is serialized in standard level-order array form (`[root, left, right, ...]`) with trailing `null` values omitted.",
+  "constraints": [
+   "0 <= n <= 9"
+  ],
+  "hints": [
+   "Define a recursive function build(lo, hi) that returns a list of all unique BSTs containing the integer values in the inclusive range [lo, hi].",
+   "When lo > hi, return [null] (a single empty subtree) so every combination of left and right subtrees pairs cleanly via nested loops.",
+   "For each root value val in [lo, hi], combine every tree in build(lo, val - 1) as the left child with every tree in build(val + 1, hi) as the right child. Memoizing (lo, hi) avoids rebuilding identical subranges."
+  ],
+  "timeComplexity": "O(4^n / sqrt(n))",
+  "spaceComplexity": "O(4^n / sqrt(n))",
+  "compare": "sorted",
+  "examples": [
+   {
+    "input": "n = 3",
+    "output": "[[1,null,2,null,3],[1,null,3,2],[2,1,3],[3,1,null,null,2],[3,2,null,1]]",
+    "explanation": "There are 5 structurally unique BSTs for n = 3 (the 3rd Catalan number, C_3 = 5), returned in any order."
+   },
+   {
+    "input": "n = 1",
+    "output": "[[1]]",
+    "explanation": "For n = 1, the only unique BST is a single node with value 1."
+   }
+  ],
+  "starterCode": {
+   "java": "/**\n * Definition for a binary tree node (provided by the judge).\n * public class TreeNode {\n *     int val;\n *     TreeNode left;\n *     TreeNode right;\n *     TreeNode() {}\n *     TreeNode(int val) { this.val = val; }\n *     TreeNode(int val, TreeNode left, TreeNode right) { this.val = val; this.left = left; this.right = right; }\n * }\n */\nclass Solution {\n    public List<TreeNode> generateTrees(int n) {\n        // Write your solution here\n        return null;\n    }\n}\n",
+   "python": "# Definition for a binary tree node (provided by the judge).\n# class TreeNode:\n#     def __init__(self, val=0, left=None, right=None):\n#         self.val = val\n#         self.left = left\n#         self.right = right\nclass Solution:\n    def generateTrees(self, n: int) -> List[Optional[TreeNode]]:\n        # Write your solution here\n        pass\n"
+  },
+  "solutionCode": {
+   "java": "class Solution {\n    public List<TreeNode> generateTrees(int n) {\n        if (n == 0) {\n            return new ArrayList<>();\n        }\n        @SuppressWarnings(\"unchecked\")\n        List<TreeNode>[][] memo = new List[n + 2][n + 2];\n        return build(1, n, memo);\n    }\n\n    private List<TreeNode> build(int lo, int hi, List<TreeNode>[][] memo) {\n        if (lo > hi) {\n            return Collections.singletonList(null);\n        }\n        if (memo[lo][hi] != null) {\n            return memo[lo][hi];\n        }\n        List<TreeNode> trees = new ArrayList<>();\n        for (int val = lo; val <= hi; val++) {\n            List<TreeNode> lefts = build(lo, val - 1, memo);\n            List<TreeNode> rights = build(val + 1, hi, memo);\n            for (TreeNode left : lefts) {\n                for (TreeNode right : rights) {\n                    trees.add(new TreeNode(val, left, right));\n                }\n            }\n        }\n        memo[lo][hi] = trees;\n        return trees;\n    }\n}\n",
+   "python": "class Solution:\n    def generateTrees(self, n: int) -> List[Optional[TreeNode]]:\n        if n == 0:\n            return []\n\n        @lru_cache(maxsize=None)\n        def build(lo: int, hi: int) -> tuple:\n            if lo > hi:\n                return (None,)\n            trees = []\n            for val in range(lo, hi + 1):\n                for left in build(lo, val - 1):\n                    for right in build(val + 1, hi):\n                        trees.append(TreeNode(val, left, right))\n            return tuple(trees)\n\n        return list(build(1, n))\n"
+  },
+  "sampleArray": [],
+  "visibleTestCount": 2,
+  "hiddenTestCount": 8,
+  "number": 12
+ }
+]

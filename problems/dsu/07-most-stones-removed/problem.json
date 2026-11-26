@@ -1,0 +1,40 @@
+{
+  "title": "Most Stones Removed with Same Row or Column",
+  "difficulty": "Medium",
+  "subtopic": "Connectivity",
+  "companies": ["Google", "Amazon", "Meta", "Microsoft", "Uber"],
+  "leetcode": 947,
+  "description": "On a 2D plane, we place `n` stones at some integer coordinate points. Each coordinate point may contain at most one stone.\n\nA stone can be removed if it shares either the same row or the same column as another stone that has not yet been removed.\n\nGiven an array `stones` of length `n` where `stones[i] = [xi, yi]` represents the location of the `i`-th stone, return the largest possible number of stones that can be removed.",
+  "constraints": [
+    "1 <= stones.length <= 1000",
+    "0 <= xi, yi <= 10^4",
+    "No two stones are at the same coordinate point."
+  ],
+  "hints": [
+    "View two stones as connected if they share a row or a column. Within any connected component of k stones, you can always remove k - 1 stones (for instance, by repeatedly removing leaves of a spanning tree) and leave 1 stone behind.",
+    "Therefore, the maximum number of removable stones equals total stones minus the number of connected components.",
+    "Instead of connecting stones pairwise in O(n^2), connect each stone's row index x and shifted column index y + 10001 in a Disjoint Set Union (DSU) structure to achieve near-linear O(n * alpha(n)) time."
+  ],
+  "examples": [
+    {
+      "explanation": "All 6 stones belong to a single connected component via shared rows and columns, so 6 - 1 = 5 stones can be removed (leaving, for example, [0, 0])."
+    },
+    {
+      "explanation": "Stones [0, 0], [0, 2], [2, 0], [2, 2] form one component of size 4 (3 removable), and [1, 1] is isolated (0 removable), for a total of 3 stones removed."
+    },
+    {
+      "explanation": "There is only one stone, so it shares a row or column with no other stone and 0 stones can be removed."
+    }
+  ],
+  "timeComplexity": "O(n * alpha(n))",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "removeStones",
+    "params": [
+      {"name": "stones", "type": "int[][]"}
+    ],
+    "returns": "int"
+  }
+}

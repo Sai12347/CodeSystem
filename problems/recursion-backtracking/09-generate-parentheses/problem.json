@@ -1,0 +1,45 @@
+{
+  "title": "Generate Parentheses",
+  "difficulty": "Medium",
+  "subtopic": "Constraint Pruning",
+  "companies": [
+    "Google",
+    "Amazon",
+    "Meta",
+    "Microsoft",
+    "Bloomberg",
+    "Uber"
+  ],
+  "leetcode": 22,
+  "description": "Given `n` pairs of parentheses, write a function to generate all combinations of well-formed (balanced) parentheses strings of length `2 * n`.\n\nA string of `'('` and `')'` is well-formed if every opening parenthesis `'('` has a matching closing parenthesis `')'` and no prefix of the string contains more `')'` characters than `'('` characters. For `n = 0`, return `[\"\"]` (a list containing a single empty string). You may return the valid strings in any order.",
+  "constraints": [
+    "0 <= n <= 9"
+  ],
+  "hints": [
+    "Build each string one character at a time while tracking how many '(' and ')' have been placed so far.",
+    "You can place '(' whenever openCount < n, and you can place ')' only when closeCount < openCount.",
+    "Pruning invalid prefixes early guarantees every leaf reached at length 2 * n is a valid combination, avoiding wasted work."
+  ],
+  "examples": [
+    {
+      "explanation": "There are 5 distinct well-formed combinations using 3 pairs of parentheses (the 3rd Catalan number, C_3 = 5)."
+    },
+    {
+      "explanation": "With 1 pair of parentheses, the only valid combination is \"()\"."
+    }
+  ],
+  "timeComplexity": "O(4^n / sqrt(n))",
+  "spaceComplexity": "O(n)",
+  "compare": "sorted",
+  "signature": {
+    "kind": "function",
+    "method": "generateParenthesis",
+    "params": [
+      {
+        "name": "n",
+        "type": "int"
+      }
+    ],
+    "returns": "List<String>"
+  }
+}

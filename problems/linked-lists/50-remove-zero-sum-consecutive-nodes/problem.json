@@ -1,0 +1,45 @@
+{
+  "title": "Remove Zero Sum Consecutive Nodes",
+  "difficulty": "Medium",
+  "subtopic": "Pointers & Nodes",
+  "companies": [
+    "Amazon",
+    "Google",
+    "Meta",
+    "Uber"
+  ],
+  "description": "Given the `head` of a singly linked list of integers, repeatedly delete consecutive sequences of nodes whose values sum to `0` until no non-empty consecutive zero-sum sequence remains.\n\nTo guarantee a unique output when multiple zero-sum sequences overlap, process nodes from left to right and always remove the earliest-ending zero-sum sequence first (equivalently, starting from a sentinel node before `head` with prefix sum `0`, link every surviving node directly to the node immediately following the rightmost occurrence of that same prefix sum). Return the head of the resulting linked list.",
+  "constraints": [
+    "The number of nodes in the list is in the range [0, 5000].",
+    "-1000 <= Node.val <= 1000"
+  ],
+  "hints": [
+    "Two nodes share the exact same running prefix sum if and only if the contiguous sublist strictly between them sums to 0.",
+    "In a first pass from a sentinel dummy node, map each prefix sum to the last node achieving it; in a second pass, set `curr.next = last[prefix].next` to jump past all zero-sum segments in O(n) total time."
+  ],
+  "examples": [
+    {
+      "explanation": "The prefix [1, 2, -3] sums to 0 and is removed, leaving [3, 1]."
+    },
+    {
+      "explanation": "The subarray [3, -3] sums to 0 and is removed, leaving [1, 2, 4]."
+    },
+    {
+      "explanation": "The contiguous sequence [2, 3, -3, -2] sums to 0 and is removed, leaving [1]."
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "removeZeroSumSublists",
+    "params": [
+      {
+        "name": "head",
+        "type": "ListNode"
+      }
+    ],
+    "returns": "ListNode"
+  }
+}

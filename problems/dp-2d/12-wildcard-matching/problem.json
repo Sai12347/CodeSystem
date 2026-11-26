@@ -1,0 +1,44 @@
+{
+  "title": "Wildcard Matching",
+  "difficulty": "Hard",
+  "subtopic": "String Edits",
+  "companies": [
+    "Google",
+    "Amazon",
+    "Microsoft"
+  ],
+  "description": "Return true if pattern `p` matches all of string `s`. `?` matches exactly one character, and `*` matches any sequence of characters, including an empty sequence. All other pattern characters match themselves.",
+  "constraints": [
+    "0 <= s.length <= 2000",
+    "0 <= p.length <= 2000",
+    "s and p contain lowercase letters, ? or *"
+  ],
+  "hints": [
+    "Define a dynamic-programming state for each prefix of the inputs.",
+    "Update each state using only valid preceding states and the allowed transitions."
+  ],
+  "examples": [
+    {
+      "input": "s = \"adceb\", p = \"*a*b\"",
+      "output": "true"
+    }
+  ],
+  "timeComplexity": "O(m*n)",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "isMatch",
+    "params": [
+      {
+        "name": "s",
+        "type": "String"
+      },
+      {
+        "name": "p",
+        "type": "String"
+      }
+    ],
+    "returns": "boolean"
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "title": "Unique Binary Search Trees",
+  "difficulty": "Medium",
+  "subtopic": "Balance Trees",
+  "companies": ["Amazon", "Google", "Microsoft", "Meta", "Apple", "Bloomberg"],
+  "leetcode": 96,
+  "description": "Given an integer `n`, return the number of **structurally unique** binary search trees (BSTs) which have exactly `n` nodes containing the unique values from `1` to `n`.\n\nTwo BSTs are considered structurally unique if they differ in shape (equivalently, if they have different root values or differ structurally in either their left or right subtrees). The answer is guaranteed to fit in a 32-bit signed integer for all valid inputs.",
+  "constraints": [
+    "1 <= n <= 19"
+  ],
+  "hints": [
+    "Fix each value i from 1 to n as the root: the left subtree must contain the i - 1 values {1, ..., i - 1}, and the right subtree must contain the n - i values {i + 1, ..., n}.",
+    "Because the number of structurally unique BSTs depends only on the count of distinct keys (not their specific values), G(n) = sum_{i=1..n} G(i - 1) * G(n - i) with G(0) = 1.",
+    "This sequence is the Catalan numbers, which can also be computed in O(n) time and O(1) space using C_{k+1} = C_k * 2 * (2k + 1) / (k + 2) with 64-bit intermediate arithmetic to avoid overflow."
+  ],
+  "examples": [
+    {
+      "explanation": "With values {1, 2, 3}, there are 5 structurally unique BSTs: 2 with root 1, 1 with root 2, and 2 with root 3."
+    },
+    {
+      "explanation": "A single value {1} forms exactly 1 unique BST."
+    },
+    {
+      "explanation": "G(4) = G(0)*G(3) + G(1)*G(2) + G(2)*G(1) + G(3)*G(0) = 5 + 2 + 2 + 5 = 14."
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "numTrees",
+    "params": [
+      {
+        "name": "n",
+        "type": "int"
+      }
+    ],
+    "returns": "int"
+  }
+}

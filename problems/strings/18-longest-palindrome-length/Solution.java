@@ -1,0 +1,1 @@
+class Solution { public int longestPalindrome(String s) { int[] c=new int[26]; for(char x:s.toCharArray())c[x-'a']++; int n=0; boolean odd=false; for(int v:c){n+=(v/2)*2;if(v%2==1)odd=true;} return n+(odd?1:0); } }

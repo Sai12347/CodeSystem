@@ -1,0 +1,39 @@
+{
+  "title": "Partition Labels",
+  "difficulty": "Medium",
+  "subtopic": "Interval Scheduling",
+  "companies": [
+    "Amazon",
+    "Google",
+    "Microsoft"
+  ],
+  "description": "Partition the string into as many parts as possible so that each letter appears in at most one part. Return the lengths of the parts in order. The parts must concatenate to the original string.",
+  "constraints": [
+    "1 <= s.length <= 500",
+    "s contains only lowercase English letters"
+  ],
+  "hints": [
+    "Choose locally optimal placements or intervals while maintaining the stated invariant.",
+    "Check boundary values and ties."
+  ],
+  "examples": [
+    {
+      "input": "s = \"ababcbacadefegdehijhklij\"",
+      "output": "[9,7,8]"
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(n)",
+  "compare": "sorted",
+  "signature": {
+    "kind": "function",
+    "method": "partitionLabels",
+    "params": [
+      {
+        "name": "s",
+        "type": "String"
+      }
+    ],
+    "returns": "List<Integer>"
+  }
+}

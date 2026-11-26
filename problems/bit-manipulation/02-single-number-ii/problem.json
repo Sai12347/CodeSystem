@@ -1,0 +1,38 @@
+{
+  "title": "Single Number II",
+  "difficulty": "Medium",
+  "subtopic": "XOR Tricks",
+  "companies": [
+    "Amazon",
+    "Google",
+    "Microsoft"
+  ],
+  "description": "Given an integer array where every value appears exactly three times except one value, return the value that appears once.",
+  "constraints": [
+    "1 <= nums.length <= 3 * 10^4",
+    "All values satisfy the stated repetition rule."
+  ],
+  "hints": [
+    "Track which bits have appeared once and twice modulo three."
+  ],
+  "examples": [
+    {
+      "input": "nums = [2,2,3,2]",
+      "output": "3"
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "singleNumber",
+    "params": [
+      {
+        "name": "nums",
+        "type": "int[]"
+      }
+    ],
+    "returns": "int"
+  }
+}

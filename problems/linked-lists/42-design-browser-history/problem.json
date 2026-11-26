@@ -1,0 +1,80 @@
+{
+  "title": "Design Browser History",
+  "difficulty": "Medium",
+  "subtopic": "LRU Design",
+  "companies": [
+    "Amazon",
+    "Google",
+    "Meta",
+    "Bloomberg",
+    "Apple"
+  ],
+  "description": "Design a browser tab history manager using a doubly linked list. Implement the `BrowserHistory` class:\n- `BrowserHistory(String homepage)` initializes the browser on `homepage`.\n- `void visit(String url)` visits `url` from the current page, clearing all forward history.\n- `String back(int steps)` moves `steps` backward in history (or as far back as possible if fewer than `steps` pages exist behind the current page) and returns the resulting current URL.\n- `String forward(int steps)` moves `steps` forward in history (or as far forward as possible) and returns the resulting current URL.",
+  "constraints": [
+    "1 <= homepage.length, url.length <= 30",
+    "1 <= steps <= 500",
+    "At most 2000 calls will be made to visit, back, and forward."
+  ],
+  "hints": [
+    "Store each visited page in a doubly linked list node with `prev` and `next` pointers and maintain a `curr` pointer.",
+    "On `visit(url)`, create a new node linked directly after `curr` (with `newNode.next = null` automatically discarding old forward history) and advance `curr` to it."
+  ],
+  "examples": [
+    {
+      "explanation": "Visits build leetcode -> google -> facebook -> youtube; back(1) goes to facebook, back(1) to google, forward(1) to facebook, visit(linkedin) drops youtube, forward(2) stays at linkedin."
+    },
+    {
+      "explanation": "Stepping back or forward past the ends clamps cleanly at the homepage or latest visited page."
+    },
+    {
+      "explanation": "Visiting a new URL immediately after moving back truncates the old forward branch."
+    }
+  ],
+  "timeComplexity": "O(steps) for back/forward, O(1) for visit",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "design",
+    "className": "BrowserHistory",
+    "constructor": {
+      "params": [
+        {
+          "name": "homepage",
+          "type": "String"
+        }
+      ]
+    },
+    "methods": [
+      {
+        "name": "visit",
+        "params": [
+          {
+            "name": "url",
+            "type": "String"
+          }
+        ],
+        "returns": "void"
+      },
+      {
+        "name": "back",
+        "params": [
+          {
+            "name": "steps",
+            "type": "int"
+          }
+        ],
+        "returns": "String"
+      },
+      {
+        "name": "forward",
+        "params": [
+          {
+            "name": "steps",
+            "type": "int"
+          }
+        ],
+        "returns": "String"
+      }
+    ]
+  }
+}

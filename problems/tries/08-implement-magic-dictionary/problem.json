@@ -1,0 +1,69 @@
+{
+  "title": "Implement Magic Dictionary",
+  "difficulty": "Medium",
+  "subtopic": "Wildcard Search",
+  "companies": [
+    "Google",
+    "Amazon",
+    "Meta",
+    "Microsoft",
+    "Oracle"
+  ],
+  "leetcode": 676,
+  "description": "Design a data structure that is initialized with a list of distinct words. Provided a query string, you should determine if you can change **exactly one** character in this string to a different lowercase English letter so that it matches any string in the data structure.\n\nImplement the `MagicDictionary` class:\n- `MagicDictionary()` initializes the object.\n- `void buildDict(String[] dictionary)` sets the data structure with an array of distinct strings `dictionary`.\n- `boolean search(String searchWord)` returns `true` if you can change exactly one character in `searchWord` to match any string in the data structure, and `false` otherwise. Note that an exact match with zero changes does not count unless another dictionary word differs by exactly one character.",
+  "constraints": [
+    "1 <= dictionary.length <= 100",
+    "1 <= dictionary[i].length <= 100",
+    "dictionary[i] consists of only lowercase English letters.",
+    "All strings in dictionary are distinct.",
+    "1 <= searchWord.length <= 100",
+    "searchWord consists of only lowercase English letters.",
+    "buildDict is called once before search queries.",
+    "At most 100 calls will be made to search."
+  ],
+  "hints": [
+    "Insert all dictionary words into a trie during buildDict.",
+    "For search(searchWord), run a DFS carrying the current character index, current trie node, and a boolean flag indicating whether the one allowed character modification has already been used.",
+    "If the modification has not been used yet, you may either follow the exact character (keeping modified = false) or follow any other existing child (setting modified = true). At the end of searchWord, return true only if modified is true and the node is a word end."
+  ],
+  "examples": [
+    {
+      "explanation": "\"hello\" requires 0 changes so it returns false; \"hhllo\" can change the second 'h' to 'e' to match \"hello\" (true); \"hell\" and \"leetcoded\" have wrong lengths (false)."
+    },
+    {
+      "explanation": "Because both \"hello\" and \"hallo\" are in the dictionary, searching \"hello\" now returns true (change 'e' to 'a' to match \"hallo\")."
+    }
+  ],
+  "timeComplexity": "O(N * L) buildDict, O(26 * L^2) worst-case search",
+  "spaceComplexity": "O(N * L)",
+  "compare": "exact",
+  "signature": {
+    "kind": "design",
+    "className": "MagicDictionary",
+    "constructor": {
+      "params": []
+    },
+    "methods": [
+      {
+        "name": "buildDict",
+        "params": [
+          {
+            "name": "dictionary",
+            "type": "String[]"
+          }
+        ],
+        "returns": "void"
+      },
+      {
+        "name": "search",
+        "params": [
+          {
+            "name": "searchWord",
+            "type": "String"
+          }
+        ],
+        "returns": "boolean"
+      }
+    ]
+  }
+}

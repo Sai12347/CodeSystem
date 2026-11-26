@@ -1,0 +1,51 @@
+{
+  "title": "Sum of Matrix After Queries",
+  "difficulty": "Medium",
+  "subtopic": "Dynamic Grids",
+  "companies": [
+    "Google",
+    "Amazon",
+    "Meta",
+    "Oracle"
+  ],
+  "description": "You are given an integer `n` representing an `n x n` 0-indexed matrix initially filled with all `0`s, and a 2D array `queries` where each `queries[i] = [type, index, val]`:\n- If `type == 0`, set every cell in row `index` to `val`, overwriting any previous values.\n- If `type == 1`, set every cell in column `index` to `val`, overwriting any previous values.\n\nReturn the **sum** of all integers in the matrix after all queries have been applied in order.",
+  "constraints": [
+    "1 <= n <= 10^4",
+    "1 <= queries.length <= 5 * 10^4",
+    "queries[i].length == 3",
+    "type is 0 or 1, 0 <= index < n, 0 <= val <= 10^5"
+  ],
+  "hints": [
+    "Later assignments overwrite earlier ones, so iterate through queries in reverse order (from last to first).",
+    "Keep sets (or boolean arrays) of already-finalized rows and columns along with remaining unfinalized counts remRows and remCols: the first time you see a row from the end, it contributes val * remCols to the total sum."
+  ],
+  "examples": [
+    {
+      "explanation": "Processing backwards: col 0 gets 4 (3 cells -> 12), row 2 gets 3 (2 remaining cells -> 6), col 2 gets 2 (2 remaining cells -> 4), row 0 gets 1 (1 remaining cell -> 1), totaling 23."
+    },
+    {
+      "explanation": "After applying all five queries in order, the final 3x3 matrix is [[1,4,1],[1,2,1],[1,3,1]], which sums to 17."
+    },
+    {
+      "explanation": "On a 1x1 matrix, the last query sets the only cell to 7."
+    }
+  ],
+  "timeComplexity": "O(n + q)",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "matrixSumQueries",
+    "params": [
+      {
+        "name": "n",
+        "type": "int"
+      },
+      {
+        "name": "queries",
+        "type": "int[][]"
+      }
+    ],
+    "returns": "long"
+  }
+}

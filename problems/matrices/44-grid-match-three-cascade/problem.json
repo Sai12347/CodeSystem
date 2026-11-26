@@ -1,0 +1,47 @@
+{
+  "title": "Grid Match-Three Cascade",
+  "difficulty": "Medium",
+  "subtopic": "Simulation",
+  "companies": [
+    "Bloomberg",
+    "Google",
+    "Meta",
+    "Apple"
+  ],
+  "description": "You are given an `m x n` integer matrix `board` representing a puzzle grid of colored tiles. A positive integer `board[r][c] > 0` represents a tile type, and `0` represents an empty cell.\n\nRepeatedly perform the following stabilization round until no more tiles can be crushed:\n1. **Crush**: If three or more tiles of the same positive type are adjacent horizontally or vertically, mark all such tiles simultaneously and replace them with `0`.\n2. **Gravity**: After crushing, all remaining positive tiles fall downward in their respective columns to fill any empty cells below them, leaving `0`s at the top of each column.\n\nReturn the final stable `board`.",
+  "constraints": [
+    "m == board.length",
+    "n == board[i].length",
+    "3 <= m, n <= 50",
+    "0 <= board[i][j] <= 2000"
+  ],
+  "hints": [
+    "Mark all horizontal and vertical runs of length >= 3 in a separate boolean matrix before clearing any cells, so overlapping L- or T-shaped matches are both detected.",
+    "For gravity, sweep each column from bottom to top with a write pointer copying non-zero values downward and filling remaining top slots with 0."
+  ],
+  "examples": [
+    {
+      "explanation": "Three 1s in the bottom row crush and the tiles above drop down, triggering no further matches."
+    },
+    {
+      "explanation": "The vertical column of three 2s and horizontal row of three 2s crush simultaneously, letting the top tiles drop."
+    },
+    {
+      "explanation": "No three identical positive tiles are adjacent horizontally or vertically, so the board is already stable."
+    }
+  ],
+  "timeComplexity": "O((m * n)^2)",
+  "spaceComplexity": "O(m * n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "candyCrush",
+    "params": [
+      {
+        "name": "board",
+        "type": "int[][]"
+      }
+    ],
+    "returns": "int[][]"
+  }
+}

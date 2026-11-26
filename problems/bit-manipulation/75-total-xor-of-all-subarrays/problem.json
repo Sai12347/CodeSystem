@@ -1,0 +1,44 @@
+{
+  "title": "Total XOR of All Subarray XORs",
+  "difficulty": "Easy",
+  "subtopic": "XOR Tricks",
+  "companies": [
+    "Amazon",
+    "Microsoft",
+    "Atlassian"
+  ],
+  "description": "Given an integer array `nums`, compute the bitwise XOR of every non-empty contiguous subarray, and then return the bitwise XOR of all those subarray XOR values combined.",
+  "constraints": [
+    "1 <= nums.length <= 10^5",
+    "0 <= nums[i] <= 10^9"
+  ],
+  "hints": [
+    "Count how many contiguous subarrays include index `i`: there are `(i + 1)` choices for the left endpoint and `(n - i)` choices for the right endpoint, giving `(i + 1) * (n - i)` occurrences.",
+    "Because `x ^ x = 0`, `nums[i]` contributes only when `(i + 1) * (n - i)` is odd, which occurs if and only if `n` is odd and `i` is even."
+  ],
+  "examples": [
+    {
+      "explanation": "Subarray XORs are 1, 2, 3, (1^2)=3, (2^3)=1, (1^2^3)=0; XORing all of them gives 2."
+    },
+    {
+      "explanation": "Because length n = 4 is even, every element appears in an even number of subarrays, so the result is 0."
+    },
+    {
+      "explanation": "With a single element [9], the only subarray has XOR 9."
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "totalSubarrayXor",
+    "params": [
+      {
+        "name": "nums",
+        "type": "int[]"
+      }
+    ],
+    "returns": "int"
+  }
+}

@@ -1,0 +1,48 @@
+{
+  "title": "Pancake Sorting",
+  "difficulty": "Medium",
+  "subtopic": "Custom Comparators",
+  "companies": [
+    "Google",
+    "Amazon",
+    "Meta",
+    "Microsoft",
+    "Uber"
+  ],
+  "leetcode": 969,
+  "description": "Given an array of integers `arr` that is a permutation of `[1, 2, ..., arr.length]`, sort `arr` by performing a series of **pancake flips**.\n\nIn one pancake flip you do the following steps:\n- Choose an integer `k` where `1 <= k <= arr.length`.\n- Reverse the sub-array `arr[0...k-1]` (0-indexed).\n\nReturn an array of the `k`-values corresponding to a sequence of pancake flips that sort `arr` in ascending order. Any valid answer that sorts the array within `10 * arr.length` flips will be judged as correct. The judge simulates your flip sequence and validates that `arr` ends up sorted within the flip budget (`true`).",
+  "constraints": [
+    "1 <= arr.length <= 100",
+    "1 <= arr[i] <= arr.length",
+    "All integers in arr are unique (arr is a permutation of [1, 2, ..., arr.length])."
+  ],
+  "hints": [
+    "Think like Selection Sort: place the largest unsorted element into its final position at the end of the unsorted prefix, one element at a time.",
+    "To move value x from index idx to its target position (x - 1), first flip the prefix of length (idx + 1) to bring x to index 0, then flip the prefix of length x to move x to index (x - 1).",
+    "Each element needs at most 2 flips, so the total number of flips is at most 2 * (n - 1), well under the 10 * n limit."
+  ],
+  "examples": [
+    {
+      "explanation": "For example, flips [3, 4, 2, 3, 2] transform [3, 2, 4, 1] -> [4, 2, 3, 1] -> [1, 3, 2, 4] -> [3, 1, 2, 4] -> [2, 1, 3, 4] -> [1, 2, 3, 4]."
+    },
+    {
+      "explanation": "The array [1, 2, 3] is already sorted, so an empty list [] of flips is valid."
+    },
+    {
+      "explanation": "Flipping prefix k = 2 reverses [2, 1] into [1, 2]."
+    }
+  ],
+  "timeComplexity": "O(n^2)",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "adapter",
+    "inputs": [
+      {
+        "name": "arr",
+        "type": "int[]",
+        "description": "Permutation of integers 1..n to sort using prefix reversals"
+      }
+    ]
+  }
+}

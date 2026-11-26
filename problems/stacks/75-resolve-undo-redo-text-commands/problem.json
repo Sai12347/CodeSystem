@@ -1,0 +1,45 @@
+{
+  "title": "Resolve Undo-Redo Text Commands",
+  "difficulty": "Easy",
+  "subtopic": "LIFO Structure",
+  "companies": [
+    "Microsoft",
+    "Amazon",
+    "Adobe",
+    "Atlassian"
+  ],
+  "description": "You are given an array of command strings `commands` applied sequentially to an initially empty text document with undo/redo history:\n- `\"TYPE <word>\"`: appends `<word>` (a non-empty lowercase string) to the end of the document, records this action on the undo stack, and **clears the redo stack**.\n- `\"UNDO\"`: if the undo stack is non-empty, pops the most recent `TYPE` action, removes its appended text from the end of the document, and pushes it onto the redo stack (otherwise does nothing).\n- `\"REDO\"`: if the redo stack is non-empty, pops the most recent undone action, re-appends its text to the document, and pushes it back onto the undo stack (otherwise does nothing).\n\nReturn the final text document as a single string.",
+  "constraints": [
+    "1 <= commands.length <= 10^4",
+    "Each command is 'UNDO', 'REDO', or 'TYPE <word>' where <word> consists of 1 to 20 lowercase English letters."
+  ],
+  "hints": [
+    "Maintain two stacks of strings: `undoStack` holding the currently active typed chunks in order, and `redoStack` holding chunks removed by UNDO.",
+    "Remember that any new `TYPE` command must clear `redoStack`, and the final document is simply the concatenation of `undoStack` from bottom to top."
+  ],
+  "examples": [
+    {
+      "explanation": "Type \"hi\", type \"there\", undo removes \"there\", redo restores \"there\", yielding \"hithere\"."
+    },
+    {
+      "explanation": "Undo removes \"world\", then typing \"algo\" clears the redo stack, so the subsequent REDO does nothing, leaving \"helloalgo\"."
+    },
+    {
+      "explanation": "UNDO and REDO on empty stacks are safely ignored, leaving \"ok\"."
+    }
+  ],
+  "timeComplexity": "O(L)",
+  "spaceComplexity": "O(L)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "applyUndoRedo",
+    "params": [
+      {
+        "name": "commands",
+        "type": "String[]"
+      }
+    ],
+    "returns": "String"
+  }
+}

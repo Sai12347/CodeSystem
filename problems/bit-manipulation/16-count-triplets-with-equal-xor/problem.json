@@ -1,0 +1,44 @@
+{
+  "title": "Count Triplets with Equal XOR",
+  "difficulty": "Medium",
+  "subtopic": "XOR Tricks",
+  "companies": [
+    "Google",
+    "Goldman Sachs",
+    "Amazon"
+  ],
+  "description": "Given an array of positive integers `arr`, count the number of index triplets `(i, j, k)` with `0 <= i < j <= k < arr.length` such that `a == b`, where `a = arr[i] ^ arr[i + 1] ^ ... ^ arr[j - 1]` and `b = arr[j] ^ arr[j + 1] ^ ... ^ arr[k]`.",
+  "constraints": [
+    "1 <= arr.length <= 1000",
+    "1 <= arr[i] <= 10^8"
+  ],
+  "hints": [
+    "`a == b` holds if and only if `a ^ b == 0`, meaning the entire subarray `arr[i..k]` has XOR equal to `0` (`pref[i] == pref[k + 1]`).",
+    "Every pair `(i, k)` with `pref[i] == pref[k + 1]` contributes `k - i` valid choices of `j`; track the frequency and index-sum of each prefix XOR in hash maps for O(n) time."
+  ],
+  "examples": [
+    {
+      "explanation": "The 4 valid triplets are (0,1,2), (0,2,2), (2,3,4), and (2,4,4)."
+    },
+    {
+      "explanation": "Every even-length subarray of all 1s has XOR 0, yielding 10 valid triplets."
+    },
+    {
+      "explanation": "No subarray of [2, 3] has XOR 0, so there are 0 valid triplets."
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "countEqualXorTriplets",
+    "params": [
+      {
+        "name": "arr",
+        "type": "int[]"
+      }
+    ],
+    "returns": "int"
+  }
+}

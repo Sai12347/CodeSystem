@@ -1,0 +1,43 @@
+{
+  "title": "Maximum Consecutive Values From Coins",
+  "difficulty": "Medium",
+  "subtopic": "Traversal",
+  "companies": [
+    "Amazon",
+    "Google",
+    "Microsoft"
+  ],
+  "description": "You have positive-value coins in `coins`. Determine the largest integer `x` such that every value from 1 through `x` can be formed as a sum of some coins, each used at most once. Input: `coins`. Output: the largest consecutive reachable value `x`.",
+  "constraints": [
+    "1 <= coins.length <= 1000",
+    "1 <= coins[i] <= 100000"
+  ],
+  "hints": [
+    "Sort once or track a compact running state to avoid checking every possible group.",
+    "Test duplicates, extreme ordering, and cases with no feasible candidate."
+  ],
+  "examples": [
+    {
+      "input": "coins = [1, 3]",
+      "output": "2"
+    },
+    {
+      "input": "coins = [1, 1, 1, 1]",
+      "output": "4"
+    }
+  ],
+  "timeComplexity": "O(n log n)",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "getMaximumConsecutive",
+    "params": [
+      {
+        "name": "coins",
+        "type": "int[]"
+      }
+    ],
+    "returns": "int"
+  }
+}

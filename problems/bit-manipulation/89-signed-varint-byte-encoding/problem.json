@@ -1,0 +1,43 @@
+{
+  "title": "Signed Varint (ZigZag + LEB128) Encoding",
+  "difficulty": "Medium",
+  "subtopic": "Two Complement",
+  "companies": [
+    "Google",
+    "Meta",
+    "Netflix"
+  ],
+  "description": "Protocol Buffers encodes 32-bit signed integers compactly in two steps: first, **ZigZag encoding** maps signed 32-bit `n` to an unsigned 32-bit integer `u = ((n << 1) ^ (n >> 31))` (using arithmetic right shift, so `0 -> 0`, `-1 -> 1`, `1 -> 2`, `-2 -> 3`, ..., `-2^31 -> 2^32 - 1`); second, **Base-128 Varint (LEB128)** splits `u` into 7-bit groups from least significant to most significant, setting the continuation bit `0x80` (`128`) on every byte except the final byte. Given `n`, return the encoded byte sequence as an integer array with values in `[0, 255]`.",
+  "constraints": [
+    "-2^31 <= n <= 2^31 - 1"
+  ],
+  "hints": [
+    "Compute the unsigned 32-bit ZigZag value `u = ((n << 1) ^ (n >> 31)) & 0xFFFFFFFF` (using `Integer.toUnsignedLong` in Java so shifts stay unsigned).",
+    "While `u >= 128`, emit `(u & 0x7F) | 0x80` and shift `u >>= 7`; finally emit the remaining 7-bit chunk `u`."
+  ],
+  "examples": [
+    {
+      "explanation": "n = 0 ZigZag-encodes to u = 0, which fits in one 7-bit byte [0]."
+    },
+    {
+      "explanation": "n = -1 ZigZag-encodes to u = 1, producing [1]."
+    },
+    {
+      "explanation": "n = -100 ZigZag-encodes to u = 199 = 1 * 128 + 71; low 7 bits with continuation flag give 71 | 128 = 199, followed by 1."
+    }
+  ],
+  "timeComplexity": "O(1)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "encodeSignedVarint",
+    "params": [
+      {
+        "name": "n",
+        "type": "int"
+      }
+    ],
+    "returns": "int[]"
+  }
+}

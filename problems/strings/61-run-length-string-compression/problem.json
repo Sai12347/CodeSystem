@@ -1,0 +1,44 @@
+{
+  "title": "Run-Length String Compression",
+  "difficulty": "Medium",
+  "subtopic": "Parsing",
+  "companies": [
+    "Amazon",
+    "Microsoft",
+    "Apple"
+  ],
+  "description": "Given a non-empty string `s`, compress consecutive runs of identical characters: for each maximal group of repeating characters, write the character followed by the decimal count if the group length is 2 or more, or just the character alone if the group length is 1. Return the compressed string.",
+  "constraints": [
+    "1 <= s.length <= 10^4",
+    "s consists of printable ASCII characters."
+  ],
+  "hints": [
+    "Use two pointers: advance j while s[j] == s[i] to measure each run's length.",
+    "Append s[i], and append str(runLength) only when runLength > 1."
+  ],
+  "examples": [
+    {
+      "explanation": "Runs are 'a' x2, 'b' x2, and 'c' x3, yielding \"a2b2c3\"."
+    },
+    {
+      "explanation": "A single character has run length 1, so no count is appended."
+    },
+    {
+      "explanation": "One 'a' followed by twelve 'b's produces \"ab12\"."
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "compressString",
+    "params": [
+      {
+        "name": "s",
+        "type": "String"
+      }
+    ],
+    "returns": "String"
+  }
+}

@@ -1,0 +1,45 @@
+{
+  "title": "Sort Linked List by Frequency",
+  "difficulty": "Medium",
+  "subtopic": "Merge & Sort",
+  "companies": [
+    "Amazon",
+    "Bloomberg",
+    "Apple",
+    "Meta"
+  ],
+  "description": "Given the `head` of a singly linked list of integers, sort its nodes in **decreasing order of value frequency** (values that occur more frequently appear earlier in the list).\n\nIf two distinct values have the **same frequency**, place the **smaller numeric value** first. Return the head of the sorted linked list.",
+  "constraints": [
+    "The number of nodes in the list is in the range [0, 10^4].",
+    "-10^5 <= Node.val <= 10^5"
+  ],
+  "hints": [
+    "Count the frequency of every node value in one pass using a hash map.",
+    "Sort the nodes using the composite comparator `(-freq[node.val], node.val)` and relink their `next` pointers (ending with `tail.next = null`)."
+  ],
+  "examples": [
+    {
+      "explanation": "2 and 3 both occur twice (2 < 3), while 1, 4, and 8 occur once each (1 < 4 < 8), producing [2, 2, 3, 3, 1, 4, 8]."
+    },
+    {
+      "explanation": "Values -1 occurs three times and 2 occurs twice, producing [-1, -1, -1, 2, 2]."
+    },
+    {
+      "explanation": "All values occur once, so tie-breaking sorts them in ascending order [-5, 0, 3, 9]."
+    }
+  ],
+  "timeComplexity": "O(n log n)",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "sortByFrequency",
+    "params": [
+      {
+        "name": "head",
+        "type": "ListNode"
+      }
+    ],
+    "returns": "ListNode"
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "title": "Remove Max Number of Edges to Keep Graph Fully Traversable",
+  "difficulty": "Hard",
+  "subtopic": "Kruskal Algorithm",
+  "companies": ["Google", "Amazon", "Meta", "Microsoft", "Uber"],
+  "leetcode": 1579,
+  "description": "Alice and Bob have an undirected graph of `n` nodes labeled from `1` to `n` and three types of edges:\n- Type `1`: Can be traversed by Alice only.\n- Type `2`: Can be traversed by Bob only.\n- Type `3`: Can be traversed by both Alice and Bob.\n\nGiven an array `edges` where `edges[i] = [typei, ui, vi]` represents a bidirectional edge of type `typei` between nodes `ui` and `vi`, find the maximum number of edges you can remove so that after removing the edges, the graph can still be fully traversed by both Alice and Bob. The graph is fully traversable by Alice and Bob if starting from any node, they can reach all other nodes.\n\nReturn the maximum number of edges you can remove, or return `-1` if Alice and Bob cannot fully traverse the graph.",
+  "constraints": [
+    "1 <= n <= 10^5",
+    "0 <= edges.length <= min(10^5, 3 * n * (n - 1) / 2)",
+    "edges[i].length == 3",
+    "1 <= typei <= 3",
+    "1 <= ui < vi <= n",
+    "All tuples (typei, ui, vi) are distinct."
+  ],
+  "hints": [
+    "Maximizing the number of removed edges is equivalent to minimizing the number of edges kept so that both Alice and Bob have a spanning tree.",
+    "Always prioritize Type 3 edges first, because a single Type 3 edge that merges two components helps both Alice and Bob simultaneously instead of needing one Type 1 edge and one Type 2 edge.",
+    "Maintain two Disjoint Set Union structures (one for Alice, one for Bob): first process all Type 3 edges, then process Type 1 edges on Alice's DSU and Type 2 edges on Bob's DSU."
+  ],
+  "examples": [
+    {
+      "explanation": "If we remove the 2 edges [1,1,2] and [1,1,3], the remaining 4 edges still allow both Alice and Bob to traverse all 4 nodes. Removing any more makes the graph untraversable."
+    },
+    {
+      "explanation": "All 4 edges are required: the two Type 3 edges connect {1,2,3}, while node 4 needs both the Type 1 edge for Alice and the Type 2 edge for Bob. So 0 edges can be removed."
+    },
+    {
+      "explanation": "Alice cannot reach node 4 and Bob cannot reach node 1, so the graph cannot be fully traversed by both; return -1."
+    }
+  ],
+  "timeComplexity": "O((n + m) * alpha(n))",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "maxNumEdgesToRemove",
+    "params": [
+      {"name": "n", "type": "int"},
+      {"name": "edges", "type": "int[][]"}
+    ],
+    "returns": "int"
+  }
+}

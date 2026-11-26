@@ -1,0 +1,42 @@
+{
+  "title": "Bitwise AND of Numbers Range",
+  "difficulty": "Medium",
+  "subtopic": "XOR Tricks",
+  "companies": [
+    "Amazon",
+    "Google",
+    "Microsoft"
+  ],
+  "description": "Return the bitwise AND of every integer in the inclusive range `[left, right]`.",
+  "constraints": [
+    "0 <= left <= right <= 2^31 - 1"
+  ],
+  "hints": [
+    "Work directly with individual bits and masks.",
+    "Account for sign representation and boundary values explicitly."
+  ],
+  "examples": [
+    {
+      "input": "left = 5, right = 7",
+      "output": "4"
+    }
+  ],
+  "timeComplexity": "O(1)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "rangeBitwiseAnd",
+    "params": [
+      {
+        "name": "left",
+        "type": "int"
+      },
+      {
+        "name": "right",
+        "type": "int"
+      }
+    ],
+    "returns": "int"
+  }
+}

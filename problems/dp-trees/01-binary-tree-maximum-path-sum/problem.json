@@ -1,0 +1,39 @@
+{
+  "title": "Binary Tree Maximum Path Sum",
+  "difficulty": "Hard",
+  "subtopic": "Subtree Optimization",
+  "companies": [
+    "Amazon",
+    "Google",
+    "Microsoft"
+  ],
+  "description": "A path is any non-empty sequence of distinct nodes connected by parent-child edges; it need not pass through the root. Return the largest sum of node values over all paths.",
+  "constraints": [
+    "1 <= number of nodes <= 1000",
+    "-10^4 <= node.val <= 10^4"
+  ],
+  "hints": [
+    "Solve the tree recursively from the leaves toward the root.",
+    "Return the smallest state needed by the parent and combine child results."
+  ],
+  "examples": [
+    {
+      "input": "root = [1,2,3]",
+      "output": "6"
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(h)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "maxPathSum",
+    "params": [
+      {
+        "name": "root",
+        "type": "TreeNode"
+      }
+    ],
+    "returns": "int"
+  }
+}

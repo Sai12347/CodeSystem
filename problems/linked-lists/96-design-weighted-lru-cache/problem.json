@@ -1,0 +1,84 @@
+{
+  "title": "Design Weighted LRU Cache",
+  "difficulty": "Hard",
+  "subtopic": "LRU Design",
+  "companies": [
+    "Google",
+    "Amazon",
+    "Meta",
+    "Uber",
+    "Netflix"
+  ],
+  "description": "Design a byte-bounded LRU cache `WeightedLRUCache` where each entry consumes a positive integer `weight` toward a total budget `maxWeight`:\n- `WeightedLRUCache(int maxWeight)` initializes an empty cache with total weight budget `maxWeight`.\n- `int get(int key)` returns the value of `key` if it exists and promotes `key` to the most recently used (MRU) position; otherwise returns `-1`.\n- `boolean put(int key, int value, int weight)` stores `(key, value, weight)`:\n  - If `weight > maxWeight`, the item can never fit: leave the cache completely unchanged and return `false`.\n  - Otherwise, if `key` already exists, remove its old entry first (releasing its old weight). Then, while `currentWeight + weight > maxWeight`, evict the least recently used (LRU) entry. Finally insert `(key, value, weight)` at the MRU position and return `true`.\n- `int currentWeight()` returns the sum of weights of all entries currently in the cache.\n\nAim for `O(1)` amortized time per operation.",
+  "constraints": [
+    "1 <= maxWeight <= 10^6",
+    "0 <= key, value <= 10^5",
+    "1 <= weight <= 10^6",
+    "At most 2000 calls will be made to get, put, and currentWeight."
+  ],
+  "hints": [
+    "Maintain a standard LRU doubly linked list and hash map `key -> Node(key, val, weight)` plus a running integer `totalWeight`.",
+    "On `put`, reject immediately if `weight > maxWeight`; otherwise unlink any existing entry for `key`, evict from the tail while `totalWeight + weight > maxWeight`, and insert the new node at the head. Each entry is inserted once and evicted at most once, giving `O(1)` amortized time."
+  ],
+  "examples": [
+    {
+      "explanation": "Putting (1,10,w=4) and (2,20,w=5) brings weight to 9; putting (3,30,w=7) evicts both 1 and 2 since 5+7>10, leaving weight 7."
+    },
+    {
+      "explanation": "Item (2,20,w=11) exceeds maxWeight=10 so put returns false and leaves key 1 intact."
+    },
+    {
+      "explanation": "Updating key 1 from weight 6 to weight 2 frees weight first so key 2 is not evicted."
+    }
+  ],
+  "timeComplexity": "O(1) amortized",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "design",
+    "className": "WeightedLRUCache",
+    "constructor": {
+      "params": [
+        {
+          "name": "maxWeight",
+          "type": "int"
+        }
+      ]
+    },
+    "methods": [
+      {
+        "name": "get",
+        "params": [
+          {
+            "name": "key",
+            "type": "int"
+          }
+        ],
+        "returns": "int"
+      },
+      {
+        "name": "put",
+        "params": [
+          {
+            "name": "key",
+            "type": "int"
+          },
+          {
+            "name": "value",
+            "type": "int"
+          },
+          {
+            "name": "weight",
+            "type": "int"
+          }
+        ],
+        "returns": "boolean"
+      },
+      {
+        "name": "currentWeight",
+        "params": [],
+        "returns": "int"
+      }
+    ]
+  }
+}

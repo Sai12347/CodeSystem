@@ -1,0 +1,43 @@
+{
+  "title": "Dominant Value Index",
+  "difficulty": "Easy",
+  "subtopic": "Traversal",
+  "companies": [
+    "Amazon",
+    "Microsoft",
+    "Google"
+  ],
+  "description": "Given a non-empty array of non-negative integers, return the index of its largest value if that value is at least twice every other value. If the largest value is tied with another value, it is dominant only when both are zero. Return -1 when no dominant index exists. Input: `nums`. Output: the qualifying index or -1.",
+  "constraints": [
+    "1 <= nums.length <= 100000",
+    "0 <= nums[i] <= 1000000"
+  ],
+  "hints": [
+    "Scan the array while retaining only the state needed for the answer.",
+    "Check the first, last, repeated, and all-equal cases."
+  ],
+  "examples": [
+    {
+      "input": "nums = [3, 6, 1, 0]",
+      "output": "1"
+    },
+    {
+      "input": "nums = [1, 2, 3, 4]",
+      "output": "-1"
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "dominantIndex",
+    "params": [
+      {
+        "name": "nums",
+        "type": "int[]"
+      }
+    ],
+    "returns": "int"
+  }
+}

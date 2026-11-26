@@ -1,0 +1,47 @@
+{
+  "title": "Longest Uncommon Subsequence Length",
+  "difficulty": "Easy",
+  "subtopic": "Substrings",
+  "companies": [
+    "Amazon",
+    "Google",
+    "Microsoft"
+  ],
+  "description": "A string is an uncommon subsequence of two strings if it is a subsequence of one but not the other. Given strings `a` and `b`, return the length of the longest uncommon subsequence, or -1 if no such subsequence exists. Input: `a` and `b`. Output: the length or -1.",
+  "constraints": [
+    "1 <= a.length, b.length <= 100",
+    "a and b contain lowercase English letters"
+  ],
+  "hints": [
+    "Track only the character counts or prefixes needed to decide the next step.",
+    "Check repeated symbols, empty or minimal cases, and impossible arrangements."
+  ],
+  "examples": [
+    {
+      "input": "a = \"aba\", b = \"cdc\"",
+      "output": "3"
+    },
+    {
+      "input": "a = \"aaa\", b = \"aaa\"",
+      "output": "-1"
+    }
+  ],
+  "timeComplexity": "O(n+m)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "findLUSlength",
+    "params": [
+      {
+        "name": "a",
+        "type": "String"
+      },
+      {
+        "name": "b",
+        "type": "String"
+      }
+    ],
+    "returns": "int"
+  }
+}

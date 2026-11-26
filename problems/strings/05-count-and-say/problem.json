@@ -1,0 +1,47 @@
+{
+  "title": "Count and Say",
+  "difficulty": "Medium",
+  "subtopic": "Parsing",
+  "companies": [
+    "Meta",
+    "Amazon",
+    "Google",
+    "Bloomberg",
+    "Apple"
+  ],
+  "leetcode": 38,
+  "description": "The **count-and-say** sequence is a sequence of digit strings defined recursively as:\n\n- `countAndSay(1) = \"1\"`\n- For `n > 1`, `countAndSay(n)` is the run-length encoding (RLE) of `countAndSay(n - 1)`.\n\nRun-length encoding scans a string from left to right and replaces each maximal contiguous group of identical digits with the decimal count of digits in that group immediately followed by the digit itself. For example, `\"3322251\"` encodes to `\"23321511\"` (two `3`s, three `2`s, one `5`, one `1`).\n\nGiven a positive integer `n`, return the `n`-th term of the count-and-say sequence.",
+  "constraints": [
+    "1 <= n <= 30"
+  ],
+  "hints": [
+    "Start with the base string \"1\" and iteratively transform the current string into the next term `n - 1` times.",
+    "In each pass, walk through the string with two pointers (or a running counter) to find the length of each maximal run of identical digits.",
+    "Use a list of parts (Python) or StringBuilder (Java) to build each next term in linear time relative to its length."
+  ],
+  "examples": [
+    {
+      "explanation": "Base case: the first term is \"1\"."
+    },
+    {
+      "explanation": "Term 1 is \"1\" -> \"11\" -> \"21\" -> \"1211\" (one 2, one 1)."
+    },
+    {
+      "explanation": "Reading \"1211\" gives one 1, one 2, two 1s -> \"111221\"."
+    }
+  ],
+  "timeComplexity": "O(4^(n/3))",
+  "spaceComplexity": "O(4^(n/3))",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "countAndSay",
+    "params": [
+      {
+        "name": "n",
+        "type": "int"
+      }
+    ],
+    "returns": "String"
+  }
+}

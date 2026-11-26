@@ -1,0 +1,45 @@
+{
+  "title": "XML Tag Validator",
+  "difficulty": "Hard",
+  "subtopic": "Valid Parentheses",
+  "companies": [
+    "Microsoft",
+    "Google",
+    "Amazon",
+    "Salesforce"
+  ],
+  "description": "Given a string `code` representing an XML-like snippet, return `true` if `code` is valid according to all of the following rules, and `false` otherwise:\n1. The entire `code` must be wrapped in a single valid closed tag (`<TAG_NAME>...</TAG_NAME>`), with no characters outside that outermost tag.\n2. A valid `TAG_NAME` consists strictly of uppercase English letters `'A'-'Z'` and has length between `1` and `9` inclusive.\n3. Every start tag `<TAG_NAME>` must be closed by a matching end tag `</TAG_NAME>` in proper LIFO nesting order.\n4. Inside tags, a CDATA section has the form `<![CDATA[CDATA_CONTENT]]>`, where `CDATA_CONTENT` may contain any characters (including `<`, `>`, or unmatched tags) and terminates at the first occurrence of `]]>`. CDATA sections cannot appear outside the outer tag.\n5. Any `'<'` outside a CDATA section must begin a valid start tag, a valid end tag, or a valid CDATA section.",
+  "constraints": [
+    "1 <= code.length <= 2000",
+    "code consists of printable ASCII characters."
+  ],
+  "hints": [
+    "Scan left to right with a stack of open tag names, handling '<![CDATA[', '</', and '<' in that priority order.",
+    "Ensure that the stack never becomes empty before reaching the very end of code (otherwise there are multiple root tags or trailing text)."
+  ],
+  "examples": [
+    {
+      "explanation": "The snippet is wrapped in a single <DIV> tag and contains valid text and matching tags."
+    },
+    {
+      "explanation": "The unmatched '<div>]>' inside the CDATA section is ignored, and the outer <DIV> tag closes cleanly."
+    },
+    {
+      "explanation": "The tags <A> and <B> are interleaved (<A><B></A></B>) rather than properly nested."
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "isValidXml",
+    "params": [
+      {
+        "name": "code",
+        "type": "String"
+      }
+    ],
+    "returns": "boolean"
+  }
+}

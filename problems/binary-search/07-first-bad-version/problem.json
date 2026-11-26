@@ -1,0 +1,31 @@
+{
+  "title": "First Bad Version",
+  "difficulty": "Easy",
+  "subtopic": "Standard Bisect",
+  "companies": ["Meta", "Google", "Amazon", "Microsoft", "Uber", "Apple"],
+  "leetcode": 278,
+  "description": "You are a product manager currently leading a team to develop a new product. Unfortunately, the latest version of your product fails the quality check. Since each version is developed based on the previous version, all the versions after a bad version are also bad.\n\nSuppose you have `n` versions `[1, 2, ..., n]` and you want to find out the first bad one, which causes all the following ones to be bad.\n\nYou are given an API `bool isBadVersion(version)` which returns whether `version` is bad. Implement a function `firstBadVersion(n)` to find the first bad version. You should minimize the number of calls to the API. Internally, `bad` is used by the judge to answer `isBadVersion(version)` and is not passed to your function.",
+  "constraints": [
+    "1 <= bad <= n <= 2^31 - 1"
+  ],
+  "hints": [
+    "Because every version from the first bad version onward is bad, isBadVersion(v) is monotonic: false, ..., false, true, ..., true.",
+    "Use binary search on [1, n]: if isBadVersion(mid) is true, the first bad version is at mid or earlier (right = mid); otherwise it must be strictly after mid (left = mid + 1).",
+    "Compute mid as left + (right - left) / 2 to avoid 32-bit signed integer overflow when n is near 2^31 - 1."
+  ],
+  "examples": [
+    {"explanation": "isBadVersion(3) is false and isBadVersion(4) is true, so version 4 is the first bad version."},
+    {"explanation": "There is only 1 version and it is bad, so return 1."},
+    {"explanation": "Version 1 is already bad, so all versions 1..10 are bad and the first bad version is 1."}
+  ],
+  "timeComplexity": "O(log n)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "adapter",
+    "inputs": [
+      {"name": "n", "type": "int", "description": "Total number of versions (1 to n)"},
+      {"name": "bad", "type": "int", "description": "First bad version (hidden from solution)"}
+    ]
+  }
+}

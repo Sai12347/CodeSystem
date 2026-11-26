@@ -28,9 +28,9 @@ export interface DbSubmission {
   problemTitle: string;
   language: 'java' | 'python';
   code: string;
-  status: 'ACCEPTED' | 'WRONG_ANSWER' | 'TIME_LIMIT_EXCEEDED' | 'RUNTIME_ERROR';
+  status: 'ACCEPTED' | 'WRONG_ANSWER' | 'TIME_LIMIT_EXCEEDED' | 'RUNTIME_ERROR' | 'COMPILATION_ERROR';
   executionTimeMs: number;
-  memoryMb: number;
+  memoryMb: number | null;
   submittedAt: string;
 }
 

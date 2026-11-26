@@ -1,0 +1,37 @@
+{
+  "title": "Counting Bits",
+  "difficulty": "Easy",
+  "subtopic": "Counting Bits",
+  "companies": [
+    "Amazon",
+    "Google",
+    "Microsoft"
+  ],
+  "description": "Given a non-negative integer `n`, return an array `answer` of length `n + 1` where `answer[i]` is the number of 1 bits in the binary representation of `i`.",
+  "constraints": [
+    "0 <= n <= 10^5"
+  ],
+  "hints": [
+    "For each i, the number of set bits equals the count for i shifted right once plus its last bit."
+  ],
+  "examples": [
+    {
+      "input": "n = 5",
+      "output": "[0,1,1,2,1,2]"
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "countBits",
+    "params": [
+      {
+        "name": "n",
+        "type": "int"
+      }
+    ],
+    "returns": "int[]"
+  }
+}

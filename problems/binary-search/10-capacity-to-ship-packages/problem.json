@@ -1,0 +1,53 @@
+{
+  "title": "Capacity To Ship Packages Within D Days",
+  "difficulty": "Medium",
+  "subtopic": "Search on Answer Space",
+  "companies": [
+    "Amazon",
+    "Meta",
+    "Google",
+    "Microsoft",
+    "Uber",
+    "Bloomberg"
+  ],
+  "leetcode": 1011,
+  "description": "A conveyor belt has packages that must be shipped from one port to another within `days` days.\n\nThe `i`-th package on the conveyor belt has a weight of `weights[i]`. Each day, we load the ship with packages on the conveyor belt in the exact order given by `weights`. We may not load more weight than the maximum weight capacity of the ship, and packages cannot be split across days.\n\nReturn the least weight capacity of the ship that will result in all the packages on the conveyor belt being shipped within `days` days.",
+  "constraints": [
+    "1 <= days <= weights.length <= 5 * 10^4",
+    "1 <= weights[i] <= 500"
+  ],
+  "hints": [
+    "The ship must be able to carry at least the heaviest single package (max(weights)) and never needs more than sum(weights).",
+    "For a candidate capacity C, simulate loading packages greedily in order to count the minimum number of days required.",
+    "Because required days decreases monotonically as capacity C increases, binary search on [max(weights), sum(weights)] for the smallest feasible C."
+  ],
+  "examples": [
+    {
+      "explanation": "A capacity of 15 ships all packages in 5 days: [1,2,3,4,5], [6,7], [8], [9], [10]. Capacity 14 requires 6 days."
+    },
+    {
+      "explanation": "A capacity of 6 ships all packages in 3 days: [3,2], [2,4], [1,4]."
+    },
+    {
+      "explanation": "A capacity of 3 ships all packages in 4 days: [1,2], [3], [1,1] (3 days <= 4). Capacity 2 cannot even carry the package of weight 3."
+    }
+  ],
+  "timeComplexity": "O(n log S)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "shipWithinDays",
+    "params": [
+      {
+        "name": "weights",
+        "type": "int[]"
+      },
+      {
+        "name": "days",
+        "type": "int"
+      }
+    ],
+    "returns": "int"
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "title": "Maximum Distance to Closest Person",
+  "difficulty": "Easy",
+  "subtopic": "Traversal",
+  "companies": [
+    "Amazon",
+    "Google",
+    "Microsoft"
+  ],
+  "description": "A row of seats is represented by a binary array `seats`, where 1 is occupied and 0 is empty. Choose an empty seat to maximize the distance to the nearest occupied seat. Return that maximum distance. Input: `seats`. Output: the best nearest-seat distance.",
+  "constraints": [
+    "2 <= seats.length <= 100000",
+    "seats[i] is 0 or 1",
+    "At least one seat is occupied and at least one seat is empty"
+  ],
+  "hints": [
+    "Maintain the prefix or window information needed to count candidate ranges.",
+    "Check repeated values, extreme bounds, and cases with no valid segment."
+  ],
+  "examples": [
+    {
+      "input": "nums = [1, 0, 0, 0, 1, 0, 1]",
+      "output": "2"
+    },
+    {
+      "input": "nums = [1, 0, 0, 0]",
+      "output": "3"
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "maxDistToClosest",
+    "params": [
+      {
+        "name": "seats",
+        "type": "int[]"
+      }
+    ],
+    "returns": "int"
+  }
+}

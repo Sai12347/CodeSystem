@@ -1,0 +1,45 @@
+{
+  "title": "Projection Area of 3D Shapes",
+  "difficulty": "Easy",
+  "subtopic": "Simulation",
+  "companies": [
+    "Google",
+    "Amazon",
+    "Adobe"
+  ],
+  "description": "You are given an `n x n` integer matrix `grid` where we place stacks of `1 x 1 x 1` cubes aligned with the `x`, `y`, and `z` axes. Specifically, `grid[i][j]` represents a vertical tower of `grid[i][j]` cubes placed on top of grid cell `(i, j)`.\n\nWe view the **projection** (shadow) of these cubes onto the `xy`, `yz`, and `zx` planes:\n- The `xy` (top) projection area equals the number of cells `(i, j)` with `grid[i][j] > 0`.\n- The `yz` (front) projection area equals the sum of the maximum value in each row.\n- The `zx` (side) projection area equals the sum of the maximum value in each column.\n\nReturn the total area of all three projections combined.",
+  "constraints": [
+    "n == grid.length == grid[i].length",
+    "1 <= n <= 50",
+    "0 <= grid[i][j] <= 50"
+  ],
+  "hints": [
+    "In a single double loop over i and j, count non-zero cells while tracking rowMax = max_j grid[i][j] and colMax = max_j grid[j][i].",
+    "Add rowMax and colMax to the total area at the end of each outer iteration i, using O(1) extra space."
+  ],
+  "examples": [
+    {
+      "explanation": "Top area = 4 (all 4 cells > 0), front area = 2 + 4 = 6, side area = 3 + 4 = 7; total = 4 + 6 + 7 = 17."
+    },
+    {
+      "explanation": "A single tower of height 2 has top area 1, front area 2, and side area 2, totaling 5."
+    },
+    {
+      "explanation": "Top area = 2 (two non-zero cells), front area = 1 + 2 = 3, side area = 1 + 2 = 3; total = 8."
+    }
+  ],
+  "timeComplexity": "O(n^2)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "projectionArea",
+    "params": [
+      {
+        "name": "grid",
+        "type": "int[][]"
+      }
+    ],
+    "returns": "int"
+  }
+}

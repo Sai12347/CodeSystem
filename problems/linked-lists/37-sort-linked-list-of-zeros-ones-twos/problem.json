@@ -1,0 +1,45 @@
+{
+  "title": "Sort Linked List of 0s, 1s, and 2s",
+  "difficulty": "Easy",
+  "subtopic": "Merge & Sort",
+  "companies": [
+    "Amazon",
+    "Microsoft",
+    "Goldman Sachs",
+    "Oracle"
+  ],
+  "description": "Given the `head` of a singly linked list where every node's value is `0`, `1`, or `2`, sort the linked list in non-decreasing order by rewiring node pointers in a single pass, and return the new head.\n\nSolve the problem in `O(n)` time and `O(1)` extra space without modifying node values.",
+  "constraints": [
+    "The number of nodes in the list is in the range [0, 10^4].",
+    "Node.val is 0, 1, or 2."
+  ],
+  "hints": [
+    "Create three dummy-headed sublists for 0s, 1s, and 2s and append each visited node to the matching tail.",
+    "Terminate the 2s tail with `null`, connect the 1s tail to `twoDummy.next`, and connect the 0s tail to `oneDummy.next` if non-empty (otherwise `twoDummy.next`)."
+  ],
+  "examples": [
+    {
+      "explanation": "Grouping 0s, then 1s, then 2s produces [0, 0, 1, 1, 2, 2]."
+    },
+    {
+      "explanation": "Only 0s and 2s are present, so the 0-chain connects directly to the 2-chain: [0, 0, 2, 2]."
+    },
+    {
+      "explanation": "An empty list remains empty (null)."
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "sortZeroOneTwo",
+    "params": [
+      {
+        "name": "head",
+        "type": "ListNode"
+      }
+    ],
+    "returns": "ListNode"
+  }
+}

@@ -1,0 +1,48 @@
+{
+  "title": "Serialize and Deserialize Binary Tree",
+  "difficulty": "Hard",
+  "subtopic": "Level-Order BFS",
+  "companies": [
+    "Meta",
+    "Amazon",
+    "Google",
+    "Microsoft",
+    "Uber",
+    "LinkedIn"
+  ],
+  "leetcode": 297,
+  "description": "Serialization is the process of converting a data structure or object into a sequence of bits or a string so that it can be stored in a file or memory buffer, or transmitted across a network connection link to be reconstructed later in the same or another computer environment.\n\nDesign an algorithm to serialize and deserialize a binary tree. There is no restriction on how your serialization/deserialization algorithm should work. You just need to ensure that a binary tree can be serialized to a string and this string can be deserialized to an **identical** new binary tree structure.\n\nImplement the `Codec` class:\n- `serialize(root)` encodes a tree into a single string without modifying the input tree.\n- `deserialize(data)` decodes your encoded string into a newly constructed binary tree.\n\nThe judge invokes `serialize` and `deserialize` on separate `Codec` instances and verifies that the reconstructed tree matches the original tree.",
+  "constraints": [
+    "The number of nodes in the tree is in the range [0, 10^4].",
+    "-1000 <= Node.val <= 1000"
+  ],
+  "hints": [
+    "A single traversal order (such as level-order BFS or preorder DFS) uniquely determines a binary tree as long as you explicitly record null children with a sentinel token (e.g., `#`).",
+    "Use a delimiter (such as a comma `,`) between tokens so multi-digit numbers and negative values are parsed unambiguously.",
+    "With level-order BFS, push children (or `#`) into a queue during `serialize`, and during `deserialize` pop parents from a queue while reading two tokens at a time for their left and right children."
+  ],
+  "examples": [
+    {
+      "explanation": "Serializing [1,2,3,null,null,4,5] to a string and deserializing it reconstructs the exact same tree."
+    },
+    {
+      "explanation": "An empty tree serializes and deserializes back to an empty tree."
+    },
+    {
+      "explanation": "A single-node tree [1] round-trips to [1]."
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "adapter",
+    "inputs": [
+      {
+        "name": "root",
+        "type": "TreeNode",
+        "description": "Level-order array representation of the binary tree"
+      }
+    ]
+  }
+}

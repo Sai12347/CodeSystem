@@ -1,0 +1,74 @@
+{
+  "title": "Min Stack With Minimum Count",
+  "difficulty": "Easy",
+  "subtopic": "Min Stack",
+  "companies": [
+    "Amazon",
+    "Google",
+    "Meta",
+    "Goldman Sachs"
+  ],
+  "description": "Design a stack `CountMinStack` that supports standard stack operations plus querying both the current minimum value and how many times that minimum value appears in the stack \u2014 all in `O(1)` time.\n\nImplement the `CountMinStack` class:\n- `CountMinStack()` initializes an empty stack.\n- `void push(int val)` pushes `val` onto the stack.\n- `void pop()` removes the top element of the stack.\n- `int top()` returns the top element of the stack.\n- `int getMin()` returns the minimum value currently in the stack.\n- `int getMinCount()` returns the number of elements in the stack equal to `getMin()`.",
+  "constraints": [
+    "-10^9 <= val <= 10^9",
+    "Methods pop, top, getMin, and getMinCount are always called on non-empty stacks.",
+    "At most 5 * 10^4 calls will be made across all methods."
+  ],
+  "hints": [
+    "Store (val, curMin, minCount) at each stack level \u2014 or keep a secondary stack of [minVal, count] pairs.",
+    "On push(val): if val < curMin start count at 1; if val == curMin increment count; if val > curMin carry over (curMin, minCount)."
+  ],
+  "examples": [
+    {
+      "explanation": "After pushing [4, 2, 5, 2], minimum is 2 with count 2; popping 2 drops count to 1; popping 5 and 2 leaves [4] with min 4 and count 1."
+    },
+    {
+      "explanation": "Pushing three 7s yields min 7 with count 3."
+    },
+    {
+      "explanation": "When a strictly smaller value -1 arrives, min becomes -1 with count 1; popping it restores the previous minimum and count."
+    }
+  ],
+  "timeComplexity": "O(1) per op",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "design",
+    "className": "CountMinStack",
+    "constructor": {
+      "params": []
+    },
+    "methods": [
+      {
+        "name": "push",
+        "params": [
+          {
+            "name": "val",
+            "type": "int"
+          }
+        ],
+        "returns": "void"
+      },
+      {
+        "name": "pop",
+        "params": [],
+        "returns": "void"
+      },
+      {
+        "name": "top",
+        "params": [],
+        "returns": "int"
+      },
+      {
+        "name": "getMin",
+        "params": [],
+        "returns": "int"
+      },
+      {
+        "name": "getMinCount",
+        "params": [],
+        "returns": "int"
+      }
+    ]
+  }
+}

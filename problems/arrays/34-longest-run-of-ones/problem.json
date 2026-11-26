@@ -1,0 +1,43 @@
+{
+  "title": "Longest Run of Ones",
+  "difficulty": "Easy",
+  "subtopic": "Traversal",
+  "companies": [
+    "Amazon",
+    "Microsoft",
+    "Google"
+  ],
+  "description": "Given a non-empty binary array `nums`, return the length of its longest contiguous run of ones. Zeros end a run. Input: `nums`, whose values are only 0 or 1. Output: the maximum run length, or 0 when there are no ones.",
+  "constraints": [
+    "1 <= nums.length <= 100000",
+    "nums[i] is either 0 or 1"
+  ],
+  "hints": [
+    "Scan the array while retaining only the state needed for the answer.",
+    "Check the first, last, repeated, and all-equal cases."
+  ],
+  "examples": [
+    {
+      "input": "nums = [1, 1, 0, 1, 1, 1]",
+      "output": "3"
+    },
+    {
+      "input": "nums = [0, 0, 0]",
+      "output": "0"
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "longestRunOfOnes",
+    "params": [
+      {
+        "name": "nums",
+        "type": "int[]"
+      }
+    ],
+    "returns": "int"
+  }
+}

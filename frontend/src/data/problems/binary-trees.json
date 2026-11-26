@@ -1,0 +1,1101 @@
+[
+ {
+  "id": "binary-tree-inorder-traversal",
+  "order": 1,
+  "topicId": "binary-trees",
+  "topic": "Binary Trees & Traversals",
+  "title": "Binary Tree Inorder Traversal",
+  "slug": "binary-tree-inorder-traversal",
+  "difficulty": "Easy",
+  "subtopic": "DFS Traversals",
+  "companies": [
+   "Google",
+   "Amazon",
+   "Microsoft",
+   "Meta",
+   "Adobe"
+  ],
+  "leetcode": 94,
+  "description": "Given the `root` of a binary tree, return the **inorder traversal** of its nodes' values.\n\nIn an inorder traversal, you visit the left subtree first, then the current node, and finally the right subtree (Left -> Root -> Right). If the tree is empty (`root` is `null`), return an empty list.",
+  "constraints": [
+   "0 <= number of nodes <= 2000",
+   "-10^4 <= Node.val <= 10^4"
+  ],
+  "hints": [
+   "A recursive helper that visits `node.left`, records `node.val`, and then visits `node.right` solves the problem directly.",
+   "To solve it iteratively without recursion, use an explicit stack: push nodes while moving as far left as possible, pop and record the node, then step into its right child.",
+   "Can you reduce auxiliary space to O(1) (excluding output)? Morris traversal temporarily threads each node's inorder predecessor back to the node and restores the tree as it goes."
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "examples": [
+   {
+    "input": "root = [1,null,2,3]",
+    "output": "[1,3,2]",
+    "explanation": "Visit 1 (no left child), then go right to 2, visit its left child 3, then 2 itself -> [1, 3, 2]."
+   },
+   {
+    "input": "root = [1,2,3,4,5,null,8,null,null,6,7,9]",
+    "output": "[4,2,6,5,7,1,3,9,8]",
+    "explanation": "Following Left -> Root -> Right recursively across all subtrees yields [4, 2, 6, 5, 7, 1, 3, 9, 8]."
+   },
+   {
+    "input": "root = []",
+    "output": "[]",
+    "explanation": "An empty tree has no nodes, so the traversal is an empty list."
+   }
+  ],
+  "starterCode": {
+   "java": "/**\n * Definition for a binary tree node (provided by the judge).\n * public class TreeNode {\n *     int val;\n *     TreeNode left;\n *     TreeNode right;\n *     TreeNode() {}\n *     TreeNode(int val) { this.val = val; }\n *     TreeNode(int val, TreeNode left, TreeNode right) { this.val = val; this.left = left; this.right = right; }\n * }\n */\nclass Solution {\n    public List<Integer> inorderTraversal(TreeNode root) {\n        // Write your solution here\n        return null;\n    }\n}\n",
+   "python": "# Definition for a binary tree node (provided by the judge).\n# class TreeNode:\n#     def __init__(self, val=0, left=None, right=None):\n#         self.val = val\n#         self.left = left\n#         self.right = right\nclass Solution:\n    def inorderTraversal(self, root: Optional[TreeNode]) -> List[int]:\n        # Write your solution here\n        pass\n"
+  },
+  "solutionCode": {
+   "java": "class Solution {\n    public List<Integer> inorderTraversal(TreeNode root) {\n        List<Integer> res = new ArrayList<>();\n        Deque<TreeNode> stack = new ArrayDeque<>();\n        TreeNode cur = root;\n        while (cur != null || !stack.isEmpty()) {\n            while (cur != null) {\n                stack.push(cur);\n                cur = cur.left;\n            }\n            cur = stack.pop();\n            res.add(cur.val);\n            cur = cur.right;\n        }\n        return res;\n    }\n}\n",
+   "python": "class Solution:\n    def inorderTraversal(self, root: Optional[TreeNode]) -> List[int]:\n        res: List[int] = []\n        stack: List[TreeNode] = []\n        cur = root\n        while cur or stack:\n            while cur:\n                stack.append(cur)\n                cur = cur.left\n            cur = stack.pop()\n            res.append(cur.val)\n            cur = cur.right\n        return res\n"
+  },
+  "sampleArray": [],
+  "visibleTestCount": 3,
+  "hiddenTestCount": 10,
+  "number": 1
+ },
+ {
+  "id": "binary-tree-postorder-traversal",
+  "order": 2,
+  "topicId": "binary-trees",
+  "topic": "Binary Trees & Traversals",
+  "title": "Binary Tree Postorder Traversal",
+  "slug": "binary-tree-postorder-traversal",
+  "difficulty": "Easy",
+  "subtopic": "DFS Traversals",
+  "companies": [
+   "Amazon",
+   "Google",
+   "Microsoft",
+   "Meta",
+   "Apple"
+  ],
+  "leetcode": 145,
+  "description": "Given the `root` of a binary tree, return the **postorder traversal** of its nodes' values.\n\nIn a postorder traversal, you visit the left subtree first, then the right subtree, and finally the current node (Left -> Right -> Root). If the tree is empty (`root` is `null`), return an empty list.",
+  "constraints": [
+   "0 <= number of nodes <= 2000",
+   "-10^4 <= Node.val <= 10^4"
+  ],
+  "hints": [
+   "Recursively visit `node.left`, then `node.right`, and append `node.val` last.",
+   "For an iterative approach, notice that reversing a modified preorder traversal (Root -> Right -> Left) gives Left -> Right -> Root.",
+   "Alternatively, track the last visited node on a single explicit stack so you only pop a parent after its right subtree has been processed."
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "examples": [
+   {
+    "input": "root = [1,null,2,3]",
+    "output": "[3,2,1]",
+    "explanation": "Visit left of 1 (none), go right to 2, visit left child 3, right of 2 (none), then 2, and finally 1 -> [3, 2, 1]."
+   },
+   {
+    "input": "root = [1,2,3,4,5,null,8,null,null,6,7,9]",
+    "output": "[4,6,7,5,2,9,8,3,1]",
+    "explanation": "Visiting Left -> Right -> Root across every subtree produces [4, 6, 7, 5, 2, 9, 8, 3, 1]."
+   },
+   {
+    "input": "root = []",
+    "output": "[]",
+    "explanation": "An empty tree produces an empty list."
+   }
+  ],
+  "starterCode": {
+   "java": "/**\n * Definition for a binary tree node (provided by the judge).\n * public class TreeNode {\n *     int val;\n *     TreeNode left;\n *     TreeNode right;\n *     TreeNode() {}\n *     TreeNode(int val) { this.val = val; }\n *     TreeNode(int val, TreeNode left, TreeNode right) { this.val = val; this.left = left; this.right = right; }\n * }\n */\nclass Solution {\n    public List<Integer> postorderTraversal(TreeNode root) {\n        // Write your solution here\n        return null;\n    }\n}\n",
+   "python": "# Definition for a binary tree node (provided by the judge).\n# class TreeNode:\n#     def __init__(self, val=0, left=None, right=None):\n#         self.val = val\n#         self.left = left\n#         self.right = right\nclass Solution:\n    def postorderTraversal(self, root: Optional[TreeNode]) -> List[int]:\n        # Write your solution here\n        pass\n"
+  },
+  "solutionCode": {
+   "java": "class Solution {\n    public List<Integer> postorderTraversal(TreeNode root) {\n        List<Integer> res = new ArrayList<>();\n        Deque<TreeNode> stack = new ArrayDeque<>();\n        TreeNode cur = root;\n        TreeNode lastVisited = null;\n        while (cur != null || !stack.isEmpty()) {\n            while (cur != null) {\n                stack.push(cur);\n                cur = cur.left;\n            }\n            TreeNode peek = stack.peek();\n            if (peek.right != null && lastVisited != peek.right) {\n                cur = peek.right;\n            } else {\n                res.add(peek.val);\n                lastVisited = stack.pop();\n            }\n        }\n        return res;\n    }\n}\n",
+   "python": "class Solution:\n    def postorderTraversal(self, root: Optional[TreeNode]) -> List[int]:\n        res: List[int] = []\n        stack: List[TreeNode] = []\n        cur = root\n        last_visited: Optional[TreeNode] = None\n        while cur or stack:\n            while cur:\n                stack.append(cur)\n                cur = cur.left\n            peek = stack[-1]\n            if peek.right and last_visited is not peek.right:\n                cur = peek.right\n            else:\n                res.append(peek.val)\n                last_visited = stack.pop()\n        return res\n"
+  },
+  "sampleArray": [],
+  "visibleTestCount": 3,
+  "hiddenTestCount": 10,
+  "number": 2
+ },
+ {
+  "id": "binary-tree-level-order-traversal",
+  "order": 3,
+  "topicId": "binary-trees",
+  "topic": "Binary Trees & Traversals",
+  "title": "Binary Tree Level Order Traversal",
+  "slug": "binary-tree-level-order-traversal",
+  "difficulty": "Medium",
+  "subtopic": "Level-Order BFS",
+  "companies": [
+   "Meta",
+   "Amazon",
+   "Microsoft",
+   "Google",
+   "Bloomberg",
+   "LinkedIn"
+  ],
+  "leetcode": 102,
+  "description": "Given the `root` of a binary tree, return the **level order traversal** of its nodes' values — that is, from left to right, level by level starting from the root at depth 0.\n\nEach inner list in the returned 2D list should contain the values of all nodes at that depth in left-to-right order. If the tree is empty (`root` is `null`), return an empty list `[]`.",
+  "constraints": [
+   "0 <= number of nodes <= 2000",
+   "-10^4 <= Node.val <= 10^4"
+  ],
+  "hints": [
+   "Use a FIFO queue to perform Breadth-First Search (BFS) starting from `root`.",
+   "At the beginning of each level, capture the current queue size `k` and pop exactly `k` nodes to build that level's list while enqueueing their non-null children.",
+   "Ensure you handle the empty tree (`root == null`) before enqueueing `root`."
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "examples": [
+   {
+    "input": "root = [3,9,20,null,null,15,7]",
+    "output": "[[3],[9,20],[15,7]]",
+    "explanation": "Depth 0 has [3], depth 1 has [9, 20], and depth 2 has [15, 7]."
+   },
+   {
+    "input": "root = [1]",
+    "output": "[[1]]",
+    "explanation": "A single-node tree has one level containing just [1]."
+   },
+   {
+    "input": "root = []",
+    "output": "[]",
+    "explanation": "An empty tree has no levels, so return []."
+   }
+  ],
+  "starterCode": {
+   "java": "/**\n * Definition for a binary tree node (provided by the judge).\n * public class TreeNode {\n *     int val;\n *     TreeNode left;\n *     TreeNode right;\n *     TreeNode() {}\n *     TreeNode(int val) { this.val = val; }\n *     TreeNode(int val, TreeNode left, TreeNode right) { this.val = val; this.left = left; this.right = right; }\n * }\n */\nclass Solution {\n    public List<List<Integer>> levelOrder(TreeNode root) {\n        // Write your solution here\n        return null;\n    }\n}\n",
+   "python": "# Definition for a binary tree node (provided by the judge).\n# class TreeNode:\n#     def __init__(self, val=0, left=None, right=None):\n#         self.val = val\n#         self.left = left\n#         self.right = right\nclass Solution:\n    def levelOrder(self, root: Optional[TreeNode]) -> List[List[int]]:\n        # Write your solution here\n        pass\n"
+  },
+  "solutionCode": {
+   "java": "class Solution {\n    public List<List<Integer>> levelOrder(TreeNode root) {\n        List<List<Integer>> res = new ArrayList<>();\n        if (root == null) return res;\n        Queue<TreeNode> q = new ArrayDeque<>();\n        q.offer(root);\n        while (!q.isEmpty()) {\n            int sz = q.size();\n            List<Integer> level = new ArrayList<>(sz);\n            for (int i = 0; i < sz; i++) {\n                TreeNode node = q.poll();\n                level.add(node.val);\n                if (node.left != null) q.offer(node.left);\n                if (node.right != null) q.offer(node.right);\n            }\n            res.add(level);\n        }\n        return res;\n    }\n}\n",
+   "python": "class Solution:\n    def levelOrder(self, root: Optional[TreeNode]) -> List[List[int]]:\n        if not root:\n            return []\n        res: List[List[int]] = []\n        q = deque([root])\n        while q:\n            level: List[int] = []\n            for _ in range(len(q)):\n                node = q.popleft()\n                level.append(node.val)\n                if node.left:\n                    q.append(node.left)\n                if node.right:\n                    q.append(node.right)\n            res.append(level)\n        return res\n"
+  },
+  "sampleArray": [],
+  "visibleTestCount": 3,
+  "hiddenTestCount": 10,
+  "number": 3
+ },
+ {
+  "id": "maximum-depth-of-binary-tree",
+  "order": 4,
+  "topicId": "binary-trees",
+  "topic": "Binary Trees & Traversals",
+  "title": "Maximum Depth of Binary Tree",
+  "slug": "maximum-depth-of-binary-tree",
+  "difficulty": "Easy",
+  "subtopic": "DFS Traversals",
+  "companies": [
+   "Amazon",
+   "Google",
+   "Microsoft",
+   "Meta",
+   "LinkedIn",
+   "Apple"
+  ],
+  "leetcode": 104,
+  "description": "Given the `root` of a binary tree, return its **maximum depth**.\n\nA binary tree's maximum depth is the number of nodes along the longest path from the root node down to the farthest leaf node. An empty tree has a maximum depth of `0`, and a tree with a single root node has a maximum depth of `1`.",
+  "constraints": [
+   "0 <= number of nodes <= 5000",
+   "-10^4 <= Node.val <= 10^4"
+  ],
+  "hints": [
+   "The maximum depth of an empty tree is 0.",
+   "For any non-empty node, its maximum depth is `1 + max(maxDepth(node.left), maxDepth(node.right))`.",
+   "You can also count levels iteratively with Breadth-First Search (BFS) using a queue."
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "examples": [
+   {
+    "input": "root = [3,9,20,null,null,15,7]",
+    "output": "3",
+    "explanation": "The longest root-to-leaf paths are 3 -> 20 -> 15 and 3 -> 20 -> 7, each containing 3 nodes."
+   },
+   {
+    "input": "root = [1,null,2]",
+    "output": "2",
+    "explanation": "The only root-to-leaf path is 1 -> 2, which has 2 nodes."
+   },
+   {
+    "input": "root = []",
+    "output": "0",
+    "explanation": "An empty tree has depth 0."
+   }
+  ],
+  "starterCode": {
+   "java": "/**\n * Definition for a binary tree node (provided by the judge).\n * public class TreeNode {\n *     int val;\n *     TreeNode left;\n *     TreeNode right;\n *     TreeNode() {}\n *     TreeNode(int val) { this.val = val; }\n *     TreeNode(int val, TreeNode left, TreeNode right) { this.val = val; this.left = left; this.right = right; }\n * }\n */\nclass Solution {\n    public int maxDepth(TreeNode root) {\n        // Write your solution here\n        return 0;\n    }\n}\n",
+   "python": "# Definition for a binary tree node (provided by the judge).\n# class TreeNode:\n#     def __init__(self, val=0, left=None, right=None):\n#         self.val = val\n#         self.left = left\n#         self.right = right\nclass Solution:\n    def maxDepth(self, root: Optional[TreeNode]) -> int:\n        # Write your solution here\n        pass\n"
+  },
+  "solutionCode": {
+   "java": "class Solution {\n    public int maxDepth(TreeNode root) {\n        if (root == null) return 0;\n        return 1 + Math.max(maxDepth(root.left), maxDepth(root.right));\n    }\n}\n",
+   "python": "class Solution:\n    def maxDepth(self, root: Optional[TreeNode]) -> int:\n        if not root:\n            return 0\n        return 1 + max(self.maxDepth(root.left), self.maxDepth(root.right))\n"
+  },
+  "sampleArray": [],
+  "visibleTestCount": 3,
+  "hiddenTestCount": 10,
+  "number": 4
+ },
+ {
+  "id": "invert-binary-tree",
+  "order": 5,
+  "topicId": "binary-trees",
+  "topic": "Binary Trees & Traversals",
+  "title": "Invert Binary Tree",
+  "slug": "invert-binary-tree",
+  "difficulty": "Easy",
+  "subtopic": "DFS Traversals",
+  "companies": [
+   "Google",
+   "Amazon",
+   "Meta",
+   "Microsoft",
+   "Apple",
+   "Bloomberg"
+  ],
+  "leetcode": 226,
+  "description": "Given the `root` of a binary tree, **invert** the tree (mirror it horizontally so every node's left and right subtrees are swapped), and return its root.\n\nIf the tree is empty (`root` is `null`), return `null`.",
+  "constraints": [
+   "0 <= number of nodes <= 2000",
+   "-10^4 <= Node.val <= 10^4"
+  ],
+  "hints": [
+   "Inverting a binary tree means swapping the left and right children of every node in the tree.",
+   "Recursively invert the left and right subtrees and assign `node.left, node.right = invert(node.right), invert(node.left)`.",
+   "You can also do this iteratively using a queue (BFS) or stack (DFS), swapping each popped node's children before pushing them."
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "examples": [
+   {
+    "input": "root = [4,2,7,1,3,6,9]",
+    "output": "[4,7,2,9,6,3,1]",
+    "explanation": "Swap 2 and 7 under 4, then swap (1, 3) and (6, 9) -> [4, 7, 2, 9, 6, 3, 1]."
+   },
+   {
+    "input": "root = [2,1,3]",
+    "output": "[2,3,1]",
+    "explanation": "Swapping the left child 1 and right child 3 of root 2 yields [2, 3, 1]."
+   },
+   {
+    "input": "root = []",
+    "output": "null",
+    "explanation": "An empty tree remains empty (null)."
+   }
+  ],
+  "starterCode": {
+   "java": "/**\n * Definition for a binary tree node (provided by the judge).\n * public class TreeNode {\n *     int val;\n *     TreeNode left;\n *     TreeNode right;\n *     TreeNode() {}\n *     TreeNode(int val) { this.val = val; }\n *     TreeNode(int val, TreeNode left, TreeNode right) { this.val = val; this.left = left; this.right = right; }\n * }\n */\nclass Solution {\n    public TreeNode invertTree(TreeNode root) {\n        // Write your solution here\n        return null;\n    }\n}\n",
+   "python": "# Definition for a binary tree node (provided by the judge).\n# class TreeNode:\n#     def __init__(self, val=0, left=None, right=None):\n#         self.val = val\n#         self.left = left\n#         self.right = right\nclass Solution:\n    def invertTree(self, root: Optional[TreeNode]) -> Optional[TreeNode]:\n        # Write your solution here\n        pass\n"
+  },
+  "solutionCode": {
+   "java": "class Solution {\n    public TreeNode invertTree(TreeNode root) {\n        if (root == null) return null;\n        TreeNode left = invertTree(root.left);\n        TreeNode right = invertTree(root.right);\n        root.left = right;\n        root.right = left;\n        return root;\n    }\n}\n",
+   "python": "class Solution:\n    def invertTree(self, root: Optional[TreeNode]) -> Optional[TreeNode]:\n        if not root:\n            return None\n        root.left, root.right = self.invertTree(root.right), self.invertTree(root.left)\n        return root\n"
+  },
+  "sampleArray": [
+   4,
+   2,
+   7,
+   1,
+   3,
+   6,
+   9
+  ],
+  "visibleTestCount": 3,
+  "hiddenTestCount": 10,
+  "number": 5
+ },
+ {
+  "id": "symmetric-tree",
+  "order": 6,
+  "topicId": "binary-trees",
+  "topic": "Binary Trees & Traversals",
+  "title": "Symmetric Tree",
+  "slug": "symmetric-tree",
+  "difficulty": "Easy",
+  "subtopic": "DFS Traversals",
+  "companies": [
+   "Amazon",
+   "Google",
+   "Meta",
+   "Microsoft",
+   "LinkedIn",
+   "Bloomberg"
+  ],
+  "leetcode": 101,
+  "description": "Given the `root` of a binary tree, check whether it is a **mirror of itself** (i.e., symmetric around its center).\n\nReturn `true` if the left subtree is a structural and value-wise mirror image of the right subtree, and `false` otherwise.",
+  "constraints": [
+   "1 <= number of nodes <= 5000",
+   "-10^4 <= Node.val <= 10^4"
+  ],
+  "hints": [
+   "Checking whether a tree is symmetric reduces to checking whether `root.left` and `root.right` are mirror images of each other.",
+   "Two trees `a` and `b` are mirrors if both are `null`, or if neither is `null`, `a.val == b.val`, `a.left` mirrors `b.right`, and `a.right` mirrors `b.left`.",
+   "Be careful: a palindromic inorder traversal does NOT guarantee symmetry because structure matters."
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "examples": [
+   {
+    "input": "root = [1,2,2,3,4,4,3]",
+    "output": "true",
+    "explanation": "Left subtree [2, 3, 4] and right subtree [2, 4, 3] are exact mirror images."
+   },
+   {
+    "input": "root = [1,2,2,null,3,null,3]",
+    "output": "false",
+    "explanation": "Both 2s have only a right child (3), so the tree is not symmetric around the center."
+   },
+   {
+    "input": "root = [1]",
+    "output": "true",
+    "explanation": "A single-node tree is trivially symmetric."
+   }
+  ],
+  "starterCode": {
+   "java": "/**\n * Definition for a binary tree node (provided by the judge).\n * public class TreeNode {\n *     int val;\n *     TreeNode left;\n *     TreeNode right;\n *     TreeNode() {}\n *     TreeNode(int val) { this.val = val; }\n *     TreeNode(int val, TreeNode left, TreeNode right) { this.val = val; this.left = left; this.right = right; }\n * }\n */\nclass Solution {\n    public boolean isSymmetric(TreeNode root) {\n        // Write your solution here\n        return false;\n    }\n}\n",
+   "python": "# Definition for a binary tree node (provided by the judge).\n# class TreeNode:\n#     def __init__(self, val=0, left=None, right=None):\n#         self.val = val\n#         self.left = left\n#         self.right = right\nclass Solution:\n    def isSymmetric(self, root: Optional[TreeNode]) -> bool:\n        # Write your solution here\n        pass\n"
+  },
+  "solutionCode": {
+   "java": "class Solution {\n    public boolean isSymmetric(TreeNode root) {\n        if (root == null) return true;\n        return isMirror(root.left, root.right);\n    }\n\n    private boolean isMirror(TreeNode a, TreeNode b) {\n        if (a == null && b == null) return true;\n        if (a == null || b == null || a.val != b.val) return false;\n        return isMirror(a.left, b.right) && isMirror(a.right, b.left);\n    }\n}\n",
+   "python": "class Solution:\n    def isSymmetric(self, root: Optional[TreeNode]) -> bool:\n        if not root:\n            return True\n\n        def is_mirror(a: Optional[TreeNode], b: Optional[TreeNode]) -> bool:\n            if not a and not b:\n                return True\n            if not a or not b or a.val != b.val:\n                return False\n            return is_mirror(a.left, b.right) and is_mirror(a.right, b.left)\n\n        return is_mirror(root.left, root.right)\n"
+  },
+  "sampleArray": [
+   1,
+   2,
+   2,
+   3,
+   4,
+   4,
+   3
+  ],
+  "visibleTestCount": 3,
+  "hiddenTestCount": 10,
+  "number": 6
+ },
+ {
+  "id": "diameter-of-binary-tree",
+  "order": 7,
+  "topicId": "binary-trees",
+  "topic": "Binary Trees & Traversals",
+  "title": "Diameter of Binary Tree",
+  "slug": "diameter-of-binary-tree",
+  "difficulty": "Easy",
+  "subtopic": "DFS Traversals",
+  "companies": [
+   "Meta",
+   "Amazon",
+   "Google",
+   "Microsoft",
+   "Apple",
+   "Bloomberg"
+  ],
+  "leetcode": 543,
+  "description": "Given the `root` of a binary tree, return the **length of the diameter** of the tree.\n\nThe **diameter** of a binary tree is the length of the longest path between any two nodes in the tree, measured by the **number of edges** between them. This path may or may not pass through the `root`. For a single-node tree, the diameter is `0`.",
+  "constraints": [
+   "1 <= number of nodes <= 5000",
+   "-10^4 <= Node.val <= 10^4"
+  ],
+  "hints": [
+   "For any node, the longest path that bends at that node has length `height(node.left) + height(node.right)` edges.",
+   "Remember that the overall diameter does not have to pass through the root — it could lie entirely inside a left or right subtree.",
+   "Compute subtree heights in a single post-order DFS while updating a global maximum diameter at every node to achieve O(n) time."
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "examples": [
+   {
+    "input": "root = [1,2,3,4,5]",
+    "output": "3",
+    "explanation": "The longest path is 4 -> 2 -> 1 -> 3 (or 5 -> 2 -> 1 -> 3), which has 3 edges."
+   },
+   {
+    "input": "root = [1,2]",
+    "output": "1",
+    "explanation": "The longest path is 1 -> 2, which has 1 edge."
+   },
+   {
+    "input": "root = [1]",
+    "output": "0",
+    "explanation": "A tree with a single node has no edges, so its diameter is 0."
+   }
+  ],
+  "starterCode": {
+   "java": "/**\n * Definition for a binary tree node (provided by the judge).\n * public class TreeNode {\n *     int val;\n *     TreeNode left;\n *     TreeNode right;\n *     TreeNode() {}\n *     TreeNode(int val) { this.val = val; }\n *     TreeNode(int val, TreeNode left, TreeNode right) { this.val = val; this.left = left; this.right = right; }\n * }\n */\nclass Solution {\n    public int diameterOfBinaryTree(TreeNode root) {\n        // Write your solution here\n        return 0;\n    }\n}\n",
+   "python": "# Definition for a binary tree node (provided by the judge).\n# class TreeNode:\n#     def __init__(self, val=0, left=None, right=None):\n#         self.val = val\n#         self.left = left\n#         self.right = right\nclass Solution:\n    def diameterOfBinaryTree(self, root: Optional[TreeNode]) -> int:\n        # Write your solution here\n        pass\n"
+  },
+  "solutionCode": {
+   "java": "class Solution {\n    private int best;\n\n    public int diameterOfBinaryTree(TreeNode root) {\n        best = 0;\n        height(root);\n        return best;\n    }\n\n    private int height(TreeNode node) {\n        if (node == null) return 0;\n        int lh = height(node.left);\n        int rh = height(node.right);\n        if (lh + rh > best) best = lh + rh;\n        return 1 + Math.max(lh, rh);\n    }\n}\n",
+   "python": "class Solution:\n    def diameterOfBinaryTree(self, root: Optional[TreeNode]) -> int:\n        best = 0\n\n        def height(node: Optional[TreeNode]) -> int:\n            nonlocal best\n            if not node:\n                return 0\n            lh = height(node.left)\n            rh = height(node.right)\n            if lh + rh > best:\n                best = lh + rh\n            return 1 + (lh if lh > rh else rh)\n\n        height(root)\n        return best\n"
+  },
+  "sampleArray": [
+   1,
+   2,
+   3,
+   4,
+   5
+  ],
+  "visibleTestCount": 3,
+  "hiddenTestCount": 10,
+  "number": 7
+ },
+ {
+  "id": "balanced-binary-tree",
+  "order": 8,
+  "topicId": "binary-trees",
+  "topic": "Binary Trees & Traversals",
+  "title": "Balanced Binary Tree",
+  "slug": "balanced-binary-tree",
+  "difficulty": "Easy",
+  "subtopic": "DFS Traversals",
+  "companies": [
+   "Amazon",
+   "Google",
+   "Meta",
+   "Microsoft",
+   "Bloomberg",
+   "Apple"
+  ],
+  "leetcode": 110,
+  "description": "Given a binary tree `root`, determine if it is **height-balanced**.\n\nA binary tree is height-balanced if, for **every** node in the tree, the heights of its left and right subtrees differ by at most `1`. An empty tree is considered height-balanced (`true`).",
+  "constraints": [
+   "0 <= number of nodes <= 5000",
+   "-10^4 <= Node.val <= 10^4"
+  ],
+  "hints": [
+   "Checking only that the root's left and right subtree heights differ by at most 1 is not enough — every subtree must also be balanced.",
+   "A naive top-down check recomputes subtree heights repeatedly in O(n^2) time in the worst case.",
+   "Use a bottom-up post-order DFS that returns the subtree height if balanced, or a sentinel like `-1` as soon as an imbalance is found, achieving O(n) time."
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "examples": [
+   {
+    "input": "root = [3,9,20,null,null,15,7]",
+    "output": "true",
+    "explanation": "At node 20 heights are (1, 1); at root 3 heights are (1, 2). Every node's subtrees differ in height by at most 1."
+   },
+   {
+    "input": "root = [1,2,2,3,3,null,null,4,4]",
+    "output": "false",
+    "explanation": "At root 1, the left subtree has height 3 while the right subtree has height 1 (difference is 2 > 1)."
+   },
+   {
+    "input": "root = []",
+    "output": "true",
+    "explanation": "An empty tree is trivially height-balanced."
+   }
+  ],
+  "starterCode": {
+   "java": "/**\n * Definition for a binary tree node (provided by the judge).\n * public class TreeNode {\n *     int val;\n *     TreeNode left;\n *     TreeNode right;\n *     TreeNode() {}\n *     TreeNode(int val) { this.val = val; }\n *     TreeNode(int val, TreeNode left, TreeNode right) { this.val = val; this.left = left; this.right = right; }\n * }\n */\nclass Solution {\n    public boolean isBalanced(TreeNode root) {\n        // Write your solution here\n        return false;\n    }\n}\n",
+   "python": "# Definition for a binary tree node (provided by the judge).\n# class TreeNode:\n#     def __init__(self, val=0, left=None, right=None):\n#         self.val = val\n#         self.left = left\n#         self.right = right\nclass Solution:\n    def isBalanced(self, root: Optional[TreeNode]) -> bool:\n        # Write your solution here\n        pass\n"
+  },
+  "solutionCode": {
+   "java": "class Solution {\n    public boolean isBalanced(TreeNode root) {\n        return check(root) != -1;\n    }\n\n    private int check(TreeNode node) {\n        if (node == null) return 0;\n        int lh = check(node.left);\n        if (lh == -1) return -1;\n        int rh = check(node.right);\n        if (rh == -1 || Math.abs(lh - rh) > 1) return -1;\n        return 1 + Math.max(lh, rh);\n    }\n}\n",
+   "python": "class Solution:\n    def isBalanced(self, root: Optional[TreeNode]) -> bool:\n        def check(node: Optional[TreeNode]) -> int:\n            if not node:\n                return 0\n            lh = check(node.left)\n            if lh == -1:\n                return -1\n            rh = check(node.right)\n            if rh == -1 or abs(lh - rh) > 1:\n                return -1\n            return 1 + (lh if lh > rh else rh)\n\n        return check(root) != -1\n"
+  },
+  "sampleArray": [],
+  "visibleTestCount": 3,
+  "hiddenTestCount": 10,
+  "number": 8
+ },
+ {
+  "id": "path-sum-iii",
+  "order": 9,
+  "topicId": "binary-trees",
+  "topic": "Binary Trees & Traversals",
+  "title": "Path Sum III",
+  "slug": "path-sum-iii",
+  "difficulty": "Medium",
+  "subtopic": "Path Sums",
+  "companies": [
+   "Amazon",
+   "Google",
+   "Meta",
+   "Microsoft",
+   "Bloomberg",
+   "Uber"
+  ],
+  "leetcode": 437,
+  "description": "Given the `root` of a binary tree and an integer `targetSum`, return the number of paths where the sum of the values along the path equals `targetSum`.\n\nA valid path does **not** need to start at the root or end at a leaf, but it must go **downwards** (traveling only from parent nodes to child nodes) and contain at least one node.\n\nNote that intermediate path sums can exceed the 32-bit signed integer range even though the final count of valid paths fits in a 32-bit signed integer.",
+  "constraints": [
+   "0 <= number of nodes <= 1000",
+   "-10^9 <= Node.val <= 10^9",
+   "-10^9 <= targetSum <= 10^9"
+  ],
+  "hints": [
+   "A brute-force approach starts a DFS from every node to count downward paths summing to `targetSum`, taking O(n^2) time in skewed trees.",
+   "Think of each root-to-node path as a 1D array: the number of downward paths ending at the current node with sum `targetSum` equals the number of ancestor prefix sums equal to `currentSum - targetSum`.",
+   "Maintain a hash map of prefix sum frequencies during DFS (initialized with `{0: 1}`), decrementing the current prefix sum's count when backtracking so sibling subtrees don't interfere. Use 64-bit integers (`long` in Java) for prefix sums to prevent overflow."
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "examples": [
+   {
+    "input": "root = [10,5,-3,3,2,null,11,3,-2,null,1], targetSum = 8",
+    "output": "3",
+    "explanation": "The three valid downward paths summing to 8 are: 5 -> 3, 5 -> 2 -> 1, and -3 -> 11."
+   },
+   {
+    "input": "root = [5,4,8,11,null,13,4,7,2,null,null,5,1], targetSum = 22",
+    "output": "3",
+    "explanation": "The three valid downward paths summing to 22 are: 5 -> 4 -> 11 -> 2, 5 -> 8 -> 4 -> 5, and 4 -> 11 -> 7."
+   },
+   {
+    "input": "root = [], targetSum = 0",
+    "output": "0",
+    "explanation": "An empty tree contains no paths, so return 0."
+   }
+  ],
+  "starterCode": {
+   "java": "/**\n * Definition for a binary tree node (provided by the judge).\n * public class TreeNode {\n *     int val;\n *     TreeNode left;\n *     TreeNode right;\n *     TreeNode() {}\n *     TreeNode(int val) { this.val = val; }\n *     TreeNode(int val, TreeNode left, TreeNode right) { this.val = val; this.left = left; this.right = right; }\n * }\n */\nclass Solution {\n    public int pathSum(TreeNode root, int targetSum) {\n        // Write your solution here\n        return 0;\n    }\n}\n",
+   "python": "# Definition for a binary tree node (provided by the judge).\n# class TreeNode:\n#     def __init__(self, val=0, left=None, right=None):\n#         self.val = val\n#         self.left = left\n#         self.right = right\nclass Solution:\n    def pathSum(self, root: Optional[TreeNode], targetSum: int) -> int:\n        # Write your solution here\n        pass\n"
+  },
+  "solutionCode": {
+   "java": "class Solution {\n    public int pathSum(TreeNode root, int targetSum) {\n        Map<Long, Integer> prefix = new HashMap<>();\n        prefix.put(0L, 1);\n        return dfs(root, 0L, targetSum, prefix);\n    }\n\n    private int dfs(TreeNode node, long cur, int targetSum, Map<Long, Integer> prefix) {\n        if (node == null) return 0;\n        cur += node.val;\n        int count = prefix.getOrDefault(cur - targetSum, 0);\n        prefix.put(cur, prefix.getOrDefault(cur, 0) + 1);\n        count += dfs(node.left, cur, targetSum, prefix);\n        count += dfs(node.right, cur, targetSum, prefix);\n        prefix.put(cur, prefix.get(cur) - 1);\n        return count;\n    }\n}\n",
+   "python": "class Solution:\n    def pathSum(self, root: Optional[TreeNode], targetSum: int) -> int:\n        prefix = defaultdict(int)\n        prefix[0] = 1\n\n        def dfs(node: Optional[TreeNode], cur: int) -> int:\n            if not node:\n                return 0\n            cur += node.val\n            count = prefix[cur - targetSum]\n            prefix[cur] += 1\n            count += dfs(node.left, cur)\n            count += dfs(node.right, cur)\n            prefix[cur] -= 1\n            return count\n\n        return dfs(root, 0)\n"
+  },
+  "sampleArray": [],
+  "visibleTestCount": 3,
+  "hiddenTestCount": 10,
+  "number": 9
+ },
+ {
+  "id": "lowest-common-ancestor-of-a-binary-tree",
+  "order": 10,
+  "topicId": "binary-trees",
+  "topic": "Binary Trees & Traversals",
+  "title": "Lowest Common Ancestor of a Binary Tree",
+  "slug": "lowest-common-ancestor-of-a-binary-tree",
+  "difficulty": "Medium",
+  "subtopic": "Lowest Common Ancestor",
+  "companies": [
+   "Meta",
+   "Amazon",
+   "Google",
+   "Microsoft",
+   "LinkedIn",
+   "Bloomberg"
+  ],
+  "leetcode": 236,
+  "description": "Given a binary tree, find the **lowest common ancestor (LCA)** of two given nodes `p` and `q` in the tree.\n\nAccording to the definition of LCA on Wikipedia: *\"The lowest common ancestor is defined between two nodes `p` and `q` as the lowest node in `T` that has both `p` and `q` as descendants (where we allow **a node to be a descendant of itself**).\"*\n\nReturn the `TreeNode` reference to the lowest common ancestor of `p` and `q`. All node values in the tree are unique, `p` and `q` are distinct nodes guaranteed to exist in the tree, and you must return the actual node from the input tree without modifying any node values.",
+  "constraints": [
+   "The number of nodes in the tree is in the range [2, 10^5].",
+   "-10^9 <= Node.val <= 10^9",
+   "All Node.val are unique.",
+   "p != q",
+   "p and q will exist in the tree."
+  ],
+  "hints": [
+   "Think recursively: for a given subtree rooted at `node`, what does returning `node`, `left`, or `right` tell its parent?",
+   "If `node` is `None`, `p`, or `q`, you can immediately return `node`. Otherwise recurse on both left and right subtrees.",
+   "If both recursive calls return non-null nodes, `p` and `q` lie in opposite subtrees, so the current `node` is their lowest common ancestor; otherwise propagate whichever side is non-null."
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(h)",
+  "compare": "exact",
+  "examples": [
+   {
+    "input": "root = [3,5,1,6,2,0,8,null,null,7,4], p = 5, q = 1",
+    "output": "3",
+    "explanation": "The LCA of nodes 5 and 1 is 3, since 5 is in the left subtree of 3 and 1 is in the right subtree of 3."
+   },
+   {
+    "input": "root = [3,5,1,6,2,0,8,null,null,7,4], p = 5, q = 4",
+    "output": "5",
+    "explanation": "The LCA of nodes 5 and 4 is 5, because a node can be a descendant of itself."
+   },
+   {
+    "input": "root = [1,2], p = 1, q = 2",
+    "output": "1",
+    "explanation": "Node 1 is the parent of node 2, so the LCA of 1 and 2 is 1."
+   }
+  ],
+  "starterCode": {
+   "java": "/**\n * Definition for a binary tree node (provided by the judge).\n * public class TreeNode {\n *     int val;\n *     TreeNode left;\n *     TreeNode right;\n *     TreeNode() {}\n *     TreeNode(int val) { this.val = val; }\n *     TreeNode(int val, TreeNode left, TreeNode right) { this.val = val; this.left = left; this.right = right; }\n * }\n */\nclass Solution {\n    public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {\n        // Write your solution here\n        return null;\n    }\n}\n",
+   "python": "# Definition for a binary tree node (provided by the judge).\n# class TreeNode:\n#     def __init__(self, val=0, left=None, right=None):\n#         self.val = val\n#         self.left = left\n#         self.right = right\nclass Solution:\n    def lowestCommonAncestor(\n        self,\n        root: \"Optional[TreeNode]\",\n        p: \"TreeNode\",\n        q: \"TreeNode\",\n    ) -> \"Optional[TreeNode]\":\n        # Write your solution here\n        return None\n"
+  },
+  "solutionCode": {
+   "java": "class Solution {\n    public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {\n        if (root == null || root == p || root == q) {\n            return root;\n        }\n        TreeNode left = lowestCommonAncestor(root.left, p, q);\n        TreeNode right = lowestCommonAncestor(root.right, p, q);\n        if (left != null && right != null) {\n            return root;\n        }\n        return left != null ? left : right;\n    }\n}\n",
+   "python": "class Solution:\n    def lowestCommonAncestor(\n        self,\n        root: \"Optional[TreeNode]\",\n        p: \"TreeNode\",\n        q: \"TreeNode\",\n    ) -> \"Optional[TreeNode]\":\n        if root is None or root is p or root is q:\n            return root\n        left = self.lowestCommonAncestor(root.left, p, q)\n        right = self.lowestCommonAncestor(root.right, p, q)\n        if left is not None and right is not None:\n            return root\n        return left if left is not None else right\n"
+  },
+  "sampleArray": [],
+  "visibleTestCount": 3,
+  "hiddenTestCount": 10,
+  "number": 10
+ },
+ {
+  "id": "construct-binary-tree-from-preorder-and-inorder",
+  "order": 11,
+  "topicId": "binary-trees",
+  "topic": "Binary Trees & Traversals",
+  "title": "Construct Binary Tree from Preorder and Inorder Traversal",
+  "slug": "construct-binary-tree-from-preorder-and-inorder",
+  "difficulty": "Medium",
+  "subtopic": "DFS Traversals",
+  "companies": [
+   "Amazon",
+   "Microsoft",
+   "Meta",
+   "Google",
+   "Bloomberg"
+  ],
+  "leetcode": 105,
+  "description": "Given two integer arrays `preorder` and `inorder` where `preorder` is the preorder traversal of a binary tree and `inorder` is the inorder traversal of the same tree, construct and return the binary tree.\n\nAll node values in the tree are guaranteed to be **unique**, so the reconstructed binary tree is uniquely determined.",
+  "constraints": [
+   "1 <= preorder.length <= 3000",
+   "inorder.length == preorder.length",
+   "-3000 <= preorder[i], inorder[i] <= 3000",
+   "preorder and inorder consist of unique values.",
+   "Each value of inorder also appears in preorder.",
+   "preorder is guaranteed to be the preorder traversal of the tree.",
+   "inorder is guaranteed to be the inorder traversal of the tree."
+  ],
+  "hints": [
+   "The first element of `preorder` is always the root of the entire tree. Finding that value in `inorder` partitions the remaining elements into the left and right subtrees.",
+   "Recursively apply the same partitioning using index bounds `[inLeft, inRight]` instead of copying array slices.",
+   "Precompute a hash map from each value in `inorder` to its index so every root lookup takes O(1) time instead of O(n), bringing the total complexity to O(n)."
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "examples": [
+   {
+    "input": "preorder = [3,9,20,15,7], inorder = [9,3,15,20,7]",
+    "output": "[3,9,20,null,null,15,7]",
+    "explanation": "Root is 3 (first in preorder). In inorder, [9] is left of 3 and [15, 20, 7] is right of 3, yielding tree [3,9,20,null,null,15,7]."
+   },
+   {
+    "input": "preorder = [-1], inorder = [-1]",
+    "output": "[-1]",
+    "explanation": "A single-element traversal produces a single-node tree [-1]."
+   },
+   {
+    "input": "preorder = [1,2,3], inorder = [2,1,3]",
+    "output": "[1,2,3]",
+    "explanation": "Root is 1, left child is 2, and right child is 3."
+   }
+  ],
+  "starterCode": {
+   "java": "/**\n * Definition for a binary tree node (provided by the judge).\n * public class TreeNode {\n *     int val;\n *     TreeNode left;\n *     TreeNode right;\n *     TreeNode() {}\n *     TreeNode(int val) { this.val = val; }\n *     TreeNode(int val, TreeNode left, TreeNode right) { this.val = val; this.left = left; this.right = right; }\n * }\n */\nclass Solution {\n    public TreeNode buildTree(int[] preorder, int[] inorder) {\n        // Write your solution here\n        return null;\n    }\n}\n",
+   "python": "# Definition for a binary tree node (provided by the judge).\n# class TreeNode:\n#     def __init__(self, val=0, left=None, right=None):\n#         self.val = val\n#         self.left = left\n#         self.right = right\nclass Solution:\n    def buildTree(self, preorder: List[int], inorder: List[int]) -> Optional[TreeNode]:\n        # Write your solution here\n        pass\n"
+  },
+  "solutionCode": {
+   "java": "class Solution {\n    private int preIdx;\n    private Map<Integer, Integer> inIndex;\n\n    public TreeNode buildTree(int[] preorder, int[] inorder) {\n        inIndex = new HashMap<>(inorder.length * 2);\n        for (int i = 0; i < inorder.length; i++) {\n            inIndex.put(inorder[i], i);\n        }\n        preIdx = 0;\n        return helper(preorder, 0, inorder.length - 1);\n    }\n\n    private TreeNode helper(int[] preorder, int left, int right) {\n        if (left > right) {\n            return null;\n        }\n        int rootVal = preorder[preIdx++];\n        TreeNode root = new TreeNode(rootVal);\n        int mid = inIndex.get(rootVal);\n        root.left = helper(preorder, left, mid - 1);\n        root.right = helper(preorder, mid + 1, right);\n        return root;\n    }\n}\n",
+   "python": "class Solution:\n    def buildTree(self, preorder: List[int], inorder: List[int]) -> Optional[TreeNode]:\n        in_index = {val: idx for idx, val in enumerate(inorder)}\n        pre_idx = 0\n\n        def helper(left: int, right: int) -> Optional[TreeNode]:\n            nonlocal pre_idx\n            if left > right:\n                return None\n            root_val = preorder[pre_idx]\n            pre_idx += 1\n            root = TreeNode(root_val)\n            mid = in_index[root_val]\n            root.left = helper(left, mid - 1)\n            root.right = helper(mid + 1, right)\n            return root\n\n        return helper(0, len(inorder) - 1)\n"
+  },
+  "sampleArray": [
+   3,
+   9,
+   20,
+   15,
+   7
+  ],
+  "visibleTestCount": 3,
+  "hiddenTestCount": 10,
+  "number": 11
+ },
+ {
+  "id": "construct-binary-tree-from-inorder-and-postorder",
+  "order": 12,
+  "topicId": "binary-trees",
+  "topic": "Binary Trees & Traversals",
+  "title": "Construct Binary Tree from Inorder and Postorder Traversal",
+  "slug": "construct-binary-tree-from-inorder-and-postorder",
+  "difficulty": "Medium",
+  "subtopic": "DFS Traversals",
+  "companies": [
+   "Amazon",
+   "Microsoft",
+   "Google",
+   "Meta",
+   "Apple"
+  ],
+  "leetcode": 106,
+  "description": "Given two integer arrays `inorder` and `postorder` where `inorder` is the inorder traversal of a binary tree and `postorder` is the postorder traversal of the same tree, construct and return the binary tree.\n\nAll node values in the tree are guaranteed to be **unique**, so the reconstructed binary tree is uniquely determined.",
+  "constraints": [
+   "1 <= inorder.length <= 3000",
+   "postorder.length == inorder.length",
+   "-3000 <= inorder[i], postorder[i] <= 3000",
+   "inorder and postorder consist of unique values.",
+   "Each value of postorder also appears in inorder.",
+   "inorder is guaranteed to be the inorder traversal of the tree.",
+   "postorder is guaranteed to be the postorder traversal of the tree."
+  ],
+  "hints": [
+   "The last element of `postorder` is always the root of the current subtree.",
+   "Because postorder visits left, then right, then root, reading `postorder` from right to left yields root, then right subtree, then left subtree — so you must recursively build the **right** subtree before the **left** subtree.",
+   "Store each value's index in `inorder` inside a hash map so splitting the subtree range takes O(1) time, giving O(n) total time."
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "examples": [
+   {
+    "input": "inorder = [9,3,15,20,7], postorder = [9,15,7,20,3]",
+    "output": "[3,9,20,null,null,15,7]",
+    "explanation": "Root is 3 (last in postorder). In inorder, [9] is left of 3 and [15, 20, 7] is right of 3, yielding tree [3,9,20,null,null,15,7]."
+   },
+   {
+    "input": "inorder = [-1], postorder = [-1]",
+    "output": "[-1]",
+    "explanation": "A single-element traversal produces a single-node tree [-1]."
+   },
+   {
+    "input": "inorder = [2,1,3], postorder = [2,3,1]",
+    "output": "[1,2,3]",
+    "explanation": "Root is 1 (last in postorder), with left child 2 and right child 3."
+   }
+  ],
+  "starterCode": {
+   "java": "/**\n * Definition for a binary tree node (provided by the judge).\n * public class TreeNode {\n *     int val;\n *     TreeNode left;\n *     TreeNode right;\n *     TreeNode() {}\n *     TreeNode(int val) { this.val = val; }\n *     TreeNode(int val, TreeNode left, TreeNode right) { this.val = val; this.left = left; this.right = right; }\n * }\n */\nclass Solution {\n    public TreeNode buildTree(int[] inorder, int[] postorder) {\n        // Write your solution here\n        return null;\n    }\n}\n",
+   "python": "# Definition for a binary tree node (provided by the judge).\n# class TreeNode:\n#     def __init__(self, val=0, left=None, right=None):\n#         self.val = val\n#         self.left = left\n#         self.right = right\nclass Solution:\n    def buildTree(self, inorder: List[int], postorder: List[int]) -> Optional[TreeNode]:\n        # Write your solution here\n        pass\n"
+  },
+  "solutionCode": {
+   "java": "class Solution {\n    private int postIdx;\n    private Map<Integer, Integer> inIndex;\n\n    public TreeNode buildTree(int[] inorder, int[] postorder) {\n        inIndex = new HashMap<>(inorder.length * 2);\n        for (int i = 0; i < inorder.length; i++) {\n            inIndex.put(inorder[i], i);\n        }\n        postIdx = postorder.length - 1;\n        return helper(postorder, 0, inorder.length - 1);\n    }\n\n    private TreeNode helper(int[] postorder, int left, int right) {\n        if (left > right) {\n            return null;\n        }\n        int rootVal = postorder[postIdx--];\n        TreeNode root = new TreeNode(rootVal);\n        int mid = inIndex.get(rootVal);\n        root.right = helper(postorder, mid + 1, right);\n        root.left = helper(postorder, left, mid - 1);\n        return root;\n    }\n}\n",
+   "python": "class Solution:\n    def buildTree(self, inorder: List[int], postorder: List[int]) -> Optional[TreeNode]:\n        in_index = {val: idx for idx, val in enumerate(inorder)}\n        post_idx = len(postorder) - 1\n\n        def helper(left: int, right: int) -> Optional[TreeNode]:\n            nonlocal post_idx\n            if left > right:\n                return None\n            root_val = postorder[post_idx]\n            post_idx -= 1\n            root = TreeNode(root_val)\n            mid = in_index[root_val]\n            root.right = helper(mid + 1, right)\n            root.left = helper(left, mid - 1)\n            return root\n\n        return helper(0, len(inorder) - 1)\n"
+  },
+  "sampleArray": [
+   9,
+   3,
+   15,
+   20,
+   7
+  ],
+  "visibleTestCount": 3,
+  "hiddenTestCount": 10,
+  "number": 12
+ },
+ {
+  "id": "serialize-and-deserialize-binary-tree",
+  "order": 13,
+  "topicId": "binary-trees",
+  "topic": "Binary Trees & Traversals",
+  "title": "Serialize and Deserialize Binary Tree",
+  "slug": "serialize-and-deserialize-binary-tree",
+  "difficulty": "Hard",
+  "subtopic": "Level-Order BFS",
+  "companies": [
+   "Meta",
+   "Amazon",
+   "Google",
+   "Microsoft",
+   "Uber",
+   "LinkedIn"
+  ],
+  "leetcode": 297,
+  "description": "Serialization is the process of converting a data structure or object into a sequence of bits or a string so that it can be stored in a file or memory buffer, or transmitted across a network connection link to be reconstructed later in the same or another computer environment.\n\nDesign an algorithm to serialize and deserialize a binary tree. There is no restriction on how your serialization/deserialization algorithm should work. You just need to ensure that a binary tree can be serialized to a string and this string can be deserialized to an **identical** new binary tree structure.\n\nImplement the `Codec` class:\n- `serialize(root)` encodes a tree into a single string without modifying the input tree.\n- `deserialize(data)` decodes your encoded string into a newly constructed binary tree.\n\nThe judge invokes `serialize` and `deserialize` on separate `Codec` instances and verifies that the reconstructed tree matches the original tree.",
+  "constraints": [
+   "The number of nodes in the tree is in the range [0, 10^4].",
+   "-1000 <= Node.val <= 1000"
+  ],
+  "hints": [
+   "A single traversal order (such as level-order BFS or preorder DFS) uniquely determines a binary tree as long as you explicitly record null children with a sentinel token (e.g., `#`).",
+   "Use a delimiter (such as a comma `,`) between tokens so multi-digit numbers and negative values are parsed unambiguously.",
+   "With level-order BFS, push children (or `#`) into a queue during `serialize`, and during `deserialize` pop parents from a queue while reading two tokens at a time for their left and right children."
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "examples": [
+   {
+    "input": "root = [1,2,3,null,null,4,5]",
+    "output": "[1,2,3,null,null,4,5]",
+    "explanation": "Serializing [1,2,3,null,null,4,5] to a string and deserializing it reconstructs the exact same tree."
+   },
+   {
+    "input": "root = []",
+    "output": "[]",
+    "explanation": "An empty tree serializes and deserializes back to an empty tree."
+   },
+   {
+    "input": "root = [1]",
+    "output": "[1]",
+    "explanation": "A single-node tree [1] round-trips to [1]."
+   }
+  ],
+  "starterCode": {
+   "java": "/**\n * Definition for a binary tree node (provided by the judge).\n * public class TreeNode {\n *     int val;\n *     TreeNode left;\n *     TreeNode right;\n *     TreeNode() {}\n *     TreeNode(int val) { this.val = val; }\n *     TreeNode(int val, TreeNode left, TreeNode right) { this.val = val; this.left = left; this.right = right; }\n * }\n */\nclass Codec {\n    // Encodes a tree to a single string.\n    public String serialize(TreeNode root) {\n        return \"\";\n    }\n\n    // Decodes your encoded data to tree.\n    public TreeNode deserialize(String data) {\n        return null;\n    }\n}\n",
+   "python": "# Definition for a binary tree node (provided by the judge).\n# class TreeNode:\n#     def __init__(self, val=0, left=None, right=None):\n#         self.val = val\n#         self.left = left\n#         self.right = right\nclass Codec:\n    def serialize(self, root: \"Optional[TreeNode]\") -> str:\n        # Encodes a tree to a single string.\n        return \"\"\n\n    def deserialize(self, data: str) -> \"Optional[TreeNode]\":\n        # Decodes your encoded data to tree.\n        return None\n"
+  },
+  "solutionCode": {
+   "java": "class Codec {\n    public String serialize(TreeNode root) {\n        if (root == null) {\n            return \"\";\n        }\n        StringBuilder sb = new StringBuilder();\n        LinkedList<TreeNode> q = new LinkedList<>();\n        q.add(root);\n        while (!q.isEmpty()) {\n            TreeNode node = q.poll();\n            if (sb.length() > 0) {\n                sb.append(',');\n            }\n            if (node == null) {\n                sb.append('#');\n            } else {\n                sb.append(node.val);\n                q.add(node.left);\n                q.add(node.right);\n            }\n        }\n        return sb.toString();\n    }\n\n    public TreeNode deserialize(String data) {\n        if (data == null || data.isEmpty()) {\n            return null;\n        }\n        String[] tokens = data.split(\",\");\n        TreeNode root = new TreeNode(Integer.parseInt(tokens[0]));\n        ArrayDeque<TreeNode> q = new ArrayDeque<>();\n        q.add(root);\n        int i = 1;\n        while (!q.isEmpty() && i < tokens.length) {\n            TreeNode node = q.poll();\n            if (!tokens[i].equals(\"#\")) {\n                node.left = new TreeNode(Integer.parseInt(tokens[i]));\n                q.add(node.left);\n            }\n            i++;\n            if (i < tokens.length && !tokens[i].equals(\"#\")) {\n                node.right = new TreeNode(Integer.parseInt(tokens[i]));\n                q.add(node.right);\n            }\n            i++;\n        }\n        return root;\n    }\n}\n",
+   "python": "class Codec:\n    def serialize(self, root: \"Optional[TreeNode]\") -> str:\n        if root is None:\n            return \"\"\n        out = []\n        q = deque([root])\n        while q:\n            node = q.popleft()\n            if node is None:\n                out.append(\"#\")\n            else:\n                out.append(str(node.val))\n                q.append(node.left)\n                q.append(node.right)\n        return \",\".join(out)\n\n    def deserialize(self, data: str) -> \"Optional[TreeNode]\":\n        if not data:\n            return None\n        tokens = data.split(\",\")\n        root = TreeNode(int(tokens[0]))\n        q = deque([root])\n        i = 1\n        while q and i < len(tokens):\n            node = q.popleft()\n            if tokens[i] != \"#\":\n                node.left = TreeNode(int(tokens[i]))\n                q.append(node.left)\n            i += 1\n            if i < len(tokens) and tokens[i] != \"#\":\n                node.right = TreeNode(int(tokens[i]))\n                q.append(node.right)\n            i += 1\n        return root\n"
+  },
+  "sampleArray": [],
+  "visibleTestCount": 3,
+  "hiddenTestCount": 10,
+  "number": 13
+ },
+ {
+  "id": "populating-next-right-pointers",
+  "order": 14,
+  "topicId": "binary-trees",
+  "topic": "Binary Trees & Traversals",
+  "title": "Populating Next Right Pointers in Each Node",
+  "slug": "populating-next-right-pointers",
+  "difficulty": "Medium",
+  "subtopic": "Level-Order BFS",
+  "companies": [
+   "Amazon",
+   "Microsoft",
+   "Meta",
+   "Google",
+   "Bloomberg"
+  ],
+  "leetcode": 116,
+  "description": "You are given a **perfect binary tree** where all leaves are on the same level, and every parent has two children. The binary tree has the following node definition:\n\n```text\nNode {\n  int val;\n  Node left;\n  Node right;\n  Node next;\n}\n```\n\nPopulate each `next` pointer to point to its next right node on the same level. If there is no next right node, the `next` pointer should be set to `null`. Initially, all `next` pointers are set to `null`.\n\nReturn the original `root` node without altering `val`, `left`, or `right` pointers. In the serialized output, each level is traversed by following `next` pointers starting from the leftmost node, with `\"#\"` signifying the end of each level.\n\n**Follow-up:** Solve it using only `O(1)` extra space (no queue or recursion stack).",
+  "constraints": [
+   "The number of nodes in the tree is in the range [0, 2^12 - 1].",
+   "-1000 <= Node.val <= 1000",
+   "The tree is a perfect binary tree (every level is completely filled)."
+  ],
+  "hints": [
+   "A straightforward level-order BFS with a queue links each node to the next node popped on the same level in O(n) time and O(n) space.",
+   "To eliminate the queue and achieve O(1) extra space, observe that once level `L` has its `next` pointers established, level `L` acts as a linked list that lets you wire all `next` pointers on level `L + 1`.",
+   "For each node `head` on the current level, set `head.left.next = head.right`, and if `head.next` exists, set `head.right.next = head.next.left`. Then advance to the next level via `leftmost = leftmost.left`."
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "examples": [
+   {
+    "input": "root = [1,2,3,4,5,6,7]",
+    "output": "[1,\"#\",2,3,\"#\",4,5,6,7,\"#\"]",
+    "explanation": "Level 0: 1 -> null; Level 1: 2 -> 3 -> null; Level 2: 4 -> 5 -> 6 -> 7 -> null."
+   },
+   {
+    "input": "root = []",
+    "output": "[]",
+    "explanation": "An empty tree returns null, serialized as []."
+   },
+   {
+    "input": "root = [0]",
+    "output": "[0,\"#\"]",
+    "explanation": "A single-node perfect tree has 0 -> null on level 0."
+   }
+  ],
+  "starterCode": {
+   "java": "/**\n * Definition for a Node (provided by the judge).\n * class Node {\n *     public int val;\n *     public Node left;\n *     public Node right;\n *     public Node next;\n *     public Node() {}\n *     public Node(int _val) { val = _val; }\n *     public Node(int _val, Node _left, Node _right, Node _next) {\n *         val = _val; left = _left; right = _right; next = _next;\n *     }\n * }\n */\nclass Solution {\n    public Node connect(Node root) {\n        // Write your solution here\n        return null;\n    }\n}\n",
+   "python": "# Definition for a Node (provided by the judge).\n# class Node:\n#     def __init__(self, val: int = 0, left: 'Optional[Node]' = None, right: 'Optional[Node]' = None, next: 'Optional[Node]' = None):\n#         self.val = val\n#         self.left = left\n#         self.right = right\n#         self.next = next\nclass Solution:\n    def connect(self, root: \"Optional[Node]\") -> \"Optional[Node]\":\n        # Write your solution here\n        return None\n"
+  },
+  "solutionCode": {
+   "java": "class Solution {\n    public Node connect(Node root) {\n        if (root == null) {\n            return null;\n        }\n        Node leftmost = root;\n        while (leftmost.left != null) {\n            Node head = leftmost;\n            while (head != null) {\n                head.left.next = head.right;\n                if (head.next != null) {\n                    head.right.next = head.next.left;\n                }\n                head = head.next;\n            }\n            leftmost = leftmost.left;\n        }\n        return root;\n    }\n}\n",
+   "python": "class Solution:\n    def connect(self, root: \"Optional[Node]\") -> \"Optional[Node]\":\n        if root is None:\n            return None\n        leftmost = root\n        while leftmost.left is not None:\n            head = leftmost\n            while head is not None:\n                head.left.next = head.right\n                if head.next is not None:\n                    head.right.next = head.next.left\n                head = head.next\n            leftmost = leftmost.left\n        return root\n"
+  },
+  "sampleArray": [
+   1,
+   2,
+   3,
+   4,
+   5,
+   6,
+   7
+  ],
+  "visibleTestCount": 3,
+  "hiddenTestCount": 9,
+  "number": 14
+ },
+ {
+  "id": "all-nodes-distance-k-in-binary-tree",
+  "order": 15,
+  "topicId": "binary-trees",
+  "topic": "Binary Trees & Traversals",
+  "title": "All Nodes Distance K in Binary Tree",
+  "slug": "all-nodes-distance-k-in-binary-tree",
+  "difficulty": "Medium",
+  "subtopic": "Level-Order BFS",
+  "companies": [
+   "Amazon",
+   "Meta",
+   "Google",
+   "Microsoft",
+   "Uber",
+   "Oracle"
+  ],
+  "leetcode": 863,
+  "description": "Given the `root` of a binary tree, a `target` node in the tree, and an integer `k`, return a list of the values of all nodes that have a distance `k` from the `target` node.\n\nDistance between two nodes is defined as the number of edges on the unique path connecting them. You may return the answer in **any order**.\n\nAll node values in the tree are unique, and `target` is guaranteed to be a node in the tree.",
+  "constraints": [
+   "The number of nodes in the tree is in the range [1, 500].",
+   "0 <= Node.val <= 500",
+   "All the values Node.val are unique.",
+   "target is the value of one of the nodes in the tree.",
+   "0 <= k <= 1000"
+  ],
+  "hints": [
+   "A tree becomes an undirected graph as soon as each node also knows its parent.",
+   "Run a DFS or BFS from `root` to record a `parent` map from each node to its parent.",
+   "Then perform a level-order BFS starting from `target` (tracking visited nodes), expanding to `left`, `right`, and `parent`. After `k` levels, the nodes remaining in the queue are exactly the answer."
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(n)",
+  "compare": "sorted",
+  "examples": [
+   {
+    "input": "root = [3,5,1,6,2,0,8,null,null,7,4], target = 5, k = 2",
+    "output": "[7,4,1]",
+    "explanation": "The nodes at distance 2 from target node 5 are 7, 4 (descendants) and 1 (via parent 3)."
+   },
+   {
+    "input": "root = [1], target = 1, k = 3",
+    "output": "[]",
+    "explanation": "The tree only has node 1, so no nodes are at distance 3 from it."
+   },
+   {
+    "input": "root = [1,2,3], target = 1, k = 0",
+    "output": "[1]",
+    "explanation": "At distance 0 from node 1, the only node is node 1 itself."
+   }
+  ],
+  "starterCode": {
+   "java": "/**\n * Definition for a binary tree node (provided by the judge).\n * public class TreeNode {\n *     int val;\n *     TreeNode left;\n *     TreeNode right;\n *     TreeNode() {}\n *     TreeNode(int val) { this.val = val; }\n *     TreeNode(int val, TreeNode left, TreeNode right) { this.val = val; this.left = left; this.right = right; }\n * }\n */\nclass Solution {\n    public List<Integer> distanceK(TreeNode root, TreeNode target, int k) {\n        // Write your solution here\n        return new ArrayList<>();\n    }\n}\n",
+   "python": "# Definition for a binary tree node (provided by the judge).\n# class TreeNode:\n#     def __init__(self, val=0, left=None, right=None):\n#         self.val = val\n#         self.left = left\n#         self.right = right\nclass Solution:\n    def distanceK(\n        self,\n        root: \"Optional[TreeNode]\",\n        target: \"TreeNode\",\n        k: int,\n    ) -> List[int]:\n        # Write your solution here\n        return []\n"
+  },
+  "solutionCode": {
+   "java": "class Solution {\n    public List<Integer> distanceK(TreeNode root, TreeNode target, int k) {\n        List<Integer> result = new ArrayList<>();\n        if (root == null || target == null) {\n            return result;\n        }\n        Map<TreeNode, TreeNode> parent = new HashMap<>();\n        ArrayDeque<TreeNode> q = new ArrayDeque<>();\n        q.add(root);\n        while (!q.isEmpty()) {\n            TreeNode node = q.poll();\n            if (node.left != null) {\n                parent.put(node.left, node);\n                q.add(node.left);\n            }\n            if (node.right != null) {\n                parent.put(node.right, node);\n                q.add(node.right);\n            }\n        }\n\n        ArrayDeque<TreeNode> bfs = new ArrayDeque<>();\n        Set<TreeNode> visited = new HashSet<>();\n        bfs.add(target);\n        visited.add(target);\n        int dist = 0;\n\n        while (!bfs.isEmpty() && dist < k) {\n            int size = bfs.size();\n            for (int i = 0; i < size; i++) {\n                TreeNode curr = bfs.poll();\n                TreeNode[] neighbors = {curr.left, curr.right, parent.get(curr)};\n                for (TreeNode nxt : neighbors) {\n                    if (nxt != null && visited.add(nxt)) {\n                        bfs.add(nxt);\n                    }\n                }\n            }\n            dist++;\n        }\n\n        while (!bfs.isEmpty()) {\n            result.add(bfs.poll().val);\n        }\n        return result;\n    }\n}\n",
+   "python": "class Solution:\n    def distanceK(\n        self,\n        root: \"Optional[TreeNode]\",\n        target: \"TreeNode\",\n        k: int,\n    ) -> List[int]:\n        if root is None or target is None:\n            return []\n        parent = {}\n        q = deque([root])\n        while q:\n            node = q.popleft()\n            if node.left is not None:\n                parent[node.left] = node\n                q.append(node.left)\n            if node.right is not None:\n                parent[node.right] = node\n                q.append(node.right)\n\n        bfs = deque([target])\n        visited = {target}\n        dist = 0\n        while bfs and dist < k:\n            for _ in range(len(bfs)):\n                curr = bfs.popleft()\n                for nxt in (curr.left, curr.right, parent.get(curr)):\n                    if nxt is not None and nxt not in visited:\n                        visited.add(nxt)\n                        bfs.append(nxt)\n            dist += 1\n\n        return [node.val for node in bfs]\n"
+  },
+  "sampleArray": [],
+  "visibleTestCount": 3,
+  "hiddenTestCount": 10,
+  "number": 15
+ },
+ {
+  "id": "subtree-of-another-tree",
+  "order": 16,
+  "topicId": "binary-trees",
+  "topic": "Binary Trees & Traversals",
+  "title": "Subtree of Another Tree",
+  "slug": "subtree-of-another-tree",
+  "difficulty": "Easy",
+  "subtopic": "DFS Traversals",
+  "companies": [
+   "Amazon",
+   "Meta",
+   "Google",
+   "Microsoft",
+   "Apple"
+  ],
+  "leetcode": 572,
+  "description": "Given the roots of two binary trees `root` and `subRoot`, return `true` if there is a subtree of `root` with the same structure and node values as `subRoot`, and `false` otherwise.\n\nA **subtree** of a binary tree `tree` is a tree that consists of a node in `tree` and **all** of this node's descendants. The tree `tree` could also be considered as a subtree of itself.",
+  "constraints": [
+   "The number of nodes in the root tree is in the range [1, 2000].",
+   "The number of nodes in the subRoot tree is in the range [1, 1000].",
+   "-10^4 <= root.val <= 10^4",
+   "-10^4 <= subRoot.val <= 10^4"
+  ],
+  "hints": [
+   "A simple O(n * m) approach checks at every node of `root` whether the subtree rooted there is identical to `subRoot` via a helper `isSameTree(a, b)`.",
+   "To solve it in linear O(n + m) time, serialize both trees using preorder DFS with an explicit sentinel token for every null child.",
+   "Watch out for prefix collisions if serializing to a string (e.g., `2` inside `12`): serialize into a list of discrete tokens (or include leading delimiters) and run KMP substring matching."
+  ],
+  "timeComplexity": "O(n + m)",
+  "spaceComplexity": "O(n + m)",
+  "compare": "exact",
+  "examples": [
+   {
+    "input": "root = [3,4,5,1,2], subRoot = [4,1,2]",
+    "output": "true",
+    "explanation": "The subtree rooted at node 4 in root matches subRoot [4,1,2] exactly."
+   },
+   {
+    "input": "root = [3,4,5,1,2,null,null,null,null,0], subRoot = [4,1,2]",
+    "output": "false",
+    "explanation": "Although nodes 4, 1, 2 appear in root, node 2 has an extra child 0, so it is not an exact subtree match."
+   },
+   {
+    "input": "root = [1], subRoot = [1]",
+    "output": "true",
+    "explanation": "Both trees consist of a single node with value 1."
+   }
+  ],
+  "starterCode": {
+   "java": "/**\n * Definition for a binary tree node (provided by the judge).\n * public class TreeNode {\n *     int val;\n *     TreeNode left;\n *     TreeNode right;\n *     TreeNode() {}\n *     TreeNode(int val) { this.val = val; }\n *     TreeNode(int val, TreeNode left, TreeNode right) { this.val = val; this.left = left; this.right = right; }\n * }\n */\nclass Solution {\n    public boolean isSubtree(TreeNode root, TreeNode subRoot) {\n        // Write your solution here\n        return false;\n    }\n}\n",
+   "python": "# Definition for a binary tree node (provided by the judge).\n# class TreeNode:\n#     def __init__(self, val=0, left=None, right=None):\n#         self.val = val\n#         self.left = left\n#         self.right = right\nclass Solution:\n    def isSubtree(self, root: Optional[TreeNode], subRoot: Optional[TreeNode]) -> bool:\n        # Write your solution here\n        pass\n"
+  },
+  "solutionCode": {
+   "java": "class Solution {\n    private static final int NULL_SENTINEL = Integer.MIN_VALUE;\n\n    public boolean isSubtree(TreeNode root, TreeNode subRoot) {\n        List<Integer> text = new ArrayList<>();\n        List<Integer> pattern = new ArrayList<>();\n        serialize(root, text);\n        serialize(subRoot, pattern);\n\n        int m = pattern.size();\n        int[] lps = new int[m];\n        int len = 0;\n        for (int i = 1; i < m; ) {\n            if (pattern.get(i).equals(pattern.get(len))) {\n                lps[i++] = ++len;\n            } else if (len > 0) {\n                len = lps[len - 1];\n            } else {\n                lps[i++] = 0;\n            }\n        }\n\n        int j = 0;\n        for (int i = 0; i < text.size(); i++) {\n            Integer tok = text.get(i);\n            while (j > 0 && !tok.equals(pattern.get(j))) {\n                j = lps[j - 1];\n            }\n            if (tok.equals(pattern.get(j))) {\n                j++;\n                if (j == m) {\n                    return true;\n                }\n            }\n        }\n        return false;\n    }\n\n    private void serialize(TreeNode node, List<Integer> out) {\n        if (node == null) {\n            out.add(NULL_SENTINEL);\n            return;\n        }\n        out.add(node.val);\n        serialize(node.left, out);\n        serialize(node.right, out);\n    }\n}\n",
+   "python": "class Solution:\n    def isSubtree(self, root: Optional[TreeNode], subRoot: Optional[TreeNode]) -> bool:\n        def serialize(node: Optional[TreeNode], out: List[Optional[int]]) -> None:\n            if node is None:\n                out.append(None)\n                return\n            out.append(node.val)\n            serialize(node.left, out)\n            serialize(node.right, out)\n\n        text: List[Optional[int]] = []\n        pattern: List[Optional[int]] = []\n        serialize(root, text)\n        serialize(subRoot, pattern)\n\n        # KMP search for pattern inside text\n        m = len(pattern)\n        lps = [0] * m\n        length = 0\n        i = 1\n        while i < m:\n            if pattern[i] == pattern[length]:\n                length += 1\n                lps[i] = length\n                i += 1\n            elif length > 0:\n                length = lps[length - 1]\n            else:\n                lps[i] = 0\n                i += 1\n\n        j = 0\n        for tok in text:\n            while j > 0 and tok != pattern[j]:\n                j = lps[j - 1]\n            if tok == pattern[j]:\n                j += 1\n                if j == m:\n                    return True\n        return False\n"
+  },
+  "sampleArray": [
+   3,
+   4,
+   5,
+   1,
+   2
+  ],
+  "visibleTestCount": 3,
+  "hiddenTestCount": 10,
+  "number": 16
+ },
+ {
+  "id": "binary-tree-right-side-view",
+  "order": 17,
+  "topicId": "binary-trees",
+  "topic": "Binary Trees & Traversals",
+  "title": "Binary Tree Right Side View",
+  "slug": "binary-tree-right-side-view",
+  "difficulty": "Medium",
+  "subtopic": "Level-Order BFS",
+  "companies": [
+   "Meta",
+   "Amazon",
+   "Google",
+   "Microsoft",
+   "Bloomberg",
+   "Uber"
+  ],
+  "leetcode": 199,
+  "description": "Given the `root` of a binary tree, imagine yourself standing on the **right side** of it. Return the values of the nodes you can see ordered from **top to bottom**.\n\nAt each depth level of the tree, the visible node is the rightmost non-null node at that depth (which may reside in the left subtree if the right subtree does not reach that depth).",
+  "constraints": [
+   "The number of nodes in the tree is in the range [0, 2000].",
+   "-100 <= Node.val <= 100"
+  ],
+  "hints": [
+   "You need exactly one node value per level of the binary tree: the rightmost node at that level.",
+   "In a level-order BFS, process all `levelSize` nodes of the current depth; the last node popped in each level is visible from the right side.",
+   "Alternatively, a right-first DFS (`node.right` before `node.left`) that records the first node encountered at each new depth solves it in O(n) time and O(h) space."
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "examples": [
+   {
+    "input": "root = [1,2,3,null,5,null,4]",
+    "output": "[1,3,4]",
+    "explanation": "Level 0 rightmost is 1, level 1 rightmost is 3, and level 2 rightmost is 4."
+   },
+   {
+    "input": "root = [1,2,3,4,null,null,null,5]",
+    "output": "[1,3,4,5]",
+    "explanation": "The right subtree stops at depth 1 (node 3), so nodes 4 and 5 from the deeper left subtree are visible from the right."
+   },
+   {
+    "input": "root = []",
+    "output": "[]",
+    "explanation": "An empty tree has no visible nodes."
+   }
+  ],
+  "starterCode": {
+   "java": "/**\n * Definition for a binary tree node (provided by the judge).\n * public class TreeNode {\n *     int val;\n *     TreeNode left;\n *     TreeNode right;\n *     TreeNode() {}\n *     TreeNode(int val) { this.val = val; }\n *     TreeNode(int val, TreeNode left, TreeNode right) { this.val = val; this.left = left; this.right = right; }\n * }\n */\nclass Solution {\n    public List<Integer> rightSideView(TreeNode root) {\n        // Write your solution here\n        return null;\n    }\n}\n",
+   "python": "# Definition for a binary tree node (provided by the judge).\n# class TreeNode:\n#     def __init__(self, val=0, left=None, right=None):\n#         self.val = val\n#         self.left = left\n#         self.right = right\nclass Solution:\n    def rightSideView(self, root: Optional[TreeNode]) -> List[int]:\n        # Write your solution here\n        pass\n"
+  },
+  "solutionCode": {
+   "java": "class Solution {\n    public List<Integer> rightSideView(TreeNode root) {\n        List<Integer> ans = new ArrayList<>();\n        if (root == null) {\n            return ans;\n        }\n        ArrayDeque<TreeNode> q = new ArrayDeque<>();\n        q.add(root);\n        while (!q.isEmpty()) {\n            int size = q.size();\n            for (int i = 0; i < size; i++) {\n                TreeNode node = q.poll();\n                if (i == size - 1) {\n                    ans.add(node.val);\n                }\n                if (node.left != null) q.add(node.left);\n                if (node.right != null) q.add(node.right);\n            }\n        }\n        return ans;\n    }\n}\n",
+   "python": "class Solution:\n    def rightSideView(self, root: Optional[TreeNode]) -> List[int]:\n        if root is None:\n            return []\n        ans = []\n        q = deque([root])\n        while q:\n            size = len(q)\n            for i in range(size):\n                node = q.popleft()\n                if i == size - 1:\n                    ans.append(node.val)\n                if node.left is not None:\n                    q.append(node.left)\n                if node.right is not None:\n                    q.append(node.right)\n        return ans\n"
+  },
+  "sampleArray": [],
+  "visibleTestCount": 3,
+  "hiddenTestCount": 10,
+  "number": 17
+ }
+]

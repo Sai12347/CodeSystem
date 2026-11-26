@@ -1,0 +1,43 @@
+{
+  "title": "Maximum Adjacent Difference",
+  "difficulty": "Easy",
+  "subtopic": "Traversal",
+  "companies": [
+    "Amazon",
+    "Microsoft",
+    "Google"
+  ],
+  "description": "Given an integer array `nums`, return the largest absolute difference between two consecutive elements. Return 0 when the array has one element.",
+  "constraints": [
+    "1 <= nums.length <= 10^5",
+    "-10^9 <= nums[i] <= 10^9"
+  ],
+  "hints": [
+    "Scan the input while maintaining the invariant in the statement.",
+    "Check boundary values, duplicates, and tie cases."
+  ],
+  "examples": [
+    {
+      "input": "nums = [2,7,1,8]",
+      "output": "7"
+    },
+    {
+      "input": "nums = [-5,-1,-9]",
+      "output": "8"
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "maxAdjacentDiff",
+    "params": [
+      {
+        "name": "nums",
+        "type": "int[]"
+      }
+    ],
+    "returns": "int"
+  }
+}

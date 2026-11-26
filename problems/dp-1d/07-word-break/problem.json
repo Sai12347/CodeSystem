@@ -1,0 +1,43 @@
+{
+  "title": "Word Break",
+  "difficulty": "Medium",
+  "subtopic": "Linear States",
+  "companies": [
+    "Amazon",
+    "Google",
+    "Microsoft"
+  ],
+  "description": "Return true if `s` can be segmented into a sequence of one or more dictionary words. A dictionary word may be used multiple times.",
+  "constraints": [
+    "1 <= s.length <= 300",
+    "1 <= wordDict.length <= 1000"
+  ],
+  "hints": [
+    "Define a small state for the best answer ending at each position.",
+    "Update the state from the allowed previous positions."
+  ],
+  "examples": [
+    {
+      "input": "s = \"leetcode\", wordDict = [\"leet\",\"code\"]",
+      "output": "true"
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(n^2)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "wordBreak",
+    "params": [
+      {
+        "name": "s",
+        "type": "String"
+      },
+      {
+        "name": "wordDict",
+        "type": "String[]"
+      }
+    ],
+    "returns": "boolean"
+  }
+}

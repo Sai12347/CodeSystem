@@ -1,0 +1,32 @@
+{
+  "title": "Sqrt(x)",
+  "difficulty": "Easy",
+  "subtopic": "Search on Answer Space",
+  "companies": ["Amazon", "Google", "Meta", "Microsoft", "Apple", "Bloomberg"],
+  "leetcode": 69,
+  "description": "Given a non-negative integer `x`, return the square root of `x` rounded down to the nearest integer. The returned integer should also be non-negative.\n\nYou must not use any built-in exponent function or operator (such as `pow(x, 0.5)`, `Math.sqrt(x)`, or `x ** 0.5`).",
+  "constraints": [
+    "0 <= x <= 2^31 - 1"
+  ],
+  "hints": [
+    "We are looking for the largest non-negative integer k such that k * k <= x.",
+    "Since k * k is monotonically increasing for k >= 0, binary search on the answer space [1, x] (after handling x < 2 directly).",
+    "To prevent 32-bit integer overflow when checking mid * mid <= x, compare mid <= x / mid or cast mid to a 64-bit integer."
+  ],
+  "examples": [
+    {"explanation": "The square root of 4 is exactly 2."},
+    {"explanation": "The square root of 8 is 2.82842..., and rounding down to the nearest integer gives 2."},
+    {"explanation": "The square root of 0 is 0."}
+  ],
+  "timeComplexity": "O(log x)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "mySqrt",
+    "params": [
+      {"name": "x", "type": "int"}
+    ],
+    "returns": "int"
+  }
+}

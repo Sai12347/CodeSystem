@@ -1,0 +1,49 @@
+{
+  "title": "Construct K Palindrome Strings",
+  "difficulty": "Medium",
+  "subtopic": "Palindromes",
+  "companies": [
+    "Amazon",
+    "Microsoft",
+    "Bloomberg"
+  ],
+  "description": "Given a lowercase string `s` and an integer `k`, return `true` if you can use every character in `s` to construct exactly `k` non-empty palindrome strings, and `false` otherwise.",
+  "constraints": [
+    "1 <= s.length <= 10^5",
+    "1 <= k <= 10^5",
+    "s consists of lowercase English letters."
+  ],
+  "hints": [
+    "You cannot form more non-empty strings than there are characters in s.",
+    "Each character with an odd frequency must serve as the center of a distinct palindrome, so oddCount <= k is both necessary and sufficient."
+  ],
+  "examples": [
+    {
+      "explanation": "We can form \"anna\" and \"elble\" using all characters."
+    },
+    {
+      "explanation": "\"leetcode\" has 5 odd-frequency letters, so 3 palindromes cannot absorb them all."
+    },
+    {
+      "explanation": "Each single character can be its own palindrome when k == len(s)."
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "canConstructPalindromes",
+    "params": [
+      {
+        "name": "s",
+        "type": "String"
+      },
+      {
+        "name": "k",
+        "type": "int"
+      }
+    ],
+    "returns": "boolean"
+  }
+}

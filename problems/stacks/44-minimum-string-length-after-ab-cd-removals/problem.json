@@ -1,0 +1,44 @@
+{
+  "title": "Minimum String Length After AB and CD Removals",
+  "difficulty": "Easy",
+  "subtopic": "LIFO Structure",
+  "companies": [
+    "Amazon",
+    "Microsoft",
+    "Adobe"
+  ],
+  "description": "You are given a string `s` consisting only of uppercase English letters.\n\nIn one operation, you may remove any occurrence of either the substring `\"AB\"` or the substring `\"CD\"` from `s`. After a removal, the remaining left and right parts concatenate directly, which may form new `\"AB\"` or `\"CD\"` substrings.\n\nReturn the minimum possible length of the resulting string after performing any number of operations.",
+  "constraints": [
+    "1 <= s.length <= 10^5",
+    "s consists only of uppercase English letters."
+  ],
+  "hints": [
+    "Because \"AB\" and \"CD\" use disjoint pairs of characters, greedily cancelling them as soon as they meet is always optimal.",
+    "Scan left to right with a stack: pop when the stack top and current character form \"AB\" or \"CD\", otherwise push."
+  ],
+  "examples": [
+    {
+      "explanation": "Removing \"AB\" yields \"FCACDB\", removing \"CD\" yields \"FCAB\", and removing \"AB\" leaves \"FC\" of length 2."
+    },
+    {
+      "explanation": "No \"AB\" or \"CD\" substring can ever be formed, so length stays 5."
+    },
+    {
+      "explanation": "Inner \"CD\" cancels first, bringing 'A' and 'B' together so they also cancel, leaving length 0."
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "minLength",
+    "params": [
+      {
+        "name": "s",
+        "type": "String"
+      }
+    ],
+    "returns": "int"
+  }
+}

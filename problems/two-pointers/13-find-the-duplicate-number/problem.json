@@ -1,0 +1,51 @@
+{
+  "title": "Find the Duplicate Number",
+  "difficulty": "Medium",
+  "subtopic": "Fast & Slow",
+  "companies": [
+    "Amazon",
+    "Google",
+    "Meta",
+    "Microsoft",
+    "Apple",
+    "Bloomberg"
+  ],
+  "leetcode": 287,
+  "description": "Given an array of integers `nums` containing `n + 1` integers where each integer is in the range `[1, n]` inclusive, there is **only one repeated number** in `nums` (which may appear two or more times). Return this repeated number.\n\nYou must solve the problem **without modifying** the array `nums` and using only `O(1)` extra space.",
+  "constraints": [
+    "1 <= n <= 10^5",
+    "nums.length == n + 1",
+    "1 <= nums[i] <= n",
+    "Every distinct integer present in nums appears only once, except for precisely one integer which appears two or more times."
+  ],
+  "hints": [
+    "Model the array as a directed functional graph where each index i has an outgoing edge to nums[i].",
+    "Because every value is in [1, n], index 0 has no incoming edge, while the duplicate value has at least two incoming edges — making it the entry point of a cycle reachable from index 0.",
+    "Apply Floyd's Tortoise and Hare algorithm: first detect an intersection inside the cycle with slow = nums[slow] and fast = nums[nums[fast]], then reset one pointer to nums[0] and advance both one step at a time to find the cycle entrance."
+  ],
+  "examples": [
+    {
+      "explanation": "The number 2 appears twice in [1, 3, 4, 2, 2], while all other numbers appear once."
+    },
+    {
+      "explanation": "The number 3 appears twice in [3, 1, 3, 4, 2]."
+    },
+    {
+      "explanation": "The number 3 is repeated across the entire array, so return 3."
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "findDuplicate",
+    "params": [
+      {
+        "name": "nums",
+        "type": "int[]"
+      }
+    ],
+    "returns": "int"
+  }
+}

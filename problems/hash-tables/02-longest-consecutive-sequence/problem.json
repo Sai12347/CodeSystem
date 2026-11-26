@@ -1,0 +1,49 @@
+{
+  "title": "Longest Consecutive Sequence",
+  "difficulty": "Medium",
+  "subtopic": "Subarray Sums",
+  "companies": [
+    "Google",
+    "Meta",
+    "Amazon",
+    "Microsoft",
+    "Bloomberg",
+    "Apple"
+  ],
+  "leetcode": 128,
+  "description": "Given an unsorted array of integers `nums`, return the length of the **longest consecutive elements sequence** (i.e., values `x, x + 1, x + 2, ..., x + k - 1` that all appear somewhere in `nums`).\n\nDuplicate values do not extend the length of a consecutive sequence, and elements do not need to be adjacent in `nums`. If `nums` is empty, return `0`.\n\nYou must write an algorithm that runs in `O(n)` average time.",
+  "constraints": [
+    "0 <= nums.length <= 10^5",
+    "-10^9 <= nums[i] <= 10^9"
+  ],
+  "hints": [
+    "Putting all numbers into a hash set gives O(1) average lookup and automatically eliminates duplicates.",
+    "Only start counting a sequence from a value x when x - 1 is NOT in the set, so x is guaranteed to be the start of a maximal run.",
+    "Iterate over the unique elements in the set (not the original array) so duplicate starts cannot cause repeated work; each element is visited at most twice overall."
+  ],
+  "examples": [
+    {
+      "explanation": "The longest consecutive elements sequence is [1, 2, 3, 4], which has length 4."
+    },
+    {
+      "explanation": "The sequence [0, 1, 2, 3, 4, 5, 6, 7, 8] has length 9; duplicate 0 does not add to the length."
+    },
+    {
+      "explanation": "An empty array contains no consecutive sequence, so return 0."
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "longestConsecutive",
+    "params": [
+      {
+        "name": "nums",
+        "type": "int[]"
+      }
+    ],
+    "returns": "int"
+  }
+}

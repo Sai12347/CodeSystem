@@ -1,0 +1,981 @@
+[
+ {
+  "id": "maximum-sum-subarray-of-size-k",
+  "order": 1,
+  "topicId": "sliding-window",
+  "topic": "Sliding Window",
+  "title": "Maximum Sum Subarray of Size K",
+  "slug": "maximum-sum-subarray-of-size-k",
+  "difficulty": "Easy",
+  "subtopic": "Fixed Window",
+  "companies": [
+   "Amazon",
+   "Google",
+   "Microsoft",
+   "Bloomberg",
+   "Adobe"
+  ],
+  "leetcode": null,
+  "description": "Given an integer array `nums` and an integer `k`, find the maximum sum of any contiguous subarray of `nums` with length **exactly** `k`, and return that sum.\n\nA subarray is a contiguous non-empty sequence of elements within an array. Note that `nums` may contain negative numbers and zeros.",
+  "constraints": [
+   "1 <= k <= nums.length <= 10^5",
+   "-10^4 <= nums[i] <= 10^4"
+  ],
+  "hints": [
+   "A brute-force approach recomputes the sum of each length-k window from scratch in O(n * k) time, repeating almost all additions between adjacent windows.",
+   "Maintain a running sum of the current window of size k. When shifting the window one step to the right, add the incoming element nums[i] and subtract the outgoing element nums[i - k].",
+   "Initialize the best sum to the sum of the first k elements (not 0), so arrays containing only negative numbers are handled properly."
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "examples": [
+   {
+    "input": "nums = [2,1,5,1,3,2], k = 3",
+    "output": "9",
+    "explanation": "The contiguous subarray [5, 1, 3] has length 3 and the maximum sum 5 + 1 + 3 = 9."
+   },
+   {
+    "input": "nums = [2,3,4,1,5], k = 2",
+    "output": "7",
+    "explanation": "The contiguous subarray [3, 4] has length 2 and the maximum sum 3 + 4 = 7."
+   },
+   {
+    "input": "nums = [-5,-2,-8,-1,-4], k = 2",
+    "output": "-5",
+    "explanation": "All elements are negative; the subarray [-1, -4] has length 2 and the maximum sum -1 + (-4) = -5."
+   }
+  ],
+  "starterCode": {
+   "java": "class Solution {\n    public int maxSubarraySum(int[] nums, int k) {\n        // Write your solution here\n        return 0;\n    }\n}\n",
+   "python": "class Solution:\n    def maxSubarraySum(self, nums: List[int], k: int) -> int:\n        # Write your solution here\n        pass\n"
+  },
+  "solutionCode": {
+   "java": "class Solution {\n    public int maxSubarraySum(int[] nums, int k) {\n        int windowSum = 0;\n        for (int i = 0; i < k; i++) {\n            windowSum += nums[i];\n        }\n        int best = windowSum;\n        for (int i = k; i < nums.length; i++) {\n            windowSum += nums[i] - nums[i - k];\n            if (windowSum > best) {\n                best = windowSum;\n            }\n        }\n        return best;\n    }\n}\n",
+   "python": "class Solution:\n    def maxSubarraySum(self, nums: List[int], k: int) -> int:\n        window_sum = sum(nums[:k])\n        best = window_sum\n        for i in range(k, len(nums)):\n            window_sum += nums[i] - nums[i - k]\n            if window_sum > best:\n                best = window_sum\n        return best\n"
+  },
+  "sampleArray": [
+   2,
+   1,
+   5,
+   1,
+   3,
+   2
+  ],
+  "visibleTestCount": 3,
+  "hiddenTestCount": 11,
+  "number": 1
+ },
+ {
+  "id": "longest-substring-without-repeating-characters",
+  "order": 2,
+  "topicId": "sliding-window",
+  "topic": "Sliding Window",
+  "title": "Longest Substring Without Repeating Characters",
+  "slug": "longest-substring-without-repeating-characters",
+  "difficulty": "Medium",
+  "subtopic": "Dynamic Window",
+  "companies": [
+   "Amazon",
+   "Google",
+   "Meta",
+   "Microsoft",
+   "Apple",
+   "Bloomberg"
+  ],
+  "leetcode": 3,
+  "description": "Given a string `s`, find the length of the **longest substring** without repeating characters.\n\nA substring is a contiguous sequence of characters within the string. Note that `s` may contain English letters (case-sensitive), digits, symbols, and spaces, and may be empty.",
+  "constraints": [
+   "0 <= s.length <= 5 * 10^4",
+   "s consists of English letters, digits, symbols and spaces."
+  ],
+  "hints": [
+   "Maintain a sliding window [left, right] whose characters are all distinct.",
+   "Store the most recent index of each character in a hash map. When s[right] was previously seen at an index >= left, advance left directly to lastSeen[s[right]] + 1.",
+   "Never move left backward when encountering a character whose last occurrence lies before the current left boundary."
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(min(n, m))",
+  "compare": "exact",
+  "examples": [
+   {
+    "input": "s = \"abcabcbb\"",
+    "output": "3",
+    "explanation": "The answer is \"abc\", with length 3."
+   },
+   {
+    "input": "s = \"bbbbb\"",
+    "output": "1",
+    "explanation": "The answer is \"b\", with length 1."
+   },
+   {
+    "input": "s = \"pwwkew\"",
+    "output": "3",
+    "explanation": "The answer is \"wke\", with length 3. Notice that \"pwke\" is a subsequence, not a contiguous substring."
+   }
+  ],
+  "starterCode": {
+   "java": "class Solution {\n    public int lengthOfLongestSubstring(String s) {\n        // Write your solution here\n        return 0;\n    }\n}\n",
+   "python": "class Solution:\n    def lengthOfLongestSubstring(self, s: str) -> int:\n        # Write your solution here\n        pass\n"
+  },
+  "solutionCode": {
+   "java": "class Solution {\n    public int lengthOfLongestSubstring(String s) {\n        int[] lastSeen = new int[128];\n        Arrays.fill(lastSeen, -1);\n        int left = 0;\n        int best = 0;\n        for (int right = 0; right < s.length(); right++) {\n            char ch = s.charAt(right);\n            if (lastSeen[ch] >= left) {\n                left = lastSeen[ch] + 1;\n            }\n            lastSeen[ch] = right;\n            int len = right - left + 1;\n            if (len > best) {\n                best = len;\n            }\n        }\n        return best;\n    }\n}\n",
+   "python": "class Solution:\n    def lengthOfLongestSubstring(self, s: str) -> int:\n        last_seen = {}\n        left = 0\n        best = 0\n        for right, ch in enumerate(s):\n            if ch in last_seen and last_seen[ch] >= left:\n                left = last_seen[ch] + 1\n            last_seen[ch] = right\n            length = right - left + 1\n            if length > best:\n                best = length\n        return best\n"
+  },
+  "sampleArray": [],
+  "visibleTestCount": 3,
+  "hiddenTestCount": 11,
+  "number": 2
+ },
+ {
+  "id": "minimum-size-subarray-sum",
+  "order": 3,
+  "topicId": "sliding-window",
+  "topic": "Sliding Window",
+  "title": "Minimum Size Subarray Sum",
+  "slug": "minimum-size-subarray-sum",
+  "difficulty": "Medium",
+  "subtopic": "Dynamic Window",
+  "companies": [
+   "Amazon",
+   "Meta",
+   "Google",
+   "Microsoft",
+   "Goldman Sachs"
+  ],
+  "leetcode": 209,
+  "description": "Given an array of positive integers `nums` and a positive integer `target`, return the **minimal length** of a contiguous subarray whose sum is greater than or equal to `target`. If there is no such subarray, return `0` instead.\n\nBecause every element in `nums` is strictly positive, expanding a window strictly increases its sum and shrinking it strictly decreases its sum.",
+  "constraints": [
+   "1 <= target <= 10^9",
+   "1 <= nums.length <= 10^5",
+   "1 <= nums[i] <= 10^4"
+  ],
+  "hints": [
+   "Because every element is strictly positive, once a window [left, right] has sum >= target, extending right further only yields longer subarrays.",
+   "Expand right to add nums[right] to windowSum, then repeatedly shrink left while windowSum >= target, recording the smallest length seen.",
+   "If no window ever reaches target, return 0."
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "examples": [
+   {
+    "input": "target = 7, nums = [2,3,1,2,4,3]",
+    "output": "2",
+    "explanation": "The subarray [4, 3] has the minimal length (2) with sum 4 + 3 = 7 >= 7."
+   },
+   {
+    "input": "target = 4, nums = [1,4,4]",
+    "output": "1",
+    "explanation": "The single-element subarray [4] has sum 4 >= 4, so the minimal length is 1."
+   },
+   {
+    "input": "target = 11, nums = [1,1,1,1,1,1,1,1]",
+    "output": "0",
+    "explanation": "The sum of the entire array is 8 < 11, so no valid subarray exists and we return 0."
+   }
+  ],
+  "starterCode": {
+   "java": "class Solution {\n    public int minSubArrayLen(int target, int[] nums) {\n        // Write your solution here\n        return 0;\n    }\n}\n",
+   "python": "class Solution:\n    def minSubArrayLen(self, target: int, nums: List[int]) -> int:\n        # Write your solution here\n        pass\n"
+  },
+  "solutionCode": {
+   "java": "class Solution {\n    public int minSubArrayLen(int target, int[] nums) {\n        int left = 0;\n        long windowSum = 0;\n        int best = nums.length + 1;\n        for (int right = 0; right < nums.length; right++) {\n            windowSum += nums[right];\n            while (windowSum >= target) {\n                int len = right - left + 1;\n                if (len < best) {\n                    best = len;\n                }\n                windowSum -= nums[left];\n                left++;\n            }\n        }\n        return best > nums.length ? 0 : best;\n    }\n}\n",
+   "python": "class Solution:\n    def minSubArrayLen(self, target: int, nums: List[int]) -> int:\n        left = 0\n        window_sum = 0\n        best = len(nums) + 1\n        for right, val in enumerate(nums):\n            window_sum += val\n            while window_sum >= target:\n                length = right - left + 1\n                if length < best:\n                    best = length\n                window_sum -= nums[left]\n                left += 1\n        return 0 if best > len(nums) else best\n"
+  },
+  "sampleArray": [
+   2,
+   3,
+   1,
+   2,
+   4,
+   3
+  ],
+  "visibleTestCount": 3,
+  "hiddenTestCount": 11,
+  "number": 3
+ },
+ {
+  "id": "longest-substring-with-at-most-k-distinct",
+  "order": 4,
+  "topicId": "sliding-window",
+  "topic": "Sliding Window",
+  "title": "Longest Substring with At Most K Distinct Characters",
+  "slug": "longest-substring-with-at-most-k-distinct",
+  "difficulty": "Medium",
+  "subtopic": "At Most K Elements",
+  "companies": [
+   "Google",
+   "Amazon",
+   "Meta",
+   "Microsoft",
+   "Uber"
+  ],
+  "leetcode": 340,
+  "description": "Given a string `s` and an integer `k`, return the length of the **longest substring** of `s` that contains **at most** `k` distinct characters.\n\nCharacters are case-sensitive (for example, `'a'` and `'A'` are distinct). If `k == 0`, no non-empty substring can contain at most 0 distinct characters, so return `0`.",
+  "constraints": [
+   "1 <= s.length <= 5 * 10^4",
+   "0 <= k <= 50",
+   "s consists of printable ASCII characters."
+  ],
+  "hints": [
+   "Maintain a sliding window [left, right] and a frequency map of characters currently inside the window.",
+   "Expand right by one character. While the number of distinct keys in the map exceeds k, decrement counts[s[left]], delete the key when its count hits 0, and increment left.",
+   "After restoring the invariant (<= k distinct characters), update the maximum window length right - left + 1."
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(k)",
+  "compare": "exact",
+  "examples": [
+   {
+    "input": "s = \"eceba\", k = 2",
+    "output": "3",
+    "explanation": "The longest substring with at most 2 distinct characters is \"ece\", with length 3."
+   },
+   {
+    "input": "s = \"aa\", k = 1",
+    "output": "2",
+    "explanation": "The entire string \"aa\" contains only 1 distinct character, giving length 2."
+   },
+   {
+    "input": "s = \"abaccc\", k = 2",
+    "output": "4",
+    "explanation": "The substring \"accc\" has 2 distinct characters ('a' and 'c') and length 4."
+   }
+  ],
+  "starterCode": {
+   "java": "class Solution {\n    public int lengthOfLongestSubstringKDistinct(String s, int k) {\n        // Write your solution here\n        return 0;\n    }\n}\n",
+   "python": "class Solution:\n    def lengthOfLongestSubstringKDistinct(self, s: str, k: int) -> int:\n        # Write your solution here\n        pass\n"
+  },
+  "solutionCode": {
+   "java": "class Solution {\n    public int lengthOfLongestSubstringKDistinct(String s, int k) {\n        if (k == 0) {\n            return 0;\n        }\n        Map<Character, Integer> counts = new HashMap<>();\n        int left = 0;\n        int best = 0;\n        for (int right = 0; right < s.length(); right++) {\n            char ch = s.charAt(right);\n            counts.put(ch, counts.getOrDefault(ch, 0) + 1);\n            while (counts.size() > k) {\n                char leftCh = s.charAt(left);\n                int c = counts.get(leftCh) - 1;\n                if (c == 0) {\n                    counts.remove(leftCh);\n                } else {\n                    counts.put(leftCh, c);\n                }\n                left++;\n            }\n            int len = right - left + 1;\n            if (len > best) {\n                best = len;\n            }\n        }\n        return best;\n    }\n}\n",
+   "python": "class Solution:\n    def lengthOfLongestSubstringKDistinct(self, s: str, k: int) -> int:\n        if k == 0:\n            return 0\n        counts = defaultdict(int)\n        left = 0\n        best = 0\n        for right, ch in enumerate(s):\n            counts[ch] += 1\n            while len(counts) > k:\n                left_ch = s[left]\n                counts[left_ch] -= 1\n                if counts[left_ch] == 0:\n                    del counts[left_ch]\n                left += 1\n            length = right - left + 1\n            if length > best:\n                best = length\n        return best\n"
+  },
+  "sampleArray": [],
+  "visibleTestCount": 3,
+  "hiddenTestCount": 11,
+  "number": 4
+ },
+ {
+  "id": "fruit-into-baskets",
+  "order": 5,
+  "topicId": "sliding-window",
+  "topic": "Sliding Window",
+  "title": "Fruit Into Baskets",
+  "slug": "fruit-into-baskets",
+  "difficulty": "Medium",
+  "subtopic": "At Most K Elements",
+  "companies": [
+   "Google",
+   "Amazon",
+   "Meta",
+   "Uber",
+   "Apple"
+  ],
+  "leetcode": 904,
+  "description": "You are visiting a farm that has a single row of fruit trees arranged from left to right. The trees are represented by an integer array `fruits` where `fruits[i]` is the **type** of fruit the `i`-th tree produces.\n\nYou want to collect as much fruit as possible following these strict rules:\n- You only have **two** baskets, and each basket can only hold a **single type** of fruit. There is no limit on the amount of fruit each basket can hold.\n- Starting from any tree of your choice, you must pick **exactly one fruit** from **every** tree (including the start tree) while moving to the right. The picked fruits must fit in one of your baskets.\n- Once you reach a tree with fruit that cannot fit in your baskets, you must stop.\n\nGiven the integer array `fruits`, return the **maximum** number of fruits you can pick (equivalently, the length of the longest contiguous subarray containing at most `2` distinct values).",
+  "constraints": [
+   "1 <= fruits.length <= 10^5",
+   "0 <= fruits[i] < fruits.length"
+  ],
+  "hints": [
+   "Reframe the rules: you are searching for the longest contiguous subarray that contains at most 2 distinct integers.",
+   "Use a sliding window [left, right] with a frequency map tracking the count of each fruit type in the current window.",
+   "Whenever the map contains more than 2 fruit types, shrink from left and remove any type whose count drops to 0. Since the map holds at most 3 keys, extra space is O(1)."
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "examples": [
+   {
+    "input": "fruits = [1,2,1]",
+    "output": "3",
+    "explanation": "We can pick from all 3 trees using fruit types 1 and 2, collecting 3 fruits."
+   },
+   {
+    "input": "fruits = [0,1,2,2]",
+    "output": "3",
+    "explanation": "Starting at index 1 gives [1, 2, 2], which uses only 2 fruit types and collects 3 fruits."
+   },
+   {
+    "input": "fruits = [1,2,3,2,2]",
+    "output": "4",
+    "explanation": "Starting at index 1 gives [2, 3, 2, 2], collecting 4 fruits."
+   }
+  ],
+  "starterCode": {
+   "java": "class Solution {\n    public int totalFruit(int[] fruits) {\n        // Write your solution here\n        return 0;\n    }\n}\n",
+   "python": "class Solution:\n    def totalFruit(self, fruits: List[int]) -> int:\n        # Write your solution here\n        pass\n"
+  },
+  "solutionCode": {
+   "java": "class Solution {\n    public int totalFruit(int[] fruits) {\n        Map<Integer, Integer> counts = new HashMap<>();\n        int left = 0;\n        int best = 0;\n        for (int right = 0; right < fruits.length; right++) {\n            int f = fruits[right];\n            counts.put(f, counts.getOrDefault(f, 0) + 1);\n            while (counts.size() > 2) {\n                int lf = fruits[left];\n                int c = counts.get(lf) - 1;\n                if (c == 0) {\n                    counts.remove(lf);\n                } else {\n                    counts.put(lf, c);\n                }\n                left++;\n            }\n            int len = right - left + 1;\n            if (len > best) {\n                best = len;\n            }\n        }\n        return best;\n    }\n}\n",
+   "python": "class Solution:\n    def totalFruit(self, fruits: List[int]) -> int:\n        counts = defaultdict(int)\n        left = 0\n        best = 0\n        for right, fruit in enumerate(fruits):\n            counts[fruit] += 1\n            while len(counts) > 2:\n                left_fruit = fruits[left]\n                counts[left_fruit] -= 1\n                if counts[left_fruit] == 0:\n                    del counts[left_fruit]\n                left += 1\n            length = right - left + 1\n            if length > best:\n                best = length\n        return best\n"
+  },
+  "sampleArray": [
+   1,
+   2,
+   1
+  ],
+  "visibleTestCount": 3,
+  "hiddenTestCount": 11,
+  "number": 5
+ },
+ {
+  "id": "subarrays-with-k-different-integers",
+  "order": 6,
+  "topicId": "sliding-window",
+  "topic": "Sliding Window",
+  "title": "Subarrays with K Different Integers",
+  "slug": "subarrays-with-k-different-integers",
+  "difficulty": "Hard",
+  "subtopic": "At Most K Elements",
+  "companies": [
+   "Amazon",
+   "Google",
+   "Meta",
+   "Microsoft",
+   "Uber",
+   "Goldman Sachs"
+  ],
+  "leetcode": 992,
+  "description": "Given an integer array `nums` and an integer `k`, return the number of **good subarrays** of `nums`.\n\nA **good subarray** is a contiguous, non-empty subarray where the number of different integers in that subarray is **exactly** `k`.\n\nFor example, `[1, 2, 3, 1, 2]` has `3` different integers: `1`, `2`, and `3`.",
+  "constraints": [
+   "1 <= nums.length <= 2 * 10^4",
+   "1 <= nums[i], k <= nums.length"
+  ],
+  "hints": [
+   "Directly maintaining a single sliding window for *exact* k distinct values is tricky because shrinking left can skip valid subarrays needed for future right positions.",
+   "Write a helper atMost(k) that counts subarrays with at most k distinct integers. Once [left, right] has at most k distinct values, all (right - left + 1) subarrays ending at right and starting in [left, right] are valid.",
+   "The number of subarrays with exactly k distinct integers equals atMost(k) - atMost(k - 1)."
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(k)",
+  "compare": "exact",
+  "examples": [
+   {
+    "input": "nums = [1,2,1,2,3], k = 2",
+    "output": "7",
+    "explanation": "The 7 subarrays with exactly 2 different integers are [1,2], [2,1], [1,2], [2,3], [1,2,1], [2,1,2], and [1,2,1,2]."
+   },
+   {
+    "input": "nums = [1,2,1,3,4], k = 3",
+    "output": "3",
+    "explanation": "The 3 subarrays with exactly 3 different integers are [1,2,1,3], [2,1,3], and [1,3,4]."
+   },
+   {
+    "input": "nums = [1,1,1], k = 1",
+    "output": "6",
+    "explanation": "Every non-empty subarray contains only the integer 1, yielding 3 * 4 / 2 = 6 good subarrays."
+   }
+  ],
+  "starterCode": {
+   "java": "class Solution {\n    public int subarraysWithKDistinct(int[] nums, int k) {\n        // Write your solution here\n        return 0;\n    }\n}\n",
+   "python": "class Solution:\n    def subarraysWithKDistinct(self, nums: List[int], k: int) -> int:\n        # Write your solution here\n        pass\n"
+  },
+  "solutionCode": {
+   "java": "class Solution {\n    public int subarraysWithKDistinct(int[] nums, int k) {\n        return atMost(nums, k) - atMost(nums, k - 1);\n    }\n\n    private int atMost(int[] nums, int limit) {\n        if (limit <= 0) {\n            return 0;\n        }\n        Map<Integer, Integer> counts = new HashMap<>();\n        int left = 0;\n        int total = 0;\n        for (int right = 0; right < nums.length; right++) {\n            int v = nums[right];\n            counts.put(v, counts.getOrDefault(v, 0) + 1);\n            while (counts.size() > limit) {\n                int lv = nums[left];\n                int c = counts.get(lv) - 1;\n                if (c == 0) {\n                    counts.remove(lv);\n                } else {\n                    counts.put(lv, c);\n                }\n                left++;\n            }\n            total += right - left + 1;\n        }\n        return total;\n    }\n}\n",
+   "python": "class Solution:\n    def subarraysWithKDistinct(self, nums: List[int], k: int) -> int:\n        def at_most(limit: int) -> int:\n            if limit <= 0:\n                return 0\n            counts = defaultdict(int)\n            left = 0\n            total = 0\n            for right, val in enumerate(nums):\n                counts[val] += 1\n                while len(counts) > limit:\n                    left_val = nums[left]\n                    counts[left_val] -= 1\n                    if counts[left_val] == 0:\n                        del counts[left_val]\n                    left += 1\n                total += right - left + 1\n            return total\n\n        return at_most(k) - at_most(k - 1)\n"
+  },
+  "sampleArray": [
+   1,
+   2,
+   1,
+   2,
+   3
+  ],
+  "visibleTestCount": 3,
+  "hiddenTestCount": 11,
+  "number": 6
+ },
+ {
+  "id": "minimum-window-substring",
+  "order": 7,
+  "topicId": "sliding-window",
+  "topic": "Sliding Window",
+  "title": "Minimum Window Substring",
+  "slug": "minimum-window-substring",
+  "difficulty": "Hard",
+  "subtopic": "Substring Frequency",
+  "companies": [
+   "Meta",
+   "Amazon",
+   "Google",
+   "Microsoft",
+   "Uber",
+   "LinkedIn"
+  ],
+  "leetcode": 76,
+  "description": "Given two strings `s` and `t` of lengths `m` and `n` respectively, return the **minimum window substring** of `s` such that every character in `t` (**including duplicates**) is included in the window. If there is no such substring, return the empty string `\"\"`.\n\nCharacters are case-sensitive (`'a'` and `'A'` are distinct). The test cases are generated such that if a valid window exists, the minimum-length answer is **unique**.",
+  "constraints": [
+   "1 <= s.length, t.length <= 10^5",
+   "s and t consist of uppercase and lowercase English letters.",
+   "If a valid window exists, the minimum window substring is unique."
+  ],
+  "hints": [
+   "Record the required frequency of each character in t. Maintain a sliding window [left, right] over s and track how many distinct characters of t currently meet their required count.",
+   "Expand right until all required characters are satisfied (formed == required). Then try shrinking left to minimize the window length while keeping it valid.",
+   "Since s and t only contain ASCII English letters, fixed-size arrays of length 128 provide O(1) lookups and O(1) extra space."
+  ],
+  "timeComplexity": "O(m + n)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "examples": [
+   {
+    "input": "s = \"ADOBECODEBANC\", t = \"ABC\"",
+    "output": "\"BANC\"",
+    "explanation": "The minimum window substring \"BANC\" includes 'A', 'B', and 'C' from string t."
+   },
+   {
+    "input": "s = \"a\", t = \"a\"",
+    "output": "\"a\"",
+    "explanation": "The entire string s is the minimum window."
+   },
+   {
+    "input": "s = \"a\", t = \"aa\"",
+    "output": "\"\"",
+    "explanation": "Both 'a's from t must be included in the window. Because s contains only one 'a', return \"\"."
+   }
+  ],
+  "starterCode": {
+   "java": "class Solution {\n    public String minWindow(String s, String t) {\n        // Write your solution here\n        return null;\n    }\n}\n",
+   "python": "class Solution:\n    def minWindow(self, s: str, t: str) -> str:\n        # Write your solution here\n        pass\n"
+  },
+  "solutionCode": {
+   "java": "class Solution {\n    public String minWindow(String s, String t) {\n        int m = s.length(), n = t.length();\n        if (n > m) {\n            return \"\";\n        }\n        int[] need = new int[128];\n        for (int i = 0; i < n; i++) {\n            need[t.charAt(i)]++;\n        }\n        int missing = n;\n        int left = 0;\n        int bestStart = 0;\n        int bestLen = m + 1;\n\n        for (int right = 0; right < m; right++) {\n            char ch = s.charAt(right);\n            if (need[ch] > 0) {\n                missing--;\n            }\n            need[ch]--;\n\n            while (missing == 0) {\n                int len = right - left + 1;\n                if (len < bestLen) {\n                    bestLen = len;\n                    bestStart = left;\n                }\n                char leftCh = s.charAt(left);\n                need[leftCh]++;\n                if (need[leftCh] > 0) {\n                    missing++;\n                }\n                left++;\n            }\n        }\n        return bestLen > m ? \"\" : s.substring(bestStart, bestStart + bestLen);\n    }\n}\n",
+   "python": "class Solution:\n    def minWindow(self, s: str, t: str) -> str:\n        if len(t) > len(s):\n            return \"\"\n        need = Counter(t)\n        missing = len(t)\n        left = 0\n        best_start = 0\n        best_len = len(s) + 1\n\n        for right, ch in enumerate(s):\n            if need[ch] > 0:\n                missing -= 1\n            need[ch] -= 1\n\n            while missing == 0:\n                window_len = right - left + 1\n                if window_len < best_len:\n                    best_len = window_len\n                    best_start = left\n                left_ch = s[left]\n                need[left_ch] += 1\n                if need[left_ch] > 0:\n                    missing += 1\n                left += 1\n\n        return \"\" if best_len > len(s) else s[best_start:best_start + best_len]\n"
+  },
+  "sampleArray": [],
+  "visibleTestCount": 3,
+  "hiddenTestCount": 11,
+  "number": 7
+ },
+ {
+  "id": "find-all-anagrams-in-a-string",
+  "order": 8,
+  "topicId": "sliding-window",
+  "topic": "Sliding Window",
+  "title": "Find All Anagrams in a String",
+  "slug": "find-all-anagrams-in-a-string",
+  "difficulty": "Medium",
+  "subtopic": "Substring Frequency",
+  "companies": [
+   "Amazon",
+   "Meta",
+   "Google",
+   "Microsoft",
+   "Bloomberg",
+   "Adobe"
+  ],
+  "leetcode": 438,
+  "description": "Given two strings `s` and `p`, return an array of all the start indices of `p`'s **anagrams** in `s`. You may return the answer in **any order**.\n\nAn **anagram** is a string formed by rearranging all the letters of another string, using each original letter with the exact same frequency.",
+  "constraints": [
+   "1 <= s.length, p.length <= 3 * 10^4",
+   "s and p consist of lowercase English letters."
+  ],
+  "hints": [
+   "Every anagram of p in s is a contiguous substring of length len(p) with the exact same 26-letter frequency counts as p.",
+   "Slide a fixed-size window of length len(p) across s, incrementing the count for the incoming character and decrementing the count for the outgoing character.",
+   "Maintain a counter of how many of the 26 letters currently have matching frequencies (or compare the two 26-element arrays in O(1) time per step) to achieve O(n + m) total time."
+  ],
+  "timeComplexity": "O(n + m)",
+  "spaceComplexity": "O(1)",
+  "compare": "sorted",
+  "examples": [
+   {
+    "input": "s = \"cbaebabacd\", p = \"abc\"",
+    "output": "[0,6]",
+    "explanation": "The substring starting at index 0 is \"cba\" and the substring starting at index 6 is \"bac\", both anagrams of \"abc\"."
+   },
+   {
+    "input": "s = \"abab\", p = \"ab\"",
+    "output": "[0,1,2]",
+    "explanation": "The substrings starting at indices 0, 1, and 2 are \"ab\", \"ba\", and \"ab\", all anagrams of \"ab\"."
+   },
+   {
+    "input": "s = \"abcdef\", p = \"xyz\"",
+    "output": "[]",
+    "explanation": "No substring of \"abcdef\" is an anagram of \"xyz\", so return []."
+   }
+  ],
+  "starterCode": {
+   "java": "class Solution {\n    public List<Integer> findAnagrams(String s, String p) {\n        // Write your solution here\n        return null;\n    }\n}\n",
+   "python": "class Solution:\n    def findAnagrams(self, s: str, p: str) -> List[int]:\n        # Write your solution here\n        pass\n"
+  },
+  "solutionCode": {
+   "java": "class Solution {\n    public List<Integer> findAnagrams(String s, String p) {\n        List<Integer> res = new ArrayList<>();\n        int n = s.length(), m = p.length();\n        if (m > n) {\n            return res;\n        }\n        int[] need = new int[26];\n        int[] win = new int[26];\n        for (int i = 0; i < m; i++) {\n            need[p.charAt(i) - 'a']++;\n            win[s.charAt(i) - 'a']++;\n        }\n        int matches = 0;\n        for (int i = 0; i < 26; i++) {\n            if (need[i] == win[i]) {\n                matches++;\n            }\n        }\n        if (matches == 26) {\n            res.add(0);\n        }\n        for (int right = m; right < n; right++) {\n            int addIdx = s.charAt(right) - 'a';\n            if (win[addIdx] == need[addIdx]) {\n                matches--;\n            }\n            win[addIdx]++;\n            if (win[addIdx] == need[addIdx]) {\n                matches++;\n            }\n\n            int remIdx = s.charAt(right - m) - 'a';\n            if (win[remIdx] == need[remIdx]) {\n                matches--;\n            }\n            win[remIdx]--;\n            if (win[remIdx] == need[remIdx]) {\n                matches++;\n            }\n\n            if (matches == 26) {\n                res.add(right - m + 1);\n            }\n        }\n        return res;\n    }\n}\n",
+   "python": "class Solution:\n    def findAnagrams(self, s: str, p: str) -> List[int]:\n        n, m = len(s), len(p)\n        if m > n:\n            return []\n        need = [0] * 26\n        win = [0] * 26\n        base = ord(\"a\")\n        for ch in p:\n            need[ord(ch) - base] += 1\n        for i in range(m):\n            win[ord(s[i]) - base] += 1\n\n        matches = sum(1 for i in range(26) if need[i] == win[i])\n        res = [0] if matches == 26 else []\n\n        for right in range(m, n):\n            add_idx = ord(s[right]) - base\n            if win[add_idx] == need[add_idx]:\n                matches -= 1\n            win[add_idx] += 1\n            if win[add_idx] == need[add_idx]:\n                matches += 1\n\n            rem_idx = ord(s[right - m]) - base\n            if win[rem_idx] == need[rem_idx]:\n                matches -= 1\n            win[rem_idx] -= 1\n            if win[rem_idx] == need[rem_idx]:\n                matches += 1\n\n            if matches == 26:\n                res.append(right - m + 1)\n        return res\n"
+  },
+  "sampleArray": [],
+  "visibleTestCount": 3,
+  "hiddenTestCount": 11,
+  "number": 8
+ },
+ {
+  "id": "permutation-in-string",
+  "order": 9,
+  "topicId": "sliding-window",
+  "topic": "Sliding Window",
+  "title": "Permutation in String",
+  "slug": "permutation-in-string",
+  "difficulty": "Medium",
+  "subtopic": "Substring Frequency",
+  "companies": [
+   "Meta",
+   "Amazon",
+   "Google",
+   "Microsoft",
+   "Bloomberg",
+   "Uber"
+  ],
+  "leetcode": 567,
+  "description": "Given two strings `s1` and `s2`, return `true` if `s2` contains a permutation of `s1`, or `false` otherwise.\n\nIn other words, return `true` if one of `s1`'s permutations is a contiguous substring of `s2`.",
+  "constraints": [
+   "1 <= s1.length, s2.length <= 10^4",
+   "s1 and s2 consist of lowercase English letters."
+  ],
+  "hints": [
+   "Two strings are permutations of each other if and only if they have the exact same character frequencies.",
+   "Since any valid permutation in s2 must have length s1.length, slide a fixed-size window of length s1.length across s2.",
+   "Maintain a 26-element frequency count for s1 and the current window, along with a counter of how many of the 26 letters currently match, to update each step in O(1) time."
+  ],
+  "timeComplexity": "O(n + m)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "examples": [
+   {
+    "input": "s1 = \"ab\", s2 = \"eidbaooo\"",
+    "output": "true",
+    "explanation": "s2 contains one permutation of s1 (\"ba\") starting at index 3."
+   },
+   {
+    "input": "s1 = \"ab\", s2 = \"eidboaoo\"",
+    "output": "false",
+    "explanation": "No contiguous substring of length 2 in s2 contains both 'a' and 'b', so return false."
+   },
+   {
+    "input": "s1 = \"adc\", s2 = \"dcda\"",
+    "output": "true",
+    "explanation": "s2 contains \"cda\" starting at index 1, which is a permutation of \"adc\"."
+   }
+  ],
+  "starterCode": {
+   "java": "class Solution {\n    public boolean checkInclusion(String s1, String s2) {\n        // Write your solution here\n        return false;\n    }\n}\n",
+   "python": "class Solution:\n    def checkInclusion(self, s1: str, s2: str) -> bool:\n        # Write your solution here\n        pass\n"
+  },
+  "solutionCode": {
+   "java": "class Solution {\n    public boolean checkInclusion(String s1, String s2) {\n        int m = s1.length();\n        int n = s2.length();\n        if (m > n) {\n            return false;\n        }\n\n        int[] need = new int[26];\n        int[] win = new int[26];\n        for (int i = 0; i < m; i++) {\n            need[s1.charAt(i) - 'a']++;\n            win[s2.charAt(i) - 'a']++;\n        }\n\n        int matches = 0;\n        for (int c = 0; c < 26; c++) {\n            if (need[c] == win[c]) {\n                matches++;\n            }\n        }\n        if (matches == 26) {\n            return true;\n        }\n\n        for (int right = m; right < n; right++) {\n            int addIdx = s2.charAt(right) - 'a';\n            if (win[addIdx] == need[addIdx]) {\n                matches--;\n            }\n            win[addIdx]++;\n            if (win[addIdx] == need[addIdx]) {\n                matches++;\n            }\n\n            int remIdx = s2.charAt(right - m) - 'a';\n            if (win[remIdx] == need[remIdx]) {\n                matches--;\n            }\n            win[remIdx]--;\n            if (win[remIdx] == need[remIdx]) {\n                matches++;\n            }\n\n            if (matches == 26) {\n                return true;\n            }\n        }\n\n        return false;\n    }\n}\n",
+   "python": "class Solution:\n    def checkInclusion(self, s1: str, s2: str) -> bool:\n        m, n = len(s1), len(s2)\n        if m > n:\n            return False\n\n        need = [0] * 26\n        win = [0] * 26\n        base = ord(\"a\")\n\n        for i in range(m):\n            need[ord(s1[i]) - base] += 1\n            win[ord(s2[i]) - base] += 1\n\n        matches = sum(1 for c in range(26) if need[c] == win[c])\n        if matches == 26:\n            return True\n\n        for right in range(m, n):\n            add_idx = ord(s2[right]) - base\n            if win[add_idx] == need[add_idx]:\n                matches -= 1\n            win[add_idx] += 1\n            if win[add_idx] == need[add_idx]:\n                matches += 1\n\n            rem_idx = ord(s2[right - m]) - base\n            if win[rem_idx] == need[rem_idx]:\n                matches -= 1\n            win[rem_idx] -= 1\n            if win[rem_idx] == need[rem_idx]:\n                matches += 1\n\n            if matches == 26:\n                return True\n\n        return False\n"
+  },
+  "sampleArray": [],
+  "visibleTestCount": 3,
+  "hiddenTestCount": 10,
+  "number": 9
+ },
+ {
+  "id": "max-consecutive-ones-iii",
+  "order": 10,
+  "topicId": "sliding-window",
+  "topic": "Sliding Window",
+  "title": "Max Consecutive Ones III",
+  "slug": "max-consecutive-ones-iii",
+  "difficulty": "Medium",
+  "subtopic": "Dynamic Window",
+  "companies": [
+   "Meta",
+   "Google",
+   "Amazon",
+   "Microsoft",
+   "Apple",
+   "Uber"
+  ],
+  "leetcode": 1004,
+  "description": "Given a binary array `nums` and an integer `k`, return the maximum number of consecutive `1`s in the array if you can flip at most `k` `0`s to `1`s.",
+  "constraints": [
+   "1 <= nums.length <= 10^5",
+   "nums[i] is either 0 or 1.",
+   "0 <= k <= nums.length"
+  ],
+  "hints": [
+   "Flipping at most k zeros to ones is equivalent to finding the longest contiguous subarray that contains at most k zeros.",
+   "Use two pointers forming a sliding window [left, right] and track how many zeros are currently inside the window.",
+   "Whenever the number of zeros exceeds k, advance left until the window again has at most k zeros, updating the maximum window length at each step."
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "examples": [
+   {
+    "input": "nums = [1,1,1,0,0,0,1,1,1,1,0], k = 2",
+    "output": "6",
+    "explanation": "Flipping the zeros at indices 5 and 10 yields a contiguous block of 6 ones from index 5 through index 10: [1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 1]."
+   },
+   {
+    "input": "nums = [0,0,1,1,0,0,1,1,1,0,1,1,0,0,0,1,1,1,1], k = 3",
+    "output": "10",
+    "explanation": "Flipping the zeros at indices 4, 5, and 9 produces a contiguous block of 10 ones from index 2 through index 11."
+   },
+   {
+    "input": "nums = [0,0,0,0], k = 0",
+    "output": "0",
+    "explanation": "With k = 0 no zeros can be flipped, and there are no 1s in the array, so the maximum length is 0."
+   }
+  ],
+  "starterCode": {
+   "java": "class Solution {\n    public int longestOnes(int[] nums, int k) {\n        // Write your solution here\n        return 0;\n    }\n}\n",
+   "python": "class Solution:\n    def longestOnes(self, nums: List[int], k: int) -> int:\n        # Write your solution here\n        pass\n"
+  },
+  "solutionCode": {
+   "java": "class Solution {\n    public int longestOnes(int[] nums, int k) {\n        int left = 0;\n        int zeros = 0;\n        int best = 0;\n        for (int right = 0; right < nums.length; right++) {\n            if (nums[right] == 0) {\n                zeros++;\n            }\n            while (zeros > k) {\n                if (nums[left] == 0) {\n                    zeros--;\n                }\n                left++;\n            }\n            int len = right - left + 1;\n            if (len > best) {\n                best = len;\n            }\n        }\n        return best;\n    }\n}\n",
+   "python": "class Solution:\n    def longestOnes(self, nums: List[int], k: int) -> int:\n        left = 0\n        zeros = 0\n        best = 0\n        for right, val in enumerate(nums):\n            if val == 0:\n                zeros += 1\n            while zeros > k:\n                if nums[left] == 0:\n                    zeros -= 1\n                left += 1\n            length = right - left + 1\n            if length > best:\n                best = length\n        return best\n"
+  },
+  "sampleArray": [
+   1,
+   1,
+   1,
+   0,
+   0,
+   0,
+   1,
+   1,
+   1,
+   1,
+   0
+  ],
+  "visibleTestCount": 3,
+  "hiddenTestCount": 10,
+  "number": 10
+ },
+ {
+  "id": "grumpy-bookstore-owner",
+  "order": 11,
+  "topicId": "sliding-window",
+  "topic": "Sliding Window",
+  "title": "Grumpy Bookstore Owner",
+  "slug": "grumpy-bookstore-owner",
+  "difficulty": "Medium",
+  "subtopic": "Fixed Window",
+  "companies": [
+   "Amazon",
+   "Google",
+   "Meta",
+   "Microsoft",
+   "Bloomberg"
+  ],
+  "leetcode": 1052,
+  "description": "There is a bookstore owner whose store is open for `n` minutes. You are given an integer array `customers` of length `n`, where `customers[i]` is the number of customers that enter the store at the start of the `i`-th minute and leave after that minute ends.\n\nOn some minutes, the bookstore owner is grumpy. You are given a binary array `grumpy` of length `n`, where `grumpy[i]` is `1` if the owner is grumpy during the `i`-th minute, and `0` otherwise. Customers entering during a grumpy minute are not satisfied; otherwise, they are satisfied.\n\nThe bookstore owner knows a secret technique to remain **not grumpy** for `minutes` consecutive minutes, which can be used at most once. Return the maximum number of customers that can be satisfied throughout the day.",
+  "constraints": [
+   "n == customers.length == grumpy.length",
+   "1 <= minutes <= n <= 2 * 10^4",
+   "0 <= customers[i] <= 1000",
+   "grumpy[i] is either 0 or 1."
+  ],
+  "hints": [
+   "Customers who arrive when grumpy[i] == 0 are always satisfied regardless of where you apply the secret technique.",
+   "Applying the technique on a window of length minutes only rescues customers who arrive during grumpy minutes inside that window.",
+   "Compute the baseline sum of always-satisfied customers, then use a fixed-size sliding window of length minutes to find the maximum sum of customers[i] * grumpy[i]."
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "examples": [
+   {
+    "input": "customers = [1,0,1,2,1,1,7,5], grumpy = [0,1,0,1,0,1,0,1], minutes = 3",
+    "output": "16",
+    "explanation": "The owner already satisfies 1 + 1 + 1 + 7 = 10 customers on calm minutes. Using the 3-minute technique on the last 3 minutes rescues 1 + 5 = 6 additional customers, for 16 total."
+   },
+   {
+    "input": "customers = [1], grumpy = [0], minutes = 1",
+    "output": "1",
+    "explanation": "The owner is already not grumpy during the only minute, so 1 customer is satisfied."
+   },
+   {
+    "input": "customers = [4,10,10], grumpy = [1,1,0], minutes = 2",
+    "output": "24",
+    "explanation": "Using the 2-minute technique on minutes 0 and 1 rescues 4 + 10 = 14 customers, adding to the 10 already satisfied at minute 2 for 24 total."
+   }
+  ],
+  "starterCode": {
+   "java": "class Solution {\n    public int maxSatisfied(int[] customers, int[] grumpy, int minutes) {\n        // Write your solution here\n        return 0;\n    }\n}\n",
+   "python": "class Solution:\n    def maxSatisfied(self, customers: List[int], grumpy: List[int], minutes: int) -> int:\n        # Write your solution here\n        pass\n"
+  },
+  "solutionCode": {
+   "java": "class Solution {\n    public int maxSatisfied(int[] customers, int[] grumpy, int minutes) {\n        int n = customers.length;\n        int base = 0;\n        int extra = 0;\n        for (int i = 0; i < minutes; i++) {\n            if (grumpy[i] == 0) {\n                base += customers[i];\n            } else {\n                extra += customers[i];\n            }\n        }\n\n        int bestExtra = extra;\n        for (int i = minutes; i < n; i++) {\n            if (grumpy[i] == 0) {\n                base += customers[i];\n            } else {\n                extra += customers[i];\n            }\n            if (grumpy[i - minutes] == 1) {\n                extra -= customers[i - minutes];\n            }\n            if (extra > bestExtra) {\n                bestExtra = extra;\n            }\n        }\n\n        return base + bestExtra;\n    }\n}\n",
+   "python": "class Solution:\n    def maxSatisfied(self, customers: List[int], grumpy: List[int], minutes: int) -> int:\n        n = len(customers)\n        base = 0\n        extra = 0\n        for i in range(minutes):\n            if grumpy[i] == 0:\n                base += customers[i]\n            else:\n                extra += customers[i]\n\n        best_extra = extra\n        for i in range(minutes, n):\n            if grumpy[i] == 0:\n                base += customers[i]\n            else:\n                extra += customers[i]\n            if grumpy[i - minutes] == 1:\n                extra -= customers[i - minutes]\n            if extra > best_extra:\n                best_extra = extra\n\n        return base + best_extra\n"
+  },
+  "sampleArray": [
+   1,
+   0,
+   1,
+   2,
+   1,
+   1,
+   7,
+   5
+  ],
+  "visibleTestCount": 3,
+  "hiddenTestCount": 10,
+  "number": 11
+ },
+ {
+  "id": "get-equal-substrings-within-budget",
+  "order": 12,
+  "topicId": "sliding-window",
+  "topic": "Sliding Window",
+  "title": "Get Equal Substrings Within Budget",
+  "slug": "get-equal-substrings-within-budget",
+  "difficulty": "Medium",
+  "subtopic": "Dynamic Window",
+  "companies": [
+   "Google",
+   "Amazon",
+   "Microsoft",
+   "Meta",
+   "Adobe"
+  ],
+  "leetcode": 1208,
+  "description": "You are given two strings `s` and `t` of the same length and an integer `maxCost`.\n\nYou want to change `s` to `t`. Changing the `i`-th character of `s` to the `i`-th character of `t` costs `|s[i] - t[i]|` (the absolute difference between the ASCII values of the characters).\n\nReturn the maximum length of a contiguous substring of `s` that can be changed to be the same as the corresponding substring of `t` with a total cost less than or equal to `maxCost`. If there is no such non-empty substring, return `0`.",
+  "constraints": [
+   "1 <= s.length <= 10^5",
+   "t.length == s.length",
+   "0 <= maxCost <= 10^6",
+   "s and t consist of only lowercase English letters."
+  ],
+  "hints": [
+   "Each index i has a fixed non-negative cost cost[i] = |s[i] - t[i]|, so the problem asks for the longest contiguous subarray whose sum is at most maxCost.",
+   "Because every cost is non-negative, expanding the right end of a window can only increase its cost, and advancing the left end can only decrease it.",
+   "Use a dynamic sliding window [left, right], adding |s[right] - t[right]| as right advances and incrementing left whenever the running cost exceeds maxCost."
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "examples": [
+   {
+    "input": "s = \"abcd\", t = \"bcdf\", maxCost = 3",
+    "output": "3",
+    "explanation": "Changing \"abc\" to \"bcd\" costs 1 + 1 + 1 = 3 <= maxCost, giving maximum length 3."
+   },
+   {
+    "input": "s = \"abcd\", t = \"cdef\", maxCost = 3",
+    "output": "1",
+    "explanation": "Each character change costs 2, so at most one character can be changed within maxCost = 3."
+   },
+   {
+    "input": "s = \"abcd\", t = \"acde\", maxCost = 0",
+    "output": "1",
+    "explanation": "With maxCost = 0, no differing characters can be changed; only \"a\" at index 0 already matches, giving length 1."
+   }
+  ],
+  "starterCode": {
+   "java": "class Solution {\n    public int equalSubstring(String s, String t, int maxCost) {\n        // Write your solution here\n        return 0;\n    }\n}\n",
+   "python": "class Solution:\n    def equalSubstring(self, s: str, t: str, maxCost: int) -> int:\n        # Write your solution here\n        pass\n"
+  },
+  "solutionCode": {
+   "java": "class Solution {\n    public int equalSubstring(String s, String t, int maxCost) {\n        int left = 0;\n        int cost = 0;\n        int best = 0;\n        int n = s.length();\n        for (int right = 0; right < n; right++) {\n            cost += Math.abs(s.charAt(right) - t.charAt(right));\n            while (cost > maxCost) {\n                cost -= Math.abs(s.charAt(left) - t.charAt(left));\n                left++;\n            }\n            int len = right - left + 1;\n            if (len > best) {\n                best = len;\n            }\n        }\n        return best;\n    }\n}\n",
+   "python": "class Solution:\n    def equalSubstring(self, s: str, t: str, maxCost: int) -> int:\n        left = 0\n        cost = 0\n        best = 0\n        for right in range(len(s)):\n            cost += abs(ord(s[right]) - ord(t[right]))\n            while cost > maxCost:\n                cost -= abs(ord(s[left]) - ord(t[left]))\n                left += 1\n            length = right - left + 1\n            if length > best:\n                best = length\n        return best\n"
+  },
+  "sampleArray": [],
+  "visibleTestCount": 3,
+  "hiddenTestCount": 10,
+  "number": 12
+ },
+ {
+  "id": "maximum-points-you-can-obtain-from-cards",
+  "order": 13,
+  "topicId": "sliding-window",
+  "topic": "Sliding Window",
+  "title": "Maximum Points You Can Obtain from Cards",
+  "slug": "maximum-points-you-can-obtain-from-cards",
+  "difficulty": "Medium",
+  "subtopic": "Fixed Window",
+  "companies": [
+   "Google",
+   "Amazon",
+   "Meta",
+   "Microsoft",
+   "Bloomberg",
+   "Uber"
+  ],
+  "leetcode": 1423,
+  "description": "There are several cards arranged in a row, and each card has an associated number of points given in the integer array `cardPoints`.\n\nIn one step, you can take one card from either the beginning or the end of the row. You must take **exactly** `k` cards.\n\nYour score is the sum of the points of the cards you have taken. Given the integer array `cardPoints` and the integer `k`, return the maximum score you can obtain.",
+  "constraints": [
+   "1 <= cardPoints.length <= 10^5",
+   "1 <= cardPoints[i] <= 10^4",
+   "1 <= k <= cardPoints.length"
+  ],
+  "hints": [
+   "Every valid selection consists of taking i cards from the left end and k - i cards from the right end for some 0 <= i <= k.",
+   "Equivalently, leaving behind n - k contiguous cards in the middle means maximizing the chosen sum is the same as minimizing the sum of a fixed-size window of length n - k.",
+   "Start with the sum of the first k cards and slide the split point one card at a time—swapping cardPoints[k - i] out and cardPoints[n - i] in—to evaluate all k + 1 splits in O(k) time."
+  ],
+  "timeComplexity": "O(k)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "examples": [
+   {
+    "input": "cardPoints = [1,2,3,4,5,6,1], k = 3",
+    "output": "12",
+    "explanation": "Taking the three rightmost cards gives 1 + 6 + 5 = 12, which is the maximum possible score."
+   },
+   {
+    "input": "cardPoints = [2,2,2], k = 2",
+    "output": "4",
+    "explanation": "All cards have value 2, so any selection of 2 cards yields a score of 4."
+   },
+   {
+    "input": "cardPoints = [9,7,7,9,7,7,9], k = 7",
+    "output": "55",
+    "explanation": "Since k equals the total number of cards, you must take all 7 cards for a total of 55."
+   }
+  ],
+  "starterCode": {
+   "java": "class Solution {\n    public int maxScore(int[] cardPoints, int k) {\n        // Write your solution here\n        return 0;\n    }\n}\n",
+   "python": "class Solution:\n    def maxScore(self, cardPoints: List[int], k: int) -> int:\n        # Write your solution here\n        pass\n"
+  },
+  "solutionCode": {
+   "java": "class Solution {\n    public int maxScore(int[] cardPoints, int k) {\n        int n = cardPoints.length;\n        int cur = 0;\n        for (int i = 0; i < k; i++) {\n            cur += cardPoints[i];\n        }\n        int best = cur;\n        for (int i = 1; i <= k; i++) {\n            cur += cardPoints[n - i] - cardPoints[k - i];\n            if (cur > best) {\n                best = cur;\n            }\n        }\n        return best;\n    }\n}\n",
+   "python": "class Solution:\n    def maxScore(self, cardPoints: List[int], k: int) -> int:\n        n = len(cardPoints)\n        cur = sum(cardPoints[:k])\n        best = cur\n        for i in range(1, k + 1):\n            cur += cardPoints[n - i] - cardPoints[k - i]\n            if cur > best:\n                best = cur\n        return best\n"
+  },
+  "sampleArray": [
+   1,
+   2,
+   3,
+   4,
+   5,
+   6,
+   1
+  ],
+  "visibleTestCount": 3,
+  "hiddenTestCount": 10,
+  "number": 13
+ },
+ {
+  "id": "count-number-of-nice-subarrays",
+  "order": 14,
+  "topicId": "sliding-window",
+  "topic": "Sliding Window",
+  "title": "Count Number of Nice Subarrays",
+  "slug": "count-number-of-nice-subarrays",
+  "difficulty": "Medium",
+  "subtopic": "At Most K Elements",
+  "companies": [
+   "Amazon",
+   "Google",
+   "Meta",
+   "Microsoft",
+   "Apple",
+   "Bloomberg"
+  ],
+  "leetcode": 1248,
+  "description": "Given an array of integers `nums` and an integer `k`, a contiguous subarray is called **nice** if there are **exactly** `k` odd numbers in it.\n\nReturn the number of nice subarrays.",
+  "constraints": [
+   "1 <= nums.length <= 50000",
+   "1 <= nums[i] <= 10^5",
+   "1 <= k <= nums.length"
+  ],
+  "hints": [
+   "Only the parity of each element matters: you can treat each element as 1 if it is odd and 0 if it is even.",
+   "Counting subarrays with exactly k odd numbers directly with a single window is tricky because even numbers expand the boundary without changing the odd count.",
+   "Use the identity exact(k) = atMost(k) - atMost(k - 1), where atMost(m) counts subarrays containing at most m odd numbers in a single O(n) sliding-window pass."
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "examples": [
+   {
+    "input": "nums = [1,1,2,1,1], k = 3",
+    "output": "2",
+    "explanation": "The only subarrays containing exactly 3 odd numbers are [1, 1, 2, 1] and [1, 2, 1, 1], giving 2 nice subarrays."
+   },
+   {
+    "input": "nums = [2,4,6], k = 1",
+    "output": "0",
+    "explanation": "There are no odd numbers in the array, so no subarray can contain 1 odd number."
+   },
+   {
+    "input": "nums = [2,2,2,1,2,2,1,2,2,2], k = 2",
+    "output": "16",
+    "explanation": "There are 4 choices for the starting index (0..3) and 4 choices for the ending index (6..9) around the two 1s, giving 4 * 4 = 16 nice subarrays."
+   }
+  ],
+  "starterCode": {
+   "java": "class Solution {\n    public int numberOfSubarrays(int[] nums, int k) {\n        // Write your solution here\n        return 0;\n    }\n}\n",
+   "python": "class Solution:\n    def numberOfSubarrays(self, nums: List[int], k: int) -> int:\n        # Write your solution here\n        pass\n"
+  },
+  "solutionCode": {
+   "java": "class Solution {\n    public int numberOfSubarrays(int[] nums, int k) {\n        return atMost(nums, k) - atMost(nums, k - 1);\n    }\n\n    private int atMost(int[] nums, int goal) {\n        if (goal < 0) {\n            return 0;\n        }\n        int left = 0;\n        int odds = 0;\n        int total = 0;\n        for (int right = 0; right < nums.length; right++) {\n            odds += nums[right] & 1;\n            while (odds > goal) {\n                odds -= nums[left] & 1;\n                left++;\n            }\n            total += right - left + 1;\n        }\n        return total;\n    }\n}\n",
+   "python": "class Solution:\n    def numberOfSubarrays(self, nums: List[int], k: int) -> int:\n        def at_most(goal: int) -> int:\n            if goal < 0:\n                return 0\n            left = 0\n            odds = 0\n            total = 0\n            for right, val in enumerate(nums):\n                odds += val & 1\n                while odds > goal:\n                    odds -= nums[left] & 1\n                    left += 1\n                total += right - left + 1\n            return total\n\n        return at_most(k) - at_most(k - 1)\n"
+  },
+  "sampleArray": [
+   1,
+   1,
+   2,
+   1,
+   1
+  ],
+  "visibleTestCount": 3,
+  "hiddenTestCount": 10,
+  "number": 14
+ },
+ {
+  "id": "replace-the-substring-for-balanced-string",
+  "order": 15,
+  "topicId": "sliding-window",
+  "topic": "Sliding Window",
+  "title": "Replace the Substring for Balanced String",
+  "slug": "replace-the-substring-for-balanced-string",
+  "difficulty": "Medium",
+  "subtopic": "Substring Frequency",
+  "companies": [
+   "Google",
+   "Amazon",
+   "Meta",
+   "Microsoft",
+   "Atlassian"
+  ],
+  "leetcode": 1234,
+  "description": "You are given a string `s` of length `n` containing only four kinds of characters: `'Q'`, `'W'`, `'E'`, and `'R'`.\n\nA string is said to be **balanced** if each of these four characters appears exactly `n / 4` times.\n\nReturn the minimum length of a contiguous substring that can be replaced with any other string of the same length to make `s` balanced. If `s` is already balanced, return `0`.",
+  "constraints": [
+   "n == s.length",
+   "4 <= n <= 10^5",
+   "n is a multiple of 4.",
+   "s[i] is one of 'Q', 'W', 'E', or 'R'."
+  ],
+  "hints": [
+   "Focus on the characters OUTSIDE the replaced substring: you can make s balanced by replacing s[left..right] if and only if every character appears at most n / 4 times outside that window.",
+   "First count the total occurrences of 'Q', 'W', 'E', and 'R'. If all four counts are already at most n / 4, return 0 immediately.",
+   "Slide a dynamic window [left, right] representing the substring to replace: decrement the outside count of s[right], and whenever all four outside counts are at most n / 4, update the minimum length and shrink from left."
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "examples": [
+   {
+    "input": "s = \"QWER\"",
+    "output": "0",
+    "explanation": "Each of 'Q', 'W', 'E', and 'R' already appears 4 / 4 = 1 time, so no replacement is needed."
+   },
+   {
+    "input": "s = \"QQWE\"",
+    "output": "1",
+    "explanation": "Replacing one 'Q' with 'R' yields \"RQWE\" (or \"QRWE\"), which is balanced; minimum length is 1."
+   },
+   {
+    "input": "s = \"QQQW\"",
+    "output": "2",
+    "explanation": "Replacing the substring \"QQ\" with \"ER\" yields \"ERQW\", which is balanced; minimum length is 2."
+   }
+  ],
+  "starterCode": {
+   "java": "class Solution {\n    public int balancedString(String s) {\n        // Write your solution here\n        return 0;\n    }\n}\n",
+   "python": "class Solution:\n    def balancedString(self, s: str) -> int:\n        # Write your solution here\n        pass\n"
+  },
+  "solutionCode": {
+   "java": "class Solution {\n    public int balancedString(String s) {\n        int n = s.length();\n        int target = n / 4;\n        int[] cnt = new int[128];\n        for (int i = 0; i < n; i++) {\n            cnt[s.charAt(i)]++;\n        }\n\n        if (cnt['Q'] <= target && cnt['W'] <= target && cnt['E'] <= target && cnt['R'] <= target) {\n            return 0;\n        }\n\n        int best = n;\n        int left = 0;\n        for (int right = 0; right < n; right++) {\n            cnt[s.charAt(right)]--;\n            while (left <= right\n                    && cnt['Q'] <= target\n                    && cnt['W'] <= target\n                    && cnt['E'] <= target\n                    && cnt['R'] <= target) {\n                int len = right - left + 1;\n                if (len < best) {\n                    best = len;\n                }\n                cnt[s.charAt(left)]++;\n                left++;\n            }\n        }\n\n        return best;\n    }\n}\n",
+   "python": "class Solution:\n    def balancedString(self, s: str) -> int:\n        n = len(s)\n        target = n // 4\n        cnt = {\"Q\": 0, \"W\": 0, \"E\": 0, \"R\": 0}\n        for ch in s:\n            cnt[ch] += 1\n\n        if cnt[\"Q\"] <= target and cnt[\"W\"] <= target and cnt[\"E\"] <= target and cnt[\"R\"] <= target:\n            return 0\n\n        best = n\n        left = 0\n        for right, ch in enumerate(s):\n            cnt[ch] -= 1\n            while (\n                left <= right\n                and cnt[\"Q\"] <= target\n                and cnt[\"W\"] <= target\n                and cnt[\"E\"] <= target\n                and cnt[\"R\"] <= target\n            ):\n                length = right - left + 1\n                if length < best:\n                    best = length\n                cnt[s[left]] += 1\n                left += 1\n\n        return best\n"
+  },
+  "sampleArray": [],
+  "visibleTestCount": 3,
+  "hiddenTestCount": 10,
+  "number": 15
+ }
+]

@@ -1,0 +1,50 @@
+{
+  "title": "Circular List Elimination Order",
+  "difficulty": "Medium",
+  "subtopic": "Pointers & Nodes",
+  "companies": [
+    "Google",
+    "Amazon",
+    "Bloomberg",
+    "Uber"
+  ],
+  "description": "You are given the `head` of a singly linked list of `n` nodes arranged conceptually in a clockwise circle (where the tail connects back to the head) and a positive integer `k`.\n\nStarting at the head node, repeatedly count `k` surviving nodes clockwise (inclusive of the current node), remove the `k`-th node from the circle, append it to an output linked list, and resume counting from the next surviving node clockwise until all `n` nodes have been eliminated.\n\nReturn the head of the linked list containing all nodes in their exact elimination order. Aim for `O(n log n)` time.",
+  "constraints": [
+    "The number of nodes in the list is in the range [1, 2000].",
+    "-10^5 <= Node.val <= 10^5",
+    "1 <= k <= 10^6"
+  ],
+  "hints": [
+    "Store the `n` nodes in an array and maintain a Fenwick Tree (Binary Indexed Tree) marking each node as alive (`1`) or eliminated (`0`).",
+    "Track the 0-based rank `pos` among `rem` remaining nodes: each round updates `pos = (pos + k - 1) % rem`, locates the `(pos + 1)`-th alive node in `O(log n)` via binary lifting on the Fenwick Tree, marks it `0`, and links it to the output tail."
+  ],
+  "examples": [
+    {
+      "explanation": "From [1, 2, 3, 4, 5] with k=2: eliminate 2, then 4, then 1, then 5, then 3."
+    },
+    {
+      "explanation": "With k=1, nodes are eliminated straight in order [10, 20, 30, 40]."
+    },
+    {
+      "explanation": "With k=3 on [1, 2, 3]: eliminate 3, then 1 (counting 1, 2, 1), then 2."
+    }
+  ],
+  "timeComplexity": "O(n log n)",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "eliminationOrder",
+    "params": [
+      {
+        "name": "head",
+        "type": "ListNode"
+      },
+      {
+        "name": "k",
+        "type": "int"
+      }
+    ],
+    "returns": "ListNode"
+  }
+}

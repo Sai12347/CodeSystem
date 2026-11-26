@@ -1,0 +1,48 @@
+{
+  "title": "Check If Word Is Valid After Substitutions",
+  "difficulty": "Medium",
+  "subtopic": "Valid Parentheses",
+  "companies": [
+    "Amazon",
+    "Google",
+    "Meta",
+    "Microsoft",
+    "Adobe"
+  ],
+  "leetcode": 1003,
+  "description": "Given a string `s`, determine if it is **valid**.\n\nA string `s` is **valid** if, starting with an empty string `t = \"\"`, you can transform `t` into `s` after performing the following operation **any number of times**:\n- Insert string `\"abc\"` into any position in `t`. More formally, `t` becomes `t_left + \"abc\" + t_right`, where `t == t_left + t_right`. Note that `t_left` and `t_right` may be empty.\n\nReturn `true` if `s` is a valid string, otherwise return `false`.",
+  "constraints": [
+    "1 <= s.length <= 2 * 10^4",
+    "s consists of letters 'a', 'b', and 'c'."
+  ],
+  "hints": [
+    "Think of the reverse process: a string is valid if and only if repeatedly deleting occurrences of \"abc\" reduces it to the empty string.",
+    "Similar to matching nested parentheses, use a stack as you scan s from left to right.",
+    "Whenever you encounter 'c', it must immediately close a preceding \"ab\" on top of the stack; otherwise the string is invalid. At the end, the stack must be empty."
+  ],
+  "examples": [
+    {
+      "explanation": "\"\" -> \"abc\" -> \"aabcbc\" (insert \"abc\" after 'a'). Thus \"aabcbc\" is valid."
+    },
+    {
+      "explanation": "\"\" -> \"abc\" -> \"abcabc\" -> \"abcabcabc\" -> \"abcabcababcc\" (insert \"abc\" between 'b' and 'c' of the last \"abc\")."
+    },
+    {
+      "explanation": "It is impossible to obtain \"abccba\" by repeatedly inserting \"abc\"."
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "isValid",
+    "params": [
+      {
+        "name": "s",
+        "type": "String"
+      }
+    ],
+    "returns": "boolean"
+  }
+}

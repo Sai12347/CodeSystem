@@ -1,0 +1,44 @@
+{
+  "title": "Optimal Partition of String",
+  "difficulty": "Medium",
+  "subtopic": "Substrings",
+  "companies": [
+    "Amazon",
+    "Microsoft",
+    "Google"
+  ],
+  "description": "Given a lowercase string `s`, partition `s` into one or more contiguous substrings such that the characters in each substring are all unique (no letter appears more than once within the same substring). Return the minimum number of substrings required in such a partition.",
+  "constraints": [
+    "1 <= s.length <= 10^5",
+    "s consists of lowercase English letters."
+  ],
+  "hints": [
+    "Greedily extend the current substring as far right as possible while tracking seen characters in a 26-bit mask.",
+    "Whenever the next character is already in the current substring's bitmask, start a new substring and reset the bitmask to just that character."
+  ],
+  "examples": [
+    {
+      "explanation": "\"abacaba\" can be partitioned into [\"ab\", \"ac\", \"ab\", \"a\"] using 4 substrings."
+    },
+    {
+      "explanation": "All characters in \"ssssss\" are identical, so each must be in its own substring (6 total)."
+    },
+    {
+      "explanation": "All characters in \"abcd\" are unique, so 1 substring suffices."
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "partitionString",
+    "params": [
+      {
+        "name": "s",
+        "type": "String"
+      }
+    ],
+    "returns": "int"
+  }
+}

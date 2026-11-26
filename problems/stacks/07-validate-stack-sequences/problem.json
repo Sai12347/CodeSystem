@@ -1,0 +1,55 @@
+{
+  "title": "Validate Stack Sequences",
+  "difficulty": "Medium",
+  "subtopic": "LIFO Structure",
+  "companies": [
+    "Google",
+    "Amazon",
+    "Meta",
+    "Microsoft",
+    "Bloomberg"
+  ],
+  "leetcode": 946,
+  "description": "Given two integer arrays `pushed` and `popped`, each containing **distinct** values, return `true` if this could have been the result of a sequence of `push` and `pop` operations on an initially empty stack, or `false` otherwise.\n\nEach element of `pushed` must be pushed onto the stack in the exact order given by `pushed`, and elements may be popped from the top of the stack at any point (as long as the stack is non-empty) so that the sequence of popped elements matches `popped`.",
+  "constraints": [
+    "1 <= pushed.length <= 1000",
+    "0 <= pushed[i] <= 1000",
+    "All the elements of pushed are unique.",
+    "popped.length == pushed.length",
+    "popped is a permutation of pushed."
+  ],
+  "hints": [
+    "Because all elements are distinct, whenever the top of the stack equals the next required value in popped, popping it immediately is always safe.",
+    "Simulate the stack greedily: push elements from pushed one by one, and after each push pop from the stack as long as its top matches popped[j].",
+    "The sequence is valid if and only if you successfully match all elements of popped (equivalently, the stack is empty at the end)."
+  ],
+  "examples": [
+    {
+      "explanation": "We can execute: push(1), push(2), push(3), push(4), pop() -> 4, push(5), pop() -> 5, pop() -> 3, pop() -> 2, pop() -> 1."
+    },
+    {
+      "explanation": "1 cannot be popped before 2 because after pushing 1, 2, 3, 4 and popping 4 and 3, 2 is on top of 1."
+    },
+    {
+      "explanation": "Push 10 and immediately pop 10."
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "validateStackSequences",
+    "params": [
+      {
+        "name": "pushed",
+        "type": "int[]"
+      },
+      {
+        "name": "popped",
+        "type": "int[]"
+      }
+    ],
+    "returns": "boolean"
+  }
+}

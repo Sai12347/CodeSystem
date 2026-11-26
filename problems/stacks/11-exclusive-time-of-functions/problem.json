@@ -1,0 +1,58 @@
+{
+  "title": "Exclusive Time of Functions",
+  "difficulty": "Medium",
+  "subtopic": "LIFO Structure",
+  "companies": [
+    "Meta",
+    "Amazon",
+    "Google",
+    "Microsoft",
+    "LinkedIn",
+    "Uber"
+  ],
+  "leetcode": 636,
+  "description": "On a **single-threaded** CPU, we execute a program containing `n` functions. Each function has a unique ID between `0` and `n - 1`.\n\nFunction calls are stored in a **call stack**: when a function call starts, its ID is pushed onto the stack, and when a function call ends, its ID is popped off the stack. The function whose ID is at the top of the stack is the current function being executed. Each time a function starts or ends, we write a log with the ID, whether it started or ended, and the timestamp.\n\nYou are given a list `logs`, where `logs[i]` represents the `i`-th log message formatted as a string `\"{function_id}:{\\\"start\\\" | \\\"end\\\"}:{timestamp}\"`. For example, `\"0:start:3\"` means a function call with function ID `0` **started at the beginning** of timestamp `3`, and `\"1:end:2\"` means a function call with function ID `1` **ended at the end** of timestamp `2`. Note that a function can be called **multiple times, possibly recursively**.\n\nA function's **exclusive time** is the sum of execution times for all function calls in the program (excluding time spent inside functions that it called). For example, if a function is called twice, one call executing for `2` time units and another call executing for `1` time unit, the exclusive time is `2 + 1 = 3`.\n\nReturn the **exclusive time** of each function in an array `res` of length `n`, where `res[i]` represents the exclusive time for the function with ID `i`.",
+  "constraints": [
+    "1 <= n <= 100",
+    "2 <= logs.length <= 500",
+    "0 <= function_id < n",
+    "0 <= timestamp <= 10^9",
+    "No two start events will happen at the same timestamp.",
+    "No two end events will happen at the same timestamp.",
+    "Each function has an end log for each start log, and logs are ordered chronologically."
+  ],
+  "hints": [
+    "Remember that a 'start' timestamp refers to the beginning of that time unit, whereas an 'end' timestamp refers to the end of that time unit.",
+    "Maintain a call stack of active function IDs and a variable prev tracking the start of the current unaccounted time interval.",
+    "On 'start:t', credit t - prev to the currently running function (if the stack is non-empty), push the new ID, and set prev = t. On 'end:t', pop the top ID, credit t - prev + 1 to it, and set prev = t + 1."
+  ],
+  "examples": [
+    {
+      "explanation": "Function 0 runs during [0, 1] (2 units), pauses while function 1 runs during [2, 5] (4 units), then resumes during [6, 6] (1 unit). Totals: [3, 4]."
+    },
+    {
+      "explanation": "Function 0 runs recursively and repeatedly across timestamps 0 through 7 with no idle gaps, accumulating 8 total units."
+    },
+    {
+      "explanation": "Function 0 runs during [0, 1] (2 units), executes a recursive call during [2, 5] (4 units), pauses while function 1 runs during [6, 6] (1 unit), and resumes during [7, 7] (1 unit). Totals: [7, 1]."
+    }
+  ],
+  "timeComplexity": "O(m)",
+  "spaceComplexity": "O(n + m)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "exclusiveTime",
+    "params": [
+      {
+        "name": "n",
+        "type": "int"
+      },
+      {
+        "name": "logs",
+        "type": "List<String>"
+      }
+    ],
+    "returns": "int[]"
+  }
+}

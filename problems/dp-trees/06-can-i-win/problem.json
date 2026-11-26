@@ -1,0 +1,43 @@
+{
+  "title": "Can I Win",
+  "difficulty": "Medium",
+  "subtopic": "Assignment",
+  "companies": [
+    "Google",
+    "Amazon",
+    "Microsoft"
+  ],
+  "description": "Players alternate choosing unused integers from 1 through `maxChoosableInteger` and add each choice to a running total. The first player to make the total reach or exceed `desiredTotal` wins. Both play optimally. Return true if the first player can force a win.",
+  "constraints": [
+    "1 <= maxChoosableInteger <= 20",
+    "0 <= desiredTotal <= 300"
+  ],
+  "hints": [
+    "Use a compact state to summarize each subtree or set of chosen items.",
+    "Combine partial states and cache repeated subproblems."
+  ],
+  "examples": [
+    {
+      "input": "maxChoosableInteger = 10, desiredTotal = 11",
+      "output": "false"
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "canIWin",
+    "params": [
+      {
+        "name": "maxChoosableInteger",
+        "type": "int"
+      },
+      {
+        "name": "desiredTotal",
+        "type": "int"
+      }
+    ],
+    "returns": "boolean"
+  }
+}

@@ -1,0 +1,50 @@
+{
+  "title": "Squares of a Sorted Array",
+  "difficulty": "Easy",
+  "subtopic": "Converging Pointers",
+  "companies": [
+    "Meta",
+    "Amazon",
+    "Google",
+    "Apple",
+    "Uber",
+    "Bloomberg"
+  ],
+  "leetcode": 977,
+  "description": "Given an integer array `nums` sorted in **non-decreasing** order, return an array of the **squares of each number** sorted in non-decreasing order.\n\nTry to solve the problem in `O(n)` time using two pointers rather than squaring and sorting.",
+  "constraints": [
+    "1 <= nums.length <= 10^4",
+    "-10^4 <= nums[i] <= 10^4",
+    "nums is sorted in non-decreasing order."
+  ],
+  "hints": [
+    "Because the input array is sorted, the elements with the largest absolute values (and therefore the largest squares) are always at the two ends of the array.",
+    "Use two pointers, left at index 0 and right at index n - 1, and fill the result array from back to front.",
+    "At each step, place the larger of nums[left]^2 and nums[right]^2 at the current write position and move that pointer inward."
+  ],
+  "examples": [
+    {
+      "explanation": "After squaring, the array becomes [16, 1, 0, 9, 100]. After sorting in non-decreasing order, it becomes [0, 1, 9, 16, 100]."
+    },
+    {
+      "explanation": "Squaring gives [49, 9, 4, 9, 121], which sorted is [4, 9, 9, 49, 121]."
+    },
+    {
+      "explanation": "All values are negative, so their squares appear in strictly decreasing order and reverse to [1, 4, 9, 25]."
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "sortedSquares",
+    "params": [
+      {
+        "name": "nums",
+        "type": "int[]"
+      }
+    ],
+    "returns": "int[]"
+  }
+}

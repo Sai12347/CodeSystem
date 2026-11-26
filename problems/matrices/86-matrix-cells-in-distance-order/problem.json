@@ -1,0 +1,57 @@
+{
+  "title": "Matrix Cells in Distance Order",
+  "difficulty": "Easy",
+  "subtopic": "Spiral Traversal",
+  "companies": [
+    "Amazon",
+    "Google",
+    "Bloomberg"
+  ],
+  "description": "You are given four integers `rows`, `cols`, `rCenter`, and `cCenter` describing a `rows x cols` matrix and a center cell `(rCenter, cCenter)`.\n\nReturn a 2D array containing the `[r, c]` coordinates of every cell in the matrix, ordered by increasing **Manhattan distance** `|r - rCenter| + |c - cCenter|` from `(rCenter, cCenter)`. If two cells have the same Manhattan distance, order them by smaller row `r`, and if rows are equal, by smaller column `c`.",
+  "constraints": [
+    "1 <= rows, cols <= 100",
+    "0 <= rCenter < rows",
+    "0 <= cCenter < cols"
+  ],
+  "hints": [
+    "The maximum possible Manhattan distance from (rCenter, cCenter) is at most (rows - 1) + (cols - 1).",
+    "Bucket all coordinates by their Manhattan distance while scanning r from 0 to rows - 1 and c from 0 to cols - 1; each bucket automatically respects the (r, c) tie-breaking order in O(rows * cols) time."
+  ],
+  "examples": [
+    {
+      "explanation": "From (0, 0) in a 1x2 grid, distances are 0 at (0, 0) and 1 at (0, 1)."
+    },
+    {
+      "explanation": "From (0, 1) in a 2x2 grid, (0, 1) has distance 0, (0, 0) and (1, 1) have distance 1 (ordered by row), and (1, 0) has distance 2."
+    },
+    {
+      "explanation": "From (1, 2) in a 2x3 grid, cells are grouped by Manhattan shells 0, 1, 2, 3 with row-major tie-breaking."
+    }
+  ],
+  "timeComplexity": "O(rows * cols)",
+  "spaceComplexity": "O(rows * cols)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "allCellsDistOrder",
+    "params": [
+      {
+        "name": "rows",
+        "type": "int"
+      },
+      {
+        "name": "cols",
+        "type": "int"
+      },
+      {
+        "name": "rCenter",
+        "type": "int"
+      },
+      {
+        "name": "cCenter",
+        "type": "int"
+      }
+    ],
+    "returns": "int[][]"
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "title": "Find All Duplicate Values",
+  "difficulty": "Medium",
+  "subtopic": "Traversal",
+  "companies": [
+    "Amazon",
+    "Google",
+    "Microsoft"
+  ],
+  "description": "An array `nums` has length `n`, and each value is between 1 and `n`. Values occur once or twice. Return all values that occur twice, in increasing order. Input: `nums`. Output: the sorted duplicate values.",
+  "constraints": [
+    "1 <= nums.length <= 100000",
+    "1 <= nums[i] <= nums.length",
+    "Each value appears at most twice"
+  ],
+  "hints": [
+    "Scan once to identify the boundary or state where the answer changes.",
+    "Test already ordered, reversed, duplicate, and minimum-size inputs."
+  ],
+  "examples": [
+    {
+      "input": "nums = [4, 3, 2, 7, 8, 2, 3, 1]",
+      "output": "[2, 3]"
+    },
+    {
+      "input": "nums = [1, 1, 2]",
+      "output": "[1]"
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "findDuplicates",
+    "params": [
+      {
+        "name": "nums",
+        "type": "int[]"
+      }
+    ],
+    "returns": "int[]"
+  }
+}

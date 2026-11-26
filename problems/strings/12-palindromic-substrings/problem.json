@@ -1,0 +1,33 @@
+{
+  "title": "Palindromic Substrings",
+  "difficulty": "Medium",
+  "subtopic": "Palindromes",
+  "companies": ["Meta", "Google", "Amazon", "Microsoft", "Goldman Sachs"],
+  "leetcode": 647,
+  "description": "Given a string `s`, return the total number of palindromic substrings in `s`.\n\nA string is a palindrome when it reads the same backward as forward. A substring is a contiguous sequence of characters within the string. Substrings with different start or end indices are counted as distinct palindromic substrings even if they consist of the same characters.",
+  "constraints": [
+    "1 <= s.length <= 1000",
+    "s consists of lowercase English letters ('a'-'z')."
+  ],
+  "hints": [
+    "Every palindrome expands symmetrically around either a single center character (odd length) or a gap between two adjacent characters (even length), giving 2n - 1 possible centers.",
+    "Expanding outward from every center counts all palindromic substrings in O(n^2) time and O(1) space.",
+    "For O(n) time, insert '#' sentinels between characters and run Manacher's algorithm: each transformed center i with radius p[i] contributes (p[i] + 1) // 2 palindromes."
+  ],
+  "examples": [
+    {"explanation": "Three palindromic substrings exist: \"a\", \"b\", and \"c\"."},
+    {"explanation": "Six palindromic substrings exist: \"a\", \"a\", \"a\", \"aa\", \"aa\", and \"aaa\"."},
+    {"explanation": "Six palindromic substrings exist: \"a\", \"b\", \"b\", \"a\", \"bb\", and \"abba\"."}
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "countSubstrings",
+    "params": [
+      {"name": "s", "type": "String"}
+    ],
+    "returns": "int"
+  }
+}

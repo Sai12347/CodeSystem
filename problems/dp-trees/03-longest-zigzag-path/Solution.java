@@ -1,0 +1,1 @@
+class Solution { int best; int[] dfs(TreeNode n){if(n==null)return new int[]{-1,-1};int[] l=dfs(n.left),r=dfs(n.right);int a=1+l[1],b=1+r[0];best=Math.max(best,Math.max(a,b));return new int[]{a,b};} public int longestZigZag(TreeNode root){best=0;dfs(root);return best;} }

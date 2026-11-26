@@ -1,0 +1,75 @@
+{
+  "title": "Design Memory Allocator Free List",
+  "difficulty": "Medium",
+  "subtopic": "LRU Design",
+  "companies": [
+    "Google",
+    "Amazon",
+    "Meta",
+    "Microsoft",
+    "Apple"
+  ],
+  "description": "Design a memory allocator `MemoryAllocator` managing a contiguous address space `[0, n - 1]` of size `n` (up to `10^9` units) using a **doubly linked list of memory segments** with free-block coalescing:\n- `MemoryAllocator(int n)` initializes a single free segment `[0, n - 1]` of length `n`.\n- `int allocate(int size, int mID)` finds the **leftmost** contiguous free block of length at least `size`, allocates its leftmost `size` units to memory ID `mID`, and returns the starting address. If no free block is large enough, returns `-1`.\n- `int freeMemory(int mID)` frees all segments currently assigned to `mID`, coalescing each freed segment with any immediately adjacent free segments on its left or right, and returns the total number of units freed (`0` if `mID` owns no segments).",
+  "constraints": [
+    "1 <= n <= 10^9",
+    "1 <= size <= 10^9",
+    "1 <= mID <= 1000",
+    "At most 1000 calls will be made to allocate and freeMemory."
+  ],
+  "hints": [
+    "Because `n` can be as large as `10^9`, you cannot allocate an array of size `n`. Instead store segments `(start, length, mID)` (with `mID == 0` meaning free) in a doubly linked list and keep a map `mID -> list of owned nodes`.",
+    "On `allocate`, split the leftmost free node with `length >= size`; on `freeMemory(mID)`, mark each owned node free (`mID = 0`) and immediately merge it with `node.prev` and/or `node.next` whenever they are also free."
+  ],
+  "examples": [
+    {
+      "explanation": "Allocations fill indices 0,1,2; freeing mID 2 opens [1,1]; allocate(3,4) skips [1,1] to take [3..5]; freeing mID 1 frees 3 units across [0,1] and [6]."
+    },
+    {
+      "explanation": "Works on a 10^9 address space: freeing the first 400M block lets a subsequent 300M allocation succeed at address 0."
+    },
+    {
+      "explanation": "Freeing mIDs 1, 3, then 2 coalesces all three regions back into a single 10-unit free block so allocate(10, 5) returns 0."
+    }
+  ],
+  "timeComplexity": "O(B) allocate, O(k) free",
+  "spaceComplexity": "O(B)",
+  "compare": "exact",
+  "signature": {
+    "kind": "design",
+    "className": "MemoryAllocator",
+    "constructor": {
+      "params": [
+        {
+          "name": "n",
+          "type": "int"
+        }
+      ]
+    },
+    "methods": [
+      {
+        "name": "allocate",
+        "params": [
+          {
+            "name": "size",
+            "type": "int"
+          },
+          {
+            "name": "mID",
+            "type": "int"
+          }
+        ],
+        "returns": "int"
+      },
+      {
+        "name": "freeMemory",
+        "params": [
+          {
+            "name": "mID",
+            "type": "int"
+          }
+        ],
+        "returns": "int"
+      }
+    ]
+  }
+}

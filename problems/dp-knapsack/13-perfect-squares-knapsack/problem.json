@@ -1,0 +1,38 @@
+{
+  "title": "Perfect Squares as Unbounded Knapsack",
+  "difficulty": "Medium",
+  "subtopic": "Unbounded Knapsack",
+  "companies": [
+    "Amazon",
+    "Google",
+    "Microsoft"
+  ],
+  "description": "Return the least number of perfect-square positive integers whose sum is `n`. A square number may be used more than once.",
+  "constraints": [
+    "1 <= n <= 10^4"
+  ],
+  "hints": [
+    "Define a state by the capacity, achievable sum, or difference between partial groups.",
+    "Process each item with the usage rule in the statement."
+  ],
+  "examples": [
+    {
+      "input": "n = 12",
+      "output": "3"
+    }
+  ],
+  "timeComplexity": "O(n*capacity)",
+  "spaceComplexity": "O(capacity)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "numSquares",
+    "params": [
+      {
+        "name": "n",
+        "type": "int"
+      }
+    ],
+    "returns": "int"
+  }
+}

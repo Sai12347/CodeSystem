@@ -1,0 +1,58 @@
+{
+  "title": "Median of Two Sorted Arrays",
+  "difficulty": "Hard",
+  "subtopic": "Standard Bisect",
+  "companies": [
+    "Google",
+    "Amazon",
+    "Meta",
+    "Microsoft",
+    "Apple",
+    "Goldman Sachs"
+  ],
+  "leetcode": 4,
+  "description": "Given two sorted arrays `nums1` and `nums2` of sizes `m` and `n` respectively, return the median of the two sorted arrays as a floating-point value.\n\nIf the combined length `m + n` is odd, the median is the single middle element of the merged sorted array. If `m + n` is even, the median is the average of the two middle elements.\n\nThe overall run time complexity should be `O(log(m + n))`.",
+  "constraints": [
+    "nums1.length == m",
+    "nums2.length == n",
+    "0 <= m <= 1000",
+    "0 <= n <= 1000",
+    "1 <= m + n <= 2000",
+    "-10^6 <= nums1[i], nums2[i] <= 10^6",
+    "nums1 and nums2 are each sorted in non-decreasing order."
+  ],
+  "hints": [
+    "Instead of merging both arrays in O(m + n), partition both arrays into a left half of size (m + n + 1) // 2 and a right half with the remaining elements.",
+    "Binary search the cut position i in the shorter array A (of length m <= n); the cut in B is determined as j = (m + n + 1) // 2 - i.",
+    "A partition is valid when A[i - 1] <= B[j] and B[j - 1] <= A[i] (treating out-of-bounds elements as -infinity or +infinity). Then compute the median from max(left) and min(right)."
+  ],
+  "examples": [
+    {
+      "explanation": "Merged array is [1, 2, 3], so the median is 2.0."
+    },
+    {
+      "explanation": "Merged array is [1, 2, 3, 4], so the median is (2 + 3) / 2 = 2.5."
+    },
+    {
+      "explanation": "Merged array is [1], so the median is 1.0."
+    }
+  ],
+  "timeComplexity": "O(log(min(m, n)))",
+  "spaceComplexity": "O(1)",
+  "compare": "float",
+  "signature": {
+    "kind": "function",
+    "method": "findMedianSortedArrays",
+    "params": [
+      {
+        "name": "nums1",
+        "type": "int[]"
+      },
+      {
+        "name": "nums2",
+        "type": "int[]"
+      }
+    ],
+    "returns": "double"
+  }
+}

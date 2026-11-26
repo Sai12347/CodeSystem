@@ -1,0 +1,55 @@
+{
+  "title": "Range Addition Max Count",
+  "difficulty": "Easy",
+  "subtopic": "Dynamic Grids",
+  "companies": [
+    "Amazon",
+    "Google",
+    "LinkedIn"
+  ],
+  "description": "You are given an `m x n` matrix initialized with all `0`s and a list of operations `ops`, where each `ops[i] = [ai, bi]` increments every cell `(r, c)` satisfying `0 <= r < ai` and `0 <= c < bi` by `1`.\n\nCount and return the number of cells in the matrix that contain the **maximum** value after applying all operations in `ops`.",
+  "constraints": [
+    "1 <= m, n <= 4 * 10^4",
+    "0 <= ops.length <= 10^4",
+    "ops[i].length == 2",
+    "1 <= ops[i][0] <= m",
+    "1 <= ops[i][1] <= n"
+  ],
+  "hints": [
+    "Every operation covers a top-left rectangle [0..ai-1, 0..bi-1], so the cells incremented by ALL operations are precisely the intersection of all those rectangles.",
+    "The intersection rectangle has dimensions min(ai) by min(bi) (or m by n if ops is empty), so the answer is simply minRow * minCol."
+  ],
+  "examples": [
+    {
+      "explanation": "The intersection of [0..1, 0..1] and [0..2, 0..2] is the 2x2 top-left submatrix (4 cells), each reaching value 2."
+    },
+    {
+      "explanation": "The smallest ai is 2 and smallest bi is 2 across all operations, giving 2 * 2 = 4 maximum cells."
+    },
+    {
+      "explanation": "With no operations, every cell holds the maximum value 0, so all 3 * 3 = 9 cells tie."
+    }
+  ],
+  "timeComplexity": "O(len(ops))",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "maxCount",
+    "params": [
+      {
+        "name": "m",
+        "type": "int"
+      },
+      {
+        "name": "n",
+        "type": "int"
+      },
+      {
+        "name": "ops",
+        "type": "int[][]"
+      }
+    ],
+    "returns": "int"
+  }
+}

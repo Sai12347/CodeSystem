@@ -1,0 +1,1 @@
+class Solution { public int maxProfit(int[] p) { int hold=Integer.MIN_VALUE/2,sold=0,rest=0;for(int x:p){int h=Math.max(hold,rest-x),s=hold+x,r=Math.max(rest,sold);hold=h;sold=s;rest=r;}return Math.max(sold,rest);} }

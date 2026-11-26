@@ -1,0 +1,49 @@
+{
+  "title": "Merge Two Linked Lists Alternately",
+  "difficulty": "Easy",
+  "subtopic": "Merge & Sort",
+  "companies": [
+    "Amazon",
+    "Apple",
+    "Microsoft",
+    "Adobe"
+  ],
+  "description": "Given the heads of two singly linked lists `l1` and `l2`, merge them into a single linked list by alternating nodes starting with `l1`: `l1[0], l2[0], l1[1], l2[1], ...`.\n\nIf one list is longer than the other, append all remaining nodes of the longer list to the end of the merged list. Return the head of the merged list in `O(n + m)` time and `O(1)` extra space.",
+  "constraints": [
+    "The number of nodes in each list is in the range [0, 5000].",
+    "-10^5 <= Node.val <= 10^5"
+  ],
+  "hints": [
+    "Maintain a sentinel `dummy` and `tail` pointer; in each iteration while both `l1` and `l2` are non-null, save `l1.next` and `l2.next`, append `l1` then `l2` to `tail`, and advance both lists.",
+    "After the loop finishes, attach whichever of `l1` or `l2` is still non-null directly to `tail.next`."
+  ],
+  "examples": [
+    {
+      "explanation": "Taking nodes alternately from [1, 3, 5] and [2, 4, 6] gives [1, 2, 3, 4, 5, 6]."
+    },
+    {
+      "explanation": "After alternating 1, 10, 2, 20, the remaining nodes [30, 40] of l2 are appended."
+    },
+    {
+      "explanation": "When l1 is empty, all nodes of l2 are returned as-is."
+    }
+  ],
+  "timeComplexity": "O(n + m)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "mergeAlternately",
+    "params": [
+      {
+        "name": "l1",
+        "type": "ListNode"
+      },
+      {
+        "name": "l2",
+        "type": "ListNode"
+      }
+    ],
+    "returns": "ListNode"
+  }
+}

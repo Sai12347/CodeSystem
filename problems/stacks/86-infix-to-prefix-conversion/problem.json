@@ -1,0 +1,45 @@
+{
+  "title": "Infix to Prefix Conversion",
+  "difficulty": "Easy",
+  "subtopic": "Expression Parsing",
+  "companies": [
+    "Amazon",
+    "Microsoft",
+    "Oracle",
+    "Adobe"
+  ],
+  "description": "Given a valid infix expression string `s` consisting of single lowercase letter operands (`'a'`-`'z'`), binary operators `'+'`, `'-'`, `'*'`, `'/'`, parentheses `'('` and `')'`, and optional spaces, convert `s` into its equivalent **Prefix (Polish) Notation** string with no spaces.\n\nStandard precedence and associativity apply: `'*'` and `'/'` have higher precedence than `'+'` and `'-'`, and all four binary operators are **left-associative**.",
+  "constraints": [
+    "1 <= s.length <= 2 * 10^4",
+    "s is a valid infix expression containing lowercase letters 'a'-'z', '+', '-', '*', '/', '(', ')', and ' '."
+  ],
+  "hints": [
+    "Scan `s` from right to left, treating ')' as an opening parenthesis and '(' as a closing parenthesis.",
+    "Because scanning right-to-left flips left-associativity into right-associativity, pop operators from the stack only when their precedence is **strictly greater** than the current operator's precedence, then reverse the collected output."
+  ],
+  "examples": [
+    {
+      "explanation": "(a + b) * c has root '*' with left subtree '+ab' and right 'c', yielding \"*+abc\"."
+    },
+    {
+      "explanation": "Left-associative a - b - c parses as (a - b) - c, yielding \"--abc\"."
+    },
+    {
+      "explanation": "a + b * c - d parses as (a + (b * c)) - d, yielding \"-+a*bcd\"."
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "infixToPrefix",
+    "params": [
+      {
+        "name": "s",
+        "type": "String"
+      }
+    ],
+    "returns": "String"
+  }
+}

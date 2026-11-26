@@ -1,0 +1,33 @@
+{
+  "title": "Longest Increasing Subsequence",
+  "difficulty": "Medium",
+  "subtopic": "Subsequences",
+  "companies": ["Google", "Amazon", "Microsoft", "Meta", "Apple", "Oracle"],
+  "leetcode": 300,
+  "description": "Given an integer array `nums`, return the length of the longest strictly increasing subsequence.\n\nA subsequence is derived from `nums` by deleting zero or more elements without changing the relative order of the remaining elements. A subsequence is strictly increasing if every element is strictly greater than the preceding element (`sub[i] < sub[i + 1]`).",
+  "constraints": [
+    "1 <= nums.length <= 2500",
+    "-10^4 <= nums[i] <= 10^4"
+  ],
+  "hints": [
+    "An O(n^2) DP defines `dp[i]` as the length of the longest strictly increasing subsequence ending at index `i`: `dp[i] = 1 + max(dp[j])` over all `j < i` with `nums[j] < nums[i]`.",
+    "To achieve O(n log n), maintain an array `tails` where `tails[k]` is the smallest possible ending value of any strictly increasing subsequence of length `k + 1` seen so far.",
+    "Because `tails` is always strictly increasing, use binary search (lower bound) for each `x` in `nums` to find the first index where `tails[idx] >= x` and replace it, or append `x` if it is larger than all elements in `tails`."
+  ],
+  "examples": [
+    {"explanation": "One longest strictly increasing subsequence is [2, 3, 7, 101], which has length 4."},
+    {"explanation": "One longest strictly increasing subsequence is [0, 1, 2, 3], which has length 4."},
+    {"explanation": "All elements are equal, so any strictly increasing subsequence can contain at most 1 element."}
+  ],
+  "timeComplexity": "O(n log n)",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "lengthOfLIS",
+    "params": [
+      {"name": "nums", "type": "int[]"}
+    ],
+    "returns": "int"
+  }
+}

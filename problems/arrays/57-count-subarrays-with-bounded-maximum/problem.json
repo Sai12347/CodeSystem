@@ -1,0 +1,48 @@
+{
+  "title": "Count Subarrays With Bounded Maximum",
+  "difficulty": "Medium",
+  "subtopic": "Subarrays",
+  "companies": [
+    "Amazon",
+    "Google",
+    "Microsoft"
+  ],
+  "description": "Given a non-empty non-negative array `nums` and a bound `bound`, count contiguous subarrays whose maximum value is at most `bound`. Input: `nums` and `bound`. Output: the number of qualifying subarrays.",
+  "constraints": [
+    "1 <= nums.length <= 100000",
+    "0 <= nums[i] <= 1000000000",
+    "0 <= bound <= 1000000000"
+  ],
+  "hints": [
+    "Maintain the prefix or window information needed to count candidate ranges.",
+    "Check repeated values, extreme bounds, and cases with no valid segment."
+  ],
+  "examples": [
+    {
+      "input": "nums = [2, 1, 4, 3], bound = 3",
+      "output": "4"
+    },
+    {
+      "input": "nums = [2, 9, 2, 5, 6], bound = 2",
+      "output": "2"
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "numSubarrayBoundedMax",
+    "params": [
+      {
+        "name": "nums",
+        "type": "int[]"
+      },
+      {
+        "name": "bound",
+        "type": "int"
+      }
+    ],
+    "returns": "long"
+  }
+}

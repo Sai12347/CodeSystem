@@ -1,0 +1,61 @@
+{
+  "title": "Stream of Characters",
+  "difficulty": "Hard",
+  "subtopic": "Autocomplete",
+  "companies": [
+    "Google",
+    "Amazon",
+    "Meta",
+    "Microsoft",
+    "Netflix"
+  ],
+  "leetcode": 1032,
+  "description": "Design an algorithm that accepts a stream of characters and checks whether any suffix of the characters queried so far forms a string from a given array of strings `words`.\n\nFor example, if `words = [\"abc\", \"xyz\"]` and the stream adds one by one `'a'`, `'x'`, `'y'`, `'z'`, your algorithm should detect that the suffix `\"xyz\"` of the queried characters `\"axyz\"` matches `\"xyz\"` from `words`.\n\nImplement the `StreamChecker` class:\n- `StreamChecker(String[] words)` initializes the object with the array `words`.\n- `boolean query(char letter)` accepts a new character from the stream and returns `true` if any non-empty suffix from the stream forms a word in `words`, and `false` otherwise.",
+  "constraints": [
+    "1 <= words.length <= 2000",
+    "1 <= words[i].length <= 200",
+    "words[i] consists of lowercase English letters.",
+    "letter is a lowercase English letter.",
+    "At most 4 * 10^4 calls will be made to query."
+  ],
+  "hints": [
+    "Checking suffixes of a growing stream is equivalent to checking prefixes of the reversed stream.",
+    "Insert every word in reversed order into a trie, and record the maximum word length L.",
+    "Keep only the last L queried characters in a buffer. On each query, walk backwards from the newest character through the reversed trie and return true as soon as you hit a word-end node."
+  ],
+  "examples": [
+    {
+      "explanation": "The stream receives a, b, c, d (matches \"cd\"), e, f (matches \"f\"), g, h, i, j, k, l (matches \"kl\")."
+    },
+    {
+      "explanation": "As characters arrive, \"aaab\" matches on the 6th query, \"ba\" on the 7th, \"ab\" on the 8th, \"ba\" on the 9th, and \"ab\"/\"abab\" on the 10th."
+    }
+  ],
+  "timeComplexity": "O(W * L) build, O(L) per query",
+  "spaceComplexity": "O(W * L)",
+  "compare": "exact",
+  "signature": {
+    "kind": "design",
+    "className": "StreamChecker",
+    "constructor": {
+      "params": [
+        {
+          "name": "words",
+          "type": "String[]"
+        }
+      ]
+    },
+    "methods": [
+      {
+        "name": "query",
+        "params": [
+          {
+            "name": "letter",
+            "type": "char"
+          }
+        ],
+        "returns": "boolean"
+      }
+    ]
+  }
+}

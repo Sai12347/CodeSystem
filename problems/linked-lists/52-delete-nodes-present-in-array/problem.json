@@ -1,0 +1,51 @@
+{
+  "title": "Delete Nodes Present in Array",
+  "difficulty": "Medium",
+  "subtopic": "Pointers & Nodes",
+  "companies": [
+    "Amazon",
+    "Google",
+    "Meta",
+    "Apple"
+  ],
+  "description": "You are given an array of integers `nums` and the `head` of a singly linked list. Remove all nodes from the linked list whose value appears in `nums`, preserving the relative order of all remaining nodes, and return the head of the modified linked list.\n\nIf all nodes are removed or the list is empty, return `null` (`None` in Python).",
+  "constraints": [
+    "1 <= nums.length <= 10^4",
+    "1 <= nums[i] <= 10^5",
+    "The number of nodes in the list is in the range [0, 10^4].",
+    "1 <= Node.val <= 10^5"
+  ],
+  "hints": [
+    "Convert `nums` into a hash set so checking whether a node must be deleted takes O(1) time.",
+    "Use a sentinel dummy node before `head` and unlink `curr.next` whenever `curr.next.val` belongs to the forbidden set."
+  ],
+  "examples": [
+    {
+      "explanation": "Removing values 1, 2, and 3 leaves only [4, 5]."
+    },
+    {
+      "explanation": "Removing value 1 removes every second node, leaving [2, 2, 2]."
+    },
+    {
+      "explanation": "Value 5 does not occur in [1, 2, 3, 4], so the list is unchanged."
+    }
+  ],
+  "timeComplexity": "O(n + m)",
+  "spaceComplexity": "O(m)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "modifiedList",
+    "params": [
+      {
+        "name": "nums",
+        "type": "int[]"
+      },
+      {
+        "name": "head",
+        "type": "ListNode"
+      }
+    ],
+    "returns": "ListNode"
+  }
+}

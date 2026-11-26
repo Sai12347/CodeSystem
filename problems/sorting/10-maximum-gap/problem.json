@@ -1,0 +1,48 @@
+{
+  "title": "Maximum Gap",
+  "difficulty": "Medium",
+  "subtopic": "Custom Comparators",
+  "companies": [
+    "Amazon",
+    "Google",
+    "Meta",
+    "Microsoft",
+    "Goldman Sachs"
+  ],
+  "leetcode": 164,
+  "description": "Given an integer array `nums`, return the maximum difference between two successive elements in its sorted form. If the array contains fewer than two elements, return `0`.\n\nYou must write an algorithm that runs in linear time `O(n)` and uses linear extra space `O(n)`.",
+  "constraints": [
+    "1 <= nums.length <= 10^5",
+    "0 <= nums[i] <= 10^9"
+  ],
+  "hints": [
+    "Comparison-based sorting takes O(n log n) time; to achieve O(n), exploit the Pigeonhole Principle via bucket partitioning (or Radix Sort).",
+    "With min value mn and max value mx over n elements, the maximum gap is at least ceil((mx - mn) / (n - 1)).",
+    "If each bucket has width b = max(1, (mx - mn) // (n - 1)), no two elements inside the same bucket can form the maximum gap—so you only need to track the minimum and maximum of each bucket and compare consecutive non-empty buckets."
+  ],
+  "examples": [
+    {
+      "explanation": "The sorted form of the array is [1, 3, 6, 9]; either (3, 6) or (6, 9) has the maximum difference of 3."
+    },
+    {
+      "explanation": "The array contains fewer than 2 elements, so return 0."
+    },
+    {
+      "explanation": "With only two elements 1 and 10000000, the successive difference is 9999999."
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "maximumGap",
+    "params": [
+      {
+        "name": "nums",
+        "type": "int[]"
+      }
+    ],
+    "returns": "int"
+  }
+}

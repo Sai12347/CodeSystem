@@ -1,0 +1,50 @@
+{
+  "title": "Multiply Two Linked List Numbers",
+  "difficulty": "Medium",
+  "subtopic": "Reversal",
+  "companies": [
+    "Amazon",
+    "Microsoft",
+    "Meta",
+    "Oracle"
+  ],
+  "description": "You are given two non-empty singly linked lists `l1` and `l2` representing two non-negative integers in **most-significant-digit-first** order. Each node contains a single decimal digit (`0` through `9`), and neither number contains leading zeros except the number `0` itself.\n\nMultiply the two integers and return their product as a singly linked list in most-significant-digit-first order (with no leading zeros except a single `0` if the product is zero). Because the numbers can have up to 200 digits, they may exceed 64-bit integer limits.",
+  "constraints": [
+    "The number of nodes in each list is in the range [1, 200].",
+    "0 <= Node.val <= 9",
+    "Neither input has leading zeros unless it is the single digit 0."
+  ],
+  "hints": [
+    "Reverse both linked lists (or extract their digits in least-significant-digit-first order) so position `i` in `l1` times position `j` in `l2` contributes directly to output digit `i + j`.",
+    "Accumulate all partial products into an array of size `n + m`, propagate carries from least significant to most significant, strip leading zeros, and build the resulting linked list."
+  ],
+  "examples": [
+    {
+      "explanation": "123 * 45 = 5535, represented as [5, 5, 3, 5]."
+    },
+    {
+      "explanation": "99 * 99 = 9801, represented as [9, 8, 0, 1]."
+    },
+    {
+      "explanation": "0 * 5678 = 0, represented as a single node [0]."
+    }
+  ],
+  "timeComplexity": "O(n * m)",
+  "spaceComplexity": "O(n + m)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "multiplyLists",
+    "params": [
+      {
+        "name": "l1",
+        "type": "ListNode"
+      },
+      {
+        "name": "l2",
+        "type": "ListNode"
+      }
+    ],
+    "returns": "ListNode"
+  }
+}

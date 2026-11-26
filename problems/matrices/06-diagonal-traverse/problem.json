@@ -1,0 +1,48 @@
+{
+  "title": "Diagonal Traverse",
+  "difficulty": "Medium",
+  "subtopic": "Spiral Traversal",
+  "companies": [
+    "Meta",
+    "Google",
+    "Amazon",
+    "Apple",
+    "Microsoft"
+  ],
+  "leetcode": 498,
+  "description": "Given an `m x n` integer matrix `mat`, return an array of all elements of `mat` in diagonal zig-zag order.\n\nStart at `(0, 0)` and traverse diagonals in increasing order of `d = r + c` from `0` to `m + n - 2`: even-indexed diagonals (`d % 2 == 0`) move upward-right (row decreases, column increases), while odd-indexed diagonals (`d % 2 == 1`) move downward-left (row increases, column decreases).",
+  "constraints": [
+    "m == mat.length",
+    "n == mat[i].length",
+    "1 <= m, n <= 100",
+    "1 <= m * n <= 10^4",
+    "-10^5 <= mat[i][j] <= 10^5"
+  ],
+  "hints": [
+    "Every cell on the same anti-diagonal shares the same sum r + c.",
+    "When moving up-right and hitting a boundary, check the right boundary (c == n - 1) before the top boundary (r == 0) so the top-right corner moves down rather than out of bounds.",
+    "Symmetrically, when moving down-left and hitting a boundary, check the bottom boundary (r == m - 1) before the left boundary (c == 0) so the bottom-left corner moves right."
+  ],
+  "examples": [
+    {
+      "explanation": "Diagonals are [1] (up), [2,4] (down), [7,5,3] (up), [6,8] (down), and [9] (up)."
+    },
+    {
+      "explanation": "Diagonals are [1] (up), [2,3] (down), and [4] (up)."
+    }
+  ],
+  "timeComplexity": "O(m * n)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "findDiagonalOrder",
+    "params": [
+      {
+        "name": "mat",
+        "type": "int[][]"
+      }
+    ],
+    "returns": "int[]"
+  }
+}

@@ -1,0 +1,49 @@
+{
+  "title": "Modular Multiplicative Inverse",
+  "difficulty": "Medium",
+  "subtopic": "Fast Exponentiation",
+  "companies": [
+    "Google",
+    "Goldman Sachs",
+    "Microsoft"
+  ],
+  "description": "Given a non-negative integer `a` and a prime integer `p`, find the unique integer `x` in `[1, p - 1]` such that `(a * x) % p == 1`. If no such modular inverse exists (which happens when `a` is divisible by `p`), return `-1`.",
+  "constraints": [
+    "0 <= a <= 10^15",
+    "2 <= p <= 10^9 + 7",
+    "p is guaranteed to be a prime number."
+  ],
+  "hints": [
+    "First reduce `a = a % p`; if `a == 0`, no inverse exists modulo `p`, so return `-1`.",
+    "By Fermat's Little Theorem for prime `p`, `a^(p - 1) == 1 (mod p)`, so `a^(-1) == a^(p - 2) (mod p)`, computable via binary exponentiation in O(log p)."
+  ],
+  "examples": [
+    {
+      "explanation": "3 * 5 = 15 == 1 (mod 7), so the inverse of 3 mod 7 is 5."
+    },
+    {
+      "explanation": "10 is divisible by 5, so no inverse exists and we return -1."
+    },
+    {
+      "explanation": "2 * 500000004 = 1000000008 == 1 (mod 1000000007)."
+    }
+  ],
+  "timeComplexity": "O(log p)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "modInverse",
+    "params": [
+      {
+        "name": "a",
+        "type": "long"
+      },
+      {
+        "name": "p",
+        "type": "long"
+      }
+    ],
+    "returns": "long"
+  }
+}

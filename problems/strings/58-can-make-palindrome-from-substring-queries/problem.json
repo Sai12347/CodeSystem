@@ -1,0 +1,50 @@
+{
+  "title": "Can Make Palindrome From Substring Queries",
+  "difficulty": "Medium",
+  "subtopic": "Palindromes",
+  "companies": [
+    "Google",
+    "Meta",
+    "Uber"
+  ],
+  "description": "You are given a lowercase string `s` and an array `queries` where `queries[i] = [left, right, k]`. For each query, consider the substring `s[left..right]` (inclusive): you may rearrange its characters in any order and then replace up to `k` characters with any lowercase letter. Return a boolean array where the `i`-th entry is `true` if the substring can be turned into a palindrome, and `false` otherwise.",
+  "constraints": [
+    "1 <= s.length <= 10^5",
+    "1 <= queries.length <= 10^5",
+    "0 <= left <= right < s.length",
+    "0 <= k <= s.length"
+  ],
+  "hints": [
+    "After rearranging, only the parity (odd vs even count) of each of the 26 letters matters.",
+    "Maintain a prefix 26-bit XOR mask; the number of odd-frequency letters in [left, right] is popcount(prefix[right + 1] ^ prefix[left]), and you need oddCount // 2 replacements."
+  ],
+  "examples": [
+    {
+      "explanation": "Query [3,3,0] is \"d\" (already a palindrome); [1,2,0] is \"bc\" (needs 1 change); [0,3,1] is \"abcd\" (4 odd letters require 2 changes); [0,3,2] allows 2 changes; [0,4,1] is \"abcda\" (3 odd letters require 1 change)."
+    },
+    {
+      "explanation": "With 0 replacements, \"ly\" cannot form a palindrome, while \"b\" with 1 replacement can."
+    },
+    {
+      "explanation": "All letters are identical so every substring is already a palindrome."
+    }
+  ],
+  "timeComplexity": "O(n + q)",
+  "spaceComplexity": "O(n + q)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "canMakePaliQueries",
+    "params": [
+      {
+        "name": "s",
+        "type": "String"
+      },
+      {
+        "name": "queries",
+        "type": "int[][]"
+      }
+    ],
+    "returns": "boolean[]"
+  }
+}

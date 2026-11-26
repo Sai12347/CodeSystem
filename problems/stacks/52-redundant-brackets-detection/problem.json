@@ -1,0 +1,45 @@
+{
+  "title": "Redundant Brackets Detection",
+  "difficulty": "Easy",
+  "subtopic": "Valid Parentheses",
+  "companies": [
+    "Amazon",
+    "Microsoft",
+    "Oracle",
+    "Adobe"
+  ],
+  "description": "Given a valid mathematical expression string `s` consisting of lowercase English letters (variables), binary operators `'+'`, `'-'`, `'*'`, `'/'`, and balanced parentheses `'('` and `')'`, determine whether `s` contains any **redundant parentheses**.\n\nA pair of matching parentheses is redundant if there is no operator (`'+'`, `'-'`, `'*'`, or `'/'`) directly enclosed within that pair (for example, `\"(a)\"`, `\"((a+b))\"`, or `\"()\"`). Return `true` if any redundant pair exists, and `false` otherwise.",
+  "constraints": [
+    "1 <= s.length <= 10^4",
+    "s has balanced parentheses and contains only lowercase letters, '+', '-', '*', '/', '(', and ')'."
+  ],
+  "hints": [
+    "Push characters onto a stack until you reach a closing parenthesis ')'.",
+    "Pop elements until matching '(' while checking whether at least one operator was popped; if none was found, that parenthesis pair is redundant."
+  ],
+  "examples": [
+    {
+      "explanation": "The outer pair around (a+b) wraps only an already-parenthesized subexpression with no operator directly inside, so it is redundant."
+    },
+    {
+      "explanation": "Each pair of parentheses directly encloses an operator ('+' or '*'), so none is redundant."
+    },
+    {
+      "explanation": "(a) encloses a single variable with no operator, so it is redundant."
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "hasRedundantBrackets",
+    "params": [
+      {
+        "name": "s",
+        "type": "String"
+      }
+    ],
+    "returns": "boolean"
+  }
+}

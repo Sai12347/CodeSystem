@@ -1,0 +1,75 @@
+{
+  "title": "Implement Trie (Prefix Tree)",
+  "difficulty": "Medium",
+  "subtopic": "Prefix Search",
+  "companies": [
+    "Google",
+    "Amazon",
+    "Microsoft",
+    "Meta",
+    "Apple",
+    "Bloomberg"
+  ],
+  "leetcode": 208,
+  "description": "A trie (pronounced as \"try\") or prefix tree is a tree data structure used to efficiently store and retrieve keys in a dataset of strings. It supports fast prefix-based lookups for applications such as autocomplete and spellcheckers.\n\nImplement the `Trie` class:\n- `Trie()` initializes the trie object.\n- `void insert(String word)` inserts the string `word` into the trie.\n- `boolean search(String word)` returns `true` if the exact string `word` is in the trie (i.e., was previously inserted), and `false` otherwise.\n- `boolean startsWith(String prefix)` returns `true` if there is any previously inserted string in the trie that has the prefix `prefix`, and `false` otherwise.",
+  "constraints": [
+    "1 <= word.length, prefix.length <= 2000",
+    "word and prefix consist only of lowercase English letters.",
+    "At most 3 * 10^4 calls in total will be made to insert, search, and startsWith."
+  ],
+  "hints": [
+    "Represent each node with a map or fixed 26-element array of child links indexed by character, plus a boolean flag indicating whether a complete word ends at that node.",
+    "To insert a word, walk from the root creating missing child nodes for each character, and mark the final node as a word boundary.",
+    "Both search and startsWith traverse the trie character by character; startsWith returns true as soon as all prefix characters exist, while search also requires the final node's word-end flag to be true."
+  ],
+  "examples": [
+    {
+      "explanation": "After inserting \"apple\", searching \"apple\" returns true, searching \"app\" returns false (it is only a prefix so far), and startsWith(\"app\") returns true. After inserting \"app\", searching \"app\" returns true."
+    },
+    {
+      "explanation": "With \"cat\", \"car\", and \"dog\" inserted, \"ca\" is a valid prefix but not a complete word, \"car\" is found, \"do\" is a valid prefix, and \"bat\" matches no inserted word's prefix."
+    }
+  ],
+  "timeComplexity": "O(L) per operation",
+  "spaceComplexity": "O(N * L)",
+  "compare": "exact",
+  "signature": {
+    "kind": "design",
+    "className": "Trie",
+    "constructor": {
+      "params": []
+    },
+    "methods": [
+      {
+        "name": "insert",
+        "params": [
+          {
+            "name": "word",
+            "type": "String"
+          }
+        ],
+        "returns": "void"
+      },
+      {
+        "name": "search",
+        "params": [
+          {
+            "name": "word",
+            "type": "String"
+          }
+        ],
+        "returns": "boolean"
+      },
+      {
+        "name": "startsWith",
+        "params": [
+          {
+            "name": "prefix",
+            "type": "String"
+          }
+        ],
+        "returns": "boolean"
+      }
+    ]
+  }
+}

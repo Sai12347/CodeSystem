@@ -1,0 +1,47 @@
+{
+  "title": "Count Submatrices With All Ones",
+  "difficulty": "Medium",
+  "subtopic": "2D Search",
+  "companies": [
+    "Google",
+    "Amazon",
+    "Meta",
+    "Microsoft"
+  ],
+  "description": "Given an `m x n` binary matrix `mat` containing only `0`s and `1`s, return the total number of non-empty rectangular submatrices whose elements are all `1`.",
+  "constraints": [
+    "m == mat.length",
+    "n == mat[i].length",
+    "1 <= m, n <= 150",
+    "mat[i][j] is either 0 or 1."
+  ],
+  "hints": [
+    "Treat each row r as the bottom edge of a histogram where height[c] is the number of consecutive 1s ending at (r, c) moving upward.",
+    "Use a monotonic increasing stack of column indices along each row to compute, in O(n) time, the number of all-ones submatrices whose bottom-right corner is (r, c)."
+  ],
+  "examples": [
+    {
+      "explanation": "There are 6 1x1, 2 1x2, 3 2x1, 1 2x2, and 1 3x1 all-ones submatrices, totaling 13."
+    },
+    {
+      "explanation": "Summing across all valid all-ones rectangles in the 3x4 grid yields 24."
+    },
+    {
+      "explanation": "A 1x1 matrix of [0] has 0 all-ones submatrices."
+    }
+  ],
+  "timeComplexity": "O(m * n)",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "numSubmat",
+    "params": [
+      {
+        "name": "mat",
+        "type": "int[][]"
+      }
+    ],
+    "returns": "int"
+  }
+}

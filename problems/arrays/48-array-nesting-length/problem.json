@@ -1,0 +1,43 @@
+{
+  "title": "Array Nesting Length",
+  "difficulty": "Medium",
+  "subtopic": "Traversal",
+  "companies": [
+    "Amazon",
+    "Google",
+    "Microsoft"
+  ],
+  "description": "The array `nums` is a permutation of the integers from 0 through `n - 1`. Starting at index `i`, repeatedly visit the index named by the current value: `i, nums[i], nums[nums[i]], ...`. Return the largest number of distinct indices visited before a cycle repeats. Input: the permutation `nums`. Output: the maximum cycle length.",
+  "constraints": [
+    "1 <= nums.length <= 100000",
+    "nums is a permutation of [0, nums.length - 1]"
+  ],
+  "hints": [
+    "Scan once to identify the boundary or state where the answer changes.",
+    "Test already ordered, reversed, duplicate, and minimum-size inputs."
+  ],
+  "examples": [
+    {
+      "input": "nums = [5, 4, 0, 3, 1, 6, 2]",
+      "output": "4"
+    },
+    {
+      "input": "nums = [0, 1, 2, 3]",
+      "output": "1"
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "arrayNesting",
+    "params": [
+      {
+        "name": "nums",
+        "type": "int[]"
+      }
+    ],
+    "returns": "int"
+  }
+}

@@ -1,0 +1,50 @@
+{
+  "title": "Lexicographically Largest Matrix From Row and Column Sums",
+  "difficulty": "Medium",
+  "subtopic": "Dynamic Grids",
+  "companies": [
+    "Google",
+    "Meta",
+    "Amazon",
+    "Uber"
+  ],
+  "description": "You are given two non-negative integer arrays `rowSum` of length `m` and `colSum` of length `n` with `sum(rowSum) == sum(colSum)`.\n\nConstruct an `m x n` matrix of **non-negative integers** whose `i`-th row sums to `rowSum[i]` and whose `j`-th column sums to `colSum[j]`. Among all valid matrices, return the **lexicographically largest** one when read in row-major order (comparing cell `(0, 0)` first, then `(0, 1)`, ..., up to `(m - 1, n - 1)`).",
+  "constraints": [
+    "1 <= rowSum.length, colSum.length <= 200",
+    "0 <= rowSum[i], colSum[j] <= 10^8",
+    "sum(rowSum) == sum(colSum)"
+  ],
+  "hints": [
+    "To maximize the matrix lexicographically in row-major order, put the largest feasible value min(remRow[r], remCol[c]) into the earliest available cell (r, c).",
+    "Each assignment exhausts either row r or column c completely, so you can advance a single pair of pointers (r, c) across the grid in O(m + n) greedy steps."
+  ],
+  "examples": [
+    {
+      "explanation": "Cell (0, 0) takes min(3, 4) = 3, exhausting row 0; then row 1 fills column 0 with 1 and column 1 with 7."
+    },
+    {
+      "explanation": "Greedily assigning min(remRow[r], remCol[c]) in row-major order places 5 at (0,0), 3 at (1,0), 4 at (1,1), 2 at (2,1), and 8 at (2,2)."
+    },
+    {
+      "explanation": "When row 0 has sum 0, all of row 0 must be 0, and row 1 absorbs the column sums [2, 0, 5]."
+    }
+  ],
+  "timeComplexity": "O(m * n)",
+  "spaceComplexity": "O(m * n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "restoreMatrix",
+    "params": [
+      {
+        "name": "rowSum",
+        "type": "int[]"
+      },
+      {
+        "name": "colSum",
+        "type": "int[]"
+      }
+    ],
+    "returns": "int[][]"
+  }
+}

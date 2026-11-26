@@ -1,0 +1,48 @@
+{
+  "title": "Is Subsequence",
+  "difficulty": "Easy",
+  "subtopic": "Substrings",
+  "companies": [
+    "Amazon",
+    "Microsoft",
+    "Google"
+  ],
+  "description": "Return true if `s` can be formed by deleting zero or more characters from `t` without changing the order of the remaining characters. Both strings contain lowercase English letters.",
+  "constraints": [
+    "0 <= s.length <= 100",
+    "0 <= t.length <= 10^4",
+    "s and t contain only lowercase English letters"
+  ],
+  "hints": [
+    "Scan the string while tracking the needed counts or positions.",
+    "Check repeated characters and boundary cases."
+  ],
+  "examples": [
+    {
+      "input": "s = \"abc\", t = \"ahbgdc\"",
+      "output": "true"
+    },
+    {
+      "input": "s = \"axc\", t = \"ahbgdc\"",
+      "output": "false"
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "isSubsequence",
+    "params": [
+      {
+        "name": "s",
+        "type": "String"
+      },
+      {
+        "name": "t",
+        "type": "String"
+      }
+    ],
+    "returns": "boolean"
+  }
+}

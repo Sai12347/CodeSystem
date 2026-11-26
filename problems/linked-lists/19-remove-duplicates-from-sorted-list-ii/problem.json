@@ -1,0 +1,46 @@
+{
+  "title": "Remove Duplicates from Sorted List II",
+  "difficulty": "Medium",
+  "subtopic": "Pointers & Nodes",
+  "companies": [
+    "Amazon",
+    "Microsoft",
+    "Meta",
+    "Adobe"
+  ],
+  "description": "Given the `head` of a singly linked list sorted in non-decreasing order, delete **all** nodes that have duplicate values, leaving only values that appeared **strictly once** in the original list. Return the head of the resulting sorted linked list, or `null` (`None` in Python) if no unique values remain.",
+  "constraints": [
+    "The number of nodes in the list is in the range [0, 3000].",
+    "-100 <= Node.val <= 100",
+    "The list is guaranteed to be sorted in non-decreasing order."
+  ],
+  "hints": [
+    "Use a dummy node before `head` and maintain `prev` pointing to the last confirmed unique node.",
+    "Whenever `curr.val == curr.next.val`, skip every node with that value and set `prev.next` to the first node after the duplicate run without advancing `prev`."
+  ],
+  "examples": [
+    {
+      "explanation": "Values 3 and 4 appear more than once and are completely removed, leaving [1, 2, 5]."
+    },
+    {
+      "explanation": "Value 1 appears three times and is completely removed, leaving [2, 3]."
+    },
+    {
+      "explanation": "All values appear multiple times, so the resulting list is empty (null)."
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "deleteAllDuplicates",
+    "params": [
+      {
+        "name": "head",
+        "type": "ListNode"
+      }
+    ],
+    "returns": "ListNode"
+  }
+}

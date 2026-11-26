@@ -1,0 +1,43 @@
+{
+  "title": "Next Higher Integer With Same Set Bits",
+  "difficulty": "Medium",
+  "subtopic": "Two Complement",
+  "companies": [
+    "Google",
+    "Apple",
+    "Bloomberg"
+  ],
+  "description": "Given a positive integer `n`, return the smallest integer strictly greater than `n` that has the exact same number of `1`-bits in its binary representation.",
+  "constraints": [
+    "1 <= n <= 10^15"
+  ],
+  "hints": [
+    "Isolate the lowest set bit with two's complement: `c = n & -n`. Adding `c` to `n` (`r = n + c`) turns the rightmost contiguous block of `1`-bits into `0`s and promotes the next `0` bit to `1`.",
+    "Gosper's hack restores the remaining `k - 1` ones from that block to the lowest bit positions in O(1): `(((r ^ n) >> 2) // c) | r`."
+  ],
+  "examples": [
+    {
+      "explanation": "6 is 110 in binary (two 1s); the next higher integer with two 1s is 9 (1001)."
+    },
+    {
+      "explanation": "12 is 1100 in binary (two 1s); the next higher integer with two 1s is 17 (10001)."
+    },
+    {
+      "explanation": "1 is 1 in binary (one 1); the next higher integer with one 1 is 2 (10)."
+    }
+  ],
+  "timeComplexity": "O(1)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "nextHigherSameBits",
+    "params": [
+      {
+        "name": "n",
+        "type": "long"
+      }
+    ],
+    "returns": "long"
+  }
+}

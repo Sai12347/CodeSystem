@@ -1,0 +1,43 @@
+{
+  "title": "Remove Duplicate Letters",
+  "difficulty": "Medium",
+  "subtopic": "String Matching",
+  "companies": [
+    "Amazon",
+    "Google",
+    "Microsoft"
+  ],
+  "description": "Given a lowercase string `s`, remove repeated occurrences so every distinct letter appears exactly once. Among all valid results, return the lexicographically smallest string. Input: `s`. Output: the smallest valid result.",
+  "constraints": [
+    "1 <= s.length <= 100000",
+    "s contains lowercase English letters"
+  ],
+  "hints": [
+    "Track only the character counts or prefixes needed to decide the next step.",
+    "Check repeated symbols, empty or minimal cases, and impossible arrangements."
+  ],
+  "examples": [
+    {
+      "input": "s = \"bcabc\"",
+      "output": "abc"
+    },
+    {
+      "input": "s = \"cbacdcbc\"",
+      "output": "acdb"
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(1) for the alphabet",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "removeDuplicateLetters",
+    "params": [
+      {
+        "name": "s",
+        "type": "String"
+      }
+    ],
+    "returns": "String"
+  }
+}

@@ -1,0 +1,49 @@
+{
+  "title": "Unbounded Knapsack Maximum Value",
+  "difficulty": "Medium",
+  "subtopic": "Unbounded Knapsack",
+  "companies": [
+    "Amazon",
+    "Google",
+    "Microsoft"
+  ],
+  "description": "Each item has a positive weight and value and may be chosen any number of times. Given parallel arrays `weights` and `values` and a capacity, return the maximum total value whose total weight does not exceed the capacity.",
+  "constraints": [
+    "1 <= item count <= 100",
+    "1 <= weights[i] <= 1000",
+    "0 <= values[i] <= 10^6",
+    "0 <= capacity <= 10^4"
+  ],
+  "hints": [
+    "Define a state by the capacity, achievable sum, or difference between partial groups.",
+    "Process each item with the usage rule in the statement."
+  ],
+  "examples": [
+    {
+      "input": "weights = [2,3,4], values = [4,5,7], capacity = 7",
+      "output": "12"
+    }
+  ],
+  "timeComplexity": "O(n*capacity)",
+  "spaceComplexity": "O(capacity)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "unboundedKnapsack",
+    "params": [
+      {
+        "name": "weights",
+        "type": "int[]"
+      },
+      {
+        "name": "values",
+        "type": "int[]"
+      },
+      {
+        "name": "capacity",
+        "type": "int"
+      }
+    ],
+    "returns": "int"
+  }
+}

@@ -1,0 +1,45 @@
+{
+  "title": "Find Critical and Pseudo-Critical Edges in Minimum Spanning Tree",
+  "difficulty": "Hard",
+  "subtopic": "Kruskal Algorithm",
+  "companies": ["Google", "Amazon", "Meta", "Microsoft", "Bloomberg"],
+  "leetcode": 1489,
+  "description": "Given a weighted undirected connected graph with `n` vertices numbered from `0` to `n - 1`, and an array `edges` where `edges[i] = [ai, bi, weighti]` represents a bidirectional and weighted edge between nodes `ai` and `bi`. A minimum spanning tree (MST) is a subset of the graph's edges that connects all vertices without cycles and with the minimum possible total edge weight.\n\nFind all the critical and pseudo-critical edges in the given graph's minimum spanning tree (MST):\n- A **critical edge** is an MST edge whose deletion from the graph would cause the MST weight to increase (or disconnect the graph so no spanning tree exists).\n- A **pseudo-critical edge** is an edge that can appear in some MSTs, but not all (it is not critical, yet there exists at least one MST containing it).\n\nReturn a list `[critical, pseudoCritical]` containing the 0-based indices of all critical edges and all pseudo-critical edges respectively. **Sort each of the two lists in ascending order of edge index.**",
+  "constraints": [
+    "2 <= n <= 100",
+    "1 <= edges.length <= min(200, n * (n - 1) / 2)",
+    "edges[i].length == 3",
+    "0 <= ai < bi < n",
+    "1 <= weighti <= 1000",
+    "All pairs (ai, bi) are distinct.",
+    "The graph is connected."
+  ],
+  "hints": [
+    "First sort the edges by weight (preserving their original indices) and run Kruskal's algorithm to compute the baseline MST weight.",
+    "An edge i is critical if running Kruskal's algorithm while skipping edge i fails to connect all n vertices or yields a strictly larger spanning tree weight.",
+    "If edge i is not critical, force-include it first in DSU and run Kruskal's on the remaining edges; if the resulting spanning tree has the exact baseline MST weight, then edge i is pseudo-critical."
+  ],
+  "examples": [
+    {
+      "explanation": "The MST weight is 7. Removing edge 0 or edge 1 increases the MST weight, so [0, 1] are critical. Edges 2, 3, 4, and 5 each appear in some MSTs of weight 7 but not all, while edge 6 (weight 6) never appears in any MST."
+    },
+    {
+      "explanation": "All four edges have weight 1 forming a 4-cycle; any 3 edges form an MST of weight 3, so no edge is critical and all four edges [0, 1, 2, 3] are pseudo-critical."
+    },
+    {
+      "explanation": "The unique MST uses edges 0 and 1 (total weight 3). Both are critical, and edge 2 (weight 5) is never part of any MST."
+    }
+  ],
+  "timeComplexity": "O(m^2 * alpha(n))",
+  "spaceComplexity": "O(n + m)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "findCriticalAndPseudoCriticalEdges",
+    "params": [
+      {"name": "n", "type": "int"},
+      {"name": "edges", "type": "int[][]"}
+    ],
+    "returns": "List<List<Integer>>"
+  }
+}

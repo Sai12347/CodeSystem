@@ -1,0 +1,45 @@
+{
+  "title": "Count Valid Parentheses Substrings",
+  "difficulty": "Medium",
+  "subtopic": "Valid Parentheses",
+  "companies": [
+    "Google",
+    "Meta",
+    "Amazon",
+    "Goldman Sachs"
+  ],
+  "description": "Given a string `s` consisting only of `'('` and `')'`, return the total number of non-empty contiguous substrings of `s` that form a valid balanced parentheses string.\n\nBecause the count may exceed the 32-bit signed integer range, return the answer as a 64-bit integer (`long`).",
+  "constraints": [
+    "1 <= s.length <= 10^5",
+    "s consists only of '(' and ')'."
+  ],
+  "hints": [
+    "Maintain a stack of unmatched '(' indices and an array dp where dp[i] is the number of valid substrings ending at index i.",
+    "When s[i] == ')' matches a popped '(' at index j, every valid substring ending at j - 1 can be extended by s[j..i], so dp[i] = 1 + (dp[j - 1] if j > 0 else 0)."
+  ],
+  "examples": [
+    {
+      "explanation": "\"()()\" contains 3 valid substrings: \"()\" at [0,1], \"()\" at [2,3], and \"()()\" at [0,3]."
+    },
+    {
+      "explanation": "\"(()())\" contains 4 valid substrings: \"()\" at [1,2], \"()\" at [3,4], \"()()\" at [1,4], and \"(()())\" at [0,5]."
+    },
+    {
+      "explanation": "\"))((\" contains no valid parentheses substrings."
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "countValidSubstrings",
+    "params": [
+      {
+        "name": "s",
+        "type": "String"
+      }
+    ],
+    "returns": "long"
+  }
+}

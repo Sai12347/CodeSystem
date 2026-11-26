@@ -1,0 +1,44 @@
+{
+  "title": "Maximum Subset XOR",
+  "difficulty": "Hard",
+  "subtopic": "XOR Tricks",
+  "companies": [
+    "Google",
+    "Meta",
+    "Microsoft"
+  ],
+  "description": "Given an array `nums` of non-negative integers, choose any subset of elements (possibly empty, whose XOR is `0`) so that the bitwise XOR of all chosen elements is as large as possible. Return this maximum subset XOR value.",
+  "constraints": [
+    "1 <= nums.length <= 10^5",
+    "0 <= nums[i] <= 10^9"
+  ],
+  "hints": [
+    "Think of each integer as a 31-bit vector over GF(2) and maintain a linear XOR basis where `basis[b]` holds a basis vector whose highest set bit is `b`.",
+    "After building the basis by reducing each number against existing basis vectors, greedily XOR `ans` with `basis[b]` from the highest bit down whenever `ans ^ basis[b] > ans`."
+  ],
+  "examples": [
+    {
+      "explanation": "Choosing {2, 5} yields 2 ^ 5 = 7, the maximum possible subset XOR."
+    },
+    {
+      "explanation": "Choosing {8, 2, 4, 1} yields 8 ^ 2 ^ 4 ^ 1 = 15."
+    },
+    {
+      "explanation": "All elements are 0, so the maximum subset XOR is 0."
+    }
+  ],
+  "timeComplexity": "O(n log M)",
+  "spaceComplexity": "O(log M)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "maxSubsetXor",
+    "params": [
+      {
+        "name": "nums",
+        "type": "int[]"
+      }
+    ],
+    "returns": "int"
+  }
+}

@@ -16,18 +16,22 @@ import { AlgorithmId } from '../../types/algorithm';
 import { useVisualizer } from '../../context/VisualizerContext';
 import { ActiveTab } from '../common/Navbar';
 import { COMPLETE_30_DSA_TOPICS, DsaTopicMeta } from '../../data/dsaTopicsCatalog';
+import { getAvailableQuestionTopicIds, getQuestionsForTopic, getTotalQuestionsCount } from '../../data/questionBank';
 
 interface LearnCatalogViewProps {
   onNavigate: (tab: ActiveTab) => void;
+  onOpenPractice: (topicId: string) => void;
 }
 
-export const LearnCatalogView: React.FC<LearnCatalogViewProps> = ({ onNavigate }) => {
+export const LearnCatalogView: React.FC<LearnCatalogViewProps> = ({ onNavigate, onOpenPractice }) => {
   const { selectAlgorithm } = useVisualizer();
   const [selectedCategory, setSelectedCategory] = useState<'ALL' | 'BEGINNER' | 'INTERMEDIATE' | 'ADVANCED'>('ALL');
   const [searchQuery, setSearchQuery] = useState('');
   const [activeModalTopic, setActiveModalTopic] = useState<DsaTopicMeta | null>(null);
 
-  const filteredTopics = COMPLETE_30_DSA_TOPICS.filter((t) => {
+  const availableTopicIds = getAvailableQuestionTopicIds();
+  const availableTopics = COMPLETE_30_DSA_TOPICS.filter((topic) => availableTopicIds.includes(topic.id));
+  const filteredTopics = availableTopics.filter((t) => {
     const matchCat = selectedCategory === 'ALL' || t.category === selectedCategory;
     const matchSearch =
       t.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -37,7 +41,7 @@ export const LearnCatalogView: React.FC<LearnCatalogViewProps> = ({ onNavigate }
   });
 
   const handleLaunchPracticeForTopic = (topic: DsaTopicMeta) => {
-    onNavigate('practice');
+    onOpenPractice(topic.id);
   };
 
   const handleDirectVisualizer = (topicId: string) => {
@@ -53,8 +57,8 @@ export const LearnCatalogView: React.FC<LearnCatalogViewProps> = ({ onNavigate }
       selectAlgorithm('stack');
     } else if (topicId === 'queues-deques') {
       selectAlgorithm('queue');
-    } else {
-      selectAlgorithm('binary-search');
+      } else {
+      return;
     }
     onNavigate('visualizer');
   };
@@ -66,14 +70,14 @@ export const LearnCatalogView: React.FC<LearnCatalogViewProps> = ({ onNavigate }
         <div className="flex items-center gap-2 mb-2">
           <BookOpen className="w-5 h-5 text-blue-600 dark:text-blue-400" />
           <span className="text-xs font-bold uppercase tracking-wider text-blue-600 dark:text-blue-400">
-            Complete 30-Topic Curriculum
+            Curated Practice Topics
           </span>
         </div>
         <h1 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-zinc-900 dark:text-white">
-          Master All 30 Topics in Data Structures & Algorithms
+          Practice {getTotalQuestionsCount()} DSA Problems
         </h1>
         <p className="text-sm text-zinc-600 dark:text-zinc-400 mt-1 max-w-3xl leading-relaxed">
-          Structured curriculum spanning foundational arrays to competitive programming graphs and dynamic programming. Every topic includes 100+ curated questions, time/space trade-offs, and interactive testcase dry-runs.
+          Browse reviewed problem statements with matching examples, constraints, hints, and reference solutions across {availableTopics.length} topics.
         </p>
       </div>
 
@@ -91,7 +95,7 @@ export const LearnCatalogView: React.FC<LearnCatalogViewProps> = ({ onNavigate }
                   : 'text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white'
               }`}
             >
-              {cat === 'ALL' ? 'All 30 Topics' : cat}
+              {cat === 'ALL' ? `All ${availableTopics.length} Topics` : cat}
             </button>
           ))}
         </div>
@@ -103,13 +107,13 @@ export const LearnCatalogView: React.FC<LearnCatalogViewProps> = ({ onNavigate }
             type="text"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            placeholder="Search all 30 DSA topics..."
+            placeholder={`Search ${availableTopics.length} DSA topics...`}
             className="w-full pl-9 pr-4 py-2 rounded-xl bg-white dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 text-xs text-zinc-900 dark:text-white placeholder-zinc-400 focus:outline-none focus:ring-2 focus:ring-blue-500 shadow-apple-sm"
           />
         </div>
       </div>
 
-      {/* 30 Topics Cards Grid */}
+      {/* Topic Cards Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {filteredTopics.map((topic) => {
           return (
@@ -151,17 +155,20 @@ export const LearnCatalogView: React.FC<LearnCatalogViewProps> = ({ onNavigate }
               {/* Card Footer: Question Count & Action Buttons */}
               <div className="mt-5 pt-4 border-t border-zinc-100 dark:border-zinc-800 flex items-center justify-between gap-2">
                 <span className="text-xs font-semibold text-zinc-700 dark:text-zinc-300">
-                  {topic.questionCount}+ Questions
+                  {getQuestionsForTopic(topic.id).length} Questions
                 </span>
 
                 <div className="flex items-center gap-2">
-                  <button
-                    onClick={() => handleDirectVisualizer(topic.id)}
-                    className="p-1.5 rounded-xl bg-zinc-100 dark:bg-zinc-800 hover:bg-zinc-200 text-zinc-700 dark:text-zinc-300 text-xs font-semibold flex items-center gap-1 transition-colors"
-                    title="Open visualizer"
-                  >
-                    <PlayCircle className="w-3.5 h-3.5" />
-                  </button>
+                  {['arrays', 'two-pointers', 'sliding-window', 'binary-search', 'sorting', 'stacks', 'queues-deques'].includes(topic.id) && (
+                    <button
+                      onClick={() => handleDirectVisualizer(topic.id)}
+                      className="p-1.5 rounded-xl bg-zinc-100 dark:bg-zinc-800 hover:bg-zinc-200 text-zinc-700 dark:text-zinc-300 text-xs font-semibold flex items-center gap-1 transition-colors"
+                      title="Open a related algorithm visualizer"
+                      aria-label={`Open visualizer for ${topic.name}`}
+                    >
+                      <PlayCircle className="w-3.5 h-3.5" />
+                    </button>
+                  )}
                   <button
                     onClick={() => handleLaunchPracticeForTopic(topic)}
                     className="px-3.5 py-1.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-xs font-semibold flex items-center gap-1.5 shadow-sm transition-all active:scale-95"

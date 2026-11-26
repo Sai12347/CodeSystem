@@ -1,0 +1,47 @@
+{
+  "title": "Leftmost Column With a One",
+  "difficulty": "Medium",
+  "subtopic": "2D Search",
+  "companies": [
+    "Meta",
+    "Google",
+    "Amazon",
+    "Microsoft"
+  ],
+  "description": "You are given an `m x n` row-sorted binary matrix `mat` where every element is `0` or `1`, and every row is sorted in non-decreasing order (all `0`s appear before all `1`s in each row).\n\nReturn the 0-indexed column number of the **leftmost** column that contains at least one `1`. If the matrix contains no `1`s at all, return `-1`.",
+  "constraints": [
+    "m == mat.length",
+    "n == mat[i].length",
+    "1 <= m, n <= 100",
+    "mat[i][j] is either 0 or 1, and every row is sorted in non-decreasing order."
+  ],
+  "hints": [
+    "Start at the top-right corner (r = 0, c = n - 1).",
+    "Whenever mat[r][c] == 1, record c as a better answer and step left (c -= 1); whenever mat[r][c] == 0, step down (r += 1) since no earlier column in row r can hold a 1."
+  ],
+  "examples": [
+    {
+      "explanation": "Column 0 has a 1 at row 1, so the leftmost column with a 1 is 0."
+    },
+    {
+      "explanation": "Column 1 is the earliest column containing a 1 (at row 0)."
+    },
+    {
+      "explanation": "The entire matrix consists of zeros, so return -1."
+    }
+  ],
+  "timeComplexity": "O(m + n)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "leftmostColumnWithOne",
+    "params": [
+      {
+        "name": "mat",
+        "type": "int[][]"
+      }
+    ],
+    "returns": "int"
+  }
+}

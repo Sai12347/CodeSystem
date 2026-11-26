@@ -1,0 +1,46 @@
+{
+  "title": "Removing Stars From a String",
+  "difficulty": "Medium",
+  "subtopic": "LIFO Structure",
+  "companies": [
+    "Amazon",
+    "Google",
+    "Meta",
+    "Microsoft"
+  ],
+  "description": "You are given a string `s` consisting of lowercase English letters and stars `'*'`.\n\nIn one operation, you can:\n- Choose a star `'*'` in `s`.\n- Remove the closest non-star character to its left, as well as the star itself.\n\nReturn the string after all stars have been removed. The input guarantees that the operation is always possible (every star has a non-star character to its left) and the final string is unique.",
+  "constraints": [
+    "1 <= s.length <= 10^5",
+    "s consists of lowercase English letters and stars '*'.",
+    "Every star in s can always remove a non-star character to its left."
+  ],
+  "hints": [
+    "A star behaves just like a backspace key: it deletes the most recently kept character.",
+    "Iterate through s pushing letters onto a stack (or StringBuilder) and popping whenever you encounter '*'."
+  ],
+  "examples": [
+    {
+      "explanation": "The first two stars remove 't' and 'e', leaving \"lecod*e\"; the third star removes 'd', leaving \"lecoe\"."
+    },
+    {
+      "explanation": "Each star cancels one character to its left until all characters are erased, returning \"\"."
+    },
+    {
+      "explanation": "With no stars present, \"abcdef\" remains unchanged."
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "removeStars",
+    "params": [
+      {
+        "name": "s",
+        "type": "String"
+      }
+    ],
+    "returns": "String"
+  }
+}

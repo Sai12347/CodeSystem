@@ -1,0 +1,5 @@
+def visible():
+    return [{'in': {'maxTime': 30, 'edges': [[0, 1, 10], [1, 2, 10], [2, 5, 10], [0, 3, 1], [3, 4, 10], [4, 5, 10], [0, 5, 100]], 'passingFees': [5, 1, 2, 20, 20, 3]}}, {'in': {'maxTime': 10, 'edges': [[0, 1, 5], [1, 2, 5], [0, 2, 10]], 'passingFees': [1, 2, 3]}}, {'in': {'maxTime': 5, 'edges': [[0, 1, 10]], 'passingFees': [1, 1]}}]
+
+def hidden():
+    return [{'in': {'maxTime': 20, 'edges': [[0, 1, 5], [1, 2, 5]], 'passingFees': [1, 2, 3]}}, {'in': {'maxTime': 10, 'edges': [[0, 1, 3], [1, 2, 4], [0, 2, 10]], 'passingFees': [5, 1, 1]}}, {'in': {'maxTime': 15, 'edges': [[0, 1, 5], [1, 3, 5], [0, 2, 2], [2, 3, 10]], 'passingFees': [1, 100, 1, 1]}}, {'in': {'maxTime': 8, 'edges': [[0, 1, 4], [1, 2, 4]], 'passingFees': [1, 2, 3]}}, {'in': {'maxTime': 12, 'edges': [[0, 1, 6], [1, 2, 6], [0, 2, 8]], 'passingFees': [10, 1, 2]}}, {'in': {'maxTime': 20, 'edges': [[0, 1, 4], [1, 3, 4], [0, 2, 10], [2, 3, 2]], 'passingFees': [2, 3, 1, 4]}}, {'in': {'maxTime': 7, 'edges': [[0, 1, 3], [1, 2, 3], [0, 2, 5]], 'passingFees': [4, 2, 1]}}, {'in': {'maxTime': 20, 'edges': [[0, 1, 10], [1, 2, 10], [0, 2, 15]], 'passingFees': [1, 2, 3]}}]

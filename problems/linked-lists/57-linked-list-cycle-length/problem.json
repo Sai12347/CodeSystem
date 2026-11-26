@@ -1,0 +1,50 @@
+{
+  "title": "Linked List Cycle Length",
+  "difficulty": "Easy",
+  "subtopic": "Fast/Slow Pointer",
+  "companies": [
+    "Amazon",
+    "Microsoft",
+    "Goldman Sachs",
+    "Oracle"
+  ],
+  "description": "You are given an implicit singly linked list of `n` nodes labeled `0` through `n - 1` represented by an integer array `next`, where `next[i]` is the index of node `i`'s successor (or `-1` if node `i` has no successor), together with a starting node index `start`.\n\nStarting from `start`, follow the `next` pointers. If the traversal enters a cycle, return the exact number of distinct nodes in that cycle (a self-loop `next[i] == i` has cycle length `1`). If the traversal reaches `-1` without entering a cycle, return `0`.\n\nSolve in `O(n)` time and `O(1)` extra space using Floyd's fast and slow pointers.",
+  "constraints": [
+    "1 <= next.length <= 10^4",
+    "-1 <= next[i] < next.length",
+    "0 <= start < next.length"
+  ],
+  "hints": [
+    "Initialize `slow = start` and `fast = start`; advance `slow` by 1 step and `fast` by 2 steps until either `fast == -1` / `next[fast] == -1` (no cycle) or `slow == fast` (meeting point inside the cycle).",
+    "Once `slow == fast`, keep `slow` fixed and walk another pointer step by step around the cycle until it returns to `slow`, counting the number of steps."
+  ],
+  "examples": [
+    {
+      "explanation": "Path from 0 is 0 -> 1 -> 2 -> 3 -> 1, so the cycle {1, 2, 3} has length 3."
+    },
+    {
+      "explanation": "Path from 0 is 0 -> 1 -> 2 -> -1, which terminates with no cycle (length 0)."
+    },
+    {
+      "explanation": "Path from 0 is 0 -> 1 -> 2 -> 2, entering a self-loop at node 2 of length 1."
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "cycleLength",
+    "params": [
+      {
+        "name": "next",
+        "type": "int[]"
+      },
+      {
+        "name": "start",
+        "type": "int"
+      }
+    ],
+    "returns": "int"
+  }
+}

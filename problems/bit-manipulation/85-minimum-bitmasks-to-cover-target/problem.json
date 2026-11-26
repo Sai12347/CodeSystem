@@ -1,0 +1,49 @@
+{
+  "title": "Minimum Bitmasks to Cover Target Mask",
+  "difficulty": "Hard",
+  "subtopic": "Counting Bits",
+  "companies": [
+    "Google",
+    "Amazon",
+    "Apple"
+  ],
+  "description": "Given a non-negative integer `target` (`0 <= target < 2^16`) and an array `masks` of non-negative integers, find the minimum number of elements from `masks` whose bitwise OR covers all set bits of `target` \u2014 that is, `(orSum & target) == target`. If `target == 0`, return `0` since no elements are needed. If it is impossible to cover `target`, return `-1`.",
+  "constraints": [
+    "0 <= target < 2^16",
+    "1 <= masks.length <= 60",
+    "0 <= masks[i] < 2^16"
+  ],
+  "hints": [
+    "Compress the set bit positions of `target` into `b = popcount(target)` consecutive bit indices (`0..b - 1`) and project every element of `masks` onto those `b` bits, discarding zeros and duplicates.",
+    "Run bitmask DP over `dp[s]` = minimum number of projected masks needed to form bitmask `s`, updating `dp[s | p] = min(dp[s | p], dp[s] + 1)` for each unique projected mask `p`."
+  ],
+  "examples": [
+    {
+      "explanation": "Picking 3 (011) and 4 (100) gives 3 | 4 = 7 (111) using 2 masks (1 and 6 also works)."
+    },
+    {
+      "explanation": "Bit 2 of target 7 (111) is not set in any element of [1, 2, 3], so return -1."
+    },
+    {
+      "explanation": "Target 0 has no set bits to cover, so 0 masks are needed."
+    }
+  ],
+  "timeComplexity": "O(m * 2^popcount(target))",
+  "spaceComplexity": "O(2^popcount(target))",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "minMasksToCover",
+    "params": [
+      {
+        "name": "target",
+        "type": "int"
+      },
+      {
+        "name": "masks",
+        "type": "int[]"
+      }
+    ],
+    "returns": "int"
+  }
+}

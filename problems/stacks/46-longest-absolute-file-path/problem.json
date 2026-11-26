@@ -1,0 +1,45 @@
+{
+  "title": "Longest Absolute File Path",
+  "difficulty": "Medium",
+  "subtopic": "LIFO Structure",
+  "companies": [
+    "Google",
+    "Amazon",
+    "Apple",
+    "Microsoft"
+  ],
+  "description": "Suppose a file system is serialized into a string `input` where entries are separated by newline characters `'\\n'`, and the nesting depth of each entry is given by the number of leading tab characters `'\\t'`.\n\n- A directory name contains no period `'.'`, whereas a file name always contains at least one period `'.'` (e.g., `\"file.ext\"`).\n- Every entry at depth `d > 0` belongs to the most recent preceding directory at depth `d - 1`.\n- The absolute path of an entry joins its ancestor directories and its own name with single `'/'` separators.\n\nReturn the length of the longest absolute path to a **file** in the file system. If there are no files, return `0`.",
+  "constraints": [
+    "1 <= input.length <= 10^4",
+    "input contains English letters, digits, spaces, '.', '_', '\\n', and '\\t'."
+  ],
+  "hints": [
+    "Use a stack storing the cumulative path length (including trailing '/') at each active directory depth.",
+    "For each line, count leading '\\t' characters to get depth, pop the stack down to that depth, and update the answer if the entry contains '.'."
+  ],
+  "examples": [
+    {
+      "explanation": "\"dir/subdir2/file.ext\" has length 20, which is longer than \"dir/subdir1\" (not a file)."
+    },
+    {
+      "explanation": "\"dir/subdir2/subsubdir2/file2.ext\" has length 32."
+    },
+    {
+      "explanation": "\"a\" is a directory and contains no files, so the answer is 0."
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "lengthLongestPath",
+    "params": [
+      {
+        "name": "input",
+        "type": "String"
+      }
+    ],
+    "returns": "int"
+  }
+}

@@ -1,0 +1,47 @@
+{
+  "title": "Minimize XOR With Matching Set Bits",
+  "difficulty": "Medium",
+  "subtopic": "Counting Bits",
+  "companies": [
+    "Google",
+    "Amazon",
+    "Salesforce"
+  ],
+  "description": "Given two positive integers `num1` and `num2`, find the positive integer `x` such that `x` has the exact same number of set bits (`1`-bits) as `num2`, and the value `x XOR num1` is minimized. Return `x`. (The optimal `x` is guaranteed to be unique.)",
+  "constraints": [
+    "1 <= num1, num2 <= 10^9"
+  ],
+  "hints": [
+    "To minimize `x ^ num1`, cancel out the highest set bits of `num1` first by placing `1`-bits of `x` at those same positions from MSB down to LSB.",
+    "If you still have leftover `1`-bits to place after matching all set bits of `num1`, place them in the lowest unset bit positions of `x` from LSB up."
+  ],
+  "examples": [
+    {
+      "explanation": "num2 = 5 (101) has 2 set bits. Matching num1 = 3 (11) gives x = 3 with XOR 0."
+    },
+    {
+      "explanation": "num2 = 12 (1100) has 2 set bits. Match bit 0 of num1 = 1 and place the remaining bit at position 1, giving x = 3 (11)."
+    },
+    {
+      "explanation": "num2 = 7 (111) has 3 set bits. Match bits 4 and 3 of num1 = 25 (11001) and bit 0, giving x = 25."
+    }
+  ],
+  "timeComplexity": "O(log M)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "minimizeXor",
+    "params": [
+      {
+        "name": "num1",
+        "type": "int"
+      },
+      {
+        "name": "num2",
+        "type": "int"
+      }
+    ],
+    "returns": "int"
+  }
+}

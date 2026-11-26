@@ -1,0 +1,44 @@
+{
+  "title": "Distinct Subsequences",
+  "difficulty": "Hard",
+  "subtopic": "String Edits",
+  "companies": [
+    "Google",
+    "Amazon",
+    "Microsoft"
+  ],
+  "description": "Return the number of distinct subsequences of `s` that equal `t`. A subsequence is formed by deleting zero or more characters without changing the order of the remaining characters.",
+  "constraints": [
+    "0 <= s.length,t.length <= 100",
+    "s and t contain lowercase English letters",
+    "The answer fits in a signed 64-bit integer"
+  ],
+  "hints": [
+    "Define a dynamic-programming state for each prefix of the inputs.",
+    "Update each state using only valid preceding states and the allowed transitions."
+  ],
+  "examples": [
+    {
+      "input": "s = \"rabbbit\", t = \"rabbit\"",
+      "output": "3"
+    }
+  ],
+  "timeComplexity": "O(m*n)",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "numDistinct",
+    "params": [
+      {
+        "name": "s",
+        "type": "String"
+      },
+      {
+        "name": "t",
+        "type": "String"
+      }
+    ],
+    "returns": "long"
+  }
+}

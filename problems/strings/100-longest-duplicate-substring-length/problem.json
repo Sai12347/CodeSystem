@@ -1,0 +1,44 @@
+{
+  "title": "Longest Duplicate Substring Length",
+  "difficulty": "Hard",
+  "subtopic": "String Matching",
+  "companies": [
+    "Google",
+    "Amazon",
+    "Meta"
+  ],
+  "description": "Given a lowercase string `s`, return the length of the longest contiguous substring that occurs at least twice in `s` (the occurrences may overlap). If all characters in `s` are distinct, return `0`.",
+  "constraints": [
+    "1 <= s.length <= 3 * 10^4",
+    "s consists of lowercase English letters."
+  ],
+  "hints": [
+    "If a duplicated substring of length L exists, then duplicated substrings exist for every length < L\u2014so binary search on L.",
+    "For a candidate length L, compute double rolling hashes for every window of length L and check for any hash collision in O(n) time."
+  ],
+  "examples": [
+    {
+      "explanation": "\"ana\" appears twice in \"banana\" (overlapping at indices 1 and 3), length 3."
+    },
+    {
+      "explanation": "All letters in \"abcd\" are distinct, so no duplicate substring exists (length 0)."
+    },
+    {
+      "explanation": "In \"aaaaa\", \"aaaa\" occurs twice (indices 0..3 and 1..4), length 4."
+    }
+  ],
+  "timeComplexity": "O(n log n)",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "longestDupSubstringLength",
+    "params": [
+      {
+        "name": "s",
+        "type": "String"
+      }
+    ],
+    "returns": "int"
+  }
+}

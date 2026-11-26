@@ -1,0 +1,43 @@
+{
+  "title": "Best Sightseeing Pair",
+  "difficulty": "Medium",
+  "subtopic": "Traversal",
+  "companies": [
+    "Amazon",
+    "Google",
+    "Microsoft"
+  ],
+  "description": "For indices `i < j`, the sightseeing score is `values[i] + values[j] + i - j`. Given a positive integer array `values`, return the maximum score over all pairs. Input: `values`. Output: the best pair score.",
+  "constraints": [
+    "2 <= values.length <= 100000",
+    "1 <= values[i] <= 1000"
+  ],
+  "hints": [
+    "Maintain the prefix or window information needed to count candidate ranges.",
+    "Check repeated values, extreme bounds, and cases with no valid segment."
+  ],
+  "examples": [
+    {
+      "input": "values = [8, 1, 5, 2, 6]",
+      "output": "11"
+    },
+    {
+      "input": "values = [1, 2]",
+      "output": "2"
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "maxScoreSightseeingPair",
+    "params": [
+      {
+        "name": "values",
+        "type": "int[]"
+      }
+    ],
+    "returns": "int"
+  }
+}

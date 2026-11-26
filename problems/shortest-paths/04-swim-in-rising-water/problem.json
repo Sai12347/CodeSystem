@@ -1,0 +1,36 @@
+{
+  "title": "Swim in Rising Water",
+  "difficulty": "Hard",
+  "subtopic": "Dijkstra",
+  "companies": ["Google", "Amazon", "Meta", "Microsoft", "Uber"],
+  "leetcode": 778,
+  "description": "You are given an `n x n` integer matrix `grid` where each value `grid[i][j]` represents the elevation at cell `(i, j)`.\n\nIt starts raining, and at time `t`, the water level everywhere is `t`. You can swim from a cell to another 4-directionally adjacent cell if and only if the elevation of **both** cells is at most `t`. You can swim infinite distances in zero time, as long as you stay within the boundaries of the grid.\n\nReturn the **least time `t`** until you can reach the bottom-right cell `(n - 1, n - 1)` starting from the top-left cell `(0, 0)`.",
+  "constraints": [
+    "n == grid.length",
+    "n == grid[i].length",
+    "1 <= n <= 50",
+    "0 <= grid[i][j] < n^2",
+    "Each value grid[i][j] is unique."
+  ],
+  "hints": [
+    "A path from `(0, 0)` to `(n - 1, n - 1)` is traversable at time `t` if and only if every cell on the path has elevation `<= t`. Thus we want to minimize the maximum cell elevation along the path.",
+    "Use Dijkstra's algorithm with a min-heap keyed by the elevation of each frontier cell (or `max(timeSoFar, grid[r][c])`), starting from `(grid[0][0], 0, 0)`.",
+    "Because elevations are unique integers in `[0, n^2 - 1]`, you can also binary search on `t` with BFS/DFS or use Union-Find ordered by cell elevation."
+  ],
+  "examples": [
+    {"explanation": "At time 0 you are at (0, 0). You cannot enter (1, 1) until time 3, so the minimum time to reach the bottom-right corner is 3."},
+    {"explanation": "The optimal path winds around the right and bottom edges through elevations 0 -> 1 -> 2 -> 3 -> 4 -> 5 -> 16 -> 15 -> ... -> 6, whose maximum elevation is 16."},
+    {"explanation": "You start at (0, 0) with elevation 3, so even though the remaining cells have smaller elevations, you must wait until time 3 to move."}
+  ],
+  "timeComplexity": "O(n^2 log n)",
+  "spaceComplexity": "O(n^2)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "swimInWater",
+    "params": [
+      {"name": "grid", "type": "int[][]"}
+    ],
+    "returns": "int"
+  }
+}

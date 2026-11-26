@@ -1,0 +1,78 @@
+{
+  "title": "Design Removable Queue",
+  "difficulty": "Easy",
+  "subtopic": "LRU Design",
+  "companies": [
+    "Amazon",
+    "Uber",
+    "LinkedIn",
+    "Atlassian"
+  ],
+  "description": "Design a FIFO queue `RemovableQueue` of unique integer IDs that also supports `O(1)` cancellation of any ID currently waiting in the queue:\n- `RemovableQueue()` initializes an empty queue.\n- `boolean enqueue(int id)` appends `id` to the back of the queue and returns `true` if `id` is not already present; if `id` is already in the queue, does nothing and returns `false`.\n- `int dequeue()` removes and returns the front `id` of the queue, or returns `-1` if the queue is empty.\n- `boolean cancel(int id)` removes `id` from anywhere in the queue and returns `true`, or returns `false` if `id` is not currently in the queue.\n- `int peekFront()` returns the front `id` without removing it, or `-1` if the queue is empty.\n- `int size()` returns the current number of elements in the queue.\n\nAll operations must run in `O(1)` time.",
+  "constraints": [
+    "0 <= id <= 10^5",
+    "At most 2500 calls will be made across all methods."
+  ],
+  "hints": [
+    "Store the queued items in a doubly linked list with sentinel `head` and `tail` nodes so adding to the back and removing from the front or middle all take `O(1)` time.",
+    "Pair the doubly linked list with a hash map `id -> Node` to check duplicates on `enqueue` and locate the exact node to unlink on `cancel` in `O(1)`."
+  ],
+  "examples": [
+    {
+      "explanation": "Enqueue 10, 20, 30; cancel(20) removes 20 in O(1); dequeue returns 10, then 30, then -1."
+    },
+    {
+      "explanation": "Duplicate enqueue(5) returns false; after dequeue() removes 5, enqueue(5) succeeds again."
+    },
+    {
+      "explanation": "Canceling a missing ID returns false, and peekFront/dequeue on an empty queue return -1."
+    }
+  ],
+  "timeComplexity": "O(1) per operation",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "design",
+    "className": "RemovableQueue",
+    "constructor": {
+      "params": []
+    },
+    "methods": [
+      {
+        "name": "enqueue",
+        "params": [
+          {
+            "name": "id",
+            "type": "int"
+          }
+        ],
+        "returns": "boolean"
+      },
+      {
+        "name": "dequeue",
+        "params": [],
+        "returns": "int"
+      },
+      {
+        "name": "cancel",
+        "params": [
+          {
+            "name": "id",
+            "type": "int"
+          }
+        ],
+        "returns": "boolean"
+      },
+      {
+        "name": "peekFront",
+        "params": [],
+        "returns": "int"
+      },
+      {
+        "name": "size",
+        "params": [],
+        "returns": "int"
+      }
+    ]
+  }
+}

@@ -1,0 +1,49 @@
+{
+  "title": "Binary Tree Level Order Traversal",
+  "difficulty": "Medium",
+  "subtopic": "Level-Order BFS",
+  "companies": [
+    "Meta",
+    "Amazon",
+    "Microsoft",
+    "Google",
+    "Bloomberg",
+    "LinkedIn"
+  ],
+  "leetcode": 102,
+  "description": "Given the `root` of a binary tree, return the **level order traversal** of its nodes' values — that is, from left to right, level by level starting from the root at depth 0.\n\nEach inner list in the returned 2D list should contain the values of all nodes at that depth in left-to-right order. If the tree is empty (`root` is `null`), return an empty list `[]`.",
+  "constraints": [
+    "0 <= number of nodes <= 2000",
+    "-10^4 <= Node.val <= 10^4"
+  ],
+  "hints": [
+    "Use a FIFO queue to perform Breadth-First Search (BFS) starting from `root`.",
+    "At the beginning of each level, capture the current queue size `k` and pop exactly `k` nodes to build that level's list while enqueueing their non-null children.",
+    "Ensure you handle the empty tree (`root == null`) before enqueueing `root`."
+  ],
+  "examples": [
+    {
+      "explanation": "Depth 0 has [3], depth 1 has [9, 20], and depth 2 has [15, 7]."
+    },
+    {
+      "explanation": "A single-node tree has one level containing just [1]."
+    },
+    {
+      "explanation": "An empty tree has no levels, so return []."
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "levelOrder",
+    "params": [
+      {
+        "name": "root",
+        "type": "TreeNode"
+      }
+    ],
+    "returns": "List<List<Integer>>"
+  }
+}

@@ -1,0 +1,47 @@
+{
+  "title": "Interleaving String",
+  "difficulty": "Medium",
+  "subtopic": "String Edits",
+  "companies": [
+    "Google",
+    "Amazon",
+    "Microsoft"
+  ],
+  "description": "Return true if `s3` can be formed by interleaving `s1` and `s2` while preserving the order of characters from each source string. Every character in each source must be used exactly once.",
+  "constraints": [
+    "0 <= s1.length,s2.length,s3.length <= 100",
+    "s3.length == s1.length + s2.length"
+  ],
+  "hints": [
+    "Define a dynamic-programming state for each prefix of the inputs.",
+    "Update each state using only valid preceding states and the allowed transitions."
+  ],
+  "examples": [
+    {
+      "input": "s1 = \"aabcc\", s2 = \"dbbca\", s3 = \"aadbbcbcac\"",
+      "output": "true"
+    }
+  ],
+  "timeComplexity": "O(m*n)",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "isInterleave",
+    "params": [
+      {
+        "name": "s1",
+        "type": "String"
+      },
+      {
+        "name": "s2",
+        "type": "String"
+      },
+      {
+        "name": "s3",
+        "type": "String"
+      }
+    ],
+    "returns": "boolean"
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "title": "Non-overlapping Intervals",
+  "difficulty": "Medium",
+  "subtopic": "Interval Scheduling",
+  "companies": [
+    "Amazon",
+    "Google",
+    "Microsoft"
+  ],
+  "description": "Remove the minimum number of intervals so that no two remaining intervals overlap. Intervals that touch only at an endpoint do not overlap. Return the number removed.",
+  "constraints": [
+    "1 <= intervals.length <= 10^5",
+    "-5 * 10^4 <= start < end <= 5 * 10^4"
+  ],
+  "hints": [
+    "Sort or scan while maintaining the best feasible choice.",
+    "Check tie values and cases where no feasible choice remains."
+  ],
+  "examples": [
+    {
+      "input": "intervals = [[1,2],[2,3],[3,4],[1,3]]",
+      "output": "1"
+    }
+  ],
+  "timeComplexity": "O(n log n)",
+  "spaceComplexity": "O(1) extra",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "eraseOverlapIntervals",
+    "params": [
+      {
+        "name": "intervals",
+        "type": "int[][]"
+      }
+    ],
+    "returns": "int"
+  }
+}

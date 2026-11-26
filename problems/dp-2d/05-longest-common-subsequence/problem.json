@@ -1,0 +1,43 @@
+{
+  "title": "Longest Common Subsequence",
+  "difficulty": "Medium",
+  "subtopic": "String Edits",
+  "companies": [
+    "Amazon",
+    "Google",
+    "Microsoft"
+  ],
+  "description": "Return the length of the longest sequence of characters that appears in both strings in the same relative order. The characters in a subsequence need not be contiguous.",
+  "constraints": [
+    "0 <= text1.length,text2.length <= 1000",
+    "Strings contain lowercase English letters"
+  ],
+  "hints": [
+    "Define the state as the best answer for a prefix or cell.",
+    "Update from the previous row or previous prefix while preserving the recurrence."
+  ],
+  "examples": [
+    {
+      "input": "text1 = \"abcde\", text2 = \"ace\"",
+      "output": "3"
+    }
+  ],
+  "timeComplexity": "O(m*n)",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "longestCommonSubsequence",
+    "params": [
+      {
+        "name": "text1",
+        "type": "String"
+      },
+      {
+        "name": "text2",
+        "type": "String"
+      }
+    ],
+    "returns": "int"
+  }
+}

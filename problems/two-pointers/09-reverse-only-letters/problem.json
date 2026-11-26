@@ -1,0 +1,49 @@
+{
+  "title": "Reverse Only Letters",
+  "difficulty": "Easy",
+  "subtopic": "Converging Pointers",
+  "companies": [
+    "Google",
+    "Amazon",
+    "Microsoft",
+    "Meta",
+    "Bloomberg"
+  ],
+  "leetcode": 917,
+  "description": "Given a string `s`, reverse the string according to the following rules:\n\n- All characters that are not English letters remain in the same position.\n- All English letters (lowercase `'a'-'z'` or uppercase `'A'-'Z'`) are reversed in place.\n\nReturn the resulting string.",
+  "constraints": [
+    "1 <= s.length <= 100",
+    "s consists of characters with ASCII values in the range [33, 122].",
+    "s does not contain '\"' or '\\'."
+  ],
+  "hints": [
+    "Place one pointer at the start of the string and another at the end, moving them toward each other.",
+    "Advance the left pointer until it points to an English letter, and move the right pointer backward until it also points to an English letter.",
+    "Swap the two letters and advance both pointers inward until they meet or cross."
+  ],
+  "examples": [
+    {
+      "explanation": "The letters 'a', 'b', 'c', 'd' are reversed to 'd', 'c', 'b', 'a', while '-' stays at index 2, giving \"dc-ba\"."
+    },
+    {
+      "explanation": "All hyphens stay at their original positions while the English letters reverse to form \"j-Ih-gfE-dCba\"."
+    },
+    {
+      "explanation": "Digits and punctuation ('1', '-', '=', '!') stay fixed while the letters reverse to yield \"Qedo1ct-eeLg=ntse-T!\"."
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "reverseOnlyLetters",
+    "params": [
+      {
+        "name": "s",
+        "type": "String"
+      }
+    ],
+    "returns": "String"
+  }
+}

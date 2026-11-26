@@ -1,0 +1,44 @@
+{
+  "title": "UTF-8 Validation",
+  "difficulty": "Medium",
+  "subtopic": "Two Complement",
+  "companies": [
+    "Google",
+    "Meta",
+    "Microsoft"
+  ],
+  "description": "Given an integer array `data` where only the least significant 8 bits of each element represent a byte, return `true` if `data` forms a valid sequence of UTF-8 characters under the byte-prefix rules, and `false` otherwise. Valid characters use 1 to 4 bytes: 1-byte `0xxxxxxx`; 2-byte `110xxxxx 10xxxxxx`; 3-byte `1110xxxx 10xxxxxx 10xxxxxx`; 4-byte `11110xxx 10xxxxxx 10xxxxxx 10xxxxxx`.",
+  "constraints": [
+    "1 <= data.length <= 2 * 10^4",
+    "0 <= data[i] <= 255"
+  ],
+  "hints": [
+    "Maintain a counter `remaining` of how many continuation bytes (`10xxxxxx`) are still expected for the current character.",
+    "When `remaining == 0`, inspect the leading bits of `byte & 0xFF` to determine whether the character has 0, 1, 2, or 3 continuation bytes; reject any byte starting with `10` or five or more `1`s."
+  ],
+  "examples": [
+    {
+      "explanation": "197 (11000101) starts a 2-byte char followed by continuation 130 (10000010), then 1 (00000001) is a 1-byte char."
+    },
+    {
+      "explanation": "235 (11101011) expects two continuation bytes, but 4 (00000100) does not start with 10."
+    },
+    {
+      "explanation": "240 (11110000) is a 4-byte header followed by three valid 10xxxxxx continuation bytes."
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "validUtf8",
+    "params": [
+      {
+        "name": "data",
+        "type": "int[]"
+      }
+    ],
+    "returns": "boolean"
+  }
+}

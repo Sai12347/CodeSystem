@@ -1,0 +1,54 @@
+{
+  "title": "Subarray Sum Equals K",
+  "difficulty": "Medium",
+  "subtopic": "Hash + Prefix",
+  "companies": [
+    "Meta",
+    "Google",
+    "Amazon",
+    "Microsoft",
+    "Apple",
+    "Bloomberg"
+  ],
+  "leetcode": 560,
+  "description": "Given an array of integers `nums` and an integer `k`, return the total number of non-empty **contiguous subarrays** whose sum equals `k`.\n\nNote that `nums` may contain negative numbers and zeros, so a sliding window approach is not sufficient.",
+  "constraints": [
+    "1 <= nums.length <= 2 * 10^4",
+    "-1000 <= nums[i] <= 1000",
+    "-10^7 <= k <= 10^7"
+  ],
+  "hints": [
+    "A subarray `nums[l..r]` sums to `k` if and only if `prefix[r + 1] - prefix[l] == k`, i.e., `prefix[l] == prefix[r + 1] - k`.",
+    "Keep a hash map counting how many times each prefix sum has occurred so far, initialized with `{0: 1}` to account for subarrays starting at index 0.",
+    "At each element, add `counts[curSum - k]` to the answer before incrementing `counts[curSum]`."
+  ],
+  "examples": [
+    {
+      "explanation": "The two subarrays summing to 2 are [1, 1] at indices [0..1] and [1, 1] at indices [1..2]."
+    },
+    {
+      "explanation": "The two subarrays summing to 3 are [1, 2] and [3]."
+    },
+    {
+      "explanation": "With negative numbers and zeros, [1, -1, 0], [1, -1], and [0] all sum to 0, giving 3 subarrays."
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "subarraySum",
+    "params": [
+      {
+        "name": "nums",
+        "type": "int[]"
+      },
+      {
+        "name": "k",
+        "type": "int"
+      }
+    ],
+    "returns": "int"
+  }
+}

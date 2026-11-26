@@ -1,0 +1,42 @@
+{
+  "title": "Integer to Roman Numeral",
+  "difficulty": "Medium",
+  "subtopic": "Parsing",
+  "companies": [
+    "Amazon",
+    "Google",
+    "Microsoft"
+  ],
+  "description": "Convert an integer from 1 through 3999 to its canonical Roman numeral representation. Use subtractive forms such as `IV`, `IX`, `XL`, `XC`, `CD`, and `CM` where needed. Input: integer `num`. Output: its Roman numeral string.",
+  "constraints": [
+    "1 <= num <= 3999"
+  ],
+  "hints": [
+    "Track only the character counts or prefixes needed to decide the next step.",
+    "Check repeated symbols, empty or minimal cases, and impossible arrangements."
+  ],
+  "examples": [
+    {
+      "input": "num = 58",
+      "output": "LVIII"
+    },
+    {
+      "input": "num = 1994",
+      "output": "MCMXCIV"
+    }
+  ],
+  "timeComplexity": "O(1)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "intToRoman",
+    "params": [
+      {
+        "name": "num",
+        "type": "int"
+      }
+    ],
+    "returns": "String"
+  }
+}

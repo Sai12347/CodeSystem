@@ -1,0 +1,44 @@
+{
+  "title": "Minimum Spanning Tree Edge Indices",
+  "difficulty": "Medium",
+  "subtopic": "Kruskal Algorithm",
+  "companies": [
+    "Google",
+    "Amazon",
+    "Microsoft"
+  ],
+  "description": "Given a connected undirected weighted graph, return the input indices of the edges in a minimum spanning tree. Kruskal\u2019s algorithm must break equal-weight ties by smaller input index. Return selected indices in increasing input order.",
+  "constraints": [
+    "1 <= n <= 10^4",
+    "The graph is connected",
+    "0 <= edge weight <= 10^9"
+  ],
+  "hints": [
+    "Sort candidate edges by weight and use a disjoint-set structure to track connected components.",
+    "Respect the stated tie-breaking rule and handle disconnected graphs if allowed."
+  ],
+  "examples": [
+    {
+      "input": "n = 3, edges = [[0,1,1],[1,2,2],[0,2,3]]",
+      "output": "[0,1]"
+    }
+  ],
+  "timeComplexity": "O(E log E)",
+  "spaceComplexity": "O(V+E)",
+  "compare": "sorted",
+  "signature": {
+    "kind": "function",
+    "method": "minimumSpanningTreeEdges",
+    "params": [
+      {
+        "name": "n",
+        "type": "int"
+      },
+      {
+        "name": "edges",
+        "type": "int[][]"
+      }
+    ],
+    "returns": "List<Integer>"
+  }
+}

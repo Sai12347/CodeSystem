@@ -1,0 +1,50 @@
+{
+  "title": "Union of Two Sorted Linked Lists",
+  "difficulty": "Easy",
+  "subtopic": "Merge & Sort",
+  "companies": [
+    "Amazon",
+    "Microsoft",
+    "LinkedIn",
+    "Oracle"
+  ],
+  "description": "Given the heads of two singly linked lists `l1` and `l2`, each sorted in **non-decreasing** order (each list may contain duplicate values), return a new singly linked list sorted in **strictly increasing** order containing every distinct value that appears in `l1` or `l2` (their set union).\n\nIf both lists are empty, return `null` (`None` in Python). Aim for `O(n + m)` time and `O(1)` extra space.",
+  "constraints": [
+    "The number of nodes in each list is in the range [0, 5000].",
+    "-10^5 <= Node.val <= 10^5",
+    "Both l1 and l2 are sorted in non-decreasing order."
+  ],
+  "hints": [
+    "Walk two pointers through `l1` and `l2` selecting the smaller current node at each step, just like merging two sorted lists.",
+    "Only append a chosen node to `tail` when the output list is still empty (`tail == dummy`) or `node.val != tail.val`, and terminate with `tail.next = null` at the end."
+  ],
+  "examples": [
+    {
+      "explanation": "Distinct values across [1, 2, 2, 4] and [2, 3, 4, 5] in sorted order are [1, 2, 3, 4, 5]."
+    },
+    {
+      "explanation": "All duplicates of 0 and 1 collapse to [0, 1]."
+    },
+    {
+      "explanation": "With l1 empty, deduplicating l2 gives [-3, 0, 4]."
+    }
+  ],
+  "timeComplexity": "O(n + m)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "unionSortedLists",
+    "params": [
+      {
+        "name": "l1",
+        "type": "ListNode"
+      },
+      {
+        "name": "l2",
+        "type": "ListNode"
+      }
+    ],
+    "returns": "ListNode"
+  }
+}

@@ -1,0 +1,49 @@
+{
+  "title": "Maximize Value of Function in K-Step Passing Game",
+  "difficulty": "Hard",
+  "subtopic": "Fast Exponentiation",
+  "companies": [
+    "Google",
+    "Meta",
+    "Amazon"
+  ],
+  "description": "You are given a 0-indexed integer array `receiver` of length `n` (`0 <= receiver[i] < n`) and a positive 64-bit integer `k`. Starting with any player `x` (`0 <= x < n`), the ball is passed exactly `k` times: in each pass, the current holder `cur` passes the ball to `receiver[cur]`. The score `f(x)` is the sum of the IDs of all `k + 1` players who hold the ball (including `x` and counting repeated visits). Return the maximum possible value of `f(x)` over all starting players `0 <= x < n`.",
+  "constraints": [
+    "1 <= receiver.length <= 10^4",
+    "0 <= receiver[i] < receiver.length",
+    "1 <= k <= 10^10"
+  ],
+  "hints": [
+    "Model the `k`-step functional transition as binary lifting (exponentiation by squaring on the function `cur -> receiver[cur]`): track `up[i]` (node reached in `2^b` steps) and `w[i]` (sum of visited receiver IDs along those `2^b` steps).",
+    "Maintain `pos[i]` and `score[i]` initialized to `i` for each starting player; iterate over the binary bits of `k`, applying `(up, w)` whenever bit `b` of `k` is `1` and squaring `up` and `w` in O(n) space."
+  ],
+  "examples": [
+    {
+      "explanation": "Starting from player 2 yields sequence 2 -> 1 -> 0 -> 2 -> 1 with sum 2 + 1 + 0 + 2 + 1 = 6."
+    },
+    {
+      "explanation": "Starting from player 4 yields sequence 4 -> 3 -> 2 -> 1 with sum 4 + 3 + 2 + 1 = 10."
+    },
+    {
+      "explanation": "Player 0 passes to itself 10^10 times, giving sum 0."
+    }
+  ],
+  "timeComplexity": "O(n log k)",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "maxBallPassingScore",
+    "params": [
+      {
+        "name": "receiver",
+        "type": "int[]"
+      },
+      {
+        "name": "k",
+        "type": "long"
+      }
+    ],
+    "returns": "long"
+  }
+}

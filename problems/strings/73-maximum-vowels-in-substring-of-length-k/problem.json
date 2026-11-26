@@ -1,0 +1,49 @@
+{
+  "title": "Maximum Number of Vowels in a Substring of Given Length",
+  "difficulty": "Medium",
+  "subtopic": "Substrings",
+  "companies": [
+    "Amazon",
+    "Google",
+    "Meta"
+  ],
+  "description": "Given a lowercase string `s` and an integer `k`, return the maximum number of vowel letters (`'a'`, `'e'`, `'i'`, `'o'`, `'u'`) contained in any contiguous substring of `s` of length `k`.",
+  "constraints": [
+    "1 <= s.length <= 10^5",
+    "1 <= k <= s.length",
+    "s consists of lowercase English letters."
+  ],
+  "hints": [
+    "Maintain a fixed-size sliding window of length k.",
+    "When advancing by one character, add 1 if the incoming character is a vowel and subtract 1 if the outgoing character at i - k is a vowel."
+  ],
+  "examples": [
+    {
+      "explanation": "The substring \"iii\" of length 3 contains 3 vowels."
+    },
+    {
+      "explanation": "Any length-2 substring of \"aeiou\" contains 2 vowels."
+    },
+    {
+      "explanation": "The substring \"lee\" (or \"eet\") of length 3 contains 2 vowels."
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "maxVowels",
+    "params": [
+      {
+        "name": "s",
+        "type": "String"
+      },
+      {
+        "name": "k",
+        "type": "int"
+      }
+    ],
+    "returns": "int"
+  }
+}

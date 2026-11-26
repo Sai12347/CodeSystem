@@ -1,0 +1,38 @@
+{
+  "title": "Reverse Bits",
+  "difficulty": "Easy",
+  "subtopic": "Two Complement",
+  "companies": [
+    "Amazon",
+    "Google",
+    "Microsoft"
+  ],
+  "description": "Treat `n` as an unsigned 32-bit integer. Reverse the order of its 32 binary bits and return the resulting unsigned value in the range 0 through 2^32 - 1.",
+  "constraints": [
+    "0 <= n <= 2^32 - 1"
+  ],
+  "hints": [
+    "Work directly with individual bits and masks.",
+    "Account for sign representation and boundary values explicitly."
+  ],
+  "examples": [
+    {
+      "input": "n = 43261596",
+      "output": "964176192"
+    }
+  ],
+  "timeComplexity": "O(1)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "reverseBits",
+    "params": [
+      {
+        "name": "n",
+        "type": "long"
+      }
+    ],
+    "returns": "long"
+  }
+}

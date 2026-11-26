@@ -1,0 +1,43 @@
+{
+  "title": "Swap Odd and Even Bits",
+  "difficulty": "Easy",
+  "subtopic": "Two Complement",
+  "companies": [
+    "Apple",
+    "Microsoft",
+    "Amazon"
+  ],
+  "description": "Given a 32-bit signed integer `n`, swap every pair of adjacent bits in its 32-bit two's complement binary representation: swap bit `0` with bit `1`, bit `2` with bit `3`, and so on up to bit `30` with bit `31`. Return the resulting 32-bit signed integer.",
+  "constraints": [
+    "-2^31 <= n <= 2^31 - 1"
+  ],
+  "hints": [
+    "Mask all odd-indexed bits with `0xAAAAAAAA` and shift them right logically (unsigned) by `1`; mask all even-indexed bits with `0x55555555` and shift them left by `1`.",
+    "Combine both shifted halves with bitwise OR, taking care to interpret the 32-bit result as a signed two's complement integer."
+  ],
+  "examples": [
+    {
+      "explanation": "23 is 010111 in binary; swapping adjacent pairs (01)(01)(11) produces (10)(10)(11) = 43."
+    },
+    {
+      "explanation": "2 is 10 in binary; swapping bits 0 and 1 gives 01 = 1."
+    },
+    {
+      "explanation": "-1 has all 32 bits set to 1, so swapping adjacent bits leaves it unchanged as -1."
+    }
+  ],
+  "timeComplexity": "O(1)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "swapOddEvenBits",
+    "params": [
+      {
+        "name": "n",
+        "type": "int"
+      }
+    ],
+    "returns": "int"
+  }
+}

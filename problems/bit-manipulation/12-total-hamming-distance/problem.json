@@ -1,0 +1,45 @@
+{
+  "title": "Total Hamming Distance",
+  "difficulty": "Medium",
+  "subtopic": "XOR Tricks",
+  "companies": [
+    "Meta",
+    "Google",
+    "Bloomberg"
+  ],
+  "description": "Given an integer array `nums` of non-negative integers, return the sum of the Hamming distances between all unordered pairs of elements `(nums[i], nums[j])` with `0 <= i < j < nums.length`.",
+  "constraints": [
+    "1 <= nums.length <= 10^4",
+    "0 <= nums[i] <= 10^9",
+    "The answer is guaranteed to fit in a 32-bit signed integer."
+  ],
+  "hints": [
+    "Bit positions are independent, so evaluate the contribution of each of the 31 bit positions separately.",
+    "If `ones` numbers have bit `b` set and `n - ones` have bit `b` clear, bit `b` contributes `ones * (n - ones)` to the total."
+  ],
+  "examples": [
+    {
+      "explanation": "Pairs are (4,14)=2, (4,2)=2, and (14,2)=2, giving a total of 6."
+    },
+    {
+      "explanation": "Pairs are (4,14)=2, (4,4)=0, and (14,4)=2, giving a total of 4."
+    },
+    {
+      "explanation": "A single-element array has no unordered pairs, so the total is 0."
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "totalHammingDistance",
+    "params": [
+      {
+        "name": "nums",
+        "type": "int[]"
+      }
+    ],
+    "returns": "int"
+  }
+}

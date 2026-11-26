@@ -1,0 +1,62 @@
+{
+  "title": "Count Directed Walks of Exact Length K",
+  "difficulty": "Medium",
+  "subtopic": "Fast Exponentiation",
+  "companies": [
+    "Google",
+    "Meta",
+    "Uber"
+  ],
+  "description": "You are given a directed graph with `n` vertices labeled `0` to `n - 1` and a list of directed edges `edges` where each entry `[u, v]` represents a directed edge from `u` to `v` (self-loops and parallel edges are allowed and count as distinct edges). Given source `src`, destination `dst`, and a non-negative 64-bit integer `k`, return the number of distinct directed walks of exact length `k` from `src` to `dst`, modulo `10^9 + 7`.",
+  "constraints": [
+    "1 <= n <= 20",
+    "0 <= edges.length <= 400",
+    "0 <= u, v, src, dst < n",
+    "0 <= k <= 10^15"
+  ],
+  "hints": [
+    "Construct the `n x n` adjacency matrix `A` where `A[u][v]` counts the number of directed edges from `u` to `v`.",
+    "The entry `(A^k)[src][dst]` equals the exact number of walks of length `k` from `src` to `dst`; compute `A^k mod (10^9 + 7)` using binary matrix exponentiation in O(n^3 log k) time."
+  ],
+  "examples": [
+    {
+      "explanation": "The only walk of length 2 from 0 to 2 is 0 -> 1 -> 2, giving 1."
+    },
+    {
+      "explanation": "The 3 walks of length 3 from 0 to 0 are 0-0-0-0, 0-0-1-0, and 0-1-0-0."
+    },
+    {
+      "explanation": "A walk of length 0 starts and ends at the same vertex, so src == dst gives 1."
+    }
+  ],
+  "timeComplexity": "O(n^3 log k)",
+  "spaceComplexity": "O(n^2)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "countWalks",
+    "params": [
+      {
+        "name": "n",
+        "type": "int"
+      },
+      {
+        "name": "edges",
+        "type": "int[][]"
+      },
+      {
+        "name": "src",
+        "type": "int"
+      },
+      {
+        "name": "dst",
+        "type": "int"
+      },
+      {
+        "name": "k",
+        "type": "long"
+      }
+    ],
+    "returns": "int"
+  }
+}

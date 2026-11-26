@@ -1,0 +1,51 @@
+{
+  "title": "Rotate Image",
+  "difficulty": "Medium",
+  "subtopic": "Matrix Rotation",
+  "companies": [
+    "Amazon",
+    "Microsoft",
+    "Apple",
+    "Meta",
+    "Google",
+    "Bloomberg"
+  ],
+  "leetcode": 48,
+  "description": "You are given an `n x n` 2D integer `matrix` representing an image. Rotate the image by 90 degrees clockwise.\n\nYou must rotate the image **in-place**, meaning you have to modify the input 2D `matrix` directly without allocating another 2D matrix to perform the rotation.",
+  "constraints": [
+    "n == matrix.length == matrix[i].length",
+    "1 <= n <= 100",
+    "-10^4 <= matrix[i][j] <= 10^4"
+  ],
+  "hints": [
+    "Element (r, c) moves to position (c, n - 1 - r) after a 90-degree clockwise rotation.",
+    "You can decompose a 90-degree clockwise rotation into two simple in-place operations: transpose the matrix across its main diagonal, then reverse every row.",
+    "Alternatively, rotate four symmetric cells at a time ring by ring from the outer layer inward."
+  ],
+  "examples": [
+    {
+      "explanation": "Each row becomes a column from right to left: row 0 [1,2,3] becomes the last column."
+    },
+    {
+      "explanation": "Both the outer 4x4 ring and the inner 2x2 ring rotate 90 degrees clockwise in-place."
+    }
+  ],
+  "timeComplexity": "O(n^2)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "rotate",
+    "params": [
+      {
+        "name": "matrix",
+        "type": "int[][]"
+      }
+    ],
+    "returns": "void",
+    "output": {
+      "mode": "param",
+      "param": "matrix"
+    }
+  }
+}

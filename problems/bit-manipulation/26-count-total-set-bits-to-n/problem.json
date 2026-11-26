@@ -1,0 +1,43 @@
+{
+  "title": "Count Total Set Bits to N",
+  "difficulty": "Hard",
+  "subtopic": "Counting Bits",
+  "companies": [
+    "Google",
+    "Amazon",
+    "Goldman Sachs"
+  ],
+  "description": "Given a non-negative 64-bit integer `n`, return the total number of set bits (`1`s) across the binary representations of all integers from `0` to `n` inclusive.",
+  "constraints": [
+    "0 <= n <= 10^15"
+  ],
+  "hints": [
+    "In the sequence `0, 1, 2, ..., n`, bit position `b` repeats a periodic pattern of `2^b` zeros followed by `2^b` ones (period `2^(b + 1)`).",
+    "For each bit `b` with `2^b <= n`, count full cycles in `m = n + 1` plus the partial remainder `max(0, (m % 2^(b + 1)) - 2^b)`."
+  ],
+  "examples": [
+    {
+      "explanation": "Binary forms for 0..3 are 0, 1, 10, 11 -> 0 + 1 + 1 + 2 = 4 set bits."
+    },
+    {
+      "explanation": "Binary forms for 0..5 add 100 (1) and 101 (2) to 4, totaling 7 set bits."
+    },
+    {
+      "explanation": "0 has 0 set bits."
+    }
+  ],
+  "timeComplexity": "O(log n)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "countTotalSetBits",
+    "params": [
+      {
+        "name": "n",
+        "type": "long"
+      }
+    ],
+    "returns": "long"
+  }
+}

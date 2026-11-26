@@ -1,0 +1,50 @@
+{
+  "title": "Linked List Components",
+  "difficulty": "Medium",
+  "subtopic": "Pointers & Nodes",
+  "companies": [
+    "Google",
+    "Amazon",
+    "Microsoft",
+    "Meta"
+  ],
+  "description": "You are given the `head` of a singly linked list containing unique integer values and an integer array `nums` that is a subset of the linked list values.\n\nReturn the number of connected components in `nums`, where two values belong to the same connected component if they appear consecutively in the linked list.",
+  "constraints": [
+    "The number of nodes in the list is n, with 1 <= n <= 10^4.",
+    "0 <= Node.val < n, and all values in the linked list are unique.",
+    "1 <= nums.length <= n, all values in nums are unique, and every value in nums appears in the linked list."
+  ],
+  "hints": [
+    "Insert all elements of `nums` into a hash set for O(1) membership lookups.",
+    "Walk the linked list once and increment the component counter whenever a node's value is in the set and either it is the tail or its successor's value is not in the set."
+  ],
+  "examples": [
+    {
+      "explanation": "Nodes 0 and 1 are adjacent (component 1), and 3 is isolated (component 2), giving 2 components."
+    },
+    {
+      "explanation": "Nodes 0 and 1 form one component, and 3 and 4 form a second component."
+    },
+    {
+      "explanation": "All nodes in the list are present in nums, forming 1 single connected component."
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(m)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "numComponents",
+    "params": [
+      {
+        "name": "head",
+        "type": "ListNode"
+      },
+      {
+        "name": "nums",
+        "type": "int[]"
+      }
+    ],
+    "returns": "int"
+  }
+}

@@ -1,0 +1,1 @@
+class Solution { public int eraseOverlapIntervals(int[][] a) { Arrays.sort(a,(x,y)->Integer.compare(x[1],y[1]));int end=Integer.MIN_VALUE,keep=0;for(int[] x:a)if(x[0]>=end){keep++;end=x[1];}return a.length-keep;} }

@@ -1,0 +1,33 @@
+{
+  "title": "Find the Longest Substring Containing Vowels in Even Counts",
+  "difficulty": "Medium",
+  "subtopic": "Hash + Prefix",
+  "companies": ["Google", "Amazon", "Meta", "Microsoft", "Apple"],
+  "leetcode": 1371,
+  "description": "Given the string `s`, return the size of the longest contiguous substring containing each vowel (`'a'`, `'e'`, `'i'`, `'o'`, `'u'`) an even number of times.\n\nThat is, inside the chosen substring, each of the five vowels `'a'`, `'e'`, `'i'`, `'o'`, and `'u'` must appear `0, 2, 4, ...` times. Consonants may appear any number of times. If no non-empty valid substring exists, return `0`.",
+  "constraints": [
+    "1 <= s.length <= 5 * 10^5",
+    "s contains only lowercase English letters."
+  ],
+  "hints": [
+    "You only care about the parity (even or odd) of each vowel's count, not the exact count.",
+    "Encode the parities of the 5 vowels as a 5-bit integer bitmask (32 possible states), toggling the corresponding bit whenever you see a vowel.",
+    "A substring (i, j] has even counts of all 5 vowels if and only if the prefix bitmask at j equals the prefix bitmask at i. Record the first index where each of the 32 masks appears."
+  ],
+  "examples": [
+    {"explanation": "The longest valid substring is \"leetminicowor\" (length 13), containing two e's, two i's, two o's, zero a's, and zero u's."},
+    {"explanation": "The longest valid substring is \"leetc\" (length 5), containing two e's and zero of all other vowels."},
+    {"explanation": "The entire string \"bcbcbc\" (length 6) contains zero of every vowel, which is even for all five vowels."}
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "findTheLongestSubstring",
+    "params": [
+      {"name": "s", "type": "String"}
+    ],
+    "returns": "int"
+  }
+}

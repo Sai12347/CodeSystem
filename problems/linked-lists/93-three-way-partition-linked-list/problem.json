@@ -1,0 +1,54 @@
+{
+  "title": "Three-Way Partition Linked List",
+  "difficulty": "Medium",
+  "subtopic": "Merge & Sort",
+  "companies": [
+    "Google",
+    "Amazon",
+    "Microsoft",
+    "Goldman Sachs"
+  ],
+  "description": "Given the `head` of a singly linked list and two integers `low` and `high` (`low <= high`), partition the linked list into three consecutive sections:\n1. All nodes with `val < low`\n2. All nodes with `low <= val <= high`\n3. All nodes with `val > high`\n\nPreserve the **original relative order** of nodes within each of the three sections. Return the head of the partitioned linked list in `O(n)` time and `O(1)` extra space.",
+  "constraints": [
+    "The number of nodes in the list is in the range [0, 10^4].",
+    "-10^5 <= Node.val, low, high <= 10^5",
+    "low <= high"
+  ],
+  "hints": [
+    "Create three sentinel dummy heads (`lessDummy`, `midDummy`, `highDummy`) and three corresponding tail pointers.",
+    "Route each node to its bucket in a single pass, terminate `highTail.next = null`, then connect `midTail.next = highDummy.next` and `lessTail.next = midDummy.next` (in that order, so empty buckets collapse automatically)."
+  ],
+  "examples": [
+    {
+      "explanation": "With [low, high] = [3, 5]: (<3) is [1, 2], (3..5) is [4, 3, 5], (>5) is [8, 6], giving [1, 2, 4, 3, 5, 8, 6]."
+    },
+    {
+      "explanation": "When low == high == 2: (<2) is [1, 0], (==2) is [2, 2], (>2) is [5, 3], giving [1, 0, 2, 2, 5, 3]."
+    },
+    {
+      "explanation": "All nodes fall in the middle range [0, 10], so the list stays [7, 3, 9, 1]."
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "threeWayPartition",
+    "params": [
+      {
+        "name": "head",
+        "type": "ListNode"
+      },
+      {
+        "name": "low",
+        "type": "int"
+      },
+      {
+        "name": "high",
+        "type": "int"
+      }
+    ],
+    "returns": "ListNode"
+  }
+}

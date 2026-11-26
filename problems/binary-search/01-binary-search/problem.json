@@ -1,0 +1,36 @@
+{
+  "title": "Binary Search",
+  "difficulty": "Easy",
+  "subtopic": "Standard Bisect",
+  "companies": ["Google", "Amazon", "Microsoft", "Meta", "Apple", "Bloomberg"],
+  "leetcode": 704,
+  "description": "Given an array of integers `nums` which is sorted in ascending order, and an integer `target`, write a function to search `target` in `nums`. If `target` exists, return its 0-based index. Otherwise, return `-1`.\n\nYou must write an algorithm with `O(log n)` runtime complexity.",
+  "constraints": [
+    "1 <= nums.length <= 10^4",
+    "-10^4 < nums[i], target < 10^4",
+    "All the integers in nums are unique.",
+    "nums is sorted in ascending order."
+  ],
+  "hints": [
+    "Maintain a closed search interval [left, right] initialized to [0, nums.length - 1].",
+    "Compare the middle element nums[mid] with target to discard half of the remaining search space on every iteration.",
+    "Compute mid as left + (right - left) // 2 to avoid integer overflow in fixed-width integer languages."
+  ],
+  "examples": [
+    {"explanation": "9 exists in nums and its index is 4."},
+    {"explanation": "2 does not exist in nums, so return -1."},
+    {"explanation": "The single element 5 matches target at index 0."}
+  ],
+  "timeComplexity": "O(log n)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "search",
+    "params": [
+      {"name": "nums", "type": "int[]"},
+      {"name": "target", "type": "int"}
+    ],
+    "returns": "int"
+  }
+}

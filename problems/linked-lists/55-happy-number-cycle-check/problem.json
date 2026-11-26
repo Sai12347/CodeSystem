@@ -1,0 +1,45 @@
+{
+  "title": "Happy Number Cycle Check",
+  "difficulty": "Easy",
+  "subtopic": "Fast/Slow Pointer",
+  "companies": [
+    "Google",
+    "Amazon",
+    "Apple",
+    "Uber",
+    "Meta"
+  ],
+  "description": "Starting with a positive integer `n`, repeatedly replace the number by the sum of the squares of its base-10 digits. This defines an implicit singly linked list of states where each integer points to its digit-square sum.\n\nReturn `true` if this sequence eventually reaches `1` (making `n` a happy number), or `false` if it enters a cycle that never includes `1`. Solve in `O(1)` extra space using Floyd's fast and slow pointers.",
+  "constraints": [
+    "1 <= n <= 2^31 - 1"
+  ],
+  "hints": [
+    "Treat the transition `next(x) = sum of squares of digits of x` as following a `.next` pointer in an implicit linked list.",
+    "Advance `slow = next(slow)` by one step and `fast = next(next(fast))` by two steps; the loop terminates when `fast == 1` (happy) or `slow == fast` (cycle)."
+  ],
+  "examples": [
+    {
+      "explanation": "19 -> 82 -> 68 -> 100 -> 1, reaching 1 so return true."
+    },
+    {
+      "explanation": "2 -> 4 -> 16 -> 37 -> 58 -> 89 -> 145 -> 42 -> 20 -> 4 enters a cycle without 1, so return false."
+    },
+    {
+      "explanation": "7 -> 49 -> 97 -> 130 -> 10 -> 1 reaches 1, so return true."
+    }
+  ],
+  "timeComplexity": "O(log n)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "isHappy",
+    "params": [
+      {
+        "name": "n",
+        "type": "int"
+      }
+    ],
+    "returns": "boolean"
+  }
+}

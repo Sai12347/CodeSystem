@@ -1,0 +1,45 @@
+{
+  "title": "Reverse Strictly Decreasing Runs",
+  "difficulty": "Medium",
+  "subtopic": "Reversal",
+  "companies": [
+    "Google",
+    "Meta",
+    "Amazon",
+    "Apple"
+  ],
+  "description": "Given the `head` of a singly linked list of integers, partition the list into maximal contiguous **strictly decreasing** runs (a run extends from node `u` to `u.next` if and only if `u.val > u.next.val`) and reverse every run in-place.\n\nReturn the head of the modified linked list in `O(n)` time and `O(1)` extra space.",
+  "constraints": [
+    "The number of nodes in the list is in the range [0, 10^4].",
+    "-10^5 <= Node.val <= 10^5"
+  ],
+  "hints": [
+    "Use a sentinel dummy node and maintain `prevTail` pointing to the tail of the previously processed run.",
+    "For each new run starting at `curr`, keep reversing nodes into `revHead` while the next node's value is strictly less than the previous node's value; then link `prevTail.next = revHead` and advance `prevTail` to the original run head (now the run's tail)."
+  ],
+  "examples": [
+    {
+      "explanation": "Maximal strictly decreasing runs are [5, 3, 1], [4, 2], [2], and [7, 6]; reversing each yields [1, 3, 5, 2, 4, 2, 6, 7]."
+    },
+    {
+      "explanation": "The entire list [4, 3, 2, 1] is one strictly decreasing run, reversing to [1, 2, 3, 4]."
+    },
+    {
+      "explanation": "No adjacent pair is strictly decreasing, so every run has length 1 and [1, 2, 2, 3] is unchanged."
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "reverseDecreasingRuns",
+    "params": [
+      {
+        "name": "head",
+        "type": "ListNode"
+      }
+    ],
+    "returns": "ListNode"
+  }
+}

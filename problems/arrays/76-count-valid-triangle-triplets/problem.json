@@ -1,0 +1,43 @@
+{
+  "title": "Count Valid Triangle Triplets",
+  "difficulty": "Medium",
+  "subtopic": "Traversal",
+  "companies": [
+    "Amazon",
+    "Google",
+    "Microsoft"
+  ],
+  "description": "A triple of array elements can be side lengths of a non-degenerate triangle when the sum of its two smaller sides is greater than its largest side. Count index triplets `i < j < k` that satisfy this rule. Input: positive side lengths `nums`. Output: the triplet count.",
+  "constraints": [
+    "1 <= nums.length <= 1000",
+    "1 <= nums[i] <= 1000000"
+  ],
+  "hints": [
+    "Sort once or track a compact running state to avoid checking every possible group.",
+    "Test duplicates, extreme ordering, and cases with no feasible candidate."
+  ],
+  "examples": [
+    {
+      "input": "nums = [2, 2, 3, 4]",
+      "output": "3"
+    },
+    {
+      "input": "nums = [4, 2, 3, 4]",
+      "output": "4"
+    }
+  ],
+  "timeComplexity": "O(n^2)",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "triangleNumber",
+    "params": [
+      {
+        "name": "nums",
+        "type": "int[]"
+      }
+    ],
+    "returns": "long"
+  }
+}

@@ -1,0 +1,43 @@
+{
+  "title": "Nth Fibonacci Number Modulo",
+  "difficulty": "Medium",
+  "subtopic": "Fast Exponentiation",
+  "companies": [
+    "Google",
+    "Meta",
+    "Microsoft"
+  ],
+  "description": "The Fibonacci sequence is defined by `F(0) = 0`, `F(1) = 1`, and `F(n) = F(n - 1) + F(n - 2)` for `n >= 2`. Given a non-negative integer `n` up to `10^15`, return `F(n) mod (10^9 + 7)` in `O(log n)` time.",
+  "constraints": [
+    "0 <= n <= 10^15"
+  ],
+  "hints": [
+    "Express the recurrence as a 2x2 matrix power `[[1, 1], [1, 0]]^n`, or use the fast doubling identities `F(2k) = F(k) * (2*F(k + 1) - F(k))` and `F(2k + 1) = F(k)^2 + F(k + 1)^2`.",
+    "Keep intermediate values modulo `10^9 + 7` using 64-bit integers and handle subtraction cleanly so remainders stay non-negative."
+  ],
+  "examples": [
+    {
+      "explanation": "F(0) = 0 by definition."
+    },
+    {
+      "explanation": "F(10) = 55."
+    },
+    {
+      "explanation": "F(50) = 12586269025, which equals 586268941 modulo 10^9 + 7."
+    }
+  ],
+  "timeComplexity": "O(log n)",
+  "spaceComplexity": "O(log n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "fibonacciMod",
+    "params": [
+      {
+        "name": "n",
+        "type": "long"
+      }
+    ],
+    "returns": "int"
+  }
+}

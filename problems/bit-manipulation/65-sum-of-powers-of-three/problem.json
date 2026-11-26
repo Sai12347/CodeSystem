@@ -1,0 +1,43 @@
+{
+  "title": "Check if Number is a Sum of Powers of Three",
+  "difficulty": "Medium",
+  "subtopic": "Fast Exponentiation",
+  "companies": [
+    "Amazon",
+    "Google",
+    "Adobe"
+  ],
+  "description": "Given a positive integer `n`, return `true` if `n` can be represented as the sum of one or more distinct powers of three (`3^k` for distinct non-negative integers `k`), and `false` otherwise.",
+  "constraints": [
+    "1 <= n <= 10^9"
+  ],
+  "hints": [
+    "Express `n` in base 3: using each power of three at most once means every base-3 digit of `n` must be `0` or `1`.",
+    "Repeatedly check `n % 3`: if the remainder is ever `2`, return `false`; otherwise divide `n` by `3` until `n == 0`."
+  ],
+  "examples": [
+    {
+      "explanation": "12 = 3^1 + 3^2 = 3 + 9."
+    },
+    {
+      "explanation": "91 = 3^0 + 3^2 + 3^4 = 1 + 9 + 81."
+    },
+    {
+      "explanation": "21 in base 3 is 210_3, which requires two copies of 3^2, so return false."
+    }
+  ],
+  "timeComplexity": "O(log n)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "checkPowersOfThree",
+    "params": [
+      {
+        "name": "n",
+        "type": "int"
+      }
+    ],
+    "returns": "boolean"
+  }
+}

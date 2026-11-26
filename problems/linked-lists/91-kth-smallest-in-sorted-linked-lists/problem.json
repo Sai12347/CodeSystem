@@ -1,0 +1,52 @@
+{
+  "title": "K-th Smallest in Sorted Linked Lists",
+  "difficulty": "Medium",
+  "subtopic": "Merge & Sort",
+  "companies": [
+    "Google",
+    "Amazon",
+    "Meta",
+    "Uber"
+  ],
+  "description": "You are given an array `lists` of `m` singly linked lists, where each linked list is sorted in **non-decreasing** order (some lists may be empty), and a 1-indexed integer `k`.\n\nReturn the `k`-th smallest value across all nodes of all lists combined (counting duplicates with their multiplicity). It is guaranteed that `1 <= k <= N`, where `N` is the total number of nodes across all lists. Aim for `O((m + k) log m)` time and `O(m)` space.",
+  "constraints": [
+    "1 <= lists.length <= 500",
+    "0 <= lists[i].length <= 2000",
+    "1 <= N <= 10^4 (total nodes across all lists)",
+    "1 <= k <= N",
+    "-10^5 <= Node.val <= 10^5"
+  ],
+  "hints": [
+    "Push the head of every non-empty linked list into a min-heap ordered by `node.val`.",
+    "Repeatedly pop the smallest node `k` times, pushing `node.next` back into the heap whenever it is non-null; the value popped on the `k`-th step is the answer."
+  ],
+  "examples": [
+    {
+      "explanation": "All values sorted are [1, 1, 2, 3, 4, 4, 5, 6]; the 5th smallest is 4."
+    },
+    {
+      "explanation": "All values sorted are [-5, -2, 0, 3, 7, 10]; the 3rd smallest is 0."
+    },
+    {
+      "explanation": "Only one non-empty list [9, 12, 15]; the 1st smallest is 9."
+    }
+  ],
+  "timeComplexity": "O((m + k) log m)",
+  "spaceComplexity": "O(m)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "kthSmallestInLists",
+    "params": [
+      {
+        "name": "lists",
+        "type": "ListNode[]"
+      },
+      {
+        "name": "k",
+        "type": "int"
+      }
+    ],
+    "returns": "int"
+  }
+}

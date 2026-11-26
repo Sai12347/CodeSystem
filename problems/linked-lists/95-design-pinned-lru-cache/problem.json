@@ -1,0 +1,93 @@
+{
+  "title": "Design Pinned LRU Cache",
+  "difficulty": "Medium",
+  "subtopic": "LRU Design",
+  "companies": [
+    "Google",
+    "Amazon",
+    "Meta",
+    "Netflix"
+  ],
+  "description": "Design an LRU cache `PinnedLRUCache` that supports pinning entries so they cannot be evicted:\n- `PinnedLRUCache(int capacity)` initializes the cache with positive `capacity`.\n- `int get(int key)` returns the value of `key` if present, otherwise `-1`. If `key` is present and currently **unpinned**, it is promoted to the most recently used (MRU) position.\n- `boolean put(int key, int value)` inserts or updates `key` with `value`. If `key` already exists, update its value (and promote it to MRU if unpinned) and return `true`. If `key` does not exist and the cache is at `capacity`, evict the least recently used **unpinned** entry; if **all** entries are currently pinned (no entry can be evicted), leave the cache unchanged and return `false`. Otherwise insert `key` as an unpinned MRU entry and return `true`.\n- `boolean pin(int key)` pins `key` (preventing eviction while still counting toward `capacity`) and returns `true` if `key` exists in the cache (even if already pinned), or `false` if `key` is absent.\n- `boolean unpin(int key)` unpins `key` and returns `true` if `key` exists in the cache (if it was pinned, place it at the MRU position among unpinned entries), or `false` if `key` is absent.\n\nAll operations must run in `O(1)` time.",
+  "constraints": [
+    "1 <= capacity <= 1000",
+    "0 <= key, value <= 10^5",
+    "At most 2000 calls will be made to get, put, pin, and unpin."
+  ],
+  "hints": [
+    "Maintain a hash map `key -> Node` for all cached entries (both pinned and unpinned) and a doubly linked list containing **only** the unpinned entries in MRU-to-LRU order.",
+    "`pin(key)` simply unlinks the node from the unpinned DLL (marking `pinned = true`), while `unpin(key)` marks `pinned = false` and inserts it at the head (MRU) of the unpinned DLL; eviction on `put` checks whether the unpinned DLL is empty."
+  ],
+  "examples": [
+    {
+      "explanation": "Key 1 is pinned so put(3, 30) evicts unpinned key 2 instead of key 1; pinning key 3 makes the cache full of pinned entries so put(4, 40) returns false."
+    },
+    {
+      "explanation": "Unpinning key 1 puts it at MRU ahead of key 2, so put(3, 30) evicts key 2 instead of key 1."
+    },
+    {
+      "explanation": "Pinning or unpinning a missing key returns false; updating an existing pinned key still succeeds and returns true."
+    }
+  ],
+  "timeComplexity": "O(1) per operation",
+  "spaceComplexity": "O(capacity)",
+  "compare": "exact",
+  "signature": {
+    "kind": "design",
+    "className": "PinnedLRUCache",
+    "constructor": {
+      "params": [
+        {
+          "name": "capacity",
+          "type": "int"
+        }
+      ]
+    },
+    "methods": [
+      {
+        "name": "get",
+        "params": [
+          {
+            "name": "key",
+            "type": "int"
+          }
+        ],
+        "returns": "int"
+      },
+      {
+        "name": "put",
+        "params": [
+          {
+            "name": "key",
+            "type": "int"
+          },
+          {
+            "name": "value",
+            "type": "int"
+          }
+        ],
+        "returns": "boolean"
+      },
+      {
+        "name": "pin",
+        "params": [
+          {
+            "name": "key",
+            "type": "int"
+          }
+        ],
+        "returns": "boolean"
+      },
+      {
+        "name": "unpin",
+        "params": [
+          {
+            "name": "key",
+            "type": "int"
+          }
+        ],
+        "returns": "boolean"
+      }
+    ]
+  }
+}

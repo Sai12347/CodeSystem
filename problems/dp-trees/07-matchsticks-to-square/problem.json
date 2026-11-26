@@ -1,0 +1,39 @@
+{
+  "title": "Matchsticks to Square",
+  "difficulty": "Medium",
+  "subtopic": "Assignment",
+  "companies": [
+    "Google",
+    "Amazon",
+    "Microsoft"
+  ],
+  "description": "Use every matchstick exactly once to form the four equal sides of a square. Matchsticks cannot be broken. Return true if this is possible.",
+  "constraints": [
+    "4 <= matchsticks.length <= 15",
+    "1 <= matchsticks[i] <= 10^8"
+  ],
+  "hints": [
+    "Use a compact state to summarize each subtree or set of chosen items.",
+    "Combine partial states and cache repeated subproblems."
+  ],
+  "examples": [
+    {
+      "input": "matchsticks = [1,1,2,2,2]",
+      "output": "true"
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "makesquare",
+    "params": [
+      {
+        "name": "matchsticks",
+        "type": "int[]"
+      }
+    ],
+    "returns": "boolean"
+  }
+}

@@ -1,0 +1,51 @@
+{
+  "title": "Maximum Sum Path Across Two Sorted Lists",
+  "difficulty": "Hard",
+  "subtopic": "Merge & Sort",
+  "companies": [
+    "Google",
+    "Amazon",
+    "Meta",
+    "Microsoft",
+    "Goldman Sachs"
+  ],
+  "description": "You are given the heads of two singly linked lists `l1` and `l2`, each sorted in **strictly increasing** order of positive integers.\n\nA valid path starts at the head of either `l1` or `l2` and moves forward node by node. Whenever you reach a value that appears in **both** lists, you may optionally switch to the other list at that common node (counting the shared value only once) and continue walking forward until reaching the end of a list.\n\nReturn the **maximum possible sum** of node values along any valid path as a 64-bit integer (`long` in Java, `int` in Python). Aim for `O(n + m)` time and `O(1)` extra space.",
+  "constraints": [
+    "The number of nodes in each list is in the range [0, 5000].",
+    "1 <= Node.val <= 10^6",
+    "Both l1 and l2 are sorted in strictly increasing order."
+  ],
+  "hints": [
+    "Walk two pointers `p1` and `p2` through `l1` and `l2` simultaneously like a merge step, maintaining two running segment sums `sum1` and `sum2` since the last common node.",
+    "Whenever `p1.val == p2.val`, add `max(sum1, sum2) + p1.val` to the answer, reset both segment sums to `0`, and advance both pointers; after the loop, drain any remaining nodes into `sum1`/`sum2` and add `max(sum1, sum2)`."
+  ],
+  "examples": [
+    {
+      "explanation": "Switching at common nodes 4 and 8 along 2 -> 4 -> 6 -> 8 -> 10 gives the maximum sum 2 + 4 + 6 + 8 + 10 = 30."
+    },
+    {
+      "explanation": "The lists share no common values, so take the list with larger total sum: [10, 20, 30] sums to 60."
+    },
+    {
+      "explanation": "Both lists are identical [1, 3, 5], so the maximum sum is 1 + 3 + 5 = 9."
+    }
+  ],
+  "timeComplexity": "O(n + m)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "maxSumPath",
+    "params": [
+      {
+        "name": "l1",
+        "type": "ListNode"
+      },
+      {
+        "name": "l2",
+        "type": "ListNode"
+      }
+    ],
+    "returns": "long"
+  }
+}

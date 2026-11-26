@@ -1,0 +1,44 @@
+{
+  "title": "Make The String Great",
+  "difficulty": "Easy",
+  "subtopic": "LIFO Structure",
+  "companies": [
+    "Google",
+    "Amazon",
+    "Microsoft"
+  ],
+  "description": "Given a string `s` of lowercase and uppercase English letters, a *good* string is one that does not have two adjacent characters `s[i]` and `s[i + 1]` where:\n- `s[i]` is a lowercase letter and `s[i + 1]` is the same letter in uppercase, OR\n- `s[i]` is an uppercase letter and `s[i + 1]` is the same letter in lowercase.\n\nTo make the string good, repeatedly choose any two adjacent characters that violate this rule and remove both of them until no such pair exists. Return the resulting good string (note that an empty string is also good, and the final result is guaranteed to be unique).",
+  "constraints": [
+    "1 <= s.length <= 10^4",
+    "s contains only lowercase and uppercase English letters."
+  ],
+  "hints": [
+    "Two English letters are the same letter in opposite cases if and only if the absolute difference of their ASCII codes is 32.",
+    "Process characters left to right using a stack: if the top of the stack cancels with the current character, pop it; otherwise push the current character."
+  ],
+  "examples": [
+    {
+      "explanation": "Removing 'eE' from \"leEeetcode\" leaves \"leetcode\", which has no adjacent opposite-case pairs."
+    },
+    {
+      "explanation": "Removing 'bB' leaves \"aAcC\", then removing 'aA' and 'cC' yields an empty string \"\"."
+    },
+    {
+      "explanation": "A single character \"s\" is already good."
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "makeGood",
+    "params": [
+      {
+        "name": "s",
+        "type": "String"
+      }
+    ],
+    "returns": "String"
+  }
+}

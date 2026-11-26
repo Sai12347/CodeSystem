@@ -1,0 +1,47 @@
+{
+  "title": "Score After Flipping Binary Matrix",
+  "difficulty": "Medium",
+  "subtopic": "Matrix Rotation",
+  "companies": [
+    "Google",
+    "Amazon",
+    "Meta",
+    "Microsoft"
+  ],
+  "description": "You are given an `m x n` binary matrix `grid` containing only `0`s and `1`s.\n\nA **move** consists of choosing any row or any column and toggling every value in that row or column (changing every `0` to `1` and every `1` to `0`).\n\nAfter performing any number of moves, every row of the matrix is interpreted as a binary number (with column `0` as the most significant bit), and the score of the matrix is the sum of these `m` numbers.\n\nReturn the **highest possible score** achievable.",
+  "constraints": [
+    "m == grid.length",
+    "n == grid[i].length",
+    "1 <= m, n <= 20",
+    "grid[i][j] is either 0 or 1."
+  ],
+  "hints": [
+    "The most significant bit (column 0) outweighs all remaining bits combined, so greedily toggle any row whose first entry is 0 so that column 0 becomes all 1s.",
+    "Once row orientations are fixed, maximize each remaining column c independently by counting how many rows have grid[r][c] == grid[r][0] (the effective 1s) and taking max(ones, m - ones)."
+  ],
+  "examples": [
+    {
+      "explanation": "Flipping row 0, then column 2, then column 3 produces rows 1111 (15), 1001 (9), and 1111 (15), totaling 39."
+    },
+    {
+      "explanation": "Flipping the single 0 to 1 gives a score of 1."
+    },
+    {
+      "explanation": "All entries are already 1 in a 2x2 grid (11 + 11 = 3 + 3 = 6), which is optimal."
+    }
+  ],
+  "timeComplexity": "O(m * n)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "matrixScore",
+    "params": [
+      {
+        "name": "grid",
+        "type": "int[][]"
+      }
+    ],
+    "returns": "int"
+  }
+}

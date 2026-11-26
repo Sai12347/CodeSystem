@@ -1,0 +1,54 @@
+{
+  "title": "Count Number of Nice Subarrays",
+  "difficulty": "Medium",
+  "subtopic": "At Most K Elements",
+  "companies": [
+    "Amazon",
+    "Google",
+    "Meta",
+    "Microsoft",
+    "Apple",
+    "Bloomberg"
+  ],
+  "leetcode": 1248,
+  "description": "Given an array of integers `nums` and an integer `k`, a contiguous subarray is called **nice** if there are **exactly** `k` odd numbers in it.\n\nReturn the number of nice subarrays.",
+  "constraints": [
+    "1 <= nums.length <= 50000",
+    "1 <= nums[i] <= 10^5",
+    "1 <= k <= nums.length"
+  ],
+  "hints": [
+    "Only the parity of each element matters: you can treat each element as 1 if it is odd and 0 if it is even.",
+    "Counting subarrays with exactly k odd numbers directly with a single window is tricky because even numbers expand the boundary without changing the odd count.",
+    "Use the identity exact(k) = atMost(k) - atMost(k - 1), where atMost(m) counts subarrays containing at most m odd numbers in a single O(n) sliding-window pass."
+  ],
+  "examples": [
+    {
+      "explanation": "The only subarrays containing exactly 3 odd numbers are [1, 1, 2, 1] and [1, 2, 1, 1], giving 2 nice subarrays."
+    },
+    {
+      "explanation": "There are no odd numbers in the array, so no subarray can contain 1 odd number."
+    },
+    {
+      "explanation": "There are 4 choices for the starting index (0..3) and 4 choices for the ending index (6..9) around the two 1s, giving 4 * 4 = 16 nice subarrays."
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "numberOfSubarrays",
+    "params": [
+      {
+        "name": "nums",
+        "type": "int[]"
+      },
+      {
+        "name": "k",
+        "type": "int"
+      }
+    ],
+    "returns": "int"
+  }
+}

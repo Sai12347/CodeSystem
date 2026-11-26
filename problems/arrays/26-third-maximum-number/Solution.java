@@ -1,0 +1,1 @@
+class Solution { public int thirdMax(int[] nums) { TreeSet<Integer> s = new TreeSet<>(); for (int x : nums) { s.add(x); if (s.size() > 3) s.pollFirst(); } return s.size() == 3 ? s.first() : s.last(); } }

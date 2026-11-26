@@ -1,0 +1,39 @@
+{
+  "title": "Distribute Coins in a Binary Tree",
+  "difficulty": "Medium",
+  "subtopic": "Subtree Optimization",
+  "companies": [
+    "Amazon",
+    "Google",
+    "Microsoft"
+  ],
+  "description": "Each node contains some coins, and the tree has the same total number of coins as nodes. In one move, a coin may be moved along one edge. Return the minimum number of moves needed so every node has exactly one coin.",
+  "constraints": [
+    "0 <= number of nodes <= 1000",
+    "-10^4 <= node.val <= 10^4"
+  ],
+  "hints": [
+    "Solve the tree recursively from the leaves toward the root.",
+    "Return the smallest state needed by the parent and combine child results."
+  ],
+  "examples": [
+    {
+      "input": "root = [3,0,0]",
+      "output": "2"
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(h)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "distributeCoins",
+    "params": [
+      {
+        "name": "root",
+        "type": "TreeNode"
+      }
+    ],
+    "returns": "int"
+  }
+}

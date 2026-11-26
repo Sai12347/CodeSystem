@@ -1,0 +1,45 @@
+{
+  "title": "Interleave Halves of Linked List",
+  "difficulty": "Medium",
+  "subtopic": "Fast/Slow Pointer",
+  "companies": [
+    "Amazon",
+    "Meta",
+    "Uber",
+    "Bloomberg"
+  ],
+  "description": "Given the `head` of a singly linked list of length `n`, split the list into a first half of length `ceil(n / 2)` (`a_0, a_1, ..., a_{p-1}`) and a second half of length `floor(n / 2)` (`b_0, b_1, ..., b_{q-1}`), preserving the original order within each half.\n\nInterleave the two halves alternately as `a_0 -> b_0 -> a_1 -> b_1 -> ...` (if `n` is odd, `a_{p-1}` appears at the end), and return the head of the modified list. Solve it in-place in `O(1)` extra space.",
+  "constraints": [
+    "The number of nodes in the list is in the range [0, 5000].",
+    "-10^5 <= Node.val <= 10^5"
+  ],
+  "hints": [
+    "Initialize `slow = head` and `fast = head.next`; advancing `slow` by 1 and `fast` by 2 stops `slow` at the tail of the first half (length `ceil(n / 2)`).",
+    "Detach the second half at `second = slow.next; slow.next = null`, then weave nodes from `first` and `second` in alternating order without reversing either half."
+  ],
+  "examples": [
+    {
+      "explanation": "Halves [1, 2, 3] and [4, 5, 6] interleave into [1, 4, 2, 5, 3, 6]."
+    },
+    {
+      "explanation": "Halves [1, 2, 3] and [4, 5] interleave into [1, 4, 2, 5, 3]."
+    },
+    {
+      "explanation": "A 2-node list has halves [10] and [20], which stays [10, 20]."
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "interleaveHalves",
+    "params": [
+      {
+        "name": "head",
+        "type": "ListNode"
+      }
+    ],
+    "returns": "ListNode"
+  }
+}

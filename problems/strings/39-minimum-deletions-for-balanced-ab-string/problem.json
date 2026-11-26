@@ -1,0 +1,43 @@
+{
+  "title": "Minimum Deletions for a Balanced A-B String",
+  "difficulty": "Medium",
+  "subtopic": "Parsing",
+  "companies": [
+    "Amazon",
+    "Google",
+    "Microsoft"
+  ],
+  "description": "A string over `a` and `b` is balanced when it can be written as zero or more `a` characters followed by zero or more `b` characters. Return the minimum number of characters to delete from `s` to make it balanced. Input: a string `s` containing only `a` and `b`. Output: the minimum deletions.",
+  "constraints": [
+    "1 <= s.length <= 100000",
+    "s contains only 'a' and 'b'"
+  ],
+  "hints": [
+    "Track only the character counts or prefixes needed to decide the next step.",
+    "Check repeated symbols, empty or minimal cases, and impossible arrangements."
+  ],
+  "examples": [
+    {
+      "input": "s = \"aababbab\"",
+      "output": "2"
+    },
+    {
+      "input": "s = \"bbaaaa\"",
+      "output": "2"
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "minimumDeletions",
+    "params": [
+      {
+        "name": "s",
+        "type": "String"
+      }
+    ],
+    "returns": "int"
+  }
+}

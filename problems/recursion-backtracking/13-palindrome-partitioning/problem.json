@@ -1,0 +1,49 @@
+{
+  "title": "Palindrome Partitioning",
+  "difficulty": "Medium",
+  "subtopic": "Subsets",
+  "companies": [
+    "Google",
+    "Amazon",
+    "Meta",
+    "Microsoft",
+    "Apple",
+    "Bloomberg"
+  ],
+  "leetcode": 131,
+  "description": "Given a string `s`, partition `s` such that every substring of the partition is a palindrome. Return all possible palindrome partitionings of `s`.\n\nYou may return the list of partitionings in any order, but within each partitioning the substrings must appear in left-to-right order so that concatenating them reproduces `s`.",
+  "constraints": [
+    "1 <= s.length <= 16",
+    "s contains only lowercase English letters."
+  ],
+  "hints": [
+    "Use backtracking starting at index 0: try every prefix s[start..end] that is a palindrome, append it to the current path, and recurse from end + 1.",
+    "Precompute an n x n boolean DP table isPal[i][j] indicating whether s[i..j] is a palindrome so each palindrome check during backtracking takes O(1) time.",
+    "A substring s[i..j] is a palindrome if s[i] == s[j] and either j - i <= 2 or isPal[i + 1][j - 1] is true."
+  ],
+  "examples": [
+    {
+      "explanation": "\"aab\" can be partitioned into [\"a\",\"a\",\"b\"] or [\"aa\",\"b\"]."
+    },
+    {
+      "explanation": "A single character is always a palindrome, giving [[\"a\"]]."
+    },
+    {
+      "explanation": "\"aba\" can be split into three single-character palindromes or kept whole as [\"aba\"]."
+    }
+  ],
+  "timeComplexity": "O(n * 2^n)",
+  "spaceComplexity": "O(n^2)",
+  "compare": "sorted",
+  "signature": {
+    "kind": "function",
+    "method": "partition",
+    "params": [
+      {
+        "name": "s",
+        "type": "String"
+      }
+    ],
+    "returns": "List<List<String>>"
+  }
+}

@@ -1,0 +1,6285 @@
+{
+  "arrays": [
+    [
+      "01-find-min-max",
+      "Find Maximum and Minimum Element in Array",
+      "Easy",
+      "Traversal",
+      null
+    ],
+    [
+      "02-reverse-array",
+      "Reverse an Array In-Place",
+      "Easy",
+      "In-Place Operations",
+      null
+    ],
+    [
+      "03-two-sum",
+      "Two Sum",
+      "Easy",
+      "Traversal",
+      1
+    ],
+    [
+      "04-remove-duplicates-sorted-array",
+      "Remove Duplicates from Sorted Array",
+      "Easy",
+      "In-Place Operations",
+      26
+    ],
+    [
+      "05-move-zeroes",
+      "Move Zeroes",
+      "Easy",
+      "In-Place Operations",
+      283
+    ],
+    [
+      "06-best-time-to-buy-and-sell-stock",
+      "Best Time to Buy and Sell Stock",
+      "Easy",
+      "Traversal",
+      121
+    ],
+    [
+      "07-plus-one",
+      "Plus One",
+      "Easy",
+      "In-Place Operations",
+      66
+    ],
+    [
+      "08-merge-sorted-array",
+      "Merge Sorted Array",
+      "Easy",
+      "In-Place Operations",
+      88
+    ],
+    [
+      "09-pascals-triangle-ii",
+      "Pascal's Triangle II",
+      "Easy",
+      "Traversal",
+      119
+    ],
+    [
+      "10-majority-element",
+      "Majority Element",
+      "Easy",
+      "Traversal",
+      169
+    ],
+    [
+      "11-contains-duplicate",
+      "Contains Duplicate",
+      "Easy",
+      "Traversal",
+      217
+    ],
+    [
+      "12-missing-number",
+      "Missing Number",
+      "Easy",
+      "Traversal",
+      268
+    ],
+    [
+      "13-intersection-of-two-arrays",
+      "Intersection of Two Arrays",
+      "Easy",
+      "Traversal",
+      349
+    ],
+    [
+      "14-three-sum",
+      "3Sum",
+      "Medium",
+      "Subarrays",
+      15
+    ],
+    [
+      "15-maximum-subarray",
+      "Maximum Subarray",
+      "Medium",
+      "Subarrays",
+      53
+    ],
+    [
+      "16-next-permutation",
+      "Next Permutation",
+      "Medium",
+      "In-Place Operations",
+      31
+    ],
+    [
+      "17-rotate-array",
+      "Rotate Array",
+      "Medium",
+      "Rotations",
+      189
+    ],
+    [
+      "18-first-missing-positive",
+      "First Missing Positive",
+      "Hard",
+      "In-Place Operations",
+      41
+    ],
+    [
+      "19-sign-of-the-product-of-an-array",
+      "Sign of the Product of an Array",
+      "Easy",
+      "Traversal",
+      1822
+    ],
+    [
+      "20-best-time-to-buy-and-sell-stock-ii",
+      "Best Time to Buy and Sell Stock II",
+      "Medium",
+      "Prefix/Suffix",
+      122
+    ],
+    [
+      "21-maximum-product-difference",
+      "Maximum Product Difference Between Two Pairs",
+      "Easy",
+      "Subarrays",
+      1913
+    ],
+    [
+      "22-maximum-product-subarray",
+      "Maximum Product Subarray",
+      "Medium",
+      "Subarrays",
+      null
+    ],
+    [
+      "23-longest-subarray-with-sum-at-most-k",
+      "Longest Subarray With Sum at Most K",
+      "Easy",
+      "Subarrays",
+      null
+    ],
+    [
+      "24-stable-parity-partition",
+      "Stable Parity Partition",
+      "Easy",
+      "In-Place Operations",
+      null
+    ],
+    [
+      "25-maximum-adjacent-difference",
+      "Maximum Adjacent Difference",
+      "Easy",
+      "Traversal",
+      null
+    ],
+    [
+      "26-third-maximum-number",
+      "Third Maximum Number",
+      "Easy",
+      "Traversal",
+      null
+    ],
+    [
+      "27-valid-mountain-array",
+      "Valid Mountain Array",
+      "Easy",
+      "Traversal",
+      null
+    ],
+    [
+      "28-maximum-product-of-three-numbers",
+      "Maximum Product of Three Numbers",
+      "Easy",
+      "Subarrays",
+      null
+    ],
+    [
+      "29-monotonic-array",
+      "Monotonic Array",
+      "Easy",
+      "Traversal",
+      null
+    ],
+    [
+      "30-height-checker",
+      "Height Checker",
+      "Easy",
+      "In-Place Operations",
+      null
+    ],
+    [
+      "31-maximum-circular-subarray-sum",
+      "Maximum Circular Subarray Sum",
+      "Medium",
+      "Subarrays",
+      null
+    ],
+    [
+      "32-leftmost-equilibrium-position",
+      "Leftmost Equilibrium Position",
+      "Easy",
+      "Prefix/Suffix",
+      null
+    ],
+    [
+      "33-dominant-value-index",
+      "Dominant Value Index",
+      "Easy",
+      "Traversal",
+      null
+    ],
+    [
+      "34-longest-run-of-ones",
+      "Longest Run of Ones",
+      "Easy",
+      "Traversal",
+      null
+    ],
+    [
+      "35-minimum-distance-between-equal-values",
+      "Minimum Distance Between Equal Values",
+      "Easy",
+      "Traversal",
+      null
+    ],
+    [
+      "36-longest-strictly-increasing-run",
+      "Longest Strictly Increasing Run",
+      "Easy",
+      "Traversal",
+      null
+    ],
+    [
+      "37-longest-strictly-decreasing-run",
+      "Longest Strictly Decreasing Run",
+      "Easy",
+      "Traversal",
+      null
+    ],
+    [
+      "38-count-record-breakers",
+      "Count Record Breakers",
+      "Easy",
+      "Traversal",
+      null
+    ],
+    [
+      "39-strict-local-peak-count",
+      "Strict Local Peak Count",
+      "Easy",
+      "Traversal",
+      null
+    ],
+    [
+      "40-maximum-adjacent-pair-product",
+      "Maximum Adjacent Pair Product",
+      "Easy",
+      "Traversal",
+      null
+    ],
+    [
+      "41-longest-harmonious-subsequence",
+      "Longest Harmonious Subsequence",
+      "Easy",
+      "Traversal",
+      null
+    ],
+    [
+      "42-find-all-disappeared-numbers",
+      "Find All Disappeared Numbers",
+      "Easy",
+      "In-Place Operations",
+      null
+    ],
+    [
+      "43-find-all-duplicate-values",
+      "Find All Duplicate Values",
+      "Medium",
+      "Traversal",
+      null
+    ],
+    [
+      "44-rearrange-into-arithmetic-progression",
+      "Rearrange Into an Arithmetic Progression",
+      "Easy",
+      "Traversal",
+      null
+    ],
+    [
+      "45-sum-of-absolute-differences-sorted-array",
+      "Sum of Absolute Differences in a Sorted Array",
+      "Medium",
+      "Prefix/Suffix",
+      null
+    ],
+    [
+      "46-increasing-triplet-subsequence",
+      "Increasing Triplet Subsequence",
+      "Medium",
+      "Traversal",
+      null
+    ],
+    [
+      "47-longest-alternating-parity-run",
+      "Longest Alternating Parity Run",
+      "Easy",
+      "Traversal",
+      null
+    ],
+    [
+      "48-array-nesting-length",
+      "Array Nesting Length",
+      "Medium",
+      "Traversal",
+      null
+    ],
+    [
+      "49-maximum-sorted-chunks-permutation",
+      "Maximum Sorted Chunks in a Permutation",
+      "Medium",
+      "In-Place Operations",
+      null
+    ],
+    [
+      "50-maximum-subarray-sum-with-one-deletion",
+      "Maximum Subarray Sum with One Deletion",
+      "Medium",
+      "Subarrays",
+      null
+    ],
+    [
+      "51-maximum-width-ramp",
+      "Maximum Width Ramp",
+      "Medium",
+      "Traversal",
+      null
+    ],
+    [
+      "52-sum-of-subarray-ranges",
+      "Sum of Subarray Ranges",
+      "Medium",
+      "Subarrays",
+      null
+    ],
+    [
+      "53-maximum-distance-to-closest-person",
+      "Maximum Distance to Closest Person",
+      "Easy",
+      "Traversal",
+      null
+    ],
+    [
+      "54-wiggle-subsequence-length",
+      "Wiggle Subsequence Length",
+      "Medium",
+      "Traversal",
+      null
+    ],
+    [
+      "55-maximum-erasure-value",
+      "Maximum Erasure Value",
+      "Medium",
+      "Subarrays",
+      null
+    ],
+    [
+      "56-count-subarrays-with-fixed-bounds",
+      "Count Subarrays With Fixed Bounds",
+      "Hard",
+      "Subarrays",
+      null
+    ],
+    [
+      "57-count-subarrays-with-bounded-maximum",
+      "Count Subarrays With Bounded Maximum",
+      "Medium",
+      "Subarrays",
+      null
+    ],
+    [
+      "58-best-sightseeing-pair",
+      "Best Sightseeing Pair",
+      "Medium",
+      "Traversal",
+      null
+    ],
+    [
+      "59-maximum-length-of-repeated-subarray",
+      "Maximum Length of Repeated Subarray",
+      "Medium",
+      "Subarrays",
+      null
+    ],
+    [
+      "60-longest-arithmetic-subsequence",
+      "Longest Arithmetic Subsequence",
+      "Medium",
+      "Traversal",
+      null
+    ],
+    [
+      "61-odd-sum-subarray-count",
+      "Odd-Sum Subarray Count",
+      "Medium",
+      "Subarrays",
+      null
+    ],
+    [
+      "62-count-strictly-increasing-subarrays",
+      "Count Strictly Increasing Subarrays",
+      "Medium",
+      "Subarrays",
+      null
+    ],
+    [
+      "63-longest-equal-value-run",
+      "Longest Equal-Value Run",
+      "Easy",
+      "Traversal",
+      null
+    ],
+    [
+      "64-second-distinct-maximum",
+      "Second Distinct Maximum",
+      "Easy",
+      "Traversal",
+      null
+    ],
+    [
+      "65-minimum-replacements-for-continuous-array",
+      "Minimum Replacements for a Continuous Array",
+      "Hard",
+      "Traversal",
+      null
+    ],
+    [
+      "66-minimum-swaps-to-group-ones",
+      "Minimum Swaps to Group All Ones",
+      "Medium",
+      "Traversal",
+      null
+    ],
+    [
+      "67-count-pairs-sum-divisible-by-k",
+      "Count Pairs With Sum Divisible by K",
+      "Medium",
+      "Traversal",
+      null
+    ],
+    [
+      "68-longest-ones-after-one-deletion",
+      "Longest Ones Segment After One Deletion",
+      "Medium",
+      "Subarrays",
+      null
+    ],
+    [
+      "69-count-length-k-windows-above-threshold",
+      "Count Length-K Windows Above Average Threshold",
+      "Medium",
+      "Subarrays",
+      null
+    ],
+    [
+      "70-kth-largest-array-value-by-rank",
+      "K-th Largest Array Value by Rank",
+      "Medium",
+      "Traversal",
+      null
+    ],
+    [
+      "71-maximum-k-sum-pairs",
+      "Maximum K-Sum Pairs",
+      "Medium",
+      "Traversal",
+      null
+    ],
+    [
+      "72-minimum-common-value-of-sorted-arrays",
+      "Minimum Common Value of Sorted Arrays",
+      "Easy",
+      "Traversal",
+      null
+    ],
+    [
+      "73-count-values-between-array-extremes",
+      "Count Values Between Array Extremes",
+      "Easy",
+      "Traversal",
+      null
+    ],
+    [
+      "74-maximum-length-positive-product-subarray",
+      "Maximum Length Positive Product Subarray",
+      "Medium",
+      "Subarrays",
+      null
+    ],
+    [
+      "75-longest-turbulent-subarray",
+      "Longest Turbulent Subarray",
+      "Medium",
+      "Subarrays",
+      null
+    ],
+    [
+      "76-count-valid-triangle-triplets",
+      "Count Valid Triangle Triplets",
+      "Medium",
+      "Traversal",
+      null
+    ],
+    [
+      "77-largest-perimeter-triangle",
+      "Largest Perimeter Triangle",
+      "Easy",
+      "Traversal",
+      null
+    ],
+    [
+      "78-maximum-sorted-chunks-with-duplicates",
+      "Maximum Sorted Chunks With Duplicates",
+      "Hard",
+      "In-Place Operations",
+      null
+    ],
+    [
+      "79-maximum-consecutive-values-from-coins",
+      "Maximum Consecutive Values From Coins",
+      "Medium",
+      "Traversal",
+      null
+    ],
+    [
+      "80-minimum-cost-to-move-chips",
+      "Minimum Cost to Move Chips",
+      "Easy",
+      "Traversal",
+      null
+    ],
+    [
+      "81-maximum-product-of-two-elements",
+      "Maximum Product of Two Elements",
+      "Easy",
+      "Traversal",
+      null
+    ],
+    [
+      "82-sum-of-unique-elements",
+      "Sum of Unique Elements",
+      "Easy",
+      "Traversal",
+      null
+    ],
+    [
+      "83-divide-array-into-equal-pairs",
+      "Divide Array Into Equal Pairs",
+      "Easy",
+      "Traversal",
+      null
+    ],
+    [
+      "84-minimum-average-difference-index",
+      "Minimum Average Difference Index",
+      "Medium",
+      "Prefix/Suffix",
+      null
+    ],
+    [
+      "85-minimum-score-range-of-k-students",
+      "Minimum Score Range of K Students",
+      "Easy",
+      "Traversal",
+      null
+    ],
+    [
+      "86-minimize-maximum-pair-sum",
+      "Minimize the Maximum Pair Sum",
+      "Medium",
+      "Traversal",
+      null
+    ],
+    [
+      "87-maximum-sum-after-k-negations",
+      "Maximum Sum After K Negations",
+      "Medium",
+      "Traversal",
+      null
+    ],
+    [
+      "88-recover-original-from-doubled-array",
+      "Recover Original Array From Doubled Array",
+      "Medium",
+      "Traversal",
+      null
+    ],
+    [
+      "89-maximize-happiness-of-selected-children",
+      "Maximize Happiness of Selected Children",
+      "Medium",
+      "Traversal",
+      null
+    ],
+    [
+      "90-count-equal-divisible-index-pairs",
+      "Count Equal and Divisible Index Pairs",
+      "Medium",
+      "Traversal",
+      null
+    ],
+    [
+      "91-maximum-increasing-element-difference",
+      "Maximum Increasing Element Difference",
+      "Easy",
+      "Traversal",
+      null
+    ],
+    [
+      "92-highest-altitude",
+      "Highest Altitude",
+      "Easy",
+      "Prefix/Suffix",
+      null
+    ],
+    [
+      "93-maximum-customer-wealth",
+      "Maximum Customer Wealth",
+      "Easy",
+      "Traversal",
+      null
+    ],
+    [
+      "94-count-pairs-with-absolute-difference-k",
+      "Count Pairs With Absolute Difference K",
+      "Easy",
+      "Traversal",
+      null
+    ],
+    [
+      "95-count-subarrays-with-maximum-value",
+      "Count Subarrays With Maximum Value",
+      "Medium",
+      "Subarrays",
+      null
+    ],
+    [
+      "96-minimum-operations-to-make-sum-divisible",
+      "Minimum Operations to Make Sum Divisible",
+      "Easy",
+      "Traversal",
+      null
+    ],
+    [
+      "97-array-sum-versus-digit-sum",
+      "Array Sum Versus Digit Sum",
+      "Easy",
+      "Traversal",
+      null
+    ],
+    [
+      "98-maximum-positive-or-negative-count",
+      "Maximum Positive or Negative Count",
+      "Easy",
+      "Traversal",
+      null
+    ],
+    [
+      "99-winner-of-array-game",
+      "Winner of an Array Game",
+      "Medium",
+      "Traversal",
+      null
+    ],
+    [
+      "100-number-of-good-equal-value-pairs",
+      "Number of Good Equal-Value Pairs",
+      "Easy",
+      "Traversal",
+      null
+    ]
+  ],
+  "strings": [
+    [
+      "01-valid-palindrome",
+      "Valid Palindrome",
+      "Easy",
+      "Palindromes",
+      125
+    ],
+    [
+      "02-valid-anagram",
+      "Valid Anagram",
+      "Easy",
+      "Anagrams",
+      242
+    ],
+    [
+      "03-string-to-integer-atoi",
+      "String to Integer (atoi)",
+      "Medium",
+      "Parsing",
+      8
+    ],
+    [
+      "04-longest-common-prefix",
+      "Longest Common Prefix",
+      "Easy",
+      "String Matching",
+      14
+    ],
+    [
+      "05-count-and-say",
+      "Count and Say",
+      "Medium",
+      "Parsing",
+      38
+    ],
+    [
+      "06-longest-palindromic-substring",
+      "Longest Palindromic Substring",
+      "Medium",
+      "Palindromes",
+      5
+    ],
+    [
+      "07-zigzag-conversion",
+      "Zigzag Conversion",
+      "Medium",
+      "Parsing",
+      6
+    ],
+    [
+      "08-multiply-strings",
+      "Multiply Strings",
+      "Medium",
+      "Parsing",
+      43
+    ],
+    [
+      "09-substring-with-concatenation-of-all-words",
+      "Substring with Concatenation of All Words",
+      "Hard",
+      "Substrings",
+      30
+    ],
+    [
+      "10-longest-repeating-character-replacement",
+      "Longest Repeating Character Replacement",
+      "Medium",
+      "Substrings",
+      424
+    ],
+    [
+      "11-text-justification",
+      "Text Justification",
+      "Hard",
+      "Parsing",
+      68
+    ],
+    [
+      "12-palindromic-substrings",
+      "Palindromic Substrings",
+      "Medium",
+      "Palindromes",
+      647
+    ],
+    [
+      "13-verifying-an-alien-dictionary",
+      "Verifying an Alien Dictionary",
+      "Easy",
+      "String Matching",
+      953
+    ],
+    [
+      "14-reverse-string",
+      "Reverse String",
+      "Easy",
+      "String Matching",
+      null
+    ],
+    [
+      "15-reverse-words-in-string-iii",
+      "Reverse Words in a String III",
+      "Easy",
+      "Parsing",
+      557
+    ],
+    [
+      "16-length-of-last-word",
+      "Length of Last Word",
+      "Easy",
+      "Parsing",
+      null
+    ],
+    [
+      "17-is-subsequence",
+      "Is Subsequence",
+      "Easy",
+      "Substrings",
+      null
+    ],
+    [
+      "18-longest-palindrome-length",
+      "Longest Palindrome Length",
+      "Easy",
+      "Palindromes",
+      null
+    ],
+    [
+      "19-add-decimal-strings",
+      "Add Decimal Strings",
+      "Medium",
+      "Parsing",
+      null
+    ],
+    [
+      "20-compare-dotted-versions",
+      "Compare Dotted Version Numbers",
+      "Medium",
+      "Parsing",
+      null
+    ],
+    [
+      "21-reverse-vowels-in-string",
+      "Reverse Vowels in a String",
+      "Easy",
+      "Parsing",
+      null
+    ],
+    [
+      "22-detect-capital-usage",
+      "Detect Capital Usage",
+      "Easy",
+      "Parsing",
+      null
+    ],
+    [
+      "23-buddy-strings",
+      "Buddy Strings",
+      "Easy",
+      "Anagrams",
+      null
+    ],
+    [
+      "24-kmp-substring-search",
+      "KMP Substring Search",
+      "Medium",
+      "String Matching",
+      null
+    ],
+    [
+      "25-count-binary-substrings",
+      "Count Binary Substrings",
+      "Medium",
+      "Substrings",
+      null
+    ],
+    [
+      "26-valid-word-abbreviation",
+      "Valid Word Abbreviation",
+      "Easy",
+      "Parsing",
+      null
+    ],
+    [
+      "27-minimum-removals-for-valid-parentheses",
+      "Minimum Removals for Valid Parentheses",
+      "Medium",
+      "Parsing",
+      null
+    ],
+    [
+      "28-shortest-palindrome-by-prepending",
+      "Shortest Palindrome by Prepending",
+      "Hard",
+      "Palindromes",
+      null
+    ],
+    [
+      "29-longest-valid-parentheses",
+      "Longest Valid Parentheses",
+      "Hard",
+      "Parsing",
+      null
+    ],
+    [
+      "30-almost-equivalent-strings",
+      "Almost Equivalent Strings",
+      "Easy",
+      "Anagrams",
+      null
+    ],
+    [
+      "31-repeated-string-match",
+      "Repeated String Match",
+      "Medium",
+      "String Matching",
+      null
+    ],
+    [
+      "32-reverse-string-in-blocks",
+      "Reverse String in Blocks",
+      "Easy",
+      "Parsing",
+      null
+    ],
+    [
+      "33-roman-numeral-to-integer",
+      "Roman Numeral to Integer",
+      "Easy",
+      "Parsing",
+      null
+    ],
+    [
+      "34-integer-to-roman-numeral",
+      "Integer to Roman Numeral",
+      "Medium",
+      "Parsing",
+      null
+    ],
+    [
+      "35-remove-duplicate-letters",
+      "Remove Duplicate Letters",
+      "Medium",
+      "String Matching",
+      null
+    ],
+    [
+      "36-reorganize-string-deterministically",
+      "Reorganize String Deterministically",
+      "Medium",
+      "Parsing",
+      null
+    ],
+    [
+      "37-longest-uncommon-subsequence-length",
+      "Longest Uncommon Subsequence Length",
+      "Easy",
+      "Substrings",
+      null
+    ],
+    [
+      "38-count-distinct-subsequences",
+      "Count Distinct Subsequences",
+      "Hard",
+      "Substrings",
+      null
+    ],
+    [
+      "39-minimum-deletions-for-balanced-ab-string",
+      "Minimum Deletions for a Balanced A-B String",
+      "Medium",
+      "Parsing",
+      null
+    ],
+    [
+      "40-longest-substring-with-at-most-two-distinct",
+      "Longest Substring With At Most Two Distinct Characters",
+      "Medium",
+      "Substrings",
+      null
+    ],
+    [
+      "41-repeated-substring-pattern",
+      "Repeated Substring Pattern",
+      "Easy",
+      "String Matching",
+      null
+    ],
+    [
+      "42-rotate-string-check",
+      "Rotate String Check",
+      "Easy",
+      "String Matching",
+      null
+    ],
+    [
+      "43-longest-happy-prefix",
+      "Longest Happy Prefix",
+      "Hard",
+      "String Matching",
+      null
+    ],
+    [
+      "44-shortest-distance-to-a-character",
+      "Shortest Distance to a Character",
+      "Easy",
+      "String Matching",
+      null
+    ],
+    [
+      "45-number-of-segments-in-a-string",
+      "Number of Segments in a String",
+      "Easy",
+      "Parsing",
+      null
+    ],
+    [
+      "46-ransom-note-construction",
+      "Ransom Note Construction",
+      "Easy",
+      "Anagrams",
+      null
+    ],
+    [
+      "47-find-the-added-letter",
+      "Find the Added Letter",
+      "Easy",
+      "Anagrams",
+      null
+    ],
+    [
+      "48-minimum-steps-to-make-two-strings-anagram",
+      "Minimum Steps to Make Two Strings Anagram",
+      "Medium",
+      "Anagrams",
+      null
+    ],
+    [
+      "49-minimum-steps-to-make-anagram-by-appending",
+      "Minimum Steps to Make Two Strings Anagram II",
+      "Medium",
+      "Anagrams",
+      null
+    ],
+    [
+      "50-determine-if-two-strings-are-close",
+      "Determine if Two Strings Are Close",
+      "Medium",
+      "Anagrams",
+      null
+    ],
+    [
+      "51-longest-palindromic-subsequence",
+      "Longest Palindromic Subsequence",
+      "Medium",
+      "Palindromes",
+      null
+    ],
+    [
+      "52-minimum-insertions-to-make-palindrome",
+      "Minimum Insertion Steps to Make a String Palindrome",
+      "Hard",
+      "Palindromes",
+      null
+    ],
+    [
+      "53-break-a-palindrome",
+      "Break a Palindrome",
+      "Medium",
+      "Palindromes",
+      null
+    ],
+    [
+      "54-construct-k-palindrome-strings",
+      "Construct K Palindrome Strings",
+      "Medium",
+      "Palindromes",
+      null
+    ],
+    [
+      "55-unique-length-3-palindromic-subsequences",
+      "Unique Length-3 Palindromic Subsequences",
+      "Medium",
+      "Palindromes",
+      null
+    ],
+    [
+      "56-remove-palindromic-subsequences",
+      "Remove Palindromic Subsequences",
+      "Easy",
+      "Palindromes",
+      null
+    ],
+    [
+      "57-palindrome-partitioning-min-cuts",
+      "Palindrome Partitioning Minimum Cuts",
+      "Hard",
+      "Palindromes",
+      null
+    ],
+    [
+      "58-can-make-palindrome-from-substring-queries",
+      "Can Make Palindrome From Substring Queries",
+      "Medium",
+      "Palindromes",
+      null
+    ],
+    [
+      "59-largest-palindromic-number",
+      "Largest Palindromic Number",
+      "Medium",
+      "Palindromes",
+      null
+    ],
+    [
+      "60-valid-palindrome-with-k-deletions",
+      "Valid Palindrome With At Most K Deletions",
+      "Hard",
+      "Palindromes",
+      null
+    ],
+    [
+      "61-run-length-string-compression",
+      "Run-Length String Compression",
+      "Medium",
+      "Parsing",
+      null
+    ],
+    [
+      "62-reverse-words-in-a-string",
+      "Reverse Words in a String",
+      "Medium",
+      "Parsing",
+      null
+    ],
+    [
+      "63-license-key-formatting",
+      "License Key Formatting",
+      "Easy",
+      "Parsing",
+      null
+    ],
+    [
+      "64-excel-column-title-to-number",
+      "Excel Sheet Column Number",
+      "Easy",
+      "Parsing",
+      null
+    ],
+    [
+      "65-excel-number-to-column-title",
+      "Excel Sheet Column Title",
+      "Easy",
+      "Parsing",
+      null
+    ],
+    [
+      "66-add-binary-strings",
+      "Add Binary Strings",
+      "Easy",
+      "Parsing",
+      null
+    ],
+    [
+      "67-validate-ip-address",
+      "Validate IP Address",
+      "Medium",
+      "Parsing",
+      null
+    ],
+    [
+      "68-fraction-addition-and-subtraction",
+      "Fraction Addition and Subtraction",
+      "Medium",
+      "Parsing",
+      null
+    ],
+    [
+      "69-complex-number-multiplication",
+      "Complex Number Multiplication",
+      "Medium",
+      "Parsing",
+      null
+    ],
+    [
+      "70-basic-calculator-ii",
+      "Basic Calculator II",
+      "Medium",
+      "Parsing",
+      null
+    ],
+    [
+      "71-number-of-substrings-containing-all-three-chars",
+      "Number of Substrings Containing All Three Characters",
+      "Medium",
+      "Substrings",
+      null
+    ],
+    [
+      "72-longest-substring-between-equal-characters",
+      "Largest Substring Between Two Equal Characters",
+      "Easy",
+      "Substrings",
+      null
+    ],
+    [
+      "73-maximum-vowels-in-substring-of-length-k",
+      "Maximum Number of Vowels in a Substring of Given Length",
+      "Medium",
+      "Substrings",
+      null
+    ],
+    [
+      "74-count-homogenous-substrings",
+      "Count Number of Homogenous Substrings",
+      "Medium",
+      "Substrings",
+      null
+    ],
+    [
+      "75-longest-even-vowel-counts-substring",
+      "Longest Substring Containing Vowels in Even Counts",
+      "Medium",
+      "Substrings",
+      null
+    ],
+    [
+      "76-number-of-wonderful-substrings",
+      "Number of Wonderful Substrings",
+      "Hard",
+      "Substrings",
+      null
+    ],
+    [
+      "77-longest-awesome-palindromic-substring",
+      "Find Longest Awesome Substring",
+      "Hard",
+      "Palindromes",
+      null
+    ],
+    [
+      "78-maximum-score-after-splitting-binary-string",
+      "Maximum Score After Splitting a String",
+      "Easy",
+      "Substrings",
+      null
+    ],
+    [
+      "79-count-vowel-substrings-of-a-string",
+      "Count Vowel Substrings of a String",
+      "Easy",
+      "Substrings",
+      null
+    ],
+    [
+      "80-longest-nice-substring",
+      "Longest Nice Substring",
+      "Easy",
+      "Substrings",
+      null
+    ],
+    [
+      "81-optimal-partition-of-string",
+      "Optimal Partition of String",
+      "Medium",
+      "Substrings",
+      null
+    ],
+    [
+      "82-push-dominoes",
+      "Push Dominoes",
+      "Medium",
+      "Parsing",
+      null
+    ],
+    [
+      "83-shifting-letters",
+      "Shifting Letters",
+      "Medium",
+      "Parsing",
+      null
+    ],
+    [
+      "84-find-and-replace-pattern",
+      "Find and Replace Pattern",
+      "Medium",
+      "String Matching",
+      null
+    ],
+    [
+      "85-camelcase-matching",
+      "Camelcase Matching",
+      "Medium",
+      "String Matching",
+      null
+    ],
+    [
+      "86-number-of-matching-subsequences",
+      "Number of Matching Subsequences",
+      "Medium",
+      "String Matching",
+      null
+    ],
+    [
+      "87-shortest-way-to-form-string",
+      "Shortest Way to Form String",
+      "Medium",
+      "String Matching",
+      null
+    ],
+    [
+      "88-longest-word-in-dictionary-through-deleting",
+      "Longest Word in Dictionary through Deleting",
+      "Medium",
+      "String Matching",
+      null
+    ],
+    [
+      "89-minimum-window-subsequence",
+      "Minimum Window Subsequence",
+      "Hard",
+      "Substrings",
+      null
+    ],
+    [
+      "90-orderly-queue",
+      "Orderly Queue",
+      "Hard",
+      "String Matching",
+      null
+    ],
+    [
+      "91-check-if-string-is-pangram",
+      "Check if the Sentence Is Pangram",
+      "Easy",
+      "Anagrams",
+      null
+    ],
+    [
+      "92-jewels-and-stones",
+      "Jewels and Stones",
+      "Easy",
+      "String Matching",
+      null
+    ],
+    [
+      "93-uncommon-words-from-two-sentences",
+      "Uncommon Words from Two Sentences",
+      "Easy",
+      "Parsing",
+      null
+    ],
+    [
+      "94-unique-email-addresses",
+      "Unique Email Addresses",
+      "Easy",
+      "Parsing",
+      null
+    ],
+    [
+      "95-longest-common-substring-length",
+      "Longest Common Substring Length",
+      "Medium",
+      "Substrings",
+      null
+    ],
+    [
+      "96-minimum-add-to-make-parentheses-valid",
+      "Minimum Add to Make Parentheses Valid",
+      "Medium",
+      "Parsing",
+      null
+    ],
+    [
+      "97-minimum-swaps-to-make-strings-equal",
+      "Minimum Swaps to Make Strings Equal",
+      "Medium",
+      "Anagrams",
+      null
+    ],
+    [
+      "98-minimum-swaps-to-make-brackets-balanced",
+      "Minimum Number of Swaps to Make the String Balanced",
+      "Medium",
+      "Parsing",
+      null
+    ],
+    [
+      "99-distinct-echo-substrings",
+      "Distinct Echo Substrings",
+      "Hard",
+      "String Matching",
+      null
+    ],
+    [
+      "100-longest-duplicate-substring-length",
+      "Longest Duplicate Substring Length",
+      "Hard",
+      "String Matching",
+      null
+    ]
+  ],
+  "matrices": [
+    [
+      "01-spiral-matrix",
+      "Spiral Matrix",
+      "Medium",
+      "Spiral Traversal",
+      54
+    ],
+    [
+      "02-rotate-image",
+      "Rotate Image",
+      "Medium",
+      "Matrix Rotation",
+      48
+    ],
+    [
+      "03-set-matrix-zeroes",
+      "Set Matrix Zeroes",
+      "Medium",
+      "Simulation",
+      73
+    ],
+    [
+      "04-search-a-2d-matrix",
+      "Search a 2D Matrix",
+      "Medium",
+      "2D Search",
+      74
+    ],
+    [
+      "05-game-of-life",
+      "Game of Life",
+      "Medium",
+      "Simulation",
+      289
+    ],
+    [
+      "06-diagonal-traverse",
+      "Diagonal Traverse",
+      "Medium",
+      "Spiral Traversal",
+      498
+    ],
+    [
+      "07-matrix-block-sum",
+      "Matrix Block Sum",
+      "Medium",
+      "Dynamic Grids",
+      1314
+    ],
+    [
+      "08-search-a-2d-matrix-ii",
+      "Search a 2D Matrix II",
+      "Medium",
+      "2D Search",
+      240
+    ],
+    [
+      "09-valid-sudoku",
+      "Valid Sudoku",
+      "Medium",
+      "Simulation",
+      36
+    ],
+    [
+      "10-spiral-matrix-ii",
+      "Spiral Matrix II",
+      "Medium",
+      "Spiral Traversal",
+      59
+    ],
+    [
+      "11-matrix-diagonal-sum",
+      "Matrix Diagonal Sum",
+      "Easy",
+      "Simulation",
+      null
+    ],
+    [
+      "12-transpose-matrix",
+      "Transpose Matrix",
+      "Easy",
+      "Matrix Rotation",
+      null
+    ],
+    [
+      "13-matrix-reshape",
+      "Reshape the Matrix",
+      "Easy",
+      "Simulation",
+      null
+    ],
+    [
+      "14-count-negative-numbers-in-sorted-matrix",
+      "Count Negative Numbers in a Sorted Matrix",
+      "Easy",
+      "2D Search",
+      null
+    ],
+    [
+      "15-lucky-numbers-in-matrix",
+      "Lucky Numbers in a Matrix",
+      "Easy",
+      "Simulation",
+      null
+    ],
+    [
+      "16-toeplitz-matrix-check",
+      "Toeplitz Matrix Check",
+      "Easy",
+      "Simulation",
+      null
+    ],
+    [
+      "17-x-matrix-validation",
+      "X Matrix Validation",
+      "Easy",
+      "Simulation",
+      null
+    ],
+    [
+      "18-special-positions-in-binary-matrix",
+      "Special Positions in a Binary Matrix",
+      "Easy",
+      "Simulation",
+      null
+    ],
+    [
+      "19-maximum-matrix-sum-by-pair-flips",
+      "Maximum Matrix Sum by Pair Flips",
+      "Medium",
+      "Simulation",
+      null
+    ],
+    [
+      "20-row-with-maximum-ones",
+      "Row With the Maximum Number of Ones",
+      "Easy",
+      "Simulation",
+      null
+    ],
+    [
+      "21-sum-of-matrix-border",
+      "Sum of the Matrix Border",
+      "Easy",
+      "Simulation",
+      null
+    ],
+    [
+      "22-equal-row-column-pairs",
+      "Equal Row and Column Pairs",
+      "Medium",
+      "Simulation",
+      null
+    ],
+    [
+      "23-shift-two-dimensional-grid",
+      "Shift a Two-Dimensional Grid",
+      "Medium",
+      "Simulation",
+      null
+    ],
+    [
+      "24-spiral-matrix-iii",
+      "Outward Spiral Matrix Walk",
+      "Medium",
+      "Spiral Traversal",
+      null
+    ],
+    [
+      "25-snake-pattern-matrix-traversal",
+      "Snake Pattern Matrix Traversal",
+      "Easy",
+      "Spiral Traversal",
+      null
+    ],
+    [
+      "26-concentric-ring-sums",
+      "Concentric Ring Sums",
+      "Easy",
+      "Spiral Traversal",
+      null
+    ],
+    [
+      "27-cyclically-rotating-a-grid",
+      "Cyclically Rotating a Grid",
+      "Medium",
+      "Spiral Traversal",
+      null
+    ],
+    [
+      "28-kth-cell-in-spiral-order",
+      "Kth Cell in Spiral Order",
+      "Hard",
+      "Spiral Traversal",
+      null
+    ],
+    [
+      "29-sort-matrix-diagonally",
+      "Sort the Matrix Diagonally",
+      "Medium",
+      "Spiral Traversal",
+      null
+    ],
+    [
+      "30-determine-matrix-obtained-by-rotation",
+      "Matrix Obtained By Rotation",
+      "Easy",
+      "Matrix Rotation",
+      null
+    ],
+    [
+      "31-flip-and-invert-binary-image",
+      "Flip and Invert Binary Image",
+      "Easy",
+      "Matrix Rotation",
+      null
+    ],
+    [
+      "32-rotate-rectangular-matrix-clockwise",
+      "Rotate Rectangular Matrix Clockwise",
+      "Easy",
+      "Matrix Rotation",
+      null
+    ],
+    [
+      "33-rotating-the-box",
+      "Rotating the Box",
+      "Medium",
+      "Matrix Rotation",
+      null
+    ],
+    [
+      "34-image-overlap-translation",
+      "Maximum Image Overlap",
+      "Medium",
+      "Matrix Rotation",
+      null
+    ],
+    [
+      "35-minimum-flips-for-palindromic-grid",
+      "Minimum Flips for Palindromic Grid",
+      "Medium",
+      "Matrix Rotation",
+      null
+    ],
+    [
+      "36-k-weakest-rows-in-a-matrix",
+      "The K Weakest Rows in a Matrix",
+      "Easy",
+      "2D Search",
+      null
+    ],
+    [
+      "37-leftmost-column-with-at-least-a-one",
+      "Leftmost Column With a One",
+      "Medium",
+      "2D Search",
+      null
+    ],
+    [
+      "38-smallest-rectangle-enclosing-black-pixels",
+      "Smallest Rectangle Enclosing Black Pixels",
+      "Hard",
+      "2D Search",
+      null
+    ],
+    [
+      "39-count-submatrices-with-all-ones",
+      "Count Submatrices With All Ones",
+      "Medium",
+      "2D Search",
+      null
+    ],
+    [
+      "40-max-sum-of-rectangle-no-larger-than-k",
+      "Max Sum of Rectangle No Larger Than K",
+      "Hard",
+      "2D Search",
+      null
+    ],
+    [
+      "41-largest-magic-square",
+      "Largest Magic Square",
+      "Medium",
+      "2D Search",
+      null
+    ],
+    [
+      "42-where-will-the-ball-fall",
+      "Where Will the Ball Fall",
+      "Medium",
+      "Simulation",
+      null
+    ],
+    [
+      "43-image-smoother-filter",
+      "Image Smoother Filter",
+      "Easy",
+      "Simulation",
+      null
+    ],
+    [
+      "44-grid-match-three-cascade",
+      "Grid Match-Three Cascade",
+      "Medium",
+      "Simulation",
+      null
+    ],
+    [
+      "45-minesweeper-click-reveal",
+      "Minesweeper Click Reveal",
+      "Medium",
+      "Simulation",
+      null
+    ],
+    [
+      "46-suffix-instructions-staying-in-grid",
+      "Suffix Instructions Staying in a Grid",
+      "Medium",
+      "Simulation",
+      null
+    ],
+    [
+      "47-count-battleships-on-a-board",
+      "Count Battleships on a Board",
+      "Medium",
+      "Simulation",
+      null
+    ],
+    [
+      "48-range-addition-max-count",
+      "Range Addition Max Count",
+      "Easy",
+      "Dynamic Grids",
+      null
+    ],
+    [
+      "49-increment-submatrices-by-one",
+      "Increment Submatrices by One",
+      "Medium",
+      "Dynamic Grids",
+      null
+    ],
+    [
+      "50-count-unguarded-cells-in-grid",
+      "Count Unguarded Cells in the Grid",
+      "Medium",
+      "Dynamic Grids",
+      null
+    ],
+    [
+      "51-largest-submatrix-with-rearrangements",
+      "Largest Submatrix With Rearrangements",
+      "Medium",
+      "Dynamic Grids",
+      null
+    ],
+    [
+      "52-number-of-submatrices-that-sum-to-target",
+      "Number of Submatrices That Sum to Target",
+      "Hard",
+      "Dynamic Grids",
+      null
+    ],
+    [
+      "53-stamping-the-grid",
+      "Stamping the Grid",
+      "Hard",
+      "Dynamic Grids",
+      null
+    ],
+    [
+      "54-sort-concentric-matrix-rings",
+      "Sort Concentric Matrix Rings",
+      "Medium",
+      "Spiral Traversal",
+      null
+    ],
+    [
+      "55-fill-matrix-in-anti-diagonal-order",
+      "Fill Matrix in Anti-Diagonal Order",
+      "Easy",
+      "Spiral Traversal",
+      null
+    ],
+    [
+      "56-z-order-matrix-traversal",
+      "Z-Order Curve Matrix Traversal",
+      "Medium",
+      "Spiral Traversal",
+      null
+    ],
+    [
+      "57-maximum-subarray-along-spiral-order",
+      "Maximum Subarray Sum Along Spiral Order",
+      "Medium",
+      "Spiral Traversal",
+      null
+    ],
+    [
+      "58-spiral-walk-with-obstacles",
+      "Spiral Walk with Obstacles",
+      "Medium",
+      "Spiral Traversal",
+      null
+    ],
+    [
+      "59-diagonal-difference-of-distinct-values",
+      "Difference of Distinct Values on Diagonals",
+      "Easy",
+      "Spiral Traversal",
+      null
+    ],
+    [
+      "60-score-after-flipping-matrix",
+      "Score After Flipping Binary Matrix",
+      "Medium",
+      "Matrix Rotation",
+      null
+    ],
+    [
+      "61-flip-columns-for-maximum-equal-rows",
+      "Flip Columns for Maximum Equal Rows",
+      "Medium",
+      "Matrix Rotation",
+      null
+    ],
+    [
+      "62-minimum-flips-for-full-grid-palindromes",
+      "Minimum Flips for Palindromic Grid II",
+      "Hard",
+      "Matrix Rotation",
+      null
+    ],
+    [
+      "63-check-rotational-symmetry-matrix",
+      "Check Matrix Rotational Symmetry",
+      "Easy",
+      "Matrix Rotation",
+      null
+    ],
+    [
+      "64-rotate-square-submatrix-clockwise",
+      "Rotate Square Submatrix Clockwise",
+      "Medium",
+      "Matrix Rotation",
+      null
+    ],
+    [
+      "65-transform-to-chessboard",
+      "Minimum Swaps to Form Chessboard",
+      "Hard",
+      "Matrix Rotation",
+      null
+    ],
+    [
+      "66-maximum-side-length-of-square-with-sum-threshold",
+      "Maximum Side Length of Square Within Threshold",
+      "Medium",
+      "2D Search",
+      null
+    ],
+    [
+      "67-maximum-sum-of-an-hourglass",
+      "Maximum Sum of an Hourglass",
+      "Easy",
+      "2D Search",
+      null
+    ],
+    [
+      "68-largest-1-bordered-square",
+      "Largest 1-Bordered Square",
+      "Medium",
+      "2D Search",
+      null
+    ],
+    [
+      "69-largest-plus-sign",
+      "Largest Plus Sign in Binary Grid",
+      "Medium",
+      "2D Search",
+      null
+    ],
+    [
+      "70-kth-smallest-number-in-multiplication-table",
+      "Kth Smallest Number in Multiplication Table",
+      "Hard",
+      "2D Search",
+      null
+    ],
+    [
+      "71-count-submatrices-with-top-left-sum-at-most-k",
+      "Count Submatrices with Top-Left Sum at Most K",
+      "Medium",
+      "2D Search",
+      null
+    ],
+    [
+      "72-available-captures-for-rook",
+      "Available Captures for Rook",
+      "Easy",
+      "Simulation",
+      null
+    ],
+    [
+      "73-queens-that-can-attack-the-king",
+      "Queens That Can Attack the King",
+      "Medium",
+      "Simulation",
+      null
+    ],
+    [
+      "74-valid-tic-tac-toe-state",
+      "Valid Tic-Tac-Toe Board State",
+      "Medium",
+      "Simulation",
+      null
+    ],
+    [
+      "75-laser-beam-reflection-in-mirror-grid",
+      "Laser Beam Reflection in Mirror Grid",
+      "Medium",
+      "Simulation",
+      null
+    ],
+    [
+      "76-projection-area-of-3d-shapes",
+      "Projection Area of 3D Shapes",
+      "Easy",
+      "Simulation",
+      null
+    ],
+    [
+      "77-langtons-ant-grid-simulation",
+      "Langton's Ant Grid Simulation",
+      "Medium",
+      "Simulation",
+      null
+    ],
+    [
+      "78-grid-illumination-queries",
+      "Grid Illumination Queries",
+      "Hard",
+      "Dynamic Grids",
+      null
+    ],
+    [
+      "79-range-sum-query-2d-mutable",
+      "Range Sum Query 2D - Mutable",
+      "Hard",
+      "Dynamic Grids",
+      null
+    ],
+    [
+      "80-cells-with-odd-values-in-a-matrix",
+      "Cells with Odd Values in a Matrix",
+      "Easy",
+      "Dynamic Grids",
+      null
+    ],
+    [
+      "81-subrectangle-queries-manager",
+      "Subrectangle Queries Manager",
+      "Medium",
+      "Dynamic Grids",
+      null
+    ],
+    [
+      "82-sum-of-matrix-after-queries",
+      "Sum of Matrix After Queries",
+      "Medium",
+      "Dynamic Grids",
+      null
+    ],
+    [
+      "83-matrix-rank-transform",
+      "Rank Transform of a Matrix",
+      "Hard",
+      "Dynamic Grids",
+      null
+    ],
+    [
+      "84-alternating-ring-spiral-traversal",
+      "Alternating Ring Spiral Traversal",
+      "Medium",
+      "Spiral Traversal",
+      null
+    ],
+    [
+      "85-diagonal-traverse-variable-rows",
+      "Diagonal Traverse of Jagged Matrix",
+      "Medium",
+      "Spiral Traversal",
+      null
+    ],
+    [
+      "86-matrix-cells-in-distance-order",
+      "Matrix Cells in Distance Order",
+      "Easy",
+      "Spiral Traversal",
+      null
+    ],
+    [
+      "87-flip-matrix-for-maximal-quadrant-sum",
+      "Maximal Upper-Left Quadrant Sum by Flips",
+      "Medium",
+      "Matrix Rotation",
+      null
+    ],
+    [
+      "88-matrix-similarity-after-cyclic-shifts",
+      "Matrix Similarity After Cyclic Shifts",
+      "Easy",
+      "Matrix Rotation",
+      null
+    ],
+    [
+      "89-minimum-ops-for-rotational-symmetry",
+      "Minimum Operations for 90-Degree Rotational Symmetry",
+      "Medium",
+      "Matrix Rotation",
+      null
+    ],
+    [
+      "90-maximum-diagonal-sum-by-ring-rotations",
+      "Maximum Diagonal Sum by Ring Rotations",
+      "Hard",
+      "Matrix Rotation",
+      null
+    ],
+    [
+      "91-median-of-row-wise-sorted-matrix",
+      "Median of a Row-Wise Sorted Matrix",
+      "Medium",
+      "2D Search",
+      null
+    ],
+    [
+      "92-kth-smallest-sum-of-matrix-rows",
+      "Kth Smallest Sum of a Matrix With Sorted Rows",
+      "Hard",
+      "2D Search",
+      null
+    ],
+    [
+      "93-minimum-area-three-rectangles-cover-ones",
+      "Minimum Area of Three Rectangles Covering All Ones",
+      "Hard",
+      "2D Search",
+      null
+    ],
+    [
+      "94-largest-submatrix-with-equal-zeros-and-ones",
+      "Largest Submatrix With Equal Zeros and Ones",
+      "Medium",
+      "2D Search",
+      null
+    ],
+    [
+      "95-surface-area-of-3d-grid-shapes",
+      "Surface Area of 3D Shapes on a Grid",
+      "Easy",
+      "Simulation",
+      null
+    ],
+    [
+      "96-check-knight-tour-configuration",
+      "Check Knight Tour Configuration",
+      "Medium",
+      "Simulation",
+      null
+    ],
+    [
+      "97-restore-matrix-from-row-and-column-sums",
+      "Lexicographically Largest Matrix From Row and Column Sums",
+      "Medium",
+      "Dynamic Grids",
+      null
+    ],
+    [
+      "98-minimum-operations-to-make-uni-value-grid",
+      "Minimum Operations to Make a Uni-Value Grid",
+      "Medium",
+      "Dynamic Grids",
+      null
+    ],
+    [
+      "99-maximum-sum-of-three-non-overlapping-rooks",
+      "Maximum Value Sum by Placing Three Rooks",
+      "Hard",
+      "Dynamic Grids",
+      null
+    ],
+    [
+      "100-ways-to-cut-matrix-into-k-pieces",
+      "Ways to Cut a Matrix Into K Pieces",
+      "Hard",
+      "Dynamic Grids",
+      null
+    ]
+  ],
+  "two-pointers": [
+    [
+      "01-two-sum-ii",
+      "Two Sum II - Input Array Is Sorted",
+      "Medium",
+      "Converging Pointers",
+      167
+    ],
+    [
+      "02-three-sum-closest",
+      "3Sum Closest",
+      "Medium",
+      "Converging Pointers",
+      16
+    ],
+    [
+      "03-four-sum",
+      "4Sum",
+      "Medium",
+      "Converging Pointers",
+      18
+    ],
+    [
+      "04-remove-element",
+      "Remove Element",
+      "Easy",
+      "Trailing Pointers",
+      27
+    ],
+    [
+      "05-trapping-rain-water",
+      "Trapping Rain Water",
+      "Hard",
+      "Converging Pointers",
+      42
+    ],
+    [
+      "06-container-with-most-water",
+      "Container With Most Water",
+      "Medium",
+      "Converging Pointers",
+      11
+    ],
+    [
+      "07-valid-palindrome-ii",
+      "Valid Palindrome II",
+      "Easy",
+      "Converging Pointers",
+      680
+    ],
+    [
+      "08-boats-to-save-people",
+      "Boats to Save People",
+      "Medium",
+      "Converging Pointers",
+      881
+    ],
+    [
+      "09-reverse-only-letters",
+      "Reverse Only Letters",
+      "Easy",
+      "Converging Pointers",
+      917
+    ],
+    [
+      "10-squares-of-a-sorted-array",
+      "Squares of a Sorted Array",
+      "Easy",
+      "Converging Pointers",
+      977
+    ],
+    [
+      "11-interval-list-intersections",
+      "Interval List Intersections",
+      "Medium",
+      "Trailing Pointers",
+      986
+    ],
+    [
+      "12-backspace-string-compare",
+      "Backspace String Compare",
+      "Easy",
+      "Trailing Pointers",
+      844
+    ],
+    [
+      "13-find-the-duplicate-number",
+      "Find the Duplicate Number",
+      "Medium",
+      "Fast & Slow",
+      287
+    ],
+    [
+      "14-subarray-product-less-than-k",
+      "Subarray Product Less Than K",
+      "Medium",
+      "Trailing Pointers",
+      713
+    ],
+    [
+      "15-longest-mountain-in-array",
+      "Longest Mountain in Array",
+      "Medium",
+      "Partition Pointers",
+      845
+    ],
+    [
+      "16-shortest-unsorted-continuous-subarray",
+      "Shortest Unsorted Continuous Subarray",
+      "Medium",
+      "Partition Pointers",
+      581
+    ]
+  ],
+  "sliding-window": [
+    [
+      "01-maximum-sum-subarray-of-size-k",
+      "Maximum Sum Subarray of Size K",
+      "Easy",
+      "Fixed Window",
+      null
+    ],
+    [
+      "02-longest-substring-without-repeating-characters",
+      "Longest Substring Without Repeating Characters",
+      "Medium",
+      "Dynamic Window",
+      3
+    ],
+    [
+      "03-minimum-size-subarray-sum",
+      "Minimum Size Subarray Sum",
+      "Medium",
+      "Dynamic Window",
+      209
+    ],
+    [
+      "04-longest-substring-with-at-most-k-distinct",
+      "Longest Substring with At Most K Distinct Characters",
+      "Medium",
+      "At Most K Elements",
+      340
+    ],
+    [
+      "05-fruit-into-baskets",
+      "Fruit Into Baskets",
+      "Medium",
+      "At Most K Elements",
+      904
+    ],
+    [
+      "06-subarrays-with-k-different-integers",
+      "Subarrays with K Different Integers",
+      "Hard",
+      "At Most K Elements",
+      992
+    ],
+    [
+      "07-minimum-window-substring",
+      "Minimum Window Substring",
+      "Hard",
+      "Substring Frequency",
+      76
+    ],
+    [
+      "08-find-all-anagrams-in-a-string",
+      "Find All Anagrams in a String",
+      "Medium",
+      "Substring Frequency",
+      438
+    ],
+    [
+      "09-permutation-in-string",
+      "Permutation in String",
+      "Medium",
+      "Substring Frequency",
+      567
+    ],
+    [
+      "10-max-consecutive-ones-iii",
+      "Max Consecutive Ones III",
+      "Medium",
+      "Dynamic Window",
+      1004
+    ],
+    [
+      "11-grumpy-bookstore-owner",
+      "Grumpy Bookstore Owner",
+      "Medium",
+      "Fixed Window",
+      1052
+    ],
+    [
+      "12-get-equal-substrings-within-budget",
+      "Get Equal Substrings Within Budget",
+      "Medium",
+      "Dynamic Window",
+      1208
+    ],
+    [
+      "13-maximum-points-you-can-obtain-from-cards",
+      "Maximum Points You Can Obtain from Cards",
+      "Medium",
+      "Fixed Window",
+      1423
+    ],
+    [
+      "14-count-number-of-nice-subarrays",
+      "Count Number of Nice Subarrays",
+      "Medium",
+      "At Most K Elements",
+      1248
+    ],
+    [
+      "15-replace-the-substring-for-balanced-string",
+      "Replace the Substring for Balanced String",
+      "Medium",
+      "Substring Frequency",
+      1234
+    ]
+  ],
+  "prefix-sums": [
+    [
+      "01-running-sum-of-1d-array",
+      "Running Sum of 1D Array",
+      "Easy",
+      "1D Prefix Sum",
+      1480
+    ],
+    [
+      "02-find-pivot-index",
+      "Find Pivot Index",
+      "Easy",
+      "1D Prefix Sum",
+      724
+    ],
+    [
+      "03-range-sum-query-immutable",
+      "Range Sum Query - Immutable",
+      "Easy",
+      "1D Prefix Sum",
+      303
+    ],
+    [
+      "04-range-sum-query-2d-immutable",
+      "Range Sum Query 2D - Immutable",
+      "Medium",
+      "2D Submatrix Sum",
+      304
+    ],
+    [
+      "05-subarray-sum-equals-k",
+      "Subarray Sum Equals K",
+      "Medium",
+      "Hash + Prefix",
+      560
+    ],
+    [
+      "06-continuous-subarray-sum",
+      "Continuous Subarray Sum",
+      "Medium",
+      "Hash + Prefix",
+      523
+    ],
+    [
+      "07-subarray-sums-divisible-by-k",
+      "Subarray Sums Divisible by K",
+      "Medium",
+      "Hash + Prefix",
+      974
+    ],
+    [
+      "08-contiguous-array",
+      "Contiguous Array",
+      "Medium",
+      "Hash + Prefix",
+      525
+    ],
+    [
+      "09-product-of-array-except-self",
+      "Product of Array Except Self",
+      "Medium",
+      "1D Prefix Sum",
+      238
+    ],
+    [
+      "10-car-pooling",
+      "Car Pooling",
+      "Medium",
+      "Difference Array",
+      1094
+    ],
+    [
+      "11-corporate-flight-bookings",
+      "Corporate Flight Bookings",
+      "Medium",
+      "Difference Array",
+      1109
+    ],
+    [
+      "12-random-pick-with-weight",
+      "Random Pick with Weight",
+      "Medium",
+      "1D Prefix Sum",
+      528
+    ],
+    [
+      "13-maximum-size-subarray-sum-equals-k",
+      "Maximum Size Subarray Sum Equals k",
+      "Medium",
+      "Hash + Prefix",
+      325
+    ],
+    [
+      "14-longest-substring-vowels-even-counts",
+      "Find the Longest Substring Containing Vowels in Even Counts",
+      "Medium",
+      "Hash + Prefix",
+      1371
+    ]
+  ],
+  "binary-search": [
+    [
+      "01-binary-search",
+      "Binary Search",
+      "Easy",
+      "Standard Bisect",
+      704
+    ],
+    [
+      "02-search-insert-position",
+      "Search Insert Position",
+      "Easy",
+      "Standard Bisect",
+      35
+    ],
+    [
+      "03-find-first-and-last-position",
+      "Find First and Last Position of Element in Sorted Array",
+      "Medium",
+      "Standard Bisect",
+      34
+    ],
+    [
+      "04-search-in-rotated-sorted-array",
+      "Search in Rotated Sorted Array",
+      "Medium",
+      "Rotated Array",
+      33
+    ],
+    [
+      "05-find-minimum-in-rotated-sorted-array",
+      "Find Minimum in Rotated Sorted Array",
+      "Medium",
+      "Rotated Array",
+      153
+    ],
+    [
+      "06-find-peak-element",
+      "Find Peak Element",
+      "Medium",
+      "Standard Bisect",
+      162
+    ],
+    [
+      "07-first-bad-version",
+      "First Bad Version",
+      "Easy",
+      "Standard Bisect",
+      278
+    ],
+    [
+      "08-sqrtx",
+      "Sqrt(x)",
+      "Easy",
+      "Search on Answer Space",
+      69
+    ],
+    [
+      "09-koko-eating-bananas",
+      "Koko Eating Bananas",
+      "Medium",
+      "Search on Answer Space",
+      875
+    ],
+    [
+      "10-capacity-to-ship-packages",
+      "Capacity To Ship Packages Within D Days",
+      "Medium",
+      "Search on Answer Space",
+      1011
+    ],
+    [
+      "11-split-array-largest-sum",
+      "Split Array Largest Sum",
+      "Hard",
+      "Search on Answer Space",
+      410
+    ],
+    [
+      "12-median-of-two-sorted-arrays",
+      "Median of Two Sorted Arrays",
+      "Hard",
+      "Standard Bisect",
+      4
+    ],
+    [
+      "13-find-k-closest-elements",
+      "Find K Closest Elements",
+      "Medium",
+      "Standard Bisect",
+      658
+    ],
+    [
+      "14-allocate-minimum-pages",
+      "Allocate Minimum Number of Pages",
+      "Medium",
+      "Search on Answer Space",
+      null
+    ],
+    [
+      "15-aggressive-cows",
+      "Aggressive Cows",
+      "Medium",
+      "Search on Answer Space",
+      1552
+    ],
+    [
+      "16-find-in-mountain-array",
+      "Find in Mountain Array",
+      "Hard",
+      "Standard Bisect",
+      1095
+    ]
+  ],
+  "sorting": [
+    [
+      "01-sort-an-array",
+      "Sort an Array",
+      "Medium",
+      "Merge Sort",
+      912
+    ],
+    [
+      "02-sort-colors",
+      "Sort Colors",
+      "Medium",
+      "Dutch Flag",
+      75
+    ],
+    [
+      "03-merge-intervals",
+      "Merge Intervals",
+      "Medium",
+      "Custom Comparators",
+      56
+    ],
+    [
+      "04-insert-interval",
+      "Insert Interval",
+      "Medium",
+      "Custom Comparators",
+      57
+    ],
+    [
+      "05-meeting-rooms-ii",
+      "Meeting Rooms II",
+      "Medium",
+      "Heap Sort",
+      253
+    ],
+    [
+      "06-largest-number",
+      "Largest Number",
+      "Medium",
+      "Custom Comparators",
+      179
+    ],
+    [
+      "07-wiggle-sort-ii",
+      "Wiggle Sort II",
+      "Medium",
+      "Quick Sort",
+      324
+    ],
+    [
+      "08-custom-sort-string",
+      "Custom Sort String",
+      "Medium",
+      "Custom Comparators",
+      791
+    ],
+    [
+      "09-pancake-sorting",
+      "Pancake Sorting",
+      "Medium",
+      "Custom Comparators",
+      969
+    ],
+    [
+      "10-maximum-gap",
+      "Maximum Gap",
+      "Medium",
+      "Custom Comparators",
+      164
+    ],
+    [
+      "11-h-index",
+      "H-Index",
+      "Medium",
+      "Custom Comparators",
+      274
+    ]
+  ],
+  "recursion-backtracking": [
+    [
+      "01-subsets",
+      "Subsets",
+      "Medium",
+      "Subsets",
+      78
+    ],
+    [
+      "02-subsets-ii",
+      "Subsets II",
+      "Medium",
+      "Subsets",
+      90
+    ],
+    [
+      "03-permutations",
+      "Permutations",
+      "Medium",
+      "Permutations",
+      46
+    ],
+    [
+      "04-permutations-ii",
+      "Permutations II",
+      "Medium",
+      "Permutations",
+      47
+    ],
+    [
+      "05-combination-sum",
+      "Combination Sum",
+      "Medium",
+      "Combinations",
+      39
+    ],
+    [
+      "06-combination-sum-ii",
+      "Combination Sum II",
+      "Medium",
+      "Combinations",
+      40
+    ],
+    [
+      "07-combination-sum-iii",
+      "Combination Sum III",
+      "Medium",
+      "Combinations",
+      216
+    ],
+    [
+      "08-letter-combinations-of-a-phone-number",
+      "Letter Combinations of a Phone Number",
+      "Medium",
+      "Combinations",
+      17
+    ],
+    [
+      "09-generate-parentheses",
+      "Generate Parentheses",
+      "Medium",
+      "Constraint Pruning",
+      22
+    ],
+    [
+      "10-n-queens",
+      "N-Queens",
+      "Hard",
+      "Board Puzzles",
+      51
+    ],
+    [
+      "11-sudoku-solver",
+      "Sudoku Solver",
+      "Hard",
+      "Board Puzzles",
+      37
+    ],
+    [
+      "12-word-search",
+      "Word Search",
+      "Medium",
+      "Board Puzzles",
+      79
+    ],
+    [
+      "13-palindrome-partitioning",
+      "Palindrome Partitioning",
+      "Medium",
+      "Subsets",
+      131
+    ],
+    [
+      "14-restore-ip-addresses",
+      "Restore IP Addresses",
+      "Medium",
+      "Constraint Pruning",
+      93
+    ],
+    [
+      "15-word-break-ii",
+      "Word Break II",
+      "Hard",
+      "Constraint Pruning",
+      140
+    ],
+    [
+      "16-partition-to-k-equal-sum-subsets",
+      "Partition to K Equal Sum Subsets",
+      "Medium",
+      "Constraint Pruning",
+      698
+    ]
+  ],
+  "linked-lists": [
+    [
+      "01-reverse-linked-list",
+      "Reverse Linked List",
+      "Easy",
+      "Reversal",
+      206
+    ],
+    [
+      "02-linked-list-cycle",
+      "Linked List Cycle",
+      "Easy",
+      "Fast/Slow Pointer",
+      141
+    ],
+    [
+      "03-linked-list-cycle-ii",
+      "Linked List Cycle II",
+      "Medium",
+      "Fast/Slow Pointer",
+      142
+    ],
+    [
+      "04-merge-two-sorted-lists",
+      "Merge Two Sorted Lists",
+      "Easy",
+      "Merge & Sort",
+      21
+    ],
+    [
+      "05-merge-k-sorted-lists",
+      "Merge k Sorted Lists",
+      "Hard",
+      "Merge & Sort",
+      23
+    ],
+    [
+      "06-remove-nth-node-from-end",
+      "Remove Nth Node From End of List",
+      "Medium",
+      "Fast/Slow Pointer",
+      19
+    ],
+    [
+      "07-reorder-list",
+      "Reorder List",
+      "Medium",
+      "Reversal",
+      143
+    ],
+    [
+      "08-palindrome-linked-list",
+      "Palindrome Linked List",
+      "Easy",
+      "Fast/Slow Pointer",
+      234
+    ],
+    [
+      "09-add-two-numbers",
+      "Add Two Numbers",
+      "Medium",
+      "Pointers & Nodes",
+      2
+    ],
+    [
+      "10-intersection-of-two-linked-lists",
+      "Intersection of Two Linked Lists",
+      "Easy",
+      "Pointers & Nodes",
+      160
+    ],
+    [
+      "11-reverse-nodes-in-k-group",
+      "Reverse Nodes in k-Group",
+      "Hard",
+      "Reversal",
+      25
+    ],
+    [
+      "12-copy-list-with-random-pointer",
+      "Copy List with Random Pointer",
+      "Medium",
+      "Pointers & Nodes",
+      138
+    ],
+    [
+      "13-sort-list",
+      "Sort List",
+      "Medium",
+      "Merge & Sort",
+      148
+    ],
+    [
+      "14-lru-cache",
+      "LRU Cache",
+      "Medium",
+      "LRU Design",
+      146
+    ],
+    [
+      "15-lfu-cache",
+      "LFU Cache",
+      "Hard",
+      "LRU Design",
+      460
+    ],
+    [
+      "16-flatten-a-multilevel-doubly-linked-list",
+      "Flatten a Multilevel Doubly Linked List",
+      "Medium",
+      "Pointers & Nodes",
+      430
+    ],
+    [
+      "17-remove-linked-list-elements",
+      "Remove Linked List Elements",
+      "Easy",
+      "Pointers & Nodes",
+      null
+    ],
+    [
+      "18-remove-duplicates-from-sorted-list",
+      "Remove Duplicates from Sorted List",
+      "Easy",
+      "Pointers & Nodes",
+      null
+    ],
+    [
+      "19-remove-duplicates-from-sorted-list-ii",
+      "Remove Duplicates from Sorted List II",
+      "Medium",
+      "Pointers & Nodes",
+      null
+    ],
+    [
+      "20-delete-n-nodes-after-m-nodes",
+      "Delete N Nodes After M Nodes",
+      "Easy",
+      "Pointers & Nodes",
+      null
+    ],
+    [
+      "21-odd-even-linked-list",
+      "Odd Even Linked List",
+      "Medium",
+      "Pointers & Nodes",
+      null
+    ],
+    [
+      "22-rotate-linked-list",
+      "Rotate Linked List",
+      "Medium",
+      "Pointers & Nodes",
+      null
+    ],
+    [
+      "23-middle-of-the-linked-list",
+      "Middle of the Linked List",
+      "Easy",
+      "Fast/Slow Pointer",
+      null
+    ],
+    [
+      "24-delete-the-middle-node-of-a-linked-list",
+      "Delete the Middle Node of a Linked List",
+      "Medium",
+      "Fast/Slow Pointer",
+      null
+    ],
+    [
+      "25-swapping-nodes-in-a-linked-list",
+      "Swapping Nodes in a Linked List",
+      "Medium",
+      "Fast/Slow Pointer",
+      null
+    ],
+    [
+      "26-maximum-twin-sum-of-a-linked-list",
+      "Maximum Twin Sum of a Linked List",
+      "Medium",
+      "Fast/Slow Pointer",
+      null
+    ],
+    [
+      "27-interleave-halves-of-linked-list",
+      "Interleave Halves of Linked List",
+      "Medium",
+      "Fast/Slow Pointer",
+      null
+    ],
+    [
+      "28-convert-sorted-list-to-bst",
+      "Convert Sorted List to BST",
+      "Medium",
+      "Fast/Slow Pointer",
+      null
+    ],
+    [
+      "29-reverse-linked-list-ii",
+      "Reverse Linked List II",
+      "Medium",
+      "Reversal",
+      null
+    ],
+    [
+      "30-swap-nodes-in-pairs",
+      "Swap Nodes in Pairs",
+      "Medium",
+      "Reversal",
+      null
+    ],
+    [
+      "31-reverse-nodes-in-even-length-groups",
+      "Reverse Nodes in Even Length Groups",
+      "Medium",
+      "Reversal",
+      null
+    ],
+    [
+      "32-reverse-alternating-k-node-groups",
+      "Reverse Alternating K-Node Groups",
+      "Hard",
+      "Reversal",
+      null
+    ],
+    [
+      "33-add-two-numbers-ii",
+      "Add Two Numbers II",
+      "Medium",
+      "Reversal",
+      null
+    ],
+    [
+      "34-remove-nodes-with-greater-right",
+      "Remove Nodes with Greater Right",
+      "Medium",
+      "Reversal",
+      null
+    ],
+    [
+      "35-insertion-sort-list",
+      "Insertion Sort List",
+      "Medium",
+      "Merge & Sort",
+      null
+    ],
+    [
+      "36-partition-linked-list",
+      "Partition Linked List",
+      "Medium",
+      "Merge & Sort",
+      null
+    ],
+    [
+      "37-sort-linked-list-of-zeros-ones-twos",
+      "Sort Linked List of 0s, 1s, and 2s",
+      "Easy",
+      "Merge & Sort",
+      null
+    ],
+    [
+      "38-sort-list-already-sorted-by-absolute-values",
+      "Sort List Already Sorted by Absolute Values",
+      "Medium",
+      "Merge & Sort",
+      null
+    ],
+    [
+      "39-sort-alternating-ascending-descending-list",
+      "Sort Alternating Ascending and Descending List",
+      "Medium",
+      "Merge & Sort",
+      null
+    ],
+    [
+      "40-common-elements-in-k-sorted-lists",
+      "Common Elements in K Sorted Lists",
+      "Hard",
+      "Merge & Sort",
+      null
+    ],
+    [
+      "41-design-singly-linked-list",
+      "Design Singly Linked List",
+      "Medium",
+      "LRU Design",
+      null
+    ],
+    [
+      "42-design-browser-history",
+      "Design Browser History",
+      "Medium",
+      "LRU Design",
+      null
+    ],
+    [
+      "43-first-unique-number-stream",
+      "First Unique Number Stream",
+      "Medium",
+      "LRU Design",
+      null
+    ],
+    [
+      "44-design-front-middle-back-queue",
+      "Design Front Middle Back Queue",
+      "Medium",
+      "LRU Design",
+      null
+    ],
+    [
+      "45-all-oone-frequency-tracker",
+      "All O(1) Frequency Tracker",
+      "Hard",
+      "LRU Design",
+      null
+    ],
+    [
+      "46-design-text-editor",
+      "Design a Text Editor",
+      "Hard",
+      "LRU Design",
+      null
+    ],
+    [
+      "47-split-linked-list-in-parts",
+      "Split Linked List in Parts",
+      "Medium",
+      "Pointers & Nodes",
+      null
+    ],
+    [
+      "48-merge-nodes-in-between-zeros",
+      "Merge Nodes in Between Zeros",
+      "Medium",
+      "Pointers & Nodes",
+      null
+    ],
+    [
+      "49-insert-gcd-nodes-in-linked-list",
+      "Insert GCD Nodes in Linked List",
+      "Medium",
+      "Pointers & Nodes",
+      null
+    ],
+    [
+      "50-remove-zero-sum-consecutive-nodes",
+      "Remove Zero Sum Consecutive Nodes",
+      "Medium",
+      "Pointers & Nodes",
+      null
+    ],
+    [
+      "51-linked-list-components",
+      "Linked List Components",
+      "Medium",
+      "Pointers & Nodes",
+      null
+    ],
+    [
+      "52-delete-nodes-present-in-array",
+      "Delete Nodes Present in Array",
+      "Medium",
+      "Pointers & Nodes",
+      null
+    ],
+    [
+      "53-merge-in-between-linked-lists",
+      "Merge In Between Linked Lists",
+      "Medium",
+      "Fast/Slow Pointer",
+      null
+    ],
+    [
+      "54-min-max-distance-between-critical-points",
+      "Min and Max Distance Between Critical Points",
+      "Medium",
+      "Fast/Slow Pointer",
+      null
+    ],
+    [
+      "55-happy-number-cycle-check",
+      "Happy Number Cycle Check",
+      "Easy",
+      "Fast/Slow Pointer",
+      null
+    ],
+    [
+      "56-circular-array-loop-detection",
+      "Circular Array Loop Detection",
+      "Medium",
+      "Fast/Slow Pointer",
+      null
+    ],
+    [
+      "57-linked-list-cycle-length",
+      "Linked List Cycle Length",
+      "Easy",
+      "Fast/Slow Pointer",
+      null
+    ],
+    [
+      "58-subtract-second-half-from-first",
+      "Subtract Second Half From First",
+      "Medium",
+      "Fast/Slow Pointer",
+      null
+    ],
+    [
+      "59-plus-one-linked-list",
+      "Plus One Linked List",
+      "Medium",
+      "Reversal",
+      null
+    ],
+    [
+      "60-double-a-number-represented-as-linked-list",
+      "Double a Number Represented as a Linked List",
+      "Medium",
+      "Reversal",
+      null
+    ],
+    [
+      "61-subtract-two-linked-list-numbers",
+      "Subtract Two Linked List Numbers",
+      "Medium",
+      "Reversal",
+      null
+    ],
+    [
+      "62-longest-palindromic-sublist-length",
+      "Longest Palindromic Sublist Length",
+      "Hard",
+      "Reversal",
+      null
+    ],
+    [
+      "63-reverse-alternate-nodes-and-append",
+      "Reverse Alternate Nodes and Append",
+      "Medium",
+      "Reversal",
+      null
+    ],
+    [
+      "64-reverse-strictly-decreasing-runs",
+      "Reverse Strictly Decreasing Runs",
+      "Medium",
+      "Reversal",
+      null
+    ],
+    [
+      "65-merge-two-sorted-lists-in-reverse",
+      "Merge Two Sorted Lists in Reverse Order",
+      "Easy",
+      "Merge & Sort",
+      null
+    ],
+    [
+      "66-symmetric-difference-of-sorted-lists",
+      "Symmetric Difference of Sorted Lists",
+      "Easy",
+      "Merge & Sort",
+      null
+    ],
+    [
+      "67-merge-two-linked-lists-alternately",
+      "Merge Two Linked Lists Alternately",
+      "Easy",
+      "Merge & Sort",
+      null
+    ],
+    [
+      "68-sort-k-sorted-linked-list",
+      "Sort a K-Sorted Linked List",
+      "Medium",
+      "Merge & Sort",
+      null
+    ],
+    [
+      "69-sort-bitonic-linked-list",
+      "Sort Bitonic Linked List",
+      "Medium",
+      "Merge & Sort",
+      null
+    ],
+    [
+      "70-count-inversions-in-linked-list",
+      "Count Inversions in Linked List",
+      "Hard",
+      "Merge & Sort",
+      null
+    ],
+    [
+      "71-design-mru-queue",
+      "Design MRU Queue",
+      "Medium",
+      "LRU Design",
+      null
+    ],
+    [
+      "72-design-lru-cache-with-ttl",
+      "Design LRU Cache with TTL",
+      "Hard",
+      "LRU Design",
+      null
+    ],
+    [
+      "73-design-playlist-manager",
+      "Design Music Playlist Manager",
+      "Medium",
+      "LRU Design",
+      null
+    ],
+    [
+      "74-design-snake-game-linked-list",
+      "Design Linked List Snake Game",
+      "Medium",
+      "LRU Design",
+      null
+    ],
+    [
+      "75-design-memory-allocator-free-list",
+      "Design Memory Allocator Free List",
+      "Medium",
+      "LRU Design",
+      null
+    ],
+    [
+      "76-design-skiplist",
+      "Design Skiplist",
+      "Hard",
+      "LRU Design",
+      null
+    ],
+    [
+      "77-remove-duplicates-from-unsorted-linked-list",
+      "Remove Duplicates from Unsorted Linked List",
+      "Easy",
+      "Pointers & Nodes",
+      null
+    ],
+    [
+      "78-linked-list-path-in-binary-tree",
+      "Linked List Path in Binary Tree",
+      "Medium",
+      "Pointers & Nodes",
+      null
+    ],
+    [
+      "79-rearrange-linked-list-zigzag",
+      "Rearrange Linked List in Zigzag Order",
+      "Medium",
+      "Pointers & Nodes",
+      null
+    ],
+    [
+      "80-circular-list-elimination-order",
+      "Circular List Elimination Order",
+      "Medium",
+      "Pointers & Nodes",
+      null
+    ],
+    [
+      "81-find-kth-node-from-middle",
+      "Find K-th Node from Middle",
+      "Easy",
+      "Fast/Slow Pointer",
+      null
+    ],
+    [
+      "82-lcg-sequence-cycle-detection",
+      "LCG Sequence Cycle Detection",
+      "Medium",
+      "Fast/Slow Pointer",
+      null
+    ],
+    [
+      "83-delete-middle-k-nodes-of-linked-list",
+      "Delete Middle K Nodes of Linked List",
+      "Medium",
+      "Fast/Slow Pointer",
+      null
+    ],
+    [
+      "84-almost-palindrome-linked-list",
+      "Almost Palindrome Linked List",
+      "Medium",
+      "Fast/Slow Pointer",
+      null
+    ],
+    [
+      "85-reverse-nodes-in-k-group-from-end",
+      "Reverse Nodes in K-Group from End",
+      "Hard",
+      "Reversal",
+      null
+    ],
+    [
+      "86-multiply-two-linked-list-numbers",
+      "Multiply Two Linked List Numbers",
+      "Medium",
+      "Reversal",
+      null
+    ],
+    [
+      "87-reverse-segments-between-zero-nodes",
+      "Reverse Segments Between Zero Nodes",
+      "Medium",
+      "Reversal",
+      null
+    ],
+    [
+      "88-reverse-sublist-between-min-and-max",
+      "Reverse Sublist Between Min and Max",
+      "Easy",
+      "Reversal",
+      null
+    ],
+    [
+      "89-reverse-disjoint-intervals-in-linked-list",
+      "Reverse Disjoint Intervals in Linked List",
+      "Medium",
+      "Reversal",
+      null
+    ],
+    [
+      "90-union-of-two-sorted-linked-lists",
+      "Union of Two Sorted Linked Lists",
+      "Easy",
+      "Merge & Sort",
+      null
+    ],
+    [
+      "91-kth-smallest-in-sorted-linked-lists",
+      "K-th Smallest in Sorted Linked Lists",
+      "Medium",
+      "Merge & Sort",
+      null
+    ],
+    [
+      "92-sort-linked-list-by-frequency",
+      "Sort Linked List by Frequency",
+      "Medium",
+      "Merge & Sort",
+      null
+    ],
+    [
+      "93-three-way-partition-linked-list",
+      "Three-Way Partition Linked List",
+      "Medium",
+      "Merge & Sort",
+      null
+    ],
+    [
+      "94-maximum-sum-path-two-sorted-lists",
+      "Maximum Sum Path Across Two Sorted Lists",
+      "Hard",
+      "Merge & Sort",
+      null
+    ],
+    [
+      "95-design-pinned-lru-cache",
+      "Design Pinned LRU Cache",
+      "Medium",
+      "LRU Design",
+      null
+    ],
+    [
+      "96-design-weighted-lru-cache",
+      "Design Weighted LRU Cache",
+      "Hard",
+      "LRU Design",
+      null
+    ],
+    [
+      "97-design-segmented-lru-cache",
+      "Design Segmented LRU Cache",
+      "Hard",
+      "LRU Design",
+      null
+    ],
+    [
+      "98-design-removable-queue",
+      "Design Removable Queue",
+      "Easy",
+      "LRU Design",
+      null
+    ],
+    [
+      "99-design-clock-replacement-cache",
+      "Design Clock Replacement Cache",
+      "Medium",
+      "LRU Design",
+      null
+    ],
+    [
+      "100-design-lru-k-cache",
+      "Design LRU-K Cache",
+      "Hard",
+      "LRU Design",
+      null
+    ]
+  ],
+  "stacks": [
+    [
+      "01-valid-parentheses",
+      "Valid Parentheses",
+      "Easy",
+      "Valid Parentheses",
+      20
+    ],
+    [
+      "02-min-stack",
+      "Min Stack",
+      "Medium",
+      "Min Stack",
+      155
+    ],
+    [
+      "03-evaluate-reverse-polish-notation",
+      "Evaluate Reverse Polish Notation",
+      "Medium",
+      "Expression Parsing",
+      150
+    ],
+    [
+      "04-basic-calculator",
+      "Basic Calculator",
+      "Hard",
+      "Expression Parsing",
+      224
+    ],
+    [
+      "05-simplify-path",
+      "Simplify Path",
+      "Medium",
+      "LIFO Structure",
+      71
+    ],
+    [
+      "06-decode-string",
+      "Decode String",
+      "Medium",
+      "Expression Parsing",
+      394
+    ],
+    [
+      "07-validate-stack-sequences",
+      "Validate Stack Sequences",
+      "Medium",
+      "LIFO Structure",
+      946
+    ],
+    [
+      "08-remove-all-adjacent-duplicates-in-string",
+      "Remove All Adjacent Duplicates In String",
+      "Easy",
+      "LIFO Structure",
+      1047
+    ],
+    [
+      "09-asteroid-collision",
+      "Asteroid Collision",
+      "Medium",
+      "LIFO Structure",
+      735
+    ],
+    [
+      "10-flatten-nested-list-iterator",
+      "Flatten Nested List Iterator",
+      "Medium",
+      "LIFO Structure",
+      341
+    ],
+    [
+      "11-exclusive-time-of-functions",
+      "Exclusive Time of Functions",
+      "Medium",
+      "LIFO Structure",
+      636
+    ],
+    [
+      "12-check-if-word-is-valid-after-substitutions",
+      "Check If Word Is Valid After Substitutions",
+      "Medium",
+      "Valid Parentheses",
+      1003
+    ],
+    [
+      "13-baseball-game-score",
+      "Baseball Game Score",
+      "Easy",
+      "LIFO Structure",
+      null
+    ],
+    [
+      "14-crawler-log-folder",
+      "Crawler Log Folder",
+      "Easy",
+      "LIFO Structure",
+      null
+    ],
+    [
+      "15-make-the-string-great",
+      "Make The String Great",
+      "Easy",
+      "LIFO Structure",
+      null
+    ],
+    [
+      "16-two-stacks-in-one-array",
+      "Two Stacks in One Array",
+      "Easy",
+      "LIFO Structure",
+      null
+    ],
+    [
+      "17-removing-stars-from-a-string",
+      "Removing Stars From a String",
+      "Medium",
+      "LIFO Structure",
+      null
+    ],
+    [
+      "18-remove-k-adjacent-duplicates",
+      "Remove K Adjacent Duplicates",
+      "Medium",
+      "LIFO Structure",
+      null
+    ],
+    [
+      "19-build-an-array-with-stack-operations",
+      "Build an Array With Stack Operations",
+      "Medium",
+      "LIFO Structure",
+      null
+    ],
+    [
+      "20-maximum-score-from-removing-substrings",
+      "Maximum Score From Removing Substrings",
+      "Medium",
+      "LIFO Structure",
+      null
+    ],
+    [
+      "21-robot-lexicographically-smallest-string",
+      "Robot Lexicographically Smallest String",
+      "Medium",
+      "LIFO Structure",
+      null
+    ],
+    [
+      "22-robot-collisions",
+      "Robot Collisions",
+      "Hard",
+      "LIFO Structure",
+      null
+    ],
+    [
+      "23-maximum-nesting-depth-of-parentheses",
+      "Maximum Nesting Depth of Parentheses",
+      "Easy",
+      "Valid Parentheses",
+      null
+    ],
+    [
+      "24-remove-outermost-parentheses",
+      "Remove Outermost Parentheses",
+      "Easy",
+      "Valid Parentheses",
+      null
+    ],
+    [
+      "25-score-of-parentheses",
+      "Score of Parentheses",
+      "Medium",
+      "Valid Parentheses",
+      null
+    ],
+    [
+      "26-reverse-substrings-between-parentheses",
+      "Reverse Substrings Between Parentheses",
+      "Medium",
+      "Valid Parentheses",
+      null
+    ],
+    [
+      "27-valid-parenthesis-string-with-wildcards",
+      "Valid Parenthesis String With Wildcards",
+      "Medium",
+      "Valid Parentheses",
+      null
+    ],
+    [
+      "28-check-if-parentheses-can-be-valid-with-locks",
+      "Check If Parentheses Can Be Valid With Locks",
+      "Medium",
+      "Valid Parentheses",
+      null
+    ],
+    [
+      "29-minimum-insertions-to-balance-parentheses",
+      "Minimum Insertions to Balance Parentheses",
+      "Medium",
+      "Valid Parentheses",
+      null
+    ],
+    [
+      "30-xml-tag-validator",
+      "XML Tag Validator",
+      "Hard",
+      "Valid Parentheses",
+      null
+    ],
+    [
+      "31-evaluate-min-max-expression",
+      "Evaluate Min-Max Expression",
+      "Easy",
+      "Expression Parsing",
+      null
+    ],
+    [
+      "32-infix-to-postfix-conversion",
+      "Infix to Postfix Conversion",
+      "Medium",
+      "Expression Parsing",
+      null
+    ],
+    [
+      "33-ternary-expression-parser",
+      "Ternary Expression Parser",
+      "Medium",
+      "Expression Parsing",
+      null
+    ],
+    [
+      "34-verify-preorder-serialization",
+      "Verify Preorder Serialization",
+      "Medium",
+      "Expression Parsing",
+      null
+    ],
+    [
+      "35-parsing-a-boolean-expression",
+      "Parsing a Boolean Expression",
+      "Hard",
+      "Expression Parsing",
+      null
+    ],
+    [
+      "36-full-arithmetic-expression-evaluator",
+      "Full Arithmetic Expression Evaluator",
+      "Hard",
+      "Expression Parsing",
+      null
+    ],
+    [
+      "37-number-of-atoms",
+      "Number of Atoms",
+      "Hard",
+      "Expression Parsing",
+      null
+    ],
+    [
+      "38-min-max-range-stack",
+      "Min-Max Range Stack",
+      "Easy",
+      "Min Stack",
+      null
+    ],
+    [
+      "39-design-a-stack-with-increment-operation",
+      "Design a Stack With Increment Operation",
+      "Medium",
+      "Min Stack",
+      null
+    ],
+    [
+      "40-middle-stack",
+      "Middle Stack",
+      "Medium",
+      "Min Stack",
+      null
+    ],
+    [
+      "41-max-stack",
+      "Max Stack",
+      "Hard",
+      "Min Stack",
+      null
+    ],
+    [
+      "42-maximum-frequency-stack",
+      "Maximum Frequency Stack",
+      "Hard",
+      "Min Stack",
+      null
+    ],
+    [
+      "43-clear-digits-with-left-letters",
+      "Clear Digits With Left Letters",
+      "Easy",
+      "LIFO Structure",
+      null
+    ],
+    [
+      "44-minimum-string-length-after-ab-cd-removals",
+      "Minimum String Length After AB and CD Removals",
+      "Easy",
+      "LIFO Structure",
+      null
+    ],
+    [
+      "45-replace-non-coprime-numbers-in-array",
+      "Replace Non-Coprime Numbers in Array",
+      "Hard",
+      "LIFO Structure",
+      null
+    ],
+    [
+      "46-longest-absolute-file-path",
+      "Longest Absolute File Path",
+      "Medium",
+      "LIFO Structure",
+      null
+    ],
+    [
+      "47-remove-k-digits",
+      "Remove K Digits",
+      "Medium",
+      "LIFO Structure",
+      null
+    ],
+    [
+      "48-design-text-editor-with-cursor",
+      "Design Text Editor With Cursor",
+      "Hard",
+      "LIFO Structure",
+      null
+    ],
+    [
+      "49-dinner-plate-stacks",
+      "Dinner Plate Stacks",
+      "Hard",
+      "LIFO Structure",
+      null
+    ],
+    [
+      "50-car-fleet-count",
+      "Car Fleet Count",
+      "Medium",
+      "LIFO Structure",
+      null
+    ],
+    [
+      "51-car-fleet-collision-times",
+      "Car Fleet Collision Times",
+      "Hard",
+      "LIFO Structure",
+      null
+    ],
+    [
+      "52-redundant-brackets-detection",
+      "Redundant Brackets Detection",
+      "Easy",
+      "Valid Parentheses",
+      null
+    ],
+    [
+      "53-minimum-reversals-to-balance-brackets",
+      "Minimum Reversals to Balance Brackets",
+      "Easy",
+      "Valid Parentheses",
+      null
+    ],
+    [
+      "54-longest-balanced-bracket-prefix",
+      "Longest Balanced Bracket Prefix",
+      "Easy",
+      "Valid Parentheses",
+      null
+    ],
+    [
+      "55-matching-bracket-index-map",
+      "Matching Bracket Index Map",
+      "Easy",
+      "Valid Parentheses",
+      null
+    ],
+    [
+      "56-count-valid-parentheses-substrings",
+      "Count Valid Parentheses Substrings",
+      "Medium",
+      "Valid Parentheses",
+      null
+    ],
+    [
+      "57-special-binary-string-rearrangement",
+      "Special Binary String Rearrangement",
+      "Hard",
+      "Valid Parentheses",
+      null
+    ],
+    [
+      "58-longest-balanced-multi-bracket-substring",
+      "Longest Balanced Multi-Bracket Substring",
+      "Medium",
+      "Valid Parentheses",
+      null
+    ],
+    [
+      "59-minimum-cost-to-balance-wildcard-parentheses",
+      "Minimum Cost to Balance Wildcard Parentheses",
+      "Hard",
+      "Valid Parentheses",
+      null
+    ],
+    [
+      "60-evaluate-prefix-polish-expression",
+      "Evaluate Prefix Polish Expression",
+      "Easy",
+      "Expression Parsing",
+      null
+    ],
+    [
+      "61-postfix-to-minimal-infix",
+      "Postfix to Minimal Infix Expression",
+      "Medium",
+      "Expression Parsing",
+      null
+    ],
+    [
+      "62-brace-expansion-expression",
+      "Brace Expansion Expression",
+      "Hard",
+      "Expression Parsing",
+      null
+    ],
+    [
+      "63-parse-lisp-expression",
+      "Parse Lisp Expression",
+      "Hard",
+      "Expression Parsing",
+      null
+    ],
+    [
+      "64-remove-parentheses-sign-expression",
+      "Remove Parentheses From Sign Expression",
+      "Medium",
+      "Expression Parsing",
+      null
+    ],
+    [
+      "65-evaluate-expression-with-exponentiation",
+      "Evaluate Expression With Exponentiation",
+      "Medium",
+      "Expression Parsing",
+      null
+    ],
+    [
+      "66-inverse-depth-sum-nested-list",
+      "Inverse Depth Sum of Nested List",
+      "Medium",
+      "Expression Parsing",
+      null
+    ],
+    [
+      "67-min-queue-using-two-stacks",
+      "Min Queue Using Two Stacks",
+      "Medium",
+      "Min Stack",
+      null
+    ],
+    [
+      "68-min-stack-with-add-all",
+      "Min Stack With Add-All Offset",
+      "Medium",
+      "Min Stack",
+      null
+    ],
+    [
+      "69-transactional-min-stack",
+      "Transactional Min Stack",
+      "Hard",
+      "Min Stack",
+      null
+    ],
+    [
+      "70-second-minimum-stack",
+      "Second Minimum Stack",
+      "Easy",
+      "Min Stack",
+      null
+    ],
+    [
+      "71-min-stack-with-min-count",
+      "Min Stack With Minimum Count",
+      "Easy",
+      "Min Stack",
+      null
+    ],
+    [
+      "72-persistent-min-stack",
+      "Persistent Min Stack",
+      "Hard",
+      "Min Stack",
+      null
+    ],
+    [
+      "73-stack-sortable-permutation",
+      "Stack Sortable Permutation",
+      "Easy",
+      "LIFO Structure",
+      null
+    ],
+    [
+      "74-lexicographically-largest-stack-output",
+      "Lexicographically Largest Stack Output",
+      "Medium",
+      "LIFO Structure",
+      null
+    ],
+    [
+      "75-resolve-undo-redo-text-commands",
+      "Resolve Undo-Redo Text Commands",
+      "Easy",
+      "LIFO Structure",
+      null
+    ],
+    [
+      "76-design-k-stacks-in-one-array",
+      "Design K Stacks in One Array",
+      "Hard",
+      "LIFO Structure",
+      null
+    ],
+    [
+      "77-call-stack-peak-memory",
+      "Call Stack Peak Memory",
+      "Easy",
+      "LIFO Structure",
+      null
+    ],
+    [
+      "78-rounds-to-make-array-non-decreasing",
+      "Rounds to Make Array Non-Decreasing",
+      "Medium",
+      "LIFO Structure",
+      null
+    ],
+    [
+      "79-balanced-parentheses-rotation-count",
+      "Balanced Parentheses Rotation Count",
+      "Medium",
+      "Valid Parentheses",
+      null
+    ],
+    [
+      "80-validate-brackets-outside-quotes",
+      "Validate Brackets Outside Quotes",
+      "Easy",
+      "Valid Parentheses",
+      null
+    ],
+    [
+      "81-reconstruct-parentheses-from-depths",
+      "Reconstruct Parentheses From Depths",
+      "Easy",
+      "Valid Parentheses",
+      null
+    ],
+    [
+      "82-minimum-replacements-to-balance-multi-brackets",
+      "Minimum Replacements to Balance Multi-Brackets",
+      "Medium",
+      "Valid Parentheses",
+      null
+    ],
+    [
+      "83-count-ways-to-color-balanced-brackets",
+      "Count Ways to Color Balanced Brackets",
+      "Hard",
+      "Valid Parentheses",
+      null
+    ],
+    [
+      "84-count-single-flips-to-balance-parentheses",
+      "Count Single Flips to Balance Parentheses",
+      "Medium",
+      "Valid Parentheses",
+      null
+    ],
+    [
+      "85-maximum-balanced-length-from-bracket-fragments",
+      "Maximum Balanced Length From Bracket Fragments",
+      "Hard",
+      "Valid Parentheses",
+      null
+    ],
+    [
+      "86-infix-to-prefix-conversion",
+      "Infix to Prefix Conversion",
+      "Easy",
+      "Expression Parsing",
+      null
+    ],
+    [
+      "87-evaluate-boolean-infix-expression",
+      "Evaluate Boolean Infix Expression",
+      "Medium",
+      "Expression Parsing",
+      null
+    ],
+    [
+      "88-postfix-expression-peak-stack-depth",
+      "Postfix Expression Peak Stack Depth",
+      "Easy",
+      "Expression Parsing",
+      null
+    ],
+    [
+      "89-expand-polynomial-expression",
+      "Expand Polynomial Expression",
+      "Medium",
+      "Expression Parsing",
+      null
+    ],
+    [
+      "90-evaluate-set-expression",
+      "Evaluate Set Expression",
+      "Medium",
+      "Expression Parsing",
+      null
+    ],
+    [
+      "91-regex-match-length-bounds",
+      "Regex Match Length Bounds",
+      "Hard",
+      "Expression Parsing",
+      null
+    ],
+    [
+      "92-infix-expression-tree-height",
+      "Infix Expression Tree Height",
+      "Medium",
+      "Expression Parsing",
+      null
+    ],
+    [
+      "93-bounded-min-index-stack",
+      "Bounded Min Index Stack",
+      "Easy",
+      "Min Stack",
+      null
+    ],
+    [
+      "94-gcd-stack",
+      "GCD Stack",
+      "Easy",
+      "Min Stack",
+      null
+    ],
+    [
+      "95-affine-min-stack",
+      "Affine Min Stack",
+      "Medium",
+      "Min Stack",
+      null
+    ],
+    [
+      "96-amortized-min-deque",
+      "Amortized Min Deque",
+      "Hard",
+      "Min Stack",
+      null
+    ],
+    [
+      "97-top-k-min-stack",
+      "Top-K Min Stack",
+      "Hard",
+      "Min Stack",
+      null
+    ],
+    [
+      "98-run-length-min-stack",
+      "Run-Length Min Stack",
+      "Medium",
+      "Min Stack",
+      null
+    ],
+    [
+      "99-incrementable-min-stack",
+      "Incrementable Min Stack",
+      "Hard",
+      "Min Stack",
+      null
+    ],
+    [
+      "100-min-max-subarray-sum-stack",
+      "Min-Max Subarray Sum Stack",
+      "Medium",
+      "Min Stack",
+      null
+    ]
+  ],
+  "monotonic-stack": [
+    [
+      "01-next-greater-element-ii",
+      "Next Greater Element II",
+      "Medium",
+      "Next Greater Element",
+      503
+    ],
+    [
+      "02-daily-temperatures",
+      "Daily Temperatures",
+      "Medium",
+      "Next Greater Element",
+      739
+    ],
+    [
+      "03-largest-rectangle-in-histogram",
+      "Largest Rectangle in Histogram",
+      "Hard",
+      "Histogram Area",
+      84
+    ],
+    [
+      "04-maximal-rectangle",
+      "Maximal Rectangle",
+      "Hard",
+      "Histogram Area",
+      85
+    ],
+    [
+      "05-online-stock-span",
+      "Online Stock Span",
+      "Medium",
+      "Stock Span",
+      901
+    ],
+    [
+      "06-sliding-window-maximum",
+      "Sliding Window Maximum",
+      "Hard",
+      "Sliding Window Max",
+      239
+    ],
+    [
+      "07-constrained-subsequence-sum",
+      "Constrained Subsequence Sum",
+      "Hard",
+      "Sliding Window Max",
+      1425
+    ],
+    [
+      "08-shortest-subarray-with-sum-at-least-k",
+      "Shortest Subarray with Sum at Least K",
+      "Hard",
+      "Sliding Window Max",
+      862
+    ],
+    [
+      "09-sum-of-subarray-minimums",
+      "Sum of Subarray Minimums",
+      "Medium",
+      "Next Greater Element",
+      907
+    ],
+    [
+      "10-number-of-visible-people-in-a-queue",
+      "Number of Visible People in a Queue",
+      "Hard",
+      "Next Greater Element",
+      1944
+    ],
+    [
+      "11-132-pattern",
+      "132 Pattern",
+      "Medium",
+      "Next Greater Element",
+      456
+    ]
+  ],
+  "queues-deques": [
+    [
+      "01-implement-queue-using-stacks",
+      "Implement Queue using Stacks",
+      "Easy",
+      "Queue via Stacks",
+      232
+    ],
+    [
+      "02-implement-stack-using-queues",
+      "Implement Stack using Queues",
+      "Easy",
+      "Queue via Stacks",
+      225
+    ],
+    [
+      "03-design-circular-queue",
+      "Design Circular Queue",
+      "Medium",
+      "Circular Queue",
+      622
+    ],
+    [
+      "04-design-circular-deque",
+      "Design Circular Deque",
+      "Medium",
+      "Deque Operations",
+      641
+    ],
+    [
+      "05-number-of-recent-calls",
+      "Number of Recent Calls",
+      "Easy",
+      "Deque Operations",
+      933
+    ],
+    [
+      "06-design-hit-counter",
+      "Design Hit Counter",
+      "Medium",
+      "Deque Operations",
+      362
+    ],
+    [
+      "07-dota2-senate",
+      "Dota2 Senate",
+      "Medium",
+      "Deque Operations",
+      649
+    ],
+    [
+      "08-jump-game-vi",
+      "Jump Game VI",
+      "Medium",
+      "Deque Operations",
+      1696
+    ],
+    [
+      "09-reveal-cards-in-increasing-order",
+      "Reveal Cards In Increasing Order",
+      "Medium",
+      "Deque Operations",
+      950
+    ],
+    [
+      "10-logger-rate-limiter",
+      "Logger Rate Limiter",
+      "Easy",
+      "Task Scheduler",
+      359
+    ]
+  ],
+  "hash-tables": [
+    [
+      "01-group-anagrams",
+      "Group Anagrams",
+      "Medium",
+      "Group Anagrams",
+      49
+    ],
+    [
+      "02-longest-consecutive-sequence",
+      "Longest Consecutive Sequence",
+      "Medium",
+      "Subarray Sums",
+      128
+    ],
+    [
+      "03-insert-delete-getrandom-o1",
+      "Insert Delete GetRandom O(1)",
+      "Medium",
+      "Collision Resolution",
+      380
+    ],
+    [
+      "04-insert-delete-getrandom-duplicates",
+      "Insert Delete GetRandom O(1) - Duplicates allowed",
+      "Hard",
+      "Collision Resolution",
+      381
+    ],
+    [
+      "05-isomorphic-strings",
+      "Isomorphic Strings",
+      "Easy",
+      "Frequency Counting",
+      205
+    ],
+    [
+      "06-word-pattern",
+      "Word Pattern",
+      "Easy",
+      "Frequency Counting",
+      290
+    ],
+    [
+      "07-first-unique-character-in-a-string",
+      "First Unique Character in a String",
+      "Easy",
+      "Frequency Counting",
+      387
+    ],
+    [
+      "08-design-hashmap",
+      "Design HashMap",
+      "Easy",
+      "Collision Resolution",
+      706
+    ],
+    [
+      "09-design-twitter",
+      "Design Twitter",
+      "Medium",
+      "Collision Resolution",
+      355
+    ],
+    [
+      "10-analyze-user-website-visit-pattern",
+      "Analyze User Website Visit Pattern",
+      "Medium",
+      "Frequency Counting",
+      1152
+    ]
+  ],
+  "heaps": [
+    [
+      "01-kth-largest-element-in-an-array",
+      "Kth Largest Element in an Array",
+      "Medium",
+      "Top K Elements",
+      215
+    ],
+    [
+      "02-top-k-frequent-elements",
+      "Top K Frequent Elements",
+      "Medium",
+      "Top K Elements",
+      347
+    ],
+    [
+      "03-find-median-from-data-stream",
+      "Find Median from Data Stream",
+      "Hard",
+      "Two-Heap Median",
+      295
+    ],
+    [
+      "04-sort-characters-by-frequency",
+      "Sort Characters By Frequency",
+      "Medium",
+      "Top K Elements",
+      451
+    ],
+    [
+      "05-kth-smallest-element-in-a-sorted-matrix",
+      "Kth Smallest Element in a Sorted Matrix",
+      "Medium",
+      "Merge K Sorted",
+      378
+    ],
+    [
+      "06-reorganize-string",
+      "Reorganize String",
+      "Medium",
+      "Min/Max Heap",
+      767
+    ],
+    [
+      "07-ipo",
+      "IPO",
+      "Hard",
+      "Two-Heap Median",
+      502
+    ],
+    [
+      "08-smallest-range-covering-elements-from-k-lists",
+      "Smallest Range Covering Elements from K Lists",
+      "Hard",
+      "Merge K Sorted",
+      632
+    ],
+    [
+      "09-trapping-rain-water-ii",
+      "Trapping Rain Water II",
+      "Hard",
+      "Min/Max Heap",
+      407
+    ],
+    [
+      "10-find-k-pairs-with-smallest-sums",
+      "Find K Pairs with Smallest Sums",
+      "Medium",
+      "Merge K Sorted",
+      373
+    ],
+    [
+      "11-minimum-cost-to-connect-sticks",
+      "Minimum Cost to Connect Sticks",
+      "Medium",
+      "Min/Max Heap",
+      1167
+    ]
+  ],
+  "binary-trees": [
+    [
+      "01-binary-tree-inorder-traversal",
+      "Binary Tree Inorder Traversal",
+      "Easy",
+      "DFS Traversals",
+      94
+    ],
+    [
+      "02-binary-tree-postorder-traversal",
+      "Binary Tree Postorder Traversal",
+      "Easy",
+      "DFS Traversals",
+      145
+    ],
+    [
+      "03-binary-tree-level-order-traversal",
+      "Binary Tree Level Order Traversal",
+      "Medium",
+      "Level-Order BFS",
+      102
+    ],
+    [
+      "04-maximum-depth-of-binary-tree",
+      "Maximum Depth of Binary Tree",
+      "Easy",
+      "DFS Traversals",
+      104
+    ],
+    [
+      "05-invert-binary-tree",
+      "Invert Binary Tree",
+      "Easy",
+      "DFS Traversals",
+      226
+    ],
+    [
+      "06-symmetric-tree",
+      "Symmetric Tree",
+      "Easy",
+      "DFS Traversals",
+      101
+    ],
+    [
+      "07-diameter-of-binary-tree",
+      "Diameter of Binary Tree",
+      "Easy",
+      "DFS Traversals",
+      543
+    ],
+    [
+      "08-balanced-binary-tree",
+      "Balanced Binary Tree",
+      "Easy",
+      "DFS Traversals",
+      110
+    ],
+    [
+      "09-path-sum-iii",
+      "Path Sum III",
+      "Medium",
+      "Path Sums",
+      437
+    ],
+    [
+      "10-lowest-common-ancestor-of-a-binary-tree",
+      "Lowest Common Ancestor of a Binary Tree",
+      "Medium",
+      "Lowest Common Ancestor",
+      236
+    ],
+    [
+      "11-construct-binary-tree-from-preorder-and-inorder",
+      "Construct Binary Tree from Preorder and Inorder Traversal",
+      "Medium",
+      "DFS Traversals",
+      105
+    ],
+    [
+      "12-construct-binary-tree-from-inorder-and-postorder",
+      "Construct Binary Tree from Inorder and Postorder Traversal",
+      "Medium",
+      "DFS Traversals",
+      106
+    ],
+    [
+      "13-serialize-and-deserialize-binary-tree",
+      "Serialize and Deserialize Binary Tree",
+      "Hard",
+      "Level-Order BFS",
+      297
+    ],
+    [
+      "14-populating-next-right-pointers",
+      "Populating Next Right Pointers in Each Node",
+      "Medium",
+      "Level-Order BFS",
+      116
+    ],
+    [
+      "15-all-nodes-distance-k-in-binary-tree",
+      "All Nodes Distance K in Binary Tree",
+      "Medium",
+      "Level-Order BFS",
+      863
+    ],
+    [
+      "16-subtree-of-another-tree",
+      "Subtree of Another Tree",
+      "Easy",
+      "DFS Traversals",
+      572
+    ],
+    [
+      "17-binary-tree-right-side-view",
+      "Binary Tree Right Side View",
+      "Medium",
+      "Level-Order BFS",
+      199
+    ]
+  ],
+  "bst": [
+    [
+      "01-validate-binary-search-tree",
+      "Validate Binary Search Tree",
+      "Medium",
+      "BST Validation",
+      98
+    ],
+    [
+      "02-search-in-a-binary-search-tree",
+      "Search in a Binary Search Tree",
+      "Easy",
+      "BST Validation",
+      700
+    ],
+    [
+      "03-insert-into-a-binary-search-tree",
+      "Insert into a Binary Search Tree",
+      "Medium",
+      "BST Validation",
+      701
+    ],
+    [
+      "04-delete-node-in-a-bst",
+      "Delete Node in a BST",
+      "Medium",
+      "BST Validation",
+      450
+    ],
+    [
+      "05-kth-smallest-element-in-a-bst",
+      "Kth Smallest Element in a BST",
+      "Medium",
+      "Kth Element",
+      230
+    ],
+    [
+      "06-lowest-common-ancestor-of-a-bst",
+      "Lowest Common Ancestor of a Binary Search Tree",
+      "Medium",
+      "BST Validation",
+      235
+    ],
+    [
+      "07-convert-sorted-array-to-bst",
+      "Convert Sorted Array to Binary Search Tree",
+      "Easy",
+      "Balance Trees",
+      108
+    ],
+    [
+      "08-convert-bst-to-greater-tree",
+      "Convert BST to Greater Tree",
+      "Medium",
+      "Kth Element",
+      538
+    ],
+    [
+      "09-inorder-successor-in-bst",
+      "Inorder Successor in BST",
+      "Medium",
+      "Inorder Successor",
+      285
+    ],
+    [
+      "10-recover-binary-search-tree",
+      "Recover Binary Search Tree",
+      "Medium",
+      "BST Validation",
+      99
+    ],
+    [
+      "11-unique-binary-search-trees",
+      "Unique Binary Search Trees",
+      "Medium",
+      "Balance Trees",
+      96
+    ],
+    [
+      "12-unique-binary-search-trees-ii",
+      "Unique Binary Search Trees II",
+      "Medium",
+      "Balance Trees",
+      95
+    ]
+  ],
+  "tries": [
+    [
+      "01-implement-trie",
+      "Implement Trie (Prefix Tree)",
+      "Medium",
+      "Prefix Search",
+      208
+    ],
+    [
+      "02-design-add-and-search-words",
+      "Design Add and Search Words Data Structure",
+      "Medium",
+      "Wildcard Search",
+      211
+    ],
+    [
+      "03-word-search-ii",
+      "Word Search II",
+      "Hard",
+      "Prefix Search",
+      212
+    ],
+    [
+      "04-replace-words",
+      "Replace Words",
+      "Medium",
+      "Prefix Search",
+      648
+    ],
+    [
+      "05-maximum-xor-of-two-numbers",
+      "Maximum XOR of Two Numbers in an Array",
+      "Medium",
+      "Bitwise XOR Trie",
+      421
+    ],
+    [
+      "06-map-sum-pairs",
+      "Map Sum Pairs",
+      "Medium",
+      "Autocomplete",
+      677
+    ],
+    [
+      "07-concatenated-words",
+      "Concatenated Words",
+      "Hard",
+      "Prefix Search",
+      472
+    ],
+    [
+      "08-implement-magic-dictionary",
+      "Implement Magic Dictionary",
+      "Medium",
+      "Wildcard Search",
+      676
+    ],
+    [
+      "09-stream-of-characters",
+      "Stream of Characters",
+      "Hard",
+      "Autocomplete",
+      1032
+    ],
+    [
+      "10-design-in-memory-file-system",
+      "Design In-Memory File System",
+      "Hard",
+      "Prefix Search",
+      588
+    ]
+  ],
+  "graphs": [
+    [
+      "01-number-of-islands",
+      "Number of Islands",
+      "Medium",
+      "Connected Components",
+      200
+    ],
+    [
+      "02-max-area-of-island",
+      "Max Area of Island",
+      "Medium",
+      "Flood Fill",
+      695
+    ],
+    [
+      "03-clone-graph",
+      "Clone Graph",
+      "Medium",
+      "Connected Components",
+      133
+    ],
+    [
+      "04-pacific-atlantic-water-flow",
+      "Pacific Atlantic Water Flow",
+      "Medium",
+      "Flood Fill",
+      417
+    ],
+    [
+      "05-surrounded-regions",
+      "Surrounded Regions",
+      "Medium",
+      "Flood Fill",
+      130
+    ],
+    [
+      "06-word-ladder",
+      "Word Ladder",
+      "Hard",
+      "Connected Components",
+      127
+    ],
+    [
+      "07-word-ladder-ii",
+      "Word Ladder II",
+      "Hard",
+      "Connected Components",
+      126
+    ],
+    [
+      "08-is-graph-bipartite",
+      "Is Graph Bipartite?",
+      "Medium",
+      "Bipartite Graphs",
+      785
+    ],
+    [
+      "09-rotting-oranges",
+      "Rotting Oranges",
+      "Medium",
+      "Flood Fill",
+      994
+    ],
+    [
+      "10-open-the-lock",
+      "Open the Lock",
+      "Medium",
+      "Connected Components",
+      752
+    ],
+    [
+      "11-graph-valid-tree",
+      "Graph Valid Tree",
+      "Medium",
+      "Cycle Detection",
+      261
+    ],
+    [
+      "12-critical-connections-in-a-network",
+      "Critical Connections in a Network",
+      "Hard",
+      "Cycle Detection",
+      1192
+    ]
+  ],
+  "shortest-paths": [
+    [
+      "01-network-delay-time",
+      "Network Delay Time",
+      "Medium",
+      "Network Delays",
+      743
+    ],
+    [
+      "02-cheapest-flights-within-k-stops",
+      "Cheapest Flights Within K Stops",
+      "Medium",
+      "Bellman-Ford",
+      787
+    ],
+    [
+      "03-path-with-minimum-effort",
+      "Path With Minimum Effort",
+      "Medium",
+      "Dijkstra",
+      1631
+    ],
+    [
+      "04-swim-in-rising-water",
+      "Swim in Rising Water",
+      "Hard",
+      "Dijkstra",
+      778
+    ],
+    [
+      "05-shortest-path-in-binary-matrix",
+      "Shortest Path in Binary Matrix",
+      "Medium",
+      "Dijkstra",
+      1091
+    ],
+    [
+      "06-shortest-path-to-get-all-keys",
+      "Shortest Path to Get All Keys",
+      "Hard",
+      "Dijkstra",
+      864
+    ],
+    [
+      "07-find-the-city-threshold-distance",
+      "Find the City With the Smallest Number of Neighbors at a Threshold Distance",
+      "Medium",
+      "Floyd-Warshall",
+      1334
+    ],
+    [
+      "08-second-minimum-time-to-reach-destination",
+      "Second Minimum Time to Reach Destination",
+      "Hard",
+      "Dijkstra",
+      2045
+    ],
+    [
+      "09-minimum-cost-to-reach-destination-in-time",
+      "Minimum Cost to Reach Destination in Time",
+      "Hard",
+      "Dijkstra",
+      1928
+    ],
+    [
+      "10-count-shortest-routes",
+      "Count Shortest Routes",
+      "Medium",
+      "Dijkstra",
+      null
+    ],
+    [
+      "11-maximum-probability-path",
+      "Maximum Probability Path",
+      "Medium",
+      "Dijkstra",
+      null
+    ],
+    [
+      "12-shortest-route-with-one-discount",
+      "Shortest Route With One Discount",
+      "Medium",
+      "Dijkstra",
+      null
+    ],
+    [
+      "13-bellman-ford-distance-list",
+      "Bellman-Ford Distance List",
+      "Medium",
+      "Bellman-Ford",
+      null
+    ],
+    [
+      "14-minimum-edge-reversals-from-source",
+      "Minimum Edge Reversals From Source",
+      "Medium",
+      "Dijkstra",
+      null
+    ]
+  ],
+  "mst": [
+    [
+      "01-min-cost-to-connect-all-points",
+      "Min Cost to Connect All Points",
+      "Medium",
+      "Manhattan MST",
+      1584
+    ],
+    [
+      "02-connecting-cities-with-minimum-cost",
+      "Connecting Cities With Minimum Cost",
+      "Medium",
+      "Kruskal Algorithm",
+      1135
+    ],
+    [
+      "03-optimize-water-distribution",
+      "Optimize Water Distribution in a Village",
+      "Hard",
+      "Min Cost Networks",
+      1168
+    ],
+    [
+      "04-critical-and-pseudo-critical-edges-mst",
+      "Find Critical and Pseudo-Critical Edges in Minimum Spanning Tree",
+      "Hard",
+      "Kruskal Algorithm",
+      1489
+    ],
+    [
+      "05-minimum-spanning-tree-weight",
+      "Minimum Spanning Tree Total Weight",
+      "Medium",
+      "Prim Algorithm",
+      null
+    ],
+    [
+      "06-remove-max-edges-fully-traversable",
+      "Remove Max Number of Edges to Keep Graph Fully Traversable",
+      "Hard",
+      "Kruskal Algorithm",
+      1579
+    ],
+    [
+      "07-minimum-bottleneck-spanning-tree",
+      "Minimum Bottleneck Spanning Tree",
+      "Medium",
+      "Kruskal Algorithm",
+      null
+    ],
+    [
+      "08-maximum-spacing-k-clustering",
+      "Maximum Spacing for K Clusters",
+      "Hard",
+      "Kruskal Algorithm",
+      null
+    ],
+    [
+      "09-minimax-path-queries",
+      "Minimum Bottleneck Path Queries",
+      "Hard",
+      "Prim Algorithm",
+      null
+    ],
+    [
+      "10-minimum-spanning-forest-weight",
+      "Minimum Spanning Forest Weight",
+      "Medium",
+      "Kruskal Algorithm",
+      null
+    ],
+    [
+      "11-minimum-spanning-tree-edge-indices",
+      "Minimum Spanning Tree Edge Indices",
+      "Medium",
+      "Kruskal Algorithm",
+      null
+    ]
+  ],
+  "topological-sort": [
+    [
+      "01-course-schedule",
+      "Course Schedule",
+      "Medium",
+      "Kahn Algorithm",
+      null
+    ],
+    [
+      "02-course-schedule-ii",
+      "Course Schedule II",
+      "Medium",
+      "Kahn Algorithm",
+      null
+    ],
+    [
+      "03-alien-dictionary",
+      "Verify Alien Word Ordering",
+      "Medium",
+      "Alien Dictionary",
+      null
+    ],
+    [
+      "04-minimum-height-trees",
+      "Minimum Height Trees",
+      "Medium",
+      "In-Degree BFS",
+      null
+    ],
+    [
+      "05-sequence-reconstruction",
+      "Sequence Reconstruction",
+      "Medium",
+      "In-Degree BFS",
+      null
+    ],
+    [
+      "06-longest-increasing-path-in-a-matrix",
+      "Longest Increasing Path in a Matrix",
+      "Hard",
+      "Post-Order DFS",
+      329
+    ],
+    [
+      "07-parallel-courses",
+      "Parallel Courses",
+      "Medium",
+      "In-Degree BFS",
+      1136
+    ],
+    [
+      "08-find-eventual-safe-states",
+      "Find Eventual Safe States",
+      "Medium",
+      "In-Degree BFS",
+      null
+    ],
+    [
+      "09-alien-dictionary-order",
+      "Alien Dictionary Order",
+      "Hard",
+      "Alien Dictionary",
+      null
+    ],
+    [
+      "10-course-schedule-iv",
+      "Course Schedule IV",
+      "Medium",
+      "Post-Order DFS",
+      null
+    ]
+  ],
+  "dsu": [
+    [
+      "01-redundant-connection",
+      "Redundant Connection",
+      "Medium",
+      "Union by Rank",
+      684
+    ],
+    [
+      "02-number-of-connected-components",
+      "Number of Connected Components in an Undirected Graph",
+      "Medium",
+      "Connectivity",
+      323
+    ],
+    [
+      "03-accounts-merge",
+      "Accounts Merge",
+      "Medium",
+      "Equivalence Classes",
+      721
+    ],
+    [
+      "04-number-of-islands-ii",
+      "Number of Islands II",
+      "Hard",
+      "Connectivity",
+      305
+    ],
+    [
+      "05-satisfiability-of-equality-equations",
+      "Satisfiability of Equality Equations",
+      "Medium",
+      "Equivalence Classes",
+      990
+    ],
+    [
+      "06-similar-string-groups",
+      "Similar String Groups",
+      "Hard",
+      "Equivalence Classes",
+      839
+    ],
+    [
+      "07-most-stones-removed",
+      "Most Stones Removed with Same Row or Column",
+      "Medium",
+      "Connectivity",
+      947
+    ],
+    [
+      "08-regions-cut-by-slashes",
+      "Regions Cut By Slashes",
+      "Medium",
+      "Path Compression",
+      959
+    ],
+    [
+      "09-checking-existence-of-edge-length-limited-paths",
+      "Checking Existence of Edge Length Limited Paths",
+      "Hard",
+      "Path Compression",
+      1697
+    ]
+  ],
+  "dp-1d": [
+    [
+      "01-climbing-stairs",
+      "Climbing Stairs",
+      "Easy",
+      "Fibonacci Transitions",
+      70
+    ],
+    [
+      "02-house-robber",
+      "House Robber",
+      "Medium",
+      "House Robber",
+      198
+    ],
+    [
+      "03-house-robber-ii",
+      "House Robber II",
+      "Medium",
+      "House Robber",
+      213
+    ],
+    [
+      "04-coin-change",
+      "Coin Change",
+      "Medium",
+      "Linear States",
+      322
+    ],
+    [
+      "05-coin-change-ii",
+      "Coin Change II",
+      "Medium",
+      "Linear States",
+      518
+    ],
+    [
+      "06-longest-increasing-subsequence",
+      "Longest Increasing Subsequence",
+      "Medium",
+      "Subsequences",
+      300
+    ],
+    [
+      "07-word-break",
+      "Word Break",
+      "Medium",
+      "Linear States",
+      139
+    ],
+    [
+      "08-decode-ways",
+      "Decode Ways",
+      "Medium",
+      "Linear States",
+      91
+    ],
+    [
+      "10-jump-game-ii",
+      "Jump Game II",
+      "Medium",
+      "Linear States",
+      45
+    ],
+    [
+      "11-stock-with-cooldown",
+      "Best Time to Buy and Sell Stock with Cooldown",
+      "Medium",
+      "Linear States",
+      null
+    ],
+    [
+      "13-minimum-cost-climbing-stairs",
+      "Min Cost Climbing Stairs",
+      "Easy",
+      "Fibonacci Transitions",
+      null
+    ]
+  ],
+  "dp-2d": [
+    [
+      "01-unique-paths",
+      "Unique Paths",
+      "Medium",
+      "Grid Paths",
+      null
+    ],
+    [
+      "02-unique-paths-ii",
+      "Unique Paths II",
+      "Medium",
+      "Grid Paths",
+      63
+    ],
+    [
+      "03-minimum-path-sum",
+      "Minimum Path Sum",
+      "Medium",
+      "Cost Minimization",
+      null
+    ],
+    [
+      "04-edit-distance",
+      "Edit Distance",
+      "Medium",
+      "String Edits",
+      null
+    ],
+    [
+      "05-longest-common-subsequence",
+      "Longest Common Subsequence",
+      "Medium",
+      "String Edits",
+      null
+    ],
+    [
+      "06-interleaving-string",
+      "Interleaving String",
+      "Medium",
+      "String Edits",
+      97
+    ],
+    [
+      "07-distinct-subsequences",
+      "Distinct Subsequences",
+      "Hard",
+      "String Edits",
+      115
+    ],
+    [
+      "08-maximal-square",
+      "Maximal Square",
+      "Medium",
+      "Grid Paths",
+      null
+    ],
+    [
+      "09-dungeon-game",
+      "Dungeon Game",
+      "Hard",
+      "Cost Minimization",
+      174
+    ],
+    [
+      "12-wildcard-matching",
+      "Wildcard Matching",
+      "Hard",
+      "String Edits",
+      44
+    ]
+  ],
+  "dp-knapsack": [
+    [
+      "01-zero-one-knapsack",
+      "0/1 Knapsack Maximum Value",
+      "Medium",
+      "0/1 Knapsack",
+      null
+    ],
+    [
+      "02-rod-cutting",
+      "Rod Cutting",
+      "Medium",
+      "Unbounded Knapsack",
+      null
+    ],
+    [
+      "03-partition-equal-subset-sum",
+      "Partition Equal Subset Sum",
+      "Medium",
+      "Partition Equal",
+      416
+    ],
+    [
+      "04-target-sum",
+      "Target Sum",
+      "Medium",
+      "Subset Sum",
+      494
+    ],
+    [
+      "05-last-stone-weight-ii",
+      "Last Stone Weight II",
+      "Medium",
+      "Subset Sum",
+      1049
+    ],
+    [
+      "06-combination-sum-iv",
+      "Combination Sum IV",
+      "Medium",
+      "Unbounded Knapsack",
+      377
+    ],
+    [
+      "07-ones-and-zeroes",
+      "Ones and Zeroes",
+      "Medium",
+      "0/1 Knapsack",
+      474
+    ],
+    [
+      "08-profitable-schemes",
+      "Profitable Schemes",
+      "Hard",
+      "0/1 Knapsack",
+      879
+    ],
+    [
+      "09-unbounded-knapsack",
+      "Unbounded Knapsack Maximum Value",
+      "Medium",
+      "Unbounded Knapsack",
+      null
+    ],
+    [
+      "10-minimum-subset-sum-difference",
+      "Minimum Subset Sum Difference",
+      "Medium",
+      "Subset Sum",
+      null
+    ],
+    [
+      "11-count-subsets-with-given-difference",
+      "Count Subsets With Given Difference",
+      "Medium",
+      "Subset Sum",
+      null
+    ],
+    [
+      "12-tallest-billboard",
+      "Tallest Billboard",
+      "Hard",
+      "0/1 Knapsack",
+      null
+    ],
+    [
+      "13-perfect-squares-knapsack",
+      "Perfect Squares as Unbounded Knapsack",
+      "Medium",
+      "Unbounded Knapsack",
+      null
+    ]
+  ],
+  "dp-trees": [
+    [
+      "01-binary-tree-maximum-path-sum",
+      "Binary Tree Maximum Path Sum",
+      "Hard",
+      "Subtree Optimization",
+      124
+    ],
+    [
+      "02-house-robber-iii",
+      "House Robber III",
+      "Medium",
+      "Subtree Optimization",
+      337
+    ],
+    [
+      "03-longest-zigzag-path",
+      "Longest ZigZag Path in a Binary Tree",
+      "Medium",
+      "Subtree Optimization",
+      null
+    ],
+    [
+      "03-sum-of-distances-in-tree",
+      "Sum of Distances in Tree",
+      "Hard",
+      "Tree Rerooting",
+      834
+    ],
+    [
+      "04-distribute-coins-in-binary-tree",
+      "Distribute Coins in a Binary Tree",
+      "Medium",
+      "Subtree Optimization",
+      null
+    ],
+    [
+      "05-binary-tree-cameras",
+      "Binary Tree Cameras",
+      "Hard",
+      "Subtree Optimization",
+      null
+    ],
+    [
+      "05-traveling-salesperson-bitmask",
+      "Shortest Hamiltonian Tour",
+      "Hard",
+      "Bitmask Traveling Salesperson",
+      null
+    ],
+    [
+      "06-can-i-win",
+      "Can I Win",
+      "Medium",
+      "Assignment",
+      464
+    ],
+    [
+      "07-matchsticks-to-square",
+      "Matchsticks to Square",
+      "Medium",
+      "Assignment",
+      473
+    ],
+    [
+      "08-find-shortest-superstring",
+      "Find Shortest Superstring",
+      "Hard",
+      "Bitmask Traveling Salesperson",
+      null
+    ]
+  ],
+  "greedy": [
+    [
+      "01-non-overlapping-intervals",
+      "Non-overlapping Intervals",
+      "Medium",
+      "Interval Scheduling",
+      435
+    ],
+    [
+      "02-minimum-arrows-to-burst-balloons",
+      "Minimum Number of Arrows to Burst Balloons",
+      "Medium",
+      "Interval Scheduling",
+      452
+    ],
+    [
+      "03-gas-station",
+      "Gas Station",
+      "Medium",
+      "Gas Station",
+      134
+    ],
+    [
+      "04-candy",
+      "Candy",
+      "Hard",
+      "Local Optimality",
+      135
+    ],
+    [
+      "05-jump-game",
+      "Jump Game",
+      "Medium",
+      "Local Optimality",
+      55
+    ],
+    [
+      "07-partition-labels",
+      "Partition Labels",
+      "Medium",
+      "Interval Scheduling",
+      763
+    ],
+    [
+      "09-assign-cookies",
+      "Assign Cookies",
+      "Easy",
+      "Local Optimality",
+      455
+    ],
+    [
+      "10-can-place-flowers",
+      "Can Place Flowers",
+      "Easy",
+      "Local Optimality",
+      null
+    ],
+    [
+      "11-lemonade-change",
+      "Lemonade Change",
+      "Easy",
+      "Local Optimality",
+      null
+    ],
+    [
+      "12-maximum-units-on-a-truck",
+      "Maximum Units on a Truck",
+      "Easy",
+      "Local Optimality",
+      null
+    ]
+  ],
+  "bit-manipulation": [
+    [
+      "01-single-number",
+      "Single Number",
+      "Easy",
+      "XOR Tricks",
+      136
+    ],
+    [
+      "02-single-number-ii",
+      "Single Number II",
+      "Medium",
+      "XOR Tricks",
+      137
+    ],
+    [
+      "03-single-number-iii",
+      "Single Number III",
+      "Medium",
+      "XOR Tricks",
+      260
+    ],
+    [
+      "04-number-of-1-bits",
+      "Number of 1 Bits",
+      "Easy",
+      "Counting Bits",
+      191
+    ],
+    [
+      "05-counting-bits",
+      "Counting Bits",
+      "Easy",
+      "Counting Bits",
+      338
+    ],
+    [
+      "06-reverse-bits",
+      "Reverse Bits",
+      "Easy",
+      "Two Complement",
+      190
+    ],
+    [
+      "07-power-of-two",
+      "Power of Two",
+      "Easy",
+      "XOR Tricks",
+      231
+    ],
+    [
+      "08-bitwise-and-of-numbers-range",
+      "Bitwise AND of Numbers Range",
+      "Medium",
+      "XOR Tricks",
+      201
+    ],
+    [
+      "09-divide-two-integers",
+      "Divide Two Integers",
+      "Medium",
+      "Fast Exponentiation",
+      29
+    ],
+    [
+      "10-sum-of-two-integers",
+      "Sum of Two Integers Without Plus",
+      "Medium",
+      "Two Complement",
+      371
+    ],
+    [
+      "11-hamming-distance",
+      "Hamming Distance",
+      "Easy",
+      "XOR Tricks",
+      null
+    ],
+    [
+      "12-total-hamming-distance",
+      "Total Hamming Distance",
+      "Medium",
+      "XOR Tricks",
+      null
+    ],
+    [
+      "13-xor-queries-of-a-subarray",
+      "XOR Queries of a Subarray",
+      "Medium",
+      "XOR Tricks",
+      null
+    ],
+    [
+      "14-decode-xored-permutation",
+      "Decode XORed Permutation",
+      "Medium",
+      "XOR Tricks",
+      null
+    ],
+    [
+      "15-find-original-array-of-prefix-xor",
+      "Find Original Array of Prefix XOR",
+      "Medium",
+      "XOR Tricks",
+      null
+    ],
+    [
+      "16-count-triplets-with-equal-xor",
+      "Count Triplets with Equal XOR",
+      "Medium",
+      "XOR Tricks",
+      null
+    ],
+    [
+      "17-minimum-flips-for-bitwise-or",
+      "Minimum Flips for Bitwise OR",
+      "Medium",
+      "XOR Tricks",
+      null
+    ],
+    [
+      "18-maximum-xor-subarray",
+      "Maximum XOR Subarray",
+      "Hard",
+      "XOR Tricks",
+      null
+    ],
+    [
+      "19-binary-gap",
+      "Binary Gap",
+      "Easy",
+      "Counting Bits",
+      null
+    ],
+    [
+      "20-sort-integers-by-set-bits",
+      "Sort Integers by Set Bits",
+      "Easy",
+      "Counting Bits",
+      null
+    ],
+    [
+      "21-prime-number-of-set-bits",
+      "Prime Number of Set Bits",
+      "Easy",
+      "Counting Bits",
+      null
+    ],
+    [
+      "22-alternating-bits-check",
+      "Alternating Bits Check",
+      "Easy",
+      "Counting Bits",
+      null
+    ],
+    [
+      "23-minimum-one-bit-operations",
+      "Minimum One Bit Operations",
+      "Hard",
+      "Counting Bits",
+      null
+    ],
+    [
+      "24-maximum-product-of-word-lengths",
+      "Maximum Product of Word Lengths",
+      "Medium",
+      "Counting Bits",
+      null
+    ],
+    [
+      "25-bitwise-ors-of-subarrays",
+      "Bitwise ORs of Subarrays",
+      "Medium",
+      "Counting Bits",
+      null
+    ],
+    [
+      "26-count-total-set-bits-to-n",
+      "Count Total Set Bits to N",
+      "Hard",
+      "Counting Bits",
+      null
+    ],
+    [
+      "27-number-complement",
+      "Number Complement",
+      "Easy",
+      "Two Complement",
+      null
+    ],
+    [
+      "28-power-of-four",
+      "Power of Four",
+      "Easy",
+      "Two Complement",
+      null
+    ],
+    [
+      "29-gray-code-sequence",
+      "Gray Code Sequence",
+      "Medium",
+      "Two Complement",
+      null
+    ],
+    [
+      "30-convert-integer-to-hexadecimal",
+      "Convert Integer to Hexadecimal",
+      "Easy",
+      "Two Complement",
+      null
+    ],
+    [
+      "31-utf8-validation",
+      "UTF-8 Validation",
+      "Medium",
+      "Two Complement",
+      null
+    ],
+    [
+      "32-concatenation-of-consecutive-binary",
+      "Concatenation of Consecutive Binary",
+      "Medium",
+      "Two Complement",
+      null
+    ],
+    [
+      "33-base-neg2-representation",
+      "Base -2 Representation",
+      "Medium",
+      "Two Complement",
+      null
+    ],
+    [
+      "34-modular-exponentiation",
+      "Modular Exponentiation",
+      "Easy",
+      "Fast Exponentiation",
+      null
+    ],
+    [
+      "35-super-pow",
+      "Super Pow",
+      "Medium",
+      "Fast Exponentiation",
+      null
+    ],
+    [
+      "36-count-good-digit-strings",
+      "Count Good Digit Strings",
+      "Medium",
+      "Fast Exponentiation",
+      null
+    ],
+    [
+      "37-nth-fibonacci-modulo",
+      "Nth Fibonacci Number Modulo",
+      "Medium",
+      "Fast Exponentiation",
+      null
+    ],
+    [
+      "38-minimum-non-zero-product",
+      "Minimum Non-Zero Product",
+      "Medium",
+      "Fast Exponentiation",
+      null
+    ],
+    [
+      "39-ways-to-make-array-with-product",
+      "Ways to Make Array With Product",
+      "Hard",
+      "Fast Exponentiation",
+      null
+    ],
+    [
+      "40-smallest-good-base",
+      "Smallest Good Base",
+      "Hard",
+      "Fast Exponentiation",
+      null
+    ],
+    [
+      "41-xor-operation-in-arithmetic-array",
+      "XOR Operation in an Arithmetic Array",
+      "Easy",
+      "XOR Tricks",
+      null
+    ],
+    [
+      "42-decode-xored-array",
+      "Decode XORed Array",
+      "Easy",
+      "XOR Tricks",
+      null
+    ],
+    [
+      "43-neighboring-bitwise-xor",
+      "Neighboring Bitwise XOR",
+      "Medium",
+      "XOR Tricks",
+      null
+    ],
+    [
+      "44-bitwise-xor-of-all-pairings",
+      "Bitwise XOR of All Pairings",
+      "Medium",
+      "XOR Tricks",
+      null
+    ],
+    [
+      "45-minimum-flips-for-target-xor",
+      "Minimum Bit Flips to Reach Target XOR",
+      "Medium",
+      "XOR Tricks",
+      null
+    ],
+    [
+      "46-maximum-xor-for-each-query",
+      "Maximum XOR for Each Query",
+      "Medium",
+      "XOR Tricks",
+      null
+    ],
+    [
+      "47-count-pairs-with-xor-in-range",
+      "Count Pairs With XOR in a Range",
+      "Hard",
+      "XOR Tricks",
+      null
+    ],
+    [
+      "48-maximum-subset-xor",
+      "Maximum Subset XOR",
+      "Hard",
+      "XOR Tricks",
+      null
+    ],
+    [
+      "49-even-and-odd-bit-counts",
+      "Number of Even and Odd Bits",
+      "Easy",
+      "Counting Bits",
+      null
+    ],
+    [
+      "50-smallest-number-with-all-set-bits",
+      "Smallest Number With All Set Bits",
+      "Easy",
+      "Counting Bits",
+      null
+    ],
+    [
+      "51-minimize-xor-with-same-set-bits",
+      "Minimize XOR With Matching Set Bits",
+      "Medium",
+      "Counting Bits",
+      null
+    ],
+    [
+      "52-largest-combination-with-positive-and",
+      "Largest Combination With Bitwise AND Greater Than Zero",
+      "Medium",
+      "Counting Bits",
+      null
+    ],
+    [
+      "53-longest-bitwise-disjoint-subarray",
+      "Longest Bitwise-Disjoint Subarray",
+      "Medium",
+      "Counting Bits",
+      null
+    ],
+    [
+      "54-check-all-binary-codes-of-size-k",
+      "Check If a String Contains All Binary Codes of Size K",
+      "Medium",
+      "Counting Bits",
+      null
+    ],
+    [
+      "55-minimum-array-end",
+      "Minimum Array End",
+      "Medium",
+      "Counting Bits",
+      null
+    ],
+    [
+      "56-count-integers-with-k-set-bits",
+      "Count Integers With Exactly K Set Bits",
+      "Hard",
+      "Counting Bits",
+      null
+    ],
+    [
+      "57-binary-prefix-divisible-by-five",
+      "Binary Prefixes Divisible by 5",
+      "Easy",
+      "Two Complement",
+      null
+    ],
+    [
+      "58-steps-to-reduce-binary-to-one",
+      "Steps to Reduce a Binary Number to One",
+      "Medium",
+      "Two Complement",
+      null
+    ],
+    [
+      "59-next-higher-same-popcount",
+      "Next Higher Integer With Same Set Bits",
+      "Medium",
+      "Two Complement",
+      null
+    ],
+    [
+      "60-min-power-of-two-ops-to-zero",
+      "Minimum Power-of-Two Operations to Zero",
+      "Medium",
+      "Two Complement",
+      null
+    ],
+    [
+      "61-add-two-negabinary-numbers",
+      "Add Two Negabinary Numbers",
+      "Medium",
+      "Two Complement",
+      null
+    ],
+    [
+      "62-integer-replacement-to-one",
+      "Minimum Replacements to Reduce Integer to One",
+      "Medium",
+      "Two Complement",
+      null
+    ],
+    [
+      "63-non-negative-integers-without-consecutive-ones",
+      "Non-Negative Integers Without Consecutive Ones",
+      "Hard",
+      "Two Complement",
+      null
+    ],
+    [
+      "64-power-of-three-check",
+      "Power of Three Check",
+      "Easy",
+      "Fast Exponentiation",
+      null
+    ],
+    [
+      "65-sum-of-powers-of-three",
+      "Check if Number is a Sum of Powers of Three",
+      "Medium",
+      "Fast Exponentiation",
+      null
+    ],
+    [
+      "66-floating-point-power",
+      "Fast Power (x^n)",
+      "Medium",
+      "Fast Exponentiation",
+      null
+    ],
+    [
+      "67-modular-multiplicative-inverse",
+      "Modular Multiplicative Inverse",
+      "Medium",
+      "Fast Exponentiation",
+      null
+    ],
+    [
+      "68-geometric-series-sum-modulo",
+      "Geometric Series Sum Modulo M",
+      "Medium",
+      "Fast Exponentiation",
+      null
+    ],
+    [
+      "69-maximize-nice-divisors",
+      "Maximize Number of Nice Divisors",
+      "Hard",
+      "Fast Exponentiation",
+      null
+    ],
+    [
+      "70-count-vowel-permutations-large-n",
+      "Count Vowel Permutations for Large N",
+      "Hard",
+      "Fast Exponentiation",
+      null
+    ],
+    [
+      "71-sum-of-all-subset-xor-totals",
+      "Sum of All Subset XOR Totals",
+      "Easy",
+      "XOR Tricks",
+      null
+    ],
+    [
+      "72-find-xor-beauty-of-array",
+      "Find XOR-Beauty of Array",
+      "Medium",
+      "XOR Tricks",
+      null
+    ],
+    [
+      "73-count-subarrays-with-given-xor",
+      "Count Subarrays With Given XOR",
+      "Medium",
+      "XOR Tricks",
+      null
+    ],
+    [
+      "74-minimum-xor-pair-in-array",
+      "Minimum XOR Value of Any Pair",
+      "Medium",
+      "XOR Tricks",
+      null
+    ],
+    [
+      "75-total-xor-of-all-subarrays",
+      "Total XOR of All Subarray XORs",
+      "Easy",
+      "XOR Tricks",
+      null
+    ],
+    [
+      "76-kth-smallest-subset-xor",
+      "K-th Smallest Distinct Subset XOR",
+      "Hard",
+      "XOR Tricks",
+      null
+    ],
+    [
+      "77-maximum-xor-with-element-threshold",
+      "Maximum XOR With an Element Threshold",
+      "Hard",
+      "XOR Tricks",
+      null
+    ],
+    [
+      "78-minimum-xor-sum-of-two-arrays",
+      "Minimum XOR Sum of Two Arrays",
+      "Hard",
+      "XOR Tricks",
+      null
+    ],
+    [
+      "79-bit-changes-to-make-integers-equal",
+      "Number of Bit Changes to Make Two Integers Equal",
+      "Easy",
+      "Counting Bits",
+      null
+    ],
+    [
+      "80-find-if-array-can-be-sorted-by-set-bits",
+      "Find if Array Can Be Sorted by Set Bits",
+      "Medium",
+      "Counting Bits",
+      null
+    ],
+    [
+      "81-shortest-subarray-with-or-at-least-k",
+      "Shortest Subarray With Bitwise OR at Least K",
+      "Medium",
+      "Counting Bits",
+      null
+    ],
+    [
+      "82-subarray-bitwise-and-closest-to-target",
+      "Subarray Bitwise AND Closest to Target",
+      "Hard",
+      "Counting Bits",
+      null
+    ],
+    [
+      "83-maximum-bitmasks-covered-by-k-bits",
+      "Maximum Bitmasks Covered by K Bits",
+      "Medium",
+      "Counting Bits",
+      null
+    ],
+    [
+      "84-triples-with-bitwise-and-equal-to-zero",
+      "Triples With Bitwise AND Equal to Zero",
+      "Hard",
+      "Counting Bits",
+      null
+    ],
+    [
+      "85-minimum-bitmasks-to-cover-target",
+      "Minimum Bitmasks to Cover Target Mask",
+      "Hard",
+      "Counting Bits",
+      null
+    ],
+    [
+      "86-count-pairs-with-and-greater-than-xor",
+      "Count Pairs With Bitwise AND Greater Than XOR",
+      "Medium",
+      "Counting Bits",
+      null
+    ],
+    [
+      "87-swap-odd-and-even-bits",
+      "Swap Odd and Even Bits",
+      "Easy",
+      "Two Complement",
+      null
+    ],
+    [
+      "88-insert-bits-into-range",
+      "Insert Bits Into Bit Range",
+      "Easy",
+      "Two Complement",
+      null
+    ],
+    [
+      "89-signed-varint-byte-encoding",
+      "Signed Varint (ZigZag + LEB128) Encoding",
+      "Medium",
+      "Two Complement",
+      null
+    ],
+    [
+      "90-morton-code-bit-interleaving",
+      "2D Morton Code Bit Interleaving",
+      "Medium",
+      "Two Complement",
+      null
+    ],
+    [
+      "91-balanced-ternary-representation",
+      "Balanced Ternary Representation",
+      "Medium",
+      "Two Complement",
+      null
+    ],
+    [
+      "92-minimum-splits-of-powers-of-two",
+      "Minimum Splits of Powers of Two to Form Target",
+      "Hard",
+      "Two Complement",
+      null
+    ],
+    [
+      "93-minimal-power-of-two-range-blocks",
+      "Minimal Aligned Power-of-Two Range Blocks",
+      "Medium",
+      "Two Complement",
+      null
+    ],
+    [
+      "94-last-digit-of-large-power",
+      "Last Digit of a Large Power",
+      "Easy",
+      "Fast Exponentiation",
+      null
+    ],
+    [
+      "95-domino-tromino-tiling-large-n",
+      "Domino and Tromino Tilings for Large N",
+      "Medium",
+      "Fast Exponentiation",
+      null
+    ],
+    [
+      "96-binomial-coefficient-lucas-modulo",
+      "Binomial Coefficient Modulo Small Prime",
+      "Hard",
+      "Fast Exponentiation",
+      null
+    ],
+    [
+      "97-modular-power-tower-three",
+      "Modular Power Tower a^(b^c) mod P",
+      "Medium",
+      "Fast Exponentiation",
+      null
+    ],
+    [
+      "98-count-walks-of-length-k",
+      "Count Directed Walks of Exact Length K",
+      "Medium",
+      "Fast Exponentiation",
+      null
+    ],
+    [
+      "99-primality-test-large-integer",
+      "Deterministic Primality Test for Large Integers",
+      "Medium",
+      "Fast Exponentiation",
+      null
+    ],
+    [
+      "100-maximize-ball-passing-score-k-steps",
+      "Maximize Value of Function in K-Step Passing Game",
+      "Hard",
+      "Fast Exponentiation",
+      null
+    ]
+  ],
+  "advanced-trees": [
+    [
+      "01-range-sum-query-mutable",
+      "Range Sum Query - Mutable",
+      "Medium",
+      "Fenwick Tree",
+      307
+    ],
+    [
+      "02-range-minimum-query-lazy",
+      "Range Minimum Query with Range Updates",
+      "Hard",
+      "Lazy Propagation",
+      null
+    ],
+    [
+      "03-count-of-smaller-numbers-after-self",
+      "Count of Smaller Numbers After Self",
+      "Medium",
+      "Inversion Counters",
+      315
+    ],
+    [
+      "04-reverse-pairs",
+      "Reverse Pairs",
+      "Hard",
+      "Inversion Counters",
+      493
+    ],
+    [
+      "05-the-skyline-problem",
+      "The Skyline Problem",
+      "Hard",
+      "Range Queries",
+      218
+    ],
+    [
+      "06-my-calendar-iii",
+      "My Calendar III",
+      "Hard",
+      "Range Queries",
+      732
+    ],
+    [
+      "07-falling-squares",
+      "Falling Squares",
+      "Hard",
+      "Lazy Propagation",
+      699
+    ],
+    [
+      "08-range-module",
+      "Range Module",
+      "Hard",
+      "Lazy Propagation",
+      715
+    ],
+    [
+      "10-count-of-range-sum",
+      "Count of Range Sum",
+      "Hard",
+      "Range Queries",
+      null
+    ],
+    [
+      "11-create-sorted-array-through-instructions",
+      "Create Sorted Array Through Instructions",
+      "Medium",
+      "Fenwick Tree",
+      null
+    ]
+  ]
+}

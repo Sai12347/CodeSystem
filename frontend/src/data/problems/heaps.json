@@ -1,0 +1,710 @@
+[
+ {
+  "id": "kth-largest-element-in-an-array",
+  "order": 1,
+  "topicId": "heaps",
+  "topic": "Heaps & Priority Queues",
+  "title": "Kth Largest Element in an Array",
+  "slug": "kth-largest-element-in-an-array",
+  "difficulty": "Medium",
+  "subtopic": "Top K Elements",
+  "companies": [
+   "Meta",
+   "Amazon",
+   "Google",
+   "Microsoft",
+   "Apple",
+   "Bloomberg"
+  ],
+  "leetcode": 215,
+  "description": "Given an integer array `nums` and an integer `k`, return the `k`-th largest element in the array.\n\nNote that it is the `k`-th largest element in sorted order, **not** the `k`-th distinct element. For example, in `[3, 2, 3, 1, 2, 4, 5, 5, 6]`, the 4th largest element is `4` because the sorted descending order is `[6, 5, 5, 4, 3, 3, 2, 2, 1]`.\n\nCan you solve it without sorting the entire array?",
+  "constraints": [
+   "1 <= k <= nums.length <= 10^5",
+   "-10^4 <= nums[i] <= 10^4"
+  ],
+  "hints": [
+   "Instead of sorting all n elements in O(n log n) time, think about maintaining only the k largest elements seen so far.",
+   "Use a min-heap of size at most k: push each element and pop the smallest whenever the heap exceeds size k.",
+   "After processing all elements, the root of the min-heap is the k-th largest element in O(n log k) time and O(k) space."
+  ],
+  "timeComplexity": "O(n log k)",
+  "spaceComplexity": "O(k)",
+  "compare": "exact",
+  "examples": [
+   {
+    "input": "nums = [3,2,1,5,6,4], k = 2",
+    "output": "5",
+    "explanation": "In descending order [6, 5, 4, 3, 2, 1], the 2nd largest element is 5."
+   },
+   {
+    "input": "nums = [3,2,3,1,2,4,5,5,6], k = 4",
+    "output": "4",
+    "explanation": "In descending order [6, 5, 5, 4, 3, 3, 2, 2, 1], the 4th largest element is 4."
+   },
+   {
+    "input": "nums = [-7], k = 1",
+    "output": "-7",
+    "explanation": "With a single element, the 1st largest element is -7."
+   }
+  ],
+  "starterCode": {
+   "java": "class Solution {\n    public int findKthLargest(int[] nums, int k) {\n        // Write your solution here\n        return 0;\n    }\n}\n",
+   "python": "class Solution:\n    def findKthLargest(self, nums: List[int], k: int) -> int:\n        # Write your solution here\n        pass\n"
+  },
+  "solutionCode": {
+   "java": "class Solution {\n    public int findKthLargest(int[] nums, int k) {\n        PriorityQueue<Integer> minHeap = new PriorityQueue<>(k + 1);\n        for (int num : nums) {\n            if (minHeap.size() < k) {\n                minHeap.offer(num);\n            } else if (num > minHeap.peek()) {\n                minHeap.poll();\n                minHeap.offer(num);\n            }\n        }\n        return minHeap.peek();\n    }\n}\n",
+   "python": "class Solution:\n    def findKthLargest(self, nums: List[int], k: int) -> int:\n        heap = nums[:k]\n        heapq.heapify(heap)\n        for num in nums[k:]:\n            if num > heap[0]:\n                heapq.heapreplace(heap, num)\n        return heap[0]\n"
+  },
+  "sampleArray": [
+   3,
+   2,
+   1,
+   5,
+   6,
+   4
+  ],
+  "visibleTestCount": 3,
+  "hiddenTestCount": 10,
+  "number": 1
+ },
+ {
+  "id": "top-k-frequent-elements",
+  "order": 2,
+  "topicId": "heaps",
+  "topic": "Heaps & Priority Queues",
+  "title": "Top K Frequent Elements",
+  "slug": "top-k-frequent-elements",
+  "difficulty": "Medium",
+  "subtopic": "Top K Elements",
+  "companies": [
+   "Amazon",
+   "Meta",
+   "Google",
+   "Microsoft",
+   "Uber",
+   "Oracle"
+  ],
+  "leetcode": 347,
+  "description": "Given an integer array `nums` and an integer `k`, return the `k` most frequent elements. You may return the answer in **any order**.\n\nIt is guaranteed that the answer is **unique** (there is no frequency tie separating the `k`-th most frequent element from the `(k + 1)`-th most frequent element).\n\nYour algorithm's time complexity must be better than `O(n log n)`, where `n` is the array's size.",
+  "constraints": [
+   "1 <= nums.length <= 10^5",
+   "-10^4 <= nums[i] <= 10^4",
+   "k is in the range [1, the number of unique elements in the array].",
+   "It is guaranteed that the answer is unique."
+  ],
+  "hints": [
+   "First count the frequency of every distinct value in nums using a hash map in O(n) time.",
+   "Maintain a min-heap of size at most k keyed by frequency so you can discard less-frequent elements in O(log k) time each.",
+   "Alternatively, bucket sort by frequency (from 1 to n) achieves O(n) time."
+  ],
+  "timeComplexity": "O(n log k)",
+  "spaceComplexity": "O(n)",
+  "compare": "sorted",
+  "examples": [
+   {
+    "input": "nums = [1,1,1,2,2,3], k = 2",
+    "output": "[2,1]",
+    "explanation": "1 appears 3 times, 2 appears 2 times, and 3 appears 1 time. The 2 most frequent elements are 1 and 2."
+   },
+   {
+    "input": "nums = [1], k = 1",
+    "output": "[1]",
+    "explanation": "Only one unique element exists, so return [1]."
+   },
+   {
+    "input": "nums = [-1,-1,-1,4,4,2,0], k = 2",
+    "output": "[4,-1]",
+    "explanation": "-1 appears 3 times and 4 appears 2 times, while 2 and 0 each appear once."
+   }
+  ],
+  "starterCode": {
+   "java": "class Solution {\n    public int[] topKFrequent(int[] nums, int k) {\n        // Write your solution here\n        return null;\n    }\n}\n",
+   "python": "class Solution:\n    def topKFrequent(self, nums: List[int], k: int) -> List[int]:\n        # Write your solution here\n        pass\n"
+  },
+  "solutionCode": {
+   "java": "class Solution {\n    public int[] topKFrequent(int[] nums, int k) {\n        Map<Integer, Integer> counts = new HashMap<>();\n        for (int num : nums) {\n            counts.merge(num, 1, Integer::sum);\n        }\n        PriorityQueue<Map.Entry<Integer, Integer>> minHeap =\n            new PriorityQueue<>(Comparator.comparingInt(Map.Entry::getValue));\n        for (Map.Entry<Integer, Integer> entry : counts.entrySet()) {\n            if (minHeap.size() < k) {\n                minHeap.offer(entry);\n            } else if (entry.getValue() > minHeap.peek().getValue()) {\n                minHeap.poll();\n                minHeap.offer(entry);\n            }\n        }\n        int[] res = new int[k];\n        for (int i = 0; i < k; i++) {\n            res[i] = minHeap.poll().getKey();\n        }\n        return res;\n    }\n}\n",
+   "python": "class Solution:\n    def topKFrequent(self, nums: List[int], k: int) -> List[int]:\n        counts = Counter(nums)\n        heap = []\n        for val, freq in counts.items():\n            if len(heap) < k:\n                heapq.heappush(heap, (freq, val))\n            elif freq > heap[0][0]:\n                heapq.heapreplace(heap, (freq, val))\n        return [val for _, val in heap]\n"
+  },
+  "sampleArray": [
+   1,
+   1,
+   1,
+   2,
+   2,
+   3
+  ],
+  "visibleTestCount": 3,
+  "hiddenTestCount": 10,
+  "number": 2
+ },
+ {
+  "id": "find-median-from-data-stream",
+  "order": 3,
+  "topicId": "heaps",
+  "topic": "Heaps & Priority Queues",
+  "title": "Find Median from Data Stream",
+  "slug": "find-median-from-data-stream",
+  "difficulty": "Hard",
+  "subtopic": "Two-Heap Median",
+  "companies": [
+   "Amazon",
+   "Google",
+   "Meta",
+   "Microsoft",
+   "Apple",
+   "Bloomberg"
+  ],
+  "leetcode": 295,
+  "description": "The **median** is the middle value in an ordered integer list. If the size of the list is even, there is no single middle value, and the median is the mean of the two middle values.\n\n- For example, for `arr = [2, 3, 4]`, the median is `3.0`.\n- For example, for `arr = [2, 3]`, the median is `(2 + 3) / 2 = 2.5`.\n\nImplement the `MedianFinder` class:\n- `MedianFinder()` initializes the `MedianFinder` object.\n- `void addNum(int num)` adds the integer `num` from the data stream to the data structure.\n- `double findMedian()` returns the median of all elements so far. Answers within `10^-5` of the actual answer will be accepted.",
+  "constraints": [
+   "-10^5 <= num <= 10^5",
+   "There will be at least one element in the data structure before calling findMedian.",
+   "At most 5 * 10^4 calls will be made to addNum and findMedian."
+  ],
+  "hints": [
+   "You do not need the entire stream fully sorted — you only need fast access to the middle element(s).",
+   "Maintain two heaps: a max-heap `lo` for the smaller half of the numbers and a min-heap `hi` for the larger half.",
+   "Keep the heaps balanced so `size(lo) == size(hi)` or `size(lo) == size(hi) + 1`. Then `findMedian()` is O(1) using only the two heap tops."
+  ],
+  "timeComplexity": "O(log n) addNum, O(1) findMedian",
+  "spaceComplexity": "O(n)",
+  "compare": "float",
+  "examples": [
+   {
+    "input": "[\"MedianFinder\",\"addNum\",\"addNum\",\"findMedian\",\"addNum\",\"findMedian\"]\n[[],[1],[2],[],[3],[]]",
+    "output": "[null,null,null,1.5,null,2.0]",
+    "explanation": "After adding 1 and 2, the median is (1 + 2) / 2 = 1.5. After adding 3, the sorted stream is [1, 2, 3], so the median is 2.0."
+   },
+   {
+    "input": "[\"MedianFinder\",\"addNum\",\"findMedian\",\"addNum\",\"findMedian\",\"addNum\",\"findMedian\",\"addNum\",\"findMedian\",\"addNum\",\"findMedian\"]\n[[],[-1],[],[-2],[],[-3],[],[-4],[],[-5],[]]",
+    "output": "[null,null,-1.0,null,-1.5,null,-2.0,null,-2.5,null,-3.0]",
+    "explanation": "With negative values [-1, -2, -3, -4, -5], the running medians are -1.0, -1.5, -2.0, -2.5, -3.0."
+   }
+  ],
+  "starterCode": {
+   "java": "class MedianFinder {\n    public MedianFinder() {\n        \n    }\n\n    public void addNum(int num) {\n        \n    }\n\n    public double findMedian() {\n        return 0.0;\n    }\n}\n",
+   "python": "class MedianFinder:\n    def __init__(self):\n        pass\n\n    def addNum(self, num: int) -> None:\n        pass\n\n    def findMedian(self) -> float:\n        pass\n"
+  },
+  "solutionCode": {
+   "java": "class MedianFinder {\n    private final PriorityQueue<Integer> lo; // max-heap for smaller half\n    private final PriorityQueue<Integer> hi; // min-heap for larger half\n\n    public MedianFinder() {\n        lo = new PriorityQueue<>(Collections.reverseOrder());\n        hi = new PriorityQueue<>();\n    }\n\n    public void addNum(int num) {\n        lo.offer(num);\n        hi.offer(lo.poll());\n        if (hi.size() > lo.size()) {\n            lo.offer(hi.poll());\n        }\n    }\n\n    public double findMedian() {\n        if (lo.size() > hi.size()) {\n            return (double) lo.peek();\n        }\n        return (lo.peek() + hi.peek()) / 2.0;\n    }\n}\n",
+   "python": "class MedianFinder:\n    def __init__(self):\n        self.lo = []  # max-heap (stored negated) for smaller half\n        self.hi = []  # min-heap for larger half\n\n    def addNum(self, num: int) -> None:\n        heapq.heappush(self.lo, -num)\n        heapq.heappush(self.hi, -heapq.heappop(self.lo))\n        if len(self.hi) > len(self.lo):\n            heapq.heappush(self.lo, -heapq.heappop(self.hi))\n\n    def findMedian(self) -> float:\n        if len(self.lo) > len(self.hi):\n            return float(-self.lo[0])\n        return (-self.lo[0] + self.hi[0]) / 2.0\n"
+  },
+  "sampleArray": [],
+  "visibleTestCount": 2,
+  "hiddenTestCount": 10,
+  "number": 3
+ },
+ {
+  "id": "sort-characters-by-frequency",
+  "order": 4,
+  "topicId": "heaps",
+  "topic": "Heaps & Priority Queues",
+  "title": "Sort Characters By Frequency",
+  "slug": "sort-characters-by-frequency",
+  "difficulty": "Medium",
+  "subtopic": "Top K Elements",
+  "companies": [
+   "Amazon",
+   "Google",
+   "Meta",
+   "Microsoft",
+   "Bloomberg"
+  ],
+  "leetcode": 451,
+  "description": "Given a string `s`, sort it in **decreasing order** based on the **frequency** of the characters. The frequency of a character is the number of times it appears in the string.\n\nAll occurrences of the same character must be grouped together consecutively. Note that uppercase and lowercase letters are treated as **different** characters (`'A'` and `'a'` are distinct).\n\nIf multiple valid answers exist (when two characters have the same frequency), return **any** of them. The judge validates that your returned string is a permutation of `s` with identical characters grouped together in non-increasing frequency order (`true`).",
+  "constraints": [
+   "1 <= s.length <= 5 * 10^5",
+   "s consists of uppercase and lowercase English letters and digits."
+  ],
+  "hints": [
+   "Count the frequency of every character in s using a hash map or fixed-size frequency array.",
+   "Push `(frequency, char)` pairs into a max-heap so the highest-frequency characters are popped first.",
+   "For each popped `(freq, char)`, append `char` repeated `freq` times to build the result in O(n + k log k) time (where k <= 62)."
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "examples": [
+   {
+    "input": "s = \"tree\"",
+    "output": "true",
+    "explanation": "'e' appears twice while 'r' and 't' each appear once, so both \"eert\" and \"eetr\" are valid answers."
+   },
+   {
+    "input": "s = \"cccaaa\"",
+    "output": "true",
+    "explanation": "Both 'c' and 'a' appear three times, so \"cccaaa\" and \"aaaccc\" are valid, whereas \"cacaca\" is invalid because identical characters must be grouped together."
+   },
+   {
+    "input": "s = \"Aabb\"",
+    "output": "true",
+    "explanation": "'b' appears twice while 'A' and 'a' are distinct characters appearing once each, so \"bbAa\" and \"bbaA\" are valid."
+   }
+  ],
+  "starterCode": {
+   "java": "class Solution {\n    public String frequencySort(String s) {\n        // Write your solution here\n        return \"\";\n    }\n}\n",
+   "python": "class Solution:\n    def frequencySort(self, s: str) -> str:\n        # Write your solution here\n        return \"\"\n"
+  },
+  "solutionCode": {
+   "java": "class Solution {\n    public String frequencySort(String s) {\n        Map<Character, Integer> counts = new HashMap<>();\n        for (int i = 0; i < s.length(); i++) {\n            char c = s.charAt(i);\n            counts.merge(c, 1, Integer::sum);\n        }\n        PriorityQueue<Map.Entry<Character, Integer>> maxHeap =\n            new PriorityQueue<>((a, b) -> Integer.compare(b.getValue(), a.getValue()));\n        maxHeap.addAll(counts.entrySet());\n        StringBuilder sb = new StringBuilder(s.length());\n        while (!maxHeap.isEmpty()) {\n            Map.Entry<Character, Integer> entry = maxHeap.poll();\n            char ch = entry.getKey();\n            int freq = entry.getValue();\n            for (int i = 0; i < freq; i++) {\n                sb.append(ch);\n            }\n        }\n        return sb.toString();\n    }\n}\n",
+   "python": "class Solution:\n    def frequencySort(self, s: str) -> str:\n        counts = Counter(s)\n        max_heap = [(-freq, ch) for ch, freq in counts.items()]\n        heapq.heapify(max_heap)\n        parts = []\n        while max_heap:\n            neg_freq, ch = heapq.heappop(max_heap)\n            parts.append(ch * (-neg_freq))\n        return \"\".join(parts)\n"
+  },
+  "sampleArray": [],
+  "visibleTestCount": 3,
+  "hiddenTestCount": 10,
+  "number": 4
+ },
+ {
+  "id": "kth-smallest-element-in-a-sorted-matrix",
+  "order": 5,
+  "topicId": "heaps",
+  "topic": "Heaps & Priority Queues",
+  "title": "Kth Smallest Element in a Sorted Matrix",
+  "slug": "kth-smallest-element-in-a-sorted-matrix",
+  "difficulty": "Medium",
+  "subtopic": "Merge K Sorted",
+  "companies": [
+   "Meta",
+   "Amazon",
+   "Google",
+   "Microsoft",
+   "Apple",
+   "Bloomberg"
+  ],
+  "leetcode": 378,
+  "description": "Given an `n x n` integer `matrix` where each of the rows and columns is sorted in **non-decreasing order**, return the `k`-th smallest element in the matrix.\n\nNote that it is the `k`-th smallest element in sorted order, **not** the `k`-th distinct element.\n\nYou should aim for a solution with better than `O(n^2 log n)` time complexity or `O(n^2)` extra space.",
+  "constraints": [
+   "n == matrix.length == matrix[i].length",
+   "1 <= n <= 300",
+   "-10^9 <= matrix[i][j] <= 10^9",
+   "All the rows and columns of matrix are guaranteed to be sorted in non-decreasing order.",
+   "1 <= k <= n^2"
+  ],
+  "hints": [
+   "Think of the n rows as n sorted lists — finding the k-th smallest element is equivalent to a k-way merge.",
+   "Initialize a min-heap with the first element of the first min(n, k) rows as `(value, row, col)`. Pop the smallest element k - 1 times, each time pushing the next element in the same row.",
+   "For an alternative O(1) space solution, binary search on the value range `[matrix[0][0], matrix[n-1][n-1]]` and count elements <= mid in O(n) time from the bottom-left corner."
+  ],
+  "timeComplexity": "O(min(n, k) + k log(min(n, k)))",
+  "spaceComplexity": "O(min(n, k))",
+  "compare": "exact",
+  "examples": [
+   {
+    "input": "matrix = [[1,5,9],[10,11,13],[12,13,15]], k = 8",
+    "output": "13",
+    "explanation": "The elements in sorted order are [1, 5, 9, 10, 11, 12, 13, 13, 15], and the 8th smallest is 13."
+   },
+   {
+    "input": "matrix = [[-5]], k = 1",
+    "output": "-5",
+    "explanation": "A 1x1 matrix has only one element, -5."
+   },
+   {
+    "input": "matrix = [[1,2],[3,4]], k = 3",
+    "output": "3",
+    "explanation": "Sorted elements are [1, 2, 3, 4], so the 3rd smallest is 3."
+   }
+  ],
+  "starterCode": {
+   "java": "class Solution {\n    public int kthSmallest(int[][] matrix, int k) {\n        // Write your solution here\n        return 0;\n    }\n}\n",
+   "python": "class Solution:\n    def kthSmallest(self, matrix: List[List[int]], k: int) -> int:\n        # Write your solution here\n        pass\n"
+  },
+  "solutionCode": {
+   "java": "class Solution {\n    public int kthSmallest(int[][] matrix, int k) {\n        int n = matrix.length;\n        PriorityQueue<int[]> minHeap = new PriorityQueue<>(Comparator.comparingInt(a -> a[0]));\n        int limit = Math.min(n, k);\n        for (int r = 0; r < limit; r++) {\n            minHeap.offer(new int[]{matrix[r][0], r, 0});\n        }\n        int val = 0;\n        for (int i = 0; i < k; i++) {\n            int[] cur = minHeap.poll();\n            val = cur[0];\n            int r = cur[1], c = cur[2];\n            if (c + 1 < n) {\n                minHeap.offer(new int[]{matrix[r][c + 1], r, c + 1});\n            }\n        }\n        return val;\n    }\n}\n",
+   "python": "class Solution:\n    def kthSmallest(self, matrix: List[List[int]], k: int) -> int:\n        n = len(matrix)\n        heap = [(matrix[r][0], r, 0) for r in range(min(n, k))]\n        heapq.heapify(heap)\n        val = 0\n        for _ in range(k):\n            val, r, c = heapq.heappop(heap)\n            if c + 1 < n:\n                heapq.heappush(heap, (matrix[r][c + 1], r, c + 1))\n        return val\n"
+  },
+  "sampleArray": [],
+  "visibleTestCount": 3,
+  "hiddenTestCount": 10,
+  "number": 5
+ },
+ {
+  "id": "reorganize-string",
+  "order": 6,
+  "topicId": "heaps",
+  "topic": "Heaps & Priority Queues",
+  "title": "Reorganize String",
+  "slug": "reorganize-string",
+  "difficulty": "Medium",
+  "subtopic": "Min/Max Heap",
+  "companies": [
+   "Amazon",
+   "Google",
+   "Meta",
+   "Microsoft",
+   "Uber",
+   "Apple"
+  ],
+  "leetcode": 767,
+  "description": "Given a string `s`, rearrange the characters of `s` so that any two adjacent characters are **not** the same.\n\nReturn **any** possible rearrangement of `s`, or return `\"\"` (empty string) if no valid rearrangement exists.\n\nThe judge validates that when a valid arrangement is possible, your output is a permutation of `s` with no identical adjacent characters, and when impossible, your output is `\"\"` (`true`).",
+  "constraints": [
+   "1 <= s.length <= 500",
+   "s consists of lowercase English letters."
+  ],
+  "hints": [
+   "When is a valid reorganization impossible? If the most frequent character appears more than `(n + 1) / 2` times, two copies must be adjacent by the Pigeonhole Principle.",
+   "Greedily place the most frequent remaining character that differs from the previously placed character.",
+   "Use a max-heap of `(remainingCount, char)`: pop the top character, append it, hold the previous character out of the heap for one step, and push it back if its remaining count is still positive."
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "examples": [
+   {
+    "input": "s = \"aab\"",
+    "output": "true",
+    "explanation": "\"aba\" is a valid rearrangement where no two adjacent characters match."
+   },
+   {
+    "input": "s = \"aaab\"",
+    "output": "true",
+    "explanation": "'a' appears 3 times in a length-4 string (3 > (4 + 1) // 2 = 2), so no valid rearrangement exists and \"\" is returned."
+   },
+   {
+    "input": "s = \"aaabbc\"",
+    "output": "true",
+    "explanation": "A valid arrangement such as \"ababac\" separates all three 'a's and both 'b's."
+   }
+  ],
+  "starterCode": {
+   "java": "class Solution {\n    public String reorganizeString(String s) {\n        // Write your solution here\n        return \"\";\n    }\n}\n",
+   "python": "class Solution:\n    def reorganizeString(self, s: str) -> str:\n        # Write your solution here\n        return \"\"\n"
+  },
+  "solutionCode": {
+   "java": "class Solution {\n    public String reorganizeString(String s) {\n        int n = s.length();\n        int[] freq = new int[26];\n        int maxFreq = 0;\n        for (int i = 0; i < n; i++) {\n            int f = ++freq[s.charAt(i) - 'a'];\n            if (f > maxFreq) maxFreq = f;\n        }\n        if (maxFreq > (n + 1) / 2) {\n            return \"\";\n        }\n        PriorityQueue<int[]> maxHeap = new PriorityQueue<>((a, b) -> Integer.compare(b[0], a[0]));\n        for (int i = 0; i < 26; i++) {\n            if (freq[i] > 0) {\n                maxHeap.offer(new int[]{freq[i], i});\n            }\n        }\n        StringBuilder sb = new StringBuilder(n);\n        int[] prev = null;\n        while (!maxHeap.isEmpty()) {\n            int[] cur = maxHeap.poll();\n            sb.append((char) ('a' + cur[1]));\n            cur[0]--;\n            if (prev != null && prev[0] > 0) {\n                maxHeap.offer(prev);\n            }\n            prev = cur;\n        }\n        return sb.toString();\n    }\n}\n",
+   "python": "class Solution:\n    def reorganizeString(self, s: str) -> str:\n        n = len(s)\n        counts = Counter(s)\n        if max(counts.values()) > (n + 1) // 2:\n            return \"\"\n        heap = [(-cnt, ch) for ch, cnt in counts.items()]\n        heapq.heapify(heap)\n        res = []\n        prev_cnt, prev_ch = 0, \"\"\n        while heap:\n            cnt, ch = heapq.heappop(heap)\n            res.append(ch)\n            if prev_cnt < 0:\n                heapq.heappush(heap, (prev_cnt, prev_ch))\n            prev_cnt, prev_ch = cnt + 1, ch\n        return \"\".join(res)\n"
+  },
+  "sampleArray": [],
+  "visibleTestCount": 3,
+  "hiddenTestCount": 11,
+  "number": 6
+ },
+ {
+  "id": "ipo",
+  "order": 7,
+  "topicId": "heaps",
+  "topic": "Heaps & Priority Queues",
+  "title": "IPO",
+  "slug": "ipo",
+  "difficulty": "Hard",
+  "subtopic": "Two-Heap Median",
+  "companies": [
+   "Amazon",
+   "Google",
+   "Meta",
+   "Goldman Sachs",
+   "Bloomberg"
+  ],
+  "leetcode": 502,
+  "description": "Suppose a company is preparing for an IPO and wants to maximize its total capital before launching. It has `n` distinct projects available, and it can finish **at most** `k` distinct projects before the IPO.\n\nYou are given two integer arrays `profits` and `capital` of length `n`, where the `i`-th project has a pure profit of `profits[i]` and requires a minimum capital of `capital[i]` to start.\n\nInitially, you have `w` capital. When you finish a project, you obtain its pure profit and the profit is added to your total capital (note that starting capital is **not** spent — it is only a threshold requirement). Each project can be completed at most once.\n\nPick a list of at most `k` distinct projects to maximize your final capital, and return the final maximized capital.",
+  "constraints": [
+   "1 <= k <= 10^5",
+   "0 <= w <= 10^9",
+   "n == profits.length",
+   "n == capital.length",
+   "1 <= n <= 10^5",
+   "0 <= profits[i] <= 10^4",
+   "0 <= capital[i] <= 10^9"
+  ],
+  "hints": [
+   "At any step, since completing a project only increases your capital, the greedy choice is to pick the currently affordable project with the largest profit.",
+   "Keep locked projects ordered by minimum required capital (via sorting or a min-heap), and move all projects with `capital[i] <= w` into a max-heap keyed by profit.",
+   "Repeat up to k times: unlock newly affordable projects, pop the highest profit from the max-heap (or stop if it is empty), and add that profit to w."
+  ],
+  "timeComplexity": "O(n log n)",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "examples": [
+   {
+    "input": "k = 2, w = 0, profits = [1,2,3], capital = [0,1,1]",
+    "output": "4",
+    "explanation": "Start with w = 0. Project 0 (capital 0, profit 1) is affordable -> w becomes 1. Now projects 1 and 2 (capital 1) are affordable; pick project 2 (profit 3) -> w becomes 4."
+   },
+   {
+    "input": "k = 3, w = 0, profits = [1,2,3], capital = [0,1,2]",
+    "output": "6",
+    "explanation": "Start with w = 0. Pick project 0 (capital 0, profit 1 -> w = 1), then project 1 (capital 1, profit 2 -> w = 3), then project 2 (capital 2, profit 3 -> w = 6)."
+   },
+   {
+    "input": "k = 2, w = 0, profits = [10,20], capital = [1,2]",
+    "output": "0",
+    "explanation": "Initial capital w = 0 is insufficient for all projects, so no project can be started and final capital remains 0."
+   }
+  ],
+  "starterCode": {
+   "java": "class Solution {\n    public int findMaximizedCapital(int k, int w, int[] profits, int[] capital) {\n        // Write your solution here\n        return 0;\n    }\n}\n",
+   "python": "class Solution:\n    def findMaximizedCapital(self, k: int, w: int, profits: List[int], capital: List[int]) -> int:\n        # Write your solution here\n        pass\n"
+  },
+  "solutionCode": {
+   "java": "class Solution {\n    public int findMaximizedCapital(int k, int w, int[] profits, int[] capital) {\n        int n = profits.length;\n        int[][] projects = new int[n][2];\n        for (int i = 0; i < n; i++) {\n            projects[i][0] = capital[i];\n            projects[i][1] = profits[i];\n        }\n        Arrays.sort(projects, Comparator.comparingInt(a -> a[0]));\n        PriorityQueue<Integer> maxHeap = new PriorityQueue<>(Collections.reverseOrder());\n        int idx = 0;\n        int steps = Math.min(k, n);\n        for (int i = 0; i < steps; i++) {\n            while (idx < n && projects[idx][0] <= w) {\n                maxHeap.offer(projects[idx][1]);\n                idx++;\n            }\n            if (maxHeap.isEmpty()) {\n                break;\n            }\n            w += maxHeap.poll();\n        }\n        return w;\n    }\n}\n",
+   "python": "class Solution:\n    def findMaximizedCapital(self, k: int, w: int, profits: List[int], capital: List[int]) -> int:\n        projects = sorted(zip(capital, profits))\n        max_heap = []\n        idx = 0\n        n = len(projects)\n        for _ in range(min(k, n)):\n            while idx < n and projects[idx][0] <= w:\n                heapq.heappush(max_heap, -projects[idx][1])\n                idx += 1\n            if not max_heap:\n                break\n            w -= heapq.heappop(max_heap)\n        return w\n"
+  },
+  "sampleArray": [
+   1,
+   2,
+   3
+  ],
+  "visibleTestCount": 3,
+  "hiddenTestCount": 10,
+  "number": 7
+ },
+ {
+  "id": "smallest-range-covering-elements-from-k-lists",
+  "order": 8,
+  "topicId": "heaps",
+  "topic": "Heaps & Priority Queues",
+  "title": "Smallest Range Covering Elements from K Lists",
+  "slug": "smallest-range-covering-elements-from-k-lists",
+  "difficulty": "Hard",
+  "subtopic": "Merge K Sorted",
+  "companies": [
+   "Google",
+   "Amazon",
+   "Meta",
+   "Microsoft",
+   "Apple",
+   "LinkedIn"
+  ],
+  "leetcode": 632,
+  "description": "You have `k` lists of sorted integers in **non-decreasing order**. Find the **smallest** closed range `[a, b]` that includes at least one number from each of the `k` lists.\n\nWe define the range `[a, b]` to be smaller than range `[c, d]` if `b - a < d - c`, or if `b - a == d - c` and `a < c`.\n\nReturn the smallest range as a two-element integer array `[a, b]`.",
+  "constraints": [
+   "nums.length == k",
+   "1 <= k <= 3500",
+   "1 <= nums[i].length <= 50",
+   "-10^5 <= nums[i][j] <= 10^5",
+   "nums[i] is sorted in non-decreasing order."
+  ],
+  "hints": [
+   "Maintain one active element from each of the k lists. The tightest range covering those k chosen elements is `[min_val, max_val]`.",
+   "To potentially shrink `[min_val, max_val]`, you must advance the pointer of whichever list currently holds `min_val` (advancing any other list can only increase `max_val`).",
+   "Use a min-heap of size k storing `(value, listIndex, elemIndex)` while tracking the running `curMax`. Stop as soon as the list supplying the minimum runs out of elements."
+  ],
+  "timeComplexity": "O(N log k)",
+  "spaceComplexity": "O(k)",
+  "compare": "exact",
+  "examples": [
+   {
+    "input": "nums = [[4,10,15,24,26],[0,9,12,20],[5,18,22,30]]",
+    "output": "[20,24]",
+    "explanation": "Range [20, 24] contains 24 from list 1, 20 from list 2, and 22 from list 3, with length 4."
+   },
+   {
+    "input": "nums = [[1,2,3],[1,2,3],[1,2,3]]",
+    "output": "[1,1]",
+    "explanation": "Every list contains 1, so the zero-width range [1, 1] covers all three lists."
+   },
+   {
+    "input": "nums = [[1,5],[3,7]]",
+    "output": "[1,3]",
+    "explanation": "Ranges [1, 3], [3, 5], and [5, 7] all cover both lists with length 2, and [1, 3] wins the tie-breaker because 1 < 3 < 5."
+   }
+  ],
+  "starterCode": {
+   "java": "class Solution {\n    public int[] smallestRange(List<List<Integer>> nums) {\n        // Write your solution here\n        return null;\n    }\n}\n",
+   "python": "class Solution:\n    def smallestRange(self, nums: List[List[int]]) -> List[int]:\n        # Write your solution here\n        pass\n"
+  },
+  "solutionCode": {
+   "java": "class Solution {\n    public int[] smallestRange(List<List<Integer>> nums) {\n        int k = nums.size();\n        PriorityQueue<int[]> minHeap = new PriorityQueue<>(Comparator.comparingInt(a -> a[0]));\n        int curMax = Integer.MIN_VALUE;\n        for (int i = 0; i < k; i++) {\n            int val = nums.get(i).get(0);\n            minHeap.offer(new int[]{val, i, 0});\n            if (val > curMax) curMax = val;\n        }\n        int bestL = minHeap.peek()[0];\n        int bestR = curMax;\n        while (true) {\n            int[] top = minHeap.poll();\n            int curMin = top[0], r = top[1], c = top[2];\n            if (curMax - curMin < bestR - bestL || (curMax - curMin == bestR - bestL && curMin < bestL)) {\n                bestL = curMin;\n                bestR = curMax;\n            }\n            List<Integer> row = nums.get(r);\n            if (c + 1 == row.size()) {\n                break;\n            }\n            int nxt = row.get(c + 1);\n            if (nxt > curMax) curMax = nxt;\n            minHeap.offer(new int[]{nxt, r, c + 1});\n        }\n        return new int[]{bestL, bestR};\n    }\n}\n",
+   "python": "class Solution:\n    def smallestRange(self, nums: List[List[int]]) -> List[int]:\n        heap = []\n        cur_max = -10**9\n        for i, row in enumerate(nums):\n            val = row[0]\n            heap.append((val, i, 0))\n            if val > cur_max:\n                cur_max = val\n        heapq.heapify(heap)\n        best_l, best_r = heap[0][0], cur_max\n        while True:\n            cur_min, r, c = heapq.heappop(heap)\n            if cur_max - cur_min < best_r - best_l or (\n                cur_max - cur_min == best_r - best_l and cur_min < best_l\n            ):\n                best_l, best_r = cur_min, cur_max\n            if c + 1 == len(nums[r]):\n                break\n            nxt = nums[r][c + 1]\n            if nxt > cur_max:\n                cur_max = nxt\n            heapq.heappush(heap, (nxt, r, c + 1))\n        return [best_l, best_r]\n"
+  },
+  "sampleArray": [],
+  "visibleTestCount": 3,
+  "hiddenTestCount": 11,
+  "number": 8
+ },
+ {
+  "id": "trapping-rain-water-ii",
+  "order": 9,
+  "topicId": "heaps",
+  "topic": "Heaps & Priority Queues",
+  "title": "Trapping Rain Water II",
+  "slug": "trapping-rain-water-ii",
+  "difficulty": "Hard",
+  "subtopic": "Min/Max Heap",
+  "companies": [
+   "Google",
+   "Amazon",
+   "Meta",
+   "Microsoft",
+   "Bloomberg",
+   "Uber"
+  ],
+  "leetcode": 407,
+  "description": "Given an `m x n` integer matrix `heightMap` representing the height of each unit cell in a 2D elevation map, return the total volume of water it can trap after raining.\n\nWater can flow out of a cell into any of its four orthogonally adjacent neighbors (up, down, left, right) and drains off the outer edges of the grid. A cell `(r, c)` holds water up to the minimum possible maximum elevation along any path from `(r, c)` to the boundary of the matrix.",
+  "constraints": [
+   "m == heightMap.length",
+   "n == heightMap[i].length",
+   "1 <= m, n <= 200",
+   "0 <= heightMap[i][j] <= 2 * 10^4"
+  ],
+  "hints": [
+   "Water cannot be trapped on the outer boundary of the grid. Think of the boundary as a shrinking dam enclosing the unvisited interior.",
+   "Put all boundary cells into a min-heap ordered by effective water level `(height, r, c)` and mark them visited.",
+   "Repeatedly pop the lowest boundary cell `(h, r, c)`. Any unvisited neighbor `(nr, nc)` traps `max(0, h - heightMap[nr][nc])` water and enters the heap with effective wall height `max(h, heightMap[nr][nc])`."
+  ],
+  "timeComplexity": "O(m * n * log(m * n))",
+  "spaceComplexity": "O(m * n)",
+  "compare": "exact",
+  "examples": [
+   {
+    "input": "heightMap = [[1,4,3,1,3,2],[3,2,1,3,2,4],[2,3,3,2,3,1]]",
+    "output": "4",
+    "explanation": "Interior cells at row 1 fill to water level 3: (1,1) traps 1 unit, (1,2) traps 2 units, and (1,4) traps 1 unit, for a total of 4."
+   },
+   {
+    "input": "heightMap = [[3,3,3,3,3],[3,2,2,2,3],[3,2,1,2,3],[3,2,2,2,3],[3,3,3,3,3]]",
+    "output": "10",
+    "explanation": "Surrounded by a height-3 rim, the eight height-2 interior cells each trap 1 unit and the central height-1 cell traps 2 units, totaling 10 units."
+   },
+   {
+    "input": "heightMap = [[5,1],[2,8]]",
+    "output": "0",
+    "explanation": "Every cell in a 2x2 grid is on the outer boundary, so no water can be trapped."
+   }
+  ],
+  "starterCode": {
+   "java": "class Solution {\n    public int trapRainWater(int[][] heightMap) {\n        // Write your solution here\n        return 0;\n    }\n}\n",
+   "python": "class Solution:\n    def trapRainWater(self, heightMap: List[List[int]]) -> int:\n        # Write your solution here\n        pass\n"
+  },
+  "solutionCode": {
+   "java": "class Solution {\n    public int trapRainWater(int[][] heightMap) {\n        int m = heightMap.length, n = heightMap[0].length;\n        if (m <= 2 || n <= 2) return 0;\n        boolean[][] visited = new boolean[m][n];\n        PriorityQueue<int[]> minHeap = new PriorityQueue<>(Comparator.comparingInt(a -> a[0]));\n        for (int r = 0; r < m; r++) {\n            visited[r][0] = true;\n            visited[r][n - 1] = true;\n            minHeap.offer(new int[]{heightMap[r][0], r, 0});\n            minHeap.offer(new int[]{heightMap[r][n - 1], r, n - 1});\n        }\n        for (int c = 1; c < n - 1; c++) {\n            visited[0][c] = true;\n            visited[m - 1][c] = true;\n            minHeap.offer(new int[]{heightMap[0][c], 0, c});\n            minHeap.offer(new int[]{heightMap[m - 1][c], m - 1, c});\n        }\n        int water = 0;\n        int[][] dirs = {{1, 0}, {-1, 0}, {0, 1}, {0, -1}};\n        while (!minHeap.isEmpty()) {\n            int[] cur = minHeap.poll();\n            int h = cur[0], r = cur[1], c = cur[2];\n            for (int[] d : dirs) {\n                int nr = r + d[0], nc = c + d[1];\n                if (nr >= 0 && nr < m && nc >= 0 && nc < n && !visited[nr][nc]) {\n                    visited[nr][nc] = true;\n                    int nh = heightMap[nr][nc];\n                    if (nh < h) {\n                        water += h - nh;\n                        minHeap.offer(new int[]{h, nr, nc});\n                    } else {\n                        minHeap.offer(new int[]{nh, nr, nc});\n                    }\n                }\n            }\n        }\n        return water;\n    }\n}\n",
+   "python": "class Solution:\n    def trapRainWater(self, heightMap: List[List[int]]) -> int:\n        m, n = len(heightMap), len(heightMap[0])\n        if m <= 2 or n <= 2:\n            return 0\n        visited = [[False] * n for _ in range(m)]\n        heap = []\n        for r in range(m):\n            for c in (0, n - 1):\n                visited[r][c] = True\n                heap.append((heightMap[r][c], r, c))\n        for c in range(1, n - 1):\n            for r in (0, m - 1):\n                visited[r][c] = True\n                heap.append((heightMap[r][c], r, c))\n        heapq.heapify(heap)\n\n        water = 0\n        dirs = ((1, 0), (-1, 0), (0, 1), (0, -1))\n        while heap:\n            h, r, c = heapq.heappop(heap)\n            for dr, dc in dirs:\n                nr, nc = r + dr, c + dc\n                if 0 <= nr < m and 0 <= nc < n and not visited[nr][nc]:\n                    visited[nr][nc] = True\n                    nh = heightMap[nr][nc]\n                    if nh < h:\n                        water += h - nh\n                        heapq.heappush(heap, (h, nr, nc))\n                    else:\n                        heapq.heappush(heap, (nh, nr, nc))\n        return water\n"
+  },
+  "sampleArray": [],
+  "visibleTestCount": 3,
+  "hiddenTestCount": 10,
+  "number": 9
+ },
+ {
+  "id": "find-k-pairs-with-smallest-sums",
+  "order": 10,
+  "topicId": "heaps",
+  "topic": "Heaps & Priority Queues",
+  "title": "Find K Pairs with Smallest Sums",
+  "slug": "find-k-pairs-with-smallest-sums",
+  "difficulty": "Medium",
+  "subtopic": "Merge K Sorted",
+  "companies": [
+   "Google",
+   "Amazon",
+   "Meta",
+   "Microsoft",
+   "LinkedIn",
+   "Apple"
+  ],
+  "leetcode": 373,
+  "description": "You are given two integer arrays `nums1` and `nums2` sorted in **non-decreasing order** and an integer `k`.\n\nDefine a pair `(u, v)` which consists of one element from the first array (`nums1[i]`) and one element from the second array (`nums2[j]`). Two pairs with different index tuples `(i, j)` are considered distinct even if they contain the same values.\n\nReturn the `k` pairs `(u1, v1), (u2, v2), ..., (uk, vk)` with the **smallest sums** `u + v`. If multiple valid sets of `k` pairs share the `k`-th smallest sum, or if pairs appear in any order, any valid answer is accepted. The judge validates that your returned list contains `k` valid distinct-index pairs achieving the `k` smallest possible sums (`true`).",
+  "constraints": [
+   "1 <= nums1.length, nums2.length <= 10^5",
+   "-10^9 <= nums1[i], nums2[i] <= 10^9",
+   "nums1 and nums2 both are sorted in non-decreasing order.",
+   "1 <= k <= 10^4",
+   "1 <= k <= nums1.length * nums2.length"
+  ],
+  "hints": [
+   "Notice that for each fixed index `i` in `nums1`, the sequence `(nums1[i], nums2[0]), (nums1[i], nums2[1]), ...` is already sorted by sum.",
+   "Seed a min-heap with `(nums1[i] + nums2[0], i, 0)` for `i` from `0` to `min(len(nums1), k) - 1`.",
+   "Pop the smallest-sum pair `(s, i, j)` k times; after popping `(i, j)`, push `(nums1[i] + nums2[j + 1], i, j + 1)` if `j + 1 < len(nums2)`."
+  ],
+  "timeComplexity": "O(k log(min(k, m)))",
+  "spaceComplexity": "O(min(k, m))",
+  "compare": "exact",
+  "examples": [
+   {
+    "input": "nums1 = [1,7,11], nums2 = [2,4,6], k = 3",
+    "output": "true",
+    "explanation": "The first 3 pairs with smallest sums are [1, 2] (sum 3), [1, 4] (sum 5), and [1, 6] (sum 7)."
+   },
+   {
+    "input": "nums1 = [1,1,2], nums2 = [1,2,3], k = 2",
+    "output": "true",
+    "explanation": "Both index pairs (0, 0) and (1, 0) produce [1, 1] with sum 2, so [[1, 1], [1, 1]] is returned."
+   },
+   {
+    "input": "nums1 = [1,2], nums2 = [1,2], k = 2",
+    "output": "true",
+    "explanation": "The smallest pair is [1, 1] (sum 2); the second pair can be either [1, 2] or [2, 1] (both sum 3)."
+   }
+  ],
+  "starterCode": {
+   "java": "class Solution {\n    public List<List<Integer>> kSmallestPairs(int[] nums1, int[] nums2, int k) {\n        // Write your solution here\n        return new ArrayList<>();\n    }\n}\n",
+   "python": "class Solution:\n    def kSmallestPairs(self, nums1: List[int], nums2: List[int], k: int) -> List[List[int]]:\n        # Write your solution here\n        return []\n"
+  },
+  "solutionCode": {
+   "java": "class Solution {\n    public List<List<Integer>> kSmallestPairs(int[] nums1, int[] nums2, int k) {\n        List<List<Integer>> res = new ArrayList<>();\n        if (nums1.length == 0 || nums2.length == 0 || k <= 0) return res;\n        PriorityQueue<long[]> minHeap = new PriorityQueue<>(Comparator.comparingLong(a -> a[0]));\n        int limit = Math.min(nums1.length, k);\n        for (int i = 0; i < limit; i++) {\n            minHeap.offer(new long[]{(long) nums1[i] + nums2[0], i, 0});\n        }\n        while (!minHeap.isEmpty() && res.size() < k) {\n            long[] top = minHeap.poll();\n            int i = (int) top[1], j = (int) top[2];\n            res.add(Arrays.asList(nums1[i], nums2[j]));\n            if (j + 1 < nums2.length) {\n                minHeap.offer(new long[]{(long) nums1[i] + nums2[j + 1], i, j + 1});\n            }\n        }\n        return res;\n    }\n}\n",
+   "python": "class Solution:\n    def kSmallestPairs(self, nums1: List[int], nums2: List[int], k: int) -> List[List[int]]:\n        if not nums1 or not nums2 or k <= 0:\n            return []\n        heap = [(nums1[i] + nums2[0], i, 0) for i in range(min(len(nums1), k))]\n        heapq.heapify(heap)\n        res = []\n        while heap and len(res) < k:\n            _, i, j = heapq.heappop(heap)\n            res.append([nums1[i], nums2[j]])\n            if j + 1 < len(nums2):\n                heapq.heappush(heap, (nums1[i] + nums2[j + 1], i, j + 1))\n        return res\n"
+  },
+  "sampleArray": [
+   1,
+   7,
+   11
+  ],
+  "visibleTestCount": 3,
+  "hiddenTestCount": 10,
+  "number": 10
+ },
+ {
+  "id": "minimum-cost-to-connect-sticks",
+  "order": 11,
+  "topicId": "heaps",
+  "topic": "Heaps & Priority Queues",
+  "title": "Minimum Cost to Connect Sticks",
+  "slug": "minimum-cost-to-connect-sticks",
+  "difficulty": "Medium",
+  "subtopic": "Min/Max Heap",
+  "companies": [
+   "Amazon",
+   "Google",
+   "Meta",
+   "Microsoft",
+   "Bloomberg"
+  ],
+  "leetcode": 1167,
+  "description": "You have some number of sticks with positive integer lengths given by an integer array `sticks`, where `sticks[i]` is the length of the `i`-th stick.\n\nYou can connect any two sticks of lengths `x` and `y` into one stick by paying a cost of `x + y`. You must connect all the sticks until there is only **one** stick remaining.\n\nReturn the **minimum** total cost of connecting all the given sticks into one stick in this way. If there is already only one stick, the cost is `0`.",
+  "constraints": [
+   "1 <= sticks.length <= 10^4",
+   "1 <= sticks[i] <= 10^4"
+  ],
+  "hints": [
+   "Sticks merged earlier contribute their lengths to more subsequent merges, so shorter sticks should be combined first (just like Huffman coding).",
+   "Put all stick lengths into a min-heap.",
+   "While more than one stick remains in the heap, pop the two smallest sticks `a` and `b`, add `a + b` to the running cost, and push `a + b` back into the heap."
+  ],
+  "timeComplexity": "O(n log n)",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "examples": [
+   {
+    "input": "sticks = [2,4,3]",
+    "output": "14",
+    "explanation": "Combine 2 and 3 (cost 5) -> [5, 4]; combine 5 and 4 (cost 9) -> [9]. Total cost = 5 + 9 = 14."
+   },
+   {
+    "input": "sticks = [1,8,3,5]",
+    "output": "30",
+    "explanation": "Combine 1+3=4 -> [4, 5, 8], then 4+5=9 -> [8, 9], then 8+9=17 -> [17]. Total cost = 4 + 9 + 17 = 30."
+   },
+   {
+    "input": "sticks = [5]",
+    "output": "0",
+    "explanation": "Only one stick exists, so no connections are needed and the total cost is 0."
+   }
+  ],
+  "starterCode": {
+   "java": "class Solution {\n    public int connectSticks(int[] sticks) {\n        // Write your solution here\n        return 0;\n    }\n}\n",
+   "python": "class Solution:\n    def connectSticks(self, sticks: List[int]) -> int:\n        # Write your solution here\n        pass\n"
+  },
+  "solutionCode": {
+   "java": "class Solution {\n    public int connectSticks(int[] sticks) {\n        if (sticks.length <= 1) return 0;\n        PriorityQueue<Integer> minHeap = new PriorityQueue<>(sticks.length);\n        for (int s : sticks) {\n            minHeap.offer(s);\n        }\n        int total = 0;\n        while (minHeap.size() > 1) {\n            int merged = minHeap.poll() + minHeap.poll();\n            total += merged;\n            minHeap.offer(merged);\n        }\n        return total;\n    }\n}\n",
+   "python": "class Solution:\n    def connectSticks(self, sticks: List[int]) -> int:\n        if len(sticks) <= 1:\n            return 0\n        heap = list(sticks)\n        heapq.heapify(heap)\n        total = 0\n        while len(heap) > 1:\n            merged = heapq.heappop(heap) + heapq.heappop(heap)\n            total += merged\n            heapq.heappush(heap, merged)\n        return total\n"
+  },
+  "sampleArray": [
+   2,
+   4,
+   3
+  ],
+  "visibleTestCount": 3,
+  "hiddenTestCount": 10,
+  "number": 11
+ }
+]

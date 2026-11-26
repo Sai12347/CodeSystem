@@ -1,0 +1,39 @@
+{
+  "title": "Falling Squares",
+  "difficulty": "Hard",
+  "subtopic": "Lazy Propagation",
+  "companies": [
+    "Google",
+    "Amazon"
+  ],
+  "description": "Squares fall one at a time. Each `positions[i]` is `[left, sideLength]`; the square covers the half-open horizontal interval `[left, left + sideLength)`. It lands on the highest existing square it overlaps, or on the ground if none overlap. Return the maximum stack height after each square falls.",
+  "constraints": [
+    "1 <= positions.length <= 1000",
+    "1 <= sideLength <= 10^6",
+    "0 <= left <= 10^8"
+  ],
+  "hints": [
+    "Coordinate-compress every left and right endpoint into elementary horizontal segments.",
+    "Use a lazy segment tree for range maximum queries and range assignments."
+  ],
+  "examples": [
+    {
+      "input": "positions = [[1,2],[2,3],[6,1]]",
+      "output": "[2,5,5]"
+    }
+  ],
+  "timeComplexity": "O(n log n)",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "fallingSquares",
+    "params": [
+      {
+        "name": "positions",
+        "type": "int[][]"
+      }
+    ],
+    "returns": "List<Integer>"
+  }
+}

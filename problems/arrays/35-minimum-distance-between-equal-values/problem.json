@@ -1,0 +1,43 @@
+{
+  "title": "Minimum Distance Between Equal Values",
+  "difficulty": "Easy",
+  "subtopic": "Traversal",
+  "companies": [
+    "Amazon",
+    "Microsoft",
+    "Google"
+  ],
+  "description": "Given an integer array `nums`, find the smallest positive distance `j - i` among pairs of indices `i < j` with `nums[i] == nums[j]`. Return -1 if every value occurs only once. Input: `nums`. Output: the minimum distance or -1.",
+  "constraints": [
+    "1 <= nums.length <= 100000",
+    "-1000000000 <= nums[i] <= 1000000000"
+  ],
+  "hints": [
+    "Scan the array while retaining only the state needed for the answer.",
+    "Check the first, last, repeated, and all-equal cases."
+  ],
+  "examples": [
+    {
+      "input": "nums = [7, 1, 3, 4, 1, 7]",
+      "output": "3"
+    },
+    {
+      "input": "nums = [1, 2, 3]",
+      "output": "-1"
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "minimumEqualDistance",
+    "params": [
+      {
+        "name": "nums",
+        "type": "int[]"
+      }
+    ],
+    "returns": "int"
+  }
+}

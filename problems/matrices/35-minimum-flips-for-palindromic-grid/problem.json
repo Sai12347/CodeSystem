@@ -1,0 +1,46 @@
+{
+  "title": "Minimum Flips for Palindromic Grid",
+  "difficulty": "Medium",
+  "subtopic": "Matrix Rotation",
+  "companies": [
+    "Amazon",
+    "Google",
+    "LinkedIn"
+  ],
+  "description": "You are given an `m x n` binary matrix `grid` containing only `0`s and `1`s.\n\nA row or column is considered **palindromic** if its values read the same forward and backward. In a single operation, you may flip any cell (`0` to `1`, or `1` to `0`).\n\nReturn the minimum number of flips required so that **either** all rows are palindromic **or** all columns are palindromic.",
+  "constraints": [
+    "m == grid.length",
+    "n == grid[i].length",
+    "1 <= m, n <= 200",
+    "grid[i][j] is either 0 or 1."
+  ],
+  "hints": [
+    "Making all rows palindromic and making all columns palindromic are independent goals; compute both costs and take the minimum.",
+    "To make a row palindromic, count symmetric pairs (c, n - 1 - c) that differ\u2014each differing pair requires exactly 1 flip."
+  ],
+  "examples": [
+    {
+      "explanation": "Flipping two cells makes all rows palindromic, whereas making all columns palindromic requires 3 flips; the minimum is 2."
+    },
+    {
+      "explanation": "Flipping just cell (2, 1) makes both columns palindromic in 1 flip, while rows need 2 flips."
+    },
+    {
+      "explanation": "Every single-element row (and column) is already palindromic, needing 0 flips."
+    }
+  ],
+  "timeComplexity": "O(m * n)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "minFlips",
+    "params": [
+      {
+        "name": "grid",
+        "type": "int[][]"
+      }
+    ],
+    "returns": "int"
+  }
+}

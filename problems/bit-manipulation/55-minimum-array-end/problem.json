@@ -1,0 +1,48 @@
+{
+  "title": "Minimum Array End",
+  "difficulty": "Medium",
+  "subtopic": "Counting Bits",
+  "companies": [
+    "Google",
+    "Amazon",
+    "Meta"
+  ],
+  "description": "You are given two positive integers `n` and `x`. You must construct an array `nums` of `n` strictly increasing positive integers (`nums[0] < nums[1] < ... < nums[n - 1]`) such that the bitwise AND of all `n` elements equals `x`. Return the minimum possible value of `nums[n - 1]`.",
+  "constraints": [
+    "1 <= n <= 10^8",
+    "1 <= x <= 10^8"
+  ],
+  "hints": [
+    "Every element of `nums` must have all set bits of `x` turned on, so the smallest possible `nums[0]` is `x` itself and only the zero-bit positions of `x` are free to vary.",
+    "The `(n - 1)`-th strictly larger valid number is formed by writing the binary bits of `n - 1` directly into the 0-bit slots of `x` from LSB to MSB."
+  ],
+  "examples": [
+    {
+      "explanation": "For n = 3, x = 4 (100), the minimal array is [4, 5, 6] (100, 101, 110), whose last element is 6."
+    },
+    {
+      "explanation": "For n = 2, x = 7 (111), the minimal array is [7, 15] (0111, 1111), whose last element is 15."
+    },
+    {
+      "explanation": "For n = 1, the array is just [x] = [10]."
+    }
+  ],
+  "timeComplexity": "O(log n + log x)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "minEnd",
+    "params": [
+      {
+        "name": "n",
+        "type": "int"
+      },
+      {
+        "name": "x",
+        "type": "int"
+      }
+    ],
+    "returns": "long"
+  }
+}

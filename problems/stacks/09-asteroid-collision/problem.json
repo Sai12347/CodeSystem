@@ -1,0 +1,50 @@
+{
+  "title": "Asteroid Collision",
+  "difficulty": "Medium",
+  "subtopic": "LIFO Structure",
+  "companies": [
+    "Amazon",
+    "Meta",
+    "Google",
+    "Microsoft",
+    "Uber",
+    "Goldman Sachs"
+  ],
+  "leetcode": 735,
+  "description": "We are given an array `asteroids` of non-zero integers representing asteroids in a row. The index of each asteroid represents its relative position in space.\n\nFor each asteroid, the absolute value represents its **size**, and the sign represents its **direction** (positive means moving to the right, negative means moving to the left). Each asteroid moves at the same speed.\n\nFind out the state of the asteroids after all collisions:\n- If two asteroids meet, the smaller one explodes.\n- If both are the same size, both explode.\n- Two asteroids moving in the same direction (or moving away from each other, i.e. a left-moving asteroid to the left of a right-moving asteroid) will never meet.\n\nReturn an array of the surviving asteroids in their original left-to-right order.",
+  "constraints": [
+    "2 <= asteroids.length <= 10^4",
+    "-1000 <= asteroids[i] <= 1000",
+    "asteroids[i] != 0"
+  ],
+  "hints": [
+    "A collision can only happen when a right-moving asteroid (positive) is immediately to the left of a left-moving asteroid (negative).",
+    "Maintain a stack of surviving asteroids processed from left to right. A new right-moving asteroid can be pushed directly because it cannot collide with anything to its left.",
+    "When a left-moving asteroid arrives, repeatedly compare its magnitude with the top of the stack while the top is moving right, popping smaller right-moving asteroids and handling equal-size mutual destruction."
+  ],
+  "examples": [
+    {
+      "explanation": "The 10 and -5 collide resulting in 10. The 5 and 10 never collide."
+    },
+    {
+      "explanation": "The 8 and -8 collide and both explode, leaving an empty array."
+    },
+    {
+      "explanation": "The 2 and -5 collide resulting in -5. Then 10 and -5 collide resulting in 10."
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "asteroidCollision",
+    "params": [
+      {
+        "name": "asteroids",
+        "type": "int[]"
+      }
+    ],
+    "returns": "int[]"
+  }
+}

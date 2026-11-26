@@ -1,0 +1,54 @@
+{
+  "title": "Minimum Cost to Balance Wildcard Parentheses",
+  "difficulty": "Hard",
+  "subtopic": "Valid Parentheses",
+  "companies": [
+    "Google",
+    "Meta",
+    "Goldman Sachs",
+    "Amazon"
+  ],
+  "description": "You are given a string `s` of length `n` consisting of `'('`, `')'`, and wildcard `'?'`, along with two integer arrays `openCost` and `closeCost` of length `n`.\n\nEvery `'?'` at index `i` must be replaced by either `'('` at cost `openCost[i]` or `')'` at cost `closeCost[i]` (entries for non-`'?'` indices are `0` and unused). Return the minimum total cost to make `s` a valid balanced parentheses string, or `-1` if it is impossible.",
+  "constraints": [
+    "1 <= s.length == openCost.length == closeCost.length <= 10^5",
+    "s[i] is '(', ')', or '?'.",
+    "0 <= openCost[i], closeCost[i] <= 10^6 (and 0 whenever s[i] != '?')."
+  ],
+  "hints": [
+    "Greedily assign every '?' to ')' first while pushing (openCost[i] - closeCost[i]) into a min-heap as you scan left to right tracking the bracket balance.",
+    "Whenever balance drops below 0, pop the minimum delta from the heap to flip a prior '?' from ')' to '(' (increasing balance by 2); if the heap is empty or the final balance is non-zero, return -1."
+  ],
+  "examples": [
+    {
+      "explanation": "Replacing index 1 with ')' (cost 2) and index 2 with '(' (cost 3) yields \"()()\" for total cost 5; flipping index 1 to '(' and index 2 to ')' costs 1 + 5 = 6, so 5 is optimal."
+    },
+    {
+      "explanation": "Replacing the two '?' with '(' then ')' gives \"()\" at cost 4 + 3 = 7."
+    },
+    {
+      "explanation": "Starting with ')' makes balancing impossible regardless of wildcard choices, so return -1."
+    }
+  ],
+  "timeComplexity": "O(n log n)",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "minCostToBalance",
+    "params": [
+      {
+        "name": "s",
+        "type": "String"
+      },
+      {
+        "name": "openCost",
+        "type": "int[]"
+      },
+      {
+        "name": "closeCost",
+        "type": "int[]"
+      }
+    ],
+    "returns": "long"
+  }
+}

@@ -1,0 +1,89 @@
+{
+  "title": "Incrementable Min Stack",
+  "difficulty": "Hard",
+  "subtopic": "Min Stack",
+  "companies": [
+    "Google",
+    "Meta",
+    "Amazon",
+    "Bloomberg"
+  ],
+  "description": "Design a bounded stack `IncrementableMinStack` that supports adding a signed `delta` to the **bottom `k` elements** while answering `top` and `getMin` in **`O(log maxSize)` time**.\n\nImplement the `IncrementableMinStack` class:\n- `IncrementableMinStack(int maxSize)` initializes an empty stack with maximum capacity `maxSize`.\n- `void push(int val)` pushes `val` onto the top of the stack if current size `< maxSize` (otherwise ignores the call).\n- `long pop()` removes and returns the top element of the stack.\n- `void increment(int k, int delta)` adds `delta` (positive, zero, or negative) to the **bottom `k` elements** of the stack (if fewer than `k` elements exist, updates all elements in the stack).\n- `long top()` returns the current top element of the stack.\n- `long getMin()` returns the current minimum element in the stack.",
+  "constraints": [
+    "1 <= maxSize <= 2 * 10^4",
+    "-10^9 <= val, delta <= 10^9, 0 <= k <= 10^5",
+    "Methods pop, top, and getMin are always called on non-empty stacks.",
+    "At most 2 * 10^4 calls will be made across all methods."
+  ],
+  "hints": [
+    "Unlike a plain increment stack, updating only the bottom `k` elements can change which index holds the global minimum.",
+    "Back the stack slots `[0..maxSize - 1]` with a lazy-propagation range-minimum segment tree: `push` performs a point-assign at `size` (pushing down stale lazy tags along the root-to-leaf path), `increment(k, delta)` performs a range-add on `[0, min(k, size) - 1]`, and `getMin()` queries range-min on `[0, size - 1]`."
+  ],
+  "examples": [
+    {
+      "explanation": "Push 2, 5, 1 -> [2, 5, 1] (min 1); increment(2, 10) -> [12, 15, 1] (min 1); pop returns 1 -> [12, 15] (min 12); increment(1, -20) -> [-8, 15] (min -8)."
+    },
+    {
+      "explanation": "Pushing beyond maxSize 2 is ignored; incrementing k=5 affects all 2 existing elements."
+    },
+    {
+      "explanation": "Re-pushing into a previously popped slot overwrites its value cleanly without leaking old lazy offsets."
+    }
+  ],
+  "timeComplexity": "O(log maxSize) per op",
+  "spaceComplexity": "O(maxSize)",
+  "compare": "exact",
+  "signature": {
+    "kind": "design",
+    "className": "IncrementableMinStack",
+    "constructor": {
+      "params": [
+        {
+          "name": "maxSize",
+          "type": "int"
+        }
+      ]
+    },
+    "methods": [
+      {
+        "name": "push",
+        "params": [
+          {
+            "name": "val",
+            "type": "int"
+          }
+        ],
+        "returns": "void"
+      },
+      {
+        "name": "pop",
+        "params": [],
+        "returns": "long"
+      },
+      {
+        "name": "increment",
+        "params": [
+          {
+            "name": "k",
+            "type": "int"
+          },
+          {
+            "name": "delta",
+            "type": "int"
+          }
+        ],
+        "returns": "void"
+      },
+      {
+        "name": "top",
+        "params": [],
+        "returns": "long"
+      },
+      {
+        "name": "getMin",
+        "params": [],
+        "returns": "long"
+      }
+    ]
+  }
+}

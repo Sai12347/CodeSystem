@@ -1,0 +1,47 @@
+{
+  "title": "Maximum Length of Repeated Subarray",
+  "difficulty": "Medium",
+  "subtopic": "Subarrays",
+  "companies": [
+    "Amazon",
+    "Google",
+    "Microsoft"
+  ],
+  "description": "Given two integer arrays, find the maximum length of a contiguous subarray that appears in both arrays. The matching elements must be consecutive in each array. Input: `nums1` and `nums2`. Output: the maximum common subarray length.",
+  "constraints": [
+    "1 <= nums1.length, nums2.length <= 1000",
+    "0 <= nums1[i], nums2[i] <= 1000"
+  ],
+  "hints": [
+    "Maintain the prefix or window information needed to count candidate ranges.",
+    "Check repeated values, extreme bounds, and cases with no valid segment."
+  ],
+  "examples": [
+    {
+      "input": "nums1 = [1, 2, 3, 2, 1], nums2 = [3, 2, 1, 4, 7]",
+      "output": "3"
+    },
+    {
+      "input": "nums1 = [0, 0, 0], nums2 = [0, 0]",
+      "output": "2"
+    }
+  ],
+  "timeComplexity": "O(m*n)",
+  "spaceComplexity": "O(min(m,n))",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "findLength",
+    "params": [
+      {
+        "name": "nums1",
+        "type": "int[]"
+      },
+      {
+        "name": "nums2",
+        "type": "int[]"
+      }
+    ],
+    "returns": "int"
+  }
+}

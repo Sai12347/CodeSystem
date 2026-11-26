@@ -1,0 +1,49 @@
+{
+  "title": "Common Elements in K Sorted Lists",
+  "difficulty": "Hard",
+  "subtopic": "Merge & Sort",
+  "companies": [
+    "Google",
+    "Amazon",
+    "Meta",
+    "LinkedIn",
+    "Uber"
+  ],
+  "description": "You are given an array `lists` of `k` singly linked lists, where each list is sorted in **non-decreasing** order (and may contain duplicate values).\n\nReturn a singly linked list sorted in non-decreasing order representing the **multiset intersection** of all `k` lists: each value `v` must appear `min_i(count_i(v))` times in the result (where `count_i(v)` is the number of occurrences of `v` in `lists[i]`).\n\nIf `lists` is empty, if any list in `lists` is empty, or if no value appears in all `k` lists, return `null` (`None` in Python). Aim for `O(N)` total time where `N` is the total number of nodes across all lists.",
+  "constraints": [
+    "0 <= lists.length <= 1000",
+    "0 <= lists[i].length <= 2000",
+    "-10^4 <= lists[i][j] <= 10^4",
+    "Each lists[i] is sorted in non-decreasing order.",
+    "The sum of all list lengths does not exceed 10^4."
+  ],
+  "hints": [
+    "Two-pointer intersection of two sorted linked lists runs in O(len(a) + len(b)) time and produces a list whose length is at most min(len(a), len(b)).",
+    "Start with the shortest list as the running intersection `res` (length L_min <= L_i for all i); intersecting `res` with each remaining list takes O(L_min + L_i) <= O(2 * L_i), giving O(N) total time and O(1) extra space."
+  ],
+  "examples": [
+    {
+      "explanation": "Common elements across all three lists are a single 2 and a single 4: [2, 4]."
+    },
+    {
+      "explanation": "Value 2 appears twice in both lists and value 5 once, yielding [2, 2, 5]."
+    },
+    {
+      "explanation": "No value is shared by all three lists, so return null."
+    }
+  ],
+  "timeComplexity": "O(N)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "commonElementsKLists",
+    "params": [
+      {
+        "name": "lists",
+        "type": "ListNode[]"
+      }
+    ],
+    "returns": "ListNode"
+  }
+}

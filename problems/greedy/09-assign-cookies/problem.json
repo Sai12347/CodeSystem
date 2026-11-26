@@ -1,0 +1,43 @@
+{
+  "title": "Assign Cookies",
+  "difficulty": "Easy",
+  "subtopic": "Local Optimality",
+  "companies": [
+    "Amazon",
+    "Google",
+    "Microsoft"
+  ],
+  "description": "Each child `i` has greed factor `g[i]`, and each cookie `j` has size `s[j]`. A child is content if assigned one cookie at least as large as their greed factor. Each child and cookie may be used at most once. Return the maximum number of content children.",
+  "constraints": [
+    "1 <= g.length, s.length <= 3 * 10^4",
+    "1 <= g[i], s[j] <= 10^9"
+  ],
+  "hints": [
+    "Sort or scan while maintaining the best feasible choice.",
+    "Check tie values and cases where no feasible choice remains."
+  ],
+  "examples": [
+    {
+      "input": "g = [1,2,3], s = [1,1]",
+      "output": "1"
+    }
+  ],
+  "timeComplexity": "O(n log n)",
+  "spaceComplexity": "O(1) extra",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "findContentChildren",
+    "params": [
+      {
+        "name": "g",
+        "type": "int[]"
+      },
+      {
+        "name": "s",
+        "type": "int[]"
+      }
+    ],
+    "returns": "int"
+  }
+}

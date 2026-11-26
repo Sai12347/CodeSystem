@@ -1,0 +1,57 @@
+{
+  "title": "Shortest Route With One Discount",
+  "difficulty": "Medium",
+  "subtopic": "Dijkstra",
+  "companies": [
+    "Google",
+    "Amazon",
+    "Microsoft"
+  ],
+  "description": "An undirected connected graph has `n` vertices and positive weighted edges `[u,v,cost]`. Travel costs `cost`, except that you may choose at most one edge on your route and pay `floor(cost/2)` for it. Return the minimum possible cost from `source` to `destination`. Input: `n`, `edges`, `source`, `destination`. Output: the minimum cost.",
+  "constraints": [
+    "2 <= n <= 10000",
+    "n-1 <= edges.length <= 50000",
+    "1 <= cost <= 1000000000",
+    "The graph is connected and has no parallel edges"
+  ],
+  "hints": [
+    "Represent each edge as a transition whose cost matches the route rule.",
+    "Keep the best distance for each required state and ignore stale priority-queue entries."
+  ],
+  "examples": [
+    {
+      "input": "n = 3, edges = [[0, 1, 6], [1, 2, 6], [0, 2, 20]], source = 0, destination = 2",
+      "output": "9"
+    },
+    {
+      "input": "n = 2, edges = [[0, 1, 7]], source = 0, destination = 1",
+      "output": "3"
+    }
+  ],
+  "timeComplexity": "O((n+m) log n)",
+  "spaceComplexity": "O(n+m)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "minimumCostWithDiscount",
+    "params": [
+      {
+        "name": "n",
+        "type": "int"
+      },
+      {
+        "name": "edges",
+        "type": "int[][]"
+      },
+      {
+        "name": "source",
+        "type": "int"
+      },
+      {
+        "name": "destination",
+        "type": "int"
+      }
+    ],
+    "returns": "long"
+  }
+}

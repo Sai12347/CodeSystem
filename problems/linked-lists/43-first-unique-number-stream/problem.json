@@ -1,0 +1,65 @@
+{
+  "title": "First Unique Number Stream",
+  "difficulty": "Medium",
+  "subtopic": "LRU Design",
+  "companies": [
+    "Amazon",
+    "Google",
+    "Meta",
+    "Microsoft",
+    "Bloomberg"
+  ],
+  "description": "You have a stream of integers, and you want to find the **first unique** integer (an integer that has appeared **exactly once** so far, choosing the earliest inserted one) at any time.\n\nImplement the `FirstUnique` class:\n- `FirstUnique(int[] nums)` initializes the object with the initial stream elements `nums` in order.\n- `int showFirstUnique()` returns the value of the **first unique** integer currently in the stream, or `-1` if no unique integer exists.\n- `void add(int value)` appends `value` to the stream.\n\nBoth `showFirstUnique` and `add` must run in `O(1)` average time.",
+  "constraints": [
+    "0 <= nums.length <= 2000",
+    "1 <= nums[i], value <= 10^8",
+    "At most 2000 calls will be made to showFirstUnique and add."
+  ],
+  "hints": [
+    "Maintain a doubly linked list holding only the currently unique values in insertion order, with sentinel `head` and `tail` nodes.",
+    "Keep a hash map from `value` to its list node (or a sentinel `null` once the value has appeared at least twice); on a second occurrence, unlink the node in O(1) so `head.next` is always the first unique value."
+  ],
+  "examples": [
+    {
+      "explanation": "Initial stream [2, 3, 5] has first unique 2; adding 5 duplicates 5 (first unique still 2); adding 2 duplicates 2 (first unique becomes 3); adding 3 duplicates 3 (no unique left -> -1)."
+    },
+    {
+      "explanation": "Initial stream [7, 7, 7, 7] has no unique values (-1); adding 7 keeps -1; adding 3 makes 3 the first unique."
+    },
+    {
+      "explanation": "Starting empty returns -1; adding 10 then 20 makes 10 first unique; adding 10 again promotes 20."
+    }
+  ],
+  "timeComplexity": "O(1) per operation",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "design",
+    "className": "FirstUnique",
+    "constructor": {
+      "params": [
+        {
+          "name": "nums",
+          "type": "int[]"
+        }
+      ]
+    },
+    "methods": [
+      {
+        "name": "showFirstUnique",
+        "params": [],
+        "returns": "int"
+      },
+      {
+        "name": "add",
+        "params": [
+          {
+            "name": "value",
+            "type": "int"
+          }
+        ],
+        "returns": "void"
+      }
+    ]
+  }
+}

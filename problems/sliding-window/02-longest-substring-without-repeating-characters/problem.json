@@ -1,0 +1,49 @@
+{
+  "title": "Longest Substring Without Repeating Characters",
+  "difficulty": "Medium",
+  "subtopic": "Dynamic Window",
+  "companies": [
+    "Amazon",
+    "Google",
+    "Meta",
+    "Microsoft",
+    "Apple",
+    "Bloomberg"
+  ],
+  "leetcode": 3,
+  "description": "Given a string `s`, find the length of the **longest substring** without repeating characters.\n\nA substring is a contiguous sequence of characters within the string. Note that `s` may contain English letters (case-sensitive), digits, symbols, and spaces, and may be empty.",
+  "constraints": [
+    "0 <= s.length <= 5 * 10^4",
+    "s consists of English letters, digits, symbols and spaces."
+  ],
+  "hints": [
+    "Maintain a sliding window [left, right] whose characters are all distinct.",
+    "Store the most recent index of each character in a hash map. When s[right] was previously seen at an index >= left, advance left directly to lastSeen[s[right]] + 1.",
+    "Never move left backward when encountering a character whose last occurrence lies before the current left boundary."
+  ],
+  "examples": [
+    {
+      "explanation": "The answer is \"abc\", with length 3."
+    },
+    {
+      "explanation": "The answer is \"b\", with length 1."
+    },
+    {
+      "explanation": "The answer is \"wke\", with length 3. Notice that \"pwke\" is a subsequence, not a contiguous substring."
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(min(n, m))",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "lengthOfLongestSubstring",
+    "params": [
+      {
+        "name": "s",
+        "type": "String"
+      }
+    ],
+    "returns": "int"
+  }
+}

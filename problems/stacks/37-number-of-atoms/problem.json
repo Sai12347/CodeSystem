@@ -1,0 +1,46 @@
+{
+  "title": "Number of Atoms",
+  "difficulty": "Hard",
+  "subtopic": "Expression Parsing",
+  "companies": [
+    "Google",
+    "Amazon",
+    "Meta",
+    "Bloomberg"
+  ],
+  "description": "Given a string `formula` representing a valid chemical formula, return the canonical count of each atom.\n\nRules of the formula:\n- An atomic element always starts with an uppercase English letter, followed by zero or more lowercase English letters.\n- If a positive integer immediately follows an element or a closing parenthesis `')'`, it multiplies the count of that element or parenthesized group; if omitted, the multiplier is `1`.\n- Return the result as a string listing all distinct elements in **lexicographical order**, each followed by its total count if that count is strictly greater than `1` (omit the count if it equals `1`).",
+  "constraints": [
+    "1 <= formula.length <= 1000",
+    "formula consists of English letters, digits, '(', and ')'.",
+    "formula is guaranteed to be a valid chemical formula, and all final atom counts fit in a 32-bit signed integer."
+  ],
+  "hints": [
+    "Maintain a stack of frequency maps where each map represents the atom counts inside one parenthesized scope.",
+    "Push an empty map on '('; on ')', parse the trailing multiplier, pop the top map, multiply all its counts, and merge them into the new top map."
+  ],
+  "examples": [
+    {
+      "explanation": "There are 2 H atoms and 1 O atom, sorted lexicographically as \"H2O\"."
+    },
+    {
+      "explanation": "Mg(OH)2 contains 1 Mg, 2 O, and 2 H atoms; sorted lexicographically this gives \"H2MgO2\"."
+    },
+    {
+      "explanation": "K4(ON(SO3)2)2 expands to 4 K, 2 N, 14 O, and 4 S -> \"K4N2O14S4\"."
+    }
+  ],
+  "timeComplexity": "O(n + k log k)",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "countOfAtoms",
+    "params": [
+      {
+        "name": "formula",
+        "type": "String"
+      }
+    ],
+    "returns": "String"
+  }
+}

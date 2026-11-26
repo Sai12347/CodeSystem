@@ -1,0 +1,44 @@
+{
+  "title": "Triples With Bitwise AND Equal to Zero",
+  "difficulty": "Hard",
+  "subtopic": "Counting Bits",
+  "companies": [
+    "Google",
+    "Meta",
+    "Oracle"
+  ],
+  "description": "Given an integer array `nums` where every element lies in `[0, 2^16 - 1]`, return the number of ordered index triples `(i, j, k)` (`0 <= i, j, k < nums.length`) such that `(nums[i] & nums[j] & nums[k]) == 0`.",
+  "constraints": [
+    "1 <= nums.length <= 1000",
+    "0 <= nums[i] < 2^16"
+  ],
+  "hints": [
+    "First count how many ordered pairs `(i, j)` produce each pairwise AND value `v = nums[i] & nums[j]` in an array `dp[v]` of size `2^B` (grouping duplicate values of `nums` speeds this up further).",
+    "Run Sum Over Subsets (SOS) DP on `dp` so `dp[mask]` stores the count of pairs whose AND is a submask of `mask`; then for each `x` in `nums`, add `dp[((1 << B) - 1) ^ x]`."
+  ],
+  "examples": [
+    {
+      "explanation": "There are 12 ordered index triples in [2, 1, 3] whose bitwise AND is 0."
+    },
+    {
+      "explanation": "Every one of the 3^3 = 27 triples in [0, 0, 0] has bitwise AND 0."
+    },
+    {
+      "explanation": "Every triple in [1, 1] has bitwise AND 1 != 0, so the count is 0."
+    }
+  ],
+  "timeComplexity": "O(u^2 + B * 2^B)",
+  "spaceComplexity": "O(2^B)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "countTriplets",
+    "params": [
+      {
+        "name": "nums",
+        "type": "int[]"
+      }
+    ],
+    "returns": "int"
+  }
+}

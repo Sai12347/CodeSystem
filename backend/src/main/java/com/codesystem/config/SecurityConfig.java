@@ -30,6 +30,7 @@ public class SecurityConfig {
                 .requestMatchers("/api/visualizer/**").permitAll()
                 .requestMatchers("/actuator/**").permitAll()
                 .requestMatchers("/api/ai-tutor/**").permitAll()
+                .requestMatchers("/api/judge/**").permitAll()
                 .anyRequest().authenticated()
             );
 

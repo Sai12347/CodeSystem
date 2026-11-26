@@ -1,0 +1,45 @@
+{
+  "title": "Almost Palindrome Linked List",
+  "difficulty": "Medium",
+  "subtopic": "Fast/Slow Pointer",
+  "companies": [
+    "Meta",
+    "Google",
+    "Amazon",
+    "Uber"
+  ],
+  "description": "Given the `head` of a singly linked list of integers, return `true` if the list can become a palindrome after deleting **at most one** node from anywhere in the list, and `false` otherwise.\n\nAim for `O(n)` time and `O(1)` extra space.",
+  "constraints": [
+    "The number of nodes in the list is in the range [0, 10^4].",
+    "-10^5 <= Node.val <= 10^5"
+  ],
+  "hints": [
+    "Split the list into `left` (first `ceil(n / 2)` nodes) and `right` (last `floor(n / 2)` nodes) using fast/slow pointers, noting whether `n` is odd (`fast.next == null`), then reverse `right` in-place.",
+    "Walk `p1` (in `left`) and `p2` (in reversed `right`) until the first mismatch: deleting `p1` succeeds if remaining `p1.next` matches `p2` element-for-element; deleting `p2` succeeds if remaining `p2.next` matches `p1` and, when `n` is odd, the two leftover nodes at the end of `left` are equal."
+  ],
+  "examples": [
+    {
+      "explanation": "[1, 2, 3, 2, 1] is already a palindrome (zero deletions needed)."
+    },
+    {
+      "explanation": "Deleting 9 from [9, 1, 2, 3, 2, 1] leaves the palindrome [1, 2, 3, 2, 1]."
+    },
+    {
+      "explanation": "No single deletion can make [1, 2, 3, 4, 5] a palindrome."
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "isAlmostPalindrome",
+    "params": [
+      {
+        "name": "head",
+        "type": "ListNode"
+      }
+    ],
+    "returns": "boolean"
+  }
+}

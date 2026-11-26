@@ -1,0 +1,46 @@
+{
+  "title": "Maximum Sum of an Hourglass",
+  "difficulty": "Easy",
+  "subtopic": "2D Search",
+  "companies": [
+    "Amazon",
+    "Microsoft",
+    "Bloomberg"
+  ],
+  "description": "You are given an `m x n` integer matrix `grid` with `m >= 3` and `n >= 3`. An **hourglass** is a subset of 7 cells forming an `'I'`-like shape inside a `3 x 3` subgrid anchored at top-left `(r, c)`:\n\n- Top bar: `(r, c)`, `(r, c + 1)`, `(r, c + 2)`\n- Center: `(r + 1, c + 1)`\n- Bottom bar: `(r + 2, c)`, `(r + 2, c + 1)`, `(r + 2, c + 2)`\n\nReturn the **maximum sum** of any hourglass in `grid`. Note that `grid` may contain negative integers.",
+  "constraints": [
+    "m == grid.length",
+    "n == grid[i].length",
+    "3 <= m, n <= 150",
+    "-10^4 <= grid[i][j] <= 10^4"
+  ],
+  "hints": [
+    "Iterate over every valid top-left anchor (r, c) with 0 <= r <= m - 3 and 0 <= c <= n - 3.",
+    "Initialize the running maximum to negative infinity (not 0) since all matrix values can be negative."
+  ],
+  "examples": [
+    {
+      "explanation": "The hourglass anchored at (0, 0) sums 6 + 2 + 1 + 2 + 9 + 2 + 8 = 30, which is the maximum."
+    },
+    {
+      "explanation": "With a 3x3 grid there is only one hourglass: 1 + 2 + 3 + 5 + 7 + 8 + 9 = 35."
+    },
+    {
+      "explanation": "All entries are negative; the hourglass anchored at (0, 0) has the largest sum of -7."
+    }
+  ],
+  "timeComplexity": "O(m * n)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "maxHourglassSum",
+    "params": [
+      {
+        "name": "grid",
+        "type": "int[][]"
+      }
+    ],
+    "returns": "int"
+  }
+}

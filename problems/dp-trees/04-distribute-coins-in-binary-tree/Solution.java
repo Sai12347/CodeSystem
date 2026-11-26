@@ -1,0 +1,1 @@
+class Solution { int moves; int dfs(TreeNode n){if(n==null)return 0;int l=dfs(n.left),r=dfs(n.right);moves+=Math.abs(l)+Math.abs(r);return n.val+l+r-1;} public int distributeCoins(TreeNode root){moves=0;dfs(root);return moves;} }

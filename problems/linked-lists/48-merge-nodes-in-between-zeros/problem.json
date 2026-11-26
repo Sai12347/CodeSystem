@@ -1,0 +1,47 @@
+{
+  "title": "Merge Nodes in Between Zeros",
+  "difficulty": "Medium",
+  "subtopic": "Pointers & Nodes",
+  "companies": [
+    "Amazon",
+    "Microsoft",
+    "Meta",
+    "Bloomberg"
+  ],
+  "description": "You are given the `head` of a singly linked list containing a series of integers separated by `0`s. Both the beginning and end of the linked list have `Node.val == 0`, and there are no two consecutive nodes with `Node.val == 0`.\n\nFor every two consecutive `0`s, merge all nodes strictly between them into a single node whose value is the sum of all the merged nodes. The modified list must not contain any `0`s.\n\nReturn the head of the modified linked list.",
+  "constraints": [
+    "The number of nodes in the list is in the range [3, 2 * 10^4].",
+    "0 <= Node.val <= 1000",
+    "There are no two consecutive nodes with Node.val == 0.",
+    "The first and last nodes both have Node.val == 0."
+  ],
+  "hints": [
+    "Reuse existing nodes in-place by maintaining a `write` pointer for the output list and a `read` pointer scanning segments between zeros.",
+    "Whenever `read.val == 0`, store the accumulated segment sum into `write.val`, and if more segments remain (`read.next != null`), advance `write` to `write.next`; otherwise terminate with `write.next = null`."
+  ],
+  "examples": [
+    {
+      "explanation": "Between the first two zeros is [3, 1] summing to 4; between the next two is [4, 5, 2] summing to 11."
+    },
+    {
+      "explanation": "Segments [1], [3], and [2, 2] sum to 1, 3, and 4 respectively."
+    },
+    {
+      "explanation": "Only one segment [7] lies between the two bounding zeros, producing [7]."
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "mergeNodes",
+    "params": [
+      {
+        "name": "head",
+        "type": "ListNode"
+      }
+    ],
+    "returns": "ListNode"
+  }
+}

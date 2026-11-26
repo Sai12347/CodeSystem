@@ -1,0 +1,5 @@
+def visible():
+    return [{'in': {'expression': '&(|(f))'}}, {'in': {'expression': '|(f,f,f,t)'}}, {'in': {'expression': '!(&(f,t))'}}]
+
+def hidden():
+    return [{'in': {'expression': 't'}}, {'in': {'expression': 'f'}}, {'in': {'expression': '!(t)'}}, {'in': {'expression': '!(f)'}}, {'in': {'expression': '&(t,t,t)'}}, {'in': {'expression': '|(&(t,f,t),!(t))'}}, {'in': {'expression': '&(|(t,f),!(f),&(t,!(f)))'}}, {'in': {'expression': '!(!(!(!(t))))'}}, {'in': {'expression': '|(f,&(t,!(|(f,&(t,!(|(f,&(t,!(|(f,&(t,!(|(f,&(t,!(|(f,&(t,!(|(f,&(t,!(|(f,&(t,!(|(f,&(t,!(|(f,&(t,!(|(f,&(t,!(|(f,&(t,!(|(f,&(t,!(|(f,&(t,!(|(f,&(t,!(|(f,&(t,!(|(f,&(t,!(|(f,&(t,!(|(f,&(t,!(|(f,&(t,!(|(f,&(t,!(|(f,&(t,!(|(f,&(t,!(|(f,&(t,!(|(f,&(t,!(|(f,&(t,!(|(f,&(t,!(|(f,&(t,!(|(f,&(t,!(|(f,&(t,!(|(f,&(t,!(|(f,&(t,!(|(f,&(t,!(|(f,&(t,!(|(f,&(t,!(|(f,&(t,!(|(f,&(t,!(|(f,&(t,!(|(f,&(t,!(|(f,&(t,!(t),t),f)),t),f)),t),f)),t),f)),t),f)),t),f)),t),f)),t),f)),t),f)),t),f)),t),f)),t),f)),t),f)),t),f)),t),f)),t),f)),t),f)),t),f)),t),f)),t),f)),t),f)),t),f)),t),f)),t),f)),t),f)),t),f)),t),f)),t),f)),t),f)),t),f)),t),f)),t),f)),t),f)),t),f)),t),f)),t),f)),t),f)),t),f)),t),f)),t),f)'}}]

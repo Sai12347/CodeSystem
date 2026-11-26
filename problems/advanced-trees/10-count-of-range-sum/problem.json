@@ -1,0 +1,48 @@
+{
+  "title": "Count of Range Sum",
+  "difficulty": "Hard",
+  "subtopic": "Range Queries",
+  "companies": [
+    "Google",
+    "Amazon",
+    "Microsoft"
+  ],
+  "description": "Return the number of non-empty contiguous subarrays whose sum lies in the inclusive range `[lower, upper]`.",
+  "constraints": [
+    "0 <= nums.length <= 30000",
+    "-10^9 <= nums[i] <= 10^9",
+    "lower <= upper"
+  ],
+  "hints": [
+    "Build prefix sums so each subarray sum is a difference of two prefixes.",
+    "Merge-sort the prefixes while counting right-side values that fall within [lower, upper] of each left-side prefix."
+  ],
+  "examples": [
+    {
+      "input": "nums = [-2,5,-1], lower = -2, upper = 2",
+      "output": "3"
+    }
+  ],
+  "timeComplexity": "O(n log n)",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "countRangeSum",
+    "params": [
+      {
+        "name": "nums",
+        "type": "int[]"
+      },
+      {
+        "name": "lower",
+        "type": "int"
+      },
+      {
+        "name": "upper",
+        "type": "int"
+      }
+    ],
+    "returns": "int"
+  }
+}

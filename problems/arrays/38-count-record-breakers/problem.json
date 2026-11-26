@@ -1,0 +1,43 @@
+{
+  "title": "Count Record Breakers",
+  "difficulty": "Easy",
+  "subtopic": "Traversal",
+  "companies": [
+    "Amazon",
+    "Microsoft",
+    "Google"
+  ],
+  "description": "Scan an integer array from left to right. The first element is a record breaker; each later element is a record breaker only when it is strictly greater than every earlier element. Return the number of record breakers. Input: a non-empty array `nums`. Output: the count.",
+  "constraints": [
+    "1 <= nums.length <= 100000",
+    "-1000000000 <= nums[i] <= 1000000000"
+  ],
+  "hints": [
+    "Scan the array while retaining only the state needed for the answer.",
+    "Check the first, last, repeated, and all-equal cases."
+  ],
+  "examples": [
+    {
+      "input": "nums = [5, 1, 6, 7, 2]",
+      "output": "3"
+    },
+    {
+      "input": "nums = [4, 4, 4]",
+      "output": "1"
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "countRecordBreakers",
+    "params": [
+      {
+        "name": "nums",
+        "type": "int[]"
+      }
+    ],
+    "returns": "int"
+  }
+}

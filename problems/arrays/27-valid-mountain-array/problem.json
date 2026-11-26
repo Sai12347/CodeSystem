@@ -1,0 +1,43 @@
+{
+  "title": "Valid Mountain Array",
+  "difficulty": "Easy",
+  "subtopic": "Traversal",
+  "companies": [
+    "Amazon",
+    "Microsoft",
+    "Google"
+  ],
+  "description": "Return true if `arr` strictly increases to one peak and then strictly decreases, with at least one element on both sides of the peak. Otherwise return false.\n\nInput: an integer array `arr`. Return the result described above.",
+  "constraints": [
+    "1 <= arr.length <= 10^4",
+    "0 <= arr[i] <= 10^4"
+  ],
+  "hints": [
+    "Track the relevant ordering or candidate values in one pass where possible.",
+    "Check duplicate and boundary cases."
+  ],
+  "examples": [
+    {
+      "input": "arr = [0, 3, 2, 1]",
+      "output": "true"
+    },
+    {
+      "input": "arr = [3, 5, 5]",
+      "output": "false"
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "validMountainArray",
+    "params": [
+      {
+        "name": "arr",
+        "type": "int[]"
+      }
+    ],
+    "returns": "boolean"
+  }
+}

@@ -1,0 +1,43 @@
+{
+  "title": "Minimum Non-Zero Product",
+  "difficulty": "Medium",
+  "subtopic": "Fast Exponentiation",
+  "companies": [
+    "Google",
+    "Amazon",
+    "Bloomberg"
+  ],
+  "description": "Given a positive integer `p`, consider the array `nums = [1, 2, ..., 2^p - 1]` containing every positive `p`-bit integer. In one operation you may choose two elements of `nums` and swap their bits at any single bit position. Return the minimum possible non-zero product of all elements of `nums` after any number of operations, modulo `10^9 + 7`.",
+  "constraints": [
+    "1 <= p <= 60"
+  ],
+  "hints": [
+    "Swapping bits preserves the sum of the two chosen numbers while minimizing their product when pushed as far apart as possible (while remaining >= 1).",
+    "Pair every complementary pair `(x, (2^p - 1) - x)` into `(1, 2^p - 2)`, leaving one unpaired `2^p - 1`; the minimum product is `(2^p - 1) * (2^p - 2)^(2^(p - 1) - 1) mod (10^9 + 7)`."
+  ],
+  "examples": [
+    {
+      "explanation": "For p = 1, nums = [1] and the product is 1."
+    },
+    {
+      "explanation": "For p = 2, nums = [1, 2, 3] already minimizes the non-zero product at 1 * 2 * 3 = 6."
+    },
+    {
+      "explanation": "For p = 3, pairing gives [1, 1, 1, 6, 6, 6, 7], whose product is 6^3 * 7 = 1512."
+    }
+  ],
+  "timeComplexity": "O(p)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "minNonZeroProduct",
+    "params": [
+      {
+        "name": "p",
+        "type": "int"
+      }
+    ],
+    "returns": "int"
+  }
+}

@@ -1,0 +1,79 @@
+{
+  "title": "Design LRU-K Cache",
+  "difficulty": "Hard",
+  "subtopic": "LRU Design",
+  "companies": [
+    "Google",
+    "Amazon",
+    "Meta",
+    "Microsoft",
+    "Bloomberg"
+  ],
+  "description": "Design an **LRU-K** cache `LRUKCache` that evicts entries using their backward `k`-th access time (used in database buffer pools to resist one-time sequential scans):\n- `LRUKCache(int capacity, int k)` initializes an empty cache with positive `capacity` and history window `k >= 1`.\n- Maintain a monotonically increasing logical clock `tick` (starting at `0`) that increments by `1` on every `put` call and every successful `get` hit (cache misses on `get` do not advance `tick`). Each cached key stores a FIFO queue of up to its `k` most recent access ticks while in the cache.\n- `int get(int key)`: if `key` is absent, return `-1`; otherwise record a new access tick for `key` and return its value.\n- `void put(int key, int value)`: if `key` already exists, update its value and record a new access tick. If `key` is new and the cache is at `capacity`, evict one entry according to the **LRU-K rule**:\n  1. Any entry with **fewer than `k`** accesses is evicted before any entry with `k` accesses; among entries with `< k` accesses, evict the one with the **earliest first access**.\n  2. If all cached entries have `k` accesses, evict the entry whose **`k`-th most recent access** (the oldest tick in its length-`k` history) is the **smallest**.\n  Then insert `(key, value)` with a fresh single-element access history `[tick]`.\n\nAim for `O(log capacity)` amortized time per operation.",
+  "constraints": [
+    "1 <= capacity <= 1000",
+    "1 <= k <= 10",
+    "0 <= key, value <= 10^5",
+    "At most 2000 calls will be made to get and put."
+  ],
+  "hints": [
+    "For every cached key, maintain a bounded deque `hist` of length at most `k`: `tier = 0 if len(hist) < k else 1`, and `hist[0]` is ALWAYS the exact comparison key (earliest access when `tier == 0`, or `k`-th most recent access when `tier == 1`).",
+    "Use a lazy-deletion min-heap storing `(tier, hist[0], version, key)` with a globally monotonic `version` counter so re-inserted keys never collide with stale heap entries."
+  ],
+  "examples": [
+    {
+      "explanation": "With cap=2, k=2: key 1 reaches 2 accesses via get(1) while key 2 has only 1, so put(3,30) evicts key 2; after get(3), key 1's 2nd-recent tick (1) < key 3's (4), so put(4,40) evicts key 1."
+    },
+    {
+      "explanation": "With k=1, LRU-1 behaves identically to a standard LRU cache: get(1) refreshes 1, so put(3,30) evicts key 2."
+    },
+    {
+      "explanation": "Updating an existing key via put(1, 15) counts as an access, giving key 1 two accesses so put(3, 30) evicts key 2."
+    }
+  ],
+  "timeComplexity": "O(log n) amortized",
+  "spaceComplexity": "O(n * k)",
+  "compare": "exact",
+  "signature": {
+    "kind": "design",
+    "className": "LRUKCache",
+    "constructor": {
+      "params": [
+        {
+          "name": "capacity",
+          "type": "int"
+        },
+        {
+          "name": "k",
+          "type": "int"
+        }
+      ]
+    },
+    "methods": [
+      {
+        "name": "get",
+        "params": [
+          {
+            "name": "key",
+            "type": "int"
+          }
+        ],
+        "returns": "int"
+      },
+      {
+        "name": "put",
+        "params": [
+          {
+            "name": "key",
+            "type": "int"
+          },
+          {
+            "name": "value",
+            "type": "int"
+          }
+        ],
+        "returns": "void"
+      }
+    ]
+  }
+}

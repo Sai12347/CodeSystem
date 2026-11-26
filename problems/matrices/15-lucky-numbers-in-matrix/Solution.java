@@ -1,0 +1,1 @@
+class Solution { public List<Integer> luckyNumbers(int[][] a) { int r=a.length,c=a[0].length; List<Integer> out=new ArrayList<>(); for(int i=0;i<r;i++){int min=a[i][0],jmin=0; for(int j=1;j<c;j++)if(a[i][j]<min){min=a[i][j];jmin=j;} boolean ok=true; for(int k=0;k<r;k++)if(a[k][jmin]>min)ok=false; if(ok)out.add(min);} return out; } }

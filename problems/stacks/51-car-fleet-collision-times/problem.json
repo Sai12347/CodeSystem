@@ -1,0 +1,46 @@
+{
+  "title": "Car Fleet Collision Times",
+  "difficulty": "Hard",
+  "subtopic": "LIFO Structure",
+  "companies": [
+    "Google",
+    "Uber",
+    "Meta",
+    "Amazon"
+  ],
+  "description": "There are `n` cars traveling along a single-lane road in the same direction, given as `cars[i] = [position_i, speed_i]` sorted in strictly increasing order of `position_i`.\n\nWhen a car catches up to a slower car ahead of it, they collide and merge into a single fleet traveling at the slower car's speed (the slower car's speed never changes).\n\nReturn a floating-point array `answer` of length `n` where `answer[i]` is the time (in seconds) at which car `i` collides with the next car ahead of it, or `-1.0` if car `i` never collides. Answers within `10^-5` of the true value are accepted.",
+  "constraints": [
+    "1 <= cars.length <= 10^5",
+    "1 <= position_i, speed_i <= 10^6",
+    "position_i < position_{i+1} for all valid i."
+  ],
+  "hints": [
+    "Process cars from right to left while maintaining a stack of candidate cars ahead that could be the first collision target.",
+    "Pop a candidate j from the stack if speed[i] <= speed[j] (unreachable) or if j collides with another car earlier than i would reach j."
+  ],
+  "examples": [
+    {
+      "explanation": "Car 0 catches car 1 at t = 1.0; car 1 is slower than car 2 so it never collides; car 2 catches car 3 at t = 3.0."
+    },
+    {
+      "explanation": "Car 2 collides with car 3 at t = 1.5; car 1 catches car 2 at t = 1.0 before car 2 merges; car 0 catches the fleet at t = 2.0."
+    },
+    {
+      "explanation": "A single car has no car ahead to collide with, so it returns [-1.0]."
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(n)",
+  "compare": "float",
+  "signature": {
+    "kind": "function",
+    "method": "getCollisionTimes",
+    "params": [
+      {
+        "name": "cars",
+        "type": "int[][]"
+      }
+    ],
+    "returns": "double[]"
+  }
+}

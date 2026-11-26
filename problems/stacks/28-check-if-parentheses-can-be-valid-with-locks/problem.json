@@ -1,0 +1,49 @@
+{
+  "title": "Check If Parentheses Can Be Valid With Locks",
+  "difficulty": "Medium",
+  "subtopic": "Valid Parentheses",
+  "companies": [
+    "Amazon",
+    "Google",
+    "Meta"
+  ],
+  "description": "You are given a parentheses string `s` consisting of `'('` and `')'`, and a binary string `locked` of the same length:\n- If `locked[i] == '1'`, you cannot change `s[i]`.\n- If `locked[i] == '0'`, you may change `s[i]` to either `'('` or `')'`.\n\nReturn `true` if you can make `s` a valid parentheses string, and `false` otherwise.",
+  "constraints": [
+    "1 <= s.length == locked.length <= 10^5",
+    "s[i] is either '(' or ')'.",
+    "locked[i] is either '0' or '1'."
+  ],
+  "hints": [
+    "Any odd-length string can never be balanced. For even-length strings, unlocked positions act like wildcards that must become either '(' or ')'.",
+    "Track indices of locked '(' in one stack and unlocked positions in another; match each locked ')' against a locked '(' first, then against an unlocked index, and finally pair remaining locked '(' with later unlocked indices."
+  ],
+  "examples": [
+    {
+      "explanation": "Changing unlocked positions s[0] to '(', s[2] to '(', and s[4] to ')' gives \"()()()\", which is valid."
+    },
+    {
+      "explanation": "\"()()\" is already valid even with all positions unlocked."
+    },
+    {
+      "explanation": "Odd length 1 can never form a balanced parentheses string."
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "canBeValid",
+    "params": [
+      {
+        "name": "s",
+        "type": "String"
+      },
+      {
+        "name": "locked",
+        "type": "String"
+      }
+    ],
+    "returns": "boolean"
+  }
+}

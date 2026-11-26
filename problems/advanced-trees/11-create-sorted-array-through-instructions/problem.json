@@ -1,0 +1,39 @@
+{
+  "title": "Create Sorted Array Through Instructions",
+  "difficulty": "Medium",
+  "subtopic": "Fenwick Tree",
+  "companies": [
+    "Google",
+    "Amazon",
+    "Microsoft"
+  ],
+  "description": "Insert values from `instructions` in order into an initially empty array. Before each insertion, its cost is the smaller of the number of existing values strictly less than it and the number strictly greater than it. Return the total cost modulo 1,000,000,007.",
+  "constraints": [
+    "1 <= instructions.length <= 10^5",
+    "1 <= instructions[i] <= 10^5"
+  ],
+  "hints": [
+    "Use a prefix-count structure to answer how many earlier values fall within a value range.",
+    "Coordinate compression lets a Fenwick tree store counts for only values that occur in the input."
+  ],
+  "examples": [
+    {
+      "input": "instructions = [1,5,6,2]",
+      "output": "1"
+    }
+  ],
+  "timeComplexity": "O(n log n)",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "createSortedArray",
+    "params": [
+      {
+        "name": "instructions",
+        "type": "int[]"
+      }
+    ],
+    "returns": "int"
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "title": "Similar String Groups",
+  "difficulty": "Hard",
+  "subtopic": "Equivalence Classes",
+  "companies": ["Google", "Amazon", "Meta", "Uber", "Atlassian"],
+  "leetcode": 839,
+  "description": "Two strings `X` and `Y` are considered similar if either they are identical or we can make `X` equal to `Y` by swapping two letters at different positions within `X`.\n\nFor example, `\"tars\"` and `\"rats\"` are similar (swapping indices `0` and `2`), and `\"rats\"` and `\"arts\"` are similar, whereas `\"star\"` is not similar to `\"tars\"`, `\"rats\"`, or `\"arts\"`. Together, these form two connected groups by similarity: `{\"tars\", \"rats\", \"arts\"}` and `{\"star\"}`. Notice that `\"tars\"` and `\"arts\"` belong to the same group through `\"rats\"` even though they are not directly similar.\n\nYou are given a list `strs` of strings where every string is an anagram of every other string in `strs`. Return the number of similarity groups.",
+  "constraints": [
+    "1 <= strs.length <= 300",
+    "1 <= strs[i].length <= 300",
+    "strs[i] consists of lowercase English letters only.",
+    "All words in strs have the same length and are anagrams of each other."
+  ],
+  "hints": [
+    "Because every pair of strings in strs is guaranteed to be an anagram, two strings are similar if and only if they differ in 0 or 2 character positions.",
+    "Model each string as a vertex in a Disjoint Set Union (DSU) structure and union every pair of similar strings.",
+    "Before comparing two strings character-by-character, check if they are already in the same DSU component to skip unnecessary work, and stop scanning as soon as more than 2 mismatched positions are found."
+  ],
+  "examples": [
+    {
+      "explanation": "'tars' and 'rats' differ at positions 0 and 2, and 'rats' and 'arts' differ at positions 0 and 1, forming one group of 3. 'star' differs from all three in more than 2 positions, forming a second group."
+    },
+    {
+      "explanation": "'omv' and 'ovm' differ at positions 1 and 2, so they belong to the same group."
+    }
+  ],
+  "timeComplexity": "O(n^2 * L)",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "numSimilarGroups",
+    "params": [
+      {"name": "strs", "type": "String[]"}
+    ],
+    "returns": "int"
+  }
+}

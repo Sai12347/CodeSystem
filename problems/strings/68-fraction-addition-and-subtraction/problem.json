@@ -1,0 +1,45 @@
+{
+  "title": "Fraction Addition and Subtraction",
+  "difficulty": "Medium",
+  "subtopic": "Parsing",
+  "companies": [
+    "Goldman Sachs",
+    "Amazon",
+    "Apple"
+  ],
+  "description": "Given a string `expression` representing an expression of fraction addition and subtraction (such as `\"-1/2+1/2+1/3\"`), compute the result and return it as an irreducible fraction string `\"numerator/denominator\"` with a positive denominator. If the result is an integer `x`, format it as `\"x/1\"`.",
+  "constraints": [
+    "The input string contains only digits '0'-'9', '/', '+', and '-'.",
+    "Each fraction has numerator and denominator in [1, 10], and the expression has between 1 and 10 fractions.",
+    "Intermediate and final numerators and denominators fit in a 32-bit signed integer."
+  ],
+  "hints": [
+    "Maintain a running fraction num / den initialized to 0 / 1.",
+    "Parse each signed fraction a / b, update num = num * b + a * den and den = den * b, and divide both by gcd(|num|, den) immediately to prevent overflow."
+  ],
+  "examples": [
+    {
+      "explanation": "-1/2 + 1/2 = 0, formatted as \"0/1\"."
+    },
+    {
+      "explanation": "-1/2 + 1/2 + 1/3 = 1/3."
+    },
+    {
+      "explanation": "1/3 - 1/2 = -1/6."
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "fractionAddition",
+    "params": [
+      {
+        "name": "expression",
+        "type": "String"
+      }
+    ],
+    "returns": "String"
+  }
+}

@@ -1,0 +1,47 @@
+{
+  "title": "Rotating the Box",
+  "difficulty": "Medium",
+  "subtopic": "Matrix Rotation",
+  "companies": [
+    "Uber",
+    "Amazon",
+    "Google",
+    "Meta"
+  ],
+  "description": "You are given an `m x n` character matrix `box` representing a side-view of a box. Each cell is one of:\n- `'#'`: a stone\n- `'*'`: a stationary obstacle\n- `'.'`: an empty space\n\nThe box is rotated **90 degrees clockwise**, causing some of the stones to fall down under gravity until each stone lands on an obstacle, another stone, or the bottom of the box. Obstacles do not move.\n\nReturn an `n x m` character matrix representing the box after rotation and gravity settle.",
+  "constraints": [
+    "m == box.length",
+    "n == box[i].length",
+    "1 <= m, n <= 100",
+    "box[i][j] is either '#', '*', or '.'."
+  ],
+  "hints": [
+    "When the box rotates 90 degrees clockwise, moving right along a row becomes moving downward along a column.",
+    "Process each row from right to left keeping a write pointer for the lowest available empty slot, resetting it just left of every obstacle '*', and write directly into the rotated n x m output."
+  ],
+  "examples": [
+    {
+      "explanation": "Rotating 90 degrees clockwise turns the 1x3 row into a 3x1 column; the top stone falls onto the bottom stone."
+    },
+    {
+      "explanation": "The obstacle in row 0 stops the stone above it, while the stones in row 1 settle to the bottom of the rotated column."
+    },
+    {
+      "explanation": "Every stone falls down within its obstacle-bounded segment after the 90-degree clockwise turn."
+    }
+  ],
+  "timeComplexity": "O(m * n)",
+  "spaceComplexity": "O(m * n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "rotateTheBox",
+    "params": [
+      {
+        "name": "box",
+        "type": "char[][]"
+      }
+    ],
+    "returns": "char[][]"
+  }
+}

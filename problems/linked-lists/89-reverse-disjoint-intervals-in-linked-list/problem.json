@@ -1,0 +1,51 @@
+{
+  "title": "Reverse Disjoint Intervals in Linked List",
+  "difficulty": "Medium",
+  "subtopic": "Reversal",
+  "companies": [
+    "Google",
+    "Meta",
+    "Amazon",
+    "Salesforce"
+  ],
+  "description": "Given the `head` of a singly linked list of length `n` and a 2D integer array `intervals`, where each `intervals[i] = [l, r]` (`1 <= l <= r <= n`) specifies a 1-indexed inclusive range of positions, all intervals in `intervals` are guaranteed to be **pairwise disjoint** (they may be given in any order, and two intervals may be directly adjacent such as `[1, 2]` and `[3, 4]`).\n\nReverse the nodes within every interval `[l, r]` in-place and return the head of the modified linked list. Aim for `O(n + m log m)` time where `m = intervals.length`.",
+  "constraints": [
+    "The number of nodes in the list is in the range [0, 10^4].",
+    "-10^5 <= Node.val <= 10^5",
+    "0 <= intervals.length <= 5000",
+    "For every interval [l, r], 1 <= l <= r <= n, and all intervals are pairwise disjoint."
+  ],
+  "hints": [
+    "Sort `intervals` by their starting index `l` so that every interval can be processed in a single left-to-right sweep over the linked list.",
+    "Maintain `prev` at 1-based index `pos`: for each `[l, r]`, advance `prev` until `pos == l - 1`, reverse the `r - l + 1` nodes starting at `prev.next`, and then set `prev` to the reversed segment's tail and `pos = r`."
+  ],
+  "examples": [
+    {
+      "explanation": "Sorting gives [1, 3] and [5, 7]; reversing positions 1..3 and 5..7 turns [1..7] into [3, 2, 1, 4, 7, 6, 5]."
+    },
+    {
+      "explanation": "Adjacent intervals [1, 2] and [3, 5] reverse [10, 20] -> [20, 10] and [30, 40, 50] -> [50, 40, 30]."
+    },
+    {
+      "explanation": "No intervals to reverse leaves [1, 2, 3] unchanged."
+    }
+  ],
+  "timeComplexity": "O(n + m log m)",
+  "spaceComplexity": "O(m)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "reverseDisjointIntervals",
+    "params": [
+      {
+        "name": "head",
+        "type": "ListNode"
+      },
+      {
+        "name": "intervals",
+        "type": "int[][]"
+      }
+    ],
+    "returns": "ListNode"
+  }
+}

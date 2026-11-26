@@ -1,0 +1,85 @@
+{
+  "title": "Design a Text Editor",
+  "difficulty": "Hard",
+  "subtopic": "LRU Design",
+  "companies": [
+    "Google",
+    "Amazon",
+    "Meta",
+    "Atlassian",
+    "Bloomberg"
+  ],
+  "description": "Design a text editor with a movable cursor backed by a doubly linked list. Implement the `TextEditor` class:\n- `TextEditor()` initializes an empty document with the cursor at the beginning.\n- `void addText(String text)` inserts `text` immediately before the cursor; the cursor remains right after the newly inserted characters.\n- `int deleteText(int k)` deletes up to `k` characters immediately to the left of the cursor and returns the actual number of characters deleted.\n- `String cursorLeft(int k)` moves the cursor left by up to `k` positions and returns the last `min(10, len)` characters to the left of the cursor (where `len` is the number of characters left of the cursor).\n- `String cursorRight(int k)` moves the cursor right by up to `k` positions and returns the last `min(10, len)` characters to the left of the cursor.",
+  "constraints": [
+    "1 <= text.length, k <= 40",
+    "text consists of lowercase English letters.",
+    "At most 2000 calls will be made to addText, deleteText, cursorLeft, and cursorRight."
+  ],
+  "hints": [
+    "Represent the document as a doubly linked list of character nodes with sentinel `head` and `tail` nodes, keeping a `cursor` pointer on the character immediately left of the cursor (or `head` when at position 0).",
+    "Inserting a character splices a node right after `cursor` in O(1); deleting unlinks `cursor` and moves it to `cursor.prev` in O(1); reading the left preview walks back at most 10 links."
+  ],
+  "examples": [
+    {
+      "explanation": "Typing 'leetcode', deleting 4 leaves 'leet', typing 'practice' gives 'leetpractice', moving left 8 lands after 'leet', deleting 10 removes all 4 chars, moving right 6 lands after 'practi'."
+    },
+    {
+      "explanation": "Deleting or moving left on an empty editor returns 0 and empty string without error."
+    },
+    {
+      "explanation": "Inserting text in the middle of a word after moving the cursor left splices cleanly between adjacent nodes."
+    }
+  ],
+  "timeComplexity": "O(text.length) / O(k) per operation",
+  "spaceComplexity": "O(total characters)",
+  "compare": "exact",
+  "signature": {
+    "kind": "design",
+    "className": "TextEditor",
+    "constructor": {
+      "params": []
+    },
+    "methods": [
+      {
+        "name": "addText",
+        "params": [
+          {
+            "name": "text",
+            "type": "String"
+          }
+        ],
+        "returns": "void"
+      },
+      {
+        "name": "deleteText",
+        "params": [
+          {
+            "name": "k",
+            "type": "int"
+          }
+        ],
+        "returns": "int"
+      },
+      {
+        "name": "cursorLeft",
+        "params": [
+          {
+            "name": "k",
+            "type": "int"
+          }
+        ],
+        "returns": "String"
+      },
+      {
+        "name": "cursorRight",
+        "params": [
+          {
+            "name": "k",
+            "type": "int"
+          }
+        ],
+        "returns": "String"
+      }
+    ]
+  }
+}

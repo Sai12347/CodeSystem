@@ -1,0 +1,39 @@
+{
+  "title": "Maximal Square",
+  "difficulty": "Medium",
+  "subtopic": "Grid Paths",
+  "companies": [
+    "Amazon",
+    "Google",
+    "Microsoft"
+  ],
+  "description": "Given a binary matrix, return the area of the largest square containing only 1s. Return 0 if the matrix contains no 1s.",
+  "constraints": [
+    "1 <= rows, columns <= 200",
+    "matrix[i][j] is 0 or 1"
+  ],
+  "hints": [
+    "Define the state as the best answer for a prefix or cell.",
+    "Update from the previous row or previous prefix while preserving the recurrence."
+  ],
+  "examples": [
+    {
+      "input": "matrix = [[1,0,1,0,0],[1,0,1,1,1],[1,1,1,1,1],[1,0,0,1,0]]",
+      "output": "4"
+    }
+  ],
+  "timeComplexity": "O(m*n)",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "maximalSquare",
+    "params": [
+      {
+        "name": "matrix",
+        "type": "int[][]"
+      }
+    ],
+    "returns": "int"
+  }
+}

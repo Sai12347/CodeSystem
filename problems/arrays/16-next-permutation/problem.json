@@ -1,0 +1,53 @@
+{
+  "title": "Next Permutation",
+  "difficulty": "Medium",
+  "subtopic": "In-Place Operations",
+  "companies": [
+    "Meta",
+    "Google",
+    "Amazon",
+    "Microsoft",
+    "Bloomberg",
+    "Apple"
+  ],
+  "leetcode": 31,
+  "description": "A permutation of an array of integers is an arrangement of its elements into a sequence. The next permutation of an array is the lexicographically next greater permutation of its elements.\n\nIf no greater permutation exists (meaning the array is sorted in non-increasing order), rearrange `nums` into the lowest possible order (sorted in non-decreasing order).\n\nThe replacement must be done in-place and use only `O(1)` extra memory.",
+  "constraints": [
+    "1 <= nums.length <= 100",
+    "0 <= nums[i] <= 100"
+  ],
+  "hints": [
+    "Scan from right to left to find the first index i (the pivot) where nums[i] < nums[i + 1]. Everything to the right of i is already non-increasing.",
+    "If such an index i exists, scan from the right end to find the rightmost index j > i with nums[j] > nums[i], and swap nums[i] with nums[j].",
+    "Finally, reverse the suffix starting at i + 1 (or the entire array if no pivot existed) to make that suffix as small as possible."
+  ],
+  "examples": [
+    {
+      "explanation": "The lexicographically next permutation after [1, 2, 3] is [1, 3, 2]."
+    },
+    {
+      "explanation": "[3, 2, 1] is the largest permutation, so it wraps around to [1, 2, 3]."
+    },
+    {
+      "explanation": "Swapping the pivot 1 at index 1 with 5 gives [1, 5, 1]."
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "nextPermutation",
+    "params": [
+      {
+        "name": "nums",
+        "type": "int[]"
+      }
+    ],
+    "returns": "void",
+    "output": {
+      "mode": "param",
+      "param": "nums"
+    }
+  }
+}

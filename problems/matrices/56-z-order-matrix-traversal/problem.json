@@ -1,0 +1,46 @@
+{
+  "title": "Z-Order Curve Matrix Traversal",
+  "difficulty": "Medium",
+  "subtopic": "Spiral Traversal",
+  "companies": [
+    "Google",
+    "Meta",
+    "Apple",
+    "Uber"
+  ],
+  "description": "You are given an `n x n` integer matrix `grid`, where `n` is guaranteed to be a power of `2` (`n = 2^k` for some integer `k >= 0`).\n\nReturn a 1D integer array containing all elements of `grid` visited in recursive **Z-order (Morton curve)** traversal order:\n- If the current subgrid has size `1 x 1`, append its single element.\n- Otherwise, split the current `s x s` subgrid into four `(s / 2) x (s / 2)` quadrants and recursively traverse them in the exact order: **top-left**, **top-right**, **bottom-left**, **bottom-right**.",
+  "constraints": [
+    "n == grid.length == grid[i].length",
+    "n is a power of 2 with 1 <= n <= 64.",
+    "-10^6 <= grid[i][j] <= 10^6"
+  ],
+  "hints": [
+    "Write a recursive helper traverse(r, c, size) that splits the square into four quadrants of side half = size // 2.",
+    "Call the four quadrants in Z-order: (r, c), (r, c + half), (r + half, c), and (r + half, c + half)."
+  ],
+  "examples": [
+    {
+      "explanation": "For a 2x2 grid, the four 1x1 quadrants are visited top-left (1), top-right (2), bottom-left (3), bottom-right (4)."
+    },
+    {
+      "explanation": "In a 4x4 grid, the top-left 2x2 block is fully traversed in Z-order [1,2,5,6], then top-right [3,4,7,8], bottom-left [9,10,13,14], and bottom-right [11,12,15,16]."
+    },
+    {
+      "explanation": "A 1x1 grid returns its sole element [7]."
+    }
+  ],
+  "timeComplexity": "O(n^2)",
+  "spaceComplexity": "O(n^2)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "zOrderTraversal",
+    "params": [
+      {
+        "name": "grid",
+        "type": "int[][]"
+      }
+    ],
+    "returns": "int[]"
+  }
+}

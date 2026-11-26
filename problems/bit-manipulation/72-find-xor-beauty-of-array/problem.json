@@ -1,0 +1,44 @@
+{
+  "title": "Find XOR-Beauty of Array",
+  "difficulty": "Medium",
+  "subtopic": "XOR Tricks",
+  "companies": [
+    "Google",
+    "Microsoft",
+    "Bloomberg"
+  ],
+  "description": "Given a 0-indexed integer array `nums` of length `n`, the effective value of any ordered index triplet `(i, j, k)` with `0 <= i, j, k < n` is defined as `((nums[i] | nums[j]) & nums[k])`. The XOR-beauty of `nums` is the bitwise XOR of the effective values of all `n^3` ordered triplets `(i, j, k)`. Return the XOR-beauty of `nums`.",
+  "constraints": [
+    "1 <= nums.length <= 10^5",
+    "0 <= nums[i] <= 10^9"
+  ],
+  "hints": [
+    "Notice symmetry in `(i, j)`: for any `i != j`, the triplets `(i, j, k)` and `(j, i, k)` produce the exact same effective value and cancel each other out under XOR, leaving only triplets with `i == j`.",
+    "When `i == j`, the expression simplifies to `nums[i] & nums[k]`, where again `i != k` pairs cancel by symmetry, leaving only `i == j == k` and reducing the entire answer to the XOR of all elements of `nums`."
+  ],
+  "examples": [
+    {
+      "explanation": "Evaluating all 8 triplets for [1, 4] and XORing them yields 1 ^ 4 = 5."
+    },
+    {
+      "explanation": "Symmetric off-diagonal triplets cancel out, leaving the XOR of all elements which equals 34."
+    },
+    {
+      "explanation": "The only triplet (0, 0, 0) gives (7 | 7) & 7 = 7."
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "xorBeauty",
+    "params": [
+      {
+        "name": "nums",
+        "type": "int[]"
+      }
+    ],
+    "returns": "int"
+  }
+}

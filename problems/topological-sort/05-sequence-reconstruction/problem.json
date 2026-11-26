@@ -1,0 +1,43 @@
+{
+  "title": "Sequence Reconstruction",
+  "difficulty": "Medium",
+  "subtopic": "In-Degree BFS",
+  "companies": [
+    "Amazon",
+    "Google",
+    "Microsoft"
+  ],
+  "description": "Each sequence contains labels from 1 through `n`. Return true if `nums` is the only possible shortest common supersequence of all sequences, meaning the directed ordering constraints determine every adjacent pair in `nums` uniquely. Otherwise return false.",
+  "constraints": [
+    "1 <= nums.length <= 10^4",
+    "Each sequence value is in [1, nums.length]"
+  ],
+  "hints": [
+    "Represent prerequisites as directed edges and process zero in-degree vertices.",
+    "A cycle prevents a complete ordering; unique orderings require a single available choice at each step."
+  ],
+  "examples": [
+    {
+      "input": "nums = [1,2,3], sequences = [[1,2],[1,3]]",
+      "output": "false"
+    }
+  ],
+  "timeComplexity": "O(V+E)",
+  "spaceComplexity": "O(V+E)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "sequenceReconstruction",
+    "params": [
+      {
+        "name": "nums",
+        "type": "int[]"
+      },
+      {
+        "name": "sequences",
+        "type": "int[][]"
+      }
+    ],
+    "returns": "boolean"
+  }
+}

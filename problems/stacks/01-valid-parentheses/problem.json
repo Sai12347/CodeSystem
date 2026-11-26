@@ -1,0 +1,33 @@
+{
+  "title": "Valid Parentheses",
+  "difficulty": "Easy",
+  "subtopic": "Valid Parentheses",
+  "companies": ["Amazon", "Meta", "Google", "Microsoft", "Bloomberg", "Apple"],
+  "leetcode": 20,
+  "description": "Given a string `s` containing just the characters `'('`, `')'`, `'{'`, `'}'`, `'['`, and `']'`, determine if the input string is valid.\n\nAn input string is valid if:\n1. Open brackets must be closed by the same type of brackets.\n2. Open brackets must be closed in the correct order.\n3. Every close bracket has a corresponding open bracket of the same type.\n\nReturn `true` if `s` is valid, and `false` otherwise.",
+  "constraints": [
+    "1 <= s.length <= 10^4",
+    "s consists of parentheses characters only: '()[]{}'."
+  ],
+  "hints": [
+    "Every closing bracket must match the most recently opened unmatched bracket.",
+    "Use a stack: push opening brackets onto the stack, and when you see a closing bracket, verify that the stack is non-empty and its top matches.",
+    "At the end of the string, the string is valid only if the stack is completely empty."
+  ],
+  "examples": [
+    {"explanation": "The opening '(' is immediately matched and closed by ')'."},
+    {"explanation": "Each pair of brackets is opened and closed in valid order."},
+    {"explanation": "'(' cannot be closed by ']', so the string is invalid."}
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "isValid",
+    "params": [
+      {"name": "s", "type": "String"}
+    ],
+    "returns": "boolean"
+  }
+}

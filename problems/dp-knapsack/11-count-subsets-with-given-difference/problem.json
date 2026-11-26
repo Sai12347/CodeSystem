@@ -1,0 +1,45 @@
+{
+  "title": "Count Subsets With Given Difference",
+  "difficulty": "Medium",
+  "subtopic": "Subset Sum",
+  "companies": [
+    "Amazon",
+    "Google",
+    "Microsoft"
+  ],
+  "description": "Assign every non-negative array value to one of two groups. Return the number of assignments for which the first group sum minus the second group sum equals `difference`. Equal-valued elements at different indices are distinct choices.",
+  "constraints": [
+    "1 <= nums.length <= 30",
+    "0 <= nums[i] <= 1000",
+    "0 <= difference <= sum(nums)",
+    "The result fits in a signed 32-bit integer"
+  ],
+  "hints": [
+    "Define a state by the capacity, achievable sum, or difference between partial groups.",
+    "Process each item with the usage rule in the statement."
+  ],
+  "examples": [
+    {
+      "input": "nums = [1,1,2,3], difference = 1",
+      "output": "3"
+    }
+  ],
+  "timeComplexity": "O(n*capacity)",
+  "spaceComplexity": "O(capacity)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "countPartitions",
+    "params": [
+      {
+        "name": "nums",
+        "type": "int[]"
+      },
+      {
+        "name": "difference",
+        "type": "int"
+      }
+    ],
+    "returns": "int"
+  }
+}

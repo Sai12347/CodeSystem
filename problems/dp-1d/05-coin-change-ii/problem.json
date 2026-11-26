@@ -1,0 +1,37 @@
+{
+  "title": "Coin Change II",
+  "difficulty": "Medium",
+  "subtopic": "Linear States",
+  "companies": ["Amazon", "Google", "Meta", "Microsoft", "Goldman Sachs", "Uber"],
+  "leetcode": 518,
+  "description": "You are given an integer `amount` representing a total amount of money and an integer array `coins` representing coins of distinct denominations.\n\nReturn the number of distinct combinations that make up that `amount`. Two combinations are considered identical if they use the same count of each coin denomination (the order of coins does not matter). If that amount of money cannot be made up by any combination of the coins, return `0`.\n\nYou may assume that you have an infinite number of each kind of coin. The answer is guaranteed to fit into a signed 32-bit integer.",
+  "constraints": [
+    "1 <= coins.length <= 300",
+    "1 <= coins[i] <= 5000",
+    "All the values of coins are unique.",
+    "0 <= amount <= 5000",
+    "The answer is guaranteed to fit in a signed 32-bit integer."
+  ],
+  "hints": [
+    "To count combinations rather than permutations, decide how many times to use each coin denomination one denomination at a time.",
+    "Let `dp[a]` be the number of combinations that sum to `a`, starting with `dp[0] = 1` (one way to make amount 0: pick no coins).",
+    "Iterate over each `coin` in the outer loop and each amount `a` from `coin` to `amount` in the inner loop, updating `dp[a] += dp[a - coin]`."
+  ],
+  "examples": [
+    {"explanation": "There are 4 ways to make up 5: 5, 2+2+1, 2+1+1+1, and 1+1+1+1+1."},
+    {"explanation": "No combination of coin 2 can sum to 3, so return 0."},
+    {"explanation": "There is 1 way to make up 10 using the single coin 10."}
+  ],
+  "timeComplexity": "O(amount * n)",
+  "spaceComplexity": "O(amount)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "change",
+    "params": [
+      {"name": "amount", "type": "int"},
+      {"name": "coins", "type": "int[]"}
+    ],
+    "returns": "int"
+  }
+}

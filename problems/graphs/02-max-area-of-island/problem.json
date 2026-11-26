@@ -1,0 +1,35 @@
+{
+  "title": "Max Area of Island",
+  "difficulty": "Medium",
+  "subtopic": "Flood Fill",
+  "companies": ["Amazon", "Meta", "Google", "Microsoft", "Bloomberg", "Apple"],
+  "leetcode": 695,
+  "description": "You are given an `m x n` binary matrix `grid`. An **island** is a group of `1`s (representing land) connected **4-directionally** (horizontally or vertically). Diagonal cells are not connected. You may assume all four edges of the grid are surrounded by water (`0`).\n\nThe **area** of an island is the number of cells with a value `1` in that island.\n\nReturn the maximum area of an island in `grid`. If there is no island, return `0`.",
+  "constraints": [
+    "m == grid.length",
+    "n == grid[i].length",
+    "1 <= m, n <= 50",
+    "grid[i][j] is either 0 or 1."
+  ],
+  "hints": [
+    "Whenever you discover an unvisited land cell (`1`), flood-fill its entire connected component using DFS or BFS while counting how many cells you visit.",
+    "Mark visited land cells (either by flipping them to `0` or using a separate `visited` matrix) so each cell is counted at most once.",
+    "Keep track of the maximum component size seen across the entire grid, initializing the answer to `0` in case there is no land."
+  ],
+  "examples": [
+    {"explanation": "The largest connected component of 1s has area 6 (note that the nearby diagonal cluster is not connected to it)."},
+    {"explanation": "The grid contains only water (0s), so the maximum island area is 0."},
+    {"explanation": "Diagonal 1s are not connected, so there are five separate islands each of area 1."}
+  ],
+  "timeComplexity": "O(m * n)",
+  "spaceComplexity": "O(m * n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "maxAreaOfIsland",
+    "params": [
+      {"name": "grid", "type": "int[][]"}
+    ],
+    "returns": "int"
+  }
+}

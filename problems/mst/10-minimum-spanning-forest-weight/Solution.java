@@ -1,0 +1,1 @@
+class Solution { int f(int[]p,int x){while(p[x]!=x){p[x]=p[p[x]];x=p[x];}return x;}public int minimumForestWeight(int n,int[][]e){Arrays.sort(e,(a,b)->Integer.compare(a[2],b[2]));int[]p=new int[n];for(int i=0;i<n;i++)p[i]=i;int s=0;for(int[]x:e){int a=f(p,x[0]),b=f(p,x[1]);if(a!=b){p[a]=b;s+=x[2];}}return s;} }

@@ -1,0 +1,50 @@
+{
+  "title": "Symmetric Difference of Sorted Lists",
+  "difficulty": "Easy",
+  "subtopic": "Merge & Sort",
+  "companies": [
+    "Google",
+    "Amazon",
+    "Meta",
+    "LinkedIn"
+  ],
+  "description": "You are given the heads of two singly linked lists `l1` and `l2`, each sorted in **strictly increasing** order (so every value is unique within its own list).\n\nReturn a new singly linked list sorted in strictly increasing order containing all values that appear in **exactly one** of `l1` or `l2` (their symmetric difference). If the symmetric difference is empty, return `null` (`None` in Python). Aim for `O(n + m)` time and `O(1)` auxiliary space.",
+  "constraints": [
+    "The number of nodes in each list is in the range [0, 5000].",
+    "-10^5 <= Node.val <= 10^5",
+    "Both l1 and l2 are sorted in strictly increasing order."
+  ],
+  "hints": [
+    "Walk two pointers `p1` and `p2` through `l1` and `l2` simultaneously like the merge step of merge sort.",
+    "When `p1.val < p2.val` append `p1` and advance `p1`; when `p2.val < p1.val` append `p2` and advance `p2`; when `p1.val == p2.val` skip both nodes and advance both pointers."
+  ],
+  "examples": [
+    {
+      "explanation": "Values 2 and 4 appear in both lists and are dropped, leaving [1, 3, 5, 6]."
+    },
+    {
+      "explanation": "Both lists contain the exact same elements [1, 2, 3], so the symmetric difference is empty (null)."
+    },
+    {
+      "explanation": "Since l1 is empty, every element of l2 belongs to the symmetric difference: [-5, 0, 5]."
+    }
+  ],
+  "timeComplexity": "O(n + m)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "symmetricDifference",
+    "params": [
+      {
+        "name": "l1",
+        "type": "ListNode"
+      },
+      {
+        "name": "l2",
+        "type": "ListNode"
+      }
+    ],
+    "returns": "ListNode"
+  }
+}

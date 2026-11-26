@@ -1,0 +1,35 @@
+{
+  "title": "Search Insert Position",
+  "difficulty": "Easy",
+  "subtopic": "Standard Bisect",
+  "companies": ["Google", "Amazon", "Microsoft", "Meta", "Adobe", "Bloomberg"],
+  "leetcode": 35,
+  "description": "Given a sorted array of distinct integers `nums` and a target value `target`, return the 0-based index if the target is found. If not, return the index where it would be if it were inserted in order.\n\nYou must write an algorithm with `O(log n)` runtime complexity.",
+  "constraints": [
+    "1 <= nums.length <= 10^4",
+    "-10^4 <= nums[i] <= 10^4",
+    "nums contains distinct values sorted in ascending order.",
+    "-10^4 <= target <= 10^4"
+  ],
+  "hints": [
+    "This problem asks for the lower bound: the smallest index i such that nums[i] >= target (or nums.length if all elements are smaller).",
+    "Use binary search over the half-open range [0, nums.length] so that left converges directly to the insertion index."
+  ],
+  "examples": [
+    {"explanation": "5 is found at index 2."},
+    {"explanation": "2 is not in nums; inserting it between 1 and 3 places it at index 1."},
+    {"explanation": "7 is greater than all elements in nums, so it belongs at index 4."}
+  ],
+  "timeComplexity": "O(log n)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "searchInsert",
+    "params": [
+      {"name": "nums", "type": "int[]"},
+      {"name": "target", "type": "int"}
+    ],
+    "returns": "int"
+  }
+}

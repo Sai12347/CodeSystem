@@ -1,0 +1,84 @@
+{
+  "title": "Affine Min Stack",
+  "difficulty": "Medium",
+  "subtopic": "Min Stack",
+  "companies": [
+    "Google",
+    "Meta",
+    "Bloomberg",
+    "Goldman Sachs"
+  ],
+  "description": "Design a stack `AffineMinStack` supporting global addition (`addAll`), global sign flip (`negateAll`), and minimum queries, all in **`O(1)` time** per operation.\n\nImplement the `AffineMinStack` class:\n- `AffineMinStack()` initializes an empty stack.\n- `void push(int val)` pushes `val` onto the top of the stack.\n- `void pop()` removes the top element of the stack.\n- `void addAll(int delta)` adds `delta` to every element currently in the stack.\n- `void negateAll()` multiplies every element currently in the stack by `-1`.\n- `long top()` returns the current top element of the stack.\n- `long getMin()` returns the current minimum element in the stack.",
+  "constraints": [
+    "-10^9 <= val, delta <= 10^9",
+    "Methods pop, top, and getMin are always called on non-empty stacks.",
+    "At most 5 * 10^4 calls will be made across all methods."
+  ],
+  "hints": [
+    "Maintain a global affine transform `actual = sign * stored + offset` with `sign` in `{+1, -1}` and `offset` initially `0`; on `addAll(d)` set `offset += d`, and on `negateAll()` flip both `sign = -sign` and `offset = -offset`.",
+    "Because `negateAll()` turns the stored maximum into the actual minimum, track BOTH `storedMin` and `storedMax` stacks: `getMin()` returns `storedMin[-1] + offset` when `sign == 1` and `-storedMax[-1] + offset` when `sign == -1`."
+  ],
+  "examples": [
+    {
+      "explanation": "Push 5, 2 -> [5, 2]; addAll(3) -> [8, 5]; negateAll -> [-8, -5] (min -8, top -5); push 10 -> [-8, -5, 10]; negateAll -> [8, 5, -10] (min -10)."
+    },
+    {
+      "explanation": "Negating [4, -1] twice restores [4, -1], and popping -1 leaves [4] with min 4."
+    },
+    {
+      "explanation": "addAll and negateAll on an empty stack leave the affine state valid for subsequent pushes."
+    }
+  ],
+  "timeComplexity": "O(1) per op",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "design",
+    "className": "AffineMinStack",
+    "constructor": {
+      "params": []
+    },
+    "methods": [
+      {
+        "name": "push",
+        "params": [
+          {
+            "name": "val",
+            "type": "int"
+          }
+        ],
+        "returns": "void"
+      },
+      {
+        "name": "pop",
+        "params": [],
+        "returns": "void"
+      },
+      {
+        "name": "addAll",
+        "params": [
+          {
+            "name": "delta",
+            "type": "int"
+          }
+        ],
+        "returns": "void"
+      },
+      {
+        "name": "negateAll",
+        "params": [],
+        "returns": "void"
+      },
+      {
+        "name": "top",
+        "params": [],
+        "returns": "long"
+      },
+      {
+        "name": "getMin",
+        "params": [],
+        "returns": "long"
+      }
+    ]
+  }
+}

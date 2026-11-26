@@ -1,0 +1,53 @@
+{
+  "title": "Minimum Size Subarray Sum",
+  "difficulty": "Medium",
+  "subtopic": "Dynamic Window",
+  "companies": [
+    "Amazon",
+    "Meta",
+    "Google",
+    "Microsoft",
+    "Goldman Sachs"
+  ],
+  "leetcode": 209,
+  "description": "Given an array of positive integers `nums` and a positive integer `target`, return the **minimal length** of a contiguous subarray whose sum is greater than or equal to `target`. If there is no such subarray, return `0` instead.\n\nBecause every element in `nums` is strictly positive, expanding a window strictly increases its sum and shrinking it strictly decreases its sum.",
+  "constraints": [
+    "1 <= target <= 10^9",
+    "1 <= nums.length <= 10^5",
+    "1 <= nums[i] <= 10^4"
+  ],
+  "hints": [
+    "Because every element is strictly positive, once a window [left, right] has sum >= target, extending right further only yields longer subarrays.",
+    "Expand right to add nums[right] to windowSum, then repeatedly shrink left while windowSum >= target, recording the smallest length seen.",
+    "If no window ever reaches target, return 0."
+  ],
+  "examples": [
+    {
+      "explanation": "The subarray [4, 3] has the minimal length (2) with sum 4 + 3 = 7 >= 7."
+    },
+    {
+      "explanation": "The single-element subarray [4] has sum 4 >= 4, so the minimal length is 1."
+    },
+    {
+      "explanation": "The sum of the entire array is 8 < 11, so no valid subarray exists and we return 0."
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "minSubArrayLen",
+    "params": [
+      {
+        "name": "target",
+        "type": "int"
+      },
+      {
+        "name": "nums",
+        "type": "int[]"
+      }
+    ],
+    "returns": "int"
+  }
+}

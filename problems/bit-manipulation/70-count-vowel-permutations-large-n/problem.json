@@ -1,0 +1,43 @@
+{
+  "title": "Count Vowel Permutations for Large N",
+  "difficulty": "Hard",
+  "subtopic": "Fast Exponentiation",
+  "companies": [
+    "Google",
+    "Amazon",
+    "Meta"
+  ],
+  "description": "Given a positive integer `n`, count how many strings of length `n` can be formed from the five lowercase vowels `{'a', 'e', 'i', 'o', 'u'}` under the following transition rules: `'a'` may only be followed by `'e'`; `'e'` may only be followed by `'a'` or `'i'`; `'i'` may not be followed by another `'i'`; `'o'` may only be followed by `'i'` or `'u'`; and `'u'` may only be followed by `'a'`. Because `n` can be as large as `10^15`, return the answer modulo `10^9 + 7`.",
+  "constraints": [
+    "1 <= n <= 10^15"
+  ],
+  "hints": [
+    "Model the five vowel counts `[a, e, i, o, u]` at length `k` as a 5-element vector multiplied by a fixed `5 x 5` transition matrix `M` at each step.",
+    "Compute `M^(n - 1) mod (10^9 + 7)` using binary matrix exponentiation in O(log n) time; since the base vector at length 1 is all ones, the answer is simply the sum of all 25 entries of `M^(n - 1)`."
+  ],
+  "examples": [
+    {
+      "explanation": "For n = 1, the 5 single-vowel strings \"a\", \"e\", \"i\", \"o\", \"u\" are valid."
+    },
+    {
+      "explanation": "For n = 2, the 10 valid strings are \"ae\", \"ea\", \"ei\", \"ia\", \"ie\", \"io\", \"iu\", \"oi\", \"ou\", \"ua\"."
+    },
+    {
+      "explanation": "For n = 5, there are 68 valid vowel strings."
+    }
+  ],
+  "timeComplexity": "O(log n)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "countVowelPermutation",
+    "params": [
+      {
+        "name": "n",
+        "type": "long"
+      }
+    ],
+    "returns": "int"
+  }
+}

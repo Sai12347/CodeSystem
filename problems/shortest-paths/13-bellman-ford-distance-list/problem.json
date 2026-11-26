@@ -1,0 +1,53 @@
+{
+  "title": "Bellman-Ford Distance List",
+  "difficulty": "Medium",
+  "subtopic": "Bellman-Ford",
+  "companies": [
+    "Google",
+    "Amazon",
+    "Microsoft"
+  ],
+  "description": "A directed weighted graph has vertices `0..n-1` and edges `[u,v,w]`; edge weights may be negative. There are no negative-weight cycles reachable from `source`. Return the shortest distance from `source` to every vertex, using -1 for unreachable vertices. Input: `n`, `edges`, `source`. Output: a distance array.",
+  "constraints": [
+    "1 <= n <= 1000",
+    "0 <= edges.length <= 10000",
+    "-100000 <= w <= 100000",
+    "No negative cycle is reachable from source; all shortest distances fit in signed 32-bit range"
+  ],
+  "hints": [
+    "Represent each edge as a transition whose cost matches the route rule.",
+    "Keep the best distance for each required state and ignore stale priority-queue entries."
+  ],
+  "examples": [
+    {
+      "input": "n = 5, edges = [[0, 1, 6], [0, 2, 7], [1, 2, 8], [1, 3, 5], [1, 4, -4], [2, 3, -3], [2, 4, 9], [3, 1, -2], [4, 0, 2], [4, 3, 7]], source = 0",
+      "output": "[0,2,7,4,-2]"
+    },
+    {
+      "input": "n = 3, edges = [[0, 1, 4]], source = 0",
+      "output": "[0,4,-1]"
+    }
+  ],
+  "timeComplexity": "O(n*m)",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "bellmanFord",
+    "params": [
+      {
+        "name": "n",
+        "type": "int"
+      },
+      {
+        "name": "edges",
+        "type": "int[][]"
+      },
+      {
+        "name": "source",
+        "type": "int"
+      }
+    ],
+    "returns": "long[]"
+  }
+}

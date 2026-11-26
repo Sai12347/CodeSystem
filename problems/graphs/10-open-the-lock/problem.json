@@ -1,0 +1,37 @@
+{
+  "title": "Open the Lock",
+  "difficulty": "Medium",
+  "subtopic": "Connected Components",
+  "companies": ["Google", "Amazon", "Meta", "Uber", "Microsoft"],
+  "leetcode": 752,
+  "description": "You have a lock in front of you with 4 circular wheels. Each wheel has 10 slots: `'0'`, `'1'`, `'2'`, `'3'`, `'4'`, `'5'`, `'6'`, `'7'`, `'8'`, `'9'`. The wheels can rotate freely and wrap around: for example, we can turn `'9'` to `'0'`, or `'0'` to `'9'`. Each move consists of turning one wheel by **one slot**.\n\nThe lock initially starts at `\"0000\"`, a string representing the state of the 4 wheels.\n\nYou are given a list of `deadends`, meaning if the lock displays any of these codes, the wheels of the lock will stop turning and you will be unable to open it.\n\nGiven a `target` representing the value of the wheels that will unlock the lock, return the **minimum total number of turns** required to open the lock, or `-1` if it is impossible.",
+  "constraints": [
+    "1 <= deadends.length <= 500",
+    "deadends[i].length == 4",
+    "target.length == 4",
+    "target will not be in the list deadends.",
+    "target and deadends[i] consist of digits only."
+  ],
+  "hints": [
+    "Model the 10,000 possible 4-digit lock states (`\"0000\"` through `\"9999\"`) as nodes in an unweighted graph where each state has 8 neighbors obtained by turning one wheel +1 or -1 (modulo 10).",
+    "Run Breadth-First Search (BFS) starting from `\"0000\"`, skipping any state present in `deadends` or already visited. Handle the edge cases where `\"0000\"` is itself a deadend (return `-1`) or equals `target` (return `0`).",
+    "To speed up exploration significantly, use bidirectional BFS: alternate expanding the smaller frontier from `{\"0000\"}` and `{target}` until the two frontiers meet."
+  ],
+  "examples": [
+    {"explanation": "A sequence of valid moves is \"0000\" -> \"1000\" -> \"1100\" -> \"1200\" -> \"1201\" -> \"1202\" -> \"0202\" (6 turns)."},
+    {"explanation": "Turning the last wheel backward wraps '0' to '9' in 1 turn: \"0000\" -> \"0009\"."},
+    {"explanation": "All 8 states adjacent to \"8888\" are deadends, so \"8888\" cannot be reached."}
+  ],
+  "timeComplexity": "O(B^D * D + M)",
+  "spaceComplexity": "O(B^D + M)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "openLock",
+    "params": [
+      {"name": "deadends", "type": "String[]"},
+      {"name": "target", "type": "String"}
+    ],
+    "returns": "int"
+  }
+}

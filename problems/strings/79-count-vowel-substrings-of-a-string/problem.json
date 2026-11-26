@@ -1,0 +1,44 @@
+{
+  "title": "Count Vowel Substrings of a String",
+  "difficulty": "Easy",
+  "subtopic": "Substrings",
+  "companies": [
+    "Amazon",
+    "Google",
+    "Bloomberg"
+  ],
+  "description": "A vowel substring is a contiguous substring that consists solely of vowels (`'a'`, `'e'`, `'i'`, `'o'`, `'u'`) and contains all five vowels at least once. Given a lowercase string `word`, return the total number of vowel substrings in `word`.",
+  "constraints": [
+    "1 <= word.length <= 10^4",
+    "word consists of lowercase English letters only."
+  ],
+  "hints": [
+    "Reset your window whenever you encounter a consonant.",
+    "Inside each contiguous vowel run, track the last seen index of each of the 5 vowels; at index i, the number of valid vowel substrings ending at i is max(0, min(lastVowel) - lastConsonant)."
+  ],
+  "examples": [
+    {
+      "explanation": "\"aeiouu\" has 2 vowel substrings: \"aeiou\" and \"aeiouu\"."
+    },
+    {
+      "explanation": "No contiguous vowel-only substring contains all 5 vowels."
+    },
+    {
+      "explanation": "\"cuaieuouac\" has 7 vowel substrings inside the middle vowel run \"uaieuoua\"."
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "countVowelSubstrings",
+    "params": [
+      {
+        "name": "word",
+        "type": "String"
+      }
+    ],
+    "returns": "int"
+  }
+}

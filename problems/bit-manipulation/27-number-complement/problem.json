@@ -1,0 +1,43 @@
+{
+  "title": "Number Complement",
+  "difficulty": "Easy",
+  "subtopic": "Two Complement",
+  "companies": [
+    "Apple",
+    "Amazon",
+    "Salesforce"
+  ],
+  "description": "The complement of a positive integer is the integer you get when you flip all the `0`s to `1`s and all the `1`s to `0`s in its binary representation, starting from its most significant set bit down to bit `0` (ignoring leading zeros). Given a positive integer `num`, return its complement.",
+  "constraints": [
+    "1 <= num <= 2^31 - 1"
+  ],
+  "hints": [
+    "Construct a bitmask consisting of all `1`s with the exact same bit length as `num`.",
+    "XOR `num` with that mask (`((1 << bit_length) - 1) ^ num`), being careful not to overflow signed 32-bit integers."
+  ],
+  "examples": [
+    {
+      "explanation": "5 is 101 in binary; flipping every bit gives 010, which is 2."
+    },
+    {
+      "explanation": "1 is 1 in binary; flipping it gives 0."
+    },
+    {
+      "explanation": "7 is 111 in binary; flipping all bits gives 000, which is 0."
+    }
+  ],
+  "timeComplexity": "O(1)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "findComplement",
+    "params": [
+      {
+        "name": "num",
+        "type": "int"
+      }
+    ],
+    "returns": "int"
+  }
+}

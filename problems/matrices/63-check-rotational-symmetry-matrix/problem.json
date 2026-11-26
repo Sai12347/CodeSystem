@@ -1,0 +1,46 @@
+{
+  "title": "Check Matrix Rotational Symmetry",
+  "difficulty": "Easy",
+  "subtopic": "Matrix Rotation",
+  "companies": [
+    "Amazon",
+    "Apple",
+    "Adobe"
+  ],
+  "description": "Given an `m x n` integer matrix `grid`, determine whether `grid` has **180-degree rotational symmetry** (also known as central point symmetry).\n\nA matrix has 180-degree rotational symmetry if rotating the entire matrix by 180 degrees leaves every cell's value unchanged\u2014equivalently, `grid[r][c] == grid[m - 1 - r][n - 1 - c]` for every `0 <= r < m` and `0 <= c < n`. Return `true` if `grid` is rotationally symmetric, otherwise `false`.",
+  "constraints": [
+    "m == grid.length",
+    "n == grid[i].length",
+    "1 <= m, n <= 200",
+    "-10^6 <= grid[i][j] <= 10^6"
+  ],
+  "hints": [
+    "Under a 180-degree rotation, cell (r, c) maps to (m - 1 - r, n - 1 - c).",
+    "You only need to check the first half of rows (and the first half of the middle row if m is odd), returning false on the first mismatch."
+  ],
+  "examples": [
+    {
+      "explanation": "Rotating [[1,2,3],[4,5,4],[3,2,1]] by 180 degrees produces the exact same matrix."
+    },
+    {
+      "explanation": "Cell (0,0) is 1 while its 180-degree opposite (1,1) is 2, so the matrix is not rotationally symmetric."
+    },
+    {
+      "explanation": "Every 1x1 matrix is trivially invariant under a 180-degree rotation."
+    }
+  ],
+  "timeComplexity": "O(m * n)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "hasRotationalSymmetry",
+    "params": [
+      {
+        "name": "grid",
+        "type": "int[][]"
+      }
+    ],
+    "returns": "boolean"
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "title": "Profitable Schemes",
+  "difficulty": "Hard",
+  "subtopic": "0/1 Knapsack",
+  "companies": [
+    "Amazon",
+    "Google",
+    "Microsoft"
+  ],
+  "description": "There are crimes with corresponding member requirements and profits. Count subsets of crimes that use at most `n` members and earn at least `minProfit` total profit. Return the count modulo 1,000,000,007. Each crime may be selected at most once.",
+  "constraints": [
+    "1 <= n <= 100",
+    "0 <= minProfit <= 100",
+    "group.length == profit.length <= 100",
+    "1 <= group[i] <= 100",
+    "0 <= profit[i] <= 100"
+  ],
+  "hints": [
+    "Use a state indexed by the remaining capacity and the amount of progress toward the required target.",
+    "Process each choice in descending capacity order so it is not reused."
+  ],
+  "examples": [
+    {
+      "input": "n = 5, minProfit = 3, group = [2,2], profit = [2,3]",
+      "output": "2"
+    }
+  ],
+  "timeComplexity": "O(n*m*target)",
+  "spaceComplexity": "O(n*target)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "profitableSchemes",
+    "params": [
+      {
+        "name": "n",
+        "type": "int"
+      },
+      {
+        "name": "minProfit",
+        "type": "int"
+      },
+      {
+        "name": "group",
+        "type": "int[]"
+      },
+      {
+        "name": "profit",
+        "type": "int[]"
+      }
+    ],
+    "returns": "int"
+  }
+}

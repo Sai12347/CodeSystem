@@ -1,0 +1,843 @@
+[
+ {
+  "id": "network-delay-time",
+  "order": 1,
+  "topicId": "shortest-paths",
+  "topic": "Shortest Paths (Dijkstra)",
+  "title": "Network Delay Time",
+  "slug": "network-delay-time",
+  "difficulty": "Medium",
+  "subtopic": "Network Delays",
+  "companies": [
+   "Google",
+   "Amazon",
+   "Microsoft",
+   "Meta",
+   "Uber",
+   "Bloomberg"
+  ],
+  "leetcode": 743,
+  "description": "You are given a network of `n` nodes labeled from `1` to `n`. You are also given `times`, a list of directed travel times as triples `times[i] = [u_i, v_i, w_i]`, where `u_i` is the source node, `v_i` is the target node, and `w_i` is the time it takes for a signal to travel from `u_i` to `v_i`.\n\nWe send a signal from a given node `k`. Return the **minimum time** it takes for all `n` nodes to receive the signal. If it is impossible for all `n` nodes to receive the signal, return `-1`.",
+  "constraints": [
+   "1 <= k <= n <= 100",
+   "0 <= times.length <= 6000",
+   "times[i].length == 3",
+   "1 <= u_i, v_i <= n",
+   "u_i != v_i",
+   "0 <= w_i <= 100",
+   "All pairs (u_i, v_i) are unique (no multiple directed edges between the same pair)."
+  ],
+  "hints": [
+   "All edge weights are non-negative, so the earliest time each node receives the signal is its shortest-path distance from node `k`.",
+   "Run Dijkstra's algorithm with a min-heap starting from `(0, k)` and relax outgoing edges from each popped node, skipping stale heap entries.",
+   "Once all reachable nodes are settled, return `-1` if fewer than `n` nodes were reached; otherwise return the maximum shortest-path distance across all `n` nodes."
+  ],
+  "timeComplexity": "O((V + E) log V)",
+  "spaceComplexity": "O(V + E)",
+  "compare": "exact",
+  "examples": [
+   {
+    "input": "times = [[2,1,1],[2,3,1],[3,4,1]], n = 4, k = 2",
+    "output": "2",
+    "explanation": "From node 2, the signal reaches nodes 1 and 3 at time 1, and reaches node 4 via 2 -> 3 -> 4 at time 2. All 4 nodes receive the signal by time 2."
+   },
+   {
+    "input": "times = [[1,2,1]], n = 2, k = 1",
+    "output": "1",
+    "explanation": "The signal travels directly from node 1 to node 2 in 1 unit of time."
+   },
+   {
+    "input": "times = [[1,2,1]], n = 2, k = 2",
+    "output": "-1",
+    "explanation": "The only edge goes from 1 to 2, so starting at node 2 can never reach node 1."
+   }
+  ],
+  "starterCode": {
+   "java": "class Solution {\n    public int networkDelayTime(int[][] times, int n, int k) {\n        // Write your solution here\n        return 0;\n    }\n}\n",
+   "python": "class Solution:\n    def networkDelayTime(self, times: List[List[int]], n: int, k: int) -> int:\n        # Write your solution here\n        pass\n"
+  },
+  "solutionCode": {
+   "java": "class Solution {\n    public int networkDelayTime(int[][] times, int n, int k) {\n        List<int[]>[] adj = new ArrayList[n + 1];\n        for (int i = 1; i <= n; i++) {\n            adj[i] = new ArrayList<>();\n        }\n        for (int[] e : times) {\n            adj[e[0]].add(new int[]{e[1], e[2]});\n        }\n\n        int[] dist = new int[n + 1];\n        Arrays.fill(dist, Integer.MAX_VALUE);\n        dist[k] = 0;\n\n        PriorityQueue<int[]> pq = new PriorityQueue<>(Comparator.comparingInt(a -> a[0]));\n        pq.offer(new int[]{0, k});\n\n        while (!pq.isEmpty()) {\n            int[] cur = pq.poll();\n            int d = cur[0], u = cur[1];\n            if (d > dist[u]) {\n                continue;\n            }\n            for (int[] edge : adj[u]) {\n                int v = edge[0], nd = d + edge[1];\n                if (nd < dist[v]) {\n                    dist[v] = nd;\n                    pq.offer(new int[]{nd, v});\n                }\n            }\n        }\n\n        int ans = 0;\n        for (int i = 1; i <= n; i++) {\n            if (dist[i] == Integer.MAX_VALUE) {\n                return -1;\n            }\n            ans = Math.max(ans, dist[i]);\n        }\n        return ans;\n    }\n}\n",
+   "python": "class Solution:\n    def networkDelayTime(self, times: List[List[int]], n: int, k: int) -> int:\n        adj = [[] for _ in range(n + 1)]\n        for u, v, w in times:\n            adj[u].append((v, w))\n\n        inf = float(\"inf\")\n        dist = [inf] * (n + 1)\n        dist[k] = 0\n        heap = [(0, k)]\n\n        while heap:\n            d, u = heapq.heappop(heap)\n            if d > dist[u]:\n                continue\n            for v, w in adj[u]:\n                nd = d + w\n                if nd < dist[v]:\n                    dist[v] = nd\n                    heapq.heappush(heap, (nd, v))\n\n        ans = max(dist[1:])\n        return -1 if ans == inf else int(ans)\n"
+  },
+  "sampleArray": [],
+  "visibleTestCount": 3,
+  "hiddenTestCount": 10,
+  "number": 1
+ },
+ {
+  "id": "cheapest-flights-within-k-stops",
+  "order": 2,
+  "topicId": "shortest-paths",
+  "topic": "Shortest Paths (Dijkstra)",
+  "title": "Cheapest Flights Within K Stops",
+  "slug": "cheapest-flights-within-k-stops",
+  "difficulty": "Medium",
+  "subtopic": "Bellman-Ford",
+  "companies": [
+   "Google",
+   "Amazon",
+   "Meta",
+   "Uber",
+   "Microsoft",
+   "Bloomberg"
+  ],
+  "leetcode": 787,
+  "description": "There are `n` cities connected by some number of directed flights. You are given an array `flights` where `flights[i] = [from_i, to_i, price_i]` indicates that there is a flight from city `from_i` to city `to_i` with cost `price_i`.\n\nYou are also given three integers `src`, `dst`, and `k`. Return the **cheapest price** from `src` to `dst` with **at most `k` stops** (intermediate cities, meaning at most `k + 1` flights). If there is no such route, return `-1`.",
+  "constraints": [
+   "2 <= n <= 100",
+   "0 <= flights.length <= n * (n - 1)",
+   "flights[i].length == 3",
+   "0 <= from_i, to_i < n",
+   "from_i != to_i",
+   "1 <= price_i <= 10^4",
+   "There are no multiple flights between the same pair (from_i, to_i).",
+   "0 <= src, dst, k < n",
+   "src != dst"
+  ],
+  "hints": [
+   "At most `k` stops means a path can use at most `k + 1` directed edges.",
+   "Run `k + 1` rounds of Bellman-Ford edge relaxation. In each round, read distances from the previous round's snapshot so a single round adds at most one edge to any path.",
+   "If you use Dijkstra's algorithm instead, be careful not to discard a more expensive path to a node if it uses fewer stops than previously seen paths to that node."
+  ],
+  "timeComplexity": "O(k * E)",
+  "spaceComplexity": "O(V)",
+  "compare": "exact",
+  "examples": [
+   {
+    "input": "n = 4, flights = [[0,1,100],[1,2,100],[2,0,100],[1,3,600],[2,3,200]], src = 0, dst = 3, k = 1",
+    "output": "700",
+    "explanation": "With at most 1 stop, the path 0 -> 1 -> 3 costs 100 + 600 = 700. Although 0 -> 1 -> 2 -> 3 costs 400, it uses 2 stops and is not allowed."
+   },
+   {
+    "input": "n = 3, flights = [[0,1,100],[1,2,100],[0,2,500]], src = 0, dst = 2, k = 1",
+    "output": "200",
+    "explanation": "The optimal path with at most 1 stop is 0 -> 1 -> 2 with total cost 100 + 100 = 200, cheaper than the direct flight costing 500."
+   },
+   {
+    "input": "n = 3, flights = [[0,1,100],[1,2,100],[0,2,500]], src = 0, dst = 2, k = 0",
+    "output": "500",
+    "explanation": "With 0 stops allowed, only the direct flight 0 -> 2 with cost 500 is valid."
+   }
+  ],
+  "starterCode": {
+   "java": "class Solution {\n    public int findCheapestPrice(int n, int[][] flights, int src, int dst, int k) {\n        // Write your solution here\n        return 0;\n    }\n}\n",
+   "python": "class Solution:\n    def findCheapestPrice(self, n: int, flights: List[List[int]], src: int, dst: int, k: int) -> int:\n        # Write your solution here\n        pass\n"
+  },
+  "solutionCode": {
+   "java": "class Solution {\n    public int findCheapestPrice(int n, int[][] flights, int src, int dst, int k) {\n        final int INF = Integer.MAX_VALUE / 2;\n        int[] dist = new int[n];\n        Arrays.fill(dist, INF);\n        dist[src] = 0;\n\n        for (int i = 0; i <= k; i++) {\n            int[] next = Arrays.copyOf(dist, n);\n            boolean updated = false;\n            for (int[] f : flights) {\n                int u = f[0], v = f[1], price = f[2];\n                if (dist[u] != INF && dist[u] + price < next[v]) {\n                    next[v] = dist[u] + price;\n                    updated = true;\n                }\n            }\n            dist = next;\n            if (!updated) {\n                break;\n            }\n        }\n\n        return dist[dst] >= INF ? -1 : dist[dst];\n    }\n}\n",
+   "python": "class Solution:\n    def findCheapestPrice(\n        self, n: int, flights: List[List[int]], src: int, dst: int, k: int\n    ) -> int:\n        inf = 10**18\n        dist = [inf] * n\n        dist[src] = 0\n\n        for _ in range(k + 1):\n            nxt = dist[:]\n            updated = False\n            for u, v, price in flights:\n                if dist[u] != inf and dist[u] + price < nxt[v]:\n                    nxt[v] = dist[u] + price\n                    updated = True\n            dist = nxt\n            if not updated:\n                break\n\n        return -1 if dist[dst] == inf else dist[dst]\n"
+  },
+  "sampleArray": [],
+  "visibleTestCount": 3,
+  "hiddenTestCount": 10,
+  "number": 2
+ },
+ {
+  "id": "path-with-minimum-effort",
+  "order": 3,
+  "topicId": "shortest-paths",
+  "topic": "Shortest Paths (Dijkstra)",
+  "title": "Path With Minimum Effort",
+  "slug": "path-with-minimum-effort",
+  "difficulty": "Medium",
+  "subtopic": "Dijkstra",
+  "companies": [
+   "Google",
+   "Amazon",
+   "Meta",
+   "Microsoft",
+   "Uber"
+  ],
+  "leetcode": 1631,
+  "description": "You are a hiker preparing for an upcoming hike. You are given `heights`, a 2D array of size `rows x columns`, where `heights[row][col]` represents the height of cell `(row, col)`. You are situated in the top-left cell `(0, 0)`, and you hope to travel to the bottom-right cell `(rows - 1, columns - 1)` (0-indexed). You can move **up, down, left, or right**, and you wish to find a route that requires the minimum **effort**.\n\nA route's **effort** is the **maximum absolute difference** in heights between two consecutive cells of the route.\n\nReturn the minimum **effort** required to travel from the top-left cell to the bottom-right cell.",
+  "constraints": [
+   "rows == heights.length",
+   "columns == heights[i].length",
+   "1 <= rows, columns <= 100",
+   "1 <= heights[i][j] <= 10^6"
+  ],
+  "hints": [
+   "Model the grid as an undirected weighted graph where the weight of an edge between two adjacent cells is `|heights[r1][c1] - heights[r2][c2]|`, and path cost is the maximum edge weight along the path rather than the sum.",
+   "Because the path cost `max(effortSoFar, edgeWeight)` is monotonically non-decreasing as edges are appended, Dijkstra's algorithm with a min-heap finds the exact minimum effort to every cell.",
+   "Alternatively, binary search on the allowed maximum effort `mid` in `[0, 10^6]` and check with BFS/DFS whether `(rows - 1, columns - 1)` is reachable using only transitions with difference `<= mid`."
+  ],
+  "timeComplexity": "O(m * n * log(m * n))",
+  "spaceComplexity": "O(m * n)",
+  "compare": "exact",
+  "examples": [
+   {
+    "input": "heights = [[1,2,2],[3,8,2],[5,3,5]]",
+    "output": "2",
+    "explanation": "The route [1, 3, 5, 3, 5] has a maximum absolute difference of 2 in consecutive cells, which is better than [1, 2, 2, 2, 5] with a maximum difference of 3."
+   },
+   {
+    "input": "heights = [[1,2,3],[3,8,4],[5,3,5]]",
+    "output": "1",
+    "explanation": "The route [1, 2, 3, 4, 5] has a maximum absolute difference of 1, which is optimal."
+   },
+   {
+    "input": "heights = [[1,2,1,1,1],[1,2,1,2,1],[1,2,1,2,1],[1,2,1,2,1],[1,1,1,2,1]]",
+    "output": "0",
+    "explanation": "A winding route following the cells of height 1 connects the top-left to the bottom-right with effort 0."
+   }
+  ],
+  "starterCode": {
+   "java": "class Solution {\n    public int minimumEffortPath(int[][] heights) {\n        // Write your solution here\n        return 0;\n    }\n}\n",
+   "python": "class Solution:\n    def minimumEffortPath(self, heights: List[List[int]]) -> int:\n        # Write your solution here\n        pass\n"
+  },
+  "solutionCode": {
+   "java": "class Solution {\n    public int minimumEffortPath(int[][] heights) {\n        int rows = heights.length;\n        int cols = heights[0].length;\n        int[][] effort = new int[rows][cols];\n        for (int[] row : effort) {\n            Arrays.fill(row, Integer.MAX_VALUE);\n        }\n        effort[0][0] = 0;\n\n        PriorityQueue<int[]> pq = new PriorityQueue<>(Comparator.comparingInt(a -> a[0]));\n        pq.offer(new int[]{0, 0, 0});\n        int[][] dirs = {{-1, 0}, {1, 0}, {0, -1}, {0, 1}};\n\n        while (!pq.isEmpty()) {\n            int[] cur = pq.poll();\n            int e = cur[0], r = cur[1], c = cur[2];\n            if (e > effort[r][c]) {\n                continue;\n            }\n            if (r == rows - 1 && c == cols - 1) {\n                return e;\n            }\n            for (int[] d : dirs) {\n                int nr = r + d[0], nc = c + d[1];\n                if (nr >= 0 && nr < rows && nc >= 0 && nc < cols) {\n                    int ne = Math.max(e, Math.abs(heights[r][c] - heights[nr][nc]));\n                    if (ne < effort[nr][nc]) {\n                        effort[nr][nc] = ne;\n                        pq.offer(new int[]{ne, nr, nc});\n                    }\n                }\n            }\n        }\n        return effort[rows - 1][cols - 1];\n    }\n}\n",
+   "python": "class Solution:\n    def minimumEffortPath(self, heights: List[List[int]]) -> int:\n        rows, cols = len(heights), len(heights[0])\n        inf = 10**9\n        effort = [[inf] * cols for _ in range(rows)]\n        effort[0][0] = 0\n        heap = [(0, 0, 0)]\n\n        while heap:\n            e, r, c = heapq.heappop(heap)\n            if e > effort[r][c]:\n                continue\n            if r == rows - 1 and c == cols - 1:\n                return e\n            h = heights[r][c]\n            for nr, nc in ((r - 1, c), (r + 1, c), (r, c - 1), (r, c + 1)):\n                if 0 <= nr < rows and 0 <= nc < cols:\n                    ne = max(e, abs(h - heights[nr][nc]))\n                    if ne < effort[nr][nc]:\n                        effort[nr][nc] = ne\n                        heapq.heappush(heap, (ne, nr, nc))\n\n        return effort[rows - 1][cols - 1]\n"
+  },
+  "sampleArray": [],
+  "visibleTestCount": 3,
+  "hiddenTestCount": 10,
+  "number": 3
+ },
+ {
+  "id": "swim-in-rising-water",
+  "order": 4,
+  "topicId": "shortest-paths",
+  "topic": "Shortest Paths (Dijkstra)",
+  "title": "Swim in Rising Water",
+  "slug": "swim-in-rising-water",
+  "difficulty": "Hard",
+  "subtopic": "Dijkstra",
+  "companies": [
+   "Google",
+   "Amazon",
+   "Meta",
+   "Microsoft",
+   "Uber"
+  ],
+  "leetcode": 778,
+  "description": "You are given an `n x n` integer matrix `grid` where each value `grid[i][j]` represents the elevation at cell `(i, j)`.\n\nIt starts raining, and at time `t`, the water level everywhere is `t`. You can swim from a cell to another 4-directionally adjacent cell if and only if the elevation of **both** cells is at most `t`. You can swim infinite distances in zero time, as long as you stay within the boundaries of the grid.\n\nReturn the **least time `t`** until you can reach the bottom-right cell `(n - 1, n - 1)` starting from the top-left cell `(0, 0)`.",
+  "constraints": [
+   "n == grid.length",
+   "n == grid[i].length",
+   "1 <= n <= 50",
+   "0 <= grid[i][j] < n^2",
+   "Each value grid[i][j] is unique."
+  ],
+  "hints": [
+   "A path from `(0, 0)` to `(n - 1, n - 1)` is traversable at time `t` if and only if every cell on the path has elevation `<= t`. Thus we want to minimize the maximum cell elevation along the path.",
+   "Use Dijkstra's algorithm with a min-heap keyed by the elevation of each frontier cell (or `max(timeSoFar, grid[r][c])`), starting from `(grid[0][0], 0, 0)`.",
+   "Because elevations are unique integers in `[0, n^2 - 1]`, you can also binary search on `t` with BFS/DFS or use Union-Find ordered by cell elevation."
+  ],
+  "timeComplexity": "O(n^2 log n)",
+  "spaceComplexity": "O(n^2)",
+  "compare": "exact",
+  "examples": [
+   {
+    "input": "grid = [[0,2],[1,3]]",
+    "output": "3",
+    "explanation": "At time 0 you are at (0, 0). You cannot enter (1, 1) until time 3, so the minimum time to reach the bottom-right corner is 3."
+   },
+   {
+    "input": "grid = [[0,1,2,3,4],[24,23,22,21,5],[12,13,14,15,16],[11,17,18,19,20],[10,9,8,7,6]]",
+    "output": "16",
+    "explanation": "The optimal path winds around the right and bottom edges through elevations 0 -> 1 -> 2 -> 3 -> 4 -> 5 -> 16 -> 15 -> ... -> 6, whose maximum elevation is 16."
+   },
+   {
+    "input": "grid = [[3,2],[0,1]]",
+    "output": "3",
+    "explanation": "You start at (0, 0) with elevation 3, so even though the remaining cells have smaller elevations, you must wait until time 3 to move."
+   }
+  ],
+  "starterCode": {
+   "java": "class Solution {\n    public int swimInWater(int[][] grid) {\n        // Write your solution here\n        return 0;\n    }\n}\n",
+   "python": "class Solution:\n    def swimInWater(self, grid: List[List[int]]) -> int:\n        # Write your solution here\n        pass\n"
+  },
+  "solutionCode": {
+   "java": "class Solution {\n    public int swimInWater(int[][] grid) {\n        int n = grid.length;\n        boolean[][] visited = new boolean[n][n];\n        visited[0][0] = true;\n\n        PriorityQueue<int[]> pq = new PriorityQueue<>(Comparator.comparingInt(a -> a[0]));\n        pq.offer(new int[]{grid[0][0], 0, 0});\n        int[][] dirs = {{-1, 0}, {1, 0}, {0, -1}, {0, 1}};\n        int ans = 0;\n\n        while (!pq.isEmpty()) {\n            int[] cur = pq.poll();\n            int elev = cur[0], r = cur[1], c = cur[2];\n            ans = Math.max(ans, elev);\n            if (r == n - 1 && c == n - 1) {\n                return ans;\n            }\n            for (int[] d : dirs) {\n                int nr = r + d[0], nc = c + d[1];\n                if (nr >= 0 && nr < n && nc >= 0 && nc < n && !visited[nr][nc]) {\n                    visited[nr][nc] = true;\n                    pq.offer(new int[]{grid[nr][nc], nr, nc});\n                }\n            }\n        }\n        return ans;\n    }\n}\n",
+   "python": "class Solution:\n    def swimInWater(self, grid: List[List[int]]) -> int:\n        n = len(grid)\n        visited = [[False] * n for _ in range(n)]\n        visited[0][0] = True\n        heap = [(grid[0][0], 0, 0)]\n        ans = 0\n\n        while heap:\n            elev, r, c = heapq.heappop(heap)\n            if elev > ans:\n                ans = elev\n            if r == n - 1 and c == n - 1:\n                return ans\n            for nr, nc in ((r - 1, c), (r + 1, c), (r, c - 1), (r, c + 1)):\n                if 0 <= nr < n and 0 <= nc < n and not visited[nr][nc]:\n                    visited[nr][nc] = True\n                    heapq.heappush(heap, (grid[nr][nc], nr, nc))\n\n        return ans\n"
+  },
+  "sampleArray": [],
+  "visibleTestCount": 3,
+  "hiddenTestCount": 10,
+  "number": 4
+ },
+ {
+  "id": "shortest-path-in-binary-matrix",
+  "order": 5,
+  "topicId": "shortest-paths",
+  "topic": "Shortest Paths (Dijkstra)",
+  "title": "Shortest Path in Binary Matrix",
+  "slug": "shortest-path-in-binary-matrix",
+  "difficulty": "Medium",
+  "subtopic": "Dijkstra",
+  "companies": [
+   "Meta",
+   "Amazon",
+   "Google",
+   "Microsoft",
+   "Apple"
+  ],
+  "leetcode": 1091,
+  "description": "Given an `n x n` binary matrix `grid`, return the length of the shortest **clear path** in the matrix. If there is no clear path, return `-1`.\n\nA **clear path** in a binary matrix is a path from the top-left cell `(0, 0)` to the bottom-right cell `(n - 1, n - 1)` such that:\n- All visited cells of the path have value `0`.\n- Every pair of consecutive visited cells is **8-directionally connected** (they are different and share an edge or a corner).\n\nThe **length** of a clear path is the number of visited cells along the path (including both the starting and ending cells).",
+  "constraints": [
+   "n == grid.length",
+   "n == grid[i].length",
+   "1 <= n <= 100",
+   "grid[i][j] is 0 or 1."
+  ],
+  "hints": [
+   "First check the boundary conditions: if `grid[0][0] == 1` or `grid[n - 1][n - 1] == 1`, no clear path can exist, so return `-1` immediately.",
+   "Because every valid step to any of the 8 neighbors has uniform weight `1`, Breadth-First Search (a unit-weight specialization of Dijkstra's algorithm) discovers `(n - 1, n - 1)` in the minimum number of cells.",
+   "Mark cells as visited when enqueuing them (not when dequeuing) to avoid pushing duplicates into the queue."
+  ],
+  "timeComplexity": "O(n^2)",
+  "spaceComplexity": "O(n^2)",
+  "compare": "exact",
+  "examples": [
+   {
+    "input": "grid = [[0,1],[1,0]]",
+    "output": "2",
+    "explanation": "Move diagonally from (0, 0) directly to (1, 1), visiting 2 cells."
+   },
+   {
+    "input": "grid = [[0,0,0],[1,1,0],[1,1,0]]",
+    "output": "4",
+    "explanation": "The shortest clear path is (0, 0) -> (0, 1) -> (1, 2) -> (2, 2), which visits 4 cells."
+   },
+   {
+    "input": "grid = [[1,0,0],[1,1,0],[1,1,0]]",
+    "output": "-1",
+    "explanation": "The starting cell (0, 0) is blocked (1), so no clear path exists."
+   }
+  ],
+  "starterCode": {
+   "java": "class Solution {\n    public int shortestPathBinaryMatrix(int[][] grid) {\n        // Write your solution here\n        return 0;\n    }\n}\n",
+   "python": "class Solution:\n    def shortestPathBinaryMatrix(self, grid: List[List[int]]) -> int:\n        # Write your solution here\n        pass\n"
+  },
+  "solutionCode": {
+   "java": "class Solution {\n    public int shortestPathBinaryMatrix(int[][] grid) {\n        int n = grid.length;\n        if (grid[0][0] != 0 || grid[n - 1][n - 1] != 0) {\n            return -1;\n        }\n        if (n == 1) {\n            return 1;\n        }\n\n        boolean[][] visited = new boolean[n][n];\n        visited[0][0] = true;\n        int[][] dirs = {\n            {-1, -1}, {-1, 0}, {-1, 1},\n            {0, -1},           {0, 1},\n            {1, -1},  {1, 0},  {1, 1}\n        };\n\n        int[] qr = new int[n * n];\n        int[] qc = new int[n * n];\n        int[] qd = new int[n * n];\n        int head = 0, tail = 0;\n        qr[tail] = 0;\n        qc[tail] = 0;\n        qd[tail] = 1;\n        tail++;\n\n        while (head < tail) {\n            int r = qr[head];\n            int c = qc[head];\n            int dist = qd[head];\n            head++;\n            int nd = dist + 1;\n            for (int[] d : dirs) {\n                int nr = r + d[0], nc = c + d[1];\n                if (nr >= 0 && nr < n && nc >= 0 && nc < n && grid[nr][nc] == 0 && !visited[nr][nc]) {\n                    if (nr == n - 1 && nc == n - 1) {\n                        return nd;\n                    }\n                    visited[nr][nc] = true;\n                    qr[tail] = nr;\n                    qc[tail] = nc;\n                    qd[tail] = nd;\n                    tail++;\n                }\n            }\n        }\n        return -1;\n    }\n}\n",
+   "python": "class Solution:\n    def shortestPathBinaryMatrix(self, grid: List[List[int]]) -> int:\n        n = len(grid)\n        if grid[0][0] != 0 or grid[n - 1][n - 1] != 0:\n            return -1\n        if n == 1:\n            return 1\n\n        visited = [[False] * n for _ in range(n)]\n        visited[0][0] = True\n        q = deque([(0, 0, 1)])\n        dirs = (\n            (-1, -1), (-1, 0), (-1, 1),\n            (0, -1),           (0, 1),\n            (1, -1),  (1, 0),  (1, 1),\n        )\n\n        while q:\n            r, c, dist = q.popleft()\n            nd = dist + 1\n            for dr, dc in dirs:\n                nr, nc = r + dr, c + dc\n                if 0 <= nr < n and 0 <= nc < n and grid[nr][nc] == 0 and not visited[nr][nc]:\n                    if nr == n - 1 and nc == n - 1:\n                        return nd\n                    visited[nr][nc] = True\n                    q.append((nr, nc, nd))\n\n        return -1\n"
+  },
+  "sampleArray": [],
+  "visibleTestCount": 3,
+  "hiddenTestCount": 10,
+  "number": 5
+ },
+ {
+  "id": "shortest-path-to-get-all-keys",
+  "order": 6,
+  "topicId": "shortest-paths",
+  "topic": "Shortest Paths (Dijkstra)",
+  "title": "Shortest Path to Get All Keys",
+  "slug": "shortest-path-to-get-all-keys",
+  "difficulty": "Hard",
+  "subtopic": "Dijkstra",
+  "companies": [
+   "Google",
+   "Amazon",
+   "Meta",
+   "Uber",
+   "Bloomberg"
+  ],
+  "leetcode": 864,
+  "description": "You are given an `m x n` grid where each cell is represented by a character:\n- `'.'` is an empty cell.\n- `'#'` is a wall (impassable).\n- `'@'` is the starting point.\n- Lowercase English letters (`'a'` to `'f'`) represent **keys**.\n- Uppercase English letters (`'A'` to `'F'`) represent **locks**.\n\nYou start at `'@'` and can move one cell up, down, left, or right per step. You cannot walk outside the grid or into a wall. Stepping onto a key collects it permanently. You cannot walk onto a lock unless you already hold its corresponding lowercase key.\n\nThere are `k` keys in the grid (`1 <= k <= 6`), using the first `k` lowercase letters, and each key has a matching lock. Return the **lowest number of moves** required to acquire all `k` keys. If it is impossible, return `-1`.",
+  "constraints": [
+   "m == grid.length",
+   "n == grid[i].length",
+   "1 <= m, n <= 30",
+   "grid[i][j] is either '.', '#', '@', 'a'-'f', or 'A'-'F'.",
+   "The number of keys k is in the range [1, 6].",
+   "Each key 'a' through chr('a' + k - 1) appears exactly once and has exactly one matching lock.",
+   "There is exactly one starting cell '@'."
+  ],
+  "hints": [
+   "Because revisiting a cell is useful after acquiring a new key, your shortest-path state must include both your position and the set of collected keys.",
+   "Since there are at most `6` keys, represent the collected key set as a `k`-bit integer bitmask `(0 .. 2^k - 1)`.",
+   "Run Breadth-First Search over states `(row, col, keyMask)`. When stepping onto a key, set its bit in `keyMask`; stop as soon as `keyMask == (1 << k) - 1`."
+  ],
+  "timeComplexity": "O(m * n * 2^k)",
+  "spaceComplexity": "O(m * n * 2^k)",
+  "compare": "exact",
+  "examples": [
+   {
+    "input": "grid = [\"@.a..\",\"###.#\",\"b.A.B\"]",
+    "output": "8",
+    "explanation": "Move right to collect key 'a', go down through column 3, unlock 'A', and continue left to collect key 'b' in 8 moves total."
+   },
+   {
+    "input": "grid = [\"@..aA\",\"..B#.\",\"....b\"]",
+    "output": "6",
+    "explanation": "Walk right along row 0 to pick up 'a' and unlock 'A', then step down along column 4 to pick up 'b' in 6 moves."
+   },
+   {
+    "input": "grid = [\"@Aa\"]",
+    "output": "-1",
+    "explanation": "Lock 'A' blocks the only path to key 'a', making it impossible to collect all keys."
+   }
+  ],
+  "starterCode": {
+   "java": "class Solution {\n    public int shortestPathAllKeys(String[] grid) {\n        // Write your solution here\n        return 0;\n    }\n}\n",
+   "python": "class Solution:\n    def shortestPathAllKeys(self, grid: List[str]) -> int:\n        # Write your solution here\n        pass\n"
+  },
+  "solutionCode": {
+   "java": "class Solution {\n    public int shortestPathAllKeys(String[] grid) {\n        int m = grid.length;\n        int n = grid[0].length();\n        int sr = 0, sc = 0, keyCount = 0;\n\n        for (int r = 0; r < m; r++) {\n            for (int c = 0; c < n; c++) {\n                char ch = grid[r].charAt(c);\n                if (ch == '@') {\n                    sr = r;\n                    sc = c;\n                } else if (ch >= 'a' && ch <= 'f') {\n                    keyCount++;\n                }\n            }\n        }\n\n        int targetMask = (1 << keyCount) - 1;\n        boolean[][][] visited = new boolean[m][n][1 << keyCount];\n        visited[sr][sc][0] = true;\n\n        ArrayDeque<int[]> q = new ArrayDeque<>();\n        q.offer(new int[]{sr, sc, 0, 0});\n        int[][] dirs = {{-1, 0}, {1, 0}, {0, -1}, {0, 1}};\n\n        while (!q.isEmpty()) {\n            int[] cur = q.poll();\n            int r = cur[0], c = cur[1], mask = cur[2], steps = cur[3];\n            int ns = steps + 1;\n\n            for (int[] d : dirs) {\n                int nr = r + d[0], nc = c + d[1];\n                if (nr < 0 || nr >= m || nc < 0 || nc >= n) {\n                    continue;\n                }\n                char ch = grid[nr].charAt(nc);\n                if (ch == '#') {\n                    continue;\n                }\n                if (ch >= 'A' && ch <= 'F' && (mask & (1 << (ch - 'A'))) == 0) {\n                    continue;\n                }\n                int nmask = mask;\n                if (ch >= 'a' && ch <= 'f') {\n                    nmask |= (1 << (ch - 'a'));\n                    if (nmask == targetMask) {\n                        return ns;\n                    }\n                }\n                if (!visited[nr][nc][nmask]) {\n                    visited[nr][nc][nmask] = true;\n                    q.offer(new int[]{nr, nc, nmask, ns});\n                }\n            }\n        }\n        return -1;\n    }\n}\n",
+   "python": "class Solution:\n    def shortestPathAllKeys(self, grid: List[str]) -> int:\n        m, n = len(grid), len(grid[0])\n        sr = sc = 0\n        key_count = 0\n\n        for r in range(m):\n            for c in range(n):\n                ch = grid[r][c]\n                if ch == \"@\":\n                    sr, sc = r, c\n                elif \"a\" <= ch <= \"f\":\n                    key_count += 1\n\n        target_mask = (1 << key_count) - 1\n        visited = {(sr, sc, 0)}\n        q = deque([(sr, sc, 0, 0)])\n\n        while q:\n            r, c, mask, steps = q.popleft()\n            ns = steps + 1\n            for nr, nc in ((r - 1, c), (r + 1, c), (r, c - 1), (r, c + 1)):\n                if not (0 <= nr < m and 0 <= nc < n):\n                    continue\n                ch = grid[nr][nc]\n                if ch == \"#\":\n                    continue\n                if \"A\" <= ch <= \"F\" and not (mask & (1 << (ord(ch) - ord(\"A\")))):\n                    continue\n                nmask = mask\n                if \"a\" <= ch <= \"f\":\n                    nmask |= 1 << (ord(ch) - ord(\"a\"))\n                    if nmask == target_mask:\n                        return ns\n                state = (nr, nc, nmask)\n                if state not in visited:\n                    visited.add(state)\n                    q.append((nr, nc, nmask, ns))\n\n        return -1\n"
+  },
+  "sampleArray": [],
+  "visibleTestCount": 3,
+  "hiddenTestCount": 10,
+  "number": 6
+ },
+ {
+  "id": "find-the-city-threshold-distance",
+  "order": 7,
+  "topicId": "shortest-paths",
+  "topic": "Shortest Paths (Dijkstra)",
+  "title": "Find the City With the Smallest Number of Neighbors at a Threshold Distance",
+  "slug": "find-the-city-threshold-distance",
+  "difficulty": "Medium",
+  "subtopic": "Floyd-Warshall",
+  "companies": [
+   "Google",
+   "Amazon",
+   "Microsoft"
+  ],
+  "leetcode": null,
+  "description": "Given an undirected weighted graph, count for each city how many other cities are reachable with shortest-path distance at most `distanceThreshold`. Return the city with the fewest such neighbors; if there is a tie, return the city with the largest index.",
+  "constraints": [
+   "2 <= n <= 100",
+   "1 <= edges.length <= n*(n-1)/2",
+   "1 <= edge weight <= 1000",
+   "0 <= distanceThreshold <= 10^4"
+  ],
+  "hints": [
+   "Represent the graph with adjacency lists or a distance matrix appropriate to the limits.",
+   "Track shortest-distance states and respect all time or threshold rules."
+  ],
+  "timeComplexity": "O((V+E) log V)",
+  "spaceComplexity": "O(V+E)",
+  "compare": "exact",
+  "examples": [
+   {
+    "input": "n = 4, edges = [[0,1,3],[1,2,1],[1,3,4],[2,3,1]], distanceThreshold = 4",
+    "output": "3"
+   },
+   {
+    "input": "n = 5, edges = [[0,1,2],[0,4,8],[1,2,3],[1,4,2],[2,3,1],[3,4,1]], distanceThreshold = 2",
+    "output": "0"
+   },
+   {
+    "input": "n = 2, edges = [[0,1,1]], distanceThreshold = 0",
+    "output": "1"
+   }
+  ],
+  "starterCode": {
+   "java": "class Solution {\n    public int findTheCity(int n, int[][] edges, int distanceThreshold) {\n        // Write your solution here\n        return 0;\n    }\n}\n",
+   "python": "class Solution:\n    def findTheCity(self, n: int, edges: List[List[int]], distanceThreshold: int) -> int:\n        # Write your solution here\n        pass\n"
+  },
+  "solutionCode": {
+   "java": "class Solution { public int findTheCity(int n,int[][] e,int t) { int inf=1000000000;int[][] d=new int[n][n];for(int i=0;i<n;i++){Arrays.fill(d[i],inf);d[i][i]=0;}for(int[] x:e){d[x[0]][x[1]]=x[2];d[x[1]][x[0]]=x[2];}for(int k=0;k<n;k++)for(int i=0;i<n;i++)for(int j=0;j<n;j++)if(d[i][k]<inf&&d[k][j]<inf)d[i][j]=Math.min(d[i][j],d[i][k]+d[k][j]);int best=-1,min=Integer.MAX_VALUE;for(int i=0;i<n;i++){int c=0;for(int j=0;j<n;j++)if(i!=j&&d[i][j]<=t)c++;if(c<=min){min=c;best=i;}}return best;} }\n",
+   "python": "class Solution:\n    def findTheCity(self, n: int, edges: List[List[int]], distanceThreshold: int) -> int:\n        inf=10**9;d=[[inf]*n for _ in range(n)]\n        for i in range(n):d[i][i]=0\n        for a,b,w in edges:d[a][b]=d[b][a]=w\n        for k in range(n):\n            for i in range(n):\n                for j in range(n):d[i][j]=min(d[i][j],d[i][k]+d[k][j])\n        return min(range(n),key=lambda i:(sum(x<=distanceThreshold for j,x in enumerate(d[i]) if j!=i),-i))\n"
+  },
+  "sampleArray": [],
+  "visibleTestCount": 3,
+  "hiddenTestCount": 8,
+  "number": 7
+ },
+ {
+  "id": "second-minimum-time-to-reach-destination",
+  "order": 8,
+  "topicId": "shortest-paths",
+  "topic": "Shortest Paths (Dijkstra)",
+  "title": "Second Minimum Time to Reach Destination",
+  "slug": "second-minimum-time-to-reach-destination",
+  "difficulty": "Hard",
+  "subtopic": "Dijkstra",
+  "companies": [
+   "Google",
+   "Amazon",
+   "Microsoft"
+  ],
+  "leetcode": null,
+  "description": "An undirected connected graph has nodes 1 through `n`. Traversing any edge takes `time` minutes. At every node, the traffic signal alternates between green and red in intervals of `change` minutes; you may leave only when it is green, and you cannot wait voluntarily during green. Return the second distinct arrival time from node 1 to node n.",
+  "constraints": [
+   "2 <= n <= 10^4",
+   "edges form a connected simple graph",
+   "1 <= time, change <= 1000"
+  ],
+  "hints": [
+   "Represent the graph with adjacency lists or a distance matrix appropriate to the limits.",
+   "Track shortest-distance states and respect all time or threshold rules."
+  ],
+  "timeComplexity": "O((V+E) log V)",
+  "spaceComplexity": "O(V+E)",
+  "compare": "exact",
+  "examples": [
+   {
+    "input": "n = 5, edges = [[1,2],[1,3],[1,4],[3,4],[4,5]], time = 3, change = 5",
+    "output": "13"
+   },
+   {
+    "input": "n = 2, edges = [[1,2]], time = 3, change = 2",
+    "output": "11"
+   },
+   {
+    "input": "n = 3, edges = [[1,2],[2,3],[1,3]], time = 2, change = 3",
+    "output": "4"
+   }
+  ],
+  "starterCode": {
+   "java": "class Solution {\n    public int secondMinimum(int n, int[][] edges, int time, int change) {\n        // Write your solution here\n        return 0;\n    }\n}\n",
+   "python": "class Solution:\n    def secondMinimum(self, n: int, edges: List[List[int]], time: int, change: int) -> int:\n        # Write your solution here\n        pass\n"
+  },
+  "solutionCode": {
+   "java": "class Solution { public int secondMinimum(int n,int[][] e,int time,int change) { List<Integer>[] g=new List[n+1];for(int i=1;i<=n;i++)g[i]=new ArrayList<>();for(int[] x:e){g[x[0]].add(x[1]);g[x[1]].add(x[0]);}int[] a=new int[n+1],b=new int[n+1];Arrays.fill(a,-1);Arrays.fill(b,-1);ArrayDeque<int[]>q=new ArrayDeque<>();a[1]=0;q.add(new int[]{1,0});int steps=-1;while(!q.isEmpty()&&steps<0){int[] z=q.remove();for(int v:g[z[0]]){int d=z[1]+1;if(a[v]<0){a[v]=d;q.add(new int[]{v,d});}else if(b[v]<0&&d>a[v]){b[v]=d;if(v==n){steps=d;break;}q.add(new int[]{v,d});}}}int cur=0;for(int i=0;i<steps;i++){if((cur/change)%2==1)cur=((cur/change)+1)*change;cur+=time;}return cur;} }\n",
+   "python": "class Solution:\n    def secondMinimum(self, n: int, edges: List[List[int]], time: int, change: int) -> int:\n        g=[[] for _ in range(n+1)]\n        for a,b in edges:g[a].append(b);g[b].append(a)\n        first=[-1]*(n+1);second=[-1]*(n+1);q=deque([(1,0)]);first[1]=0;steps=None\n        while q:\n            u,d=q.popleft()\n            for v in g[u]:\n                nd=d+1\n                if first[v]<0:first[v]=nd;q.append((v,nd))\n                elif second[v]<0 and nd>first[v]:\n                    second[v]=nd\n                    if v==n:steps=nd;break\n                    q.append((v,nd))\n            if steps is not None:break\n        cur=0\n        for _ in range(steps):\n            if (cur//change)%2:cur=((cur//change)+1)*change\n            cur+=time\n        return cur\n"
+  },
+  "sampleArray": [],
+  "visibleTestCount": 3,
+  "hiddenTestCount": 8,
+  "number": 8
+ },
+ {
+  "id": "minimum-cost-to-reach-destination-in-time",
+  "order": 9,
+  "topicId": "shortest-paths",
+  "topic": "Shortest Paths (Dijkstra)",
+  "title": "Minimum Cost to Reach Destination in Time",
+  "slug": "minimum-cost-to-reach-destination-in-time",
+  "difficulty": "Hard",
+  "subtopic": "Dijkstra",
+  "companies": [
+   "Google",
+   "Amazon",
+   "Microsoft"
+  ],
+  "leetcode": null,
+  "description": "An undirected edge `[u,v,t]` takes `t` minutes to traverse. Visiting node `i` incurs `passingFees[i]`. Starting at node 0 at time 0, return the minimum total fee to reach node `n-1` within `maxTime`; return -1 if impossible. Fees are paid once each time a node is visited.",
+  "constraints": [
+   "2 <= passingFees.length <= 1000",
+   "1 <= maxTime <= 1000",
+   "1 <= passingFees[i] <= 1000",
+   "edges describe an undirected graph"
+  ],
+  "hints": [
+   "Represent the graph with adjacency lists or a distance matrix appropriate to the limits.",
+   "Track shortest-distance states and respect all time or threshold rules."
+  ],
+  "timeComplexity": "O((V+E) log V)",
+  "spaceComplexity": "O(V+E)",
+  "compare": "exact",
+  "examples": [
+   {
+    "input": "maxTime = 30, edges = [[0,1,10],[1,2,10],[2,5,10],[0,3,1],[3,4,10],[4,5,10],[0,5,100]], passingFees = [5,1,2,20,20,3]",
+    "output": "11"
+   },
+   {
+    "input": "maxTime = 10, edges = [[0,1,5],[1,2,5],[0,2,10]], passingFees = [1,2,3]",
+    "output": "4"
+   },
+   {
+    "input": "maxTime = 5, edges = [[0,1,10]], passingFees = [1,1]",
+    "output": "-1"
+   }
+  ],
+  "starterCode": {
+   "java": "class Solution {\n    public int minCost(int maxTime, int[][] edges, int[] passingFees) {\n        // Write your solution here\n        return 0;\n    }\n}\n",
+   "python": "class Solution:\n    def minCost(self, maxTime: int, edges: List[List[int]], passingFees: List[int]) -> int:\n        # Write your solution here\n        pass\n"
+  },
+  "solutionCode": {
+   "java": "class Solution { public int minCost(int mt,int[][] e,int[] f) { int n=f.length;List<int[]>[] g=new List[n];for(int i=0;i<n;i++)g[i]=new ArrayList<>();for(int[] x:e){g[x[0]].add(new int[]{x[1],x[2]});g[x[1]].add(new int[]{x[0],x[2]});}int[][] d=new int[mt+1][n];for(int[] r:d)Arrays.fill(r,Integer.MAX_VALUE);d[0][0]=f[0];PriorityQueue<int[]>q=new PriorityQueue<>((a,b)->Integer.compare(a[0],b[0]));q.add(new int[]{f[0],0,0});while(!q.isEmpty()){int[] z=q.remove();int c=z[0],t=z[1],u=z[2];if(c!=d[t][u])continue;if(u==n-1)return c;for(int[] x:g[u]){int nt=t+x[1],nc=c+f[x[0]];if(nt<=mt&&nc<d[nt][x[0]]){d[nt][x[0]]=nc;q.add(new int[]{nc,nt,x[0]});}}}return -1;} }\n",
+   "python": "class Solution:\n    def minCost(self, maxTime: int, edges: List[List[int]], passingFees: List[int]) -> int:\n        n=len(passingFees);g=[[] for _ in range(n)]\n        for a,b,t in edges:g[a].append((b,t));g[b].append((a,t))\n        inf=10**9;best=[[inf]*n for _ in range(maxTime+1)];best[0][0]=passingFees[0];q=[(passingFees[0],0,0)]\n        while q:\n            cost,t,u=heapq.heappop(q)\n            if cost!=best[t][u]:continue\n            if u==n-1:return cost\n            for v,w in g[u]:\n                nt=t+w\n                if nt<=maxTime and cost+passingFees[v]<best[nt][v]:best[nt][v]=cost+passingFees[v];heapq.heappush(q,(cost+passingFees[v],nt,v))\n        return -1\n"
+  },
+  "sampleArray": [
+   5,
+   1,
+   2,
+   20,
+   20,
+   3
+  ],
+  "visibleTestCount": 3,
+  "hiddenTestCount": 8,
+  "number": 9
+ },
+ {
+  "id": "count-shortest-routes",
+  "order": 10,
+  "topicId": "shortest-paths",
+  "topic": "Shortest Paths (Dijkstra)",
+  "title": "Count Shortest Routes",
+  "slug": "count-shortest-routes",
+  "difficulty": "Medium",
+  "subtopic": "Dijkstra",
+  "companies": [
+   "Google",
+   "Amazon",
+   "Microsoft"
+  ],
+  "leetcode": null,
+  "description": "An undirected connected graph has `n` vertices numbered 0 through `n-1`. Each road is `[u, v, time]` with positive travel time. Count the distinct shortest routes from vertex 0 to vertex `n-1`, modulo 1,000,000,007. Input: `n` and `roads`. Output: the route count.",
+  "constraints": [
+   "2 <= n <= 200",
+   "n-1 <= roads.length <= 10000",
+   "roads[i] = [u,v,time], 0 <= u,v < n, time > 0",
+   "The graph is connected and has no parallel roads"
+  ],
+  "hints": [
+   "Represent each edge as a transition whose cost matches the route rule.",
+   "Keep the best distance for each required state and ignore stale priority-queue entries."
+  ],
+  "timeComplexity": "O((n+m) log n)",
+  "spaceComplexity": "O(n+m)",
+  "compare": "exact",
+  "examples": [
+   {
+    "input": "n = 7, roads = [[0,6,7],[0,1,2],[1,2,3],[1,3,3],[6,3,3],[3,5,1],[6,5,1],[2,5,1],[0,4,5],[4,6,2]]",
+    "output": "4"
+   },
+   {
+    "input": "n = 2, roads = [[0,1,5]]",
+    "output": "1"
+   },
+   {
+    "input": "n = 2, roads = [[0,1,1]]",
+    "output": "1"
+   }
+  ],
+  "starterCode": {
+   "java": "class Solution {\n    public int countShortestRoutes(int n, int[][] roads) {\n        // Write your solution here\n        return 0;\n    }\n}\n",
+   "python": "class Solution:\n    def countShortestRoutes(self, n: int, roads: List[List[int]]) -> int:\n        # Write your solution here\n        pass\n"
+  },
+  "solutionCode": {
+   "java": "class Solution {\n    public int countShortestRoutes(int n, int[][] roads) {\n        int mod = 1000000007; List<int[]>[] graph = new ArrayList[n]; for (int i=0;i<n;i++) graph[i]=new ArrayList<>();\n        for (int[] e:roads) { graph[e[0]].add(new int[]{e[1],e[2]}); graph[e[1]].add(new int[]{e[0],e[2]}); }\n        long[] dist = new long[n]; Arrays.fill(dist,Long.MAX_VALUE); int[] ways = new int[n]; dist[0]=0; ways[0]=1;\n        PriorityQueue<long[]> pq = new PriorityQueue<>(Comparator.comparingLong(a->a[0])); pq.offer(new long[]{0,0});\n        while(!pq.isEmpty()) { long[] cur=pq.poll(); long d=cur[0]; int u=(int)cur[1]; if(d!=dist[u]) continue; for(int[] e:graph[u]) { int v=e[0]; long nd=d+e[1]; if(nd<dist[v]) { dist[v]=nd; ways[v]=ways[u]; pq.offer(new long[]{nd,v}); } else if(nd==dist[v]) ways[v]=(int)(((long)ways[v]+ways[u])%mod); } }\n        return ways[n-1];\n    }\n}\n",
+   "python": "class Solution:\n    def countShortestRoutes(self, n: int, roads: List[List[int]]) -> int:\n        graph = [[] for _ in range(n)]\n        for u, v, w in roads: graph[u].append((v,w)); graph[v].append((u,w))\n        dist = [float('inf')] * n; ways = [0] * n; dist[0] = 0; ways[0] = 1\n        heap = [(0,0)]; mod = 1000000007\n        while heap:\n            d,u = heappop(heap)\n            if d != dist[u]: continue\n            for v,w in graph[u]:\n                nd = d + w\n                if nd < dist[v]: dist[v] = nd; ways[v] = ways[u]; heappush(heap,(nd,v))\n                elif nd == dist[v]: ways[v] = (ways[v] + ways[u]) % mod\n        return ways[n-1]\n"
+  },
+  "sampleArray": [],
+  "visibleTestCount": 3,
+  "hiddenTestCount": 8,
+  "number": 10
+ },
+ {
+  "id": "maximum-probability-path",
+  "order": 11,
+  "topicId": "shortest-paths",
+  "topic": "Shortest Paths (Dijkstra)",
+  "title": "Maximum Probability Path",
+  "slug": "maximum-probability-path",
+  "difficulty": "Medium",
+  "subtopic": "Dijkstra",
+  "companies": [
+   "Google",
+   "Amazon",
+   "Microsoft"
+  ],
+  "leetcode": null,
+  "description": "An undirected graph has `n` vertices. Each edge `edges[i] = [u,v]` succeeds with probability `succProb[i]`. The probability of a path is the product of its edge probabilities. Return the maximum probability of reaching `end` from `start`, or 0 if no path exists. Input: `n`, `edges`, `succProb`, `start`, `end`. Output: the maximum probability.",
+  "constraints": [
+   "1 <= n <= 10000",
+   "0 <= edges.length <= 20000",
+   "0 <= succProb[i] <= 1",
+   "0 <= start,end < n",
+   "No parallel edges"
+  ],
+  "hints": [
+   "Represent each edge as a transition whose cost matches the route rule.",
+   "Keep the best distance for each required state and ignore stale priority-queue entries."
+  ],
+  "timeComplexity": "O((n+m) log n)",
+  "spaceComplexity": "O(n+m)",
+  "compare": "float",
+  "examples": [
+   {
+    "input": "n = 3, edges = [[0,1],[1,2],[0,2]], succProb = [0.5,0.5,0.2], start = 0, end = 2",
+    "output": "0.25"
+   },
+   {
+    "input": "n = 3, edges = [[0,1]], succProb = [0.5], start = 0, end = 2",
+    "output": "0.0"
+   },
+   {
+    "input": "n = 1, edges = [], succProb = [], start = 0, end = 0",
+    "output": "1.0"
+   }
+  ],
+  "starterCode": {
+   "java": "class Solution {\n    public double maxProbability(int n, int[][] edges, double[] succProb, int start, int end) {\n        // Write your solution here\n        return 0.0;\n    }\n}\n",
+   "python": "class Solution:\n    def maxProbability(self, n: int, edges: List[List[int]], succProb: List[float], start: int, end: int) -> float:\n        # Write your solution here\n        pass\n"
+  },
+  "solutionCode": {
+   "java": "class Solution {\n    public double maxProbability(int n, int[][] edges, double[] succProb, int start, int end) {\n        List<double[]>[] graph=new ArrayList[n]; for(int i=0;i<n;i++) graph[i]=new ArrayList<>();\n        for(int i=0;i<edges.length;i++){int u=edges[i][0],v=edges[i][1]; graph[u].add(new double[]{v,succProb[i]}); graph[v].add(new double[]{u,succProb[i]});}\n        double[] best=new double[n]; best[start]=1.0; PriorityQueue<double[]> pq=new PriorityQueue<>((a,b)->Double.compare(b[0],a[0])); pq.offer(new double[]{1.0,start});\n        while(!pq.isEmpty()){double[] cur=pq.poll(); double p=cur[0]; int u=(int)cur[1]; if(p<best[u])continue; if(u==end)return p; for(double[] e:graph[u]){int v=(int)e[0]; double cand=p*e[1]; if(cand>best[v]){best[v]=cand;pq.offer(new double[]{cand,v});}}}\n        return 0.0;\n    }\n}\n",
+   "python": "class Solution:\n    def maxProbability(self, n: int, edges: List[List[int]], succProb: List[float], start: int, end: int) -> float:\n        graph=[[] for _ in range(n)]\n        for (u,v),p in zip(edges,succProb): graph[u].append((v,p)); graph[v].append((u,p))\n        best=[0.0]*n; best[start]=1.0; heap=[(-1.0,start)]\n        while heap:\n            neg,u=heappop(heap); prob=-neg\n            if prob < best[u]: continue\n            if u==end: return prob\n            for v,p in graph[u]:\n                cand=prob*p\n                if cand>best[v]: best[v]=cand; heappush(heap,(-cand,v))\n        return 0.0\n"
+  },
+  "sampleArray": [],
+  "visibleTestCount": 3,
+  "hiddenTestCount": 8,
+  "number": 11
+ },
+ {
+  "id": "shortest-route-with-one-discount",
+  "order": 12,
+  "topicId": "shortest-paths",
+  "topic": "Shortest Paths (Dijkstra)",
+  "title": "Shortest Route With One Discount",
+  "slug": "shortest-route-with-one-discount",
+  "difficulty": "Medium",
+  "subtopic": "Dijkstra",
+  "companies": [
+   "Google",
+   "Amazon",
+   "Microsoft"
+  ],
+  "leetcode": null,
+  "description": "An undirected connected graph has `n` vertices and positive weighted edges `[u,v,cost]`. Travel costs `cost`, except that you may choose at most one edge on your route and pay `floor(cost/2)` for it. Return the minimum possible cost from `source` to `destination`. Input: `n`, `edges`, `source`, `destination`. Output: the minimum cost.",
+  "constraints": [
+   "2 <= n <= 10000",
+   "n-1 <= edges.length <= 50000",
+   "1 <= cost <= 1000000000",
+   "The graph is connected and has no parallel edges"
+  ],
+  "hints": [
+   "Represent each edge as a transition whose cost matches the route rule.",
+   "Keep the best distance for each required state and ignore stale priority-queue entries."
+  ],
+  "timeComplexity": "O((n+m) log n)",
+  "spaceComplexity": "O(n+m)",
+  "compare": "exact",
+  "examples": [
+   {
+    "input": "n = 3, edges = [[0,1,6],[1,2,6],[0,2,20]], source = 0, destination = 2",
+    "output": "9"
+   },
+   {
+    "input": "n = 2, edges = [[0,1,7]], source = 0, destination = 1",
+    "output": "3"
+   },
+   {
+    "input": "n = 2, edges = [[0,1,1]], source = 0, destination = 1",
+    "output": "0"
+   }
+  ],
+  "starterCode": {
+   "java": "class Solution {\n    public long minimumCostWithDiscount(int n, int[][] edges, int source, int destination) {\n        // Write your solution here\n        return 0;\n    }\n}\n",
+   "python": "class Solution:\n    def minimumCostWithDiscount(self, n: int, edges: List[List[int]], source: int, destination: int) -> int:\n        # Write your solution here\n        pass\n"
+  },
+  "solutionCode": {
+   "java": "class Solution {\n    public long minimumCostWithDiscount(int n, int[][] edges, int source, int destination) {\n        List<long[]>[] g=new ArrayList[n]; for(int i=0;i<n;i++)g[i]=new ArrayList<>();\n        for(int[] e:edges){g[e[0]].add(new long[]{e[1],e[2]});g[e[1]].add(new long[]{e[0],e[2]});}\n        long[][] d=new long[n][2]; for(long[] row:d)Arrays.fill(row,Long.MAX_VALUE); d[source][0]=0; PriorityQueue<long[]> pq=new PriorityQueue<>(Comparator.comparingLong(a->a[0])); pq.offer(new long[]{0,source,0});\n        while(!pq.isEmpty()){long[] c=pq.poll();long cost=c[0];int u=(int)c[1],used=(int)c[2];if(cost!=d[u][used])continue;if(u==destination)return cost;for(long[] e:g[u]){int v=(int)e[0];long w=e[1];if(cost+w<d[v][used]){d[v][used]=cost+w;pq.offer(new long[]{cost+w,v,used});}if(used==0&&cost+w/2<d[v][1]){d[v][1]=cost+w/2;pq.offer(new long[]{cost+w/2,v,1});}}}\n        return -1;\n    }\n}\n",
+   "python": "class Solution:\n    def minimumCostWithDiscount(self, n: int, edges: List[List[int]], source: int, destination: int) -> int:\n        graph=[[] for _ in range(n)]\n        for u,v,w in edges: graph[u].append((v,w)); graph[v].append((u,w))\n        inf=10**30; dist=[[inf,inf] for _ in range(n)]; dist[source][0]=0; heap=[(0,source,0)]\n        while heap:\n            d,u,used=heappop(heap)\n            if d!=dist[u][used]: continue\n            if u==destination: return d\n            for v,w in graph[u]:\n                if d+w<dist[v][used]: dist[v][used]=d+w; heappush(heap,(d+w,v,used))\n                if not used and d+w//2<dist[v][1]: dist[v][1]=d+w//2; heappush(heap,(d+w//2,v,1))\n        return -1\n"
+  },
+  "sampleArray": [],
+  "visibleTestCount": 3,
+  "hiddenTestCount": 8,
+  "number": 12
+ },
+ {
+  "id": "bellman-ford-distance-list",
+  "order": 13,
+  "topicId": "shortest-paths",
+  "topic": "Shortest Paths (Dijkstra)",
+  "title": "Bellman-Ford Distance List",
+  "slug": "bellman-ford-distance-list",
+  "difficulty": "Medium",
+  "subtopic": "Bellman-Ford",
+  "companies": [
+   "Google",
+   "Amazon",
+   "Microsoft"
+  ],
+  "leetcode": null,
+  "description": "A directed weighted graph has vertices `0..n-1` and edges `[u,v,w]`; edge weights may be negative. There are no negative-weight cycles reachable from `source`. Return the shortest distance from `source` to every vertex, using -1 for unreachable vertices. Input: `n`, `edges`, `source`. Output: a distance array.",
+  "constraints": [
+   "1 <= n <= 1000",
+   "0 <= edges.length <= 10000",
+   "-100000 <= w <= 100000",
+   "No negative cycle is reachable from source; all shortest distances fit in signed 32-bit range"
+  ],
+  "hints": [
+   "Represent each edge as a transition whose cost matches the route rule.",
+   "Keep the best distance for each required state and ignore stale priority-queue entries."
+  ],
+  "timeComplexity": "O(n*m)",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "examples": [
+   {
+    "input": "n = 5, edges = [[0,1,6],[0,2,7],[1,2,8],[1,3,5],[1,4,-4],[2,3,-3],[2,4,9],[3,1,-2],[4,0,2],[4,3,7]], source = 0",
+    "output": "[0,2,7,4,-2]"
+   },
+   {
+    "input": "n = 3, edges = [[0,1,4]], source = 0",
+    "output": "[0,4,-1]"
+   },
+   {
+    "input": "n = 1, edges = [], source = 0",
+    "output": "[0]"
+   }
+  ],
+  "starterCode": {
+   "java": "class Solution {\n    public long[] bellmanFord(int n, int[][] edges, int source) {\n        // Write your solution here\n        return null;\n    }\n}\n",
+   "python": "class Solution:\n    def bellmanFord(self, n: int, edges: List[List[int]], source: int) -> List[int]:\n        # Write your solution here\n        pass\n"
+  },
+  "solutionCode": {
+   "java": "class Solution {\n    public long[] bellmanFord(int n, int[][] edges, int source) {\n        long inf=Long.MAX_VALUE/4; long[] d=new long[n]; Arrays.fill(d,inf); d[source]=0;\n        for(int pass=0;pass<n-1;pass++){boolean changed=false;for(int[] e:edges)if(d[e[0]]!=inf&&d[e[0]]+e[2]<d[e[1]]){d[e[1]]=d[e[0]]+e[2];changed=true;}if(!changed)break;}\n        for(int i=0;i<n;i++)if(d[i]==inf)d[i]=-1; return d;\n    }\n}\n",
+   "python": "class Solution:\n    def bellmanFord(self, n: int, edges: List[List[int]], source: int) -> List[int]:\n        inf=10**30; dist=[inf]*n; dist[source]=0\n        for _ in range(n-1):\n            changed=False\n            for u,v,w in edges:\n                if dist[u]!=inf and dist[u]+w<dist[v]: dist[v]=dist[u]+w; changed=True\n            if not changed: break\n        return [-1 if x==inf else x for x in dist]\n"
+  },
+  "sampleArray": [],
+  "visibleTestCount": 3,
+  "hiddenTestCount": 8,
+  "number": 13
+ },
+ {
+  "id": "minimum-edge-reversals-from-source",
+  "order": 14,
+  "topicId": "shortest-paths",
+  "topic": "Shortest Paths (Dijkstra)",
+  "title": "Minimum Edge Reversals From Source",
+  "slug": "minimum-edge-reversals-from-source",
+  "difficulty": "Medium",
+  "subtopic": "Dijkstra",
+  "companies": [
+   "Google",
+   "Amazon",
+   "Microsoft"
+  ],
+  "leetcode": null,
+  "description": "Each directed edge `[u,v]` can be traversed from `u` to `v` at cost 0, or from `v` to `u` after reversing it at cost 1. For every vertex, find the minimum number of edge reversals needed for a route from `source`; return -1 when no route exists even after reversals. Input: `n`, `directedEdges`, `source`. Output: one minimum cost per vertex.",
+  "constraints": [
+   "1 <= n <= 10000",
+   "0 <= directedEdges.length <= 50000",
+   "0 <= u,v < n and u != v",
+   "There are no duplicate directed edges"
+  ],
+  "hints": [
+   "Represent each edge as a transition whose cost matches the route rule.",
+   "Keep the best distance for each required state and ignore stale priority-queue entries."
+  ],
+  "timeComplexity": "O((n+m) log n)",
+  "spaceComplexity": "O(n+m)",
+  "compare": "exact",
+  "examples": [
+   {
+    "input": "n = 4, directedEdges = [[0,1],[2,1],[2,3]], source = 0",
+    "output": "[0,0,1,1]"
+   },
+   {
+    "input": "n = 3, directedEdges = [[1,2]], source = 0",
+    "output": "[0,-1,-1]"
+   },
+   {
+    "input": "n = 1, directedEdges = [], source = 0",
+    "output": "[0]"
+   }
+  ],
+  "starterCode": {
+   "java": "class Solution {\n    public int[] minimumReversalsFromSource(int n, int[][] directedEdges, int source) {\n        // Write your solution here\n        return null;\n    }\n}\n",
+   "python": "class Solution:\n    def minimumReversalsFromSource(self, n: int, directedEdges: List[List[int]], source: int) -> List[int]:\n        # Write your solution here\n        pass\n"
+  },
+  "solutionCode": {
+   "java": "class Solution {\n    public int[] minimumReversalsFromSource(int n, int[][] directedEdges, int source) {\n        List<int[]>[] g=new ArrayList[n];for(int i=0;i<n;i++)g[i]=new ArrayList<>();\n        for(int[] e:directedEdges){g[e[0]].add(new int[]{e[1],0});g[e[1]].add(new int[]{e[0],1});}\n        int inf=1000000000;int[] d=new int[n];Arrays.fill(d,inf);d[source]=0;PriorityQueue<int[]> pq=new PriorityQueue<>(Comparator.comparingInt(a->a[0]));pq.offer(new int[]{0,source});\n        while(!pq.isEmpty()){int[] c=pq.poll();int cost=c[0],u=c[1];if(cost!=d[u])continue;for(int[] e:g[u])if(cost+e[1]<d[e[0]]){d[e[0]]=cost+e[1];pq.offer(new int[]{d[e[0]],e[0]});}}\n        for(int i=0;i<n;i++)if(d[i]==inf)d[i]=-1;return d;\n    }\n}\n",
+   "python": "class Solution:\n    def minimumReversalsFromSource(self, n: int, directedEdges: List[List[int]], source: int) -> List[int]:\n        g=[[] for _ in range(n)]\n        for u,v in directedEdges: g[u].append((v,0)); g[v].append((u,1))\n        inf=10**9; dist=[inf]*n; dist[source]=0; heap=[(0,source)]\n        while heap:\n            d,u=heappop(heap)\n            if d!=dist[u]:continue\n            for v,w in g[u]:\n                if d+w<dist[v]:dist[v]=d+w;heappush(heap,(d+w,v))\n        return [-1 if x==inf else x for x in dist]\n"
+  },
+  "sampleArray": [],
+  "visibleTestCount": 3,
+  "hiddenTestCount": 8,
+  "number": 14
+ }
+]

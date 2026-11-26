@@ -1,0 +1,45 @@
+{
+  "title": "Special Binary String Rearrangement",
+  "difficulty": "Hard",
+  "subtopic": "Valid Parentheses",
+  "companies": [
+    "Google",
+    "Meta",
+    "Amazon",
+    "Uber"
+  ],
+  "description": "A **special binary string** is a binary string with the following two properties:\n1. The number of `'0'`s equals the number of `'1'`s.\n2. Every prefix of the string has at least as many `'1'`s as `'0'`s (equivalently, treating `'1'` as `'('` and `'0'` as `')'`, it is a valid balanced parentheses string).\n\nGiven a special binary string `s`, in one move you may choose two consecutive, non-empty special substrings of `s` and swap them. Return the **lexicographically largest** string obtainable after any number of moves.",
+  "constraints": [
+    "2 <= s.length <= 200",
+    "s is guaranteed to be a valid special binary string."
+  ],
+  "hints": [
+    "Every special binary string decomposes into a sequence of irreducible mountain blocks of the form '1' + inner + '0'.",
+    "Use a stack of child lists to iteratively optimize every nested level: on '1' push a new frame; on '0' pop the frame, sort its child blocks in descending lexicographical order, wrap them in '1'...'0', and append to the parent frame."
+  ],
+  "examples": [
+    {
+      "explanation": "Inside the outer '1'...'0', the two adjacent special substrings \"10\" and \"1100\" swap to produce \"11100100\"."
+    },
+    {
+      "explanation": "\"10\" has only one irreducible block, so it remains \"10\"."
+    },
+    {
+      "explanation": "Top-level blocks \"10\" and \"1100\" swap to form \"110010\"."
+    }
+  ],
+  "timeComplexity": "O(n^2 log n)",
+  "spaceComplexity": "O(n^2)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "makeLargestSpecial",
+    "params": [
+      {
+        "name": "s",
+        "type": "String"
+      }
+    ],
+    "returns": "String"
+  }
+}

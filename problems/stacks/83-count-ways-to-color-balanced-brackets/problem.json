@@ -1,0 +1,45 @@
+{
+  "title": "Count Ways to Color Balanced Brackets",
+  "difficulty": "Hard",
+  "subtopic": "Valid Parentheses",
+  "companies": [
+    "Google",
+    "Meta",
+    "Goldman Sachs",
+    "Uber"
+  ],
+  "description": "You are given a valid balanced parentheses string `s` consisting of `'('` and `')'`. You must assign each character `s[i]` a color from `{0, 1, 2}` (`0` = uncolored, `1` = red, `2` = blue) subject to two rules:\n1. For every matched pair `( ... )`, **exactly one** of its two brackets is colored (`1` or `2`) and the other is uncolored (`0`).\n2. No two **adjacent** characters `s[i]` and `s[i + 1]` may have the same non-zero color (adjacent `0` and `0` is allowed).\n\nReturn the total number of valid colorings modulo `10^9 + 7`.",
+  "constraints": [
+    "2 <= s.length <= 1000",
+    "s is guaranteed to be a valid balanced parentheses string."
+  ],
+  "hints": [
+    "Every balanced string is a forest of irreducible blocks `(inner)`; maintain a 3x3 DP table `dp[leftColor][rightColor]` counting valid colorings of a segment by its first and last bracket colors.",
+    "Use a stack of level DP tables: push `None` on `'('`, and on `')'` pop the inner table, wrap it into the 4 valid outer `(cL, cR)` colorings respecting adjacency to the inner endpoints, then merge the resulting block onto the parent level's table."
+  ],
+  "examples": [
+    {
+      "explanation": "A single pair \"()\" has 4 valid colorings: (0,1), (0,2), (1,0), and (2,0)."
+    },
+    {
+      "explanation": "In \"(())\", each of the 4 outer colorings forbids exactly 1 of the 4 inner colorings, giving 4 * 3 = 12 ways."
+    },
+    {
+      "explanation": "\"(()())\" has 14 inner ways for \"()()\", and each of the 4 outer colorings is compatible with 10 of them, totaling 40 ways."
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "countBracketColorings",
+    "params": [
+      {
+        "name": "s",
+        "type": "String"
+      }
+    ],
+    "returns": "int"
+  }
+}

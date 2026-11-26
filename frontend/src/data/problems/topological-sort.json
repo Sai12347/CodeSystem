@@ -1,0 +1,550 @@
+[
+ {
+  "id": "course-schedule",
+  "order": 1,
+  "topicId": "topological-sort",
+  "topic": "Topological Sort & DAGs",
+  "title": "Course Schedule",
+  "slug": "course-schedule",
+  "difficulty": "Medium",
+  "subtopic": "Kahn Algorithm",
+  "companies": [
+   "Amazon",
+   "Google",
+   "Microsoft"
+  ],
+  "leetcode": null,
+  "description": "There are `numCourses` courses numbered from 0. Each pair `[a,b]` means course `b` must be completed before course `a`. Return true if it is possible to complete every course.",
+  "constraints": [
+   "1 <= numCourses <= 2000",
+   "0 <= prerequisites.length <= 5000"
+  ],
+  "hints": [
+   "Represent prerequisites as directed edges and process zero in-degree vertices.",
+   "A cycle prevents a complete ordering; unique orderings require a single available choice at each step."
+  ],
+  "timeComplexity": "O(V+E)",
+  "spaceComplexity": "O(V+E)",
+  "compare": "exact",
+  "examples": [
+   {
+    "input": "numCourses = 2, prerequisites = [[1,0]]",
+    "output": "true"
+   },
+   {
+    "input": "numCourses = 2, prerequisites = [[1,0],[0,1]]",
+    "output": "false"
+   },
+   {
+    "input": "numCourses = 1, prerequisites = []",
+    "output": "true"
+   }
+  ],
+  "starterCode": {
+   "java": "class Solution {\n    public boolean canFinish(int numCourses, int[][] prerequisites) {\n        // Write your solution here\n        return false;\n    }\n}\n",
+   "python": "class Solution:\n    def canFinish(self, numCourses: int, prerequisites: List[List[int]]) -> bool:\n        # Write your solution here\n        pass\n"
+  },
+  "solutionCode": {
+   "java": "class Solution { public boolean canFinish(int n,int[][] p) { List<Integer>[] g=new List[n];for(int i=0;i<n;i++)g[i]=new ArrayList<>();int[] d=new int[n];for(int[] e:p){g[e[1]].add(e[0]);d[e[0]]++;}ArrayDeque<Integer> q=new ArrayDeque<>();for(int i=0;i<n;i++)if(d[i]==0)q.add(i);int seen=0;while(!q.isEmpty()){int u=q.remove();seen++;for(int v:g[u])if(--d[v]==0)q.add(v);}return seen==n;} }\n",
+   "python": "class Solution:\n    def canFinish(self, numCourses: int, prerequisites: List[List[int]]) -> bool:\n        g=[[] for _ in range(numCourses)]; d=[0]*numCourses\n        for a,b in prerequisites:g[b].append(a);d[a]+=1\n        q=deque(i for i,x in enumerate(d) if x==0); seen=0\n        while q:\n            u=q.popleft();seen+=1\n            for v in g[u]:\n                d[v]-=1\n                if d[v]==0:q.append(v)\n        return seen==numCourses\n"
+  },
+  "sampleArray": [],
+  "visibleTestCount": 3,
+  "hiddenTestCount": 8,
+  "number": 1
+ },
+ {
+  "id": "course-schedule-ii",
+  "order": 2,
+  "topicId": "topological-sort",
+  "topic": "Topological Sort & DAGs",
+  "title": "Course Schedule II",
+  "slug": "course-schedule-ii",
+  "difficulty": "Medium",
+  "subtopic": "Kahn Algorithm",
+  "companies": [
+   "Amazon",
+   "Google",
+   "Microsoft"
+  ],
+  "leetcode": null,
+  "description": "Return an ordering of all courses that satisfies the prerequisite pairs `[course, prerequisite]`. If multiple valid orders exist, return the lexicographically smallest one. Return an empty array if no valid ordering exists.",
+  "constraints": [
+   "1 <= numCourses <= 2000",
+   "0 <= prerequisites.length <= 5000"
+  ],
+  "hints": [
+   "Represent prerequisites as directed edges and process zero in-degree vertices.",
+   "A cycle prevents a complete ordering; unique orderings require a single available choice at each step."
+  ],
+  "timeComplexity": "O(V+E)",
+  "spaceComplexity": "O(V+E)",
+  "compare": "exact",
+  "examples": [
+   {
+    "input": "numCourses = 2, prerequisites = [[1,0]]",
+    "output": "[0,1]"
+   },
+   {
+    "input": "numCourses = 4, prerequisites = [[1,0],[2,0],[3,1],[3,2]]",
+    "output": "[0,1,2,3]"
+   },
+   {
+    "input": "numCourses = 1, prerequisites = []",
+    "output": "[0]"
+   }
+  ],
+  "starterCode": {
+   "java": "class Solution {\n    public int[] findOrder(int numCourses, int[][] prerequisites) {\n        // Write your solution here\n        return null;\n    }\n}\n",
+   "python": "class Solution:\n    def findOrder(self, numCourses: int, prerequisites: List[List[int]]) -> List[int]:\n        # Write your solution here\n        pass\n"
+  },
+  "solutionCode": {
+   "java": "class Solution { public int[] findOrder(int n,int[][] p) { List<Integer>[] g=new List[n];for(int i=0;i<n;i++)g[i]=new ArrayList<>();int[] d=new int[n];for(int[] e:p){g[e[1]].add(e[0]);d[e[0]]++;}PriorityQueue<Integer> q=new PriorityQueue<>();for(int i=0;i<n;i++)if(d[i]==0)q.add(i);int[] out=new int[n];int k=0;while(!q.isEmpty()){int u=q.remove();out[k++]=u;for(int v:g[u])if(--d[v]==0)q.add(v);}return k==n?out:new int[0];} }\n",
+   "python": "class Solution:\n    def findOrder(self, numCourses: int, prerequisites: List[List[int]]) -> List[int]:\n        g=[[] for _ in range(numCourses)];d=[0]*numCourses\n        for a,b in prerequisites:g[b].append(a);d[a]+=1\n        q=[i for i,x in enumerate(d) if x==0];heapq.heapify(q);out=[]\n        while q:\n            u=heapq.heappop(q);out.append(u)\n            for v in g[u]:\n                d[v]-=1\n                if d[v]==0:heapq.heappush(q,v)\n        return out if len(out)==numCourses else []\n"
+  },
+  "sampleArray": [],
+  "visibleTestCount": 3,
+  "hiddenTestCount": 8,
+  "number": 2
+ },
+ {
+  "id": "alien-dictionary",
+  "order": 3,
+  "topicId": "topological-sort",
+  "topic": "Topological Sort & DAGs",
+  "title": "Verify Alien Word Ordering",
+  "slug": "alien-dictionary",
+  "difficulty": "Medium",
+  "subtopic": "Alien Dictionary",
+  "companies": [
+   "Amazon",
+   "Google",
+   "Microsoft"
+  ],
+  "leetcode": null,
+  "description": "The string `order` lists the characters of an alien alphabet from smallest to largest. Return true if `words` is sorted lexicographically according to that alphabet. A word that is a prefix of another must come first.",
+  "constraints": [
+   "1 <= words.length <= 100",
+   "1 <= words[i].length <= 20",
+   "order is a permutation of lowercase English letters"
+  ],
+  "hints": [
+   "Represent prerequisites as directed edges and process zero in-degree vertices.",
+   "A cycle prevents a complete ordering; unique orderings require a single available choice at each step."
+  ],
+  "timeComplexity": "O(V+E)",
+  "spaceComplexity": "O(V+E)",
+  "compare": "exact",
+  "examples": [
+   {
+    "input": "words = [\"hello\",\"leetcode\"], order = \"hlabcdefgijkmnopqrstuvwxyz\"",
+    "output": "true"
+   },
+   {
+    "input": "words = [\"word\",\"world\",\"row\"], order = \"worldabcefghijkmnpqstuvxyz\"",
+    "output": "false"
+   },
+   {
+    "input": "words = [\"apple\",\"app\"], order = \"abcdefghijklmnopqrstuvwxyz\"",
+    "output": "false"
+   }
+  ],
+  "starterCode": {
+   "java": "class Solution {\n    public boolean isAlienSorted(String[] words, String order) {\n        // Write your solution here\n        return false;\n    }\n}\n",
+   "python": "class Solution:\n    def isAlienSorted(self, words: List[str], order: str) -> bool:\n        # Write your solution here\n        pass\n"
+  },
+  "solutionCode": {
+   "java": "class Solution { public boolean isAlienSorted(String[] w,String o) { int[] r=new int[26];for(int i=0;i<26;i++)r[o.charAt(i)-'a']=i;for(int k=1;k<w.length;k++){String a=w[k-1],b=w[k];int i=0;while(i<a.length()&&i<b.length()&&a.charAt(i)==b.charAt(i))i++;if(i==b.length()&&a.length()>b.length())return false;if(i<a.length()&&i<b.length()&&r[a.charAt(i)-'a']>r[b.charAt(i)-'a'])return false;}return true;} }\n",
+   "python": "class Solution:\n    def isAlienSorted(self, words: List[str], order: str) -> bool:\n        rank={c:i for i,c in enumerate(order)}\n        for a,b in zip(words,words[1:]):\n            i=0\n            while i<min(len(a),len(b)) and a[i]==b[i]:i+=1\n            if i==len(b) and len(a)>len(b):return False\n            if i<min(len(a),len(b)) and rank[a[i]]>rank[b[i]]:return False\n        return True\n"
+  },
+  "sampleArray": [],
+  "visibleTestCount": 3,
+  "hiddenTestCount": 8,
+  "number": 3
+ },
+ {
+  "id": "minimum-height-trees",
+  "order": 4,
+  "topicId": "topological-sort",
+  "topic": "Topological Sort & DAGs",
+  "title": "Minimum Height Trees",
+  "slug": "minimum-height-trees",
+  "difficulty": "Medium",
+  "subtopic": "In-Degree BFS",
+  "companies": [
+   "Amazon",
+   "Google",
+   "Microsoft"
+  ],
+  "leetcode": null,
+  "description": "Given an undirected tree with nodes numbered from 0 to `n - 1`, return all node labels that can be chosen as a root to produce a tree of minimum height. Return labels in increasing order.",
+  "constraints": [
+   "1 <= n <= 2 * 10^4",
+   "edges.length == n - 1",
+   "The input forms a connected tree"
+  ],
+  "hints": [
+   "A tree’s height is minimized when rooted at one of its center nodes.",
+   "Repeatedly remove all current leaves until one or two nodes remain."
+  ],
+  "timeComplexity": "O(V+E)",
+  "spaceComplexity": "O(V+E)",
+  "compare": "exact",
+  "examples": [
+   {
+    "input": "n = 4, edges = [[1,0],[1,2],[1,3]]",
+    "output": "[1]"
+   },
+   {
+    "input": "n = 6, edges = [[3,0],[3,1],[3,2],[3,4],[5,4]]",
+    "output": "[3,4]"
+   },
+   {
+    "input": "n = 1, edges = []",
+    "output": "[0]"
+   }
+  ],
+  "starterCode": {
+   "java": "class Solution {\n    public List<Integer> findMinHeightTrees(int n, int[][] edges) {\n        // Write your solution here\n        return null;\n    }\n}\n",
+   "python": "class Solution:\n    def findMinHeightTrees(self, n: int, edges: List[List[int]]) -> List[int]:\n        # Write your solution here\n        pass\n"
+  },
+  "solutionCode": {
+   "java": "class Solution { public List<Integer> findMinHeightTrees(int n,int[][] e) { if(n<=2){List<Integer>a=new ArrayList<>();for(int i=0;i<n;i++)a.add(i);return a;}List<Set<Integer>>g=new ArrayList<>();for(int i=0;i<n;i++)g.add(new HashSet<>());for(int[] x:e){g.get(x[0]).add(x[1]);g.get(x[1]).add(x[0]);}List<Integer> q=new ArrayList<>();for(int i=0;i<n;i++)if(g.get(i).size()==1)q.add(i);int left=n;while(left>2){left-=q.size();List<Integer> z=new ArrayList<>();for(int u:q){int v=g.get(u).iterator().next();g.get(v).remove(u);g.get(u).clear();if(g.get(v).size()==1)z.add(v);}q=z;}Collections.sort(q);return q;} }\n",
+   "python": "class Solution:\n    def findMinHeightTrees(self, n: int, edges: List[List[int]]) -> List[int]:\n        if n<=2:return list(range(n))\n        g=[set() for _ in range(n)]\n        for a,b in edges:g[a].add(b);g[b].add(a)\n        leaves=[i for i in range(n) if len(g[i])==1];left=n\n        while left>2:\n            left-=len(leaves); nxt=[]\n            for u in leaves:\n                v=g[u].pop();g[v].remove(u)\n                if len(g[v])==1:nxt.append(v)\n            leaves=nxt\n        return sorted(leaves)\n"
+  },
+  "sampleArray": [],
+  "visibleTestCount": 3,
+  "hiddenTestCount": 8,
+  "number": 4
+ },
+ {
+  "id": "sequence-reconstruction",
+  "order": 5,
+  "topicId": "topological-sort",
+  "topic": "Topological Sort & DAGs",
+  "title": "Sequence Reconstruction",
+  "slug": "sequence-reconstruction",
+  "difficulty": "Medium",
+  "subtopic": "In-Degree BFS",
+  "companies": [
+   "Amazon",
+   "Google",
+   "Microsoft"
+  ],
+  "leetcode": null,
+  "description": "Each sequence contains labels from 1 through `n`. Return true if `nums` is the only possible shortest common supersequence of all sequences, meaning the directed ordering constraints determine every adjacent pair in `nums` uniquely. Otherwise return false.",
+  "constraints": [
+   "1 <= nums.length <= 10^4",
+   "Each sequence value is in [1, nums.length]"
+  ],
+  "hints": [
+   "Represent prerequisites as directed edges and process zero in-degree vertices.",
+   "A cycle prevents a complete ordering; unique orderings require a single available choice at each step."
+  ],
+  "timeComplexity": "O(V+E)",
+  "spaceComplexity": "O(V+E)",
+  "compare": "exact",
+  "examples": [
+   {
+    "input": "nums = [1,2,3], sequences = [[1,2],[1,3]]",
+    "output": "false"
+   },
+   {
+    "input": "nums = [1,2,3], sequences = [[1,2],[2,3]]",
+    "output": "true"
+   },
+   {
+    "input": "nums = [1], sequences = [[1]]",
+    "output": "true"
+   }
+  ],
+  "starterCode": {
+   "java": "class Solution {\n    public boolean sequenceReconstruction(int[] nums, int[][] sequences) {\n        // Write your solution here\n        return false;\n    }\n}\n",
+   "python": "class Solution:\n    def sequenceReconstruction(self, nums: List[int], sequences: List[List[int]]) -> bool:\n        # Write your solution here\n        pass\n"
+  },
+  "solutionCode": {
+   "java": "class Solution { public boolean sequenceReconstruction(int[] nums,int[][] seqs) { int n=nums.length;List<Set<Integer>>g=new ArrayList<>();for(int i=0;i<=n;i++)g.add(new HashSet<>());int[] d=new int[n+1];boolean[] seen=new boolean[n+1];for(int[] s:seqs){for(int x:s)seen[x]=true;for(int i=1;i<s.length;i++)if(g.get(s[i-1]).add(s[i]))d[s[i]]++;}for(int i=1;i<=n;i++)if(!seen[i])return false;ArrayDeque<Integer>q=new ArrayDeque<>();for(int i=1;i<=n;i++)if(d[i]==0)q.add(i);int k=0;while(!q.isEmpty()){if(q.size()!=1)return false;int u=q.remove();if(k>=n||nums[k++]!=u)return false;for(int v:g.get(u))if(--d[v]==0)q.add(v);}return k==n;} }\n",
+   "python": "class Solution:\n    def sequenceReconstruction(self, nums: List[int], sequences: List[List[int]]) -> bool:\n        n=len(nums);g=[set() for _ in range(n+1)];d=[0]*(n+1);seen=set()\n        for seq in sequences:\n            for x in seq:seen.add(x)\n            for a,b in zip(seq,seq[1:]):\n                if b not in g[a]:g[a].add(b);d[b]+=1\n        if seen!=set(range(1,n+1)):return False\n        q=deque(i for i in range(1,n+1) if d[i]==0);i=0\n        while q:\n            if len(q)!=1:return False\n            u=q.popleft()\n            if i>=n or nums[i]!=u:return False\n            i+=1\n            for v in g[u]:\n                d[v]-=1\n                if d[v]==0:q.append(v)\n        return i==n\n"
+  },
+  "sampleArray": [
+   1,
+   2,
+   3
+  ],
+  "visibleTestCount": 3,
+  "hiddenTestCount": 8,
+  "number": 5
+ },
+ {
+  "id": "longest-increasing-path-in-a-matrix",
+  "order": 6,
+  "topicId": "topological-sort",
+  "topic": "Topological Sort & DAGs",
+  "title": "Longest Increasing Path in a Matrix",
+  "slug": "longest-increasing-path-in-a-matrix",
+  "difficulty": "Hard",
+  "subtopic": "Post-Order DFS",
+  "companies": [
+   "Google",
+   "Amazon",
+   "Microsoft"
+  ],
+  "leetcode": null,
+  "description": "Return the length of the longest path of strictly increasing values in a matrix. From each cell you may move up, down, left, or right. You may not move diagonally or revisit a cell in a path.",
+  "constraints": [
+   "1 <= rows, columns <= 200",
+   "-2^31 <= matrix[i][j] <= 2^31 - 1"
+  ],
+  "hints": [
+   "Model each ordering rule as a directed edge.",
+   "Use indegrees to process prerequisites and identify cycles or forced choices."
+  ],
+  "timeComplexity": "O(V+E)",
+  "spaceComplexity": "O(V+E)",
+  "compare": "exact",
+  "examples": [
+   {
+    "input": "matrix = [[9,9,4],[6,6,8],[2,1,1]]",
+    "output": "4"
+   },
+   {
+    "input": "matrix = [[3,4,5],[3,2,6],[2,2,1]]",
+    "output": "4"
+   },
+   {
+    "input": "matrix = [[1]]",
+    "output": "1"
+   }
+  ],
+  "starterCode": {
+   "java": "class Solution {\n    public int longestIncreasingPath(int[][] matrix) {\n        // Write your solution here\n        return 0;\n    }\n}\n",
+   "python": "class Solution:\n    def longestIncreasingPath(self, matrix: List[List[int]]) -> int:\n        # Write your solution here\n        pass\n"
+  },
+  "solutionCode": {
+   "java": "class Solution { public int longestIncreasingPath(int[][] a) { int m=a.length,n=a[0].length;int[][] d=new int[m][n];ArrayDeque<int[]>q=new ArrayDeque<>();int[][] dirs={{1,0},{-1,0},{0,1},{0,-1}};for(int i=0;i<m;i++)for(int j=0;j<n;j++){for(int[] z:dirs){int x=i+z[0],y=j+z[1];if(x>=0&&x<m&&y>=0&&y<n&&a[x][y]<a[i][j])d[i][j]++;}if(d[i][j]==0)q.add(new int[]{i,j});}int len=0;while(!q.isEmpty()){len++;for(int k=q.size();k>0;k--){int[] u=q.remove();for(int[] z:dirs){int x=u[0]+z[0],y=u[1]+z[1];if(x>=0&&x<m&&y>=0&&y<n&&a[x][y]>a[u[0]][u[1]]&&--d[x][y]==0)q.add(new int[]{x,y});}}}return len;} }\n",
+   "python": "class Solution:\n    def longestIncreasingPath(self, matrix: List[List[int]]) -> int:\n        m,n=len(matrix),len(matrix[0]);ind=[[0]*n for _ in range(m)]\n        for i in range(m):\n            for j in range(n):\n                for di,dj in ((1,0),(-1,0),(0,1),(0,-1)):\n                    x,y=i+di,j+dj\n                    if 0<=x<m and 0<=y<n and matrix[x][y]<matrix[i][j]:ind[i][j]+=1\n        q=deque((i,j) for i in range(m) for j in range(n) if ind[i][j]==0);length=0\n        while q:\n            length+=1\n            for _ in range(len(q)):\n                i,j=q.popleft()\n                for di,dj in ((1,0),(-1,0),(0,1),(0,-1)):\n                    x,y=i+di,j+dj\n                    if 0<=x<m and 0<=y<n and matrix[x][y]>matrix[i][j]:\n                        ind[x][y]-=1\n                        if ind[x][y]==0:q.append((x,y))\n        return length\n"
+  },
+  "sampleArray": [],
+  "visibleTestCount": 3,
+  "hiddenTestCount": 8,
+  "number": 6
+ },
+ {
+  "id": "parallel-courses",
+  "order": 7,
+  "topicId": "topological-sort",
+  "topic": "Topological Sort & DAGs",
+  "title": "Parallel Courses",
+  "slug": "parallel-courses",
+  "difficulty": "Medium",
+  "subtopic": "In-Degree BFS",
+  "companies": [
+   "Google",
+   "Amazon",
+   "Microsoft"
+  ],
+  "leetcode": null,
+  "description": "There are `n` courses labeled 1 through `n`. Each relation `[a,b]` means course `a` must be completed before course `b`. Any number of courses may be taken in one semester if all prerequisites are complete. Return the minimum number of semesters needed, or -1 if the requirements contain a cycle.",
+  "constraints": [
+   "1 <= n <= 5000",
+   "0 <= relations.length <= 10^4"
+  ],
+  "hints": [
+   "Model each ordering rule as a directed edge.",
+   "Use indegrees to process prerequisites and identify cycles or forced choices."
+  ],
+  "timeComplexity": "O(V+E)",
+  "spaceComplexity": "O(V+E)",
+  "compare": "exact",
+  "examples": [
+   {
+    "input": "n = 3, relations = [[1,3],[2,3]]",
+    "output": "2"
+   },
+   {
+    "input": "n = 3, relations = [[1,2],[2,3],[3,1]]",
+    "output": "-1"
+   },
+   {
+    "input": "n = 1, relations = []",
+    "output": "1"
+   }
+  ],
+  "starterCode": {
+   "java": "class Solution {\n    public int minimumSemesters(int n, int[][] relations) {\n        // Write your solution here\n        return 0;\n    }\n}\n",
+   "python": "class Solution:\n    def minimumSemesters(self, n: int, relations: List[List[int]]) -> int:\n        # Write your solution here\n        pass\n"
+  },
+  "solutionCode": {
+   "java": "class Solution { public int minimumSemesters(int n,int[][] r) { List<Integer>[]g=new List[n+1];for(int i=1;i<=n;i++)g[i]=new ArrayList<>();int[]d=new int[n+1];for(int[]e:r){g[e[0]].add(e[1]);d[e[1]]++;}ArrayDeque<Integer>q=new ArrayDeque<>();for(int i=1;i<=n;i++)if(d[i]==0)q.add(i);int sem=0,seen=0;while(!q.isEmpty()){sem++;for(int k=q.size();k>0;k--){int u=q.remove();seen++;for(int v:g[u])if(--d[v]==0)q.add(v);}}return seen==n?sem:-1;} }\n",
+   "python": "class Solution:\n    def minimumSemesters(self, n: int, relations: List[List[int]]) -> int:\n        g=[[] for _ in range(n+1)];d=[0]*(n+1)\n        for a,b in relations:g[a].append(b);d[b]+=1\n        q=deque(i for i in range(1,n+1) if d[i]==0);sem=0;seen=0\n        while q:\n            sem+=1\n            for _ in range(len(q)):\n                u=q.popleft();seen+=1\n                for v in g[u]:d[v]-=1\n                for v in g[u]:\n                    if d[v]==0:q.append(v)\n        return sem if seen==n else -1\n"
+  },
+  "sampleArray": [],
+  "visibleTestCount": 3,
+  "hiddenTestCount": 8,
+  "number": 7
+ },
+ {
+  "id": "find-eventual-safe-states",
+  "order": 8,
+  "topicId": "topological-sort",
+  "topic": "Topological Sort & DAGs",
+  "title": "Find Eventual Safe States",
+  "slug": "find-eventual-safe-states",
+  "difficulty": "Medium",
+  "subtopic": "In-Degree BFS",
+  "companies": [
+   "Google",
+   "Amazon",
+   "Microsoft"
+  ],
+  "leetcode": null,
+  "description": "A node is safe if every possible path starting from it eventually reaches a terminal node (a node with no outgoing edges). Return all safe node labels in increasing order.",
+  "constraints": [
+   "1 <= graph.length <= 10^4",
+   "Each edge goes to a valid node; the graph may contain cycles"
+  ],
+  "hints": [
+   "Model each ordering rule as a directed edge.",
+   "Use indegrees to process prerequisites and identify cycles or forced choices."
+  ],
+  "timeComplexity": "O(V+E)",
+  "spaceComplexity": "O(V+E)",
+  "compare": "exact",
+  "examples": [
+   {
+    "input": "graph = [[1,2],[2,3],[5],[0],[5],[],[]]",
+    "output": "[2,4,5,6]"
+   },
+   {
+    "input": "graph = [[],[0,2,3,4],[3],[4],[]]",
+    "output": "[0,1,2,3,4]"
+   },
+   {
+    "input": "graph = [[]]",
+    "output": "[0]"
+   }
+  ],
+  "starterCode": {
+   "java": "class Solution {\n    public List<Integer> eventualSafeNodes(int[][] graph) {\n        // Write your solution here\n        return null;\n    }\n}\n",
+   "python": "class Solution:\n    def eventualSafeNodes(self, graph: List[List[int]]) -> List[int]:\n        # Write your solution here\n        pass\n"
+  },
+  "solutionCode": {
+   "java": "class Solution { public List<Integer> eventualSafeNodes(int[][] g) { int n=g.length;List<Integer>[]r=new List[n];for(int i=0;i<n;i++)r[i]=new ArrayList<>();int[]d=new int[n];for(int u=0;u<n;u++){d[u]=g[u].length;for(int v:g[u])r[v].add(u);}ArrayDeque<Integer>q=new ArrayDeque<>();for(int i=0;i<n;i++)if(d[i]==0)q.add(i);boolean[]s=new boolean[n];while(!q.isEmpty()){int v=q.remove();s[v]=true;for(int u:r[v])if(--d[u]==0)q.add(u);}List<Integer>out=new ArrayList<>();for(int i=0;i<n;i++)if(s[i])out.add(i);return out;} }\n",
+   "python": "class Solution:\n    def eventualSafeNodes(self, graph: List[List[int]]) -> List[int]:\n        n=len(graph);rev=[[] for _ in range(n)];out=[len(x) for x in graph]\n        for u,row in enumerate(graph):\n            for v in row:rev[v].append(u)\n        q=deque(i for i,x in enumerate(out) if x==0);safe=[]\n        while q:\n            v=q.popleft();safe.append(v)\n            for u in rev[v]:\n                out[u]-=1\n                if out[u]==0:q.append(u)\n        return sorted(safe)\n"
+  },
+  "sampleArray": [],
+  "visibleTestCount": 3,
+  "hiddenTestCount": 8,
+  "number": 8
+ },
+ {
+  "id": "alien-dictionary-order",
+  "order": 9,
+  "topicId": "topological-sort",
+  "topic": "Topological Sort & DAGs",
+  "title": "Alien Dictionary Order",
+  "slug": "alien-dictionary-order",
+  "difficulty": "Hard",
+  "subtopic": "Alien Dictionary",
+  "companies": [
+   "Google",
+   "Amazon",
+   "Microsoft"
+  ],
+  "leetcode": null,
+  "description": "A sorted list of words is written in an unknown alphabet. Infer one valid character order consistent with the list. Return the lexicographically smallest valid order of all distinct characters present, or an empty string if the ordering is invalid or cyclic. When comparing words, the first differing character determines their order; a longer word cannot precede its own prefix.",
+  "constraints": [
+   "1 <= words.length <= 100",
+   "1 <= words[i].length <= 100",
+   "words contain lowercase English letters"
+  ],
+  "hints": [
+   "Model each ordering rule as a directed edge.",
+   "Use indegrees to process prerequisites and identify cycles or forced choices."
+  ],
+  "timeComplexity": "O(V+E)",
+  "spaceComplexity": "O(V+E)",
+  "compare": "exact",
+  "examples": [
+   {
+    "input": "words = [\"wrt\",\"wrf\",\"er\",\"ett\",\"rftt\"]",
+    "output": "\"wertf\""
+   },
+   {
+    "input": "words = [\"z\",\"x\"]",
+    "output": "\"zx\""
+   },
+   {
+    "input": "words = [\"z\",\"x\",\"z\"]",
+    "output": "\"\""
+   }
+  ],
+  "starterCode": {
+   "java": "class Solution {\n    public String alienOrder(String[] words) {\n        // Write your solution here\n        return null;\n    }\n}\n",
+   "python": "class Solution:\n    def alienOrder(self, words: List[str]) -> str:\n        # Write your solution here\n        pass\n"
+  },
+  "solutionCode": {
+   "java": "class Solution { public String alienOrder(String[] w) { boolean[] seen=new boolean[26];int count=0;for(String s:w)for(char c:s.toCharArray())if(!seen[c-'a']){seen[c-'a']=true;count++;}List<Set<Integer>>g=new ArrayList<>();for(int i=0;i<26;i++)g.add(new HashSet<>());int[]d=new int[26];for(int k=1;k<w.length;k++){String a=w[k-1],b=w[k];int i=0;while(i<a.length()&&i<b.length()&&a.charAt(i)==b.charAt(i))i++;if(i==b.length()&&a.length()>b.length())return \"\";if(i<a.length()&&i<b.length()){int x=a.charAt(i)-'a',y=b.charAt(i)-'a';if(g.get(x).add(y))d[y]++;}}PriorityQueue<Integer>q=new PriorityQueue<>();for(int i=0;i<26;i++)if(seen[i]&&d[i]==0)q.add(i);StringBuilder out=new StringBuilder();while(!q.isEmpty()){int u=q.remove();out.append((char)(u+'a'));for(int v:g.get(u))if(--d[v]==0)q.add(v);}return out.length()==count?out.toString():\"\";} }\n",
+   "python": "class Solution:\n    def alienOrder(self, words: List[str]) -> str:\n        chars=set(''.join(words));g={c:set() for c in chars};d={c:0 for c in chars}\n        for a,b in zip(words,words[1:]):\n            i=0\n            while i<min(len(a),len(b)) and a[i]==b[i]:i+=1\n            if i==len(b) and len(a)>len(b):return ''\n            if i<min(len(a),len(b)) and b[i] not in g[a[i]]:g[a[i]].add(b[i]);d[b[i]]+=1\n        q=[c for c in chars if d[c]==0];heapq.heapify(q);out=[]\n        while q:\n            c=heapq.heappop(q);out.append(c)\n            for v in g[c]:\n                d[v]-=1\n                if d[v]==0:heapq.heappush(q,v)\n        return ''.join(out) if len(out)==len(chars) else ''\n"
+  },
+  "sampleArray": [],
+  "visibleTestCount": 3,
+  "hiddenTestCount": 8,
+  "number": 9
+ },
+ {
+  "id": "course-schedule-iv",
+  "order": 10,
+  "topicId": "topological-sort",
+  "topic": "Topological Sort & DAGs",
+  "title": "Course Schedule IV",
+  "slug": "course-schedule-iv",
+  "difficulty": "Medium",
+  "subtopic": "Post-Order DFS",
+  "companies": [
+   "Google",
+   "Amazon",
+   "Microsoft"
+  ],
+  "leetcode": null,
+  "description": "Each prerequisite pair `[a,b]` means course `a` must be completed before course `b`. For each query `[u,v]`, return true if `u` is a direct or indirect prerequisite of `v`, otherwise false.",
+  "constraints": [
+   "1 <= numCourses <= 100",
+   "0 <= prerequisites.length <= numCourses*(numCourses-1)",
+   "0 <= queries.length <= 10^4"
+  ],
+  "hints": [
+   "Model each ordering rule as a directed edge.",
+   "Use indegrees to process prerequisites and identify cycles or forced choices."
+  ],
+  "timeComplexity": "O(V^3+Q)",
+  "spaceComplexity": "O(V^2)",
+  "compare": "exact",
+  "examples": [
+   {
+    "input": "numCourses = 2, prerequisites = [[1,0]], queries = [[0,1],[1,0]]",
+    "output": "[false,true]"
+   },
+   {
+    "input": "numCourses = 2, prerequisites = [], queries = [[0,1],[1,0]]",
+    "output": "[false,false]"
+   },
+   {
+    "input": "numCourses = 1, prerequisites = [], queries = [[0,0]]",
+    "output": "[false]"
+   }
+  ],
+  "starterCode": {
+   "java": "class Solution {\n    public List<Boolean> checkIfPrerequisite(int numCourses, int[][] prerequisites, int[][] queries) {\n        // Write your solution here\n        return null;\n    }\n}\n",
+   "python": "class Solution:\n    def checkIfPrerequisite(self, numCourses: int, prerequisites: List[List[int]], queries: List[List[int]]) -> List[bool]:\n        # Write your solution here\n        pass\n"
+  },
+  "solutionCode": {
+   "java": "class Solution { public List<Boolean> checkIfPrerequisite(int n,int[][] p,int[][] q) { boolean[][]r=new boolean[n][n];for(int[]e:p)r[e[0]][e[1]]=true;for(int k=0;k<n;k++)for(int i=0;i<n;i++)if(r[i][k])for(int j=0;j<n;j++)r[i][j]|=r[k][j];List<Boolean>out=new ArrayList<>();for(int[]e:q)out.add(r[e[0]][e[1]]);return out;} }\n",
+   "python": "class Solution:\n    def checkIfPrerequisite(self, numCourses: int, prerequisites: List[List[int]], queries: List[List[int]]) -> List[bool]:\n        reach=[[False]*numCourses for _ in range(numCourses)]\n        for a,b in prerequisites:reach[a][b]=True\n        for k in range(numCourses):\n            for i in range(numCourses):\n                if reach[i][k]:\n                    for j in range(numCourses):reach[i][j]|=reach[k][j]\n        return [reach[a][b] for a,b in queries]\n"
+  },
+  "sampleArray": [],
+  "visibleTestCount": 3,
+  "hiddenTestCount": 8,
+  "number": 10
+ }
+]

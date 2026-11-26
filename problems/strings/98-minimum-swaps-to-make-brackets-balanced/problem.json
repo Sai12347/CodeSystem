@@ -1,0 +1,44 @@
+{
+  "title": "Minimum Number of Swaps to Make the String Balanced",
+  "difficulty": "Medium",
+  "subtopic": "Parsing",
+  "companies": [
+    "Meta",
+    "Amazon",
+    "Google"
+  ],
+  "description": "You are given a 0-indexed even-length string `s` consisting of exactly `n / 2` opening brackets `'['` and `n / 2` closing brackets `']'`. In one swap, you may swap characters at any two indices. Return the minimum number of swaps needed to make `s` a balanced bracket string.",
+  "constraints": [
+    "2 <= s.length <= 10^5",
+    "s.length is even and contains equal numbers of '[' and ']'."
+  ],
+  "hints": [
+    "Track the maximum imbalance (the peak excess of ']' over '[' seen at any prefix).",
+    "Each optimal swap fixes two units of imbalance, so the answer is (maxImbalance + 1) // 2."
+  ],
+  "examples": [
+    {
+      "explanation": "Swapping index 0 and index 3 turns \"][][\" into \"[[]]\" in 1 swap."
+    },
+    {
+      "explanation": "Maximum excess of ']' is 3, requiring (3 + 1) // 2 = 2 swaps."
+    },
+    {
+      "explanation": "\"[]\" is already balanced, needing 0 swaps."
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "minSwapsBalanced",
+    "params": [
+      {
+        "name": "s",
+        "type": "String"
+      }
+    ],
+    "returns": "int"
+  }
+}

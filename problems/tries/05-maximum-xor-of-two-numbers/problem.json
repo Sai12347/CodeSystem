@@ -1,0 +1,45 @@
+{
+  "title": "Maximum XOR of Two Numbers in an Array",
+  "difficulty": "Medium",
+  "subtopic": "Bitwise XOR Trie",
+  "companies": [
+    "Google",
+    "Amazon",
+    "Meta",
+    "Microsoft",
+    "Goldman Sachs"
+  ],
+  "leetcode": 421,
+  "description": "Given an integer array `nums`, return the maximum result of `nums[i] XOR nums[j]`, where `0 <= i <= j < nums.length`.\n\nNote that `i` and `j` may be equal (in which case `nums[i] XOR nums[i] = 0`).",
+  "constraints": [
+    "1 <= nums.length <= 2 * 10^5",
+    "0 <= nums[i] <= 2^31 - 1"
+  ],
+  "hints": [
+    "To maximize the XOR of two numbers, you want their binary representations to differ in the highest possible bit positions.",
+    "Insert the 31-bit binary representation of each number (from bit 30 down to bit 0) into a binary trie.",
+    "For each number, traverse the trie from the most significant bit to the least significant bit, greedily choosing the opposite bit branch whenever it exists."
+  ],
+  "examples": [
+    {
+      "explanation": "The maximum XOR is achieved by 5 XOR 25 = 28."
+    },
+    {
+      "explanation": "The maximum XOR is achieved by 91 XOR 36 = 127 (1011011 XOR 0100100 = 1111111 in binary)."
+    }
+  ],
+  "timeComplexity": "O(n * 31)",
+  "spaceComplexity": "O(n * 31)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "findMaximumXOR",
+    "params": [
+      {
+        "name": "nums",
+        "type": "int[]"
+      }
+    ],
+    "returns": "int"
+  }
+}

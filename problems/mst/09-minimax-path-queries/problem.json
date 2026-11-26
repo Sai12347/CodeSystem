@@ -1,0 +1,49 @@
+{
+  "title": "Minimum Bottleneck Path Queries",
+  "difficulty": "Hard",
+  "subtopic": "Prim Algorithm",
+  "companies": [
+    "Google",
+    "Amazon",
+    "Microsoft"
+  ],
+  "description": "For every query `[u,v]`, find a path from `u` to `v` that minimizes the largest edge weight on the path. Return that minimum largest-edge weight, or -1 if no path exists. The answer for `u == v` is 0.",
+  "constraints": [
+    "1 <= n <= 100",
+    "0 <= edges.length <= n*(n-1)/2",
+    "0 <= queries.length <= 10^4",
+    "0 <= edge weight <= 10^6"
+  ],
+  "hints": [
+    "Sort candidate edges by weight and use a disjoint-set structure to track connected components.",
+    "Respect the stated tie-breaking rule and handle disconnected graphs if allowed."
+  ],
+  "examples": [
+    {
+      "input": "n = 3, edges = [[0,1,4],[1,2,7],[0,2,10]], queries = [[0,2],[0,1],[2,2]]",
+      "output": "[7,4,0]"
+    }
+  ],
+  "timeComplexity": "O(E log E)",
+  "spaceComplexity": "O(V+E)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "minimaxPathQueries",
+    "params": [
+      {
+        "name": "n",
+        "type": "int"
+      },
+      {
+        "name": "edges",
+        "type": "int[][]"
+      },
+      {
+        "name": "queries",
+        "type": "int[][]"
+      }
+    ],
+    "returns": "int[]"
+  }
+}

@@ -1,0 +1,43 @@
+{
+  "title": "Deterministic Primality Test for Large Integers",
+  "difficulty": "Medium",
+  "subtopic": "Fast Exponentiation",
+  "companies": [
+    "Google",
+    "Amazon",
+    "Goldman Sachs"
+  ],
+  "description": "Given a non-negative 64-bit integer `n` (`0 <= n <= 10^15`), determine whether `n` is a prime number. Because `n` can be as large as `10^15`, trial division up to `sqrt(n)` is too slow; return `true` if `n` is prime and `false` otherwise.",
+  "constraints": [
+    "0 <= n <= 10^15"
+  ],
+  "hints": [
+    "Use the deterministic Miller-Rabin primality test: factor `n - 1 = d * 2^s` with `d` odd and test the fixed witness bases `[2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37]`, which is provably exact for all 64-bit integers.",
+    "In 64-bit languages like Java, `a * b` can exceed `2^63 - 1` when `mod` is up to `10^15`; use Russian peasant binary modular multiplication `mulMod(a, b, mod)` inside your binary modular exponentiation."
+  ],
+  "examples": [
+    {
+      "explanation": "17 has no divisors other than 1 and 17, so it is prime."
+    },
+    {
+      "explanation": "561 = 3 * 11 * 17 is the smallest Carmichael number (composite despite passing Fermat tests for coprime bases)."
+    },
+    {
+      "explanation": "1000000007 is prime."
+    }
+  ],
+  "timeComplexity": "O(k * log^2 n)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "isPrimeLarge",
+    "params": [
+      {
+        "name": "n",
+        "type": "long"
+      }
+    ],
+    "returns": "boolean"
+  }
+}

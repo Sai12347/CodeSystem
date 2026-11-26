@@ -1,0 +1,55 @@
+{
+  "title": "3Sum Closest",
+  "difficulty": "Medium",
+  "subtopic": "Converging Pointers",
+  "companies": [
+    "Amazon",
+    "Meta",
+    "Google",
+    "Microsoft",
+    "Bloomberg",
+    "Adobe"
+  ],
+  "leetcode": 16,
+  "description": "Given an integer array `nums` of length `n` and an integer `target`, find three integers at distinct indices in `nums` such that their sum is closest to `target`.\n\nReturn the sum of the three integers.\n\nYou may assume that each input has a **unique** closest sum (there are no ties between two different sums equidistant from `target`).",
+  "constraints": [
+    "3 <= nums.length <= 500",
+    "-1000 <= nums[i] <= 1000",
+    "-10^4 <= target <= 10^4",
+    "Each input has a unique closest sum."
+  ],
+  "hints": [
+    "Sort the array first so you can fix one element and search for the remaining pair efficiently.",
+    "For each fixed index i, use two converging pointers left = i + 1 and right = n - 1, updating the best sum whenever abs(currentSum - target) improves.",
+    "If currentSum < target, increment left to increase the sum; if currentSum > target, decrement right to decrease it; if currentSum == target, you can return immediately."
+  ],
+  "examples": [
+    {
+      "explanation": "The triplet [-1, 2, 1] has sum 2, which is closer to target = 1 than any other triplet sum."
+    },
+    {
+      "explanation": "There is only one triplet [0, 0, 0], whose sum is 0."
+    },
+    {
+      "explanation": "The triplet [-5, 0, 3] has sum -2, which matches target = -2 exactly."
+    }
+  ],
+  "timeComplexity": "O(n^2)",
+  "spaceComplexity": "O(log n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "threeSumClosest",
+    "params": [
+      {
+        "name": "nums",
+        "type": "int[]"
+      },
+      {
+        "name": "target",
+        "type": "int"
+      }
+    ],
+    "returns": "int"
+  }
+}

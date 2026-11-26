@@ -1,0 +1,1 @@
+class Solution { public long numDistinct(String s,String t) { long[] d=new long[t.length()+1];d[0]=1;for(int i=0;i<s.length();i++)for(int j=t.length()-1;j>=0;j--)if(s.charAt(i)==t.charAt(j))d[j+1]+=d[j];return d[t.length()];} }

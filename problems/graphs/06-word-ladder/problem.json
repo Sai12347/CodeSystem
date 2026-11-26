@@ -1,0 +1,40 @@
+{
+  "title": "Word Ladder",
+  "difficulty": "Hard",
+  "subtopic": "Connected Components",
+  "companies": ["Amazon", "Meta", "Google", "Microsoft", "LinkedIn", "Bloomberg"],
+  "leetcode": 127,
+  "description": "A **transformation sequence** from word `beginWord` to word `endWord` using a dictionary `wordList` is a sequence of words `beginWord -> s_1 -> s_2 -> ... -> s_k` such that:\n\n- Every adjacent pair of words differs by **exactly one character**.\n- Every `s_i` for `1 <= i <= k` is in `wordList`. Note that `beginWord` does not need to be in `wordList`.\n- `s_k == endWord`.\n\nGiven two words `beginWord` and `endWord`, and a dictionary `wordList`, return the **number of words** in the shortest transformation sequence from `beginWord` to `endWord`, or `0` if no such sequence exists.",
+  "constraints": [
+    "1 <= beginWord.length <= 10",
+    "endWord.length == beginWord.length",
+    "1 <= wordList.length <= 5000",
+    "wordList[i].length == beginWord.length",
+    "beginWord, endWord, and wordList[i] consist of lowercase English letters.",
+    "beginWord != endWord",
+    "All the words in wordList are unique."
+  ],
+  "hints": [
+    "Model each word as a node in an unweighted graph where an edge connects two words differing by one character. The shortest transformation sequence is the shortest path found by BFS.",
+    "Instead of comparing every pair of words in O(N^2 * L), store `wordList` in a hash set and generate neighbors by replacing each character position with `'a'` through `'z'` (or group words by wildcard patterns like `h*t`).",
+    "For even faster search on dense word graphs, use bidirectional BFS: expand simultaneously from `{beginWord}` and `{endWord}`, always expanding the smaller frontier."
+  ],
+  "examples": [
+    {"explanation": "One shortest transformation sequence is \"hit\" -> \"hot\" -> \"dot\" -> \"dog\" -> \"cog\", which is 5 words long."},
+    {"explanation": "The endWord \"cog\" is not in wordList, so no valid transformation sequence exists."},
+    {"explanation": "\"a\" differs from \"c\" by a single character and \"c\" is in wordList, so \"a\" -> \"c\" has length 2."}
+  ],
+  "timeComplexity": "O(N * L^2)",
+  "spaceComplexity": "O(N * L)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "ladderLength",
+    "params": [
+      {"name": "beginWord", "type": "String"},
+      {"name": "endWord", "type": "String"},
+      {"name": "wordList", "type": "List<String>"}
+    ],
+    "returns": "int"
+  }
+}

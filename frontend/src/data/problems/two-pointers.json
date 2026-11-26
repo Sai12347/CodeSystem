@@ -1,0 +1,1072 @@
+[
+ {
+  "id": "two-sum-ii",
+  "order": 1,
+  "topicId": "two-pointers",
+  "topic": "Two Pointers",
+  "title": "Two Sum II - Input Array Is Sorted",
+  "slug": "two-sum-ii",
+  "difficulty": "Medium",
+  "subtopic": "Converging Pointers",
+  "companies": [
+   "Amazon",
+   "Google",
+   "Meta",
+   "Microsoft",
+   "Apple",
+   "Bloomberg"
+  ],
+  "leetcode": 167,
+  "description": "Given a **1-indexed** array of integers `numbers` that is already sorted in non-decreasing order, find two numbers such that they add up to a specific `target` number. Let these two numbers be `numbers[index1]` and `numbers[index2]` where `1 <= index1 < index2 <= numbers.length`.\n\nReturn the indices of the two numbers, `index1` and `index2`, as an integer array `[index1, index2]` of length `2`.\n\nYou may not use the same element twice, and each test case is guaranteed to have **exactly one** valid solution. Your solution must use only `O(1)` extra space.",
+  "constraints": [
+   "2 <= numbers.length <= 3 * 10^4",
+   "-1000 <= numbers[i] <= 1000",
+   "numbers is sorted in non-decreasing order.",
+   "-1000 <= target <= 1000",
+   "The tests are generated such that there is exactly one solution."
+  ],
+  "hints": [
+   "Because the array is already sorted, placing one pointer at the start and one at the end lets you reason about how their sum changes when moving either pointer.",
+   "If numbers[left] + numbers[right] is less than target, moving left rightward is the only way to increase the sum; if it is greater than target, move right leftward.",
+   "Remember to return 1-based indices [left + 1, right + 1]."
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "examples": [
+   {
+    "input": "numbers = [2,7,11,15], target = 9",
+    "output": "[1,2]",
+    "explanation": "The sum of 2 and 7 is 9. Using 1-based indexing, index1 = 1 and index2 = 2, so we return [1, 2]."
+   },
+   {
+    "input": "numbers = [2,3,4], target = 6",
+    "output": "[1,3]",
+    "explanation": "The sum of 2 and 4 is 6. Using 1-based indexing, index1 = 1 and index2 = 3, so we return [1, 3]."
+   },
+   {
+    "input": "numbers = [-1,0], target = -1",
+    "output": "[1,2]",
+    "explanation": "The sum of -1 and 0 is -1. Using 1-based indexing, index1 = 1 and index2 = 2, so we return [1, 2]."
+   }
+  ],
+  "starterCode": {
+   "java": "class Solution {\n    public int[] twoSum(int[] numbers, int target) {\n        // Write your solution here\n        return null;\n    }\n}\n",
+   "python": "class Solution:\n    def twoSum(self, numbers: List[int], target: int) -> List[int]:\n        # Write your solution here\n        pass\n"
+  },
+  "solutionCode": {
+   "java": "class Solution {\n    public int[] twoSum(int[] numbers, int target) {\n        int left = 0, right = numbers.length - 1;\n        while (left < right) {\n            int sum = numbers[left] + numbers[right];\n            if (sum == target) {\n                return new int[]{left + 1, right + 1};\n            } else if (sum < target) {\n                left++;\n            } else {\n                right--;\n            }\n        }\n        return new int[0];\n    }\n}\n",
+   "python": "class Solution:\n    def twoSum(self, numbers: List[int], target: int) -> List[int]:\n        left, right = 0, len(numbers) - 1\n        while left < right:\n            total = numbers[left] + numbers[right]\n            if total == target:\n                return [left + 1, right + 1]\n            if total < target:\n                left += 1\n            else:\n                right -= 1\n        return []\n"
+  },
+  "sampleArray": [
+   2,
+   7,
+   11,
+   15
+  ],
+  "visibleTestCount": 3,
+  "hiddenTestCount": 10,
+  "number": 1
+ },
+ {
+  "id": "three-sum-closest",
+  "order": 2,
+  "topicId": "two-pointers",
+  "topic": "Two Pointers",
+  "title": "3Sum Closest",
+  "slug": "three-sum-closest",
+  "difficulty": "Medium",
+  "subtopic": "Converging Pointers",
+  "companies": [
+   "Amazon",
+   "Meta",
+   "Google",
+   "Microsoft",
+   "Bloomberg",
+   "Adobe"
+  ],
+  "leetcode": 16,
+  "description": "Given an integer array `nums` of length `n` and an integer `target`, find three integers at distinct indices in `nums` such that their sum is closest to `target`.\n\nReturn the sum of the three integers.\n\nYou may assume that each input has a **unique** closest sum (there are no ties between two different sums equidistant from `target`).",
+  "constraints": [
+   "3 <= nums.length <= 500",
+   "-1000 <= nums[i] <= 1000",
+   "-10^4 <= target <= 10^4",
+   "Each input has a unique closest sum."
+  ],
+  "hints": [
+   "Sort the array first so you can fix one element and search for the remaining pair efficiently.",
+   "For each fixed index i, use two converging pointers left = i + 1 and right = n - 1, updating the best sum whenever abs(currentSum - target) improves.",
+   "If currentSum < target, increment left to increase the sum; if currentSum > target, decrement right to decrease it; if currentSum == target, you can return immediately."
+  ],
+  "timeComplexity": "O(n^2)",
+  "spaceComplexity": "O(log n)",
+  "compare": "exact",
+  "examples": [
+   {
+    "input": "nums = [-1,2,1,-4], target = 1",
+    "output": "2",
+    "explanation": "The triplet [-1, 2, 1] has sum 2, which is closer to target = 1 than any other triplet sum."
+   },
+   {
+    "input": "nums = [0,0,0], target = 1",
+    "output": "0",
+    "explanation": "There is only one triplet [0, 0, 0], whose sum is 0."
+   },
+   {
+    "input": "nums = [4,0,5,-5,3,3,0,-4,-5], target = -2",
+    "output": "-2",
+    "explanation": "The triplet [-5, 0, 3] has sum -2, which matches target = -2 exactly."
+   }
+  ],
+  "starterCode": {
+   "java": "class Solution {\n    public int threeSumClosest(int[] nums, int target) {\n        // Write your solution here\n        return 0;\n    }\n}\n",
+   "python": "class Solution:\n    def threeSumClosest(self, nums: List[int], target: int) -> int:\n        # Write your solution here\n        pass\n"
+  },
+  "solutionCode": {
+   "java": "class Solution {\n    public int threeSumClosest(int[] nums, int target) {\n        Arrays.sort(nums);\n        int n = nums.length;\n        int closest = nums[0] + nums[1] + nums[2];\n        for (int i = 0; i < n - 2; i++) {\n            if (i > 0 && nums[i] == nums[i - 1]) {\n                continue;\n            }\n            int left = i + 1, right = n - 1;\n            while (left < right) {\n                int sum = nums[i] + nums[left] + nums[right];\n                if (Math.abs(sum - target) < Math.abs(closest - target)) {\n                    closest = sum;\n                }\n                if (sum == target) {\n                    return target;\n                } else if (sum < target) {\n                    left++;\n                } else {\n                    right--;\n                }\n            }\n        }\n        return closest;\n    }\n}\n",
+   "python": "class Solution:\n    def threeSumClosest(self, nums: List[int], target: int) -> int:\n        nums.sort()\n        n = len(nums)\n        closest = nums[0] + nums[1] + nums[2]\n        for i in range(n - 2):\n            if i > 0 and nums[i] == nums[i - 1]:\n                continue\n            left, right = i + 1, n - 1\n            while left < right:\n                total = nums[i] + nums[left] + nums[right]\n                if abs(total - target) < abs(closest - target):\n                    closest = total\n                if total == target:\n                    return target\n                elif total < target:\n                    left += 1\n                else:\n                    right -= 1\n        return closest\n"
+  },
+  "sampleArray": [
+   -1,
+   2,
+   1,
+   -4
+  ],
+  "visibleTestCount": 3,
+  "hiddenTestCount": 10,
+  "number": 2
+ },
+ {
+  "id": "four-sum",
+  "order": 3,
+  "topicId": "two-pointers",
+  "topic": "Two Pointers",
+  "title": "4Sum",
+  "slug": "four-sum",
+  "difficulty": "Medium",
+  "subtopic": "Converging Pointers",
+  "companies": [
+   "Amazon",
+   "Google",
+   "Meta",
+   "Microsoft",
+   "Apple",
+   "Uber"
+  ],
+  "leetcode": 18,
+  "description": "Given an array `nums` of `n` integers and an integer `target`, return an array of all the **unique** quadruplets `[nums[a], nums[b], nums[c], nums[d]]` such that:\n\n- `0 <= a, b, c, d < n`\n- `a`, `b`, `c`, and `d` are distinct.\n- `nums[a] + nums[b] + nums[c] + nums[d] == target`\n\nYou may return the quadruplets in any order, and the values within each quadruplet may be in any order. The result must not contain duplicate quadruplets. Note that the sum of four elements may exceed the 32-bit signed integer range.",
+  "constraints": [
+   "1 <= nums.length <= 200",
+   "-10^9 <= nums[i] <= 10^9",
+   "-10^9 <= target <= 10^9"
+  ],
+  "hints": [
+   "Sort nums first so duplicate quadruplets can be skipped easily and the innermost two numbers can be found with converging pointers.",
+   "Fix the first two indices i and j in nested loops (skipping repeated values at each level), then run left = j + 1 and right = n - 1 to find pairs summing to target - nums[i] - nums[j].",
+   "Use 64-bit integers (long in Java) when adding four values to avoid 32-bit integer overflow, and prune loops early when the minimum or maximum possible four-element sum cannot reach target."
+  ],
+  "timeComplexity": "O(n^3)",
+  "spaceComplexity": "O(log n)",
+  "compare": "sortedDeep",
+  "examples": [
+   {
+    "input": "nums = [1,0,-1,0,-2,2], target = 0",
+    "output": "[[-2,-1,1,2],[-2,0,0,2],[-1,0,0,1]]",
+    "explanation": "The three unique quadruplets summing to 0 are [-2, -1, 1, 2], [-2, 0, 0, 2], and [-1, 0, 0, 1]."
+   },
+   {
+    "input": "nums = [2,2,2,2,2], target = 8",
+    "output": "[[2,2,2,2]]",
+    "explanation": "Although multiple index combinations sum to 8, all of them produce the same unique quadruplet [2, 2, 2, 2]."
+   },
+   {
+    "input": "nums = [1,2,3], target = 6",
+    "output": "[]",
+    "explanation": "With fewer than 4 elements in nums, no quadruplet can be formed."
+   }
+  ],
+  "starterCode": {
+   "java": "class Solution {\n    public List<List<Integer>> fourSum(int[] nums, int target) {\n        // Write your solution here\n        return null;\n    }\n}\n",
+   "python": "class Solution:\n    def fourSum(self, nums: List[int], target: int) -> List[List[int]]:\n        # Write your solution here\n        pass\n"
+  },
+  "solutionCode": {
+   "java": "class Solution {\n    public List<List<Integer>> fourSum(int[] nums, int target) {\n        Arrays.sort(nums);\n        int n = nums.length;\n        List<List<Integer>> res = new ArrayList<>();\n        long t = target;\n        for (int i = 0; i < n - 3; i++) {\n            if (i > 0 && nums[i] == nums[i - 1]) continue;\n            if ((long) nums[i] + nums[i + 1] + nums[i + 2] + nums[i + 3] > t) break;\n            if ((long) nums[i] + nums[n - 3] + nums[n - 2] + nums[n - 1] < t) continue;\n            for (int j = i + 1; j < n - 2; j++) {\n                if (j > i + 1 && nums[j] == nums[j - 1]) continue;\n                if ((long) nums[i] + nums[j] + nums[j + 1] + nums[j + 2] > t) break;\n                if ((long) nums[i] + nums[j] + nums[n - 2] + nums[n - 1] < t) continue;\n                int left = j + 1, right = n - 1;\n                long need = t - nums[i] - nums[j];\n                while (left < right) {\n                    long pair = (long) nums[left] + nums[right];\n                    if (pair == need) {\n                        res.add(Arrays.asList(nums[i], nums[j], nums[left], nums[right]));\n                        left++;\n                        right--;\n                        while (left < right && nums[left] == nums[left - 1]) left++;\n                        while (left < right && nums[right] == nums[right + 1]) right--;\n                    } else if (pair < need) {\n                        left++;\n                    } else {\n                        right--;\n                    }\n                }\n            }\n        }\n        return res;\n    }\n}\n",
+   "python": "class Solution:\n    def fourSum(self, nums: List[int], target: int) -> List[List[int]]:\n        nums.sort()\n        n = len(nums)\n        res: List[List[int]] = []\n        for i in range(n - 3):\n            if i > 0 and nums[i] == nums[i - 1]:\n                continue\n            if nums[i] + nums[i + 1] + nums[i + 2] + nums[i + 3] > target:\n                break\n            if nums[i] + nums[n - 3] + nums[n - 2] + nums[n - 1] < target:\n                continue\n            for j in range(i + 1, n - 2):\n                if j > i + 1 and nums[j] == nums[j - 1]:\n                    continue\n                if nums[i] + nums[j] + nums[j + 1] + nums[j + 2] > target:\n                    break\n                if nums[i] + nums[j] + nums[n - 2] + nums[n - 1] < target:\n                    continue\n                left, right = j + 1, n - 1\n                need = target - nums[i] - nums[j]\n                while left < right:\n                    pair = nums[left] + nums[right]\n                    if pair == need:\n                        res.append([nums[i], nums[j], nums[left], nums[right]])\n                        left += 1\n                        right -= 1\n                        while left < right and nums[left] == nums[left - 1]:\n                            left += 1\n                        while left < right and nums[right] == nums[right + 1]:\n                            right -= 1\n                    elif pair < need:\n                        left += 1\n                    else:\n                        right -= 1\n        return res\n"
+  },
+  "sampleArray": [
+   1,
+   0,
+   -1,
+   0,
+   -2,
+   2
+  ],
+  "visibleTestCount": 3,
+  "hiddenTestCount": 11,
+  "number": 3
+ },
+ {
+  "id": "remove-element",
+  "order": 4,
+  "topicId": "two-pointers",
+  "topic": "Two Pointers",
+  "title": "Remove Element",
+  "slug": "remove-element",
+  "difficulty": "Easy",
+  "subtopic": "Trailing Pointers",
+  "companies": [
+   "Amazon",
+   "Google",
+   "Microsoft",
+   "Meta",
+   "Adobe"
+  ],
+  "leetcode": 27,
+  "description": "Given an integer array `nums` and an integer `val`, remove all occurrences of `val` in `nums` **in-place**. The relative order of the remaining elements may be changed.\n\nReturn `k`, the number of elements in `nums` that are not equal to `val`, and modify `nums` so that the first `k` elements of `nums` contain those remaining elements. Elements at index `k` and beyond do not matter.\n\nThe judge evaluates your solution by inspecting the first `k` elements of `nums` (ignoring their order).",
+  "constraints": [
+   "0 <= nums.length <= 10^4",
+   "-10^4 <= nums[i] <= 10^4",
+   "-10^4 <= val <= 10^4"
+  ],
+  "hints": [
+   "Use a trailing write pointer k that marks where the next kept element should be placed.",
+   "Scan the array with a read pointer; whenever nums[i] != val, write nums[k] = nums[i] and increment k.",
+   "Alternatively, because order does not matter, you can swap occurrences of val with the last active element and shrink the effective array length."
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(1)",
+  "compare": "sorted",
+  "examples": [
+   {
+    "input": "nums = [3,2,2,3], val = 3",
+    "output": "[2,2]",
+    "explanation": "After removing all occurrences of 3, k = 2 and the first two elements of nums are [2, 2]."
+   },
+   {
+    "input": "nums = [0,1,2,2,3,0,4,2], val = 2",
+    "output": "[0,1,3,0,4]",
+    "explanation": "After removing all occurrences of 2, k = 5 and the first five elements of nums are [0, 1, 3, 0, 4] (any order is accepted)."
+   },
+   {
+    "input": "nums = [], val = 0",
+    "output": "[]",
+    "explanation": "The input array is empty, so k = 0 and the resulting prefix is []."
+   }
+  ],
+  "starterCode": {
+   "java": "class Solution {\n    public int removeElement(int[] nums, int val) {\n        // Write your solution here\n        return 0;\n    }\n}\n",
+   "python": "class Solution:\n    def removeElement(self, nums: List[int], val: int) -> int:\n        # Write your solution here\n        pass\n"
+  },
+  "solutionCode": {
+   "java": "class Solution {\n    public int removeElement(int[] nums, int val) {\n        int k = 0;\n        for (int i = 0; i < nums.length; i++) {\n            if (nums[i] != val) {\n                nums[k++] = nums[i];\n            }\n        }\n        return k;\n    }\n}\n",
+   "python": "class Solution:\n    def removeElement(self, nums: List[int], val: int) -> int:\n        k = 0\n        for x in nums:\n            if x != val:\n                nums[k] = x\n                k += 1\n        return k\n"
+  },
+  "sampleArray": [
+   3,
+   2,
+   2,
+   3
+  ],
+  "visibleTestCount": 3,
+  "hiddenTestCount": 10,
+  "number": 4
+ },
+ {
+  "id": "trapping-rain-water",
+  "order": 5,
+  "topicId": "two-pointers",
+  "topic": "Two Pointers",
+  "title": "Trapping Rain Water",
+  "slug": "trapping-rain-water",
+  "difficulty": "Hard",
+  "subtopic": "Converging Pointers",
+  "companies": [
+   "Google",
+   "Amazon",
+   "Meta",
+   "Microsoft",
+   "Goldman Sachs",
+   "Bloomberg"
+  ],
+  "leetcode": 42,
+  "description": "Given `n` non-negative integers `height` representing an elevation map where the width of each bar is `1`, compute how much total rainwater can be trapped between the bars after raining.\n\nWater trapped above bar `i` is bounded by the shorter of the tallest bar to its left and the tallest bar to its right.",
+  "constraints": [
+   "n == height.length",
+   "1 <= n <= 2 * 10^4",
+   "0 <= height[i] <= 10^5"
+  ],
+  "hints": [
+   "At any index i, the water level is min(maxLeft[i], maxRight[i]), contributing max(0, waterLevel - height[i]) units of water.",
+   "You can eliminate the O(n) prefix/suffix arrays by maintaining two converging pointers left and right along with running maxima leftMax and rightMax.",
+   "Whenever height[left] <= height[right], the limiting wall for left is guaranteed to be leftMax (since there is a bar at least as tall on the right), so you can safely accumulate water at left and advance it."
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "examples": [
+   {
+    "input": "height = [0,1,0,2,1,0,1,3,2,1,2,1]",
+    "output": "6",
+    "explanation": "Water pools between the elevation peaks for a total of 1 + 1 + 2 + 1 + 1 = 6 units."
+   },
+   {
+    "input": "height = [4,2,0,3,2,5]",
+    "output": "9",
+    "explanation": "The bars form pockets holding 2 + 4 + 1 + 2 = 9 units of water."
+   },
+   {
+    "input": "height = [1,2,3,4]",
+    "output": "0",
+    "explanation": "A strictly increasing elevation map has no right boundary lower than a left wall, so 0 units of water are trapped."
+   }
+  ],
+  "starterCode": {
+   "java": "class Solution {\n    public int trap(int[] height) {\n        // Write your solution here\n        return 0;\n    }\n}\n",
+   "python": "class Solution:\n    def trap(self, height: List[int]) -> int:\n        # Write your solution here\n        pass\n"
+  },
+  "solutionCode": {
+   "java": "class Solution {\n    public int trap(int[] height) {\n        int left = 0, right = height.length - 1;\n        int leftMax = 0, rightMax = 0;\n        int water = 0;\n        while (left < right) {\n            if (height[left] <= height[right]) {\n                if (height[left] >= leftMax) {\n                    leftMax = height[left];\n                } else {\n                    water += leftMax - height[left];\n                }\n                left++;\n            } else {\n                if (height[right] >= rightMax) {\n                    rightMax = height[right];\n                } else {\n                    water += rightMax - height[right];\n                }\n                right--;\n            }\n        }\n        return water;\n    }\n}\n",
+   "python": "class Solution:\n    def trap(self, height: List[int]) -> int:\n        left, right = 0, len(height) - 1\n        left_max = right_max = 0\n        water = 0\n        while left < right:\n            if height[left] <= height[right]:\n                if height[left] >= left_max:\n                    left_max = height[left]\n                else:\n                    water += left_max - height[left]\n                left += 1\n            else:\n                if height[right] >= right_max:\n                    right_max = height[right]\n                else:\n                    water += right_max - height[right]\n                right -= 1\n        return water\n"
+  },
+  "sampleArray": [
+   0,
+   1,
+   0,
+   2,
+   1,
+   0,
+   1,
+   3,
+   2,
+   1,
+   2,
+   1
+  ],
+  "visibleTestCount": 3,
+  "hiddenTestCount": 10,
+  "number": 5
+ },
+ {
+  "id": "container-with-most-water",
+  "order": 6,
+  "topicId": "two-pointers",
+  "topic": "Two Pointers",
+  "title": "Container With Most Water",
+  "slug": "container-with-most-water",
+  "difficulty": "Medium",
+  "subtopic": "Converging Pointers",
+  "companies": [
+   "Amazon",
+   "Google",
+   "Meta",
+   "Microsoft",
+   "Apple",
+   "Bloomberg"
+  ],
+  "leetcode": 11,
+  "description": "You are given an integer array `height` of length `n`. There are `n` vertical lines drawn such that the two endpoints of the `i`-th line are `(i, 0)` and `(i, height[i])`.\n\nFind two distinct lines that together with the x-axis form a container that holds the most water. The area of water formed by lines `i` and `j` (`i < j`) is `min(height[i], height[j]) * (j - i)`. You may not slant the container.\n\nReturn the maximum amount of water a container can store.",
+  "constraints": [
+   "n == height.length",
+   "2 <= n <= 10^5",
+   "0 <= height[i] <= 10^4"
+  ],
+  "hints": [
+   "Start with the widest possible container using pointers at left = 0 and right = n - 1.",
+   "The container height is capped by min(height[left], height[right]). Moving the taller pointer inward shrinks the width without ever increasing the limiting height.",
+   "Therefore, always move the shorter pointer inward in search of a taller line that can compensate for the reduced width."
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "examples": [
+   {
+    "input": "height = [1,8,6,2,5,4,8,3,7]",
+    "output": "49",
+    "explanation": "Choosing lines at indices 1 (height 8) and 8 (height 7) gives area min(8, 7) * (8 - 1) = 49."
+   },
+   {
+    "input": "height = [1,1]",
+    "output": "1",
+    "explanation": "With only two lines of height 1 at distance 1, the maximum area is 1 * 1 = 1."
+   },
+   {
+    "input": "height = [4,3,2,1,4]",
+    "output": "16",
+    "explanation": "Choosing the two outer lines of height 4 at indices 0 and 4 gives area 4 * 4 = 16."
+   }
+  ],
+  "starterCode": {
+   "java": "class Solution {\n    public int maxArea(int[] height) {\n        // Write your solution here\n        return 0;\n    }\n}\n",
+   "python": "class Solution:\n    def maxArea(self, height: List[int]) -> int:\n        # Write your solution here\n        pass\n"
+  },
+  "solutionCode": {
+   "java": "class Solution {\n    public int maxArea(int[] height) {\n        int left = 0, right = height.length - 1;\n        int best = 0;\n        while (left < right) {\n            int h = Math.min(height[left], height[right]);\n            int area = h * (right - left);\n            if (area > best) {\n                best = area;\n            }\n            if (height[left] < height[right]) {\n                left++;\n            } else {\n                right--;\n            }\n        }\n        return best;\n    }\n}\n",
+   "python": "class Solution:\n    def maxArea(self, height: List[int]) -> int:\n        left, right = 0, len(height) - 1\n        best = 0\n        while left < right:\n            h = height[left] if height[left] < height[right] else height[right]\n            area = h * (right - left)\n            if area > best:\n                best = area\n            if height[left] < height[right]:\n                left += 1\n            else:\n                right -= 1\n        return best\n"
+  },
+  "sampleArray": [
+   1,
+   8,
+   6,
+   2,
+   5,
+   4,
+   8,
+   3,
+   7
+  ],
+  "visibleTestCount": 3,
+  "hiddenTestCount": 10,
+  "number": 6
+ },
+ {
+  "id": "valid-palindrome-ii",
+  "order": 7,
+  "topicId": "two-pointers",
+  "topic": "Two Pointers",
+  "title": "Valid Palindrome II",
+  "slug": "valid-palindrome-ii",
+  "difficulty": "Easy",
+  "subtopic": "Converging Pointers",
+  "companies": [
+   "Meta",
+   "Amazon",
+   "Google",
+   "Microsoft",
+   "Uber"
+  ],
+  "leetcode": 680,
+  "description": "Given a string `s`, return `true` if `s` can become a palindrome after deleting **at most one** character from it, and `false` otherwise.\n\nA string is a palindrome if it reads the same forward and backward.",
+  "constraints": [
+   "1 <= s.length <= 10^5",
+   "s consists of lowercase English letters."
+  ],
+  "hints": [
+   "Use two converging pointers left and right to match characters from the outside inward.",
+   "At the very first mismatch where s[left] != s[right], one of those two characters must be deleted to make a palindrome.",
+   "Check both remaining substrings s[left + 1 .. right] and s[left .. right - 1] strictly (without any further deletions); do not greedily commit to just one side."
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "examples": [
+   {
+    "input": "s = \"aba\"",
+    "output": "true",
+    "explanation": "\"aba\" is already a palindrome (zero deletions needed)."
+   },
+   {
+    "input": "s = \"abca\"",
+    "output": "true",
+    "explanation": "Deleting 'c' yields \"aba\" (or deleting 'b' yields \"aca\"), which is a palindrome."
+   },
+   {
+    "input": "s = \"abc\"",
+    "output": "false",
+    "explanation": "No single character deletion turns \"abc\" into a palindrome."
+   }
+  ],
+  "starterCode": {
+   "java": "class Solution {\n    public boolean validPalindrome(String s) {\n        // Write your solution here\n        return false;\n    }\n}\n",
+   "python": "class Solution:\n    def validPalindrome(self, s: str) -> bool:\n        # Write your solution here\n        pass\n"
+  },
+  "solutionCode": {
+   "java": "class Solution {\n    public boolean validPalindrome(String s) {\n        int left = 0, right = s.length() - 1;\n        while (left < right) {\n            if (s.charAt(left) != s.charAt(right)) {\n                return isPal(s, left + 1, right) || isPal(s, left, right - 1);\n            }\n            left++;\n            right--;\n        }\n        return true;\n    }\n\n    private boolean isPal(String s, int l, int r) {\n        while (l < r) {\n            if (s.charAt(l) != s.charAt(r)) {\n                return false;\n            }\n            l++;\n            r--;\n        }\n        return true;\n    }\n}\n",
+   "python": "class Solution:\n    def validPalindrome(self, s: str) -> bool:\n        def is_pal(l: int, r: int) -> bool:\n            while l < r:\n                if s[l] != s[r]:\n                    return False\n                l += 1\n                r -= 1\n            return True\n\n        left, right = 0, len(s) - 1\n        while left < right:\n            if s[left] != s[right]:\n                return is_pal(left + 1, right) or is_pal(left, right - 1)\n            left += 1\n            right -= 1\n        return True\n"
+  },
+  "sampleArray": [],
+  "visibleTestCount": 3,
+  "hiddenTestCount": 11,
+  "number": 7
+ },
+ {
+  "id": "boats-to-save-people",
+  "order": 8,
+  "topicId": "two-pointers",
+  "topic": "Two Pointers",
+  "title": "Boats to Save People",
+  "slug": "boats-to-save-people",
+  "difficulty": "Medium",
+  "subtopic": "Converging Pointers",
+  "companies": [
+   "Amazon",
+   "Google",
+   "Meta",
+   "Microsoft",
+   "Uber",
+   "Salesforce"
+  ],
+  "leetcode": 881,
+  "description": "You are given an integer array `people` where `people[i]` is the weight of the `i`-th person, and an unlimited number of boats where each boat can carry a maximum weight of `limit`.\n\nEach boat can carry **at most two** people at the same time, provided the sum of their weights is at most `limit`.\n\nReturn the minimum number of boats required to carry every given person.",
+  "constraints": [
+   "1 <= people.length <= 5 * 10^4",
+   "1 <= people[i] <= limit <= 3 * 10^4"
+  ],
+  "hints": [
+   "Sort the array of weights so you can easily inspect the lightest and heaviest remaining people.",
+   "The heaviest remaining person must go in some boat; if they can share it with the lightest remaining person (people[left] + people[right] <= limit), pairing them never hurts any future pairing.",
+   "Advance left only when a pair fits, always decrement right, and count one boat per step."
+  ],
+  "timeComplexity": "O(n log n)",
+  "spaceComplexity": "O(log n)",
+  "compare": "exact",
+  "examples": [
+   {
+    "input": "people = [1,2], limit = 3",
+    "output": "1",
+    "explanation": "One boat carries both people (1 + 2 <= 3)."
+   },
+   {
+    "input": "people = [3,2,2,1], limit = 3",
+    "output": "3",
+    "explanation": "Three boats are needed: (1, 2), (2), and (3)."
+   },
+   {
+    "input": "people = [3,5,3,4], limit = 5",
+    "output": "4",
+    "explanation": "No two people have combined weight <= 5, so 4 boats are needed: (3), (3), (4), (5)."
+   }
+  ],
+  "starterCode": {
+   "java": "class Solution {\n    public int numRescueBoats(int[] people, int limit) {\n        // Write your solution here\n        return 0;\n    }\n}\n",
+   "python": "class Solution:\n    def numRescueBoats(self, people: List[int], limit: int) -> int:\n        # Write your solution here\n        pass\n"
+  },
+  "solutionCode": {
+   "java": "class Solution {\n    public int numRescueBoats(int[] people, int limit) {\n        Arrays.sort(people);\n        int left = 0, right = people.length - 1;\n        int boats = 0;\n        while (left <= right) {\n            if (people[left] + people[right] <= limit) {\n                left++;\n            }\n            right--;\n            boats++;\n        }\n        return boats;\n    }\n}\n",
+   "python": "class Solution:\n    def numRescueBoats(self, people: List[int], limit: int) -> int:\n        people.sort()\n        left, right = 0, len(people) - 1\n        boats = 0\n        while left <= right:\n            if people[left] + people[right] <= limit:\n                left += 1\n            right -= 1\n            boats += 1\n        return boats\n"
+  },
+  "sampleArray": [
+   1,
+   2
+  ],
+  "visibleTestCount": 3,
+  "hiddenTestCount": 10,
+  "number": 8
+ },
+ {
+  "id": "reverse-only-letters",
+  "order": 9,
+  "topicId": "two-pointers",
+  "topic": "Two Pointers",
+  "title": "Reverse Only Letters",
+  "slug": "reverse-only-letters",
+  "difficulty": "Easy",
+  "subtopic": "Converging Pointers",
+  "companies": [
+   "Google",
+   "Amazon",
+   "Microsoft",
+   "Meta",
+   "Bloomberg"
+  ],
+  "leetcode": 917,
+  "description": "Given a string `s`, reverse the string according to the following rules:\n\n- All characters that are not English letters remain in the same position.\n- All English letters (lowercase `'a'-'z'` or uppercase `'A'-'Z'`) are reversed in place.\n\nReturn the resulting string.",
+  "constraints": [
+   "1 <= s.length <= 100",
+   "s consists of characters with ASCII values in the range [33, 122].",
+   "s does not contain '\"' or '\\'."
+  ],
+  "hints": [
+   "Place one pointer at the start of the string and another at the end, moving them toward each other.",
+   "Advance the left pointer until it points to an English letter, and move the right pointer backward until it also points to an English letter.",
+   "Swap the two letters and advance both pointers inward until they meet or cross."
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "examples": [
+   {
+    "input": "s = \"ab-cd\"",
+    "output": "\"dc-ba\"",
+    "explanation": "The letters 'a', 'b', 'c', 'd' are reversed to 'd', 'c', 'b', 'a', while '-' stays at index 2, giving \"dc-ba\"."
+   },
+   {
+    "input": "s = \"a-bC-dEf-ghIj\"",
+    "output": "\"j-Ih-gfE-dCba\"",
+    "explanation": "All hyphens stay at their original positions while the English letters reverse to form \"j-Ih-gfE-dCba\"."
+   },
+   {
+    "input": "s = \"Test1ng-Leet=code-Q!\"",
+    "output": "\"Qedo1ct-eeLg=ntse-T!\"",
+    "explanation": "Digits and punctuation ('1', '-', '=', '!') stay fixed while the letters reverse to yield \"Qedo1ct-eeLg=ntse-T!\"."
+   }
+  ],
+  "starterCode": {
+   "java": "class Solution {\n    public String reverseOnlyLetters(String s) {\n        // Write your solution here\n        return null;\n    }\n}\n",
+   "python": "class Solution:\n    def reverseOnlyLetters(self, s: str) -> str:\n        # Write your solution here\n        pass\n"
+  },
+  "solutionCode": {
+   "java": "class Solution {\n    public String reverseOnlyLetters(String s) {\n        char[] arr = s.toCharArray();\n        int left = 0, right = arr.length - 1;\n        while (left < right) {\n            while (left < right && !Character.isLetter(arr[left])) {\n                left++;\n            }\n            while (left < right && !Character.isLetter(arr[right])) {\n                right--;\n            }\n            if (left < right) {\n                char tmp = arr[left];\n                arr[left] = arr[right];\n                arr[right] = tmp;\n                left++;\n                right--;\n            }\n        }\n        return new String(arr);\n    }\n}\n",
+   "python": "class Solution:\n    def reverseOnlyLetters(self, s: str) -> str:\n        chars = list(s)\n        left, right = 0, len(chars) - 1\n        while left < right:\n            while left < right and not chars[left].isalpha():\n                left += 1\n            while left < right and not chars[right].isalpha():\n                right -= 1\n            if left < right:\n                chars[left], chars[right] = chars[right], chars[left]\n                left += 1\n                right -= 1\n        return \"\".join(chars)\n"
+  },
+  "sampleArray": [],
+  "visibleTestCount": 3,
+  "hiddenTestCount": 10,
+  "number": 9
+ },
+ {
+  "id": "squares-of-a-sorted-array",
+  "order": 10,
+  "topicId": "two-pointers",
+  "topic": "Two Pointers",
+  "title": "Squares of a Sorted Array",
+  "slug": "squares-of-a-sorted-array",
+  "difficulty": "Easy",
+  "subtopic": "Converging Pointers",
+  "companies": [
+   "Meta",
+   "Amazon",
+   "Google",
+   "Apple",
+   "Uber",
+   "Bloomberg"
+  ],
+  "leetcode": 977,
+  "description": "Given an integer array `nums` sorted in **non-decreasing** order, return an array of the **squares of each number** sorted in non-decreasing order.\n\nTry to solve the problem in `O(n)` time using two pointers rather than squaring and sorting.",
+  "constraints": [
+   "1 <= nums.length <= 10^4",
+   "-10^4 <= nums[i] <= 10^4",
+   "nums is sorted in non-decreasing order."
+  ],
+  "hints": [
+   "Because the input array is sorted, the elements with the largest absolute values (and therefore the largest squares) are always at the two ends of the array.",
+   "Use two pointers, left at index 0 and right at index n - 1, and fill the result array from back to front.",
+   "At each step, place the larger of nums[left]^2 and nums[right]^2 at the current write position and move that pointer inward."
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "examples": [
+   {
+    "input": "nums = [-4,-1,0,3,10]",
+    "output": "[0,1,9,16,100]",
+    "explanation": "After squaring, the array becomes [16, 1, 0, 9, 100]. After sorting in non-decreasing order, it becomes [0, 1, 9, 16, 100]."
+   },
+   {
+    "input": "nums = [-7,-3,2,3,11]",
+    "output": "[4,9,9,49,121]",
+    "explanation": "Squaring gives [49, 9, 4, 9, 121], which sorted is [4, 9, 9, 49, 121]."
+   },
+   {
+    "input": "nums = [-5,-3,-2,-1]",
+    "output": "[1,4,9,25]",
+    "explanation": "All values are negative, so their squares appear in strictly decreasing order and reverse to [1, 4, 9, 25]."
+   }
+  ],
+  "starterCode": {
+   "java": "class Solution {\n    public int[] sortedSquares(int[] nums) {\n        // Write your solution here\n        return null;\n    }\n}\n",
+   "python": "class Solution:\n    def sortedSquares(self, nums: List[int]) -> List[int]:\n        # Write your solution here\n        pass\n"
+  },
+  "solutionCode": {
+   "java": "class Solution {\n    public int[] sortedSquares(int[] nums) {\n        int n = nums.length;\n        int[] res = new int[n];\n        int left = 0, right = n - 1, pos = n - 1;\n        while (left <= right) {\n            int leftSq = nums[left] * nums[left];\n            int rightSq = nums[right] * nums[right];\n            if (leftSq >= rightSq) {\n                res[pos] = leftSq;\n                left++;\n            } else {\n                res[pos] = rightSq;\n                right--;\n            }\n            pos--;\n        }\n        return res;\n    }\n}\n",
+   "python": "class Solution:\n    def sortedSquares(self, nums: List[int]) -> List[int]:\n        n = len(nums)\n        res = [0] * n\n        left, right = 0, n - 1\n        pos = n - 1\n        while left <= right:\n            left_sq = nums[left] * nums[left]\n            right_sq = nums[right] * nums[right]\n            if left_sq >= right_sq:\n                res[pos] = left_sq\n                left += 1\n            else:\n                res[pos] = right_sq\n                right -= 1\n            pos -= 1\n        return res\n"
+  },
+  "sampleArray": [
+   -4,
+   -1,
+   0,
+   3,
+   10
+  ],
+  "visibleTestCount": 3,
+  "hiddenTestCount": 10,
+  "number": 10
+ },
+ {
+  "id": "interval-list-intersections",
+  "order": 11,
+  "topicId": "two-pointers",
+  "topic": "Two Pointers",
+  "title": "Interval List Intersections",
+  "slug": "interval-list-intersections",
+  "difficulty": "Medium",
+  "subtopic": "Trailing Pointers",
+  "companies": [
+   "Meta",
+   "Google",
+   "Amazon",
+   "Uber",
+   "Microsoft",
+   "Bloomberg"
+  ],
+  "leetcode": 986,
+  "description": "You are given two lists of closed intervals, `firstList` and `secondList`, where `firstList[i] = [start_i, end_i]` and `secondList[j] = [start_j, end_j]`. Each list of intervals is **pairwise disjoint** and in **sorted order**.\n\nReturn the intersection of these two interval lists as a list of closed intervals in sorted order.\n\nA closed interval `[a, b]` (with `a <= b`) denotes the set of real numbers `x` with `a <= x <= b`. The intersection of two closed intervals `[a, b]` and `[c, d]` is `[max(a, c), min(b, d)]` whenever `max(a, c) <= min(b, d)` (including single-point intersections `[x, x]`), and empty otherwise.",
+  "constraints": [
+   "0 <= firstList.length, secondList.length <= 1000",
+   "firstList.length + secondList.length >= 1",
+   "0 <= start_i < end_i <= 10^9",
+   "end_i < start_{i+1} for all valid i in firstList",
+   "0 <= start_j < end_j <= 10^9",
+   "end_j < start_{j+1} for all valid j in secondList"
+  ],
+  "hints": [
+   "Since both interval lists are already sorted and disjoint, maintain two pointers i and j starting at 0.",
+   "For the current pair firstList[i] and secondList[j], their potential overlap is [max(start_i, start_j), min(end_i, end_j)], which is valid whenever lo <= hi.",
+   "After checking the pair, advance the pointer whose interval ends earlier, because that interval cannot intersect any later interval in the other list."
+  ],
+  "timeComplexity": "O(m + n)",
+  "spaceComplexity": "O(m + n)",
+  "compare": "exact",
+  "examples": [
+   {
+    "input": "firstList = [[0,2],[5,10],[13,23],[24,25]], secondList = [[1,5],[8,12],[15,24],[25,26]]",
+    "output": "[[1,2],[5,5],[8,10],[15,23],[24,24],[25,25]]",
+    "explanation": "Comparing intervals in sorted order produces overlaps [1,2], single-point [5,5], [8,10], [15,23], single-point [24,24], and single-point [25,25]."
+   },
+   {
+    "input": "firstList = [[1,3],[5,9]], secondList = []",
+    "output": "[]",
+    "explanation": "Because secondList is empty, there are no overlapping intervals, so return []."
+   },
+   {
+    "input": "firstList = [[1,7]], secondList = [[3,10]]",
+    "output": "[[3,7]]",
+    "explanation": "The closed intervals [1, 7] and [3, 10] overlap on [3, 7]."
+   }
+  ],
+  "starterCode": {
+   "java": "class Solution {\n    public int[][] intervalIntersection(int[][] firstList, int[][] secondList) {\n        // Write your solution here\n        return null;\n    }\n}\n",
+   "python": "class Solution:\n    def intervalIntersection(self, firstList: List[List[int]], secondList: List[List[int]]) -> List[List[int]]:\n        # Write your solution here\n        pass\n"
+  },
+  "solutionCode": {
+   "java": "class Solution {\n    public int[][] intervalIntersection(int[][] firstList, int[][] secondList) {\n        List<int[]> res = new ArrayList<>();\n        int i = 0, j = 0;\n        while (i < firstList.length && j < secondList.length) {\n            int lo = Math.max(firstList[i][0], secondList[j][0]);\n            int hi = Math.min(firstList[i][1], secondList[j][1]);\n            if (lo <= hi) {\n                res.add(new int[]{lo, hi});\n            }\n            if (firstList[i][1] < secondList[j][1]) {\n                i++;\n            } else {\n                j++;\n            }\n        }\n        return res.toArray(new int[res.size()][]);\n    }\n}\n",
+   "python": "class Solution:\n    def intervalIntersection(self, firstList: List[List[int]], secondList: List[List[int]]) -> List[List[int]]:\n        res = []\n        i, j = 0, 0\n        while i < len(firstList) and j < len(secondList):\n            lo = max(firstList[i][0], secondList[j][0])\n            hi = min(firstList[i][1], secondList[j][1])\n            if lo <= hi:\n                res.append([lo, hi])\n            if firstList[i][1] < secondList[j][1]:\n                i += 1\n            else:\n                j += 1\n        return res\n"
+  },
+  "sampleArray": [],
+  "visibleTestCount": 3,
+  "hiddenTestCount": 10,
+  "number": 11
+ },
+ {
+  "id": "backspace-string-compare",
+  "order": 12,
+  "topicId": "two-pointers",
+  "topic": "Two Pointers",
+  "title": "Backspace String Compare",
+  "slug": "backspace-string-compare",
+  "difficulty": "Easy",
+  "subtopic": "Trailing Pointers",
+  "companies": [
+   "Google",
+   "Amazon",
+   "Meta",
+   "Microsoft",
+   "Apple"
+  ],
+  "leetcode": 844,
+  "description": "Given two strings `s` and `t`, return `true` if they are equal when both are typed into empty text editors, and `false` otherwise. `'#'` represents a backspace character.\n\nNote that after backspacing an empty text, the text remains empty.\n\nTry to solve the problem in `O(n + m)` time and `O(1)` extra space.",
+  "constraints": [
+   "1 <= s.length, t.length <= 200",
+   "s and t only contain lowercase English letters and '#' characters."
+  ],
+  "hints": [
+   "Whether a character survives depends on the '#' characters that come after it, not before it.",
+   "Iterate through both strings in reverse (right to left), tracking how many pending backspaces must skip upcoming non-'#' characters.",
+   "At each step, find the next surviving character in s and in t; if they differ or only one string still has a character left, return false."
+  ],
+  "timeComplexity": "O(n + m)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "examples": [
+   {
+    "input": "s = \"ab#c\", t = \"ad#c\"",
+    "output": "true",
+    "explanation": "Both s and t become \"ac\" after processing backspaces, so return true."
+   },
+   {
+    "input": "s = \"ab##\", t = \"c#d#\"",
+    "output": "true",
+    "explanation": "Both s and t become the empty string \"\", so return true."
+   },
+   {
+    "input": "s = \"a#c\", t = \"b\"",
+    "output": "false",
+    "explanation": "s becomes \"c\" while t becomes \"b\", so return false."
+   }
+  ],
+  "starterCode": {
+   "java": "class Solution {\n    public boolean backspaceCompare(String s, String t) {\n        // Write your solution here\n        return false;\n    }\n}\n",
+   "python": "class Solution:\n    def backspaceCompare(self, s: str, t: str) -> bool:\n        # Write your solution here\n        pass\n"
+  },
+  "solutionCode": {
+   "java": "class Solution {\n    public boolean backspaceCompare(String s, String t) {\n        int i = s.length() - 1;\n        int j = t.length() - 1;\n        while (i >= 0 || j >= 0) {\n            i = nextValid(s, i);\n            j = nextValid(t, j);\n            if (i < 0 && j < 0) {\n                return true;\n            }\n            if (i < 0 || j < 0 || s.charAt(i) != t.charAt(j)) {\n                return false;\n            }\n            i--;\n            j--;\n        }\n        return true;\n    }\n\n    private int nextValid(String text, int idx) {\n        int skip = 0;\n        while (idx >= 0) {\n            if (text.charAt(idx) == '#') {\n                skip++;\n            } else if (skip > 0) {\n                skip--;\n            } else {\n                return idx;\n            }\n            idx--;\n        }\n        return -1;\n    }\n}\n",
+   "python": "class Solution:\n    def backspaceCompare(self, s: str, t: str) -> bool:\n        def next_valid(text: str, idx: int) -> int:\n            skip = 0\n            while idx >= 0:\n                if text[idx] == '#':\n                    skip += 1\n                elif skip > 0:\n                    skip -= 1\n                else:\n                    return idx\n                idx -= 1\n            return -1\n\n        i, j = len(s) - 1, len(t) - 1\n        while i >= 0 or j >= 0:\n            i = next_valid(s, i)\n            j = next_valid(t, j)\n            if i < 0 and j < 0:\n                return True\n            if i < 0 or j < 0 or s[i] != t[j]:\n                return False\n            i -= 1\n            j -= 1\n        return True\n"
+  },
+  "sampleArray": [],
+  "visibleTestCount": 3,
+  "hiddenTestCount": 10,
+  "number": 12
+ },
+ {
+  "id": "find-the-duplicate-number",
+  "order": 13,
+  "topicId": "two-pointers",
+  "topic": "Two Pointers",
+  "title": "Find the Duplicate Number",
+  "slug": "find-the-duplicate-number",
+  "difficulty": "Medium",
+  "subtopic": "Fast & Slow",
+  "companies": [
+   "Amazon",
+   "Google",
+   "Meta",
+   "Microsoft",
+   "Apple",
+   "Bloomberg"
+  ],
+  "leetcode": 287,
+  "description": "Given an array of integers `nums` containing `n + 1` integers where each integer is in the range `[1, n]` inclusive, there is **only one repeated number** in `nums` (which may appear two or more times). Return this repeated number.\n\nYou must solve the problem **without modifying** the array `nums` and using only `O(1)` extra space.",
+  "constraints": [
+   "1 <= n <= 10^5",
+   "nums.length == n + 1",
+   "1 <= nums[i] <= n",
+   "Every distinct integer present in nums appears only once, except for precisely one integer which appears two or more times."
+  ],
+  "hints": [
+   "Model the array as a directed functional graph where each index i has an outgoing edge to nums[i].",
+   "Because every value is in [1, n], index 0 has no incoming edge, while the duplicate value has at least two incoming edges — making it the entry point of a cycle reachable from index 0.",
+   "Apply Floyd's Tortoise and Hare algorithm: first detect an intersection inside the cycle with slow = nums[slow] and fast = nums[nums[fast]], then reset one pointer to nums[0] and advance both one step at a time to find the cycle entrance."
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "examples": [
+   {
+    "input": "nums = [1,3,4,2,2]",
+    "output": "2",
+    "explanation": "The number 2 appears twice in [1, 3, 4, 2, 2], while all other numbers appear once."
+   },
+   {
+    "input": "nums = [3,1,3,4,2]",
+    "output": "3",
+    "explanation": "The number 3 appears twice in [3, 1, 3, 4, 2]."
+   },
+   {
+    "input": "nums = [3,3,3,3,3]",
+    "output": "3",
+    "explanation": "The number 3 is repeated across the entire array, so return 3."
+   }
+  ],
+  "starterCode": {
+   "java": "class Solution {\n    public int findDuplicate(int[] nums) {\n        // Write your solution here\n        return 0;\n    }\n}\n",
+   "python": "class Solution:\n    def findDuplicate(self, nums: List[int]) -> int:\n        # Write your solution here\n        pass\n"
+  },
+  "solutionCode": {
+   "java": "class Solution {\n    public int findDuplicate(int[] nums) {\n        int slow = nums[0];\n        int fast = nums[0];\n        do {\n            slow = nums[slow];\n            fast = nums[nums[fast]];\n        } while (slow != fast);\n\n        slow = nums[0];\n        while (slow != fast) {\n            slow = nums[slow];\n            fast = nums[fast];\n        }\n        return slow;\n    }\n}\n",
+   "python": "class Solution:\n    def findDuplicate(self, nums: List[int]) -> int:\n        slow = nums[0]\n        fast = nums[0]\n        while True:\n            slow = nums[slow]\n            fast = nums[nums[fast]]\n            if slow == fast:\n                break\n\n        slow = nums[0]\n        while slow != fast:\n            slow = nums[slow]\n            fast = nums[fast]\n        return slow\n"
+  },
+  "sampleArray": [
+   1,
+   3,
+   4,
+   2,
+   2
+  ],
+  "visibleTestCount": 3,
+  "hiddenTestCount": 10,
+  "number": 13
+ },
+ {
+  "id": "subarray-product-less-than-k",
+  "order": 14,
+  "topicId": "two-pointers",
+  "topic": "Two Pointers",
+  "title": "Subarray Product Less Than K",
+  "slug": "subarray-product-less-than-k",
+  "difficulty": "Medium",
+  "subtopic": "Trailing Pointers",
+  "companies": [
+   "Google",
+   "Amazon",
+   "Meta",
+   "Microsoft",
+   "Uber",
+   "Goldman Sachs"
+  ],
+  "leetcode": 713,
+  "description": "Given an array of positive integers `nums` and an integer `k`, return the number of contiguous subarrays where the product of all the elements in the subarray is **strictly less than** `k`.",
+  "constraints": [
+   "1 <= nums.length <= 3 * 10^4",
+   "1 <= nums[i] <= 1000",
+   "0 <= k <= 10^6"
+  ],
+  "hints": [
+   "Because every element in nums is positive (>= 1), expanding a window to the right never decreases its product, and shrinking from the left never increases it.",
+   "Handle k <= 1 immediately by returning 0, since no non-empty subarray of positive integers can have product strictly less than 1.",
+   "For each right index, advance the trailing left pointer while prod >= k; then every subarray ending at right and starting in [left, right] is valid, contributing (right - left + 1) subarrays."
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "examples": [
+   {
+    "input": "nums = [10,5,2,6], k = 100",
+    "output": "8",
+    "explanation": "The 8 subarrays with product strictly less than 100 are: [10], [5], [2], [6], [10, 5], [5, 2], [2, 6], and [5, 2, 6]. Note [10, 5, 2] has product 100, which is not strictly less than 100."
+   },
+   {
+    "input": "nums = [1,2,3], k = 0",
+    "output": "0",
+    "explanation": "Because k = 0 and all elements are positive, no subarray can have a product strictly less than 0."
+   },
+   {
+    "input": "nums = [1,1,1], k = 2",
+    "output": "6",
+    "explanation": "Every contiguous subarray of [1, 1, 1] has product 1 < 2, giving 3 * 4 / 2 = 6 valid subarrays."
+   }
+  ],
+  "starterCode": {
+   "java": "class Solution {\n    public int numSubarrayProductLessThanK(int[] nums, int k) {\n        // Write your solution here\n        return 0;\n    }\n}\n",
+   "python": "class Solution:\n    def numSubarrayProductLessThanK(self, nums: List[int], k: int) -> int:\n        # Write your solution here\n        pass\n"
+  },
+  "solutionCode": {
+   "java": "class Solution {\n    public int numSubarrayProductLessThanK(int[] nums, int k) {\n        if (k <= 1) {\n            return 0;\n        }\n        int ans = 0;\n        long prod = 1;\n        int left = 0;\n        for (int right = 0; right < nums.length; right++) {\n            prod *= nums[right];\n            while (prod >= k) {\n                prod /= nums[left];\n                left++;\n            }\n            ans += right - left + 1;\n        }\n        return ans;\n    }\n}\n",
+   "python": "class Solution:\n    def numSubarrayProductLessThanK(self, nums: List[int], k: int) -> int:\n        if k <= 1:\n            return 0\n        ans = 0\n        prod = 1\n        left = 0\n        for right, val in enumerate(nums):\n            prod *= val\n            while prod >= k:\n                prod //= nums[left]\n                left += 1\n            ans += right - left + 1\n        return ans\n"
+  },
+  "sampleArray": [
+   10,
+   5,
+   2,
+   6
+  ],
+  "visibleTestCount": 3,
+  "hiddenTestCount": 10,
+  "number": 14
+ },
+ {
+  "id": "longest-mountain-in-array",
+  "order": 15,
+  "topicId": "two-pointers",
+  "topic": "Two Pointers",
+  "title": "Longest Mountain in Array",
+  "slug": "longest-mountain-in-array",
+  "difficulty": "Medium",
+  "subtopic": "Partition Pointers",
+  "companies": [
+   "Google",
+   "Amazon",
+   "Meta",
+   "Microsoft",
+   "Adobe"
+  ],
+  "leetcode": 845,
+  "description": "An array `arr` is a **mountain array** if and only if:\n\n- `arr.length >= 3`\n- There exists some index `i` (0-indexed) with `0 < i < arr.length - 1` such that:\n  - `arr[0] < arr[1] < ... < arr[i - 1] < arr[i]`, and\n  - `arr[i] > arr[i + 1] > ... > arr[arr.length - 1]`.\n\nGiven an integer array `arr`, return the length of the longest contiguous subarray that is a mountain. Return `0` if there is no mountain subarray.",
+  "constraints": [
+   "1 <= arr.length <= 10^4",
+   "0 <= arr[i] <= 10^4"
+  ],
+  "hints": [
+   "Two mountains can share at most a single valley endpoint — they never overlap on their interior slopes.",
+   "Maintain a base pointer and an end pointer: starting from base, walk end up while arr[end] < arr[end + 1].",
+   "Only if you moved upward at least once, continue walking end down while arr[end] > arr[end + 1]; if you also moved downward, update the best length and advance base to max(end, base + 1)."
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "examples": [
+   {
+    "input": "arr = [2,1,4,7,3,2,5]",
+    "output": "5",
+    "explanation": "The longest mountain subarray is [1, 4, 7, 3, 2], which has length 5."
+   },
+   {
+    "input": "arr = [2,2,2]",
+    "output": "0",
+    "explanation": "Because all elements are equal, there is no strictly increasing and strictly decreasing mountain subarray, so return 0."
+   },
+   {
+    "input": "arr = [0,1,2,3,4,5,4,3,2,1,0]",
+    "output": "11",
+    "explanation": "The entire array strictly increases from 0 to 5 and strictly decreases from 5 back to 0, giving length 11."
+   }
+  ],
+  "starterCode": {
+   "java": "class Solution {\n    public int longestMountain(int[] arr) {\n        // Write your solution here\n        return 0;\n    }\n}\n",
+   "python": "class Solution:\n    def longestMountain(self, arr: List[int]) -> int:\n        # Write your solution here\n        pass\n"
+  },
+  "solutionCode": {
+   "java": "class Solution {\n    public int longestMountain(int[] arr) {\n        int n = arr.length;\n        int ans = 0;\n        int base = 0;\n        while (base < n) {\n            int end = base;\n            if (end + 1 < n && arr[end] < arr[end + 1]) {\n                while (end + 1 < n && arr[end] < arr[end + 1]) {\n                    end++;\n                }\n                if (end + 1 < n && arr[end] > arr[end + 1]) {\n                    while (end + 1 < n && arr[end] > arr[end + 1]) {\n                        end++;\n                    }\n                    ans = Math.max(ans, end - base + 1);\n                }\n            }\n            base = Math.max(end, base + 1);\n        }\n        return ans;\n    }\n}\n",
+   "python": "class Solution:\n    def longestMountain(self, arr: List[int]) -> int:\n        n = len(arr)\n        ans = 0\n        base = 0\n        while base < n:\n            end = base\n            if end + 1 < n and arr[end] < arr[end + 1]:\n                while end + 1 < n and arr[end] < arr[end + 1]:\n                    end += 1\n                if end + 1 < n and arr[end] > arr[end + 1]:\n                    while end + 1 < n and arr[end] > arr[end + 1]:\n                        end += 1\n                    ans = max(ans, end - base + 1)\n            base = max(end, base + 1)\n        return ans\n"
+  },
+  "sampleArray": [
+   2,
+   1,
+   4,
+   7,
+   3,
+   2,
+   5
+  ],
+  "visibleTestCount": 3,
+  "hiddenTestCount": 10,
+  "number": 15
+ },
+ {
+  "id": "shortest-unsorted-continuous-subarray",
+  "order": 16,
+  "topicId": "two-pointers",
+  "topic": "Two Pointers",
+  "title": "Shortest Unsorted Continuous Subarray",
+  "slug": "shortest-unsorted-continuous-subarray",
+  "difficulty": "Medium",
+  "subtopic": "Partition Pointers",
+  "companies": [
+   "Google",
+   "Amazon",
+   "Meta",
+   "Microsoft",
+   "Bloomberg",
+   "Adobe"
+  ],
+  "leetcode": 581,
+  "description": "Given an integer array `nums`, find one **continuous subarray** such that if you sort only this subarray in non-decreasing order, then the whole array becomes sorted in non-decreasing order.\n\nReturn the length of the shortest such subarray. If `nums` is already sorted in non-decreasing order, return `0`.",
+  "constraints": [
+   "1 <= nums.length <= 10^4",
+   "-10^5 <= nums[i] <= 10^5"
+  ],
+  "hints": [
+   "An element is guaranteed to be in its final sorted position only if it is >= every element to its left and <= every element to its right.",
+   "Scan left to right tracking the running maximum: the last index where nums[i] < max_so_far is the right boundary of the unsorted subarray.",
+   "Symmetrically, scan right to left tracking the running minimum: the last index encountered where nums[i] > min_so_far is the left boundary."
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "examples": [
+   {
+    "input": "nums = [2,6,4,8,10,9,15]",
+    "output": "5",
+    "explanation": "Sorting the subarray [6, 4, 8, 10, 9] (indices 1..5) makes the entire array [2, 4, 6, 8, 9, 10, 15], which is sorted. Its length is 5."
+   },
+   {
+    "input": "nums = [1,2,3,4]",
+    "output": "0",
+    "explanation": "The array is already sorted in non-decreasing order, so no subarray needs to be sorted (length 0)."
+   },
+   {
+    "input": "nums = [1]",
+    "output": "0",
+    "explanation": "A single-element array is already sorted, so return 0."
+   }
+  ],
+  "starterCode": {
+   "java": "class Solution {\n    public int findUnsortedSubarray(int[] nums) {\n        // Write your solution here\n        return 0;\n    }\n}\n",
+   "python": "class Solution:\n    def findUnsortedSubarray(self, nums: List[int]) -> int:\n        # Write your solution here\n        pass\n"
+  },
+  "solutionCode": {
+   "java": "class Solution {\n    public int findUnsortedSubarray(int[] nums) {\n        int n = nums.length;\n        int right = -1;\n        int maxSeen = nums[0];\n        for (int i = 1; i < n; i++) {\n            if (nums[i] < maxSeen) {\n                right = i;\n            } else {\n                maxSeen = nums[i];\n            }\n        }\n        if (right == -1) {\n            return 0;\n        }\n\n        int left = n;\n        int minSeen = nums[n - 1];\n        for (int i = n - 2; i >= 0; i--) {\n            if (nums[i] > minSeen) {\n                left = i;\n            } else {\n                minSeen = nums[i];\n            }\n        }\n        return right - left + 1;\n    }\n}\n",
+   "python": "class Solution:\n    def findUnsortedSubarray(self, nums: List[int]) -> int:\n        n = len(nums)\n        right = -1\n        max_seen = nums[0]\n        for i in range(1, n):\n            if nums[i] < max_seen:\n                right = i\n            else:\n                max_seen = nums[i]\n\n        if right == -1:\n            return 0\n\n        left = n\n        min_seen = nums[-1]\n        for i in range(n - 2, -1, -1):\n            if nums[i] > min_seen:\n                left = i\n            else:\n                min_seen = nums[i]\n\n        return right - left + 1\n"
+  },
+  "sampleArray": [
+   2,
+   6,
+   4,
+   8,
+   10,
+   9,
+   15
+  ],
+  "visibleTestCount": 3,
+  "hiddenTestCount": 11,
+  "number": 16
+ }
+]

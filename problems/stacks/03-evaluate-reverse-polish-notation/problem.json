@@ -1,0 +1,35 @@
+{
+  "title": "Evaluate Reverse Polish Notation",
+  "difficulty": "Medium",
+  "subtopic": "Expression Parsing",
+  "companies": ["Amazon", "LinkedIn", "Google", "Meta", "Microsoft"],
+  "leetcode": 150,
+  "description": "You are given an array of strings `tokens` that represents an arithmetic expression in Reverse Polish Notation (postfix notation).\n\nEvaluate the expression and return an integer representing its value.\n\nNote that:\n- The valid operators are `'+'`, `'-'`, `'*'`, and `'/'`.\n- Each operand may be an integer or another expression.\n- Division between two integers always truncates toward zero (for example, `7 / -2 = -3` and `-7 / 2 = -3`).\n- There will not be any division by zero.\n- The input represents a valid arithmetic expression in Reverse Polish Notation.\n- The answer and all intermediate calculations can be represented in a 32-bit signed integer.",
+  "constraints": [
+    "1 <= tokens.length <= 10^4",
+    "tokens[i] is either an operator (\"+\", \"-\", \"*\", or \"/\") or an integer in the range [-200, 200].",
+    "The input represents a valid arithmetic expression in Reverse Polish Notation.",
+    "Division by zero never occurs, and all intermediate and final results fit in a 32-bit signed integer."
+  ],
+  "hints": [
+    "In Reverse Polish Notation, every operator applies to the two most recent operands.",
+    "Maintain a stack of integer values: push numbers onto the stack, and on an operator pop the right operand first, then the left operand, apply the operator, and push the result back.",
+    "Be careful with subtraction and division operand order (left op right) and ensure division truncates toward zero rather than flooring toward negative infinity."
+  ],
+  "examples": [
+    {"explanation": "((2 + 1) * 3) = 9."},
+    {"explanation": "(4 + (13 / 5)) = 4 + 2 = 6."},
+    {"explanation": "((10 * (6 / ((9 + 3) * -11))) + 17) + 5 = ((10 * (6 / -132)) + 17) + 5 = ((10 * 0) + 17) + 5 = 22."}
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "evalRPN",
+    "params": [
+      {"name": "tokens", "type": "String[]"}
+    ],
+    "returns": "int"
+  }
+}

@@ -1,0 +1,79 @@
+{
+  "title": "Run-Length Min Stack",
+  "difficulty": "Medium",
+  "subtopic": "Min Stack",
+  "companies": [
+    "Amazon",
+    "Google",
+    "Microsoft",
+    "Atlassian"
+  ],
+  "description": "Design a compressed stack `RunLengthMinStack` that supports pushing and popping huge runs of identical integers in **amortized `O(1)` time**, while answering `top` and `getMin` in **`O(1)` time**.\n\nImplement the `RunLengthMinStack` class:\n- `RunLengthMinStack()` initializes an empty stack.\n- `void pushMany(int val, int count)` pushes `count` copies (`1 <= count <= 10^9`) of `val` onto the top of the stack.\n- `long popMany(int count)` pops the top `count` elements (`1 <= count <= currentSize`) and returns the **sum of the popped elements** as a 64-bit integer (`long`).\n- `int top()` returns the top element of the stack.\n- `int getMin()` returns the minimum element currently in the stack.",
+  "constraints": [
+    "-10^6 <= val <= 10^6",
+    "1 <= count <= 10^9",
+    "Methods popMany, top, and getMin are always called with valid non-empty stack sizes, and all popped sums fit in a 64-bit signed integer.",
+    "At most 3 * 10^4 calls will be made across all methods."
+  ],
+  "hints": [
+    "Compress identical consecutive pushes into run entries `(val, runCount, runningMin)` on a stack.",
+    "On `pushMany`, coalesce into the top run if `top.val == val` (which never changes `runningMin`); on `popMany(count)`, consume full or partial runs from the top until `count` reaches 0."
+  ],
+  "examples": [
+    {
+      "explanation": "Push 5 copies of 10 and 3 copies of 4 (min 4). Popping 5 elements pops three 4's and two 10's (sum = 12 + 20 = 32), leaving three 10's (top 10, min 10)."
+    },
+    {
+      "explanation": "Pushing 10^6 copies of -3 then popping 500000 returns -1500000 while leaving -3 as top and min."
+    },
+    {
+      "explanation": "Two consecutive pushMany calls with value 7 merge cleanly into one run."
+    }
+  ],
+  "timeComplexity": "O(1) amortized per op",
+  "spaceComplexity": "O(number of runs)",
+  "compare": "exact",
+  "signature": {
+    "kind": "design",
+    "className": "RunLengthMinStack",
+    "constructor": {
+      "params": []
+    },
+    "methods": [
+      {
+        "name": "pushMany",
+        "params": [
+          {
+            "name": "val",
+            "type": "int"
+          },
+          {
+            "name": "count",
+            "type": "int"
+          }
+        ],
+        "returns": "void"
+      },
+      {
+        "name": "popMany",
+        "params": [
+          {
+            "name": "count",
+            "type": "int"
+          }
+        ],
+        "returns": "long"
+      },
+      {
+        "name": "top",
+        "params": [],
+        "returns": "int"
+      },
+      {
+        "name": "getMin",
+        "params": [],
+        "returns": "int"
+      }
+    ]
+  }
+}

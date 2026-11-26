@@ -1,0 +1,47 @@
+{
+  "title": "Minimum Score Range of K Students",
+  "difficulty": "Easy",
+  "subtopic": "Traversal",
+  "companies": [
+    "Amazon",
+    "Google",
+    "Microsoft"
+  ],
+  "description": "Given test scores `nums` and an integer `k`, choose any `k` scores. Return the smallest possible difference between the largest and smallest chosen score. Input: `nums`, `k`. Output: the minimum range.",
+  "constraints": [
+    "1 <= k <= nums.length <= 100000",
+    "0 <= nums[i] <= 100000"
+  ],
+  "hints": [
+    "Sort or count values once, then process each candidate in a single pass.",
+    "Check duplicates, all-equal inputs, and boundary values for `k`."
+  ],
+  "examples": [
+    {
+      "input": "nums = [9, 4, 1, 7], k = 2",
+      "output": "2"
+    },
+    {
+      "input": "nums = [4, 4, 4], k = 2",
+      "output": "0"
+    }
+  ],
+  "timeComplexity": "O(n log n)",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "minimumScoreRange",
+    "params": [
+      {
+        "name": "nums",
+        "type": "int[]"
+      },
+      {
+        "name": "k",
+        "type": "int"
+      }
+    ],
+    "returns": "int"
+  }
+}

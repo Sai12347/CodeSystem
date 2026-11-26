@@ -1,0 +1,48 @@
+{
+  "title": "Dota2 Senate",
+  "difficulty": "Medium",
+  "subtopic": "Deque Operations",
+  "companies": [
+    "Google",
+    "Amazon",
+    "Meta",
+    "Microsoft",
+    "Uber"
+  ],
+  "leetcode": 649,
+  "description": "In the world of Dota2, there are two parties: the Radiant (`'R'`) and the Dire (`'D'`).\n\nThe Dota2 senate consists of senators from both parties arranged in a round-based voting order given by a string `senate`, where `senate[i]` is either `'R'` or `'D'`. In each round, every remaining senator takes their turn in left-to-right order and may exercise one of two rights:\n1. **Ban one senator's right**: Permanently remove any one opposing senator's rights for the current and all subsequent rounds.\n2. **Announce victory**: If all remaining senators with rights belong to the same party, announce victory and end the game.\n\nAssuming every senator plays optimally to help their party win, predict which party will finally announce victory. Return `\"Radiant\"` or `\"Dire\"`.",
+  "constraints": [
+    "1 <= senate.length <= 10^4",
+    "senate[i] is either 'R' or 'D'."
+  ],
+  "hints": [
+    "Greedily, a senator should always ban the next opposing senator who has yet to act in the circular order.",
+    "Maintain two FIFO queues—one for Radiant indices and one for Dire indices.",
+    "Repeatedly compare the front indices of both queues: the senator with the smaller index bans the other and re-enters their queue with index + n for the next round."
+  ],
+  "examples": [
+    {
+      "explanation": "Round 1: The first senator (R) bans the second senator (D). Round 2: Only R remains and announces Radiant victory."
+    },
+    {
+      "explanation": "Round 1: R at index 0 bans D at index 1; D at index 2 bans R at index 0. Round 2: Only D at index 2 remains and announces Dire victory."
+    },
+    {
+      "explanation": "The two initial Dire senators ban the first two Radiant senators; the last Radiant senator bans one Dire senator, and in round 2 the remaining Dire senator bans the last Radiant senator."
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "predictPartyVictory",
+    "params": [
+      {
+        "name": "senate",
+        "type": "String"
+      }
+    ],
+    "returns": "String"
+  }
+}

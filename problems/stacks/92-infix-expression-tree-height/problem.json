@@ -1,0 +1,45 @@
+{
+  "title": "Infix Expression Tree Height",
+  "difficulty": "Medium",
+  "subtopic": "Expression Parsing",
+  "companies": [
+    "Google",
+    "Amazon",
+    "Microsoft",
+    "Apple"
+  ],
+  "description": "Given a valid infix arithmetic expression string `s` consisting of non-negative integers, binary operators `'+'`, `'-'`, `'*'`, `'/'`, parentheses `'('` and `')'`, and optional spaces, determine the **height of its Abstract Syntax Tree (expression tree)** under standard precedence (`'*'`, `'/'` > `'+'`, `'-'`, all left-associative).\n\nThe height of a single integer leaf node is `0`, and the height of an operator node with left subtree `L` and right subtree `R` is `1 + max(height(L), height(R))`.",
+  "constraints": [
+    "1 <= s.length <= 2 * 10^4",
+    "s is a valid infix arithmetic expression containing digits, '+', '-', '*', '/', '(', ')', and ' '."
+  ],
+  "hints": [
+    "You do not need to allocate tree nodes \u2014 run Shunting-Yard with an integer stack storing subtree heights (every number literal pushes height 0).",
+    "Whenever an operator is popped and applied, pop `hRight` and `hLeft` from the height stack and push `1 + max(hLeft, hRight)`."
+  ],
+  "examples": [
+    {
+      "explanation": "1 + 2 * 3 parses as +(1, *(2, 3)): *(2, 3) has height 1, and the root '+' has height 2."
+    },
+    {
+      "explanation": "(1 + 2) * (3 + 4) has two height-1 children under '*', so the tree height is 2."
+    },
+    {
+      "explanation": "Left-associative 1 + 2 + 3 + 4 forms a left-leaning chain (((1+2)+3)+4) of height 3."
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "expressionTreeHeight",
+    "params": [
+      {
+        "name": "s",
+        "type": "String"
+      }
+    ],
+    "returns": "int"
+  }
+}

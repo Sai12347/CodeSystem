@@ -1,0 +1,48 @@
+{
+  "title": "Shortest Way to Form String",
+  "difficulty": "Medium",
+  "subtopic": "String Matching",
+  "companies": [
+    "Google",
+    "Meta",
+    "Amazon"
+  ],
+  "description": "Given two lowercase strings `source` and `target`, return the minimum number of subsequences of `source` such that their concatenation equals `target`. If `target` cannot be formed this way, return `-1`.",
+  "constraints": [
+    "1 <= source.length, target.length <= 10^4",
+    "source and target consist of lowercase English letters."
+  ],
+  "hints": [
+    "If target contains any character that never appears in source, return -1 immediately.",
+    "Precompute nextPos[i][c]: the earliest index >= i in source where character c occurs (or -1). Greedily match as many target characters as possible in each pass over source."
+  ],
+  "examples": [
+    {
+      "explanation": "\"abcbc\" can be formed as \"ab\" + \"cbc\" (2 subsequences of \"abc\")."
+    },
+    {
+      "explanation": "'d' does not appear in \"abc\", so return -1."
+    },
+    {
+      "explanation": "\"xzyxz\" = \"xz\" + \"y\" + \"xz\" (3 subsequences of \"xyz\")."
+    }
+  ],
+  "timeComplexity": "O(26 * |source| + |target|)",
+  "spaceComplexity": "O(26 * |source|)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "shortestWay",
+    "params": [
+      {
+        "name": "source",
+        "type": "String"
+      },
+      {
+        "name": "target",
+        "type": "String"
+      }
+    ],
+    "returns": "int"
+  }
+}

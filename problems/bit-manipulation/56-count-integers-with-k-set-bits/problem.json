@@ -1,0 +1,48 @@
+{
+  "title": "Count Integers With Exactly K Set Bits",
+  "difficulty": "Hard",
+  "subtopic": "Counting Bits",
+  "companies": [
+    "Google",
+    "Microsoft",
+    "Goldman Sachs"
+  ],
+  "description": "Given a non-negative integer `n` and an integer `k`, return the total number of integers `x` satisfying `0 <= x <= n` whose binary representation has exactly `k` set bits (`1`-bits).",
+  "constraints": [
+    "0 <= n <= 10^15",
+    "0 <= k <= 60"
+  ],
+  "hints": [
+    "Scan the binary representation of `n` from the most significant bit down to bit 0, tracking how many set bits `rem` remain to be placed.",
+    "Whenever bit `b` of `n` is `1`, placing a `0` at bit `b` guarantees the number is strictly less than `n`, contributing `C(b, rem)` valid completions from Pascal's triangle; then fix bit `b` to `1` and decrement `rem`."
+  ],
+  "examples": [
+    {
+      "explanation": "Among 0..5, the integers with 2 set bits are 3 (11) and 5 (101), so the count is 2."
+    },
+    {
+      "explanation": "Among 0..7, the integers with 1 set bit are 1, 2, and 4, so the count is 3."
+    },
+    {
+      "explanation": "Only 0 has 0 set bits, so the count is 1."
+    }
+  ],
+  "timeComplexity": "O(log^2 n)",
+  "spaceComplexity": "O(log^2 n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "countWithKSetBits",
+    "params": [
+      {
+        "name": "n",
+        "type": "long"
+      },
+      {
+        "name": "k",
+        "type": "int"
+      }
+    ],
+    "returns": "long"
+  }
+}

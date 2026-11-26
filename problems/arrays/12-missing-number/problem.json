@@ -1,0 +1,51 @@
+{
+  "title": "Missing Number",
+  "difficulty": "Easy",
+  "subtopic": "Traversal",
+  "companies": [
+    "Amazon",
+    "Microsoft",
+    "Google",
+    "Meta",
+    "Apple",
+    "Bloomberg"
+  ],
+  "leetcode": 268,
+  "description": "Given an array `nums` containing `n` distinct integers taken from the range `[0, n]`, return the only number in that range that is missing from the array.\n\nFollow-up: Solve the problem in `O(n)` time and `O(1)` auxiliary space without modifying `nums`.",
+  "constraints": [
+    "n == nums.length",
+    "1 <= n <= 10^4",
+    "0 <= nums[i] <= n",
+    "All the numbers of nums are unique."
+  ],
+  "hints": [
+    "The expected sum of integers from 0 to n is n * (n + 1) / 2; subtracting the actual sum yields the missing number.",
+    "Alternatively, XOR all indices 0..n together with every value in nums: every present number cancels out because a ^ a == 0.",
+    "Using XOR avoids any risk of intermediate integer overflow even for very large n."
+  ],
+  "examples": [
+    {
+      "explanation": "n = 3, so all numbers should lie in [0, 3]. 2 is the only missing number."
+    },
+    {
+      "explanation": "n = 2, so all numbers should lie in [0, 2]. 2 is missing."
+    },
+    {
+      "explanation": "n = 9, so all numbers should lie in [0, 9]. 8 does not appear in nums."
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "missingNumber",
+    "params": [
+      {
+        "name": "nums",
+        "type": "int[]"
+      }
+    ],
+    "returns": "int"
+  }
+}

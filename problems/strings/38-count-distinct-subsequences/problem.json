@@ -1,0 +1,47 @@
+{
+  "title": "Count Distinct Subsequences",
+  "difficulty": "Hard",
+  "subtopic": "Substrings",
+  "companies": [
+    "Amazon",
+    "Google",
+    "Microsoft"
+  ],
+  "description": "Given lowercase strings `s` and `t`, count the different ways to delete characters from `s` without changing the order of the remaining characters so that the result equals `t`. Return the count modulo 1,000,000,007. Input: `s`, `t`. Output: the number of index choices modulo the stated modulus.",
+  "constraints": [
+    "0 <= t.length <= s.length <= 1000",
+    "s and t contain lowercase English letters"
+  ],
+  "hints": [
+    "Track only the character counts or prefixes needed to decide the next step.",
+    "Check repeated symbols, empty or minimal cases, and impossible arrangements."
+  ],
+  "examples": [
+    {
+      "input": "s = \"rabbbit\", t = \"rabbit\"",
+      "output": "3"
+    },
+    {
+      "input": "s = \"babgbag\", t = \"bag\"",
+      "output": "5"
+    }
+  ],
+  "timeComplexity": "O(|s|*|t|)",
+  "spaceComplexity": "O(|t|)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "numDistinct",
+    "params": [
+      {
+        "name": "s",
+        "type": "String"
+      },
+      {
+        "name": "t",
+        "type": "String"
+      }
+    ],
+    "returns": "int"
+  }
+}

@@ -1,0 +1,48 @@
+{
+  "title": "Longest Subarray With Sum at Most K",
+  "difficulty": "Easy",
+  "subtopic": "Subarrays",
+  "companies": [
+    "Amazon",
+    "Microsoft",
+    "Google"
+  ],
+  "description": "Given a non-negative integer array `nums` and an integer `k`, return the maximum length of a non-empty contiguous subarray whose sum is at most `k`. Return 0 if no non-empty subarray qualifies.",
+  "constraints": [
+    "1 <= nums.length <= 10^5",
+    "0 <= nums[i] <= 10^9",
+    "0 <= k <= 10^14"
+  ],
+  "hints": [
+    "Scan the input while maintaining the invariant in the statement.",
+    "Check boundary values, duplicates, and tie cases."
+  ],
+  "examples": [
+    {
+      "input": "nums = [1,2,1,0,1], k = 3",
+      "output": "3"
+    },
+    {
+      "input": "nums = [4,1,1], k = 3",
+      "output": "2"
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "longestSubarrayAtMostK",
+    "params": [
+      {
+        "name": "nums",
+        "type": "int[]"
+      },
+      {
+        "name": "k",
+        "type": "long"
+      }
+    ],
+    "returns": "int"
+  }
+}

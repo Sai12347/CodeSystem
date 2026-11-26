@@ -1,0 +1,44 @@
+{
+  "title": "Break a Palindrome",
+  "difficulty": "Medium",
+  "subtopic": "Palindromes",
+  "companies": [
+    "Amazon",
+    "Goldman Sachs",
+    "Uber"
+  ],
+  "description": "Given a palindromic string `palindrome` of lowercase English letters, replace exactly one character with any lowercase English letter so that the resulting string is not a palindrome and is the lexicographically smallest one possible. Return the resulting string, or an empty string `\"\"` if it is impossible.",
+  "constraints": [
+    "1 <= palindrome.length <= 1000",
+    "palindrome consists of lowercase English letters and is a palindrome."
+  ],
+  "hints": [
+    "A single-character string is always a palindrome regardless of what you replace it with.",
+    "Scan only the first half (indices 0 to n//2 - 1): change the first non-'a' character to 'a'. If all first-half characters are 'a', change the last character to 'b'."
+  ],
+  "examples": [
+    {
+      "explanation": "Replacing the first 'b' with 'a' gives \"aaccba\", which is lexicographically smallest and not a palindrome."
+    },
+    {
+      "explanation": "Any 1-character string remains a palindrome, so return \"\"."
+    },
+    {
+      "explanation": "Changing the last 'a' to 'b' gives \"ab\"."
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "breakPalindrome",
+    "params": [
+      {
+        "name": "palindrome",
+        "type": "String"
+      }
+    ],
+    "returns": "String"
+  }
+}

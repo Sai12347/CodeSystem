@@ -1,0 +1,53 @@
+{
+  "title": "Count Pairs With XOR in a Range",
+  "difficulty": "Hard",
+  "subtopic": "XOR Tricks",
+  "companies": [
+    "Google",
+    "Meta",
+    "Amazon"
+  ],
+  "description": "Given an integer array `nums` and two integers `low` and `high`, return the number of index pairs `(i, j)` with `0 <= i < j < nums.length` such that `low <= (nums[i] XOR nums[j]) <= high`.",
+  "constraints": [
+    "1 <= nums.length <= 2 * 10^4",
+    "0 <= nums[i] <= 2 * 10^4",
+    "0 <= low <= high <= 2 * 10^4"
+  ],
+  "hints": [
+    "Transform the range query `[low, high]` into `countLess(high + 1) - countLess(low)`, where `countLess(limit)` counts pairs whose XOR is strictly less than `limit`.",
+    "Insert numbers one by one into a bitwise Trie (most significant bit first) storing subtree counts; when bit `b` of `limit` is 1, all previously inserted numbers matching bit `b` of `x` yield XOR bit 0 and can be counted immediately."
+  ],
+  "examples": [
+    {
+      "explanation": "All 6 unordered pairs of [1, 4, 2, 7] have XOR in [2, 6]: 1^4=5, 1^2=3, 1^7=6, 4^2=6, 4^7=3, 2^7=5."
+    },
+    {
+      "explanation": "Among [9, 8, 4, 2, 1], 8 pairs have XOR in [5, 14]."
+    },
+    {
+      "explanation": "With a single element, there are 0 pairs."
+    }
+  ],
+  "timeComplexity": "O(n log M)",
+  "spaceComplexity": "O(n log M)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "countPairsXorInRange",
+    "params": [
+      {
+        "name": "nums",
+        "type": "int[]"
+      },
+      {
+        "name": "low",
+        "type": "int"
+      },
+      {
+        "name": "high",
+        "type": "int"
+      }
+    ],
+    "returns": "int"
+  }
+}

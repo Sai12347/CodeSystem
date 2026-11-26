@@ -1,0 +1,90 @@
+{
+  "title": "Persistent Min Stack",
+  "difficulty": "Hard",
+  "subtopic": "Min Stack",
+  "companies": [
+    "Google",
+    "Meta",
+    "Bloomberg",
+    "Atlassian",
+    "Amazon"
+  ],
+  "description": "Design an immutable, versioned **Persistent Min Stack** (`PersistentMinStack`) where every `push` and `pop` leaves all previous versions intact and produces a new sequential version ID (`1, 2, 3, ...`), all in `O(1)` time and `O(1)` extra space per operation.\n\nImplement the `PersistentMinStack` class:\n- `PersistentMinStack()` initializes version `0` as an empty stack.\n- `int push(int version, int val)` creates a new version equal to `version` with `val` pushed on top, and returns the new version ID.\n- `int pop(int version)` creates a new version equal to `version` with its top element removed, and returns the new version ID.\n- `int top(int version)` returns the top element of `version`.\n- `int getMin(int version)` returns the minimum element currently in `version`.",
+  "constraints": [
+    "-10^9 <= val <= 10^9",
+    "Every version argument is a previously created version ID (0 <= version <= latestVersion).",
+    "Methods pop, top, and getMin are always called on non-empty versions.",
+    "At most 5 * 10^4 calls will be made across all methods."
+  ],
+  "hints": [
+    "Represent stack nodes as persistent tree nodes storing (val, runningMin, parentNode), with node 0 as the empty sentinel.",
+    "Keep an array nodeOfVersion mapping each version ID to its head node: push creates one new child node in O(1), and pop simply maps the new version ID to parent[nodeOfVersion[version]] in O(1)."
+  ],
+  "examples": [
+    {
+      "explanation": "v1 = [5], v2 = [5, 2] (min 2), v3 branches from v1 to [5, 8] (min 5), v4 pops v2 back to [5] (top 5, min 5)."
+    },
+    {
+      "explanation": "Popping a single-element version produces an empty version that can be pushed onto again cleanly."
+    },
+    {
+      "explanation": "Multiple branches from the same ancestor version remain completely independent."
+    }
+  ],
+  "timeComplexity": "O(1) per op",
+  "spaceComplexity": "O(1) per op",
+  "compare": "exact",
+  "signature": {
+    "kind": "design",
+    "className": "PersistentMinStack",
+    "constructor": {
+      "params": []
+    },
+    "methods": [
+      {
+        "name": "push",
+        "params": [
+          {
+            "name": "version",
+            "type": "int"
+          },
+          {
+            "name": "val",
+            "type": "int"
+          }
+        ],
+        "returns": "int"
+      },
+      {
+        "name": "pop",
+        "params": [
+          {
+            "name": "version",
+            "type": "int"
+          }
+        ],
+        "returns": "int"
+      },
+      {
+        "name": "top",
+        "params": [
+          {
+            "name": "version",
+            "type": "int"
+          }
+        ],
+        "returns": "int"
+      },
+      {
+        "name": "getMin",
+        "params": [
+          {
+            "name": "version",
+            "type": "int"
+          }
+        ],
+        "returns": "int"
+      }
+    ]
+  }
+}

@@ -1,0 +1,60 @@
+{
+  "title": "Find Median from Data Stream",
+  "difficulty": "Hard",
+  "subtopic": "Two-Heap Median",
+  "companies": [
+    "Amazon",
+    "Google",
+    "Meta",
+    "Microsoft",
+    "Apple",
+    "Bloomberg"
+  ],
+  "leetcode": 295,
+  "description": "The **median** is the middle value in an ordered integer list. If the size of the list is even, there is no single middle value, and the median is the mean of the two middle values.\n\n- For example, for `arr = [2, 3, 4]`, the median is `3.0`.\n- For example, for `arr = [2, 3]`, the median is `(2 + 3) / 2 = 2.5`.\n\nImplement the `MedianFinder` class:\n- `MedianFinder()` initializes the `MedianFinder` object.\n- `void addNum(int num)` adds the integer `num` from the data stream to the data structure.\n- `double findMedian()` returns the median of all elements so far. Answers within `10^-5` of the actual answer will be accepted.",
+  "constraints": [
+    "-10^5 <= num <= 10^5",
+    "There will be at least one element in the data structure before calling findMedian.",
+    "At most 5 * 10^4 calls will be made to addNum and findMedian."
+  ],
+  "hints": [
+    "You do not need the entire stream fully sorted — you only need fast access to the middle element(s).",
+    "Maintain two heaps: a max-heap `lo` for the smaller half of the numbers and a min-heap `hi` for the larger half.",
+    "Keep the heaps balanced so `size(lo) == size(hi)` or `size(lo) == size(hi) + 1`. Then `findMedian()` is O(1) using only the two heap tops."
+  ],
+  "examples": [
+    {
+      "explanation": "After adding 1 and 2, the median is (1 + 2) / 2 = 1.5. After adding 3, the sorted stream is [1, 2, 3], so the median is 2.0."
+    },
+    {
+      "explanation": "With negative values [-1, -2, -3, -4, -5], the running medians are -1.0, -1.5, -2.0, -2.5, -3.0."
+    }
+  ],
+  "timeComplexity": "O(log n) addNum, O(1) findMedian",
+  "spaceComplexity": "O(n)",
+  "compare": "float",
+  "signature": {
+    "kind": "design",
+    "className": "MedianFinder",
+    "constructor": {
+      "params": []
+    },
+    "methods": [
+      {
+        "name": "addNum",
+        "params": [
+          {
+            "name": "num",
+            "type": "int"
+          }
+        ],
+        "returns": "void"
+      },
+      {
+        "name": "findMedian",
+        "params": [],
+        "returns": "double"
+      }
+    ]
+  }
+}

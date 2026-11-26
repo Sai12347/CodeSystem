@@ -1,0 +1,68 @@
+{
+  "title": "Implement Stack using Queues",
+  "difficulty": "Easy",
+  "subtopic": "Queue via Stacks",
+  "companies": [
+    "Amazon",
+    "Microsoft",
+    "Google",
+    "Bloomberg",
+    "Apple"
+  ],
+  "leetcode": 225,
+  "description": "Implement a last-in-first-out (LIFO) stack using only queues. The implemented stack should support all functions of a normal stack (`push`, `top`, `pop`, and `empty`).\n\nImplement the `MyStack` class:\n- `MyStack()` initializes an empty stack.\n- `void push(int x)` pushes element `x` to the top of the stack.\n- `int pop()` removes the element on the top of the stack and returns it.\n- `int top()` returns the element on the top of the stack without removing it.\n- `boolean empty()` returns `true` if the stack is empty, and `false` otherwise.\n\nNotes:\n- You must use only standard queue operations: push to back, peek/pop from front, size, and isEmpty.\n- Follow-up: Can you implement the stack using only one queue?",
+  "constraints": [
+    "-10^5 <= x <= 10^5",
+    "At most 1000 calls will be made to push, pop, top, and empty.",
+    "All calls to pop and top are valid (the stack is guaranteed to be non-empty)."
+  ],
+  "hints": [
+    "If you maintain a single queue in LIFO order, pop() and top() are simply O(1) front operations.",
+    "When pushing a new element x to the back of a queue of size s, rotate the previous s elements from front to back so x moves to the front."
+  ],
+  "examples": [
+    {
+      "explanation": "Push 1 then 2. top() returns 2 (most recently pushed), pop() removes and returns 2, and empty() returns false because 1 is still in the stack."
+    },
+    {
+      "explanation": "After pushing 10, 20, 30 and popping 30 and 20, pushing 40 places 40 on top. Popping 40 then 10 leaves the stack empty."
+    }
+  ],
+  "timeComplexity": "O(n) push, O(1) pop/top/empty",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "design",
+    "className": "MyStack",
+    "constructor": {
+      "params": []
+    },
+    "methods": [
+      {
+        "name": "push",
+        "params": [
+          {
+            "name": "x",
+            "type": "int"
+          }
+        ],
+        "returns": "void"
+      },
+      {
+        "name": "pop",
+        "params": [],
+        "returns": "int"
+      },
+      {
+        "name": "top",
+        "params": [],
+        "returns": "int"
+      },
+      {
+        "name": "empty",
+        "params": [],
+        "returns": "boolean"
+      }
+    ]
+  }
+}

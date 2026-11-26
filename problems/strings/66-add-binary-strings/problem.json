@@ -1,0 +1,48 @@
+{
+  "title": "Add Binary Strings",
+  "difficulty": "Easy",
+  "subtopic": "Parsing",
+  "companies": [
+    "Meta",
+    "Amazon",
+    "Google"
+  ],
+  "description": "Given two non-empty binary strings `a` and `b` consisting of `'0'` and `'1'` (with no leading zeros except for `\"0\"` itself), return their sum as a binary string.",
+  "constraints": [
+    "1 <= a.length, b.length <= 10^4",
+    "a and b consist only of '0' or '1' characters."
+  ],
+  "hints": [
+    "Add from right to left maintaining a carry bit, just like elementary binary addition.",
+    "Continue the loop while either string has remaining digits or carry is non-zero, then reverse the result."
+  ],
+  "examples": [
+    {
+      "explanation": "11 (3) + 1 (1) = 100 (4) in binary."
+    },
+    {
+      "explanation": "1010 (10) + 1011 (11) = 10101 (21) in binary."
+    },
+    {
+      "explanation": "0 + 0 = 0."
+    }
+  ],
+  "timeComplexity": "O(max(|a|, |b|))",
+  "spaceComplexity": "O(max(|a|, |b|))",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "addBinary",
+    "params": [
+      {
+        "name": "a",
+        "type": "String"
+      },
+      {
+        "name": "b",
+        "type": "String"
+      }
+    ],
+    "returns": "String"
+  }
+}

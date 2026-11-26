@@ -1,0 +1,46 @@
+{
+  "title": "Evaluate Set Expression",
+  "difficulty": "Medium",
+  "subtopic": "Expression Parsing",
+  "companies": [
+    "Google",
+    "Amazon",
+    "Meta",
+    "Oracle"
+  ],
+  "description": "Given a valid set-algebra expression string `expr` composed of finite integer set literals (e.g., `{1, 2, -3}` or `{}`), binary set operators, parentheses `'('` and `')'`, and optional spaces, evaluate `expr` and return the resulting set as a **strictly ascending `int[]`**.\n\nOperators and precedence:\n- `'&'` (intersection): precedence `2` (highest), left-associative.\n- `'|'` (union), `'-'` (set difference `A \\ B`), `'^'` (symmetric difference): precedence `1`, left-associative.",
+  "constraints": [
+    "2 <= expr.length <= 10^4",
+    "Set literals contain comma-separated signed 32-bit integers (with optional spaces) inside '{' and '}'.",
+    "expr is a valid set expression."
+  ],
+  "hints": [
+    "Parse each `{...}` literal into a hash set of integers and push it onto the operand stack; be careful not to confuse a negative sign inside `{...}` with the set-difference operator '-'.",
+    "Use Shunting-Yard with `'&'` having precedence 2 and `'|'`, `'-'`, `'^'` having precedence 1 (all left-associative), then sort the final set."
+  ],
+  "examples": [
+    {
+      "explanation": "'&' has higher precedence: {2,3,4} & {3,4,5} = {3,4}, then {1,2,3} | {3,4} = [1, 2, 3, 4]."
+    },
+    {
+      "explanation": "({1,2,3} | {4}) = {1,2,3,4}; removing {2,4} leaves [1, 3]."
+    },
+    {
+      "explanation": "Symmetric difference of {1,2} and {2,3} contains elements in exactly one set: [1, 3]."
+    }
+  ],
+  "timeComplexity": "O(n + S log S)",
+  "spaceComplexity": "O(n + S)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "evalSetExpression",
+    "params": [
+      {
+        "name": "expr",
+        "type": "String"
+      }
+    ],
+    "returns": "int[]"
+  }
+}

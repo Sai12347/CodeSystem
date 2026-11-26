@@ -1,0 +1,51 @@
+{
+  "title": "Increment Submatrices by One",
+  "difficulty": "Medium",
+  "subtopic": "Dynamic Grids",
+  "companies": [
+    "Google",
+    "Amazon",
+    "Meta",
+    "Atlassian"
+  ],
+  "description": "You are given a positive integer `n`, indicating an initially zero-filled `n x n` matrix `mat`, and a 2D array `queries` where each `queries[i] = [row1, col1, row2, col2]`.\n\nFor every query, add `1` to every element in the inclusive rectangular submatrix with top-left corner `(row1, col1)` and bottom-right corner `(row2, col2)`.\n\nReturn the resulting `n x n` matrix after performing all queries.",
+  "constraints": [
+    "1 <= n <= 100",
+    "1 <= queries.length <= 10^4",
+    "0 <= row1 <= row2 < n",
+    "0 <= col1 <= col2 < n"
+  ],
+  "hints": [
+    "Use a 2D difference array diff of size (n + 1) x (n + 1): for each query [r1, c1, r2, c2], add +1 at (r1, c1) and (r2 + 1, c2 + 1), and -1 at (r1, c2 + 1) and (r2 + 1, c1).",
+    "Compute the 2D prefix sum of diff in O(n^2) time to recover the final matrix."
+  ],
+  "examples": [
+    {
+      "explanation": "Adding 1 to [1..2, 1..2] and [0..1, 0..1] overlaps at cell (1, 1), which ends up with value 2."
+    },
+    {
+      "explanation": "Adding 1 to the entire 2x2 grid sets every entry to 1."
+    },
+    {
+      "explanation": "Two identical queries on a 1x1 matrix increment the single cell to 2."
+    }
+  ],
+  "timeComplexity": "O(q + n^2)",
+  "spaceComplexity": "O(n^2)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "rangeAddQueries",
+    "params": [
+      {
+        "name": "n",
+        "type": "int"
+      },
+      {
+        "name": "queries",
+        "type": "int[][]"
+      }
+    ],
+    "returns": "int[][]"
+  }
+}

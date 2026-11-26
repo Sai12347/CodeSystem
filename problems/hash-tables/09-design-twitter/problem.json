@@ -1,0 +1,99 @@
+{
+  "title": "Design Twitter",
+  "difficulty": "Medium",
+  "subtopic": "Collision Resolution",
+  "companies": [
+    "Amazon",
+    "Google",
+    "Meta",
+    "Uber",
+    "Microsoft",
+    "Salesforce"
+  ],
+  "leetcode": 355,
+  "description": "Design a simplified version of Twitter where users can post tweets, follow/unfollow other users, and retrieve the `10` most recent tweets in their news feed.\n\nImplement the `Twitter` class:\n- `Twitter()` initializes your Twitter object.\n- `void postTweet(int userId, int tweetId)` composes a new tweet with ID `tweetId` by user `userId`. Each call to this function will be made with a unique `tweetId`.\n- `List<Integer> getNewsFeed(int userId)` retrieves the `10` most recent tweet IDs in the user's news feed. Each item in the news feed must be posted by users whom `userId` followed or by `userId` themself. Tweets must be ordered from **most recent to least recent**.\n- `void follow(int followerId, int followeeId)` the user with ID `followerId` starts following the user with ID `followeeId`.\n- `void unfollow(int followerId, int followeeId)` the user with ID `followerId` stops following the user with ID `followeeId`.\n\nFollowing a user who is already followed or unfollowing a user who is not currently followed has no effect. When a user follows someone, that followee's previously posted tweets immediately become eligible for the follower's news feed.",
+  "constraints": [
+    "1 <= userId, followerId, followeeId <= 500",
+    "0 <= tweetId <= 10^4",
+    "All tweets have unique tweetId values.",
+    "At most 3 * 10^4 calls will be made to postTweet, getNewsFeed, follow, and unfollow.",
+    "followerId != followeeId for all follow and unfollow calls."
+  ],
+  "hints": [
+    "Assign a monotonically increasing integer timestamp to every posted tweet so recency can be compared in O(1).",
+    "Store each user's tweets in a per-user list (already sorted by timestamp) and each user's followees in a hash set.",
+    "To build getNewsFeed(userId), run a k-way merge with a max-heap over the tail of the tweet lists belonging to userId and their followees, popping at most 10 tweets."
+  ],
+  "examples": [
+    {
+      "explanation": "User 1 posts 5 -> feed [5]; follows 2 who posts 6 -> feed [6, 5]; unfollows 2 -> feed [5]."
+    },
+    {
+      "explanation": "A user with no tweets and no followees gets an empty feed; following someone retrospectively includes their earlier tweets."
+    }
+  ],
+  "timeComplexity": "O(1) post/follow/unfollow, O(k log k) getNewsFeed",
+  "spaceComplexity": "O(U + T + E)",
+  "compare": "exact",
+  "signature": {
+    "kind": "design",
+    "className": "Twitter",
+    "constructor": {
+      "params": []
+    },
+    "methods": [
+      {
+        "name": "postTweet",
+        "params": [
+          {
+            "name": "userId",
+            "type": "int"
+          },
+          {
+            "name": "tweetId",
+            "type": "int"
+          }
+        ],
+        "returns": "void"
+      },
+      {
+        "name": "getNewsFeed",
+        "params": [
+          {
+            "name": "userId",
+            "type": "int"
+          }
+        ],
+        "returns": "List<Integer>"
+      },
+      {
+        "name": "follow",
+        "params": [
+          {
+            "name": "followerId",
+            "type": "int"
+          },
+          {
+            "name": "followeeId",
+            "type": "int"
+          }
+        ],
+        "returns": "void"
+      },
+      {
+        "name": "unfollow",
+        "params": [
+          {
+            "name": "followerId",
+            "type": "int"
+          },
+          {
+            "name": "followeeId",
+            "type": "int"
+          }
+        ],
+        "returns": "void"
+      }
+    ]
+  }
+}

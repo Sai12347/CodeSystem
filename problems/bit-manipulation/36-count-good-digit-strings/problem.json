@@ -1,0 +1,43 @@
+{
+  "title": "Count Good Digit Strings",
+  "difficulty": "Medium",
+  "subtopic": "Fast Exponentiation",
+  "companies": [
+    "Amazon",
+    "Google",
+    "Goldman Sachs"
+  ],
+  "description": "A digit string of length `n` (which may have leading zeros) is called good if every digit at an even 0-based index is an even digit (`0, 2, 4, 6, 8`) and every digit at an odd 0-based index is a prime digit (`2, 3, 5, 7`). Given `n`, return the total number of good digit strings of length `n` modulo `10^9 + 7`.",
+  "constraints": [
+    "1 <= n <= 10^15"
+  ],
+  "hints": [
+    "Positions are independent: there are `ceil(n / 2) = (n + 1) // 2` even indices (5 choices each) and `floor(n / 2) = n // 2` odd indices (4 choices each).",
+    "Compute `5^((n + 1) // 2) * 4^(n // 2) mod (10^9 + 7)` using binary exponentiation."
+  ],
+  "examples": [
+    {
+      "explanation": "For n = 1, only index 0 exists (even index), giving 5 choices: 0, 2, 4, 6, 8."
+    },
+    {
+      "explanation": "For n = 4, there are 2 even indices and 2 odd indices, giving 5^2 * 4^2 = 400."
+    },
+    {
+      "explanation": "For n = 50, 5^25 * 4^25 mod (10^9 + 7) = 564908303."
+    }
+  ],
+  "timeComplexity": "O(log n)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "countGoodDigitStrings",
+    "params": [
+      {
+        "name": "n",
+        "type": "long"
+      }
+    ],
+    "returns": "int"
+  }
+}

@@ -1,0 +1,57 @@
+{
+  "title": "LCG Sequence Cycle Detection",
+  "difficulty": "Medium",
+  "subtopic": "Fast/Slow Pointer",
+  "companies": [
+    "Google",
+    "Bloomberg",
+    "Goldman Sachs",
+    "Amazon"
+  ],
+  "description": "Consider a Linear Congruential Generator (LCG) defined by four integers `a`, `c`, `m`, and `seed`:\n- `x_0 = seed % m`\n- `x_{k+1} = (a * x_k + c) % m` for every `k >= 0`\n\nBecause there are only `m` possible residues in `[0, m - 1]`, the sequence is guaranteed to become eventually periodic: there exist unique smallest integers `mu >= 0` (the **tail length** before the cycle starts) and `lambda >= 1` (the **cycle length**) such that `x_{mu + i} = x_{mu + i + lambda}` for all `i >= 0`.\n\nUsing Floyd's Tortoise-and-Hare cycle detection in `O(1)` extra space, return the 2-element array `[mu, lambda]`.",
+  "constraints": [
+    "1 <= m <= 2 * 10^5",
+    "0 <= a, c, seed <= 10^6"
+  ],
+  "hints": [
+    "Run a slow pointer advancing 1 step per iteration and a fast pointer advancing 2 steps per iteration from `x_0 = seed % m` until they meet inside the cycle (use 64-bit arithmetic for `a * x + c`).",
+    "Reset the slow pointer to `x_0` and advance both pointers 1 step at a time until they meet again: the number of steps is `mu`; then keep one pointer fixed and advance the other around the cycle until they meet to measure `lambda`."
+  ],
+  "examples": [
+    {
+      "explanation": "Sequence: 1 -> 2 -> 4 -> 8 -> 4 -> ... has tail length mu=2 (values 1, 2) and cycle length lambda=2 (values 4, 8)."
+    },
+    {
+      "explanation": "Sequence: 3 -> 3 -> ... is a fixed point immediately at index 0, so mu=0 and lambda=1."
+    },
+    {
+      "explanation": "Sequence: 0 -> 1 -> 4 -> 3 -> 0 -> ... is purely periodic with mu=0 and lambda=4."
+    }
+  ],
+  "timeComplexity": "O(mu + lambda)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "detectLCGCycle",
+    "params": [
+      {
+        "name": "a",
+        "type": "int"
+      },
+      {
+        "name": "c",
+        "type": "int"
+      },
+      {
+        "name": "m",
+        "type": "int"
+      },
+      {
+        "name": "seed",
+        "type": "int"
+      }
+    ],
+    "returns": "int[]"
+  }
+}

@@ -1,0 +1,57 @@
+{
+  "title": "Interval List Intersections",
+  "difficulty": "Medium",
+  "subtopic": "Trailing Pointers",
+  "companies": [
+    "Meta",
+    "Google",
+    "Amazon",
+    "Uber",
+    "Microsoft",
+    "Bloomberg"
+  ],
+  "leetcode": 986,
+  "description": "You are given two lists of closed intervals, `firstList` and `secondList`, where `firstList[i] = [start_i, end_i]` and `secondList[j] = [start_j, end_j]`. Each list of intervals is **pairwise disjoint** and in **sorted order**.\n\nReturn the intersection of these two interval lists as a list of closed intervals in sorted order.\n\nA closed interval `[a, b]` (with `a <= b`) denotes the set of real numbers `x` with `a <= x <= b`. The intersection of two closed intervals `[a, b]` and `[c, d]` is `[max(a, c), min(b, d)]` whenever `max(a, c) <= min(b, d)` (including single-point intersections `[x, x]`), and empty otherwise.",
+  "constraints": [
+    "0 <= firstList.length, secondList.length <= 1000",
+    "firstList.length + secondList.length >= 1",
+    "0 <= start_i < end_i <= 10^9",
+    "end_i < start_{i+1} for all valid i in firstList",
+    "0 <= start_j < end_j <= 10^9",
+    "end_j < start_{j+1} for all valid j in secondList"
+  ],
+  "hints": [
+    "Since both interval lists are already sorted and disjoint, maintain two pointers i and j starting at 0.",
+    "For the current pair firstList[i] and secondList[j], their potential overlap is [max(start_i, start_j), min(end_i, end_j)], which is valid whenever lo <= hi.",
+    "After checking the pair, advance the pointer whose interval ends earlier, because that interval cannot intersect any later interval in the other list."
+  ],
+  "examples": [
+    {
+      "explanation": "Comparing intervals in sorted order produces overlaps [1,2], single-point [5,5], [8,10], [15,23], single-point [24,24], and single-point [25,25]."
+    },
+    {
+      "explanation": "Because secondList is empty, there are no overlapping intervals, so return []."
+    },
+    {
+      "explanation": "The closed intervals [1, 7] and [3, 10] overlap on [3, 7]."
+    }
+  ],
+  "timeComplexity": "O(m + n)",
+  "spaceComplexity": "O(m + n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "intervalIntersection",
+    "params": [
+      {
+        "name": "firstList",
+        "type": "int[][]"
+      },
+      {
+        "name": "secondList",
+        "type": "int[][]"
+      }
+    ],
+    "returns": "int[][]"
+  }
+}

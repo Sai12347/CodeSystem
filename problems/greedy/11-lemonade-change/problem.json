@@ -1,0 +1,43 @@
+{
+  "title": "Lemonade Change",
+  "difficulty": "Easy",
+  "subtopic": "Local Optimality",
+  "companies": [
+    "Amazon",
+    "Google",
+    "Microsoft"
+  ],
+  "description": "Each lemonade costs $5. Customers arrive in order and pay with a $5, $10, or $20 bill. You start with no change. Return true if you can give each customer exact change using only bills received from earlier customers.",
+  "constraints": [
+    "1 <= bills.length <= 10^5",
+    "bills[i] is 5, 10, or 20"
+  ],
+  "hints": [
+    "Choose locally optimal placements or intervals while maintaining the stated invariant.",
+    "Check boundary values and ties."
+  ],
+  "examples": [
+    {
+      "input": "bills = [5,5,5,10,20]",
+      "output": "true"
+    },
+    {
+      "input": "bills = [5,5,10,10,20]",
+      "output": "false"
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "lemonadeChange",
+    "params": [
+      {
+        "name": "bills",
+        "type": "int[]"
+      }
+    ],
+    "returns": "boolean"
+  }
+}

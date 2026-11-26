@@ -1,0 +1,43 @@
+{
+  "title": "Count Values Between Array Extremes",
+  "difficulty": "Easy",
+  "subtopic": "Traversal",
+  "companies": [
+    "Amazon",
+    "Google",
+    "Microsoft"
+  ],
+  "description": "Given a non-empty integer array `nums`, count the elements whose value is strictly greater than the array minimum and strictly less than the array maximum. Repeated occurrences count separately. Input: `nums`. Output: the count.",
+  "constraints": [
+    "1 <= nums.length <= 100000",
+    "-1000000000 <= nums[i] <= 1000000000"
+  ],
+  "hints": [
+    "Sort once or track a compact running state to avoid checking every possible group.",
+    "Test duplicates, extreme ordering, and cases with no feasible candidate."
+  ],
+  "examples": [
+    {
+      "input": "nums = [11, 7, 2, 15]",
+      "output": "2"
+    },
+    {
+      "input": "nums = [4, 4, 4]",
+      "output": "0"
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "countBetweenExtremes",
+    "params": [
+      {
+        "name": "nums",
+        "type": "int[]"
+      }
+    ],
+    "returns": "int"
+  }
+}

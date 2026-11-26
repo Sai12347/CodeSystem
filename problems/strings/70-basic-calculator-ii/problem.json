@@ -1,0 +1,45 @@
+{
+  "title": "Basic Calculator II",
+  "difficulty": "Medium",
+  "subtopic": "Parsing",
+  "companies": [
+    "Meta",
+    "Amazon",
+    "Microsoft"
+  ],
+  "description": "Given a valid arithmetic expression string `s` containing non-negative integers, the operators `+`, `-`, `*`, `/`, and optional spaces, evaluate and return its integer value. Multiplication and division have higher precedence than addition and subtraction, and integer division truncates toward zero.",
+  "constraints": [
+    "1 <= s.length <= 3 * 10^5",
+    "s consists of digits, '+', '-', '*', '/', and spaces.",
+    "All intermediate results and the final answer fit in a 32-bit signed integer; division by zero never occurs."
+  ],
+  "hints": [
+    "Process left to right remembering the previous operator and the last evaluated term.",
+    "For '+' or '-', add the last term to the running total and start a new term; for '*' or '/', update the last term in place using truncation toward zero."
+  ],
+  "examples": [
+    {
+      "explanation": "2 * 2 = 4, then 3 + 4 = 7."
+    },
+    {
+      "explanation": "3 / 2 truncates toward zero to 1."
+    },
+    {
+      "explanation": "5 / 2 = 2, then 3 + 2 = 5."
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "calculate",
+    "params": [
+      {
+        "name": "s",
+        "type": "String"
+      }
+    ],
+    "returns": "int"
+  }
+}

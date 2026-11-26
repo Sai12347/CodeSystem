@@ -1,0 +1,38 @@
+{
+  "title": "Unique Binary Search Trees II",
+  "difficulty": "Medium",
+  "subtopic": "Balance Trees",
+  "companies": ["Amazon", "Google", "Microsoft", "Meta", "Adobe", "Bloomberg"],
+  "leetcode": 95,
+  "description": "Given an integer `n`, return all the **structurally unique** binary search trees (BSTs) which have exactly `n` nodes containing the unique values from `1` to `n`. You may return the answer in **any order**.\n\nIf `n = 0`, return an empty list `[]`. Each returned tree is serialized in standard level-order array form (`[root, left, right, ...]`) with trailing `null` values omitted.",
+  "constraints": [
+    "0 <= n <= 9"
+  ],
+  "hints": [
+    "Define a recursive function build(lo, hi) that returns a list of all unique BSTs containing the integer values in the inclusive range [lo, hi].",
+    "When lo > hi, return [null] (a single empty subtree) so every combination of left and right subtrees pairs cleanly via nested loops.",
+    "For each root value val in [lo, hi], combine every tree in build(lo, val - 1) as the left child with every tree in build(val + 1, hi) as the right child. Memoizing (lo, hi) avoids rebuilding identical subranges."
+  ],
+  "examples": [
+    {
+      "explanation": "There are 5 structurally unique BSTs for n = 3 (the 3rd Catalan number, C_3 = 5), returned in any order."
+    },
+    {
+      "explanation": "For n = 1, the only unique BST is a single node with value 1."
+    }
+  ],
+  "timeComplexity": "O(4^n / sqrt(n))",
+  "spaceComplexity": "O(4^n / sqrt(n))",
+  "compare": "sorted",
+  "signature": {
+    "kind": "function",
+    "method": "generateTrees",
+    "params": [
+      {
+        "name": "n",
+        "type": "int"
+      }
+    ],
+    "returns": "List<TreeNode>"
+  }
+}

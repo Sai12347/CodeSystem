@@ -1,0 +1,69 @@
+{
+  "title": "Min Queue Using Two Stacks",
+  "difficulty": "Medium",
+  "subtopic": "Min Stack",
+  "companies": [
+    "Google",
+    "Amazon",
+    "Bloomberg",
+    "Microsoft"
+  ],
+  "description": "Design a FIFO queue `MinQueue` that supports standard queue operations plus retrieving the minimum element currently in the queue, all in **amortized `O(1)`** time using two min-stacks.\n\nImplement the `MinQueue` class:\n- `MinQueue()` initializes an empty queue.\n- `void enqueue(int val)` appends `val` to the back of the queue.\n- `int dequeue()` removes and returns the front element of the queue.\n- `int front()` returns the front element without removing it.\n- `int getMin()` returns the minimum value among all elements currently in the queue.",
+  "constraints": [
+    "-10^9 <= val <= 10^9",
+    "Methods dequeue, front, and getMin are always called on non-empty queues.",
+    "At most 5 * 10^4 calls will be made across all methods."
+  ],
+  "hints": [
+    "Maintain two min-stacks: inStack stores newly enqueued items with their running min, and outStack serves front/dequeue with its own running min.",
+    "When outStack is empty during dequeue or front, pour every element from inStack into outStack while rebuilding outStack's running min; getMin() is simply the minimum of the non-empty stacks' running mins."
+  ],
+  "examples": [
+    {
+      "explanation": "After enqueuing 5, 2, 7, front is 5 and getMin is 2; after dequeuing 5 and 2, only 7 remains so getMin becomes 7."
+    },
+    {
+      "explanation": "When all elements are equal, dequeue and getMin consistently return that value."
+    },
+    {
+      "explanation": "Interleaving enqueues and dequeues triggers stack pours while preserving exact FIFO order and O(1) amortized minimums."
+    }
+  ],
+  "timeComplexity": "O(1) amortized per op",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "design",
+    "className": "MinQueue",
+    "constructor": {
+      "params": []
+    },
+    "methods": [
+      {
+        "name": "enqueue",
+        "params": [
+          {
+            "name": "val",
+            "type": "int"
+          }
+        ],
+        "returns": "void"
+      },
+      {
+        "name": "dequeue",
+        "params": [],
+        "returns": "int"
+      },
+      {
+        "name": "front",
+        "params": [],
+        "returns": "int"
+      },
+      {
+        "name": "getMin",
+        "params": [],
+        "returns": "int"
+      }
+    ]
+  }
+}

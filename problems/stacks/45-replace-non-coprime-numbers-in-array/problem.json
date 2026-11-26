@@ -1,0 +1,45 @@
+{
+  "title": "Replace Non-Coprime Numbers in Array",
+  "difficulty": "Hard",
+  "subtopic": "LIFO Structure",
+  "companies": [
+    "Google",
+    "Meta",
+    "Bloomberg"
+  ],
+  "description": "You are given an array of positive integers `nums`. Repeatedly perform the following steps until no valid pair remains:\n1. Find any two adjacent numbers in `nums` that are **non-coprime** (i.e., `gcd(x, y) > 1`).\n2. Delete both numbers and replace them with their least common multiple `lcm(x, y)`.\n\nIt can be proven that the final array is identical regardless of the order in which adjacent non-coprime pairs are merged. Return the final modified array. It is guaranteed that all values in the final array are at most `10^8`.",
+  "constraints": [
+    "1 <= nums.length <= 10^5",
+    "1 <= nums[i] <= 10^5",
+    "All values in the final array are at most 10^8."
+  ],
+  "hints": [
+    "Maintain a stack representing the reduced prefix of the array.",
+    "When processing x, repeatedly pop the stack top y while gcd(y, x) > 1 and set x = lcm(y, x), then push x."
+  ],
+  "examples": [
+    {
+      "explanation": "[6,4] merges to 12, [12,3] merges to 12, then [2,7,6] stays until [6,2] merges to 6; final array is [12,7,6]."
+    },
+    {
+      "explanation": "All adjacent merges collapse [2,2,1,1,3,3,3] into [2,1,1,3]."
+    },
+    {
+      "explanation": "Merging 6 and 4 gives 12, then merging 12 with 9 gives 36, and 36 with 5 is coprime."
+    }
+  ],
+  "timeComplexity": "O(n log M)",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "replaceNonCoprimes",
+    "params": [
+      {
+        "name": "nums",
+        "type": "int[]"
+      }
+    ],
+    "returns": "List<Integer>"
+  }
+}

@@ -1,0 +1,66 @@
+{
+  "title": "Design Add and Search Words Data Structure",
+  "difficulty": "Medium",
+  "subtopic": "Wildcard Search",
+  "companies": [
+    "Meta",
+    "Google",
+    "Amazon",
+    "Microsoft",
+    "Apple"
+  ],
+  "leetcode": 211,
+  "description": "Design a data structure that supports adding new words and finding if a string matches any previously added string.\n\nImplement the `WordDictionary` class:\n- `WordDictionary()` initializes the object.\n- `void addWord(String word)` adds `word` to the data structure so it can be matched later.\n- `boolean search(String word)` returns `true` if there is any string in the data structure that matches `word`, or `false` otherwise. `word` may contain dots `'.'` where each dot can match any single lowercase English letter.",
+  "constraints": [
+    "1 <= word.length <= 25",
+    "word in addWord consists of lowercase English letters.",
+    "word in search consists of '.' or lowercase English letters.",
+    "There will be at most 3 dots in word for search queries.",
+    "At most 10^4 calls will be made to addWord and search."
+  ],
+  "hints": [
+    "Store all added words in a trie so exact characters can be traversed in O(1) per character.",
+    "When search encounters a regular letter, follow the single matching child link; when it encounters '.', recursively try every existing child of the current node.",
+    "Return true only when the recursion reaches the end of the query string on a trie node marked as the end of a word."
+  ],
+  "examples": [
+    {
+      "explanation": "After adding \"bad\", \"dad\", and \"mad\", \"pad\" is not found, \"bad\" matches exactly, \".ad\" matches any of the three words, and \"b..\" matches \"bad\"."
+    },
+    {
+      "explanation": "With \"a\" and \"ab\" added, \".\" matches \"a\", \"..\" matches \"ab\", \"...\" matches no word of length 3, and both \"a.\" and \".b\" match \"ab\"."
+    }
+  ],
+  "timeComplexity": "O(L) addWord, O(26^d * L) worst-case search",
+  "spaceComplexity": "O(N * L)",
+  "compare": "exact",
+  "signature": {
+    "kind": "design",
+    "className": "WordDictionary",
+    "constructor": {
+      "params": []
+    },
+    "methods": [
+      {
+        "name": "addWord",
+        "params": [
+          {
+            "name": "word",
+            "type": "String"
+          }
+        ],
+        "returns": "void"
+      },
+      {
+        "name": "search",
+        "params": [
+          {
+            "name": "word",
+            "type": "String"
+          }
+        ],
+        "returns": "boolean"
+      }
+    ]
+  }
+}

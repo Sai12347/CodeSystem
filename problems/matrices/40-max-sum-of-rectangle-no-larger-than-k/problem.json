@@ -1,0 +1,52 @@
+{
+  "title": "Max Sum of Rectangle No Larger Than K",
+  "difficulty": "Hard",
+  "subtopic": "2D Search",
+  "companies": [
+    "Google",
+    "Meta",
+    "Amazon",
+    "Goldman Sachs"
+  ],
+  "description": "Given an `m x n` integer `matrix` and an integer `k`, return the maximum sum of any non-empty rectangular submatrix such that its sum is no larger than `k` (i.e., `sum <= k`).\n\nIt is guaranteed that at least one rectangular submatrix has a sum less than or equal to `k`.",
+  "constraints": [
+    "m == matrix.length",
+    "n == matrix[i].length",
+    "1 <= m, n <= 100",
+    "-100 <= matrix[i][j] <= 100",
+    "-10^5 <= k <= 10^5"
+  ],
+  "hints": [
+    "Fix a pair of top and bottom rows (or left and right columns, whichever dimension is smaller) and collapse the band into a 1D array of column sums.",
+    "For the 1D array, first check Kadane's maximum subarray sum: if it is <= k, you're done for this band; otherwise use a sorted structure of prefix sums to find the smallest previous prefix >= currentPrefix - k."
+  ],
+  "examples": [
+    {
+      "explanation": "The submatrix [[0, 1], [-2, 3]] has sum 2, which equals k = 2."
+    },
+    {
+      "explanation": "The entire 1x3 submatrix [2, 2, -1] has sum 3, matching k = 3."
+    },
+    {
+      "explanation": "Only submatrices containing -5 have sum <= -3; the best is [-5, 2] with sum -3."
+    }
+  ],
+  "timeComplexity": "O(min(m, n)^2 * max(m, n) * log(max(m, n)))",
+  "spaceComplexity": "O(max(m, n))",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "maxSumSubmatrix",
+    "params": [
+      {
+        "name": "matrix",
+        "type": "int[][]"
+      },
+      {
+        "name": "k",
+        "type": "int"
+      }
+    ],
+    "returns": "int"
+  }
+}

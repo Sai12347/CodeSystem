@@ -1,0 +1,51 @@
+{
+  "title": "Remove K Adjacent Duplicates",
+  "difficulty": "Medium",
+  "subtopic": "LIFO Structure",
+  "companies": [
+    "Bloomberg",
+    "Meta",
+    "Google",
+    "Amazon",
+    "Goldman Sachs"
+  ],
+  "description": "You are given a lowercase English string `s` and an integer `k`. A *k-duplicate removal* chooses `k` adjacent and equal letters from `s` and removes them, concatenating the left and right sides of the deleted substring.\n\nRepeatedly perform k-duplicate removals on `s` until no more can be made, and return the final string. It is guaranteed that the final answer is unique regardless of the order of removals.",
+  "constraints": [
+    "1 <= s.length <= 10^5",
+    "2 <= k <= 10^4",
+    "s contains only lowercase English letters."
+  ],
+  "hints": [
+    "Maintain a stack of (character, consecutiveCount) pairs.",
+    "When the current character matches the top of the stack, increment its count and pop the entry as soon as the count reaches k."
+  ],
+  "examples": [
+    {
+      "explanation": "No two adjacent characters are equal, so \"abcd\" stays unchanged."
+    },
+    {
+      "explanation": "Remove \"eee\" -> \"ddbbbdaa\", then \"bbb\" -> \"dddaa\", then \"ddd\" -> \"aa\"."
+    },
+    {
+      "explanation": "Repeatedly removing adjacent pairs ('bb', 'gg', 'tt', 'cc', 'ii', 'pp', 'oo', 'aa', then 'ii') leaves \"ps\"."
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "removeDuplicates",
+    "params": [
+      {
+        "name": "s",
+        "type": "String"
+      },
+      {
+        "name": "k",
+        "type": "int"
+      }
+    ],
+    "returns": "String"
+  }
+}

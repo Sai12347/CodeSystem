@@ -1,0 +1,1 @@
+class Solution { public int numDecodings(String s) { if(s.length()==0||s.charAt(0)=='0')return 0;int a=1,b=1;for(int i=1;i<s.length();i++){int c=s.charAt(i)=='0'?0:b;if(s.charAt(i-1)=='1'||(s.charAt(i-1)=='2'&&s.charAt(i)<='6'))c+=a;a=b;b=c;}return b;} }

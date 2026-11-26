@@ -1,0 +1,46 @@
+{
+  "title": "Alternating Ring Spiral Traversal",
+  "difficulty": "Medium",
+  "subtopic": "Spiral Traversal",
+  "companies": [
+    "Amazon",
+    "Microsoft",
+    "Uber"
+  ],
+  "description": "Given an `m x n` integer matrix `matrix`, traverse its concentric rectangular layers from the outermost layer (layer `0`) inward to the innermost layer and return all visited elements in a single 1D array.\n\n- Every **even-indexed layer** (`0, 2, 4, ...`) is traversed **clockwise** starting from its top-left corner `(top, left)`: right along the top edge, down along the right edge, left along the bottom edge (if more than one row), and up along the left edge (if more than one column).\n- Every **odd-indexed layer** (`1, 3, 5, ...`) is traversed **counterclockwise** starting from its top-left corner `(top, left)`: down along the left edge, right along the bottom edge (if more than one column), up along the right edge (if more than one row and more than one column), and left along the top edge (if more than one row and more than one column).",
+  "constraints": [
+    "m == matrix.length",
+    "n == matrix[i].length",
+    "1 <= m, n <= 100",
+    "-10^4 <= matrix[i][j] <= 10^4"
+  ],
+  "hints": [
+    "Maintain four layer boundaries (top, bottom, left, right) and a layer counter k, shrinking all four boundaries by 1 after each ring.",
+    "When k is odd, handle degenerate 1-row or 1-column inner layers carefully so no cell is visited twice: walk down the left column first, then right across the bottom row only if left < right, and only walk the right and top edges when both top < bottom and left < right."
+  ],
+  "examples": [
+    {
+      "explanation": "Layer 0 (outer 4x4 ring) goes clockwise: 1..4, 8, 12, 16..13, 9, 5; layer 1 (inner 2x2 ring) goes counterclockwise from (1,1): 6, 10, 11, 7."
+    },
+    {
+      "explanation": "Layer 0 (outer 3x4 ring) goes clockwise around the perimeter; layer 1 is a single-row strip [6, 7], visited left-to-right."
+    },
+    {
+      "explanation": "A 3x3 matrix has outer ring clockwise [1,2,3,6,9,8,7,4] and inner single-cell layer [5]."
+    }
+  ],
+  "timeComplexity": "O(m * n)",
+  "spaceComplexity": "O(m * n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "alternatingRingSpiral",
+    "params": [
+      {
+        "name": "matrix",
+        "type": "int[][]"
+      }
+    ],
+    "returns": "int[]"
+  }
+}

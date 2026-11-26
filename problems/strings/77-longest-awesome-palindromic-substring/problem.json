@@ -1,0 +1,44 @@
+{
+  "title": "Find Longest Awesome Substring",
+  "difficulty": "Hard",
+  "subtopic": "Palindromes",
+  "companies": [
+    "Google",
+    "Amazon",
+    "Bloomberg"
+  ],
+  "description": "You are given a string `s` consisting only of digits `'0'` through `'9'`. An awesome substring is a non-empty contiguous substring of `s` whose characters can be rearranged (via any number of swaps) to form a palindrome. Return the length of the longest awesome substring of `s`.",
+  "constraints": [
+    "1 <= s.length <= 10^5",
+    "s consists only of digits '0'-'9'."
+  ],
+  "hints": [
+    "A substring can be rearranged into a palindrome iff at most one digit appears an odd number of times.",
+    "Track a 10-bit prefix parity mask and store the earliest index seen for each of the 1024 masks; at each index check mask and mask ^ (1 << d) for d = 0..9."
+  ],
+  "examples": [
+    {
+      "explanation": "\"24241\" can be rearranged into \"24142\", length 5."
+    },
+    {
+      "explanation": "All digits are distinct, so the longest awesome substring has length 1."
+    },
+    {
+      "explanation": "\"213123\" can be rearranged into \"231132\", length 6."
+    }
+  ],
+  "timeComplexity": "O(10 * n)",
+  "spaceComplexity": "O(1024)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "longestAwesome",
+    "params": [
+      {
+        "name": "s",
+        "type": "String"
+      }
+    ],
+    "returns": "int"
+  }
+}

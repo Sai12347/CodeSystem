@@ -1,0 +1,85 @@
+{
+  "title": "All O(1) Frequency Tracker",
+  "difficulty": "Hard",
+  "subtopic": "LRU Design",
+  "companies": [
+    "LinkedIn",
+    "Google",
+    "Amazon",
+    "Meta",
+    "Uber"
+  ],
+  "description": "Design a data structure that tracks positive integer counts for string keys and answers minimum, maximum, and point count queries all in **`O(1)` average time**.\n\nImplement the `AllOneTracker` class:\n- `AllOneTracker()` initializes an empty tracker.\n- `void inc(String key)` increments the count of `key` by `1` (inserting `key` with count `1` if absent).\n- `void dec(String key)` decrements the count of `key` by `1` if present; if its count drops to `0`, removes `key` completely. If `key` is not present, does nothing.\n- `int getMaxCount()` returns the maximum count among all currently stored keys, or `0` if empty.\n- `int getMinCount()` returns the minimum count among all currently stored keys, or `0` if empty.\n- `int getCount(String key)` returns the current count of `key`, or `0` if absent.",
+  "constraints": [
+    "1 <= key.length <= 16",
+    "key consists of lowercase English letters.",
+    "At most 2000 calls will be made across all methods."
+  ],
+  "hints": [
+    "Maintain a doubly linked list of non-empty frequency buckets sorted in strictly increasing order of `count`, where each bucket stores the set of keys currently at that count.",
+    "Map each active `key` directly to its bucket node so `inc`/`dec` move a key to an adjacent bucket (creating it if needed) and unlink empty buckets in O(1); `head.next.count` and `tail.prev.count` immediately give min and max counts."
+  ],
+  "examples": [
+    {
+      "explanation": "Incrementing 'a' twice gives min=max=2; adding 'b' once sets min=1, max=2; decrementing 'b' removes it so min returns to 2."
+    },
+    {
+      "explanation": "On an empty tracker (or after decrementing a non-existent key), min, max, and key counts all return 0."
+    },
+    {
+      "explanation": "Incrementing three keys to counts 1, 2, 3 then removing the count-3 key lowers maxCount to 2 in O(1)."
+    }
+  ],
+  "timeComplexity": "O(1) per operation",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "design",
+    "className": "AllOneTracker",
+    "constructor": {
+      "params": []
+    },
+    "methods": [
+      {
+        "name": "inc",
+        "params": [
+          {
+            "name": "key",
+            "type": "String"
+          }
+        ],
+        "returns": "void"
+      },
+      {
+        "name": "dec",
+        "params": [
+          {
+            "name": "key",
+            "type": "String"
+          }
+        ],
+        "returns": "void"
+      },
+      {
+        "name": "getMaxCount",
+        "params": [],
+        "returns": "int"
+      },
+      {
+        "name": "getMinCount",
+        "params": [],
+        "returns": "int"
+      },
+      {
+        "name": "getCount",
+        "params": [
+          {
+            "name": "key",
+            "type": "String"
+          }
+        ],
+        "returns": "int"
+      }
+    ]
+  }
+}

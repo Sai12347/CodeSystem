@@ -1,0 +1,48 @@
+{
+  "title": "Minimum XOR Sum of Two Arrays",
+  "difficulty": "Hard",
+  "subtopic": "XOR Tricks",
+  "companies": [
+    "Google",
+    "Amazon",
+    "Meta"
+  ],
+  "description": "You are given two integer arrays `nums1` and `nums2` of equal length `n`. The XOR sum of the two arrays is `(nums1[0] ^ nums2[0]) + (nums1[1] ^ nums2[1]) + ... + (nums1[n - 1] ^ nums2[n - 1])`. You may rearrange the elements of `nums2` in any order. Return the minimum possible XOR sum after optimally rearranging `nums2`.",
+  "constraints": [
+    "1 <= nums1.length == nums2.length <= 14",
+    "0 <= nums1[i], nums2[i] <= 10^7"
+  ],
+  "hints": [
+    "Represent the subset of `nums2` indices already matched to the first `i = popcount(mask)` elements of `nums1` as an `n`-bit integer `mask`.",
+    "Compute `dp[mask]` over all `2^n` masks by trying each set bit `j` in `mask` as the partner of `nums1[popcount(mask) - 1]`, taking the minimum of `dp[mask ^ (1 << j)] + (nums1[i - 1] ^ nums2[j])`."
+  ],
+  "examples": [
+    {
+      "explanation": "Rearranging nums2 to [3, 2] yields (1 ^ 3) + (2 ^ 2) = 2 + 0 = 2."
+    },
+    {
+      "explanation": "Rearranging nums2 to [5, 4, 3] yields (1 ^ 5) + (0 ^ 4) + (3 ^ 3) = 4 + 4 + 0 = 8."
+    },
+    {
+      "explanation": "With one element each, 7 ^ 7 = 0."
+    }
+  ],
+  "timeComplexity": "O(n * 2^n)",
+  "spaceComplexity": "O(2^n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "minimumXorSum",
+    "params": [
+      {
+        "name": "nums1",
+        "type": "int[]"
+      },
+      {
+        "name": "nums2",
+        "type": "int[]"
+      }
+    ],
+    "returns": "int"
+  }
+}

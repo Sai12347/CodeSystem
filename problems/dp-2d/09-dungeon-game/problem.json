@@ -1,0 +1,39 @@
+{
+  "title": "Dungeon Game",
+  "difficulty": "Hard",
+  "subtopic": "Cost Minimization",
+  "companies": [
+    "Google",
+    "Amazon",
+    "Microsoft"
+  ],
+  "description": "A knight starts at the top-left of a dungeon and must reach the bottom-right, moving only right or down. Each cell adds or removes health. Find the minimum starting health that guarantees the knight\u2019s health stays at least 1 at every step.",
+  "constraints": [
+    "1 <= rows, columns <= 200",
+    "-1000 <= dungeon[i][j] <= 1000"
+  ],
+  "hints": [
+    "Define a dynamic-programming state for each prefix of the inputs.",
+    "Update each state using only valid preceding states and the allowed transitions."
+  ],
+  "examples": [
+    {
+      "input": "dungeon = [[-2,-3,3],[-5,-10,1],[10,30,-5]]",
+      "output": "7"
+    }
+  ],
+  "timeComplexity": "O(m*n)",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "calculateMinimumHP",
+    "params": [
+      {
+        "name": "dungeon",
+        "type": "int[][]"
+      }
+    ],
+    "returns": "int"
+  }
+}

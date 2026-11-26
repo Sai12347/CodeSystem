@@ -1,0 +1,45 @@
+{
+  "title": "Robot Lexicographically Smallest String",
+  "difficulty": "Medium",
+  "subtopic": "LIFO Structure",
+  "companies": [
+    "Google",
+    "Amazon",
+    "Uber",
+    "Meta"
+  ],
+  "description": "You are given a lowercase English string `s` and a robot that currently holds an empty stack buffer `t`.\n\nWhile either `s` or `t` is non-empty, you may perform one of the following two operations:\n1. Remove the first character of `s` and push it onto the top of `t`.\n2. Pop the top character of `t` and write it onto paper.\n\nReturn the lexicographically smallest string that can be written onto paper after all characters have been processed.",
+  "constraints": [
+    "1 <= s.length <= 10^5",
+    "s consists of lowercase English letters."
+  ],
+  "hints": [
+    "Precompute suffixMin[i], the smallest character appearing in s[i..n-1].",
+    "After pushing s[i] onto stack t, greedily pop and write the top of t as long as t[-1] <= suffixMin[i + 1] (since no strictly smaller character remains in s)."
+  ],
+  "examples": [
+    {
+      "explanation": "Push 'z', 'z', 'a' onto t, then pop all three in reverse to write \"azz\"."
+    },
+    {
+      "explanation": "Push 'b', push 'a', pop 'a' (smallest remaining is 'c'), pop 'b', push 'c', pop 'c' -> \"abc\"."
+    },
+    {
+      "explanation": "Push 'b', 'd', 'd', 'a', pop 'a', then pop 'd', 'd', 'b' -> \"addb\"."
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "robotWithString",
+    "params": [
+      {
+        "name": "s",
+        "type": "String"
+      }
+    ],
+    "returns": "String"
+  }
+}

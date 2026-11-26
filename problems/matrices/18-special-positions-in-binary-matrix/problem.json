@@ -1,0 +1,43 @@
+{
+  "title": "Special Positions in a Binary Matrix",
+  "difficulty": "Easy",
+  "subtopic": "Simulation",
+  "companies": [
+    "Amazon",
+    "Google",
+    "Microsoft"
+  ],
+  "description": "A cell containing 1 is special when it is the only 1 in its row and the only 1 in its column. Given a binary matrix `mat`, count the special cells. Input: rectangular binary matrix `mat`. Output: the number of special positions.",
+  "constraints": [
+    "1 <= rows, columns <= 1000",
+    "mat[i][j] is 0 or 1"
+  ],
+  "hints": [
+    "Check each cell using its row and column relationships.",
+    "Handle single-row, single-column, tie, and center-cell cases explicitly."
+  ],
+  "examples": [
+    {
+      "input": "mat = [[1, 0, 0], [0, 0, 1], [1, 0, 0]]",
+      "output": "1"
+    },
+    {
+      "input": "mat = [[1, 0, 0], [0, 1, 0], [0, 0, 1]]",
+      "output": "3"
+    }
+  ],
+  "timeComplexity": "O(rows*columns)",
+  "spaceComplexity": "O(rows+columns)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "numSpecial",
+    "params": [
+      {
+        "name": "mat",
+        "type": "int[][]"
+      }
+    ],
+    "returns": "int"
+  }
+}

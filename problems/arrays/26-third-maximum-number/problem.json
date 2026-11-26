@@ -1,0 +1,43 @@
+{
+  "title": "Third Maximum Number",
+  "difficulty": "Easy",
+  "subtopic": "Traversal",
+  "companies": [
+    "Amazon",
+    "Microsoft",
+    "Google"
+  ],
+  "description": "Given `nums`, return the third distinct largest value. If fewer than three distinct values exist, return the largest value.\n\nInput: an integer array `nums`. Return the result described above.",
+  "constraints": [
+    "1 <= nums.length <= 10^4",
+    "-2^31 <= nums[i] <= 2^31 - 1"
+  ],
+  "hints": [
+    "Track the relevant ordering or candidate values in one pass where possible.",
+    "Check duplicate and boundary cases."
+  ],
+  "examples": [
+    {
+      "input": "nums = [3, 2, 1]",
+      "output": "1"
+    },
+    {
+      "input": "nums = [1, 2]",
+      "output": "2"
+    }
+  ],
+  "timeComplexity": "O(n log n)",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "thirdMax",
+    "params": [
+      {
+        "name": "nums",
+        "type": "int[]"
+      }
+    ],
+    "returns": "int"
+  }
+}

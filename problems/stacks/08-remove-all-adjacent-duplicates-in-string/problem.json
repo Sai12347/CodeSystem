@@ -1,0 +1,47 @@
+{
+  "title": "Remove All Adjacent Duplicates In String",
+  "difficulty": "Easy",
+  "subtopic": "LIFO Structure",
+  "companies": [
+    "Meta",
+    "Amazon",
+    "Google",
+    "Microsoft",
+    "Bloomberg"
+  ],
+  "leetcode": 1047,
+  "description": "You are given a string `s` consisting of lowercase English letters. A **duplicate removal** consists of choosing two **adjacent** and **equal** letters and removing them.\n\nWe repeatedly make duplicate removals on `s` until we no longer can.\n\nReturn the final string after all such duplicate removals have been made. It can be proven that the answer is unique regardless of the order in which adjacent duplicate pairs are removed.",
+  "constraints": [
+    "1 <= s.length <= 10^5",
+    "s consists of lowercase English letters."
+  ],
+  "hints": [
+    "When two adjacent characters cancel out, the character immediately before them becomes adjacent to the character immediately after them.",
+    "Use a stack to store the surviving prefix of characters: for each character in s, pop if it matches the top of the stack, otherwise push it."
+  ],
+  "examples": [
+    {
+      "explanation": "In \"abbaca\", removing \"bb\" leaves \"aaca\", and then removing \"aa\" leaves \"ca\"."
+    },
+    {
+      "explanation": "Removing \"xx\" leaves \"azzy\", then removing \"zz\" leaves \"ay\"."
+    },
+    {
+      "explanation": "Every character cancels out in pairs, leaving the empty string \"\"."
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "removeDuplicates",
+    "params": [
+      {
+        "name": "s",
+        "type": "String"
+      }
+    ],
+    "returns": "String"
+  }
+}

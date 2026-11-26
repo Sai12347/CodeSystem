@@ -1,0 +1,47 @@
+{
+  "title": "Maximal Upper-Left Quadrant Sum by Flips",
+  "difficulty": "Medium",
+  "subtopic": "Matrix Rotation",
+  "companies": [
+    "Goldman Sachs",
+    "Google",
+    "Amazon",
+    "Bloomberg"
+  ],
+  "description": "You are given a `2n x 2n` integer matrix `matrix`. In a single operation, you may reverse any entire row (left-to-right) or reverse any entire column (top-to-bottom). You may perform as many operations as you wish in any order.\n\nReturn the **maximum possible sum** of the elements in the `n x n` upper-left quadrant `matrix[0..n-1][0..n-1]`.",
+  "constraints": [
+    "matrix.length == 2 * n",
+    "matrix[i].length == 2 * n",
+    "1 <= n <= 100",
+    "-10^9 <= matrix[i][j] <= 10^9"
+  ],
+  "hints": [
+    "Reversing rows and columns can only swap cell (r, c) among the four mirror-symmetric positions: (r, c), (r, 2n - 1 - c), (2n - 1 - r, c), and (2n - 1 - r, 2n - 1 - c).",
+    "Every cell in the upper-left n x n quadrant can independently achieve the maximum of its 4-cell symmetry orbit without disturbing the other orbits."
+  ],
+  "examples": [
+    {
+      "explanation": "For the single upper-left cell (0, 0), the maximum of {1, 2, 3, 4} is 4 (reverse row 1 then column 0)."
+    },
+    {
+      "explanation": "Each of the 4 upper-left cells picks the largest value in its 4-corner symmetry group: 119 + 114 + 56 + 125 = 414."
+    },
+    {
+      "explanation": "Negative values work identically: each orbit selects its least negative member, giving -10 + -1 + -3 + -30 = -44."
+    }
+  ],
+  "timeComplexity": "O(n^2)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "maxQuadrantSum",
+    "params": [
+      {
+        "name": "matrix",
+        "type": "int[][]"
+      }
+    ],
+    "returns": "long"
+  }
+}

@@ -1,0 +1,48 @@
+{
+  "title": "Longest Mountain in Array",
+  "difficulty": "Medium",
+  "subtopic": "Partition Pointers",
+  "companies": [
+    "Google",
+    "Amazon",
+    "Meta",
+    "Microsoft",
+    "Adobe"
+  ],
+  "leetcode": 845,
+  "description": "An array `arr` is a **mountain array** if and only if:\n\n- `arr.length >= 3`\n- There exists some index `i` (0-indexed) with `0 < i < arr.length - 1` such that:\n  - `arr[0] < arr[1] < ... < arr[i - 1] < arr[i]`, and\n  - `arr[i] > arr[i + 1] > ... > arr[arr.length - 1]`.\n\nGiven an integer array `arr`, return the length of the longest contiguous subarray that is a mountain. Return `0` if there is no mountain subarray.",
+  "constraints": [
+    "1 <= arr.length <= 10^4",
+    "0 <= arr[i] <= 10^4"
+  ],
+  "hints": [
+    "Two mountains can share at most a single valley endpoint — they never overlap on their interior slopes.",
+    "Maintain a base pointer and an end pointer: starting from base, walk end up while arr[end] < arr[end + 1].",
+    "Only if you moved upward at least once, continue walking end down while arr[end] > arr[end + 1]; if you also moved downward, update the best length and advance base to max(end, base + 1)."
+  ],
+  "examples": [
+    {
+      "explanation": "The longest mountain subarray is [1, 4, 7, 3, 2], which has length 5."
+    },
+    {
+      "explanation": "Because all elements are equal, there is no strictly increasing and strictly decreasing mountain subarray, so return 0."
+    },
+    {
+      "explanation": "The entire array strictly increases from 0 to 5 and strictly decreases from 5 back to 0, giving length 11."
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "longestMountain",
+    "params": [
+      {
+        "name": "arr",
+        "type": "int[]"
+      }
+    ],
+    "returns": "int"
+  }
+}

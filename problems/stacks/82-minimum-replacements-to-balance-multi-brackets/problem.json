@@ -1,0 +1,45 @@
+{
+  "title": "Minimum Replacements to Balance Multi-Brackets",
+  "difficulty": "Medium",
+  "subtopic": "Valid Parentheses",
+  "companies": [
+    "Google",
+    "Amazon",
+    "Meta",
+    "Microsoft"
+  ],
+  "description": "You are given a string `s` consisting of four bracket kinds: `'('`, `')'`, `'['`, `']'`, `'{'`, `'}'`, `'<'`, and `'>'`.\n\nIn one replacement operation, you may replace any opening bracket (`'('`, `'['`, `'{'`, `'<'`) with any other opening bracket, OR replace any closing bracket (`')'`, `']'`, `'}'`, `'>'`) with any other closing bracket. You **cannot** turn an opening bracket into a closing bracket or vice versa.\n\nReturn the **minimum number of replacements** required to make `s` validly balanced, or `-1` if it is impossible.",
+  "constraints": [
+    "1 <= s.length <= 10^5",
+    "s consists only of '(', ')', '[', ']', '{', '}', '<', and '>'."
+  ],
+  "hints": [
+    "Because bracket directions (open vs close) can never change, the string can be balanced if and only if treating all opens as '(' and all closes as ')' forms a valid parentheses string.",
+    "Simulate a stack of opening brackets: on each closing bracket, pop the top opening bracket and add 1 to the cost whenever their bracket kinds do not match."
+  ],
+  "examples": [
+    {
+      "explanation": "'<' matches '>', '[' matches ')', and '{' matches '}'; only the '[' vs ')' pair mismatches, needing 1 replacement."
+    },
+    {
+      "explanation": "Every matched pair already has the same kind, needing 0 replacements."
+    },
+    {
+      "explanation": "An extra closing bracket occurs when the stack is empty, making balancing impossible (-1)."
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "minBracketReplacements",
+    "params": [
+      {
+        "name": "s",
+        "type": "String"
+      }
+    ],
+    "returns": "int"
+  }
+}

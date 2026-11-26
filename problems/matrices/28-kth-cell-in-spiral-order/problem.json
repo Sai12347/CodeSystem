@@ -1,0 +1,53 @@
+{
+  "title": "Kth Cell in Spiral Order",
+  "difficulty": "Hard",
+  "subtopic": "Spiral Traversal",
+  "companies": [
+    "Google",
+    "Meta",
+    "Goldman Sachs",
+    "Apple"
+  ],
+  "description": "Consider a `rows x cols` grid (0-indexed) traversed in standard clockwise spiral order starting at `(0, 0)`: moving right along the top row, down the rightmost column, left along the bottom row, and up the leftmost column, peeling layers inward until every cell is visited.\n\nGiven `rows`, `cols`, and a 1-indexed integer `k`, return the 0-indexed coordinates `[r, c]` of the `k`-th cell visited in this clockwise spiral traversal. Because `rows` and `cols` can be as large as `10^9`, you cannot construct the grid or simulate cell-by-cell.",
+  "constraints": [
+    "1 <= rows, cols <= 10^9",
+    "1 <= k <= rows * cols"
+  ],
+  "hints": [
+    "Peeling the first L complete concentric rings consumes rows * cols - (rows - 2L) * (cols - 2L) cells.",
+    "Binary search for the largest ring index L whose preceding rings contain strictly fewer than k cells, then locate the exact side (top, right, bottom, or left) of ring L in O(1) time."
+  ],
+  "examples": [
+    {
+      "explanation": "In a 3x3 grid, the clockwise spiral visits (0,0), (0,1), (0,2), (1,2), (2,2), (2,1), (2,0), (1,0), (1,1); the 5th cell is (2, 2)."
+    },
+    {
+      "explanation": "In a 3x4 grid, the outer ring has 10 cells, so the 11th cell is the start of the inner row at (1, 1)."
+    },
+    {
+      "explanation": "The 1st cell visited in any grid is always the top-left corner (0, 0)."
+    }
+  ],
+  "timeComplexity": "O(log(min(rows, cols)))",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "kthSpiralCell",
+    "params": [
+      {
+        "name": "rows",
+        "type": "int"
+      },
+      {
+        "name": "cols",
+        "type": "int"
+      },
+      {
+        "name": "k",
+        "type": "long"
+      }
+    ],
+    "returns": "int[]"
+  }
+}

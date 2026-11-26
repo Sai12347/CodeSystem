@@ -1,0 +1,50 @@
+{
+  "title": "Minimum Operations to Make a Uni-Value Grid",
+  "difficulty": "Medium",
+  "subtopic": "Dynamic Grids",
+  "companies": [
+    "Amazon",
+    "Google",
+    "Bloomberg",
+    "Microsoft"
+  ],
+  "description": "You are given an `m x n` integer matrix `grid` and a positive integer `x`. In one operation, you may add `x` to or subtract `x` from any single element in `grid`.\n\nReturn the **minimum number of operations** required to make all elements in `grid` equal, or `-1` if it is impossible.",
+  "constraints": [
+    "m == grid.length, n == grid[i].length",
+    "1 <= m, n <= 200",
+    "1 <= grid[i][j], x <= 10^4"
+  ],
+  "hints": [
+    "Adding or subtracting x preserves every element's remainder modulo x, so a solution exists if and only if all elements share the same remainder modulo x.",
+    "Once feasibility is verified, flatten and sort all values; moving every element to the median minimizes the total number of x-steps."
+  ],
+  "examples": [
+    {
+      "explanation": "All values are congruent mod 2; moving [2, 4, 6, 8] to 4 (or 6) takes 1 + 0 + 1 + 2 = 4 operations."
+    },
+    {
+      "explanation": "Moving [1, 5, 2, 3] with x = 1 to median 2 or 3 requires 5 unit steps."
+    },
+    {
+      "explanation": "Values 1 and 2 have different remainders modulo 2, so making them equal is impossible (-1)."
+    }
+  ],
+  "timeComplexity": "O(m * n * log(m * n))",
+  "spaceComplexity": "O(m * n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "minOperationsUniValue",
+    "params": [
+      {
+        "name": "grid",
+        "type": "int[][]"
+      },
+      {
+        "name": "x",
+        "type": "int"
+      }
+    ],
+    "returns": "int"
+  }
+}

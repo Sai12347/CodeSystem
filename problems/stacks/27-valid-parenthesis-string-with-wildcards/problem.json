@@ -1,0 +1,46 @@
+{
+  "title": "Valid Parenthesis String With Wildcards",
+  "difficulty": "Medium",
+  "subtopic": "Valid Parentheses",
+  "companies": [
+    "Amazon",
+    "Meta",
+    "Google",
+    "Microsoft",
+    "LinkedIn"
+  ],
+  "description": "Given a string `s` containing only three types of characters: `'('`, `')'`, and `'*'`, return `true` if `s` is valid and `false` otherwise.\n\nThe following rules define a valid string:\n- Every `'('` must have a corresponding `')'` appearing after it.\n- Every `')'` must have a corresponding `'('` appearing before it.\n- Each `'*'` may independently be treated as a single `'('`, a single `')'`, or an empty string `\"\"`.",
+  "constraints": [
+    "1 <= s.length <= 10^4",
+    "s[i] is '(', ')', or '*'."
+  ],
+  "hints": [
+    "Maintain two stacks of indices: one for unmatched '(' characters and one for '*' wildcards.",
+    "When seeing ')', prefer popping from the '(' stack before falling back to the '*' stack; after the scan, match every remaining '(' with a '*' whose index is strictly greater."
+  ],
+  "examples": [
+    {
+      "explanation": "\"()\" is already a valid pair of parentheses."
+    },
+    {
+      "explanation": "Treating '*' as empty yields \"()\", which is valid."
+    },
+    {
+      "explanation": "Treating '*' as '(' yields \"(())\", which is valid."
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "checkValidString",
+    "params": [
+      {
+        "name": "s",
+        "type": "String"
+      }
+    ],
+    "returns": "boolean"
+  }
+}

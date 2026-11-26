@@ -30,3 +30,8 @@ mysql_data/
 # ===== IDE =====
 .vscode/
 *.code-workspace
+
+# problem tooling caches
+tools/problems/.cache/
+__pycache__/
+*.pyc

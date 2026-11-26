@@ -1,0 +1,49 @@
+{
+  "title": "Jewels and Stones",
+  "difficulty": "Easy",
+  "subtopic": "String Matching",
+  "companies": [
+    "Amazon",
+    "Google",
+    "Apple"
+  ],
+  "description": "You are given two strings: `jewels` representing the distinct types of stones that are jewels, and `stones` representing the stones you have. Letters are case-sensitive (`'a'` and `'A'` are different types). Return how many characters in `stones` are also present in `jewels`.",
+  "constraints": [
+    "1 <= jewels.length, stones.length <= 10^4",
+    "jewels and stones consist of English letters.",
+    "All characters in jewels are unique."
+  ],
+  "hints": [
+    "Store all characters of jewels in a fast lookup structure (a 128-element boolean array or hash set).",
+    "Count how many characters of stones are marked in the lookup table."
+  ],
+  "examples": [
+    {
+      "explanation": "One 'a' and two 'A's appear in \"aAAbbbb\", totaling 3."
+    },
+    {
+      "explanation": "Lowercase 'z' does not match uppercase 'Z', so 0."
+    },
+    {
+      "explanation": "Every stone in \"abcABC\" is a jewel."
+    }
+  ],
+  "timeComplexity": "O(|jewels| + |stones|)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "numJewelsInStones",
+    "params": [
+      {
+        "name": "jewels",
+        "type": "String"
+      },
+      {
+        "name": "stones",
+        "type": "String"
+      }
+    ],
+    "returns": "int"
+  }
+}

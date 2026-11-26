@@ -1,0 +1,44 @@
+{
+  "title": "Minimum Add to Make Parentheses Valid",
+  "difficulty": "Medium",
+  "subtopic": "Parsing",
+  "companies": [
+    "Meta",
+    "Amazon",
+    "Bloomberg"
+  ],
+  "description": "A parentheses string is valid if it is empty or can be built from balanced pairs of `'('` and `')'`. Given a string `s` consisting only of `'('` and `')'`, return the minimum number of parentheses you must insert at any positions to make `s` valid.",
+  "constraints": [
+    "0 <= s.length <= 10^5",
+    "s consists only of '(' and ')'."
+  ],
+  "hints": [
+    "Track the count of currently unmatched '(' (openCount) and unmatched ')' (adds).",
+    "When you see ')', decrement openCount if positive, otherwise increment adds; at the end return adds + openCount."
+  ],
+  "examples": [
+    {
+      "explanation": "Insert one '(' at the start of \"())\" to form \"(())\"."
+    },
+    {
+      "explanation": "Insert three ')' at the end of \"(((\" to form \"((()))\"."
+    },
+    {
+      "explanation": "\"()\" is already valid, requiring 0 insertions."
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "minAddToMakeValid",
+    "params": [
+      {
+        "name": "s",
+        "type": "String"
+      }
+    ],
+    "returns": "int"
+  }
+}

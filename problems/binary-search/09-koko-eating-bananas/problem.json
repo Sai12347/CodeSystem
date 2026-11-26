@@ -1,0 +1,54 @@
+{
+  "title": "Koko Eating Bananas",
+  "difficulty": "Medium",
+  "subtopic": "Search on Answer Space",
+  "companies": [
+    "Google",
+    "Amazon",
+    "Meta",
+    "Microsoft",
+    "Uber",
+    "Apple"
+  ],
+  "leetcode": 875,
+  "description": "Koko loves to eat bananas. There are `n` piles of bananas, where the `i`-th pile has `piles[i]` bananas. The guards have gone and will come back in `h` hours.\n\nKoko can decide her bananas-per-hour eating speed of `k` (a positive integer). Each hour, she chooses some pile of bananas and eats `k` bananas from that pile. If the pile has fewer than `k` bananas, she eats all of them instead and will not eat any more bananas during this hour.\n\nKoko likes to eat slowly but still wants to finish eating all the bananas before the guards return. Return the minimum integer `k` such that she can eat all the bananas within `h` hours.",
+  "constraints": [
+    "1 <= piles.length <= 10^4",
+    "piles.length <= h <= 10^9",
+    "1 <= piles[i] <= 10^9"
+  ],
+  "hints": [
+    "The total hours needed to finish all piles is monotonically non-increasing as the eating speed k increases.",
+    "The answer k lies in the range [1, max(piles)]. For any candidate speed k, pile p takes ceil(p / k) = (p + k - 1) // k hours.",
+    "Binary search for the smallest k in [1, max(piles)] whose total hours is <= h. Use 64-bit integers when summing hours to avoid 32-bit overflow."
+  ],
+  "examples": [
+    {
+      "explanation": "At speed k = 4, Koko takes ceil(3/4) + ceil(6/4) + ceil(7/4) + ceil(11/4) = 1 + 2 + 2 + 3 = 8 hours. Speed 3 takes 10 hours > 8."
+    },
+    {
+      "explanation": "Since h == 5 == piles.length, Koko can spend at most 1 hour per pile, so k must be at least max(piles) = 30."
+    },
+    {
+      "explanation": "With 1 extra hour (h = 6), Koko can spend 2 hours on the pile of 30 (at speed 23) and 1 hour on each of the other 4 piles."
+    }
+  ],
+  "timeComplexity": "O(n log M)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "minEatingSpeed",
+    "params": [
+      {
+        "name": "piles",
+        "type": "int[]"
+      },
+      {
+        "name": "h",
+        "type": "int"
+      }
+    ],
+    "returns": "int"
+  }
+}

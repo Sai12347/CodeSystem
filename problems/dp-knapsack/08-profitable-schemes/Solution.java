@@ -1,0 +1,1 @@
+class Solution { public int profitableSchemes(int n,int minProfit,int[] g,int[] p) { int mod=1000000007;int[][] d=new int[minProfit+1][n+1];Arrays.fill(d[0],1);for(int k=0;k<g.length;k++)for(int need=minProfit;need>=0;need--)for(int people=n;people>=g[k];people--)d[need][people]=(d[need][people]+d[Math.max(0,need-p[k])][people-g[k]])%mod;return d[minProfit][n];} }

@@ -1,0 +1,57 @@
+{
+  "title": "Stamping the Grid",
+  "difficulty": "Hard",
+  "subtopic": "Dynamic Grids",
+  "companies": [
+    "Google",
+    "Amazon",
+    "Meta",
+    "Microsoft"
+  ],
+  "description": "You are given an `m x n` binary matrix `grid` where `0` represents an empty cell and `1` represents an occupied cell. You also have an unlimited supply of rectangular stamps of fixed dimensions `stampHeight x stampWidth`.\n\nYou want to place stamps on the grid subject to these rules:\n- Every empty (`0`) cell must be covered by at least one stamp.\n- No occupied (`1`) cell may be covered by any stamp.\n- Stamps may overlap each other, may not be rotated, and must lie completely inside the grid.\n\nReturn `true` if it is possible to cover all empty cells, or `false` otherwise.",
+  "constraints": [
+    "m == grid.length",
+    "n == grid[i].length",
+    "1 <= m, n <= 10^4",
+    "1 <= m * n <= 10^5",
+    "grid[i][j] is either 0 or 1.",
+    "1 <= stampHeight, stampWidth <= 10^5"
+  ],
+  "hints": [
+    "Build a 2D prefix sum over grid so you can test in O(1) whether any stampHeight x stampWidth rectangle contains zero occupied cells.",
+    "Whenever a stamp fits at top-left (r, c), greedily record it in a 2D difference array; after computing the 2D prefix sum of the difference array, verify every 0-cell has coverage > 0."
+  ],
+  "examples": [
+    {
+      "explanation": "Two overlapping 4x3 stamps cover the entire 5x3 region of empty cells without touching any occupied 1-cell."
+    },
+    {
+      "explanation": "No 2x2 stamp can fit anywhere in the grid without overlapping an occupied cell, leaving empty cells uncovered."
+    },
+    {
+      "explanation": "Every cell is already occupied (no empty cells exist), so the condition holds vacuously."
+    }
+  ],
+  "timeComplexity": "O(m * n)",
+  "spaceComplexity": "O(m * n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "possibleToStamp",
+    "params": [
+      {
+        "name": "grid",
+        "type": "int[][]"
+      },
+      {
+        "name": "stampHeight",
+        "type": "int"
+      },
+      {
+        "name": "stampWidth",
+        "type": "int"
+      }
+    ],
+    "returns": "boolean"
+  }
+}

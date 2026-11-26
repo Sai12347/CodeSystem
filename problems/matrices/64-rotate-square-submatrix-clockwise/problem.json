@@ -1,0 +1,66 @@
+{
+  "title": "Rotate Square Submatrix Clockwise",
+  "difficulty": "Medium",
+  "subtopic": "Matrix Rotation",
+  "companies": [
+    "Amazon",
+    "Microsoft",
+    "Apple",
+    "Uber"
+  ],
+  "description": "You are given an `m x n` integer matrix `grid`, integers `row`, `col`, `k`, and `turns`.\n\nConsider the `k x k` contiguous square submatrix whose top-left corner is at `(row, col)` (covering rows `row .. row + k - 1` and columns `col .. col + k - 1`). Rotate **only** this `k x k` submatrix clockwise by `90` degrees exactly `turns` times, while leaving every cell outside the submatrix unchanged.\n\nReturn the resulting `m x n` integer matrix.",
+  "constraints": [
+    "m == grid.length",
+    "n == grid[i].length",
+    "1 <= m, n <= 100",
+    "1 <= k <= min(m, n)",
+    "0 <= row <= m - k and 0 <= col <= n - k",
+    "0 <= turns <= 10^9",
+    "-10^5 <= grid[i][j] <= 10^5"
+  ],
+  "hints": [
+    "Four 90-degree rotations return the submatrix to its original orientation, so first reduce t = turns % 4.",
+    "Copy the grid and map each relative offset (dr, dc) inside the k x k window directly to its target position based on t in {0, 1, 2, 3}."
+  ],
+  "examples": [
+    {
+      "explanation": "The bottom-right 2x2 submatrix [[5,6],[8,9]] rotates 90 degrees clockwise into [[8,5],[9,6]], leaving row 0 and column 0 untouched."
+    },
+    {
+      "explanation": "Rotating the entire 2x2 matrix twice (180 degrees) reverses both rows and columns."
+    },
+    {
+      "explanation": "Because 4 turns is a full 360-degree rotation, the matrix remains completely unchanged."
+    }
+  ],
+  "timeComplexity": "O(m * n)",
+  "spaceComplexity": "O(m * n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "rotateSubmatrix",
+    "params": [
+      {
+        "name": "grid",
+        "type": "int[][]"
+      },
+      {
+        "name": "row",
+        "type": "int"
+      },
+      {
+        "name": "col",
+        "type": "int"
+      },
+      {
+        "name": "k",
+        "type": "int"
+      },
+      {
+        "name": "turns",
+        "type": "int"
+      }
+    ],
+    "returns": "int[][]"
+  }
+}

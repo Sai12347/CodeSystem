@@ -40,7 +40,7 @@ export const Navbar: React.FC<NavbarProps> = ({ activeTab, onTabChange }) => {
     { id: 'learn' as ActiveTab, label: 'Learn DSA', icon: BookOpen },
     { id: 'visualizer' as ActiveTab, label: 'Visualizer', icon: PlayCircle },
     { id: 'practice' as ActiveTab, label: 'Practice', icon: Code2 },
-    { id: 'companies' as ActiveTab, label: 'Companies (100+ PYQs)', icon: Building2 },
+    { id: 'companies' as ActiveTab, label: 'Company Practice', icon: Building2 },
     { id: 'ai-tutor' as ActiveTab, label: 'AI Tutor', icon: Bot },
     { id: 'progress' as ActiveTab, label: 'Progress', icon: Award },
     { id: 'profile' as ActiveTab, label: 'Profile', icon: User },

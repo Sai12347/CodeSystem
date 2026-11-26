@@ -1,0 +1,92 @@
+{
+  "title": "Subrectangle Queries Manager",
+  "difficulty": "Medium",
+  "subtopic": "Dynamic Grids",
+  "companies": [
+    "Amazon",
+    "Google",
+    "Microsoft",
+    "Atlassian"
+  ],
+  "description": "Implement the class `SubrectangleQueries` which receives an `m x n` integer matrix `rectangle` and supports two operations:\n\n- `SubrectangleQueries(int[][] rectangle)` initializes the object with the initial matrix.\n- `void updateSubrectangle(int row1, int col1, int row2, int col2, int newValue)` overwrites every cell in the subrectangle with upper-left corner `(row1, col1)` and lower-right corner `(row2, col2)` inclusive with `newValue`.\n- `int getValue(int row, int col)` returns the current value at coordinate `(row, col)`.",
+  "constraints": [
+    "m == rectangle.length",
+    "n == rectangle[i].length",
+    "1 <= m, n <= 100",
+    "1 <= rectangle[i][j], newValue <= 10^9",
+    "0 <= row1 <= row2 < m, 0 <= col1 <= col2 < n",
+    "At most 500 operations will be called in total."
+  ],
+  "hints": [
+    "Instead of rewriting up to m * n cells on every updateSubrectangle call, simply append the tuple (row1, col1, row2, col2, newValue) to an update history list in O(1).",
+    "To answer getValue(row, col), scan the history list from newest to oldest and return the first newValue whose bounding box covers (row, col), falling back to the original rectangle."
+  ],
+  "examples": [
+    {
+      "explanation": "Initially (0,2)=1; after overwriting [0..3, 0..2] with 5, both (0,2) and (3,1) return 5; then overwriting [3..3, 0..2] with 10 changes (3,1) to 10 while (0,2) remains 5."
+    },
+    {
+      "explanation": "Overlapping subrectangle updates resolve in reverse chronological order so the most recent write wins."
+    },
+    {
+      "explanation": "On a 1x1 rectangle, each update directly replaces the sole element."
+    }
+  ],
+  "timeComplexity": "O(1) update, O(u) query",
+  "spaceComplexity": "O(m * n + u)",
+  "compare": "exact",
+  "signature": {
+    "kind": "design",
+    "className": "SubrectangleQueries",
+    "constructor": {
+      "params": [
+        {
+          "name": "rectangle",
+          "type": "int[][]"
+        }
+      ]
+    },
+    "methods": [
+      {
+        "name": "updateSubrectangle",
+        "params": [
+          {
+            "name": "row1",
+            "type": "int"
+          },
+          {
+            "name": "col1",
+            "type": "int"
+          },
+          {
+            "name": "row2",
+            "type": "int"
+          },
+          {
+            "name": "col2",
+            "type": "int"
+          },
+          {
+            "name": "newValue",
+            "type": "int"
+          }
+        ],
+        "returns": "void"
+      },
+      {
+        "name": "getValue",
+        "params": [
+          {
+            "name": "row",
+            "type": "int"
+          },
+          {
+            "name": "col",
+            "type": "int"
+          }
+        ],
+        "returns": "int"
+      }
+    ]
+  }
+}

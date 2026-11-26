@@ -1,0 +1,49 @@
+{
+  "title": "K-th Smallest Distinct Subset XOR",
+  "difficulty": "Hard",
+  "subtopic": "XOR Tricks",
+  "companies": [
+    "Google",
+    "Meta",
+    "Goldman Sachs"
+  ],
+  "description": "Given an array `nums` of non-negative integers and a 1-indexed positive integer `k`, consider the set of all **distinct** values that can be formed as the bitwise XOR of any subset of `nums` (including the empty subset, whose XOR is `0`). Return the `k`-th smallest distinct value in this set, or `-1` if fewer than `k` distinct subset XOR values exist.",
+  "constraints": [
+    "1 <= nums.length <= 10^5",
+    "0 <= nums[i] <= 10^9",
+    "1 <= k <= 10^9"
+  ],
+  "hints": [
+    "Build a linear XOR basis over GF(2) for `nums`, then reduce it to reduced row-echelon form (RREF) so that every basis vector's pivot bit is cleared in all higher basis vectors.",
+    "If the basis has rank `r`, there are exactly `2^r` distinct subset XORs; sort the `r` basis vectors in ascending order and combine them according to the binary bits of `k - 1`."
+  ],
+  "examples": [
+    {
+      "explanation": "The distinct subset XORs of [1, 2, 3] are {0, 1, 2, 3}; the 3rd smallest is 2."
+    },
+    {
+      "explanation": "The distinct subset XORs of [4, 2, 6] are {0, 2, 4, 6} (only 4 values), so k = 5 returns -1."
+    },
+    {
+      "explanation": "The distinct subset XORs of [5, 3] are {0, 3, 5, 6}; the 4th smallest is 6."
+    }
+  ],
+  "timeComplexity": "O(n log M + log^2 M)",
+  "spaceComplexity": "O(log M)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "kthSmallestSubsetXor",
+    "params": [
+      {
+        "name": "nums",
+        "type": "int[]"
+      },
+      {
+        "name": "k",
+        "type": "long"
+      }
+    ],
+    "returns": "int"
+  }
+}

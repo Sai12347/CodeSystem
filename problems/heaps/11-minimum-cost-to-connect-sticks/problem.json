@@ -1,0 +1,48 @@
+{
+  "title": "Minimum Cost to Connect Sticks",
+  "difficulty": "Medium",
+  "subtopic": "Min/Max Heap",
+  "companies": [
+    "Amazon",
+    "Google",
+    "Meta",
+    "Microsoft",
+    "Bloomberg"
+  ],
+  "leetcode": 1167,
+  "description": "You have some number of sticks with positive integer lengths given by an integer array `sticks`, where `sticks[i]` is the length of the `i`-th stick.\n\nYou can connect any two sticks of lengths `x` and `y` into one stick by paying a cost of `x + y`. You must connect all the sticks until there is only **one** stick remaining.\n\nReturn the **minimum** total cost of connecting all the given sticks into one stick in this way. If there is already only one stick, the cost is `0`.",
+  "constraints": [
+    "1 <= sticks.length <= 10^4",
+    "1 <= sticks[i] <= 10^4"
+  ],
+  "hints": [
+    "Sticks merged earlier contribute their lengths to more subsequent merges, so shorter sticks should be combined first (just like Huffman coding).",
+    "Put all stick lengths into a min-heap.",
+    "While more than one stick remains in the heap, pop the two smallest sticks `a` and `b`, add `a + b` to the running cost, and push `a + b` back into the heap."
+  ],
+  "examples": [
+    {
+      "explanation": "Combine 2 and 3 (cost 5) -> [5, 4]; combine 5 and 4 (cost 9) -> [9]. Total cost = 5 + 9 = 14."
+    },
+    {
+      "explanation": "Combine 1+3=4 -> [4, 5, 8], then 4+5=9 -> [8, 9], then 8+9=17 -> [17]. Total cost = 4 + 9 + 17 = 30."
+    },
+    {
+      "explanation": "Only one stick exists, so no connections are needed and the total cost is 0."
+    }
+  ],
+  "timeComplexity": "O(n log n)",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "connectSticks",
+    "params": [
+      {
+        "name": "sticks",
+        "type": "int[]"
+      }
+    ],
+    "returns": "int"
+  }
+}

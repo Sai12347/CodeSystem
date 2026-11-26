@@ -1,0 +1,38 @@
+{
+  "title": "Power of Two",
+  "difficulty": "Easy",
+  "subtopic": "XOR Tricks",
+  "companies": [
+    "Amazon",
+    "Google",
+    "Microsoft"
+  ],
+  "description": "Return true if integer `n` is a positive power of two. Otherwise return false.",
+  "constraints": [
+    "-2^31 <= n <= 2^31 - 1"
+  ],
+  "hints": [
+    "Work directly with individual bits and masks.",
+    "Account for sign representation and boundary values explicitly."
+  ],
+  "examples": [
+    {
+      "input": "n = 16",
+      "output": "true"
+    }
+  ],
+  "timeComplexity": "O(1)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "isPowerOfTwo",
+    "params": [
+      {
+        "name": "n",
+        "type": "int"
+      }
+    ],
+    "returns": "boolean"
+  }
+}

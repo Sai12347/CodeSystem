@@ -1,0 +1,48 @@
+{
+  "title": "Subarray Bitwise AND Closest to Target",
+  "difficulty": "Hard",
+  "subtopic": "Counting Bits",
+  "companies": [
+    "Google",
+    "Meta",
+    "Microsoft"
+  ],
+  "description": "Given an array `nums` of non-negative integers and a non-negative integer `target`, choose any non-empty contiguous subarray `nums[l..r]` (`0 <= l <= r < nums.length`) to minimize `|(nums[l] & nums[l + 1] & ... & nums[r]) - target|`. Return this minimum absolute difference.",
+  "constraints": [
+    "1 <= nums.length <= 10^5",
+    "0 <= nums[i], target <= 10^9"
+  ],
+  "hints": [
+    "As a subarray extends leftward from a fixed right index `r`, its bitwise AND can only clear `1` bits to `0`, so there are at most `31` distinct bitwise AND values ending at `r`.",
+    "Maintain the small set of distinct suffix AND values ending at `r - 1`, intersect each with `nums[r]` (plus `nums[r]` itself), and update the best distance to `target`."
+  ],
+  "examples": [
+    {
+      "explanation": "Subarrays [3, 7] (AND = 3) and [7, 15] (AND = 7) are both at distance 2 from target 5."
+    },
+    {
+      "explanation": "Every subarray has bitwise AND 1000000, giving |1000000 - 1| = 999999."
+    },
+    {
+      "explanation": "Subarray [1, 2] has bitwise AND 1 & 2 = 0, matching target 0 with difference 0."
+    }
+  ],
+  "timeComplexity": "O(n log M)",
+  "spaceComplexity": "O(log M)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "closestToTarget",
+    "params": [
+      {
+        "name": "nums",
+        "type": "int[]"
+      },
+      {
+        "name": "target",
+        "type": "int"
+      }
+    ],
+    "returns": "int"
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "title": "Sum of Absolute Differences in a Sorted Array",
+  "difficulty": "Medium",
+  "subtopic": "Prefix/Suffix",
+  "companies": [
+    "Amazon",
+    "Google",
+    "Microsoft"
+  ],
+  "description": "Given a non-decreasing integer array `nums`, return an array `answer` where `answer[i]` is the sum of `abs(nums[i] - nums[j])` over every index `j`. Input: sorted `nums`. Output: the corresponding sum array.",
+  "constraints": [
+    "2 <= nums.length <= 100000",
+    "-100000 <= nums[i] <= 100000",
+    "nums is sorted in non-decreasing order"
+  ],
+  "hints": [
+    "Scan once to identify the boundary or state where the answer changes.",
+    "Test already ordered, reversed, duplicate, and minimum-size inputs."
+  ],
+  "examples": [
+    {
+      "input": "nums = [2, 3, 5]",
+      "output": "[4, 3, 5]"
+    },
+    {
+      "input": "nums = [1, 4, 6, 8, 10]",
+      "output": "[15, 9, 7, 9, 15]"
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "getAbsoluteDifferences",
+    "params": [
+      {
+        "name": "nums",
+        "type": "int[]"
+      }
+    ],
+    "returns": "long[]"
+  }
+}

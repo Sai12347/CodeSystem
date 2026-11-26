@@ -1,0 +1,43 @@
+{
+  "title": "Longest Alternating Parity Run",
+  "difficulty": "Easy",
+  "subtopic": "Traversal",
+  "companies": [
+    "Amazon",
+    "Google",
+    "Microsoft"
+  ],
+  "description": "Given a non-empty integer array `nums`, return the length of its longest contiguous segment in which every neighboring pair has opposite parity. Negative odd numbers count as odd. Input: `nums`. Output: the longest segment length.",
+  "constraints": [
+    "1 <= nums.length <= 100000",
+    "-1000000000 <= nums[i] <= 1000000000"
+  ],
+  "hints": [
+    "Scan once to identify the boundary or state where the answer changes.",
+    "Test already ordered, reversed, duplicate, and minimum-size inputs."
+  ],
+  "examples": [
+    {
+      "input": "nums = [1, 2, 3, 4, 5]",
+      "output": "5"
+    },
+    {
+      "input": "nums = [1, 3, 5, 7]",
+      "output": "1"
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "longestAlternatingParityRun",
+    "params": [
+      {
+        "name": "nums",
+        "type": "int[]"
+      }
+    ],
+    "returns": "int"
+  }
+}

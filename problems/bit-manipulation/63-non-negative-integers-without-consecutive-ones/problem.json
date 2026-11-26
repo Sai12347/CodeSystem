@@ -1,0 +1,43 @@
+{
+  "title": "Non-Negative Integers Without Consecutive Ones",
+  "difficulty": "Hard",
+  "subtopic": "Two Complement",
+  "companies": [
+    "Google",
+    "Meta",
+    "Microsoft"
+  ],
+  "description": "Given a non-negative integer `n`, return the count of integers `x` in the inclusive range `[0, n]` whose binary representations do not contain two consecutive `1`-bits.",
+  "constraints": [
+    "0 <= n <= 10^9"
+  ],
+  "hints": [
+    "The number of valid `b`-bit binary strings with no consecutive ones follows the Fibonacci sequence: `fib[0] = 1, fib[1] = 2, fib[b] = fib[b - 1] + fib[b - 2]`.",
+    "Walk the bits of `n` from MSB to LSB: whenever bit `b` is `1`, add `fib[b]` for putting `0` at bit `b`; if the previous bit was also `1`, stop immediately because no valid number can match this prefix."
+  ],
+  "examples": [
+    {
+      "explanation": "In [0, 5], 0 (0), 1 (1), 2 (10), 4 (100), and 5 (101) have no consecutive ones; only 3 (11) fails, leaving 5."
+    },
+    {
+      "explanation": "In [0, 1], both 0 and 1 are valid, giving 2."
+    },
+    {
+      "explanation": "In [0, 3], 0, 1, and 2 are valid while 3 (11) is not, giving 3."
+    }
+  ],
+  "timeComplexity": "O(log n)",
+  "spaceComplexity": "O(log n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "findIntegers",
+    "params": [
+      {
+        "name": "n",
+        "type": "int"
+      }
+    ],
+    "returns": "int"
+  }
+}

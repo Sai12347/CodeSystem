@@ -1,0 +1,36 @@
+{
+  "title": "Remove Nth Node From End of List",
+  "difficulty": "Medium",
+  "subtopic": "Fast/Slow Pointer",
+  "companies": ["Amazon", "Google", "Meta", "Microsoft", "Apple", "Bloomberg"],
+  "leetcode": 19,
+  "description": "Given the `head` of a singly linked list, remove the `n`-th node from the end of the list (`1`-indexed from the tail) and return the head of the modified list.\n\nIf removing that node leaves the list empty, return `null` (`None` in Python). Try to complete this in a single pass using `O(1)` extra space.",
+  "constraints": [
+    "The number of nodes in the list is sz.",
+    "1 <= sz <= 5000",
+    "-10^4 <= Node.val <= 10^4",
+    "1 <= n <= sz"
+  ],
+  "hints": [
+    "Attach a sentinel (dummy) node before `head` so removing the head node (`n == sz`) is handled identically to any other node.",
+    "Maintain two pointers `slow` and `fast` starting at the dummy node, and advance `fast` by `n` steps first.",
+    "Move both `slow` and `fast` one step at a time until `fast.next` is null; then `slow` is immediately before the target node."
+  ],
+  "examples": [
+    {"explanation": "The 2nd node from the end is 4; removing it produces [1, 2, 3, 5]."},
+    {"explanation": "Removing the only node leaves an empty list (null)."},
+    {"explanation": "The 1st node from the end is 2; removing it leaves [1]."}
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "removeNthFromEnd",
+    "params": [
+      {"name": "head", "type": "ListNode"},
+      {"name": "n", "type": "int"}
+    ],
+    "returns": "ListNode"
+  }
+}

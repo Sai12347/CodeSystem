@@ -1,0 +1,49 @@
+{
+  "title": "Valid Palindrome With At Most K Deletions",
+  "difficulty": "Hard",
+  "subtopic": "Palindromes",
+  "companies": [
+    "Meta",
+    "Google",
+    "Amazon"
+  ],
+  "description": "Given a lowercase string `s` and an integer `k`, return `true` if `s` can be turned into a palindrome by removing at most `k` characters from `s`, and `false` otherwise.",
+  "constraints": [
+    "1 <= s.length <= 1000",
+    "0 <= k <= s.length",
+    "s consists of lowercase English letters."
+  ],
+  "hints": [
+    "Deleting at most k characters to leave a palindrome is equivalent to finding a palindromic subsequence of length at least n - k.",
+    "Compute the longest palindromic subsequence length in O(n^2) time and O(n) space, and check whether n - lps <= k."
+  ],
+  "examples": [
+    {
+      "explanation": "Removing 'b' and 'e' leaves \"acdca\", a palindrome using 2 deletions."
+    },
+    {
+      "explanation": "Removing the 'b' at index 1 leaves \"abababa\", a palindrome using 1 deletion."
+    },
+    {
+      "explanation": "\"abcdef\" requires 5 deletions to become a 1-character palindrome, so k = 2 is false."
+    }
+  ],
+  "timeComplexity": "O(n^2)",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "isValidPalindromeK",
+    "params": [
+      {
+        "name": "s",
+        "type": "String"
+      },
+      {
+        "name": "k",
+        "type": "int"
+      }
+    ],
+    "returns": "boolean"
+  }
+}

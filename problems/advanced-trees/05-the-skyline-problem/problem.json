@@ -1,0 +1,40 @@
+{
+  "title": "The Skyline Problem",
+  "difficulty": "Hard",
+  "subtopic": "Range Queries",
+  "companies": [
+    "Google",
+    "Amazon",
+    "Microsoft"
+  ],
+  "description": "Each building is `[left, right, height]` and occupies the half-open interval `[left, right)`. Return the skyline as key points `[x, height]`, where the height changes at coordinate `x`. Do not include consecutive points with the same height, and include the final point where the height returns to zero.",
+  "constraints": [
+    "1 <= buildings.length <= 10^4",
+    "0 <= left < right <= 2^31 - 1",
+    "1 <= height <= 2^31 - 1"
+  ],
+  "hints": [
+    "Treat each building edge as a sweep event.",
+    "Maintain a multiset of active heights and emit a point only when the maximum changes."
+  ],
+  "examples": [
+    {
+      "input": "buildings = [[2,9,10],[3,7,15],[5,12,12],[15,20,10],[19,24,8]]",
+      "output": "[[2,10],[3,15],[7,12],[12,0],[15,10],[20,8],[24,0]]"
+    }
+  ],
+  "timeComplexity": "O(n log n)",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "getSkyline",
+    "params": [
+      {
+        "name": "buildings",
+        "type": "int[][]"
+      }
+    ],
+    "returns": "List<List<Integer>>"
+  }
+}

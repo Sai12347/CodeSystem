@@ -1,0 +1,47 @@
+{
+  "title": "Diagonal Traverse of Jagged Matrix",
+  "difficulty": "Medium",
+  "subtopic": "Spiral Traversal",
+  "companies": [
+    "Meta",
+    "Google",
+    "Amazon",
+    "Apple"
+  ],
+  "description": "Given a 2D list of integers `nums` where each row may have a **different** positive length (a jagged matrix), return all elements of `nums` in anti-diagonal order as a 1D integer array.\n\nElements are ordered by increasing diagonal sum `r + c`. Within the same diagonal `r + c`, elements are ordered from the **bottom-most row to the top-most row** (decreasing `r`, equivalently increasing `c`).",
+  "constraints": [
+    "1 <= nums.length <= 10^4",
+    "1 <= nums[i].length <= 10^4",
+    "1 <= sum(nums[i].length) <= 10^4",
+    "-10^5 <= nums[i][j] <= 10^5"
+  ],
+  "hints": [
+    "Iterating over the full bounding box of maxRows x maxCols wastes time on empty gaps when rows vary wildly in length.",
+    "Notice that every cell (r, c) belongs to diagonal d = r + c; if you iterate rows from bottom to top (m - 1 down to 0) and append nums[r][c] to bucket[r + c], every bucket is already in exact bottom-to-top order in O(N) total time."
+  ],
+  "examples": [
+    {
+      "explanation": "Diagonals by r + c are: [1], [4, 2], [7, 5, 3], [8, 6], [9]."
+    },
+    {
+      "explanation": "Even with ragged row lengths, cells sharing r + c are grouped from larger row index to smaller row index."
+    },
+    {
+      "explanation": "A single row produces its elements unchanged from left to right."
+    }
+  ],
+  "timeComplexity": "O(N)",
+  "spaceComplexity": "O(N)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "findDiagonalOrder",
+    "params": [
+      {
+        "name": "nums",
+        "type": "List<List<Integer>>"
+      }
+    ],
+    "returns": "int[]"
+  }
+}

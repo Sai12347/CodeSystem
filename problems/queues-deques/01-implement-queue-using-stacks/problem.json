@@ -1,0 +1,70 @@
+{
+  "title": "Implement Queue using Stacks",
+  "difficulty": "Easy",
+  "subtopic": "Queue via Stacks",
+  "companies": [
+    "Amazon",
+    "Microsoft",
+    "Google",
+    "Meta",
+    "Apple",
+    "Bloomberg"
+  ],
+  "leetcode": 232,
+  "description": "Implement a first-in-first-out (FIFO) queue using only two stacks. The implemented queue should support all standard queue operations (`push`, `peek`, `pop`, and `empty`).\n\nImplement the `MyQueue` class:\n- `MyQueue()` initializes an empty queue.\n- `void push(int x)` pushes element `x` to the back of the queue.\n- `int pop()` removes the element from the front of the queue and returns it.\n- `int peek()` returns the element at the front of the queue without removing it.\n- `boolean empty()` returns `true` if the queue is empty, and `false` otherwise.\n\nNotes:\n- You must use only standard stack operations: push to top, peek/pop from top, size, and isEmpty.\n- Follow-up: Can you implement the queue such that each operation has amortized `O(1)` time complexity?",
+  "constraints": [
+    "-10^5 <= x <= 10^5",
+    "At most 2000 calls will be made to push, pop, peek, and empty.",
+    "All calls to pop and peek are valid (the queue is guaranteed to be non-empty)."
+  ],
+  "hints": [
+    "Maintain two stacks: an input stack for incoming pushes and an output stack for outgoing pops and peeks.",
+    "Only transfer elements from the input stack to the output stack when the output stack becomes empty.",
+    "Because each element is pushed onto the input stack once, moved to the output stack at most once, and popped once, every operation runs in amortized O(1) time."
+  ],
+  "examples": [
+    {
+      "explanation": "Push 1 then 2 onto the queue. peek() returns 1 (front), pop() removes and returns 1, and empty() returns false since 2 remains."
+    },
+    {
+      "explanation": "After popping 10, the queue becomes empty. Pushing 20 and 30 afterwards maintains FIFO order, so peek() returns 20."
+    }
+  ],
+  "timeComplexity": "O(1) amortized per op",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "design",
+    "className": "MyQueue",
+    "constructor": {
+      "params": []
+    },
+    "methods": [
+      {
+        "name": "push",
+        "params": [
+          {
+            "name": "x",
+            "type": "int"
+          }
+        ],
+        "returns": "void"
+      },
+      {
+        "name": "pop",
+        "params": [],
+        "returns": "int"
+      },
+      {
+        "name": "peek",
+        "params": [],
+        "returns": "int"
+      },
+      {
+        "name": "empty",
+        "params": [],
+        "returns": "boolean"
+      }
+    ]
+  }
+}

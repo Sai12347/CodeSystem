@@ -1,0 +1,51 @@
+{
+  "title": "Sort a K-Sorted Linked List",
+  "difficulty": "Medium",
+  "subtopic": "Merge & Sort",
+  "companies": [
+    "Google",
+    "Amazon",
+    "Meta",
+    "Uber"
+  ],
+  "description": "You are given the `head` of a singly linked list of length `n` and a non-negative integer `k`. The linked list is **k-sorted**, meaning that every node is at most `k` positions away from its final position in the sorted (non-decreasing) order.\n\nSort the linked list in non-decreasing order and return its new head. Aim for `O(n log k)` time and `O(k)` extra space.",
+  "constraints": [
+    "The number of nodes in the list is in the range [0, 10^4].",
+    "0 <= k <= n",
+    "-10^5 <= Node.val <= 10^5",
+    "Every node is at most k positions away from its target index in the sorted list."
+  ],
+  "hints": [
+    "The smallest element of the entire list is guaranteed to appear among the first `k + 1` nodes.",
+    "Maintain a min-heap holding at most `k + 1` nodes: repeatedly pop the minimum node to append to the output list, push the next unread node into the heap, and terminate the tail with `tail.next = null`."
+  ],
+  "examples": [
+    {
+      "explanation": "Each node in [3, 6, 2, 12, 56, 8] is at most k=2 positions from its sorted position [2, 3, 6, 8, 12, 56]."
+    },
+    {
+      "explanation": "With k=3, sorting [6, 5, 3, 2, 8, 10, 9] yields [2, 3, 5, 6, 8, 9, 10]."
+    },
+    {
+      "explanation": "With k=0, the list [1, 2, 3, 4] is already sorted."
+    }
+  ],
+  "timeComplexity": "O(n log k)",
+  "spaceComplexity": "O(k)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "sortKSortedList",
+    "params": [
+      {
+        "name": "head",
+        "type": "ListNode"
+      },
+      {
+        "name": "k",
+        "type": "int"
+      }
+    ],
+    "returns": "ListNode"
+  }
+}

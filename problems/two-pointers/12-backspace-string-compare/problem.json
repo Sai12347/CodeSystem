@@ -1,0 +1,52 @@
+{
+  "title": "Backspace String Compare",
+  "difficulty": "Easy",
+  "subtopic": "Trailing Pointers",
+  "companies": [
+    "Google",
+    "Amazon",
+    "Meta",
+    "Microsoft",
+    "Apple"
+  ],
+  "leetcode": 844,
+  "description": "Given two strings `s` and `t`, return `true` if they are equal when both are typed into empty text editors, and `false` otherwise. `'#'` represents a backspace character.\n\nNote that after backspacing an empty text, the text remains empty.\n\nTry to solve the problem in `O(n + m)` time and `O(1)` extra space.",
+  "constraints": [
+    "1 <= s.length, t.length <= 200",
+    "s and t only contain lowercase English letters and '#' characters."
+  ],
+  "hints": [
+    "Whether a character survives depends on the '#' characters that come after it, not before it.",
+    "Iterate through both strings in reverse (right to left), tracking how many pending backspaces must skip upcoming non-'#' characters.",
+    "At each step, find the next surviving character in s and in t; if they differ or only one string still has a character left, return false."
+  ],
+  "examples": [
+    {
+      "explanation": "Both s and t become \"ac\" after processing backspaces, so return true."
+    },
+    {
+      "explanation": "Both s and t become the empty string \"\", so return true."
+    },
+    {
+      "explanation": "s becomes \"c\" while t becomes \"b\", so return false."
+    }
+  ],
+  "timeComplexity": "O(n + m)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "backspaceCompare",
+    "params": [
+      {
+        "name": "s",
+        "type": "String"
+      },
+      {
+        "name": "t",
+        "type": "String"
+      }
+    ],
+    "returns": "boolean"
+  }
+}

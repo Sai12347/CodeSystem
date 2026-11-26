@@ -1,0 +1,45 @@
+{
+  "title": "Flip and Invert Binary Image",
+  "difficulty": "Easy",
+  "subtopic": "Matrix Rotation",
+  "companies": [
+    "Google",
+    "Apple",
+    "Microsoft"
+  ],
+  "description": "Given an `n x n` binary matrix `image` containing only `0`s and `1`s, perform two transformations in order:\n1. **Flip horizontally**: reverse every row from left to right.\n2. **Invert**: replace every `0` with `1` and every `1` with `0`.\n\nReturn the resulting binary matrix.",
+  "constraints": [
+    "n == image.length == image[i].length",
+    "1 <= n <= 100",
+    "image[i][j] is either 0 or 1."
+  ],
+  "hints": [
+    "Both horizontal reversal and bit inversion can be combined in a single pass per row using two pointers.",
+    "For symmetric positions c and n - 1 - c, if image[r][c] != image[r][n - 1 - c] they remain unchanged after reversing and inverting; if they are equal, both bits flip."
+  ],
+  "examples": [
+    {
+      "explanation": "Reversing each row gives [[0,1,1],[1,0,1],[0,0,0]], then inverting bits gives [[1,0,0],[0,1,0],[1,1,1]]."
+    },
+    {
+      "explanation": "Reversing and inverting each of the 4 rows yields the resulting 4x4 matrix."
+    },
+    {
+      "explanation": "A single cell [0] flips to itself and inverts to [1]."
+    }
+  ],
+  "timeComplexity": "O(n^2)",
+  "spaceComplexity": "O(n^2)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "flipAndInvertImage",
+    "params": [
+      {
+        "name": "image",
+        "type": "int[][]"
+      }
+    ],
+    "returns": "int[][]"
+  }
+}

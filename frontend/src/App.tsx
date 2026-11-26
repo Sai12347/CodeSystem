@@ -15,6 +15,7 @@ import { ProgressProfileView } from './components/profile/ProgressProfileView';
 
 export const AppContent: React.FC = () => {
   const [activeTab, setActiveTab] = useState<ActiveTab>('dashboard');
+  const [practiceTopicId, setPracticeTopicId] = useState<string>('arrays');
 
   return (
     <div className="min-h-screen flex flex-col bg-apple-bg dark:bg-apple-darkBg text-zinc-900 dark:text-zinc-100 transition-colors">
@@ -24,8 +25,16 @@ export const AppContent: React.FC = () => {
       <main className="flex-1 w-full" id="main-content">
         {activeTab === 'dashboard' && <DashboardView onNavigate={setActiveTab} />}
         {activeTab === 'visualizer' && <AlgorithmVisualizer />}
-        {activeTab === 'learn' && <LearnCatalogView onNavigate={setActiveTab} />}
-        {activeTab === 'practice' && <PracticeArenaView />}
+        {activeTab === 'learn' && (
+          <LearnCatalogView
+            onNavigate={setActiveTab}
+            onOpenPractice={(topicId) => {
+              setPracticeTopicId(topicId);
+              setActiveTab('practice');
+            }}
+          />
+        )}
+        {activeTab === 'practice' && <PracticeArenaView initialTopicId={practiceTopicId} />}
         {activeTab === 'companies' && <CompanyPrepView />}
         {activeTab === 'ai-tutor' && <AiTutorChatView />}
         {(activeTab === 'progress' || activeTab === 'profile') && <ProgressProfileView />}

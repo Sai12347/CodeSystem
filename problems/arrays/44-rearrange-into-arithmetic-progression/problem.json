@@ -1,0 +1,43 @@
+{
+  "title": "Rearrange Into an Arithmetic Progression",
+  "difficulty": "Easy",
+  "subtopic": "Traversal",
+  "companies": [
+    "Amazon",
+    "Google",
+    "Microsoft"
+  ],
+  "description": "Given an integer array `nums`, determine whether its elements can be rearranged into an arithmetic progression. In such an ordering, the difference between each adjacent pair is constant. Input: `nums`. Output: true if a valid ordering exists, otherwise false.",
+  "constraints": [
+    "2 <= nums.length <= 100000",
+    "-1000000000 <= nums[i] <= 1000000000"
+  ],
+  "hints": [
+    "Scan once to identify the boundary or state where the answer changes.",
+    "Test already ordered, reversed, duplicate, and minimum-size inputs."
+  ],
+  "examples": [
+    {
+      "input": "nums = [3, 5, 1]",
+      "output": "true"
+    },
+    {
+      "input": "nums = [1, 2, 4]",
+      "output": "false"
+    }
+  ],
+  "timeComplexity": "O(n log n)",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "canRearrangeArithmeticProgression",
+    "params": [
+      {
+        "name": "nums",
+        "type": "int[]"
+      }
+    ],
+    "returns": "boolean"
+  }
+}

@@ -1,0 +1,48 @@
+{
+  "title": "Bitwise XOR of All Pairings",
+  "difficulty": "Medium",
+  "subtopic": "XOR Tricks",
+  "companies": [
+    "Amazon",
+    "Google",
+    "Goldman Sachs"
+  ],
+  "description": "You are given two 0-indexed arrays of non-negative integers `nums1` and `nums2`. Consider the array formed by taking `nums1[i] XOR nums2[j]` for every valid pair of indices `(i, j)`. Return the bitwise XOR of all integers in this pairing array.",
+  "constraints": [
+    "1 <= nums1.length, nums2.length <= 10^5",
+    "0 <= nums1[i], nums2[j] <= 10^9"
+  ],
+  "hints": [
+    "Each element of `nums1` participates in `nums2.length` pairings, and each element of `nums2` participates in `nums1.length` pairings.",
+    "Any number XORed with itself an even number of times becomes 0, so an array contributes its total XOR only when the other array has odd length."
+  ],
+  "examples": [
+    {
+      "explanation": "nums1 has length 3 (odd) and nums2 has length 4 (even), so only nums2 contributes: 10^2^5^0 = 13."
+    },
+    {
+      "explanation": "Both arrays have even length 2, so every value cancels out and the total XOR is 0."
+    },
+    {
+      "explanation": "Both arrays have length 1 (odd), giving 7 ^ 9 = 14."
+    }
+  ],
+  "timeComplexity": "O(n + m)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "xorAllNums",
+    "params": [
+      {
+        "name": "nums1",
+        "type": "int[]"
+      },
+      {
+        "name": "nums2",
+        "type": "int[]"
+      }
+    ],
+    "returns": "int"
+  }
+}

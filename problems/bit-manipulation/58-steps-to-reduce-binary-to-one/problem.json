@@ -1,0 +1,44 @@
+{
+  "title": "Steps to Reduce a Binary Number to One",
+  "difficulty": "Medium",
+  "subtopic": "Two Complement",
+  "companies": [
+    "Microsoft",
+    "Google",
+    "Meta"
+  ],
+  "description": "Given the binary representation of a positive integer as a string `s` (with no leading zeros), return the number of steps required to reduce it to `1` under the following rules: if the current number is even, divide it by `2`; if the current number is odd, add `1` to it.",
+  "constraints": [
+    "1 <= s.length <= 10^5",
+    "s consists only of '0' and '1', and s[0] == '1'."
+  ],
+  "hints": [
+    "Process the binary string from the least significant bit (rightmost) toward index 1 while maintaining a `carry` bit (0 or 1).",
+    "If `bit + carry == 1`, the current number is odd, so you add 1 (setting `carry = 1`) and then shift right (2 steps total); otherwise it is even and shifts right in 1 step."
+  ],
+  "examples": [
+    {
+      "explanation": "1101 (13) -> 14 -> 7 -> 8 -> 4 -> 2 -> 1 takes 6 steps."
+    },
+    {
+      "explanation": "10 (2) -> 1 takes 1 step."
+    },
+    {
+      "explanation": "1 is already 1, taking 0 steps."
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "numSteps",
+    "params": [
+      {
+        "name": "s",
+        "type": "String"
+      }
+    ],
+    "returns": "int"
+  }
+}

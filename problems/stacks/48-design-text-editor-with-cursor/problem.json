@@ -1,0 +1,85 @@
+{
+  "title": "Design Text Editor With Cursor",
+  "difficulty": "Hard",
+  "subtopic": "LIFO Structure",
+  "companies": [
+    "Google",
+    "Meta",
+    "Microsoft",
+    "Atlassian",
+    "Amazon"
+  ],
+  "description": "Design a text editor with a movable cursor that supports inserting, deleting, and navigating text efficiently.\n\nImplement the `TextEditor` class:\n- `TextEditor()` initializes the editor with empty text and the cursor at position `0`.\n- `void addText(String text)` inserts `text` immediately to the left of the cursor; the cursor ends up right after the inserted text.\n- `int deleteText(int k)` deletes up to `k` characters immediately to the left of the cursor and returns the number of characters actually deleted.\n- `String cursorLeft(int k)` moves the cursor up to `k` positions to the left and returns the last `min(10, len)` characters to the left of the cursor.\n- `String cursorRight(int k)` moves the cursor up to `k` positions to the right and returns the last `min(10, len)` characters to the left of the cursor.",
+  "constraints": [
+    "1 <= text.length, k <= 40",
+    "text consists of lowercase English letters.",
+    "At most 2 * 10^4 calls in total will be made to addText, deleteText, cursorLeft, and cursorRight."
+  ],
+  "hints": [
+    "Represent the buffer as two stacks (a gap buffer): leftStack holds characters before the cursor and rightStack holds characters after the cursor in reverse order.",
+    "addText pushes onto leftStack, deleteText pops from leftStack, cursorLeft moves characters from leftStack to rightStack, and cursorRight moves from rightStack to leftStack."
+  ],
+  "examples": [
+    {
+      "explanation": "Typing \"leetcode\", deleting 4 leaves \"leet\", adding \"practice\" gives \"leetpractice\", moving left/right and deleting updates the cursor window."
+    },
+    {
+      "explanation": "Deleting or moving past the left/right edges cleanly stops at the boundary."
+    },
+    {
+      "explanation": "When more than 10 characters exist left of the cursor, cursorLeft and cursorRight return only the 10 characters closest to the cursor."
+    }
+  ],
+  "timeComplexity": "O(text.length) / O(k) per op",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "design",
+    "className": "TextEditor",
+    "constructor": {
+      "params": []
+    },
+    "methods": [
+      {
+        "name": "addText",
+        "params": [
+          {
+            "name": "text",
+            "type": "String"
+          }
+        ],
+        "returns": "void"
+      },
+      {
+        "name": "deleteText",
+        "params": [
+          {
+            "name": "k",
+            "type": "int"
+          }
+        ],
+        "returns": "int"
+      },
+      {
+        "name": "cursorLeft",
+        "params": [
+          {
+            "name": "k",
+            "type": "int"
+          }
+        ],
+        "returns": "String"
+      },
+      {
+        "name": "cursorRight",
+        "params": [
+          {
+            "name": "k",
+            "type": "int"
+          }
+        ],
+        "returns": "String"
+      }
+    ]
+  }
+}

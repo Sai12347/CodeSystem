@@ -1,0 +1,43 @@
+{
+  "title": "Power of Four",
+  "difficulty": "Easy",
+  "subtopic": "Two Complement",
+  "companies": [
+    "Google",
+    "Amazon",
+    "Apple"
+  ],
+  "description": "Given a 32-bit signed integer `n`, return `true` if it is a power of four (that is, there exists an integer `x >= 0` such that `n == 4^x`), and `false` otherwise. Solve it in O(1) time without loops or recursion.",
+  "constraints": [
+    "-2^31 <= n <= 2^31 - 1"
+  ],
+  "hints": [
+    "First verify `n > 0` and `(n & (n - 1)) == 0` so that `n` is a positive power of two.",
+    "A power of two is a power of four if and only if its single set bit sits at an even bit index (0, 2, 4, ...), which can be tested with `0x55555555`."
+  ],
+  "examples": [
+    {
+      "explanation": "16 = 4^2, so return true."
+    },
+    {
+      "explanation": "5 is not a power of four, so return false."
+    },
+    {
+      "explanation": "1 = 4^0, so return true."
+    }
+  ],
+  "timeComplexity": "O(1)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "isPowerOfFour",
+    "params": [
+      {
+        "name": "n",
+        "type": "int"
+      }
+    ],
+    "returns": "boolean"
+  }
+}

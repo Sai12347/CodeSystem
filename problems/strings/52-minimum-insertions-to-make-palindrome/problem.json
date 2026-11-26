@@ -1,0 +1,44 @@
+{
+  "title": "Minimum Insertion Steps to Make a String Palindrome",
+  "difficulty": "Hard",
+  "subtopic": "Palindromes",
+  "companies": [
+    "Google",
+    "Amazon",
+    "Microsoft"
+  ],
+  "description": "Given a string `s`, in one step you can insert any character at any index of `s`. Return the minimum number of steps needed to transform `s` into a palindrome.",
+  "constraints": [
+    "1 <= s.length <= 500",
+    "s consists of lowercase English letters."
+  ],
+  "hints": [
+    "Characters belonging to the longest palindromic subsequence already mirror each other and need no insertions.",
+    "The minimum insertions equal len(s) minus the length of the longest palindromic subsequence."
+  ],
+  "examples": [
+    {
+      "explanation": "\"zzazz\" is already a palindrome, needing 0 insertions."
+    },
+    {
+      "explanation": "\"mbadm\" becomes \"mbdadbm\" or \"mdbabdm\" with 2 insertions."
+    },
+    {
+      "explanation": "\"leetcode\" needs 5 insertions to become a palindrome."
+    }
+  ],
+  "timeComplexity": "O(n^2)",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "minInsertions",
+    "params": [
+      {
+        "name": "s",
+        "type": "String"
+      }
+    ],
+    "returns": "int"
+  }
+}

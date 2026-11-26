@@ -1,0 +1,48 @@
+{
+  "title": "Letter Combinations of a Phone Number",
+  "difficulty": "Medium",
+  "subtopic": "Combinations",
+  "companies": [
+    "Amazon",
+    "Google",
+    "Meta",
+    "Microsoft",
+    "Apple",
+    "Uber"
+  ],
+  "leetcode": 17,
+  "description": "Given a string `digits` containing digits from `'2'` to `'9'` inclusive, return all possible letter combinations that the number could represent on a standard telephone keypad:\n\n- `'2'` -> `\"abc\"`, `'3'` -> `\"def\"`, `'4'` -> `\"ghi\"`, `'5'` -> `\"jkl\"`\n- `'6'` -> `\"mno\"`, `'7'` -> `\"pqrs\"`, `'8'` -> `\"tuv\"`, `'9'` -> `\"wxyz\"`\n\nIf `digits` is empty, return an empty list `[]`. You may return the combinations in any order.",
+  "constraints": [
+    "0 <= digits.length <= 4",
+    "digits[i] is a digit in the range ['2', '9']."
+  ],
+  "hints": [
+    "Handle the empty input `\"\"` explicitly by returning `[]` rather than `[\"\"]`.",
+    "Use backtracking indexed by position `idx` in `digits`: for each letter mapped to `digits[idx]`, append it, recurse to `idx + 1`, and backtrack."
+  ],
+  "examples": [
+    {
+      "explanation": "Digit '2' maps to a/b/c and '3' maps to d/e/f, producing 3 * 3 = 9 combinations."
+    },
+    {
+      "explanation": "An empty digit string produces no letter combinations, so return []."
+    },
+    {
+      "explanation": "Digit '2' maps to the three single-letter strings \"a\", \"b\", and \"c\"."
+    }
+  ],
+  "timeComplexity": "O(n * 4^n)",
+  "spaceComplexity": "O(n)",
+  "compare": "sorted",
+  "signature": {
+    "kind": "function",
+    "method": "letterCombinations",
+    "params": [
+      {
+        "name": "digits",
+        "type": "String"
+      }
+    ],
+    "returns": "List<String>"
+  }
+}

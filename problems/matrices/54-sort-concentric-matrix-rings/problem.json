@@ -1,0 +1,46 @@
+{
+  "title": "Sort Concentric Matrix Rings",
+  "difficulty": "Medium",
+  "subtopic": "Spiral Traversal",
+  "companies": [
+    "Google",
+    "Amazon",
+    "Bloomberg"
+  ],
+  "description": "You are given an `m x n` integer matrix `grid`. The matrix can be decomposed into concentric rectangular layers (rings) starting from the outermost border (`layer = 0`) and moving inward.\n\nRead each concentric layer in **clockwise** order starting from its top-left corner `(layer, layer)`: left-to-right along its top edge, top-to-bottom along its right edge, right-to-left along its bottom edge, and bottom-to-top along its left edge. (If the innermost layer degenerates to a single row, single column, or single cell, read those cells left-to-right or top-to-bottom without duplicates.)\n\nSort the values within each layer independently in **non-decreasing** order, write them back along the same clockwise order of that layer, and return the resulting matrix.",
+  "constraints": [
+    "m == grid.length",
+    "n == grid[i].length",
+    "1 <= m, n <= 100",
+    "-10^5 <= grid[i][j] <= 10^5"
+  ],
+  "hints": [
+    "Process layers from top = 0, left = 0 inward while top <= bottom and left <= right, collecting the coordinates of the current layer in clockwise order.",
+    "Sort the collected values for that layer and assign them back to the exact same sequence of coordinates."
+  ],
+  "examples": [
+    {
+      "explanation": "The outer ring of 8 elements [9,8,7,6,5,4,3,2] sorts clockwise into [2,3,4,5,6,7,8,9], while the single center cell 1 stays at (1, 1)."
+    },
+    {
+      "explanation": "In a 2x4 matrix there is a single ring of 8 cells; sorting clockwise places the smallest values along the top row left-to-right and the largest along the bottom row right-to-left."
+    },
+    {
+      "explanation": "A single-row matrix has one degenerate ring of 4 cells sorted left-to-right."
+    }
+  ],
+  "timeComplexity": "O(m * n * log(m + n))",
+  "spaceComplexity": "O(m * n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "sortMatrixRings",
+    "params": [
+      {
+        "name": "grid",
+        "type": "int[][]"
+      }
+    ],
+    "returns": "int[][]"
+  }
+}

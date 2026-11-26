@@ -1,0 +1,53 @@
+{
+  "title": "Binomial Coefficient Modulo Small Prime",
+  "difficulty": "Hard",
+  "subtopic": "Fast Exponentiation",
+  "companies": [
+    "Google",
+    "Goldman Sachs",
+    "Meta"
+  ],
+  "description": "Given non-negative 64-bit integers `n` and `k` (`0 <= k <= n <= 10^15`) and a prime integer `p` (`2 <= p <= 10^5`), compute the binomial coefficient `C(n, k) % p`, where `C(n, k) = n! / (k! * (n - k)!)`. Because `n` can greatly exceed `p`, ordinary factorial tables up to `n` are infeasible and `n!` may be divisible by `p`.",
+  "constraints": [
+    "0 <= k <= n <= 10^15",
+    "2 <= p <= 10^5",
+    "p is guaranteed to be a prime number."
+  ],
+  "hints": [
+    "By Lucas's Theorem, `C(n, k) == C(n % p, k % p) * C(n // p, k // p) (mod p)`, where `C(a, b) = 0` whenever `b > a`.",
+    "Precompute factorials `fact[0..p - 1]` and inverse factorials `invFact[0..p - 1]` modulo `p` using Fermat's Little Theorem (`fact[p - 1]^(p - 2) mod p`) via fast exponentiation."
+  ],
+  "examples": [
+    {
+      "explanation": "C(5, 2) = 10, and 10 % 7 = 3."
+    },
+    {
+      "explanation": "C(10, 3) = 120, which is divisible by 3, so the result is 0."
+    },
+    {
+      "explanation": "In base 2, 7 is 111 and 3 is 011; every base-2 digit satisfies k_i <= n_i, so C(7, 3) = 35 == 1 (mod 2)."
+    }
+  ],
+  "timeComplexity": "O(p + log_p n)",
+  "spaceComplexity": "O(p)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "binomialModPrime",
+    "params": [
+      {
+        "name": "n",
+        "type": "long"
+      },
+      {
+        "name": "k",
+        "type": "long"
+      },
+      {
+        "name": "p",
+        "type": "int"
+      }
+    ],
+    "returns": "int"
+  }
+}

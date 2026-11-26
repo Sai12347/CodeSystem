@@ -1,0 +1,48 @@
+{
+  "title": "Sum of Subarray Minimums",
+  "difficulty": "Medium",
+  "subtopic": "Next Greater Element",
+  "companies": [
+    "Amazon",
+    "Google",
+    "Meta",
+    "Microsoft",
+    "Bloomberg"
+  ],
+  "leetcode": 907,
+  "description": "Given an array of integers `arr`, find the sum of `min(b)` over every non-empty contiguous subarray `b` of `arr`.\n\nSince the total sum can be very large, return the answer modulo `10^9 + 7`.",
+  "constraints": [
+    "1 <= arr.length <= 3 * 10^4",
+    "1 <= arr[i] <= 3 * 10^4"
+  ],
+  "hints": [
+    "Instead of enumerating every subarray, count how many subarrays have `arr[i]` as their minimum and add `arr[i] * count`.",
+    "To avoid double-counting when duplicate values exist, break ties consistently: find the nearest strictly smaller element to the left (`<`) and the nearest smaller-or-equal element to the right (`<=`).",
+    "A single pass with a monotonic increasing stack computes both boundaries simultaneously: when index `mid` is popped by a smaller-or-equal element at `i`, `mid` spans `(mid - left) * (i - mid)` subarrays."
+  ],
+  "examples": [
+    {
+      "explanation": "Subarrays are [3],[1],[2],[4],[3,1],[1,2],[2,4],[3,1,2],[1,2,4],[3,1,2,4] with minimums 3,1,2,4,1,1,2,1,1,1 whose sum is 17."
+    },
+    {
+      "explanation": "Summing the minimum across all 15 contiguous subarrays gives 444."
+    },
+    {
+      "explanation": "All 6 contiguous subarrays have minimum 1, so the sum is 6."
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "sumSubarrayMins",
+    "params": [
+      {
+        "name": "arr",
+        "type": "int[]"
+      }
+    ],
+    "returns": "int"
+  }
+}

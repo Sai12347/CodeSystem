@@ -1,0 +1,41 @@
+{
+  "title": "Shortest Hamiltonian Tour",
+  "difficulty": "Hard",
+  "subtopic": "Bitmask Traveling Salesperson",
+  "companies": [
+    "Google",
+    "Amazon",
+    "Microsoft"
+  ],
+  "description": "Given a complete directed graph represented by `costs[i][j]`, where travel from city `i` to city `j` costs that amount, find the minimum cost tour that starts at city 0, visits every city exactly once, and returns to city 0.",
+  "constraints": [
+    "1 <= costs.length <= 12",
+    "costs is a square matrix",
+    "0 <= costs[i][j] <= 10^6",
+    "The answer fits in a signed 32-bit integer"
+  ],
+  "hints": [
+    "Use a compact state to summarize each subtree or set of chosen items.",
+    "Combine partial states and cache repeated subproblems."
+  ],
+  "examples": [
+    {
+      "input": "costs = [[0,10,15],[10,0,20],[15,20,0]]",
+      "output": "45"
+    }
+  ],
+  "timeComplexity": "O(n^2*2^n)",
+  "spaceComplexity": "O(n*2^n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "shortestTour",
+    "params": [
+      {
+        "name": "costs",
+        "type": "int[][]"
+      }
+    ],
+    "returns": "int"
+  }
+}

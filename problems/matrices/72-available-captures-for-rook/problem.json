@@ -1,0 +1,47 @@
+{
+  "title": "Available Captures for Rook",
+  "difficulty": "Easy",
+  "subtopic": "Simulation",
+  "companies": [
+    "Amazon",
+    "Google",
+    "Apple"
+  ],
+  "description": "You are given an `m x n` character matrix `board` representing a generalized chessboard containing:\n- Exactly one white rook `'R'`\n- Zero or more white bishops `'B'`\n- Zero or more black pawns `'p'`\n- Empty squares `'.'`\n\nIn a single move, the white rook moves along one of the four cardinal directions (up, down, left, or right) until it reaches the edge of the board, stops right before a friendly white bishop `'B'`, or captures the first opposing black pawn `'p'` it encounters in that direction.\n\nReturn the total number of black pawns `'p'` available for the rook to capture in one move.",
+  "constraints": [
+    "m == board.length",
+    "n == board[i].length",
+    "1 <= m, n <= 50",
+    "board[i][j] is one of 'R', 'B', 'p', or '.'.",
+    "There is exactly one 'R' on the board."
+  ],
+  "hints": [
+    "First scan the board to locate the rook's coordinates (rr, rc).",
+    "Cast four rays in directions (-1, 0), (1, 0), (0, -1), and (0, 1); stop a ray immediately upon hitting 'B', or increment the answer and stop upon hitting 'p'."
+  ],
+  "examples": [
+    {
+      "explanation": "The rook at (2, 2) captures the pawns to its north, west, and east (3 captures), while the bishop to its south blocks the pawn behind it."
+    },
+    {
+      "explanation": "Friendly bishops surround the rook on all four sides, so 0 pawns can be captured."
+    },
+    {
+      "explanation": "On a single-row board, the rook captures the nearest pawn on both its left and right (2 captures total)."
+    }
+  ],
+  "timeComplexity": "O(m * n)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "numRookCaptures",
+    "params": [
+      {
+        "name": "board",
+        "type": "char[][]"
+      }
+    ],
+    "returns": "int"
+  }
+}

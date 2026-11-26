@@ -1,0 +1,45 @@
+{
+  "title": "Excel Sheet Column Number",
+  "difficulty": "Easy",
+  "subtopic": "Parsing",
+  "companies": [
+    "Microsoft",
+    "Amazon",
+    "Apple"
+  ],
+  "description": "Given a string `columnTitle` representing a spreadsheet column title (where `'A'` = 1, `'B'` = 2, ..., `'Z'` = 26, `'AA'` = 27, `'AB'` = 28, ...), return its corresponding positive integer column number.",
+  "constraints": [
+    "1 <= columnTitle.length <= 7",
+    "columnTitle consists only of uppercase English letters.",
+    "columnTitle is in the range [\"A\", \"FXSHRXW\"]."
+  ],
+  "hints": [
+    "This is bijective base-26 positional notation with digits 1..26 instead of 0..25.",
+    "Initialize result = 0, and for each character c update result = result * 26 + (ord(c) - ord('A') + 1)."
+  ],
+  "examples": [
+    {
+      "explanation": "\"A\" maps to 1."
+    },
+    {
+      "explanation": "\"AB\" = 1 * 26 + 2 = 28."
+    },
+    {
+      "explanation": "\"ZY\" = 26 * 26 + 25 = 701."
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "titleToNumber",
+    "params": [
+      {
+        "name": "columnTitle",
+        "type": "String"
+      }
+    ],
+    "returns": "int"
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "title": "Longest ZigZag Path in a Binary Tree",
+  "difficulty": "Medium",
+  "subtopic": "Subtree Optimization",
+  "companies": [
+    "Amazon",
+    "Google",
+    "Microsoft"
+  ],
+  "description": "A ZigZag path alternates between a left child edge and a right child edge. Return the maximum number of edges in any ZigZag path. The path may start at any node.",
+  "constraints": [
+    "0 <= number of nodes <= 1000",
+    "-10^4 <= node.val <= 10^4"
+  ],
+  "hints": [
+    "Solve the tree recursively from the leaves toward the root.",
+    "Return the smallest state needed by the parent and combine child results."
+  ],
+  "examples": [
+    {
+      "input": "root = [1,null,1,1,1,null,null,1,1,null,1]",
+      "output": "3"
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(h)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "longestZigZag",
+    "params": [
+      {
+        "name": "root",
+        "type": "TreeNode"
+      }
+    ],
+    "returns": "int"
+  }
+}

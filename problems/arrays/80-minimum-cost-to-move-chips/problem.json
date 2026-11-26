@@ -1,0 +1,43 @@
+{
+  "title": "Minimum Cost to Move Chips",
+  "difficulty": "Easy",
+  "subtopic": "Traversal",
+  "companies": [
+    "Amazon",
+    "Google",
+    "Microsoft"
+  ],
+  "description": "There are chips at positions given by `position`. Moving a chip by two positions costs 0; moving it by one position costs 1. Choose a common final position for all chips and return the minimum total cost. Input: `position`. Output: the minimum cost.",
+  "constraints": [
+    "1 <= position.length <= 100000",
+    "1 <= position[i] <= 1000000000"
+  ],
+  "hints": [
+    "Sort once or track a compact running state to avoid checking every possible group.",
+    "Test duplicates, extreme ordering, and cases with no feasible candidate."
+  ],
+  "examples": [
+    {
+      "input": "position = [1, 2, 3]",
+      "output": "1"
+    },
+    {
+      "input": "position = [2, 2, 2, 3, 3]",
+      "output": "2"
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "minCostToMoveChips",
+    "params": [
+      {
+        "name": "position",
+        "type": "int[]"
+      }
+    ],
+    "returns": "int"
+  }
+}

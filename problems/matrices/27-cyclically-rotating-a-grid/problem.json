@@ -1,0 +1,53 @@
+{
+  "title": "Cyclically Rotating a Grid",
+  "difficulty": "Medium",
+  "subtopic": "Spiral Traversal",
+  "companies": [
+    "Amazon",
+    "Google",
+    "Meta",
+    "Microsoft"
+  ],
+  "description": "You are given an `m x n` integer matrix `grid`, where both `m` and `n` are even integers, and a positive integer `k`.\n\nThe matrix consists of `min(m, n) / 2` concentric rectangular layers. In one cyclic rotation, every element in every layer moves one position **counter-clockwise** along its own layer (the top edge shifts left, the left edge shifts down, the bottom edge shifts right, and the right edge shifts up).\n\nReturn the resulting matrix after performing `k` counter-clockwise cyclic rotations.",
+  "constraints": [
+    "m == grid.length",
+    "n == grid[i].length",
+    "2 <= m, n <= 50",
+    "Both m and n are even integers.",
+    "1 <= grid[i][j] <= 5000",
+    "1 <= k <= 10^9"
+  ],
+  "hints": [
+    "Each concentric layer is completely independent and has its own perimeter length L.",
+    "Extract each layer in clockwise order into a 1D list; rotating counter-clockwise by k corresponds to shifting that list left by (k % L) positions."
+  ],
+  "examples": [
+    {
+      "explanation": "In a 2x2 grid, one counter-clockwise shift moves 40 down, 30 right, 20 up, and 10 left."
+    },
+    {
+      "explanation": "The outer layer of length 12 shifts counter-clockwise by 2 and the inner 2x2 layer of length 4 shifts counter-clockwise by 2."
+    },
+    {
+      "explanation": "A 2x4 grid has a single layer of length 8; rotating by k = 8 returns the exact original grid."
+    }
+  ],
+  "timeComplexity": "O(m * n)",
+  "spaceComplexity": "O(m * n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "rotateGrid",
+    "params": [
+      {
+        "name": "grid",
+        "type": "int[][]"
+      },
+      {
+        "name": "k",
+        "type": "int"
+      }
+    ],
+    "returns": "int[][]"
+  }
+}

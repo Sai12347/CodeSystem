@@ -1,0 +1,50 @@
+{
+  "title": "Split Linked List in Parts",
+  "difficulty": "Medium",
+  "subtopic": "Pointers & Nodes",
+  "companies": [
+    "Amazon",
+    "Google",
+    "Oracle",
+    "Microsoft"
+  ],
+  "description": "Given the `head` of a singly linked list and an integer `k`, split the linked list into `k` consecutive linked list parts.\n\nThe length of each part should be as equal as possible: no two parts should have a size differing by more than one, and earlier parts must have a size greater than or equal to later parts. Parts that contain zero nodes should be represented as `null` (`None` in Python).\n\nReturn an array of length `k` containing the heads of the `k` parts in order.",
+  "constraints": [
+    "The number of nodes in the list is in the range [0, 1000].",
+    "0 <= Node.val <= 1000",
+    "1 <= k <= 50"
+  ],
+  "hints": [
+    "First count the total number of nodes `n`. Each part gets `n // k` nodes, and the first `n % k` parts each get one extra node.",
+    "Walk through the list cutting each part's tail (`tail.next = null`) before advancing to the start of the next part."
+  ],
+  "examples": [
+    {
+      "explanation": "3 nodes split into 5 parts gives lengths [1, 1, 1, 0, 0], so the last two parts are empty."
+    },
+    {
+      "explanation": "10 nodes split into 3 parts gives lengths [4, 3, 3]: [1,2,3,4], [5,6,7], [8,9,10]."
+    },
+    {
+      "explanation": "An empty list split into 3 parts produces three empty parts."
+    }
+  ],
+  "timeComplexity": "O(n + k)",
+  "spaceComplexity": "O(k)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "splitListToParts",
+    "params": [
+      {
+        "name": "head",
+        "type": "ListNode"
+      },
+      {
+        "name": "k",
+        "type": "int"
+      }
+    ],
+    "returns": "ListNode[]"
+  }
+}

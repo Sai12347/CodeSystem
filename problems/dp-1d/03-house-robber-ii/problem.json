@@ -1,0 +1,33 @@
+{
+  "title": "House Robber II",
+  "difficulty": "Medium",
+  "subtopic": "House Robber",
+  "companies": ["Google", "Amazon", "Microsoft", "Meta", "Adobe", "Uber"],
+  "leetcode": 213,
+  "description": "You are a professional robber planning to rob houses arranged in a circle. Because the houses form a circle, the first house (`nums[0]`) and the last house (`nums[n - 1]`) are adjacent to each other.\n\nEach house has a certain amount of money stashed, represented by a non-negative integer array `nums` where `nums[i]` is the amount of money in the `i`-th house. Adjacent houses have connected security systems that will alert the police if two adjacent houses are robbed on the same night.\n\nReturn the maximum amount of money you can rob tonight without alerting the police.",
+  "constraints": [
+    "1 <= nums.length <= 10^4",
+    "0 <= nums[i] <= 10^4"
+  ],
+  "hints": [
+    "Because house `0` and house `n - 1` are adjacent, any valid robbery plan cannot include both of them.",
+    "Split the circular problem into two linear House Robber subproblems: robbing houses `0..n - 2` (excluding the last house) and robbing houses `1..n - 1` (excluding the first house).",
+    "Handle the single-house edge case `n == 1` separately before taking the maximum of the two linear subproblems."
+  ],
+  "examples": [
+    {"explanation": "You cannot rob house 0 (money = 2) and house 2 (money = 2) because they are adjacent in the circle. The maximum is robbing house 1 (money = 3)."},
+    {"explanation": "Rob house 0 (money = 1) and house 2 (money = 3). Total amount = 1 + 3 = 4."},
+    {"explanation": "Only one house can be robbed from three houses arranged in a circle. Rob house 2 for 3."}
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "rob",
+    "params": [
+      {"name": "nums", "type": "int[]"}
+    ],
+    "returns": "int"
+  }
+}

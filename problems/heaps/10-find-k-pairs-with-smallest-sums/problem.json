@@ -1,0 +1,61 @@
+{
+  "title": "Find K Pairs with Smallest Sums",
+  "difficulty": "Medium",
+  "subtopic": "Merge K Sorted",
+  "companies": [
+    "Google",
+    "Amazon",
+    "Meta",
+    "Microsoft",
+    "LinkedIn",
+    "Apple"
+  ],
+  "leetcode": 373,
+  "description": "You are given two integer arrays `nums1` and `nums2` sorted in **non-decreasing order** and an integer `k`.\n\nDefine a pair `(u, v)` which consists of one element from the first array (`nums1[i]`) and one element from the second array (`nums2[j]`). Two pairs with different index tuples `(i, j)` are considered distinct even if they contain the same values.\n\nReturn the `k` pairs `(u1, v1), (u2, v2), ..., (uk, vk)` with the **smallest sums** `u + v`. If multiple valid sets of `k` pairs share the `k`-th smallest sum, or if pairs appear in any order, any valid answer is accepted. The judge validates that your returned list contains `k` valid distinct-index pairs achieving the `k` smallest possible sums (`true`).",
+  "constraints": [
+    "1 <= nums1.length, nums2.length <= 10^5",
+    "-10^9 <= nums1[i], nums2[i] <= 10^9",
+    "nums1 and nums2 both are sorted in non-decreasing order.",
+    "1 <= k <= 10^4",
+    "1 <= k <= nums1.length * nums2.length"
+  ],
+  "hints": [
+    "Notice that for each fixed index `i` in `nums1`, the sequence `(nums1[i], nums2[0]), (nums1[i], nums2[1]), ...` is already sorted by sum.",
+    "Seed a min-heap with `(nums1[i] + nums2[0], i, 0)` for `i` from `0` to `min(len(nums1), k) - 1`.",
+    "Pop the smallest-sum pair `(s, i, j)` k times; after popping `(i, j)`, push `(nums1[i] + nums2[j + 1], i, j + 1)` if `j + 1 < len(nums2)`."
+  ],
+  "examples": [
+    {
+      "explanation": "The first 3 pairs with smallest sums are [1, 2] (sum 3), [1, 4] (sum 5), and [1, 6] (sum 7)."
+    },
+    {
+      "explanation": "Both index pairs (0, 0) and (1, 0) produce [1, 1] with sum 2, so [[1, 1], [1, 1]] is returned."
+    },
+    {
+      "explanation": "The smallest pair is [1, 1] (sum 2); the second pair can be either [1, 2] or [2, 1] (both sum 3)."
+    }
+  ],
+  "timeComplexity": "O(k log(min(k, m)))",
+  "spaceComplexity": "O(min(k, m))",
+  "compare": "exact",
+  "signature": {
+    "kind": "adapter",
+    "inputs": [
+      {
+        "name": "nums1",
+        "type": "int[]",
+        "description": "First sorted integer array"
+      },
+      {
+        "name": "nums2",
+        "type": "int[]",
+        "description": "Second sorted integer array"
+      },
+      {
+        "name": "k",
+        "type": "int",
+        "description": "Number of smallest-sum pairs to return"
+      }
+    ]
+  }
+}

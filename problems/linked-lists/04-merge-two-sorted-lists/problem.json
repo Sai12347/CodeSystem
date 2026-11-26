@@ -1,0 +1,35 @@
+{
+  "title": "Merge Two Sorted Lists",
+  "difficulty": "Easy",
+  "subtopic": "Merge & Sort",
+  "companies": ["Amazon", "Google", "Meta", "Microsoft", "Apple", "Adobe"],
+  "leetcode": 21,
+  "description": "You are given the heads of two sorted singly linked lists `list1` and `list2`.\n\nMerge the two lists into one sorted singly linked list by splicing together the nodes of the first two lists. Both input lists are sorted in non-decreasing order, and the merged list must also be sorted in non-decreasing order.\n\nReturn the head of the merged linked list (or `null` / `None` if both lists are empty).",
+  "constraints": [
+    "The number of nodes in each list is in the range [0, 2000].",
+    "-10^5 <= Node.val <= 10^5",
+    "Both list1 and list2 are sorted in non-decreasing order."
+  ],
+  "hints": [
+    "Create a sentinel (dummy) head node and a `tail` pointer to avoid special-casing the first node of the merged list.",
+    "At each step, compare `list1.val` and `list2.val`, attach the smaller node to `tail.next`, and advance that list's pointer and `tail`.",
+    "When one list becomes empty, attach the entire remaining portion of the other list in O(1) time."
+  ],
+  "examples": [
+    {"explanation": "Splicing [1, 2, 4] and [1, 3, 4] in non-decreasing order produces [1, 1, 2, 3, 4, 4]."},
+    {"explanation": "Merging two empty lists returns an empty list (null)."},
+    {"explanation": "When one list is empty, the result is simply the other list [0]."}
+  ],
+  "timeComplexity": "O(m + n)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "mergeTwoLists",
+    "params": [
+      {"name": "list1", "type": "ListNode"},
+      {"name": "list2", "type": "ListNode"}
+    ],
+    "returns": "ListNode"
+  }
+}

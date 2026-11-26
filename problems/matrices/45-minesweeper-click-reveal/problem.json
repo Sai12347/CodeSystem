@@ -1,0 +1,53 @@
+{
+  "title": "Minesweeper Click Reveal",
+  "difficulty": "Medium",
+  "subtopic": "Simulation",
+  "companies": [
+    "Uber",
+    "Amazon",
+    "Meta",
+    "Microsoft"
+  ],
+  "description": "You are given an `m x n` character matrix `board` representing a Minesweeper game board:\n- `'M'`: an unrevealed mine\n- `'E'`: an unrevealed empty square\n- `'B'`: a revealed blank square with no adjacent mines\n- `'1'` to `'8'`: a revealed square showing the count of adjacent mines\n- `'X'`: a revealed mine\n\nYou are also given an integer array `click = [r, c]` pointing to an unrevealed square (`'M'` or `'E'`). Update and return the board after clicking `(r, c)`:\n1. If `(r, c)` is `'M'`, change it to `'X'` and stop.\n2. If `(r, c)` is `'E'` with at least one adjacent `'M'` (among its 8 neighbors), replace it with the digit `'1'`\u2013`'8'`.\n3. If `(r, c)` is `'E'` with zero adjacent mines, replace it with `'B'` and recursively reveal all of its unrevealed `'E'` 8-neighbors.",
+  "constraints": [
+    "m == board.length",
+    "n == board[i].length",
+    "1 <= m, n <= 50",
+    "board[i][j] is one of 'M', 'E', 'B', '1'-'8', or 'X'.",
+    "click.length == 2, 0 <= click[0] < m, 0 <= click[1] < n",
+    "board[click[0]][click[1]] is either 'M' or 'E'."
+  ],
+  "hints": [
+    "Handle clicking a mine ('M') immediately by setting that cell to 'X' and returning.",
+    "Otherwise use BFS or DFS starting from click: count adjacent 'M' cells first; only enqueue/recurse into unrevealed 'E' neighbors when the count is 0, marking them visited right away to avoid duplicates."
+  ],
+  "examples": [
+    {
+      "explanation": "Clicking (3, 0) reveals an empty square with 0 adjacent mines, flooding outward until every frontier cell adjacent to the mine at (1, 2) displays '1'."
+    },
+    {
+      "explanation": "Clicking directly on the mine at (1, 2) turns it into 'X' and leaves all other cells unchanged."
+    },
+    {
+      "explanation": "Clicking (0, 0) next to a mine at (0, 1) only reveals '1' at (0, 0) without expanding further."
+    }
+  ],
+  "timeComplexity": "O(m * n)",
+  "spaceComplexity": "O(m * n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "updateBoard",
+    "params": [
+      {
+        "name": "board",
+        "type": "char[][]"
+      },
+      {
+        "name": "click",
+        "type": "int[]"
+      }
+    ],
+    "returns": "char[][]"
+  }
+}

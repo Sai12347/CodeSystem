@@ -1,0 +1,1 @@
+class Solution { int f(int[]p,int x){while(p[x]!=x){p[x]=p[p[x]];x=p[x];}return x;}public int maximumSpacing(int n,int k,int[][]e){if(k<=1||n<=1)return -1;Arrays.sort(e,(a,b)->Integer.compare(a[2],b[2]));int[]p=new int[n];for(int i=0;i<n;i++)p[i]=i;int c=n;for(int[]x:e){int a=f(p,x[0]),b=f(p,x[1]);if(a!=b){if(c==k)return x[2];p[a]=b;c--;}}return -1;} }

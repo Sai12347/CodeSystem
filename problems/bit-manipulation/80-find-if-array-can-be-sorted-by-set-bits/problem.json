@@ -1,0 +1,44 @@
+{
+  "title": "Find if Array Can Be Sorted by Set Bits",
+  "difficulty": "Medium",
+  "subtopic": "Counting Bits",
+  "companies": [
+    "Google",
+    "Amazon",
+    "Meta"
+  ],
+  "description": "You are given a 0-indexed array `nums` of positive integers. In one operation, you may swap any two **adjacent** elements if and only if they have the same number of `1` bits in their binary representation. Return `true` if you can sort `nums` in non-decreasing order using any number of operations, and `false` otherwise.",
+  "constraints": [
+    "1 <= nums.length <= 10^5",
+    "1 <= nums[i] <= 10^9"
+  ],
+  "hints": [
+    "Elements cannot cross into a neighboring group of different popcount, so `nums` splits into maximal contiguous segments of equal popcount.",
+    "Within each segment you can sort freely, so the entire array is sortable if and only if every segment's minimum element is greater than or equal to the previous segment's maximum element."
+  ],
+  "examples": [
+    {
+      "explanation": "Segments [8, 4, 2] (1 set bit) and [30, 15] (4 set bits) sort to [2, 4, 8] and [15, 30], and 15 >= 8."
+    },
+    {
+      "explanation": "The array is already sorted in non-decreasing order."
+    },
+    {
+      "explanation": "Segment [3] has max 3 (2 set bits), followed by [16, 8, 4, 2] with min 2 (1 set bit); since 2 < 3, return false."
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "canSortBySetBits",
+    "params": [
+      {
+        "name": "nums",
+        "type": "int[]"
+      }
+    ],
+    "returns": "boolean"
+  }
+}

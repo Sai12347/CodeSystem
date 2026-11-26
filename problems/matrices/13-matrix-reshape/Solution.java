@@ -1,0 +1,1 @@
+class Solution { public int[][] matrixReshape(int[][] a,int r,int c) { int m=a.length,n=a[0].length; if(m*n!=r*c)return a; int[][] b=new int[r][c]; for(int i=0;i<m*n;i++)b[i/c][i%c]=a[i/n][i%n]; return b; } }

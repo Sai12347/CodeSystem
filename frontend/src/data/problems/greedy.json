@@ -1,0 +1,577 @@
+[
+ {
+  "id": "non-overlapping-intervals",
+  "order": 1,
+  "topicId": "greedy",
+  "topic": "Greedy Algorithms",
+  "title": "Non-overlapping Intervals",
+  "slug": "non-overlapping-intervals",
+  "difficulty": "Medium",
+  "subtopic": "Interval Scheduling",
+  "companies": [
+   "Amazon",
+   "Google",
+   "Microsoft"
+  ],
+  "leetcode": null,
+  "description": "Remove the minimum number of intervals so that no two remaining intervals overlap. Intervals that touch only at an endpoint do not overlap. Return the number removed.",
+  "constraints": [
+   "1 <= intervals.length <= 10^5",
+   "-5 * 10^4 <= start < end <= 5 * 10^4"
+  ],
+  "hints": [
+   "Sort or scan while maintaining the best feasible choice.",
+   "Check tie values and cases where no feasible choice remains."
+  ],
+  "timeComplexity": "O(n log n)",
+  "spaceComplexity": "O(1) extra",
+  "compare": "exact",
+  "examples": [
+   {
+    "input": "intervals = [[1,2],[2,3],[3,4],[1,3]]",
+    "output": "1"
+   },
+   {
+    "input": "intervals = [[1,2],[1,2],[1,2]]",
+    "output": "2"
+   },
+   {
+    "input": "intervals = [[1,2],[2,3]]",
+    "output": "0"
+   }
+  ],
+  "starterCode": {
+   "java": "class Solution {\n    public int eraseOverlapIntervals(int[][] intervals) {\n        // Write your solution here\n        return 0;\n    }\n}\n",
+   "python": "class Solution:\n    def eraseOverlapIntervals(self, intervals: List[List[int]]) -> int:\n        # Write your solution here\n        pass\n"
+  },
+  "solutionCode": {
+   "java": "class Solution { public int eraseOverlapIntervals(int[][] a) { Arrays.sort(a,(x,y)->Integer.compare(x[1],y[1]));int end=Integer.MIN_VALUE,keep=0;for(int[] x:a)if(x[0]>=end){keep++;end=x[1];}return a.length-keep;} }\n",
+   "python": "class Solution:\n    def eraseOverlapIntervals(self, intervals: List[List[int]]) -> int:\n        intervals.sort(key=lambda x:x[1]);end=float('-inf');kept=0\n        for a,b in intervals:\n            if a>=end:kept+=1;end=b\n        return len(intervals)-kept\n"
+  },
+  "sampleArray": [],
+  "visibleTestCount": 3,
+  "hiddenTestCount": 8,
+  "number": 1
+ },
+ {
+  "id": "minimum-arrows-to-burst-balloons",
+  "order": 2,
+  "topicId": "greedy",
+  "topic": "Greedy Algorithms",
+  "title": "Minimum Number of Arrows to Burst Balloons",
+  "slug": "minimum-arrows-to-burst-balloons",
+  "difficulty": "Medium",
+  "subtopic": "Interval Scheduling",
+  "companies": [
+   "Amazon",
+   "Google",
+   "Microsoft"
+  ],
+  "leetcode": null,
+  "description": "Each balloon is a closed horizontal interval `[start, end]`. A vertical arrow shot at coordinate `x` bursts every balloon whose interval contains `x`. Return the minimum number of arrows needed to burst all balloons.",
+  "constraints": [
+   "1 <= points.length <= 10^5",
+   "-2^31 <= start <= end <= 2^31 - 1"
+  ],
+  "hints": [
+   "Choose locally optimal placements or intervals while maintaining the stated invariant.",
+   "Check boundary values and ties."
+  ],
+  "timeComplexity": "O(n log n)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "examples": [
+   {
+    "input": "points = [[10,16],[2,8],[1,6],[7,12]]",
+    "output": "2"
+   },
+   {
+    "input": "points = [[1,2],[3,4],[5,6],[7,8]]",
+    "output": "4"
+   },
+   {
+    "input": "points = [[1,2]]",
+    "output": "1"
+   }
+  ],
+  "starterCode": {
+   "java": "class Solution {\n    public int findMinArrowShots(int[][] points) {\n        // Write your solution here\n        return 0;\n    }\n}\n",
+   "python": "class Solution:\n    def findMinArrowShots(self, points: List[List[int]]) -> int:\n        # Write your solution here\n        pass\n"
+  },
+  "solutionCode": {
+   "java": "class Solution { public int findMinArrowShots(int[][] p) { Arrays.sort(p,(a,b)->Integer.compare(a[1],b[1])); int n=0; long end=Long.MIN_VALUE; for(int[] x:p)if(n==0||x[0]>end){n++;end=x[1];} return n;} }\n",
+   "python": "class Solution:\n    def findMinArrowShots(self, points: List[List[int]]) -> int:\n        points.sort(key=lambda p:p[1])\n        arrows=0; end=None\n        for left,right in points:\n            if end is None or left>end:\n                arrows+=1; end=right\n        return arrows\n"
+  },
+  "sampleArray": [],
+  "visibleTestCount": 3,
+  "hiddenTestCount": 8,
+  "number": 2
+ },
+ {
+  "id": "gas-station",
+  "order": 3,
+  "topicId": "greedy",
+  "topic": "Greedy Algorithms",
+  "title": "Gas Station",
+  "slug": "gas-station",
+  "difficulty": "Medium",
+  "subtopic": "Gas Station",
+  "companies": [
+   "Amazon",
+   "Google",
+   "Microsoft"
+  ],
+  "leetcode": null,
+  "description": "There are circular gas stations. `gas[i]` is the fuel available at station `i`; `cost[i]` is the fuel needed to travel from station `i` to the next. Return any starting station index that allows a full circuit, or -1 if no such start exists.",
+  "constraints": [
+   "1 <= gas.length == cost.length <= 10^5",
+   "0 <= gas[i], cost[i] <= 10^4"
+  ],
+  "hints": [
+   "Sort or scan while maintaining the best feasible choice.",
+   "Check tie values and cases where no feasible choice remains."
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(1) extra",
+  "compare": "exact",
+  "examples": [
+   {
+    "input": "gas = [1,2,3,4,5], cost = [3,4,5,1,2]",
+    "output": "3"
+   },
+   {
+    "input": "gas = [2,3,4], cost = [3,4,3]",
+    "output": "-1"
+   },
+   {
+    "input": "gas = [5], cost = [4]",
+    "output": "0"
+   }
+  ],
+  "starterCode": {
+   "java": "class Solution {\n    public int canCompleteCircuit(int[] gas, int[] cost) {\n        // Write your solution here\n        return 0;\n    }\n}\n",
+   "python": "class Solution:\n    def canCompleteCircuit(self, gas: List[int], cost: List[int]) -> int:\n        # Write your solution here\n        pass\n"
+  },
+  "solutionCode": {
+   "java": "class Solution { public int canCompleteCircuit(int[] g,int[] c) { int total=0,cur=0,start=0;for(int i=0;i<g.length;i++){total+=g[i]-c[i];cur+=g[i]-c[i];if(cur<0){start=i+1;cur=0;}}return total>=0?start:-1;} }\n",
+   "python": "class Solution:\n    def canCompleteCircuit(self, gas: List[int], cost: List[int]) -> int:\n        total=cur=start=0\n        for i,(g,c) in enumerate(zip(gas,cost)):\n            total+=g-c;cur+=g-c\n            if cur<0:start=i+1;cur=0\n        return start if total>=0 else -1\n"
+  },
+  "sampleArray": [
+   1,
+   2,
+   3,
+   4,
+   5
+  ],
+  "visibleTestCount": 3,
+  "hiddenTestCount": 8,
+  "number": 3
+ },
+ {
+  "id": "candy",
+  "order": 4,
+  "topicId": "greedy",
+  "topic": "Greedy Algorithms",
+  "title": "Candy",
+  "slug": "candy",
+  "difficulty": "Hard",
+  "subtopic": "Local Optimality",
+  "companies": [
+   "Amazon",
+   "Google",
+   "Microsoft"
+  ],
+  "leetcode": null,
+  "description": "Give each child at least one candy. A child with a higher rating than an adjacent child must receive more candies than that neighbor. Return the minimum total number of candies required.",
+  "constraints": [
+   "1 <= ratings.length <= 2 * 10^4",
+   "0 <= ratings[i] <= 2 * 10^4"
+  ],
+  "hints": [
+   "Sort or scan while maintaining the best feasible choice.",
+   "Check tie values and cases where no feasible choice remains."
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "examples": [
+   {
+    "input": "ratings = [1,0,2]",
+    "output": "5"
+   },
+   {
+    "input": "ratings = [1,2,2]",
+    "output": "4"
+   },
+   {
+    "input": "ratings = [1]",
+    "output": "1"
+   }
+  ],
+  "starterCode": {
+   "java": "class Solution {\n    public int candy(int[] ratings) {\n        // Write your solution here\n        return 0;\n    }\n}\n",
+   "python": "class Solution:\n    def candy(self, ratings: List[int]) -> int:\n        # Write your solution here\n        pass\n"
+  },
+  "solutionCode": {
+   "java": "class Solution { public int candy(int[] r) { int n=r.length;int[] c=new int[n];Arrays.fill(c,1);for(int i=1;i<n;i++)if(r[i]>r[i-1])c[i]=c[i-1]+1;for(int i=n-2;i>=0;i--)if(r[i]>r[i+1])c[i]=Math.max(c[i],c[i+1]+1);int s=0;for(int x:c)s+=x;return s;} }\n",
+   "python": "class Solution:\n    def candy(self, ratings: List[int]) -> int:\n        n=len(ratings);c=[1]*n\n        for i in range(1,n):\n            if ratings[i]>ratings[i-1]:c[i]=c[i-1]+1\n        for i in range(n-2,-1,-1):\n            if ratings[i]>ratings[i+1]:c[i]=max(c[i],c[i+1]+1)\n        return sum(c)\n"
+  },
+  "sampleArray": [
+   1,
+   0,
+   2
+  ],
+  "visibleTestCount": 3,
+  "hiddenTestCount": 8,
+  "number": 4
+ },
+ {
+  "id": "jump-game",
+  "order": 5,
+  "topicId": "greedy",
+  "topic": "Greedy Algorithms",
+  "title": "Jump Game",
+  "slug": "jump-game",
+  "difficulty": "Medium",
+  "subtopic": "Local Optimality",
+  "companies": [
+   "Amazon",
+   "Google",
+   "Microsoft"
+  ],
+  "leetcode": null,
+  "description": "Each array value is the maximum forward jump length from that position. Return true if you can reach the last index starting from index 0.",
+  "constraints": [
+   "1 <= nums.length <= 10^4",
+   "0 <= nums[i] <= 10^5"
+  ],
+  "hints": [
+   "Sort or scan while maintaining the best feasible choice.",
+   "Check tie values and cases where no feasible choice remains."
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(1) extra",
+  "compare": "exact",
+  "examples": [
+   {
+    "input": "nums = [2,3,1,1,4]",
+    "output": "true"
+   },
+   {
+    "input": "nums = [3,2,1,0,4]",
+    "output": "false"
+   },
+   {
+    "input": "nums = [0]",
+    "output": "true"
+   }
+  ],
+  "starterCode": {
+   "java": "class Solution {\n    public boolean canJump(int[] nums) {\n        // Write your solution here\n        return false;\n    }\n}\n",
+   "python": "class Solution:\n    def canJump(self, nums: List[int]) -> bool:\n        # Write your solution here\n        pass\n"
+  },
+  "solutionCode": {
+   "java": "class Solution { public boolean canJump(int[] a) { int reach=0;for(int i=0;i<a.length;i++){if(i>reach)return false;reach=Math.max(reach,i+a[i]);}return true;} }\n",
+   "python": "class Solution:\n    def canJump(self, nums: List[int]) -> bool:\n        reach=0\n        for i,x in enumerate(nums):\n            if i>reach:return False\n            reach=max(reach,i+x)\n        return True\n"
+  },
+  "sampleArray": [
+   2,
+   3,
+   1,
+   1,
+   4
+  ],
+  "visibleTestCount": 3,
+  "hiddenTestCount": 8,
+  "number": 5
+ },
+ {
+  "id": "partition-labels",
+  "order": 7,
+  "topicId": "greedy",
+  "topic": "Greedy Algorithms",
+  "title": "Partition Labels",
+  "slug": "partition-labels",
+  "difficulty": "Medium",
+  "subtopic": "Interval Scheduling",
+  "companies": [
+   "Amazon",
+   "Google",
+   "Microsoft"
+  ],
+  "leetcode": null,
+  "description": "Partition the string into as many parts as possible so that each letter appears in at most one part. Return the lengths of the parts in order. The parts must concatenate to the original string.",
+  "constraints": [
+   "1 <= s.length <= 500",
+   "s contains only lowercase English letters"
+  ],
+  "hints": [
+   "Choose locally optimal placements or intervals while maintaining the stated invariant.",
+   "Check boundary values and ties."
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(n)",
+  "compare": "sorted",
+  "examples": [
+   {
+    "input": "s = \"ababcbacadefegdehijhklij\"",
+    "output": "[9,7,8]"
+   },
+   {
+    "input": "s = \"eccbbbbdec\"",
+    "output": "[10]"
+   },
+   {
+    "input": "s = \"a\"",
+    "output": "[1]"
+   }
+  ],
+  "starterCode": {
+   "java": "class Solution {\n    public List<Integer> partitionLabels(String s) {\n        // Write your solution here\n        return null;\n    }\n}\n",
+   "python": "class Solution:\n    def partitionLabels(self, s: str) -> List[int]:\n        # Write your solution here\n        pass\n"
+  },
+  "solutionCode": {
+   "java": "class Solution { public List<Integer> partitionLabels(String s) { int[] last=new int[26]; for(int i=0;i<s.length();i++)last[s.charAt(i)-'a']=i; List<Integer> out=new ArrayList<>(); int start=0,end=0; for(int i=0;i<s.length();i++){end=Math.max(end,last[s.charAt(i)-'a']);if(i==end){out.add(end-start+1);start=i+1;}}return out;} }\n",
+   "python": "class Solution:\n    def partitionLabels(self, s: str) -> List[int]:\n        last={c:i for i,c in enumerate(s)}\n        out=[]; start=end=0\n        for i,c in enumerate(s):\n            end=max(end,last[c])\n            if i==end: out.append(end-start+1); start=i+1\n        return out\n"
+  },
+  "sampleArray": [],
+  "visibleTestCount": 3,
+  "hiddenTestCount": 8,
+  "number": 6
+ },
+ {
+  "id": "assign-cookies",
+  "order": 9,
+  "topicId": "greedy",
+  "topic": "Greedy Algorithms",
+  "title": "Assign Cookies",
+  "slug": "assign-cookies",
+  "difficulty": "Easy",
+  "subtopic": "Local Optimality",
+  "companies": [
+   "Amazon",
+   "Google",
+   "Microsoft"
+  ],
+  "leetcode": null,
+  "description": "Each child `i` has greed factor `g[i]`, and each cookie `j` has size `s[j]`. A child is content if assigned one cookie at least as large as their greed factor. Each child and cookie may be used at most once. Return the maximum number of content children.",
+  "constraints": [
+   "1 <= g.length, s.length <= 3 * 10^4",
+   "1 <= g[i], s[j] <= 10^9"
+  ],
+  "hints": [
+   "Sort or scan while maintaining the best feasible choice.",
+   "Check tie values and cases where no feasible choice remains."
+  ],
+  "timeComplexity": "O(n log n)",
+  "spaceComplexity": "O(1) extra",
+  "compare": "exact",
+  "examples": [
+   {
+    "input": "g = [1,2,3], s = [1,1]",
+    "output": "1"
+   },
+   {
+    "input": "g = [1,2], s = [1,2,3]",
+    "output": "2"
+   },
+   {
+    "input": "g = [1], s = [1]",
+    "output": "1"
+   }
+  ],
+  "starterCode": {
+   "java": "class Solution {\n    public int findContentChildren(int[] g, int[] s) {\n        // Write your solution here\n        return 0;\n    }\n}\n",
+   "python": "class Solution:\n    def findContentChildren(self, g: List[int], s: List[int]) -> int:\n        # Write your solution here\n        pass\n"
+  },
+  "solutionCode": {
+   "java": "class Solution { public int findContentChildren(int[] g,int[] s) { Arrays.sort(g);Arrays.sort(s);int i=0,j=0;while(i<g.length&&j<s.length){if(s[j]>=g[i])i++;j++;}return i;} }\n",
+   "python": "class Solution:\n    def findContentChildren(self, g: List[int], s: List[int]) -> int:\n        g.sort();s.sort();i=j=0\n        while i<len(g) and j<len(s):\n            if s[j]>=g[i]:i+=1\n            j+=1\n        return i\n"
+  },
+  "sampleArray": [
+   1,
+   2,
+   3
+  ],
+  "visibleTestCount": 3,
+  "hiddenTestCount": 8,
+  "number": 7
+ },
+ {
+  "id": "can-place-flowers",
+  "order": 10,
+  "topicId": "greedy",
+  "topic": "Greedy Algorithms",
+  "title": "Can Place Flowers",
+  "slug": "can-place-flowers",
+  "difficulty": "Easy",
+  "subtopic": "Local Optimality",
+  "companies": [
+   "Amazon",
+   "Google",
+   "Microsoft"
+  ],
+  "leetcode": null,
+  "description": "Return true if `n` new flowers can be planted in `flowerbed` without placing flowers in adjacent plots. A value of 1 means occupied and 0 means empty. Do not modify the input.",
+  "constraints": [
+   "1 <= flowerbed.length <= 2 * 10^4",
+   "flowerbed[i] is 0 or 1",
+   "No two existing flowers are adjacent",
+   "0 <= n <= flowerbed.length"
+  ],
+  "hints": [
+   "Choose locally optimal placements or intervals while maintaining the stated invariant.",
+   "Check boundary values and ties."
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "examples": [
+   {
+    "input": "flowerbed = [1,0,0,0,1], n = 1",
+    "output": "true"
+   },
+   {
+    "input": "flowerbed = [1,0,0,0,1], n = 2",
+    "output": "false"
+   },
+   {
+    "input": "flowerbed = [0], n = 1",
+    "output": "true"
+   }
+  ],
+  "starterCode": {
+   "java": "class Solution {\n    public boolean canPlaceFlowers(int[] flowerbed, int n) {\n        // Write your solution here\n        return false;\n    }\n}\n",
+   "python": "class Solution:\n    def canPlaceFlowers(self, flowerbed: List[int], n: int) -> bool:\n        # Write your solution here\n        pass\n"
+  },
+  "solutionCode": {
+   "java": "class Solution { public boolean canPlaceFlowers(int[] b,int n) { if(n==0)return true; int c=0; for(int i=0;i<b.length;i++)if(b[i]==0&&(i==0||b[i-1]==0)&&(i==b.length-1||b[i+1]==0)){c++;if(c>=n)return true;} return false; } }\n",
+   "python": "class Solution:\n    def canPlaceFlowers(self, flowerbed: List[int], n: int) -> bool:\n        planted=0\n        for i,x in enumerate(flowerbed):\n            if x==0 and (i==0 or flowerbed[i-1]==0) and (i==len(flowerbed)-1 or flowerbed[i+1]==0):\n                planted+=1\n                if planted>=n: return True\n        return n==0\n"
+  },
+  "sampleArray": [
+   1,
+   0,
+   0,
+   0,
+   1
+  ],
+  "visibleTestCount": 3,
+  "hiddenTestCount": 8,
+  "number": 8
+ },
+ {
+  "id": "lemonade-change",
+  "order": 11,
+  "topicId": "greedy",
+  "topic": "Greedy Algorithms",
+  "title": "Lemonade Change",
+  "slug": "lemonade-change",
+  "difficulty": "Easy",
+  "subtopic": "Local Optimality",
+  "companies": [
+   "Amazon",
+   "Google",
+   "Microsoft"
+  ],
+  "leetcode": null,
+  "description": "Each lemonade costs $5. Customers arrive in order and pay with a $5, $10, or $20 bill. You start with no change. Return true if you can give each customer exact change using only bills received from earlier customers.",
+  "constraints": [
+   "1 <= bills.length <= 10^5",
+   "bills[i] is 5, 10, or 20"
+  ],
+  "hints": [
+   "Choose locally optimal placements or intervals while maintaining the stated invariant.",
+   "Check boundary values and ties."
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "examples": [
+   {
+    "input": "bills = [5,5,5,10,20]",
+    "output": "true"
+   },
+   {
+    "input": "bills = [5,5,10,10,20]",
+    "output": "false"
+   },
+   {
+    "input": "bills = [5]",
+    "output": "true"
+   }
+  ],
+  "starterCode": {
+   "java": "class Solution {\n    public boolean lemonadeChange(int[] bills) {\n        // Write your solution here\n        return false;\n    }\n}\n",
+   "python": "class Solution:\n    def lemonadeChange(self, bills: List[int]) -> bool:\n        # Write your solution here\n        pass\n"
+  },
+  "solutionCode": {
+   "java": "class Solution { public boolean lemonadeChange(int[] bills) { int f=0,t=0; for(int b:bills){if(b==5)f++; else if(b==10){if(f==0)return false;f--;t++;} else if(t>0&&f>0){t--;f--;} else if(f>=3)f-=3; else return false;} return true; } }\n",
+   "python": "class Solution:\n    def lemonadeChange(self, bills: List[int]) -> bool:\n        fives=tens=0\n        for b in bills:\n            if b==5: fives+=1\n            elif b==10:\n                if fives==0:return False\n                fives-=1; tens+=1\n            else:\n                if tens and fives: tens-=1; fives-=1\n                elif fives>=3: fives-=3\n                else:return False\n        return True\n"
+  },
+  "sampleArray": [
+   5,
+   5,
+   5,
+   10,
+   20
+  ],
+  "visibleTestCount": 3,
+  "hiddenTestCount": 8,
+  "number": 9
+ },
+ {
+  "id": "maximum-units-on-a-truck",
+  "order": 12,
+  "topicId": "greedy",
+  "topic": "Greedy Algorithms",
+  "title": "Maximum Units on a Truck",
+  "slug": "maximum-units-on-a-truck",
+  "difficulty": "Easy",
+  "subtopic": "Local Optimality",
+  "companies": [
+   "Amazon",
+   "Google",
+   "Microsoft"
+  ],
+  "leetcode": null,
+  "description": "Each `boxTypes[i]` is `[numberOfBoxes, unitsPerBox]`. A truck can carry at most `truckSize` boxes. Return the maximum total units obtainable. You may take only some boxes of a type.",
+  "constraints": [
+   "1 <= boxTypes.length <= 1000",
+   "1 <= numberOfBoxes, unitsPerBox <= 1000",
+   "1 <= truckSize <= 10^6"
+  ],
+  "hints": [
+   "Choose locally optimal placements or intervals while maintaining the stated invariant.",
+   "Check boundary values and ties."
+  ],
+  "timeComplexity": "O(n log n)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "examples": [
+   {
+    "input": "boxTypes = [[1,3],[2,2],[3,1]], truckSize = 4",
+    "output": "8"
+   },
+   {
+    "input": "boxTypes = [[5,10],[2,5],[4,7],[3,9]], truckSize = 10",
+    "output": "91"
+   },
+   {
+    "input": "boxTypes = [[1,1]], truckSize = 1",
+    "output": "1"
+   }
+  ],
+  "starterCode": {
+   "java": "class Solution {\n    public int maximumUnits(int[][] boxTypes, int truckSize) {\n        // Write your solution here\n        return 0;\n    }\n}\n",
+   "python": "class Solution:\n    def maximumUnits(self, boxTypes: List[List[int]], truckSize: int) -> int:\n        # Write your solution here\n        pass\n"
+  },
+  "solutionCode": {
+   "java": "class Solution { public int maximumUnits(int[][] a,int t) { Arrays.sort(a,(x,y)->Integer.compare(y[1],x[1])); int s=0; for(int[] b:a){int k=Math.min(t,b[0]);s+=k*b[1];t-=k;if(t==0)break;}return s;} }\n",
+   "python": "class Solution:\n    def maximumUnits(self, boxTypes: List[List[int]], truckSize: int) -> int:\n        units=0\n        for count,value in sorted(boxTypes,key=lambda x:-x[1]):\n            take=min(count,truckSize); units+=take*value; truckSize-=take\n            if truckSize==0: break\n        return units\n"
+  },
+  "sampleArray": [],
+  "visibleTestCount": 3,
+  "hiddenTestCount": 8,
+  "number": 10
+ }
+]

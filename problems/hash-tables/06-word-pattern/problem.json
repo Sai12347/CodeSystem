@@ -1,0 +1,56 @@
+{
+  "title": "Word Pattern",
+  "difficulty": "Easy",
+  "subtopic": "Frequency Counting",
+  "companies": [
+    "Amazon",
+    "Google",
+    "Meta",
+    "Microsoft",
+    "Uber"
+  ],
+  "leetcode": 290,
+  "description": "Given a `pattern` and a string `s`, determine if `s` follows the exact same pattern.\n\nHere **follow** means a full match such that there is a **bijection** between each letter in `pattern` and each non-empty space-separated word in `s`:\n- Each letter in `pattern` maps to exactly one unique word in `s`.\n- Each unique word in `s` maps to exactly one letter in `pattern`.\n- The number of characters in `pattern` must equal the number of words in `s`.\n\nReturn `true` if `s` follows `pattern`, and `false` otherwise.",
+  "constraints": [
+    "1 <= pattern.length <= 300",
+    "pattern contains only lowercase English letters.",
+    "1 <= s.length <= 3000",
+    "s contains only lowercase English letters and spaces ' '.",
+    "s does not contain any leading or trailing spaces.",
+    "All the words in s are separated by a single space."
+  ],
+  "hints": [
+    "First split s on single spaces and immediately return false if the number of words does not equal len(pattern).",
+    "Maintain two hash maps: char_to_word and word_to_char so neither two letters map to the same word nor one letter maps to two different words.",
+    "Avoid merging characters and words into a single unprefixed map, because single-letter words like 'a' can collide with pattern letters."
+  ],
+  "examples": [
+    {
+      "explanation": "'a' <-> \"dog\" and 'b' <-> \"cat\" form a valid bijection."
+    },
+    {
+      "explanation": "'a' maps to \"dog\" at index 0, so it cannot map to \"fish\" at index 3."
+    },
+    {
+      "explanation": "'a' maps to \"dog\" and 'b' also tries to map to \"dog\", violating the bijection."
+    }
+  ],
+  "timeComplexity": "O(n + m)",
+  "spaceComplexity": "O(n + m)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "wordPattern",
+    "params": [
+      {
+        "name": "pattern",
+        "type": "String"
+      },
+      {
+        "name": "s",
+        "type": "String"
+      }
+    ],
+    "returns": "boolean"
+  }
+}

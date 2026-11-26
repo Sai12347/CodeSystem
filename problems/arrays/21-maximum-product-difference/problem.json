@@ -1,0 +1,43 @@
+{
+  "title": "Maximum Product Difference Between Two Pairs",
+  "difficulty": "Easy",
+  "subtopic": "Subarrays",
+  "companies": [
+    "Amazon",
+    "Microsoft",
+    "Google"
+  ],
+  "description": "Choose four distinct elements from positive integer array `nums`, pair them into two pairs, and return the largest possible value of (first pair product) minus (second pair product).",
+  "constraints": [
+    "4 <= nums.length <= 10^4",
+    "1 <= nums[i] <= 10^4"
+  ],
+  "hints": [
+    "Scan the input while maintaining the invariant in the statement.",
+    "Check boundary values, duplicates, and tie cases."
+  ],
+  "examples": [
+    {
+      "input": "nums = [5,6,2,7]",
+      "output": "32"
+    },
+    {
+      "input": "nums = [4,2,5,9,7,4,8]",
+      "output": "64"
+    }
+  ],
+  "timeComplexity": "O(n log n)",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "maxProductDifference",
+    "params": [
+      {
+        "name": "nums",
+        "type": "int[]"
+      }
+    ],
+    "returns": "int"
+  }
+}

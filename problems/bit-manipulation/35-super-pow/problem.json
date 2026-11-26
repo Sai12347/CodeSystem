@@ -1,0 +1,50 @@
+{
+  "title": "Super Pow",
+  "difficulty": "Medium",
+  "subtopic": "Fast Exponentiation",
+  "companies": [
+    "Amazon",
+    "Google",
+    "Bloomberg"
+  ],
+  "description": "Given a positive integer `a` and a very large positive integer `b` represented as an array of decimal digits (most significant digit first, with no leading zeros), compute `a^b mod 1337`.",
+  "constraints": [
+    "1 <= a <= 2^31 - 1",
+    "1 <= b.length <= 2000",
+    "0 <= b[i] <= 9",
+    "b does not contain leading zeros and represents a positive integer."
+  ],
+  "hints": [
+    "Use the exponent identity `a^(10 * q + d) = (a^q)^10 * a^d (mod 1337)` to process `b` one decimal digit at a time from left to right.",
+    "Reduce `a` modulo `1337` upfront and evaluate each small power (`^10` and `^d`) with modular binary exponentiation."
+  ],
+  "examples": [
+    {
+      "explanation": "2^3 mod 1337 = 8."
+    },
+    {
+      "explanation": "2^10 mod 1337 = 1024."
+    },
+    {
+      "explanation": "1^433852 mod 1337 = 1."
+    }
+  ],
+  "timeComplexity": "O(b.length)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "superPow",
+    "params": [
+      {
+        "name": "a",
+        "type": "int"
+      },
+      {
+        "name": "b",
+        "type": "int[]"
+      }
+    ],
+    "returns": "int"
+  }
+}

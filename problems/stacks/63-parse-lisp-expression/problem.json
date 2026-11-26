@@ -1,0 +1,46 @@
+{
+  "title": "Parse Lisp Expression",
+  "difficulty": "Hard",
+  "subtopic": "Expression Parsing",
+  "companies": [
+    "Google",
+    "Meta",
+    "Amazon",
+    "Bloomberg"
+  ],
+  "description": "You are given a string `expression` representing a valid Lisp-like expression to evaluate to a single integer.\n\nAn expression can be:\n- An integer literal (possibly negative).\n- A variable name (starts with a lowercase letter followed by zero or more lowercase letters or digits), evaluated in the innermost enclosing lexical scope.\n- `(add e1 e2)` returning `eval(e1) + eval(e2)`.\n- `(mult e1 e2)` returning `eval(e1) * eval(e2)`.\n- `(let v1 e1 v2 e2 ... vk ek expr)` which opens a new scope, assigns `v1 = eval(e1)`, `v2 = eval(e2)`, ..., sequentially left-to-right (so later bindings can reference earlier ones in the same `let` and shadow outer scopes), and returns `eval(expr)`.\n\nAll intermediate and final values fit in a 32-bit signed integer.",
+  "constraints": [
+    "1 <= expression.length <= 2000",
+    "expression is a valid Lisp expression with single spaces separating tokens inside parentheses.",
+    "Every referenced variable is bound in an enclosing scope, and all values fit in a 32-bit signed integer."
+  ],
+  "hints": [
+    "Maintain a stack of lexical scope maps (one dictionary per active 'let' block) and resolve variable lookups from the top of the stack downward.",
+    "Parse sequentially with a cursor index: on '(', dispatch on 'add', 'mult', or 'let'; inside 'let', check whether a token is followed by ')' (final expression) or ' ' (variable binding pair)."
+  ],
+  "examples": [
+    {
+      "explanation": "Outer let binds x = 2; inner let shadows x = 3 and binds y = 4, so (add x y) = 7; outer mult computes 2 * 7 = 14."
+    },
+    {
+      "explanation": "In (let x 3 x 2 x), x is first bound to 3 then rebound to 2, so the final x evaluates to 2."
+    },
+    {
+      "explanation": "x = 1, y = 2, then x is updated to (add 1 2) = 3, and the final (add x y) evaluates to 3 + 2 = 5."
+    }
+  ],
+  "timeComplexity": "O(n * d)",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "evaluateLisp",
+    "params": [
+      {
+        "name": "expression",
+        "type": "String"
+      }
+    ],
+    "returns": "int"
+  }
+}

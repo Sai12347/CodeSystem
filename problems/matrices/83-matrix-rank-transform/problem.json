@@ -1,0 +1,47 @@
+{
+  "title": "Rank Transform of a Matrix",
+  "difficulty": "Hard",
+  "subtopic": "Dynamic Grids",
+  "companies": [
+    "Google",
+    "Meta",
+    "Amazon",
+    "Goldman Sachs"
+  ],
+  "description": "Given an `m x n` integer matrix `matrix`, return a new `m x n` integer matrix `answer` where `answer[r][c]` is the **rank** of `matrix[r][c]`.\n\nThe rank is a positive integer starting from `1` computed according to these rules:\n- If two elements `p` and `q` are in the **same row** or **same column**:\n  - If `p < q`, then `rank(p) < rank(q)`.\n  - If `p == q`, then `rank(p) == rank(q)`.\n- Ranks must be as **small** as possible.\n\nIt is guaranteed that `answer` is unique under these rules.",
+  "constraints": [
+    "m == matrix.length",
+    "n == matrix[i].length",
+    "1 <= m, n <= 200",
+    "-10^9 <= matrix[i][j] <= 10^9"
+  ],
+  "hints": [
+    "Process all cells grouped by value in strictly ascending order while maintaining rowMax[r] and colMax[c], the maximum rank assigned so far in each row and column.",
+    "Within a single value group, equal elements sharing a row or column must receive the same rank: use Disjoint Set Union (Union-Find) to connect row r with column (m + c) for every cell in the group, then set each connected component's rank to 1 + max(rowMax[r], colMax[c]) across that component."
+  ],
+  "examples": [
+    {
+      "explanation": "In [[1,2],[3,4]], 1 gets rank 1; both 2 and 3 exceed 1 in their row/column so they get rank 2; 4 exceeds both 2 and 3, receiving rank 3: [[1,2],[2,3]]."
+    },
+    {
+      "explanation": "All cells equal 7 and share rows/columns in one connected component, so every cell gets rank 1."
+    },
+    {
+      "explanation": "Equal values sharing rows or columns are linked via Union-Find so transitive equal-value chains receive the exact same minimal rank."
+    }
+  ],
+  "timeComplexity": "O(m * n * log(m * n))",
+  "spaceComplexity": "O(m * n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "matrixRankTransform",
+    "params": [
+      {
+        "name": "matrix",
+        "type": "int[][]"
+      }
+    ],
+    "returns": "int[][]"
+  }
+}

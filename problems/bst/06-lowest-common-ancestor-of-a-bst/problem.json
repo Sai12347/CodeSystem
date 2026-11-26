@@ -1,0 +1,36 @@
+{
+  "title": "Lowest Common Ancestor of a Binary Search Tree",
+  "difficulty": "Medium",
+  "subtopic": "BST Validation",
+  "companies": ["Meta", "Amazon", "Google", "Microsoft", "LinkedIn", "Apple"],
+  "leetcode": 235,
+  "description": "Given a binary search tree (BST), find the **lowest common ancestor (LCA)** node of two given nodes `p` and `q` in the BST.\n\nThe lowest common ancestor is defined between two nodes `p` and `q` as the lowest node in the tree `T` that has both `p` and `q` as descendants (where we allow **a node to be a descendant of itself**).\n\nYour method receives the `root` of the BST along with references to the two target nodes `p` and `q`, and must return the `TreeNode` reference to their LCA in the tree. In test inputs, `p` and `q` are shown by their unique node values, and the output shows the LCA node's value.",
+  "constraints": [
+    "The number of nodes in the tree is in the range [2, 10^5].",
+    "-10^9 <= Node.val <= 10^9",
+    "All Node.val are unique.",
+    "p != q",
+    "p and q will exist in the BST."
+  ],
+  "hints": [
+    "Use the BST ordering property: if both p.val and q.val are strictly smaller than cur.val, the LCA must lie in cur.left.",
+    "If both p.val and q.val are strictly greater than cur.val, the LCA must lie in cur.right.",
+    "The first node where p and q split to different sides—or where cur equals p or q—is the lowest common ancestor."
+  ],
+  "examples": [
+    {"explanation": "Nodes 2 and 8 lie in the left and right subtrees of 6 respectively, so their LCA is 6."},
+    {"explanation": "Node 4 is in the right subtree of 2, and a node is a descendant of itself, so the LCA of 2 and 4 is 2."},
+    {"explanation": "Node 1 is the left child of root 2, so the LCA of 2 and 1 is 2."}
+  ],
+  "timeComplexity": "O(h)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "adapter",
+    "inputs": [
+      {"name": "root", "type": "TreeNode", "description": "Level-order representation of the BST"},
+      {"name": "p", "type": "int", "description": "Value of the first target node"},
+      {"name": "q", "type": "int", "description": "Value of the second target node"}
+    ]
+  }
+}

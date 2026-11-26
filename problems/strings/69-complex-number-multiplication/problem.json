@@ -1,0 +1,47 @@
+{
+  "title": "Complex Number Multiplication",
+  "difficulty": "Medium",
+  "subtopic": "Parsing",
+  "companies": [
+    "Amazon",
+    "Adobe",
+    "Bloomberg"
+  ],
+  "description": "A complex number is represented as a string of the form `\"real+imaginaryi\"` where both `real` and `imaginary` are signed integers in `[-100, 100]` (for example `\"1+-1i\"`). Given two such strings `num1` and `num2`, return their product formatted in the same `\"real+imaginaryi\"` representation.",
+  "constraints": [
+    "num1 and num2 are valid complex number strings of the form \"a+bi\" with -100 <= a, b <= 100."
+  ],
+  "hints": [
+    "Split each string on '+' and strip the trailing 'i' from the second part to parse integers (a, b) and (c, d).",
+    "Since i^2 = -1, the product is (a*c - b*d) + (a*d + b*c)i."
+  ],
+  "examples": [
+    {
+      "explanation": "(1 + i) * (1 + i) = 1 + 2i + i^2 = 0 + 2i."
+    },
+    {
+      "explanation": "(1 - i) * (1 - i) = 1 - 2i + i^2 = 0 + -2i."
+    },
+    {
+      "explanation": "(3 + 2i) * (1 + 4i) = (3 - 8) + (12 + 2)i = -5+14i."
+    }
+  ],
+  "timeComplexity": "O(1)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "complexNumberMultiply",
+    "params": [
+      {
+        "name": "num1",
+        "type": "String"
+      },
+      {
+        "name": "num2",
+        "type": "String"
+      }
+    ],
+    "returns": "String"
+  }
+}

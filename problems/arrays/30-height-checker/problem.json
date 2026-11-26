@@ -1,0 +1,43 @@
+{
+  "title": "Height Checker",
+  "difficulty": "Easy",
+  "subtopic": "In-Place Operations",
+  "companies": [
+    "Amazon",
+    "Microsoft",
+    "Google"
+  ],
+  "description": "Count how many indices differ between `heights` and a sorted copy of `heights`. Leave the input unchanged.\n\nInput: an integer array `heights`. Return the result described above.",
+  "constraints": [
+    "1 <= heights.length <= 100",
+    "1 <= heights[i] <= 100"
+  ],
+  "hints": [
+    "Track the relevant ordering or candidate values in one pass where possible.",
+    "Check duplicate and boundary cases."
+  ],
+  "examples": [
+    {
+      "input": "heights = [1, 1, 4, 2, 1, 3]",
+      "output": "3"
+    },
+    {
+      "input": "heights = [5, 1, 2, 3, 4]",
+      "output": "5"
+    }
+  ],
+  "timeComplexity": "O(n log n)",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "heightChecker",
+    "params": [
+      {
+        "name": "heights",
+        "type": "int[]"
+      }
+    ],
+    "returns": "int"
+  }
+}

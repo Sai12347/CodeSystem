@@ -1,0 +1,56 @@
+{
+  "title": "Grid Illumination Queries",
+  "difficulty": "Hard",
+  "subtopic": "Dynamic Grids",
+  "companies": [
+    "Google",
+    "Amazon",
+    "Meta",
+    "Uber"
+  ],
+  "description": "There is a 2D `n x n` grid where every cell is initially turned off. You are given a 2D array `lamps`, where `lamps[i] = [row, col]` turns on a lamp at `(row, col)` (note: `lamps` may contain duplicate coordinates referring to the same lamp). Each active lamp illuminates its own cell plus every cell in the same **row**, same **column**, and both **diagonals**.\n\nYou are also given `queries`, where `queries[j] = [qr, qc]`. Process each query sequentially:\n1. Record `1` if `(qr, qc)` is currently illuminated by at least one active lamp, or `0` otherwise.\n2. Immediately after answering, turn off every active lamp located at `(qr, qc)` or any of its 8 adjacent neighbors (the `3 x 3` neighborhood centered at `(qr, qc)`).\n\nReturn an integer array `ans` of length `queries.length` containing the result for each query.",
+  "constraints": [
+    "1 <= n <= 10^9",
+    "0 <= lamps.length <= 2 * 10^4",
+    "0 <= queries.length <= 2 * 10^4",
+    "lamps[i].length == 2 and queries[j].length == 2",
+    "0 <= row, col < n"
+  ],
+  "hints": [
+    "Store active lamp coordinates in a hash set (deduplicating input lamps) and maintain four hash maps counting active lamps on each row r, column c, main diagonal (r - c), and anti-diagonal (r + c).",
+    "A query cell (qr, qc) is lit iff any of its four line counters is > 0; then inspect all 9 cells in its 3x3 neighborhood and remove any active lamp while decrementing all four counters."
+  ],
+  "examples": [
+    {
+      "explanation": "Query (1,1) is lit diagonally by both (0,0) and (4,4), returning 1, and turns off the lamp at (0,0); query (1,0) is no longer lit by (4,4), returning 0."
+    },
+    {
+      "explanation": "Query (0,4) is lit (1) and turns off lamp (0,4); query (0,1) is still lit by row-0 lamp (0,0) (1) and turns off (0,0); query (1,4) has no remaining active lamps, returning 0."
+    },
+    {
+      "explanation": "Duplicate lamp [0,0] is turned on only once, so after query (1,1) turns it off, query (0,0) sees 0 active lamps and returns 0."
+    }
+  ],
+  "timeComplexity": "O(L + Q)",
+  "spaceComplexity": "O(L)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "gridIllumination",
+    "params": [
+      {
+        "name": "n",
+        "type": "int"
+      },
+      {
+        "name": "lamps",
+        "type": "int[][]"
+      },
+      {
+        "name": "queries",
+        "type": "int[][]"
+      }
+    ],
+    "returns": "int[]"
+  }
+}

@@ -1,0 +1,43 @@
+{
+  "title": "Longest Palindrome Length",
+  "difficulty": "Easy",
+  "subtopic": "Palindromes",
+  "companies": [
+    "Amazon",
+    "Microsoft",
+    "Google"
+  ],
+  "description": "Using characters from `s`, return the maximum length of a palindrome that can be assembled. Characters are lowercase English letters.",
+  "constraints": [
+    "1 <= s.length <= 10^5",
+    "s contains only lowercase English letters"
+  ],
+  "hints": [
+    "Scan the string while tracking the needed counts or positions.",
+    "Check repeated characters and boundary cases."
+  ],
+  "examples": [
+    {
+      "input": "s = \"abccccdd\"",
+      "output": "7"
+    },
+    {
+      "input": "s = \"a\"",
+      "output": "1"
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "longestPalindrome",
+    "params": [
+      {
+        "name": "s",
+        "type": "String"
+      }
+    ],
+    "returns": "int"
+  }
+}

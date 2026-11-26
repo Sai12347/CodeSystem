@@ -1,0 +1,50 @@
+{
+  "title": "Fast Power (x^n)",
+  "difficulty": "Medium",
+  "subtopic": "Fast Exponentiation",
+  "companies": [
+    "Meta",
+    "Google",
+    "Amazon"
+  ],
+  "description": "Implement `myPow(x, n)`, which calculates `x` raised to the integer power `n` (`x^n`) using binary exponentiation. Note that `n` can be zero or negative, including `-2^31`, and answers are compared within a floating-point tolerance of `1e-5`.",
+  "constraints": [
+    "-100.0 < x < 100.0",
+    "-2^31 <= n <= 2^31 - 1",
+    "Either x != 0.0 or n > 0.",
+    "-10^4 <= x^n <= 10^4"
+  ],
+  "hints": [
+    "Promote `n` to a 64-bit signed integer before negating it so `-2^31` does not overflow; when `n < 0`, replace `x` with `1.0 / x` and negate `n`.",
+    "Repeatedly square `x` and shift `n` right by 1 bit, multiplying into the result whenever the lowest bit of `n` is 1."
+  ],
+  "examples": [
+    {
+      "explanation": "2.0^10 = 1024.0."
+    },
+    {
+      "explanation": "2.1^3 = 9.261."
+    },
+    {
+      "explanation": "2.0^(-2) = 1 / 4 = 0.25."
+    }
+  ],
+  "timeComplexity": "O(log |n|)",
+  "spaceComplexity": "O(1)",
+  "compare": "float",
+  "signature": {
+    "kind": "function",
+    "method": "myPow",
+    "params": [
+      {
+        "name": "x",
+        "type": "double"
+      },
+      {
+        "name": "n",
+        "type": "int"
+      }
+    ],
+    "returns": "double"
+  }
+}

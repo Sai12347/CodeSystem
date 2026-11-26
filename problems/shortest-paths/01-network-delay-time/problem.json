@@ -1,0 +1,40 @@
+{
+  "title": "Network Delay Time",
+  "difficulty": "Medium",
+  "subtopic": "Network Delays",
+  "companies": ["Google", "Amazon", "Microsoft", "Meta", "Uber", "Bloomberg"],
+  "leetcode": 743,
+  "description": "You are given a network of `n` nodes labeled from `1` to `n`. You are also given `times`, a list of directed travel times as triples `times[i] = [u_i, v_i, w_i]`, where `u_i` is the source node, `v_i` is the target node, and `w_i` is the time it takes for a signal to travel from `u_i` to `v_i`.\n\nWe send a signal from a given node `k`. Return the **minimum time** it takes for all `n` nodes to receive the signal. If it is impossible for all `n` nodes to receive the signal, return `-1`.",
+  "constraints": [
+    "1 <= k <= n <= 100",
+    "0 <= times.length <= 6000",
+    "times[i].length == 3",
+    "1 <= u_i, v_i <= n",
+    "u_i != v_i",
+    "0 <= w_i <= 100",
+    "All pairs (u_i, v_i) are unique (no multiple directed edges between the same pair)."
+  ],
+  "hints": [
+    "All edge weights are non-negative, so the earliest time each node receives the signal is its shortest-path distance from node `k`.",
+    "Run Dijkstra's algorithm with a min-heap starting from `(0, k)` and relax outgoing edges from each popped node, skipping stale heap entries.",
+    "Once all reachable nodes are settled, return `-1` if fewer than `n` nodes were reached; otherwise return the maximum shortest-path distance across all `n` nodes."
+  ],
+  "examples": [
+    {"explanation": "From node 2, the signal reaches nodes 1 and 3 at time 1, and reaches node 4 via 2 -> 3 -> 4 at time 2. All 4 nodes receive the signal by time 2."},
+    {"explanation": "The signal travels directly from node 1 to node 2 in 1 unit of time."},
+    {"explanation": "The only edge goes from 1 to 2, so starting at node 2 can never reach node 1."}
+  ],
+  "timeComplexity": "O((V + E) log V)",
+  "spaceComplexity": "O(V + E)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "networkDelayTime",
+    "params": [
+      {"name": "times", "type": "int[][]"},
+      {"name": "n", "type": "int"},
+      {"name": "k", "type": "int"}
+    ],
+    "returns": "int"
+  }
+}

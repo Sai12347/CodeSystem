@@ -1,0 +1,50 @@
+{
+  "title": "Maximum Image Overlap",
+  "difficulty": "Medium",
+  "subtopic": "Matrix Rotation",
+  "companies": [
+    "Google",
+    "Meta",
+    "Apple"
+  ],
+  "description": "You are given two `n x n` binary matrices `img1` and `img2` containing only `0`s and `1`s.\n\nWe can translate `img1` by any integer shift `(dr, dc)` (moving it up, down, left, or right without rotation or wrap-around; any cells shifted outside the `n x n` bounds are discarded). The overlap of a translation is the number of cells where both the shifted `img1` and `img2` have a `1`.\n\nReturn the largest possible overlap over all integer translations.",
+  "constraints": [
+    "n == img1.length == img1[i].length",
+    "n == img2.length == img2[i].length",
+    "1 <= n <= 30",
+    "img1[i][j] and img2[i][j] are either 0 or 1."
+  ],
+  "hints": [
+    "Collect the coordinates of all 1-cells in img1 and all 1-cells in img2.",
+    "Every pair (p1, p2) of 1-cells agrees under the unique translation vector (p2.r - p1.r, p2.c - p1.c); count the most frequent vector."
+  ],
+  "examples": [
+    {
+      "explanation": "Translating img1 right by 1 and down by 1 aligns three 1-cells with img2."
+    },
+    {
+      "explanation": "With a 1x1 matrix of [1] and [1], zero translation gives overlap 1."
+    },
+    {
+      "explanation": "Because img1 has no 1-cells, no translation can produce any overlap."
+    }
+  ],
+  "timeComplexity": "O(n^4)",
+  "spaceComplexity": "O(n^2)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "largestOverlap",
+    "params": [
+      {
+        "name": "img1",
+        "type": "int[][]"
+      },
+      {
+        "name": "img2",
+        "type": "int[][]"
+      }
+    ],
+    "returns": "int"
+  }
+}

@@ -1,0 +1,47 @@
+{
+  "title": "2D Morton Code Bit Interleaving",
+  "difficulty": "Medium",
+  "subtopic": "Two Complement",
+  "companies": [
+    "Google",
+    "Apple",
+    "Uber"
+  ],
+  "description": "Given two 16-bit non-negative integers `x` and `y` (`0 <= x, y <= 65535`), compute their 32-bit unsigned 2D Morton code (Z-order curve index) by interleaving their binary bits: bit `i` of `x` is placed at bit `2 * i`, and bit `i` of `y` is placed at bit `2 * i + 1` for `0 <= i < 16`. Return the resulting unsigned 32-bit value as a non-negative 64-bit integer.",
+  "constraints": [
+    "0 <= x, y <= 65535"
+  ],
+  "hints": [
+    "Spread the 16 bits of a coordinate into even bit positions using four parallel divide-and-conquer shift-and-mask rounds with masks `0x00FF00FF`, `0x0F0F0F0F`, `0x33333333`, and `0x55555555`.",
+    "Combine the spread coordinates via `spread(x) | (spread(y) << 1)` in 64-bit arithmetic so bit 31 never turns negative."
+  ],
+  "examples": [
+    {
+      "explanation": "x = 1 (01) places bits at even positions (0001) and y = 2 (10) places bits at odd positions (1000), giving 1001 = 9."
+    },
+    {
+      "explanation": "x = 3 (11) and y = 3 (11) interleave to 1111 = 15."
+    },
+    {
+      "explanation": "x = 5 (101) spreads to 10001 = 17, and y = 0 contributes 0."
+    }
+  ],
+  "timeComplexity": "O(1)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "mortonEncode",
+    "params": [
+      {
+        "name": "x",
+        "type": "int"
+      },
+      {
+        "name": "y",
+        "type": "int"
+      }
+    ],
+    "returns": "long"
+  }
+}

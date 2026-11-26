@@ -1,0 +1,45 @@
+{
+  "title": "Insertion Sort List",
+  "difficulty": "Medium",
+  "subtopic": "Merge & Sort",
+  "companies": [
+    "Amazon",
+    "Microsoft",
+    "Bloomberg",
+    "Apple"
+  ],
+  "description": "Given the `head` of a singly linked list, sort the list using **insertion sort** (or return the nodes re-linked in non-decreasing order), and return the sorted list's head.\n\nMaintain a growing sorted prefix starting from a dummy node, detaching each subsequent node and inserting it into its proper sorted position in `O(1)` extra space.",
+  "constraints": [
+    "The number of nodes in the list is in the range [0, 2000].",
+    "-5000 <= Node.val <= 5000"
+  ],
+  "hints": [
+    "Keep a pointer `lastSorted` at the end of the already-sorted prefix: if `curr.val >= lastSorted.val`, you can skip scanning from the dummy head and advance `lastSorted` in O(1).",
+    "Otherwise, walk `prev` from `dummy` until `prev.next.val >= curr.val`, detach `curr`, and splice it right after `prev`."
+  ],
+  "examples": [
+    {
+      "explanation": "Inserting 2 before 4, 1 before 2, and 3 between 2 and 4 yields [1, 2, 3, 4]."
+    },
+    {
+      "explanation": "Sorting [-1, 5, 3, 4, 0] produces [-1, 0, 3, 4, 5]."
+    },
+    {
+      "explanation": "An empty list remains empty (null)."
+    }
+  ],
+  "timeComplexity": "O(n^2)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "insertionSortList",
+    "params": [
+      {
+        "name": "head",
+        "type": "ListNode"
+      }
+    ],
+    "returns": "ListNode"
+  }
+}

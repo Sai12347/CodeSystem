@@ -1,0 +1,48 @@
+{
+  "title": "Prime Number of Set Bits",
+  "difficulty": "Easy",
+  "subtopic": "Counting Bits",
+  "companies": [
+    "Amazon",
+    "Adobe",
+    "LinkedIn"
+  ],
+  "description": "Given two positive integers `left` and `right`, return the count of integers in the inclusive range `[left, right]` whose binary representation has a prime number of set bits (`1`s). Recall that `1` is not a prime number.",
+  "constraints": [
+    "1 <= left <= right <= 10^6",
+    "0 <= right - left <= 10^4"
+  ],
+  "hints": [
+    "Since `right <= 10^6 < 2^20`, the number of set bits in any value is at most 20.",
+    "Encode all primes up to 20 (`2, 3, 5, 7, 11, 13, 17, 19`) in a single bitmask `665772` and test `(665772 >> popcount(x)) & 1` in O(1) time."
+  ],
+  "examples": [
+    {
+      "explanation": "In [6, 10], set-bit counts are 6->2(prime), 7->3(prime), 8->1, 9->2(prime), 10->2(prime), totaling 4."
+    },
+    {
+      "explanation": "In [10, 15], set-bit counts are 10->2, 11->3, 12->2, 13->3, 14->3, 15->4; five of them are prime."
+    },
+    {
+      "explanation": "1 has 1 set bit, which is not prime, so the count is 0."
+    }
+  ],
+  "timeComplexity": "O(right - left)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "countPrimeSetBits",
+    "params": [
+      {
+        "name": "left",
+        "type": "int"
+      },
+      {
+        "name": "right",
+        "type": "int"
+      }
+    ],
+    "returns": "int"
+  }
+}

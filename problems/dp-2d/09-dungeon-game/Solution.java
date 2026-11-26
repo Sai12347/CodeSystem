@@ -1,0 +1,1 @@
+class Solution { public int calculateMinimumHP(int[][] a) { int m=a.length,n=a[0].length;long[] d=new long[n+1];Arrays.fill(d,Long.MAX_VALUE/4);d[n-1]=1;for(int i=m-1;i>=0;i--)for(int j=n-1;j>=0;j--)d[j]=Math.max(1,Math.min(d[j],d[j+1])-a[i][j]);return (int)d[0];} }

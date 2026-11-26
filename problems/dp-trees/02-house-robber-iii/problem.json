@@ -1,0 +1,39 @@
+{
+  "title": "House Robber III",
+  "difficulty": "Medium",
+  "subtopic": "Subtree Optimization",
+  "companies": [
+    "Amazon",
+    "Google",
+    "Microsoft"
+  ],
+  "description": "Each tree node represents a house with value `val`. You may not rob a node and its direct child on the same night. Return the maximum total value that can be robbed.",
+  "constraints": [
+    "0 <= number of nodes <= 1000",
+    "-10^4 <= node.val <= 10^4"
+  ],
+  "hints": [
+    "Solve the tree recursively from the leaves toward the root.",
+    "Return the smallest state needed by the parent and combine child results."
+  ],
+  "examples": [
+    {
+      "input": "root = [3,2,3,null,3,null,1]",
+      "output": "7"
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(h)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "rob",
+    "params": [
+      {
+        "name": "root",
+        "type": "TreeNode"
+      }
+    ],
+    "returns": "int"
+  }
+}

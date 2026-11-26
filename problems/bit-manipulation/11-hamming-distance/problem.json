@@ -1,0 +1,47 @@
+{
+  "title": "Hamming Distance",
+  "difficulty": "Easy",
+  "subtopic": "XOR Tricks",
+  "companies": [
+    "Meta",
+    "Google",
+    "Amazon"
+  ],
+  "description": "The Hamming distance between two non-negative integers is the number of bit positions at which their binary representations differ. Given two integers `x` and `y`, return the Hamming distance between them.",
+  "constraints": [
+    "0 <= x, y <= 2^31 - 1"
+  ],
+  "hints": [
+    "Compute the bitwise XOR `x ^ y` so that every differing bit position becomes a `1`.",
+    "Count the number of set bits in `x ^ y` using Brian Kernighan's trick or a built-in popcount."
+  ],
+  "examples": [
+    {
+      "explanation": "1 is 0001 and 4 is 0100 in binary; they differ at bit positions 0 and 2."
+    },
+    {
+      "explanation": "3 is 11 and 1 is 01 in binary; only bit position 1 differs."
+    },
+    {
+      "explanation": "Identical numbers have no differing bits, so the distance is 0."
+    }
+  ],
+  "timeComplexity": "O(1)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "hammingDistance",
+    "params": [
+      {
+        "name": "x",
+        "type": "int"
+      },
+      {
+        "name": "y",
+        "type": "int"
+      }
+    ],
+    "returns": "int"
+  }
+}

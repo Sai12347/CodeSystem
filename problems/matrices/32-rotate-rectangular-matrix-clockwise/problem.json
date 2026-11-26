@@ -1,0 +1,52 @@
+{
+  "title": "Rotate Rectangular Matrix Clockwise",
+  "difficulty": "Easy",
+  "subtopic": "Matrix Rotation",
+  "companies": [
+    "Amazon",
+    "Microsoft",
+    "Salesforce",
+    "Atlassian"
+  ],
+  "description": "Given a rectangular `m x n` integer `matrix` (where `m` and `n` need not be equal) and a non-negative integer `rotations`, return the matrix obtained by rotating `matrix` by 90 degrees clockwise `rotations` times.\n\nNote that each 90-degree rotation swaps the row and column dimensions: an `m x n` matrix becomes `n x m` after 1 or 3 rotations, and stays `m x n` after 0 or 2 rotations.",
+  "constraints": [
+    "m == matrix.length",
+    "n == matrix[i].length",
+    "1 <= m, n <= 100",
+    "0 <= rotations <= 10^9",
+    "-10^4 <= matrix[i][j] <= 10^4"
+  ],
+  "hints": [
+    "Four 90-degree rotations return the matrix to its original state, so only k = rotations % 4 matters.",
+    "Map each source cell (r, c) directly to its destination coordinates based on k in {0, 1, 2, 3}."
+  ],
+  "examples": [
+    {
+      "explanation": "Rotating a 2x3 matrix once clockwise produces a 3x2 matrix [[4,1],[5,2],[6,3]]."
+    },
+    {
+      "explanation": "Rotating a 2x3 matrix twice clockwise flips it 180 degrees to [[6,5,4],[3,2,1]]."
+    },
+    {
+      "explanation": "Rotating 3 times clockwise is equivalent to 90 degrees counter-clockwise, yielding [[3,6],[2,5],[1,4]]."
+    }
+  ],
+  "timeComplexity": "O(m * n)",
+  "spaceComplexity": "O(m * n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "rotateMatrix",
+    "params": [
+      {
+        "name": "matrix",
+        "type": "int[][]"
+      },
+      {
+        "name": "rotations",
+        "type": "int"
+      }
+    ],
+    "returns": "int[][]"
+  }
+}

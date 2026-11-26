@@ -1,0 +1,43 @@
+{
+  "title": "Minimum Removals for Valid Parentheses",
+  "difficulty": "Medium",
+  "subtopic": "Parsing",
+  "companies": [
+    "Amazon",
+    "Google",
+    "Microsoft"
+  ],
+  "description": "Given a string containing lowercase letters and parentheses, remove the fewest parentheses so the remaining parentheses are balanced. When scanning left to right, discard a closing parenthesis that has no unmatched opening parenthesis. If openings remain at the end, discard the rightmost such openings. Preserve all other characters. Input: `s`. Output: the resulting string.",
+  "constraints": [
+    "1 <= s.length <= 100000",
+    "s contains lowercase English letters and '(' or ')'"
+  ],
+  "hints": [
+    "Keep track of the smallest state needed to continue matching or comparing characters.",
+    "Test empty, one-character, repeated-character, and boundary inputs."
+  ],
+  "examples": [
+    {
+      "input": "s = \"lee(t(c)o)de)\"",
+      "output": "\"lee(t(c)o)de\""
+    },
+    {
+      "input": "s = \"a)b(c)d\"",
+      "output": "\"ab(c)d\""
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "minRemoveToMakeValid",
+    "params": [
+      {
+        "name": "s",
+        "type": "String"
+      }
+    ],
+    "returns": "String"
+  }
+}

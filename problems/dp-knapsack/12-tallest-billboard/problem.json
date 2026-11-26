@@ -1,0 +1,39 @@
+{
+  "title": "Tallest Billboard",
+  "difficulty": "Hard",
+  "subtopic": "0/1 Knapsack",
+  "companies": [
+    "Amazon",
+    "Google",
+    "Microsoft"
+  ],
+  "description": "Use each rod at most once to build two supports of equal height. Return the maximum possible common height. Rods that are not used may be discarded.",
+  "constraints": [
+    "1 <= rods.length <= 20",
+    "1 <= rods[i] <= 1000"
+  ],
+  "hints": [
+    "Define a state by the capacity, achievable sum, or difference between partial groups.",
+    "Process each item with the usage rule in the statement."
+  ],
+  "examples": [
+    {
+      "input": "rods = [1,2,3,6]",
+      "output": "6"
+    }
+  ],
+  "timeComplexity": "O(n*capacity)",
+  "spaceComplexity": "O(capacity)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "tallestBillboard",
+    "params": [
+      {
+        "name": "rods",
+        "type": "int[]"
+      }
+    ],
+    "returns": "int"
+  }
+}

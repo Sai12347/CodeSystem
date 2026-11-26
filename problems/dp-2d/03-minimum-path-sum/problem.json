@@ -1,0 +1,39 @@
+{
+  "title": "Minimum Path Sum",
+  "difficulty": "Medium",
+  "subtopic": "Cost Minimization",
+  "companies": [
+    "Amazon",
+    "Google",
+    "Microsoft"
+  ],
+  "description": "Given a grid of non-negative costs, start at the top-left and reach the bottom-right by moving only right or down. Return the minimum possible sum of the visited cells, including both endpoints.",
+  "constraints": [
+    "1 <= rows, columns <= 100",
+    "0 <= grid[i][j] <= 100"
+  ],
+  "hints": [
+    "Define the state as the best answer for a prefix or cell.",
+    "Update from the previous row or previous prefix while preserving the recurrence."
+  ],
+  "examples": [
+    {
+      "input": "grid = [[1,3,1],[1,5,1],[4,2,1]]",
+      "output": "7"
+    }
+  ],
+  "timeComplexity": "O(m*n)",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "minPathSum",
+    "params": [
+      {
+        "name": "grid",
+        "type": "int[][]"
+      }
+    ],
+    "returns": "int"
+  }
+}

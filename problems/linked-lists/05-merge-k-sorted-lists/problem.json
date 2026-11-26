@@ -1,0 +1,37 @@
+{
+  "title": "Merge k Sorted Lists",
+  "difficulty": "Hard",
+  "subtopic": "Merge & Sort",
+  "companies": ["Amazon", "Google", "Meta", "Microsoft", "Uber", "Apple"],
+  "leetcode": 23,
+  "description": "You are given an array of `k` singly linked lists `lists`, where each linked list is sorted in non-decreasing order.\n\nMerge all the linked lists into one sorted singly linked list and return its head. If `lists` is empty or every linked list in `lists` is empty, return `null` (`None` in Python).",
+  "constraints": [
+    "k == lists.length",
+    "0 <= k <= 10^4",
+    "0 <= lists[i].length <= 500",
+    "-10^4 <= lists[i][j] <= 10^4",
+    "lists[i] is sorted in non-decreasing order.",
+    "The sum of lists[i].length will not exceed 10^4."
+  ],
+  "hints": [
+    "Merging lists one by one into an accumulator takes O(N * k) time in the worst case, where N is the total number of nodes.",
+    "Either maintain a min-heap of size at most k holding the current head of each non-empty list, or pair up lists and merge them in log2(k) rounds (divide and conquer).",
+    "Iterative bottom-up pairwise merging runs in O(N log k) time and O(1) auxiliary space."
+  ],
+  "examples": [
+    {"explanation": "Merging [1, 4, 5], [1, 3, 4], and [2, 6] yields [1, 1, 2, 3, 4, 4, 5, 6]."},
+    {"explanation": "An empty array of lists has no nodes, so return null."},
+    {"explanation": "Empty sublists are ignored while [-2, -1] and [0, 3] merge into [-2, -1, 0, 3]."}
+  ],
+  "timeComplexity": "O(N log k)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "mergeKLists",
+    "params": [
+      {"name": "lists", "type": "ListNode[]"}
+    ],
+    "returns": "ListNode"
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "title": "Rotting Oranges",
+  "difficulty": "Medium",
+  "subtopic": "Flood Fill",
+  "companies": ["Amazon", "Microsoft", "Google", "Meta", "Uber", "Bloomberg"],
+  "leetcode": 994,
+  "description": "You are given an `m x n` grid where each cell can have one of three values:\n\n- `0` representing an empty cell,\n- `1` representing a fresh orange, or\n- `2` representing a rotten orange.\n\nEvery minute, any fresh orange that is **4-directionally adjacent** (up, down, left, or right) to a rotten orange becomes rotten.\n\nReturn the **minimum number of minutes** that must elapse until no cell has a fresh orange. If this is impossible, return `-1`.",
+  "constraints": [
+    "m == grid.length",
+    "n == grid[i].length",
+    "1 <= m, n <= 100",
+    "grid[i][j] is 0, 1, or 2."
+  ],
+  "hints": [
+    "All initially rotten oranges spread simultaneously every minute, which naturally models a multi-source Breadth-First Search (BFS).",
+    "Initialize the BFS queue with the coordinates of every cell containing `2`, and keep a counter of how many fresh oranges (`1`) remain.",
+    "Process the queue level by level (one level per minute), marking newly reached fresh oranges as rotten and decrementing the fresh counter. When the BFS ends, return the elapsed minutes if `fresh == 0`, otherwise `-1`."
+  ],
+  "examples": [
+    {"explanation": "Minute 1 rots (0,1) and (1,0); minute 2 rots (0,2) and (1,1); minute 3 rots (2,1); minute 4 rots (2,2). All fresh oranges are rotten after 4 minutes."},
+    {"explanation": "The fresh orange in the bottom-left corner (row 2, col 0) is never reached because rotting spreads only 4-directionally."},
+    {"explanation": "There are already no fresh oranges at minute 0, so the answer is 0."}
+  ],
+  "timeComplexity": "O(m * n)",
+  "spaceComplexity": "O(m * n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "orangesRotting",
+    "params": [
+      {"name": "grid", "type": "int[][]"}
+    ],
+    "returns": "int"
+  }
+}

@@ -1,0 +1,53 @@
+{
+  "title": "Partition to K Equal Sum Subsets",
+  "difficulty": "Medium",
+  "subtopic": "Constraint Pruning",
+  "companies": [
+    "Google",
+    "Amazon",
+    "Meta",
+    "Microsoft",
+    "LinkedIn",
+    "Apple"
+  ],
+  "leetcode": 698,
+  "description": "Given an integer array `nums` and an integer `k`, return `true` if it is possible to divide this array into `k` non-empty subsets whose sums are all equal, and `false` otherwise.\n\nEvery element of `nums` must be assigned to exactly one of the `k` subsets.",
+  "constraints": [
+    "1 <= k <= nums.length <= 16",
+    "1 <= nums[i] <= 10^4"
+  ],
+  "hints": [
+    "First check quick necessary conditions: the total sum must be divisible by k, and the largest element cannot exceed target = sum(nums) / k.",
+    "Sort nums in descending order so larger elements fail early, and fill one bucket to target at a time. When starting a new empty bucket, force the first unused element into it to eliminate k! permutations of identical buckets.",
+    "Because n <= 16, represent the set of used elements as a bitmask and memoize failed bitmasks (the current bucket's partial sum is uniquely determined by the bitmask as usedSum % target)."
+  ],
+  "examples": [
+    {
+      "explanation": "The array sums to 20 and can be partitioned into 4 subsets of sum 5: (5), (1, 4), (2, 3), and (2, 3)."
+    },
+    {
+      "explanation": "The total sum is 10, which is not divisible by k = 3, so no equal-sum partition exists."
+    },
+    {
+      "explanation": "Although 2+2+2+2+3+4+5 = 20 is divisible by 4 (target 5), the four 2s cannot all be combined into subsets of sum 5 with the remaining elements."
+    }
+  ],
+  "timeComplexity": "O(n * 2^n)",
+  "spaceComplexity": "O(2^n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "canPartitionKSubsets",
+    "params": [
+      {
+        "name": "nums",
+        "type": "int[]"
+      },
+      {
+        "name": "k",
+        "type": "int"
+      }
+    ],
+    "returns": "boolean"
+  }
+}

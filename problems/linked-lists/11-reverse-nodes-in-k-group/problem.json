@@ -1,0 +1,34 @@
+{
+  "title": "Reverse Nodes in k-Group",
+  "difficulty": "Hard",
+  "subtopic": "Reversal",
+  "companies": ["Amazon", "Google", "Meta", "Microsoft", "Apple", "Bloomberg"],
+  "leetcode": 25,
+  "description": "Given the `head` of a singly linked list and a positive integer `k`, reverse the nodes of the list `k` at a time, and return the modified list.\n\n`k` is a positive integer and is less than or equal to the length of the linked list. If the number of nodes is not a multiple of `k`, then the left-out nodes at the end should remain in their original order.\n\nYou may not alter the values inside the list's nodes—only the node links themselves should be rearranged. Can you solve the problem in `O(1)` extra memory space?",
+  "constraints": [
+    "The number of nodes in the list is n.",
+    "1 <= k <= n <= 5000",
+    "0 <= Node.val <= 1000"
+  ],
+  "hints": [
+    "Use a dummy node before `head` and maintain a pointer `groupPrev` to the node right before the next k-sized group.",
+    "Before reversing a group, walk `k` steps ahead from `groupPrev` to find `kth`. If fewer than `k` nodes remain, stop immediately so the tail stays untouched.",
+    "Reverse the pointers inside `[groupPrev.next .. kth]` in-place so the old head of the group points to `kth.next`, connect `groupPrev.next` to `kth`, and advance `groupPrev` to the old head (now the tail of the reversed group)."
+  ],
+  "examples": [
+    {"explanation": "Groups of size 2 are [1, 2] -> [2, 1] and [3, 4] -> [4, 3]; the leftover node [5] remains in place."},
+    {"explanation": "The first group of size 3 is [1, 2, 3] -> [3, 2, 1]; only 2 nodes [4, 5] remain, so they stay in original order."}
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "reverseKGroup",
+    "params": [
+      {"name": "head", "type": "ListNode"},
+      {"name": "k", "type": "int"}
+    ],
+    "returns": "ListNode"
+  }
+}

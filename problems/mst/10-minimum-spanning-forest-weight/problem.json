@@ -1,0 +1,44 @@
+{
+  "title": "Minimum Spanning Forest Weight",
+  "difficulty": "Medium",
+  "subtopic": "Kruskal Algorithm",
+  "companies": [
+    "Google",
+    "Amazon",
+    "Microsoft"
+  ],
+  "description": "Given an undirected weighted graph that may be disconnected, return the minimum total weight of a spanning forest: a minimum spanning tree for each connected component. Ignore self-loops and redundant edges.",
+  "constraints": [
+    "1 <= n <= 10^4",
+    "0 <= edges.length <= 10^5",
+    "0 <= edge weight <= 10^6"
+  ],
+  "hints": [
+    "Sort candidate edges by weight and use a disjoint-set structure to track connected components.",
+    "Respect the stated tie-breaking rule and handle disconnected graphs if allowed."
+  ],
+  "examples": [
+    {
+      "input": "n = 4, edges = [[0,1,1],[1,2,2],[0,2,4]]",
+      "output": "3"
+    }
+  ],
+  "timeComplexity": "O(E log E)",
+  "spaceComplexity": "O(V+E)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "minimumForestWeight",
+    "params": [
+      {
+        "name": "n",
+        "type": "int"
+      },
+      {
+        "name": "edges",
+        "type": "int[][]"
+      }
+    ],
+    "returns": "int"
+  }
+}

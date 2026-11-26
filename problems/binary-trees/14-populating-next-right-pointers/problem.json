@@ -1,0 +1,48 @@
+{
+  "title": "Populating Next Right Pointers in Each Node",
+  "difficulty": "Medium",
+  "subtopic": "Level-Order BFS",
+  "companies": [
+    "Amazon",
+    "Microsoft",
+    "Meta",
+    "Google",
+    "Bloomberg"
+  ],
+  "leetcode": 116,
+  "description": "You are given a **perfect binary tree** where all leaves are on the same level, and every parent has two children. The binary tree has the following node definition:\n\n```text\nNode {\n  int val;\n  Node left;\n  Node right;\n  Node next;\n}\n```\n\nPopulate each `next` pointer to point to its next right node on the same level. If there is no next right node, the `next` pointer should be set to `null`. Initially, all `next` pointers are set to `null`.\n\nReturn the original `root` node without altering `val`, `left`, or `right` pointers. In the serialized output, each level is traversed by following `next` pointers starting from the leftmost node, with `\"#\"` signifying the end of each level.\n\n**Follow-up:** Solve it using only `O(1)` extra space (no queue or recursion stack).",
+  "constraints": [
+    "The number of nodes in the tree is in the range [0, 2^12 - 1].",
+    "-1000 <= Node.val <= 1000",
+    "The tree is a perfect binary tree (every level is completely filled)."
+  ],
+  "hints": [
+    "A straightforward level-order BFS with a queue links each node to the next node popped on the same level in O(n) time and O(n) space.",
+    "To eliminate the queue and achieve O(1) extra space, observe that once level `L` has its `next` pointers established, level `L` acts as a linked list that lets you wire all `next` pointers on level `L + 1`.",
+    "For each node `head` on the current level, set `head.left.next = head.right`, and if `head.next` exists, set `head.right.next = head.next.left`. Then advance to the next level via `leftmost = leftmost.left`."
+  ],
+  "examples": [
+    {
+      "explanation": "Level 0: 1 -> null; Level 1: 2 -> 3 -> null; Level 2: 4 -> 5 -> 6 -> 7 -> null."
+    },
+    {
+      "explanation": "An empty tree returns null, serialized as []."
+    },
+    {
+      "explanation": "A single-node perfect tree has 0 -> null on level 0."
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "adapter",
+    "inputs": [
+      {
+        "name": "root",
+        "type": "List<Integer>",
+        "description": "Level-order array of a perfect binary tree (length 0 or 2^h - 1)"
+      }
+    ]
+  }
+}

@@ -1,0 +1,49 @@
+{
+  "title": "First Unique Character in a String",
+  "difficulty": "Easy",
+  "subtopic": "Frequency Counting",
+  "companies": [
+    "Amazon",
+    "Bloomberg",
+    "Microsoft",
+    "Google",
+    "Goldman Sachs",
+    "Apple"
+  ],
+  "leetcode": 387,
+  "description": "Given a string `s`, find the **first non-repeating character** in it and return its 0-based index. If no character appears exactly once, return `-1`.",
+  "constraints": [
+    "1 <= s.length <= 10^5",
+    "s consists of only lowercase English letters."
+  ],
+  "hints": [
+    "Count the total frequency of each of the 26 lowercase English letters in a first pass over the string.",
+    "In a second pass from left to right, return the first index whose character has a total frequency of 1.",
+    "Because the alphabet size is fixed at 26, a length-26 integer array uses O(1) extra space."
+  ],
+  "examples": [
+    {
+      "explanation": "'l' at index 0 is the first character that does not repeat anywhere in the string."
+    },
+    {
+      "explanation": "'l', 'o', and 'e' all repeat; 'v' at index 2 is the first unique character."
+    },
+    {
+      "explanation": "Every character ('a' and 'b') appears twice, so return -1."
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "firstUniqChar",
+    "params": [
+      {
+        "name": "s",
+        "type": "String"
+      }
+    ],
+    "returns": "int"
+  }
+}

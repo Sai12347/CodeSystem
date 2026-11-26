@@ -1,0 +1,45 @@
+{
+  "title": "Maximum Nesting Depth of Parentheses",
+  "difficulty": "Easy",
+  "subtopic": "Valid Parentheses",
+  "companies": [
+    "Amazon",
+    "Bloomberg",
+    "Apple"
+  ],
+  "description": "Given a valid parentheses string `s` (which may also contain digits and arithmetic operators `'+'`, `'-'`, `'*'`, `'/'`), return the maximum nesting depth of `s`.\n\nThe nesting depth at any position is the number of enclosing pairs of parentheses surrounding that position. If `s` contains no parentheses, its nesting depth is `0`.",
+  "constraints": [
+    "1 <= s.length <= 10^4",
+    "s consists of digits '0'-'9', operators '+', '-', '*', '/', and parentheses '(' and ')'.",
+    "It is guaranteed that s is a valid parentheses string."
+  ],
+  "hints": [
+    "Each '(' increases the current nesting depth by 1, and each ')' decreases it by 1.",
+    "Track the running depth across a single left-to-right scan and record its maximum value."
+  ],
+  "examples": [
+    {
+      "explanation": "The digit 8 lies inside 3 nested pairs of parentheses."
+    },
+    {
+      "explanation": "The digit 3 lies inside 3 nested pairs of parentheses."
+    },
+    {
+      "explanation": "There are no parentheses in \"1+2*3\", so the maximum nesting depth is 0."
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "maxDepth",
+    "params": [
+      {
+        "name": "s",
+        "type": "String"
+      }
+    ],
+    "returns": "int"
+  }
+}

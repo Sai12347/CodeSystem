@@ -1,0 +1,44 @@
+{
+  "title": "Longest Bitwise-Disjoint Subarray",
+  "difficulty": "Medium",
+  "subtopic": "Counting Bits",
+  "companies": [
+    "Google",
+    "Amazon",
+    "Bloomberg"
+  ],
+  "description": "You are given an array `nums` consisting of positive integers. A contiguous subarray of `nums` is called bitwise-disjoint if the bitwise AND of every pair of elements at different indices within the subarray equals `0`. Return the length of the longest bitwise-disjoint subarray (every single-element subarray is trivially bitwise-disjoint).",
+  "constraints": [
+    "1 <= nums.length <= 10^5",
+    "1 <= nums[i] <= 10^9"
+  ],
+  "hints": [
+    "In a bitwise-disjoint subarray, no two elements may share a `1` at the same bit position, so the bitwise OR of the window captures every currently occupied bit.",
+    "Use a sliding window with a bitmask `used`: while `used & nums[right] != 0`, remove `nums[left]` via `used ^= nums[left]` and advance `left`."
+  ],
+  "examples": [
+    {
+      "explanation": "The subarray [3, 8, 48] has 3&8=0, 3&48=0, and 8&48=0, giving length 3."
+    },
+    {
+      "explanation": "Every adjacent pair shares at least one set bit, so the longest valid subarray has length 1."
+    },
+    {
+      "explanation": "All five powers of two are pairwise disjoint, giving length 5."
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "longestDisjointSubarray",
+    "params": [
+      {
+        "name": "nums",
+        "type": "int[]"
+      }
+    ],
+    "returns": "int"
+  }
+}

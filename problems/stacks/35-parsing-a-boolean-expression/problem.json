@@ -1,0 +1,46 @@
+{
+  "title": "Parsing a Boolean Expression",
+  "difficulty": "Hard",
+  "subtopic": "Expression Parsing",
+  "companies": [
+    "Google",
+    "Meta",
+    "Amazon",
+    "Microsoft"
+  ],
+  "description": "A *boolean expression* is an expression that evaluates to either `true` or `false`. It takes one of the following forms:\n- `'t'` evaluates to `true`.\n- `'f'` evaluates to `false`.\n- `'!(subExpr)'` evaluates to the logical NOT of the inner expression `subExpr`.\n- `'&(subExpr1,subExpr2,...)'` evaluates to the logical AND of one or more comma-separated inner expressions.\n- `'|(subExpr1,subExpr2,...)'` evaluates to the logical OR of one or more comma-separated inner expressions.\n\nGiven a valid boolean expression string `expression`, return its boolean evaluation.",
+  "constraints": [
+    "1 <= expression.length <= 2 * 10^4",
+    "expression consists of '(', ')', '&', '|', '!', 't', 'f', and ','.",
+    "expression is guaranteed to be a valid boolean expression."
+  ],
+  "hints": [
+    "Ignore commas and push operators, '(', 't', and 'f' onto a stack.",
+    "Whenever you encounter ')', pop boolean operands until '(', pop the operator just before '(', evaluate the subexpression, and push 't' or 'f' back onto the stack."
+  ],
+  "examples": [
+    {
+      "explanation": "|(f) evaluates to false, and &(false) evaluates to false."
+    },
+    {
+      "explanation": "|(f,f,f,t) contains at least one 't', so logical OR returns true."
+    },
+    {
+      "explanation": "&(f,t) evaluates to false, and applying logical NOT yields true."
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "parseBoolExpr",
+    "params": [
+      {
+        "name": "expression",
+        "type": "String"
+      }
+    ],
+    "returns": "boolean"
+  }
+}

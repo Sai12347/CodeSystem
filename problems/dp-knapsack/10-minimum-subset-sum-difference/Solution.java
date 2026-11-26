@@ -1,0 +1,1 @@
+class Solution { public int minimumDifference(int[]a){int sum=0;for(int x:a)sum+=x;boolean[]d=new boolean[sum/2+1];d[0]=true;for(int x:a)for(int s=sum/2;s>=x;s--)d[s]|=d[s-x];for(int s=sum/2;s>=0;s--)if(d[s])return sum-2*s;return sum;} }

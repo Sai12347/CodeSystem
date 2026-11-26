@@ -1,0 +1,54 @@
+{
+  "title": "Path Sum III",
+  "difficulty": "Medium",
+  "subtopic": "Path Sums",
+  "companies": [
+    "Amazon",
+    "Google",
+    "Meta",
+    "Microsoft",
+    "Bloomberg",
+    "Uber"
+  ],
+  "leetcode": 437,
+  "description": "Given the `root` of a binary tree and an integer `targetSum`, return the number of paths where the sum of the values along the path equals `targetSum`.\n\nA valid path does **not** need to start at the root or end at a leaf, but it must go **downwards** (traveling only from parent nodes to child nodes) and contain at least one node.\n\nNote that intermediate path sums can exceed the 32-bit signed integer range even though the final count of valid paths fits in a 32-bit signed integer.",
+  "constraints": [
+    "0 <= number of nodes <= 1000",
+    "-10^9 <= Node.val <= 10^9",
+    "-10^9 <= targetSum <= 10^9"
+  ],
+  "hints": [
+    "A brute-force approach starts a DFS from every node to count downward paths summing to `targetSum`, taking O(n^2) time in skewed trees.",
+    "Think of each root-to-node path as a 1D array: the number of downward paths ending at the current node with sum `targetSum` equals the number of ancestor prefix sums equal to `currentSum - targetSum`.",
+    "Maintain a hash map of prefix sum frequencies during DFS (initialized with `{0: 1}`), decrementing the current prefix sum's count when backtracking so sibling subtrees don't interfere. Use 64-bit integers (`long` in Java) for prefix sums to prevent overflow."
+  ],
+  "examples": [
+    {
+      "explanation": "The three valid downward paths summing to 8 are: 5 -> 3, 5 -> 2 -> 1, and -3 -> 11."
+    },
+    {
+      "explanation": "The three valid downward paths summing to 22 are: 5 -> 4 -> 11 -> 2, 5 -> 8 -> 4 -> 5, and 4 -> 11 -> 7."
+    },
+    {
+      "explanation": "An empty tree contains no paths, so return 0."
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "pathSum",
+    "params": [
+      {
+        "name": "root",
+        "type": "TreeNode"
+      },
+      {
+        "name": "targetSum",
+        "type": "int"
+      }
+    ],
+    "returns": "int"
+  }
+}

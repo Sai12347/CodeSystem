@@ -1,0 +1,1 @@
+class Solution { int max;Boolean[] memo;boolean win(int mask,int rem){if(memo[mask]!=null)return memo[mask];for(int x=1;x<=max;x++){int b=1<<(x-1);if((mask&b)==0&&(x>=rem||!win(mask|b,rem-x)))return memo[mask]=true;}return memo[mask]=false;}public boolean canIWin(int m,int t){if(t<=0)return true;if(m*(m+1)/2<t)return false;max=m;memo=new Boolean[1<<m];return win(0,t);} }

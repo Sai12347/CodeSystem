@@ -1,0 +1,1 @@
+class Solution { public boolean canPlaceFlowers(int[] b,int n) { if(n==0)return true; int c=0; for(int i=0;i<b.length;i++)if(b[i]==0&&(i==0||b[i-1]==0)&&(i==b.length-1||b[i+1]==0)){c++;if(c>=n)return true;} return false; } }

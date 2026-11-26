@@ -1,0 +1,44 @@
+{
+  "title": "X Matrix Validation",
+  "difficulty": "Easy",
+  "subtopic": "Simulation",
+  "companies": [
+    "Amazon",
+    "Google",
+    "Microsoft"
+  ],
+  "description": "A square matrix is an X matrix when every cell on either main diagonal is non-zero and every other cell is zero. For odd sizes, the center belongs to both diagonals. Given a square integer matrix `grid`, return whether it is an X matrix. Input: `grid`. Output: true or false.",
+  "constraints": [
+    "1 <= grid.length <= 1000",
+    "grid is square",
+    "-100000 <= grid[i][j] <= 100000"
+  ],
+  "hints": [
+    "Check each cell using its row and column relationships.",
+    "Handle single-row, single-column, tie, and center-cell cases explicitly."
+  ],
+  "examples": [
+    {
+      "input": "matrix = [[2, 0, 1], [0, 3, 0], [4, 0, 5]]",
+      "output": "true"
+    },
+    {
+      "input": "matrix = [[5, 0, 0], [0, 0, 0], [0, 0, 5]]",
+      "output": "false"
+    }
+  ],
+  "timeComplexity": "O(n^2)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "checkXMatrix",
+    "params": [
+      {
+        "name": "matrix",
+        "type": "int[][]"
+      }
+    ],
+    "returns": "boolean"
+  }
+}

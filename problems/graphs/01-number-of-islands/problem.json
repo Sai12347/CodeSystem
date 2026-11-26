@@ -1,0 +1,35 @@
+{
+  "title": "Number of Islands",
+  "difficulty": "Medium",
+  "subtopic": "Connected Components",
+  "companies": ["Amazon", "Google", "Meta", "Microsoft", "Bloomberg", "Uber"],
+  "leetcode": 200,
+  "description": "Given an `m x n` 2D binary `grid` representing a map of `'1'`s (land) and `'0'`s (water), return the total number of **islands**.\n\nAn **island** is surrounded by water and is formed by connecting adjacent land cells horizontally or vertically (4-directionally). Diagonal land cells are **not** considered connected. You may assume all four edges of the grid are surrounded by water.",
+  "constraints": [
+    "m == grid.length",
+    "n == grid[i].length",
+    "1 <= m, n <= 300",
+    "grid[i][j] is '0' or '1'."
+  ],
+  "hints": [
+    "Treat the grid as an undirected graph where each `'1'` cell is a vertex connected to its 4-directional `'1'` neighbors; the answer is the number of connected components.",
+    "Scan every cell in the grid. Whenever you encounter an unvisited `'1'`, increment the island count and run BFS or DFS to mark all cells in that island as visited.",
+    "To avoid hitting recursion limits on large snake-shaped islands, prefer an iterative BFS queue or an explicit DFS stack."
+  ],
+  "examples": [
+    {"explanation": "All nine land cells are connected horizontally or vertically into a single island."},
+    {"explanation": "There is a 2x2 island in the top-left, a single-cell island at (2, 2) (diagonals do not connect), and a 1x2 island in the bottom-right."},
+    {"explanation": "In a 3x3 checkerboard of land and water, none of the five `'1'` cells share a horizontal or vertical edge, so each is its own island."}
+  ],
+  "timeComplexity": "O(m * n)",
+  "spaceComplexity": "O(m * n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "numIslands",
+    "params": [
+      {"name": "grid", "type": "char[][]"}
+    ],
+    "returns": "int"
+  }
+}

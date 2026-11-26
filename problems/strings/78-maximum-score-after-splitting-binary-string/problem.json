@@ -1,0 +1,44 @@
+{
+  "title": "Maximum Score After Splitting a String",
+  "difficulty": "Easy",
+  "subtopic": "Substrings",
+  "companies": [
+    "Amazon",
+    "Microsoft",
+    "Apple"
+  ],
+  "description": "Given a binary string `s` of length at least 2 consisting of `'0'` and `'1'`, return the maximum score achievable after splitting `s` into two non-empty substrings (a left prefix and a right suffix). The score of a split is the number of `'0'`s in the left substring plus the number of `'1'`s in the right substring.",
+  "constraints": [
+    "2 <= s.length <= 10^4",
+    "s[i] is either '0' or '1'."
+  ],
+  "hints": [
+    "Total score = zeros_left + (total_ones - ones_left) = total_ones + (zeros_left - ones_left).",
+    "Precompute total_ones (or track zeros_left - ones_left in a single pass up to index n - 2)."
+  ],
+  "examples": [
+    {
+      "explanation": "Splitting \"011101\" into \"0\" and \"11101\" gives 1 zero + 4 ones = 5."
+    },
+    {
+      "explanation": "Splitting \"00111\" into \"00\" and \"111\" gives 2 zeros + 3 ones = 5."
+    },
+    {
+      "explanation": "Splitting \"1111\" into \"1\" and \"111\" gives 0 zeros + 3 ones = 3."
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "maxScore",
+    "params": [
+      {
+        "name": "s",
+        "type": "String"
+      }
+    ],
+    "returns": "int"
+  }
+}

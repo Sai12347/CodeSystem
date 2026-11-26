@@ -1,0 +1,44 @@
+{
+  "title": "Sum of Distances in Tree",
+  "difficulty": "Hard",
+  "subtopic": "Tree Rerooting",
+  "companies": [
+    "Google",
+    "Amazon",
+    "Microsoft"
+  ],
+  "description": "Given an undirected tree with nodes numbered 0 through `n - 1`, return an array where each entry is the sum of shortest-path distances from that node to every other node.",
+  "constraints": [
+    "1 <= n <= 3 * 10^4",
+    "edges.length == n - 1",
+    "The edges form a connected tree"
+  ],
+  "hints": [
+    "Use a compact state to summarize each subtree or set of chosen items.",
+    "Combine partial states and cache repeated subproblems."
+  ],
+  "examples": [
+    {
+      "input": "n = 6, edges = [[0,1],[0,2],[2,3],[2,4],[2,5]]",
+      "output": "[8,12,6,10,10,10]"
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "sumOfDistancesInTree",
+    "params": [
+      {
+        "name": "n",
+        "type": "int"
+      },
+      {
+        "name": "edges",
+        "type": "int[][]"
+      }
+    ],
+    "returns": "int[]"
+  }
+}

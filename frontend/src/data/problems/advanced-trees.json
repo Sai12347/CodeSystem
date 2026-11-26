@@ -1,0 +1,570 @@
+[
+ {
+  "id": "range-sum-query-mutable",
+  "order": 1,
+  "topicId": "advanced-trees",
+  "topic": "Segment Trees & Fenwick",
+  "title": "Range Sum Query - Mutable",
+  "slug": "range-sum-query-mutable",
+  "difficulty": "Medium",
+  "subtopic": "Fenwick Tree",
+  "companies": [
+   "Google",
+   "Amazon",
+   "Microsoft"
+  ],
+  "leetcode": null,
+  "description": "Design a structure over an integer array that supports point updates and inclusive range-sum queries. Implement `NumArray(int[] nums)`, `update(index, value)` to replace one element, and `sumRange(left, right)` to return the sum from index `left` through `right`. Indices are zero-based.",
+  "constraints": [
+   "1 <= nums.length <= 3 * 10^4",
+   "-100 <= nums[i], value <= 100",
+   "0 <= index <= nums.length - 1",
+   "0 <= left <= right <= nums.length - 1",
+   "At most 3 * 10^4 method calls are made."
+  ],
+  "hints": [
+   "Keep the original values so an update can be converted into a delta.",
+   "A Fenwick tree supports both point updates and prefix sums in O(log n)."
+  ],
+  "timeComplexity": "O(log n) per operation",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "examples": [
+   {
+    "input": "[\"NumArray\",\"sumRange\",\"update\",\"sumRange\",\"update\",\"sumRange\"]\n[[[1,3,5]],[0,2],[1,2],[0,2],[2,0],[0,2]]",
+    "output": "[null,9,null,8,null,3]"
+   },
+   {
+    "input": "[\"NumArray\",\"sumRange\",\"update\",\"sumRange\"]\n[[[-2,0,3,-5,2,-1]],[0,2],[2,1],[0,2]]",
+    "output": "[null,1,null,-1]"
+   },
+   {
+    "input": "[\"NumArray\",\"sumRange\"]\n[[[7]],[0,0]]",
+    "output": "[null,7]"
+   }
+  ],
+  "starterCode": {
+   "java": "class NumArray {\n    public NumArray(int[] nums) {\n        \n    }\n\n    public void update(int index, int value) {\n        \n    }\n\n    public int sumRange(int left, int right) {\n        return 0;\n    }\n}\n",
+   "python": "class NumArray:\n    def __init__(self, nums: List[int]):\n        pass\n\n    def update(self, index: int, value: int) -> None:\n        pass\n\n    def sumRange(self, left: int, right: int) -> int:\n        pass\n"
+  },
+  "solutionCode": {
+   "java": "class NumArray {\n    private final int[] values;\n    private final int[] bit;\n    public NumArray(int[] nums) {\n        values = nums.clone(); bit = new int[nums.length + 1];\n        for (int i = 0; i < nums.length; i++) add(i + 1, nums[i]);\n    }\n    private void add(int i, int delta) { for (; i < bit.length; i += i & -i) bit[i] += delta; }\n    private int prefix(int i) { int sum = 0; for (; i > 0; i -= i & -i) sum += bit[i]; return sum; }\n    public void update(int index, int value) { int delta = value - values[index]; values[index] = value; add(index + 1, delta); }\n    public int sumRange(int left, int right) { return prefix(right + 1) - prefix(left); }\n}\n",
+   "python": "class NumArray:\n    def __init__(self, nums: List[int]):\n        self.values = nums[:]\n        self.bit = [0] * (len(nums) + 1)\n        for i, value in enumerate(nums):\n            self._add(i + 1, value)\n\n    def _add(self, i: int, delta: int) -> None:\n        while i < len(self.bit):\n            self.bit[i] += delta\n            i += i & -i\n\n    def _prefix(self, i: int) -> int:\n        total = 0\n        while i:\n            total += self.bit[i]\n            i -= i & -i\n        return total\n\n    def update(self, index: int, value: int) -> None:\n        delta = value - self.values[index]\n        self.values[index] = value\n        self._add(index + 1, delta)\n\n    def sumRange(self, left: int, right: int) -> int:\n        return self._prefix(right + 1) - self._prefix(left)\n"
+  },
+  "sampleArray": [],
+  "visibleTestCount": 3,
+  "hiddenTestCount": 8,
+  "number": 1
+ },
+ {
+  "id": "range-minimum-query-lazy",
+  "order": 2,
+  "topicId": "advanced-trees",
+  "topic": "Segment Trees & Fenwick",
+  "title": "Range Minimum Query with Range Updates",
+  "slug": "range-minimum-query-lazy",
+  "difficulty": "Hard",
+  "subtopic": "Lazy Propagation",
+  "companies": [
+   "Google",
+   "Amazon",
+   "Microsoft"
+  ],
+  "leetcode": null,
+  "description": "Design a structure over an integer array that supports adding a value to every element in an inclusive index range and returning the minimum value in an inclusive index range. Implement `RangeMinTree(int[] nums)`, `rangeAdd(left, right, delta)`, and `minRange(left, right)`. Indices are zero-based.",
+  "constraints": [
+   "1 <= nums.length <= 10^5",
+   "-10^6 <= nums[i] <= 10^6",
+   "-10^6 <= delta <= 10^6",
+   "0 <= left <= right < nums.length",
+   "At most 10^5 operations are called."
+  ],
+  "hints": [
+   "A segment tree stores the minimum for each interval.",
+   "Store pending range additions as lazy values and push them to child intervals only when needed."
+  ],
+  "timeComplexity": "O(log n) per operation",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "examples": [
+   {
+    "input": "[\"RangeMinTree\",\"minRange\",\"rangeAdd\",\"minRange\"]\n[[[1,3,5,7]],[0,3],[1,2,2],[0,3]]",
+    "output": "[null,1,null,1]"
+   },
+   {
+    "input": "[\"RangeMinTree\",\"minRange\",\"rangeAdd\",\"minRange\"]\n[[[-2,4,0]],[0,2],[0,1,5],[0,2]]",
+    "output": "[null,-2,null,0]"
+   },
+   {
+    "input": "[\"RangeMinTree\",\"rangeAdd\",\"minRange\"]\n[[[5]],[0,0,-3],[0,0]]",
+    "output": "[null,null,2]"
+   }
+  ],
+  "starterCode": {
+   "java": "class RangeMinTree {\n    public RangeMinTree(int[] nums) {\n        \n    }\n\n    public void rangeAdd(int left, int right, int delta) {\n        \n    }\n\n    public int minRange(int left, int right) {\n        return 0;\n    }\n}\n",
+   "python": "class RangeMinTree:\n    def __init__(self, nums: List[int]):\n        pass\n\n    def rangeAdd(self, left: int, right: int, delta: int) -> None:\n        pass\n\n    def minRange(self, left: int, right: int) -> int:\n        pass\n"
+  },
+  "solutionCode": {
+   "java": "class RangeMinTree {\n    private final int n;\n    private final int[] tree,lazy;\n    public RangeMinTree(int[] nums) { n=nums.length;tree=new int[4*n];lazy=new int[4*n];build(1,0,n-1,nums); }\n    private void build(int p,int l,int r,int[] a) { if(l==r){tree[p]=a[l];return;}int m=(l+r)/2;build(p*2,l,m,a);build(p*2+1,m+1,r,a);tree[p]=Math.min(tree[p*2],tree[p*2+1]); }\n    private void apply(int p,int x) { tree[p]+=x;lazy[p]+=x; }\n    private void push(int p) { if(lazy[p]!=0){apply(p*2,lazy[p]);apply(p*2+1,lazy[p]);lazy[p]=0;} }\n    private void add(int p,int l,int r,int ql,int qr,int x) { if(ql<=l&&r<=qr){apply(p,x);return;}push(p);int m=(l+r)/2;if(ql<=m)add(p*2,l,m,ql,qr,x);if(qr>m)add(p*2+1,m+1,r,ql,qr,x);tree[p]=Math.min(tree[p*2],tree[p*2+1]); }\n    public void rangeAdd(int left,int right,int delta) { add(1,0,n-1,left,right,delta); }\n    private int query(int p,int l,int r,int ql,int qr) { if(ql<=l&&r<=qr)return tree[p];push(p);int m=(l+r)/2,ans=Integer.MAX_VALUE;if(ql<=m)ans=Math.min(ans,query(p*2,l,m,ql,qr));if(qr>m)ans=Math.min(ans,query(p*2+1,m+1,r,ql,qr));return ans; }\n    public int minRange(int left,int right) { return query(1,0,n-1,left,right); }\n}\n",
+   "python": "class RangeMinTree:\n    def __init__(self, nums: List[int]):\n        self.n=len(nums)\n        self.tree=[0]*(4*self.n)\n        self.lazy=[0]*(4*self.n)\n        self._build(1,0,self.n-1,nums)\n\n    def _build(self,p,l,r,a):\n        if l==r:\n            self.tree[p]=a[l]\n            return\n        m=(l+r)//2\n        self._build(p*2,l,m,a);self._build(p*2+1,m+1,r,a)\n        self.tree[p]=min(self.tree[p*2],self.tree[p*2+1])\n\n    def _apply(self,p,value):\n        self.tree[p]+=value;self.lazy[p]+=value\n\n    def _push(self,p):\n        if self.lazy[p]:\n            self._apply(p*2,self.lazy[p]);self._apply(p*2+1,self.lazy[p]);self.lazy[p]=0\n\n    def _add(self,p,l,r,ql,qr,value):\n        if ql<=l and r<=qr:\n            self._apply(p,value);return\n        self._push(p);m=(l+r)//2\n        if ql<=m:self._add(p*2,l,m,ql,qr,value)\n        if qr>m:self._add(p*2+1,m+1,r,ql,qr,value)\n        self.tree[p]=min(self.tree[p*2],self.tree[p*2+1])\n\n    def rangeAdd(self,left: int,right: int,delta: int) -> None:\n        self._add(1,0,self.n-1,left,right,delta)\n\n    def _query(self,p,l,r,ql,qr):\n        if ql<=l and r<=qr:return self.tree[p]\n        self._push(p);m=(l+r)//2;ans=float('inf')\n        if ql<=m:ans=min(ans,self._query(p*2,l,m,ql,qr))\n        if qr>m:ans=min(ans,self._query(p*2+1,m+1,r,ql,qr))\n        return ans\n\n    def minRange(self,left: int,right: int) -> int:\n        return self._query(1,0,self.n-1,left,right)\n"
+  },
+  "sampleArray": [],
+  "visibleTestCount": 3,
+  "hiddenTestCount": 8,
+  "number": 2
+ },
+ {
+  "id": "count-of-smaller-numbers-after-self",
+  "order": 3,
+  "topicId": "advanced-trees",
+  "topic": "Segment Trees & Fenwick",
+  "title": "Count of Smaller Numbers After Self",
+  "slug": "count-of-smaller-numbers-after-self",
+  "difficulty": "Medium",
+  "subtopic": "Inversion Counters",
+  "companies": [
+   "Google",
+   "Amazon",
+   "Microsoft"
+  ],
+  "leetcode": null,
+  "description": "For each index `i`, count values `nums[j]` that are strictly smaller than `nums[i]` for `j > i`. Return the counts in index order.",
+  "constraints": [
+   "0 <= nums.length <= 10^5",
+   "-10^4 <= nums[i] <= 10^4"
+  ],
+  "hints": [
+   "Use a prefix-count structure to answer how many earlier values fall within a value range.",
+   "Coordinate compression lets a Fenwick tree store counts for only values that occur in the input."
+  ],
+  "timeComplexity": "O(n log n)",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "examples": [
+   {
+    "input": "nums = [5,2,6,1]",
+    "output": "[2,1,1,0]"
+   },
+   {
+    "input": "nums = [-1]",
+    "output": "[0]"
+   },
+   {
+    "input": "nums = [0,0]",
+    "output": "[0,0]"
+   }
+  ],
+  "starterCode": {
+   "java": "class Solution {\n    public List<Integer> countSmaller(int[] nums) {\n        // Write your solution here\n        return null;\n    }\n}\n",
+   "python": "class Solution:\n    def countSmaller(self, nums: List[int]) -> List[int]:\n        # Write your solution here\n        pass\n"
+  },
+  "solutionCode": {
+   "java": "class Solution { void add(int[] b,int i){for(;i<b.length;i+=i&-i)b[i]++;} int sum(int[] b,int i){int s=0;for(;i>0;i-=i&-i)s+=b[i];return s;} public List<Integer> countSmaller(int[] a){int[] v=a.clone();Arrays.sort(v);List<Integer> u=new ArrayList<>();for(int x:v)if(u.isEmpty()||u.get(u.size()-1)!=x)u.add(x);int[] b=new int[u.size()+1];Integer[] out=new Integer[a.length];for(int k=a.length-1;k>=0;k--){int r=Collections.binarySearch(u,a[k]);out[k]=sum(b,r);add(b,r+1);}return Arrays.asList(out);} }\n",
+   "python": "class Solution:\n    def countSmaller(self, nums: List[int]) -> List[int]:\n        vals=sorted(set(nums)); bit=[0]*(len(vals)+1); out=[]\n        def add(i):\n            while i<len(bit):bit[i]+=1;i+=i&-i\n        def query(i):\n            s=0\n            while i:s+=bit[i];i-=i&-i\n            return s\n        for x in reversed(nums):\n            r=bisect.bisect_left(vals,x);out.append(query(r));add(r+1)\n        return out[::-1]\n\n"
+  },
+  "sampleArray": [
+   5,
+   2,
+   6,
+   1
+  ],
+  "visibleTestCount": 3,
+  "hiddenTestCount": 8,
+  "number": 3
+ },
+ {
+  "id": "reverse-pairs",
+  "order": 4,
+  "topicId": "advanced-trees",
+  "topic": "Segment Trees & Fenwick",
+  "title": "Reverse Pairs",
+  "slug": "reverse-pairs",
+  "difficulty": "Hard",
+  "subtopic": "Inversion Counters",
+  "companies": [
+   "Google",
+   "Amazon",
+   "Microsoft"
+  ],
+  "leetcode": null,
+  "description": "A reverse pair is a pair of indices `(i, j)` such that `i < j` and `nums[i] > 2 * nums[j]`. Return the number of reverse pairs.",
+  "constraints": [
+   "1 <= nums.length <= 5 * 10^4",
+   "-2^31 <= nums[i] <= 2^31 - 1"
+  ],
+  "hints": [
+   "Use a prefix-count structure to answer how many earlier values fall within a value range.",
+   "Coordinate compression lets a Fenwick tree store counts for only values that occur in the input."
+  ],
+  "timeComplexity": "O(n log n)",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "examples": [
+   {
+    "input": "nums = [1,3,2,3,1]",
+    "output": "2"
+   },
+   {
+    "input": "nums = [2,4,3,5,1]",
+    "output": "3"
+   },
+   {
+    "input": "nums = [1]",
+    "output": "0"
+   }
+  ],
+  "starterCode": {
+   "java": "class Solution {\n    public int reversePairs(int[] nums) {\n        // Write your solution here\n        return 0;\n    }\n}\n",
+   "python": "class Solution:\n    def reversePairs(self, nums: List[int]) -> int:\n        # Write your solution here\n        pass\n"
+  },
+  "solutionCode": {
+   "java": "class Solution { int sum(int[] b,int i){int s=0;for(;i>0;i-=i&-i)s+=b[i];return s;}void add(int[] b,int i){for(;i<b.length;i+=i&-i)b[i]++;}int upper(int[] a,int n,long x){int l=0,r=n;while(l<r){int m=(l+r)/2;if(a[m]<=x)l=m+1;else r=m;}return l;}public int reversePairs(int[] a){int[] v=a.clone();Arrays.sort(v);int n=0;for(int x:v)if(n==0||v[n-1]!=x)v[n++]=x;int[] b=new int[n+1];int ans=0;for(int k=a.length-1;k>=0;k--){int q=upper(v,n,Math.floorDiv((long)a[k]-1,2));ans+=sum(b,q);int r=Arrays.binarySearch(v,0,n,a[k])+1;add(b,r);}return ans;} }\n\n",
+   "python": "class Solution:\n    def reversePairs(self, nums: List[int]) -> int:\n        vals=sorted(set(nums));bit=[0]*(len(vals)+1);seen=ans=0\n        def query(i):\n            s=0\n            while i:s+=bit[i];i-=i&-i\n            return s\n        for x in reversed(nums):\n            k=bisect.bisect_right(vals,(x-1)//2);ans+=query(k);r=bisect.bisect_left(vals,x)+1\n            while r<len(bit):bit[r]+=1;r+=r&-r\n        return ans\n\n"
+  },
+  "sampleArray": [
+   1,
+   3,
+   2,
+   3,
+   1
+  ],
+  "visibleTestCount": 3,
+  "hiddenTestCount": 9,
+  "number": 4
+ },
+ {
+  "id": "the-skyline-problem",
+  "order": 5,
+  "topicId": "advanced-trees",
+  "topic": "Segment Trees & Fenwick",
+  "title": "The Skyline Problem",
+  "slug": "the-skyline-problem",
+  "difficulty": "Hard",
+  "subtopic": "Range Queries",
+  "companies": [
+   "Google",
+   "Amazon",
+   "Microsoft"
+  ],
+  "leetcode": null,
+  "description": "Each building is `[left, right, height]` and occupies the half-open interval `[left, right)`. Return the skyline as key points `[x, height]`, where the height changes at coordinate `x`. Do not include consecutive points with the same height, and include the final point where the height returns to zero.",
+  "constraints": [
+   "1 <= buildings.length <= 10^4",
+   "0 <= left < right <= 2^31 - 1",
+   "1 <= height <= 2^31 - 1"
+  ],
+  "hints": [
+   "Treat each building edge as a sweep event.",
+   "Maintain a multiset of active heights and emit a point only when the maximum changes."
+  ],
+  "timeComplexity": "O(n log n)",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "examples": [
+   {
+    "input": "buildings = [[2,9,10],[3,7,15],[5,12,12],[15,20,10],[19,24,8]]",
+    "output": "[[2,10],[3,15],[7,12],[12,0],[15,10],[20,8],[24,0]]"
+   },
+   {
+    "input": "buildings = [[0,2,3],[2,5,3]]",
+    "output": "[[0,3],[5,0]]"
+   },
+   {
+    "input": "buildings = [[1,2,1]]",
+    "output": "[[1,1],[2,0]]"
+   }
+  ],
+  "starterCode": {
+   "java": "class Solution {\n    public List<List<Integer>> getSkyline(int[][] buildings) {\n        // Write your solution here\n        return null;\n    }\n}\n",
+   "python": "class Solution:\n    def getSkyline(self, buildings: List[List[int]]) -> List[List[int]]:\n        # Write your solution here\n        pass\n"
+  },
+  "solutionCode": {
+   "java": "class Solution {\n    public List<List<Integer>> getSkyline(int[][] buildings) {\n        int n=buildings.length;int[][] e=new int[2*n][2];int k=0;\n        for(int[] b:buildings){e[k++]=new int[]{b[0],-b[2]};e[k++]=new int[]{b[1],b[2]};}\n        Arrays.sort(e,(a,b)->Integer.compare(a[0],b[0]));TreeMap<Integer,Integer> active=new TreeMap<>();active.put(0,1);\n        List<List<Integer>> out=new ArrayList<>();int prev=0,i=0;\n        while(i<e.length){int x=e[i][0];while(i<e.length&&e[i][0]==x){int h=e[i++][1];if(h<0)active.merge(-h,1,Integer::sum);else{int c=active.get(h)-1;if(c==0)active.remove(h);else active.put(h,c);}}\n            int cur=active.lastKey();if(cur!=prev){out.add(Arrays.asList(x,cur));prev=cur;}\n        }return out;\n    }\n}\n",
+   "python": "class Solution:\n    def getSkyline(self, buildings: List[List[int]]) -> List[List[int]]:\n        events=[]\n        for left,right,height in buildings:\n            events.append((left,-height));events.append((right,height))\n        events.sort();active=Counter({0:1});heap=[0];out=[];i=0;prev=0\n        while i<len(events):\n            x=events[i][0]\n            while i<len(events) and events[i][0]==x:\n                h=events[i][1]\n                if h<0:active[-h]+=1;heapq.heappush(heap,h)\n                else:active[h]-=1\n                i+=1\n            while active[-heap[0]]==0:heapq.heappop(heap)\n            cur=-heap[0]\n            if cur!=prev:out.append([x,cur]);prev=cur\n        return out\n"
+  },
+  "sampleArray": [],
+  "visibleTestCount": 3,
+  "hiddenTestCount": 8,
+  "number": 5
+ },
+ {
+  "id": "my-calendar-iii",
+  "order": 6,
+  "topicId": "advanced-trees",
+  "topic": "Segment Trees & Fenwick",
+  "title": "My Calendar III",
+  "slug": "my-calendar-iii",
+  "difficulty": "Hard",
+  "subtopic": "Range Queries",
+  "companies": [
+   "Google",
+   "Amazon",
+   "Microsoft"
+  ],
+  "leetcode": null,
+  "description": "Implement `MyCalendarThree`. Each `book(start, end)` adds a half-open event interval `[start, end)`. After each booking, return the maximum number of events that overlap at any time.",
+  "constraints": [
+   "0 <= start < end <= 10^9",
+   "At most 400 bookings are made."
+  ],
+  "hints": [
+   "A booking adds +1 at its start and -1 at its end.",
+   "The maximum overlap is the maximum prefix sum of the ordered event deltas."
+  ],
+  "timeComplexity": "O(n) per booking",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "examples": [
+   {
+    "input": "[\"MyCalendarThree\",\"book\",\"book\",\"book\",\"book\",\"book\",\"book\"]\n[[],[10,20],[50,60],[10,40],[5,15],[5,10],[25,55]]",
+    "output": "[null,1,1,2,3,3,3]"
+   },
+   {
+    "input": "[\"MyCalendarThree\",\"book\"]\n[[],[1,2]]",
+    "output": "[null,1]"
+   },
+   {
+    "input": "[\"MyCalendarThree\",\"book\",\"book\",\"book\"]\n[[],[0,10],[10,20],[5,15]]",
+    "output": "[null,1,1,2]"
+   }
+  ],
+  "starterCode": {
+   "java": "class MyCalendarThree {\n    public MyCalendarThree() {\n        \n    }\n\n    public int book(int start, int end) {\n        return 0;\n    }\n}\n",
+   "python": "class MyCalendarThree:\n    def __init__(self):\n        pass\n\n    def book(self, start: int, end: int) -> int:\n        pass\n"
+  },
+  "solutionCode": {
+   "java": "class MyCalendarThree {\n    private final TreeMap<Integer,Integer> delta=new TreeMap<>();\n    public MyCalendarThree() {}\n    public int book(int start,int end) {\n        delta.merge(start,1,Integer::sum);delta.merge(end,-1,Integer::sum);\n        int active=0,best=0;for(int x:delta.values()){active+=x;best=Math.max(best,active);}return best;\n    }\n}\n",
+   "python": "class MyCalendarThree:\n    def __init__(self):\n        self.delta=defaultdict(int)\n\n    def book(self, start: int, end: int) -> int:\n        self.delta[start]+=1;self.delta[end]-=1\n        active=best=0\n        for x in sorted(self.delta):\n            active+=self.delta[x];best=max(best,active)\n        return best\n"
+  },
+  "sampleArray": [],
+  "visibleTestCount": 3,
+  "hiddenTestCount": 8,
+  "number": 6
+ },
+ {
+  "id": "falling-squares",
+  "order": 7,
+  "topicId": "advanced-trees",
+  "topic": "Segment Trees & Fenwick",
+  "title": "Falling Squares",
+  "slug": "falling-squares",
+  "difficulty": "Hard",
+  "subtopic": "Lazy Propagation",
+  "companies": [
+   "Google",
+   "Amazon"
+  ],
+  "leetcode": null,
+  "description": "Squares fall one at a time. Each `positions[i]` is `[left, sideLength]`; the square covers the half-open horizontal interval `[left, left + sideLength)`. It lands on the highest existing square it overlaps, or on the ground if none overlap. Return the maximum stack height after each square falls.",
+  "constraints": [
+   "1 <= positions.length <= 1000",
+   "1 <= sideLength <= 10^6",
+   "0 <= left <= 10^8"
+  ],
+  "hints": [
+   "Coordinate-compress every left and right endpoint into elementary horizontal segments.",
+   "Use a lazy segment tree for range maximum queries and range assignments."
+  ],
+  "timeComplexity": "O(n log n)",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "examples": [
+   {
+    "input": "positions = [[1,2],[2,3],[6,1]]",
+    "output": "[2,5,5]"
+   },
+   {
+    "input": "positions = [[100,100],[200,100]]",
+    "output": "[100,100]"
+   },
+   {
+    "input": "positions = [[1,1]]",
+    "output": "[1]"
+   }
+  ],
+  "starterCode": {
+   "java": "class Solution {\n    public List<Integer> fallingSquares(int[][] positions) {\n        // Write your solution here\n        return null;\n    }\n}\n",
+   "python": "class Solution:\n    def fallingSquares(self, positions: List[List[int]]) -> List[int]:\n        # Write your solution here\n        pass\n"
+  },
+  "solutionCode": {
+   "java": "class Solution {\n    int[] tree,lazy;boolean[] has;\n    void push(int p){if(has[p]){for(int c=2*p;c<=2*p+1;c++){tree[c]=lazy[p];lazy[c]=lazy[p];has[c]=true;}has[p]=false;}}\n    int query(int p,int l,int r,int a,int b){if(a<=l&&r<=b)return tree[p];push(p);int m=(l+r)/2,v=0;if(a<=m)v=Math.max(v,query(p*2,l,m,a,b));if(b>m)v=Math.max(v,query(p*2+1,m+1,r,a,b));return v;}\n    void assign(int p,int l,int r,int a,int b,int v){if(a<=l&&r<=b){tree[p]=v;lazy[p]=v;has[p]=true;return;}push(p);int m=(l+r)/2;if(a<=m)assign(p*2,l,m,a,b,v);if(b>m)assign(p*2+1,m+1,r,a,b,v);tree[p]=Math.max(tree[p*2],tree[p*2+1]);}\n    public List<Integer> fallingSquares(int[][] positions){TreeSet<Integer> set=new TreeSet<>();for(int[]x:positions){set.add(x[0]);set.add(x[0]+x[1]);}List<Integer> c=new ArrayList<>(set);int n=c.size()-1;tree=new int[4*n+4];lazy=new int[4*n+4];has=new boolean[4*n+4];List<Integer> out=new ArrayList<>();int best=0;for(int[]x:positions){int a=Collections.binarySearch(c,x[0]),b=Collections.binarySearch(c,x[0]+x[1])-1;int h=query(1,0,n-1,a,b)+x[1];assign(1,0,n-1,a,b,h);best=Math.max(best,h);out.add(best);}return out;}\n}\n",
+   "python": "class Solution:\n    def fallingSquares(self, positions: List[List[int]]) -> List[int]:\n        coords=sorted({x for left,size in positions for x in (left,left+size)})\n        n=len(coords)-1;tree=[0]*(4*n);lazy=[0]*(4*n);has=[False]*(4*n)\n        def push(p):\n            if has[p]:\n                for c in (p*2,p*2+1):tree[c]=lazy[p];lazy[c]=lazy[p];has[c]=True\n                has[p]=False\n        def query(p,l,r,a,b):\n            if a<=l and r<=b:return tree[p]\n            push(p);m=(l+r)//2;ans=0\n            if a<=m:ans=max(ans,query(p*2,l,m,a,b))\n            if b>m:ans=max(ans,query(p*2+1,m+1,r,a,b))\n            return ans\n        def assign(p,l,r,a,b,v):\n            if a<=l and r<=b:tree[p]=v;lazy[p]=v;has[p]=True;return\n            push(p);m=(l+r)//2\n            if a<=m:assign(p*2,l,m,a,b,v)\n            if b>m:assign(p*2+1,m+1,r,a,b,v)\n            tree[p]=max(tree[p*2],tree[p*2+1])\n        out=[];overall=0\n        for left,size in positions:\n            a=bisect.bisect_left(coords,left);b=bisect.bisect_left(coords,left+size)-1\n            h=query(1,0,n-1,a,b)+size;assign(1,0,n-1,a,b,h);overall=max(overall,h);out.append(overall)\n        return out\n"
+  },
+  "sampleArray": [],
+  "visibleTestCount": 3,
+  "hiddenTestCount": 8,
+  "number": 7
+ },
+ {
+  "id": "range-module",
+  "order": 8,
+  "topicId": "advanced-trees",
+  "topic": "Segment Trees & Fenwick",
+  "title": "Range Module",
+  "slug": "range-module",
+  "difficulty": "Hard",
+  "subtopic": "Lazy Propagation",
+  "companies": [
+   "Google",
+   "Amazon",
+   "Microsoft"
+  ],
+  "leetcode": null,
+  "description": "Implement a data structure that tracks a set of real-number intervals. `addRange(left,right)` adds every point in the half-open interval `[left,right)`. `queryRange(left,right)` returns true only if every point in the interval is currently tracked. `removeRange(left,right)` removes every point in that interval.",
+  "constraints": [
+   "0 <= left < right <= 10^9",
+   "At most 10^3 operations are called."
+  ],
+  "hints": [
+   "Store tracked intervals as sorted, disjoint ranges.",
+   "Merge overlapping ranges on insertion and split ranges when removing an interior segment."
+  ],
+  "timeComplexity": "O(n) per operation",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "examples": [
+   {
+    "input": "[\"RangeModule\",\"addRange\",\"queryRange\",\"removeRange\",\"queryRange\"]\n[[],[10,20],[10,14],[14,16],[10,20]]",
+    "output": "[null,null,true,null,false]"
+   },
+   {
+    "input": "[\"RangeModule\",\"addRange\",\"queryRange\",\"queryRange\"]\n[[],[5,10],[5,10],[5,11]]",
+    "output": "[null,null,true,false]"
+   },
+   {
+    "input": "[\"RangeModule\",\"queryRange\"]\n[[],[1,2]]",
+    "output": "[null,false]"
+   }
+  ],
+  "starterCode": {
+   "java": "class RangeModule {\n    public RangeModule() {\n        \n    }\n\n    public void addRange(int left, int right) {\n        \n    }\n\n    public boolean queryRange(int left, int right) {\n        return false;\n    }\n\n    public void removeRange(int left, int right) {\n        \n    }\n}\n",
+   "python": "class RangeModule:\n    def __init__(self):\n        pass\n\n    def addRange(self, left: int, right: int) -> None:\n        pass\n\n    def queryRange(self, left: int, right: int) -> bool:\n        pass\n\n    def removeRange(self, left: int, right: int) -> None:\n        pass\n"
+  },
+  "solutionCode": {
+   "java": "class RangeModule {\n    private final TreeMap<Integer,Integer> ranges=new TreeMap<>();\n    public RangeModule() {}\n    public void addRange(int left,int right) {\n        Map.Entry<Integer,Integer> e=ranges.floorEntry(left);\n        if(e!=null&&e.getValue()>=left){left=e.getKey();right=Math.max(right,e.getValue());ranges.remove(e.getKey());}\n        e=ranges.ceilingEntry(left);while(e!=null&&e.getKey()<=right){right=Math.max(right,e.getValue());ranges.remove(e.getKey());e=ranges.ceilingEntry(left);}\n        ranges.put(left,right);\n    }\n    public boolean queryRange(int left,int right) { Map.Entry<Integer,Integer> e=ranges.floorEntry(left);return e!=null&&e.getValue()>=right; }\n    public void removeRange(int left,int right) {\n        List<int[]> keep=new ArrayList<>();for(Map.Entry<Integer,Integer> e:new ArrayList<>(ranges.entrySet())){int a=e.getKey(),b=e.getValue();if(b<=left||a>=right)continue;ranges.remove(a);if(a<left)keep.add(new int[]{a,left});if(b>right)keep.add(new int[]{right,b});}\n        for(int[] x:keep)ranges.put(x[0],x[1]);\n    }\n}\n",
+   "python": "class RangeModule:\n    def __init__(self):\n        self.ranges=[]\n    def addRange(self,left: int,right: int) -> None:\n        out=[];placed=False\n        for a,b in self.ranges:\n            if b<left:out.append([a,b])\n            elif right<a:\n                if not placed:out.append([left,right]);placed=True\n                out.append([a,b])\n            else:left=min(left,a);right=max(right,b)\n        if not placed:out.append([left,right])\n        self.ranges=out\n    def queryRange(self,left: int,right: int) -> bool:\n        return any(a<=left and right<=b for a,b in self.ranges)\n    def removeRange(self,left: int,right: int) -> None:\n        out=[]\n        for a,b in self.ranges:\n            if b<=left or a>=right:out.append([a,b])\n            else:\n                if a<left:out.append([a,left])\n                if b>right:out.append([right,b])\n        self.ranges=out\n"
+  },
+  "sampleArray": [],
+  "visibleTestCount": 3,
+  "hiddenTestCount": 8,
+  "number": 8
+ },
+ {
+  "id": "count-of-range-sum",
+  "order": 10,
+  "topicId": "advanced-trees",
+  "topic": "Segment Trees & Fenwick",
+  "title": "Count of Range Sum",
+  "slug": "count-of-range-sum",
+  "difficulty": "Hard",
+  "subtopic": "Range Queries",
+  "companies": [
+   "Google",
+   "Amazon",
+   "Microsoft"
+  ],
+  "leetcode": null,
+  "description": "Return the number of non-empty contiguous subarrays whose sum lies in the inclusive range `[lower, upper]`.",
+  "constraints": [
+   "0 <= nums.length <= 30000",
+   "-10^9 <= nums[i] <= 10^9",
+   "lower <= upper"
+  ],
+  "hints": [
+   "Build prefix sums so each subarray sum is a difference of two prefixes.",
+   "Merge-sort the prefixes while counting right-side values that fall within [lower, upper] of each left-side prefix."
+  ],
+  "timeComplexity": "O(n log n)",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "examples": [
+   {
+    "input": "nums = [-2,5,-1], lower = -2, upper = 2",
+    "output": "3"
+   },
+   {
+    "input": "nums = [0], lower = 0, upper = 0",
+    "output": "1"
+   },
+   {
+    "input": "nums = [1], lower = 0, upper = 0",
+    "output": "0"
+   }
+  ],
+  "starterCode": {
+   "java": "class Solution {\n    public int countRangeSum(int[] nums, int lower, int upper) {\n        // Write your solution here\n        return 0;\n    }\n}\n",
+   "python": "class Solution:\n    def countRangeSum(self, nums: List[int], lower: int, upper: int) -> int:\n        # Write your solution here\n        pass\n"
+  },
+  "solutionCode": {
+   "java": "class Solution { long sort(long[] a,int l,int r,int lo,int hi){if(r-l<=1)return 0;int m=(l+r)/2;long c=sort(a,l,m,lo,hi)+sort(a,m,r,lo,hi);int i=m,j=m;for(int x=l;x<m;x++){while(i<r&&a[i]-a[x]<lo)i++;while(j<r&&a[j]-a[x]<=hi)j++;c+=j-i;}long[] t=new long[r-l];int x=l,y=m,k=0;while(x<m||y<r)t[k++]=(y==r||(x<m&&a[x]<=a[y]))?a[x++]:a[y++];System.arraycopy(t,0,a,l,t.length);return c;} public int countRangeSum(int[] a,int lo,int hi){long[] p=new long[a.length+1];for(int i=0;i<a.length;i++)p[i+1]=p[i]+a[i];return (int)sort(p,0,p.length,lo,hi);} }\n",
+   "python": "class Solution:\n    def countRangeSum(self, nums: List[int], lower: int, upper: int) -> int:\n        p=[0]\n        for x in nums:p.append(p[-1]+x)\n        def sort_count(a):\n            if len(a)<=1:return a,0\n            m=len(a)//2;l,c1=sort_count(a[:m]);r,c2=sort_count(a[m:]);ans=c1+c2;j=k=0\n            for x in l:\n                while k<len(r) and r[k]-x<lower:k+=1\n                while j<len(r) and r[j]-x<=upper:j+=1\n                ans+=j-k\n            return sorted(l+r),ans\n        return sort_count(p)[1]\n"
+  },
+  "sampleArray": [
+   -2,
+   5,
+   -1
+  ],
+  "visibleTestCount": 3,
+  "hiddenTestCount": 8,
+  "number": 9
+ },
+ {
+  "id": "create-sorted-array-through-instructions",
+  "order": 11,
+  "topicId": "advanced-trees",
+  "topic": "Segment Trees & Fenwick",
+  "title": "Create Sorted Array Through Instructions",
+  "slug": "create-sorted-array-through-instructions",
+  "difficulty": "Medium",
+  "subtopic": "Fenwick Tree",
+  "companies": [
+   "Google",
+   "Amazon",
+   "Microsoft"
+  ],
+  "leetcode": null,
+  "description": "Insert values from `instructions` in order into an initially empty array. Before each insertion, its cost is the smaller of the number of existing values strictly less than it and the number strictly greater than it. Return the total cost modulo 1,000,000,007.",
+  "constraints": [
+   "1 <= instructions.length <= 10^5",
+   "1 <= instructions[i] <= 10^5"
+  ],
+  "hints": [
+   "Use a prefix-count structure to answer how many earlier values fall within a value range.",
+   "Coordinate compression lets a Fenwick tree store counts for only values that occur in the input."
+  ],
+  "timeComplexity": "O(n log n)",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "examples": [
+   {
+    "input": "instructions = [1,5,6,2]",
+    "output": "1"
+   },
+   {
+    "input": "instructions = [1,2,3,6,5,4]",
+    "output": "3"
+   },
+   {
+    "input": "instructions = [1,3,3,3,2,4,2,1,2]",
+    "output": "4"
+   }
+  ],
+  "starterCode": {
+   "java": "class Solution {\n    public int createSortedArray(int[] instructions) {\n        // Write your solution here\n        return 0;\n    }\n}\n",
+   "python": "class Solution:\n    def createSortedArray(self, instructions: List[int]) -> int:\n        # Write your solution here\n        pass\n"
+  },
+  "solutionCode": {
+   "java": "class Solution { int sum(int[] b,int i){int s=0;for(;i>0;i-=i&-i)s+=b[i];return s;}void add(int[] b,int i){for(;i<b.length;i+=i&-i)b[i]++;}public int createSortedArray(int[] a){int[] b=new int[100001];long ans=0;for(int i=0;i<a.length;i++){int x=a[i],less=sum(b,x-1),greater=i-sum(b,x);ans=(ans+Math.min(less,greater))%1000000007;add(b,x);}return (int)ans;} }\n",
+   "python": "class Solution:\n    def createSortedArray(self, instructions: List[int]) -> int:\n        mod=10**9+7; bit=[0]*(max(instructions)+1); total=0\n        def query(i):\n            s=0\n            while i:s+=bit[i];i-=i&-i\n            return s\n        for i,x in enumerate(instructions):\n            less=query(x-1); greater=i-query(x)\n            total=(total+min(less,greater))%mod\n            j=x\n            while j<len(bit):bit[j]+=1;j+=j&-j\n        return total\n"
+  },
+  "sampleArray": [
+   1,
+   5,
+   6,
+   2
+  ],
+  "visibleTestCount": 3,
+  "hiddenTestCount": 8,
+  "number": 10
+ }
+]

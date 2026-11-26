@@ -1,0 +1,74 @@
+{
+  "title": "Design Skiplist",
+  "difficulty": "Hard",
+  "subtopic": "LRU Design",
+  "companies": [
+    "Google",
+    "Meta",
+    "Amazon",
+    "Microsoft",
+    "Bloomberg"
+  ],
+  "description": "Design a **Skiplist** (a probabilistic multi-level linked list supporting expected `O(log n)` search, insertion, and deletion of integers, including duplicates) without using built-in balanced tree maps:\n- `Skiplist()` initializes an empty skiplist.\n- `boolean search(int target)` returns `true` if `target` exists in the skiplist, otherwise `false`.\n- `void add(int num)` inserts `num` into the skiplist (duplicate values are allowed).\n- `boolean erase(int num)` removes **one** occurrence of `num` from the skiplist and returns `true`; if `num` is not present, returns `false`.",
+  "constraints": [
+    "-10^5 <= num, target <= 10^5",
+    "At most 3000 calls will be made across search, add, and erase."
+  ],
+  "hints": [
+    "Represent each node with a `forward` pointer array of its randomly chosen height (up to `MAX_LEVEL = 16`, flipping a coin with probability 0.5 per extra level) and maintain a sentinel `head` node.",
+    "For `add` and `erase`, traverse from the highest active level down to level 0, recording the rightmost node strictly less than `num` at each level in an `update` array so pointer relinking is O(1) per level."
+  ],
+  "examples": [
+    {
+      "explanation": "After adding 1, 2, 3, search(0) is false; after adding 4, search(1) is true; erasing 1 succeeds so subsequent search(1) is false."
+    },
+    {
+      "explanation": "Adding 5 twice stores two occurrences; erasing 5 once leaves one copy still searchable, and erasing a second time removes it completely."
+    },
+    {
+      "explanation": "Searching or erasing from an empty skiplist returns false; negative values and zero work identically to positive integers."
+    }
+  ],
+  "timeComplexity": "O(log n) expected",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "design",
+    "className": "Skiplist",
+    "constructor": {
+      "params": []
+    },
+    "methods": [
+      {
+        "name": "search",
+        "params": [
+          {
+            "name": "target",
+            "type": "int"
+          }
+        ],
+        "returns": "boolean"
+      },
+      {
+        "name": "add",
+        "params": [
+          {
+            "name": "num",
+            "type": "int"
+          }
+        ],
+        "returns": "void"
+      },
+      {
+        "name": "erase",
+        "params": [
+          {
+            "name": "num",
+            "type": "int"
+          }
+        ],
+        "returns": "boolean"
+      }
+    ]
+  }
+}

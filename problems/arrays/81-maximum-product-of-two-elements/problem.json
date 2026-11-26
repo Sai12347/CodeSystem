@@ -1,0 +1,43 @@
+{
+  "title": "Maximum Product of Two Elements",
+  "difficulty": "Easy",
+  "subtopic": "Traversal",
+  "companies": [
+    "Amazon",
+    "Google",
+    "Microsoft"
+  ],
+  "description": "Choose two different elements of a positive integer array `nums`. Return the largest possible product of their values. Input: `nums`. Output: the maximum pair product.",
+  "constraints": [
+    "2 <= nums.length <= 100000",
+    "1 <= nums[i] <= 10000"
+  ],
+  "hints": [
+    "Sort or count values once, then process each candidate in a single pass.",
+    "Check duplicates, all-equal inputs, and boundary values for `k`."
+  ],
+  "examples": [
+    {
+      "input": "nums = [3, 4, 5, 2]",
+      "output": "20"
+    },
+    {
+      "input": "nums = [1, 5, 4, 5]",
+      "output": "25"
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "maxProductOfTwoElements",
+    "params": [
+      {
+        "name": "nums",
+        "type": "int[]"
+      }
+    ],
+    "returns": "int"
+  }
+}

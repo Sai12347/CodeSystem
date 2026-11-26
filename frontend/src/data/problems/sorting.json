@@ -1,0 +1,719 @@
+[
+ {
+  "id": "sort-an-array",
+  "order": 1,
+  "topicId": "sorting",
+  "topic": "Sorting Algorithms",
+  "title": "Sort an Array",
+  "slug": "sort-an-array",
+  "difficulty": "Medium",
+  "subtopic": "Merge Sort",
+  "companies": [
+   "Google",
+   "Amazon",
+   "Microsoft",
+   "Meta",
+   "Apple",
+   "Bloomberg"
+  ],
+  "leetcode": 912,
+  "description": "Given an array of integers `nums`, sort the array in ascending order and return it.\n\nYou must solve the problem **without using any built-in sorting functions** in `O(n log n)` worst-case time complexity and with minimal extra space.",
+  "constraints": [
+   "1 <= nums.length <= 5 * 10^4",
+   "-5 * 10^4 <= nums[i] <= 5 * 10^4"
+  ],
+  "hints": [
+   "A naive Quick Sort degrades to O(n^2) on already-sorted or duplicate-heavy inputs unless carefully randomized and 3-way partitioned.",
+   "Merge Sort divides the array into two halves, recursively sorts each half, and merges the two sorted halves in O(n) time, guaranteeing O(n log n) worst-case performance.",
+   "Pre-allocate a single temporary buffer of length n and reuse it across merge calls to avoid repeated allocations."
+  ],
+  "timeComplexity": "O(n log n)",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "examples": [
+   {
+    "input": "nums = [5,2,3,1]",
+    "output": "[1,2,3,5]",
+    "explanation": "Sorting [5, 2, 3, 1] in ascending order produces [1, 2, 3, 5]."
+   },
+   {
+    "input": "nums = [5,1,1,2,0,0]",
+    "output": "[0,0,1,1,2,5]",
+    "explanation": "Duplicate values are preserved in sorted order: [0, 0, 1, 1, 2, 5]."
+   },
+   {
+    "input": "nums = [-4,0,7,4,9,-5,-1,0,-7,-1]",
+    "output": "[-7,-5,-4,-1,-1,0,0,4,7,9]",
+    "explanation": "Negative values precede zero and positive values in ascending order."
+   }
+  ],
+  "starterCode": {
+   "java": "class Solution {\n    public int[] sortArray(int[] nums) {\n        // Write your solution here\n        return null;\n    }\n}\n",
+   "python": "class Solution:\n    def sortArray(self, nums: List[int]) -> List[int]:\n        # Write your solution here\n        pass\n"
+  },
+  "solutionCode": {
+   "java": "class Solution {\n    public int[] sortArray(int[] nums) {\n        int n = nums.length;\n        if (n <= 1) {\n            return nums;\n        }\n        int[] buf = new int[n];\n        mergeSort(nums, buf, 0, n);\n        return nums;\n    }\n\n    private void mergeSort(int[] nums, int[] buf, int lo, int hi) {\n        if (hi - lo <= 1) {\n            return;\n        }\n        int mid = lo + (hi - lo) / 2;\n        mergeSort(nums, buf, lo, mid);\n        mergeSort(nums, buf, mid, hi);\n        if (nums[mid - 1] <= nums[mid]) {\n            return;\n        }\n        int i = lo, j = mid, k = lo;\n        while (i < mid && j < hi) {\n            if (nums[i] <= nums[j]) {\n                buf[k++] = nums[i++];\n            } else {\n                buf[k++] = nums[j++];\n            }\n        }\n        while (i < mid) {\n            buf[k++] = nums[i++];\n        }\n        while (j < hi) {\n            buf[k++] = nums[j++];\n        }\n        System.arraycopy(buf, lo, nums, lo, hi - lo);\n    }\n}\n",
+   "python": "class Solution:\n    def sortArray(self, nums: List[int]) -> List[int]:\n        n = len(nums)\n        if n <= 1:\n            return nums\n        buf = [0] * n\n\n        def merge_sort(lo: int, hi: int) -> None:\n            if hi - lo <= 1:\n                return\n            mid = (lo + hi) // 2\n            merge_sort(lo, mid)\n            merge_sort(mid, hi)\n            if nums[mid - 1] <= nums[mid]:\n                return\n            i, j, k = lo, mid, lo\n            while i < mid and j < hi:\n                if nums[i] <= nums[j]:\n                    buf[k] = nums[i]\n                    i += 1\n                else:\n                    buf[k] = nums[j]\n                    j += 1\n                k += 1\n            while i < mid:\n                buf[k] = nums[i]\n                i += 1\n                k += 1\n            while j < hi:\n                buf[k] = nums[j]\n                j += 1\n                k += 1\n            nums[lo:hi] = buf[lo:hi]\n\n        merge_sort(0, n)\n        return nums\n"
+  },
+  "sampleArray": [
+   5,
+   2,
+   3,
+   1
+  ],
+  "visibleTestCount": 3,
+  "hiddenTestCount": 10,
+  "number": 1
+ },
+ {
+  "id": "sort-colors",
+  "order": 2,
+  "topicId": "sorting",
+  "topic": "Sorting Algorithms",
+  "title": "Sort Colors",
+  "slug": "sort-colors",
+  "difficulty": "Medium",
+  "subtopic": "Dutch Flag",
+  "companies": [
+   "Meta",
+   "Amazon",
+   "Microsoft",
+   "Google",
+   "Apple",
+   "Adobe"
+  ],
+  "leetcode": 75,
+  "description": "Given an array `nums` with `n` objects colored red, white, or blue, sort them **in-place** so that objects of the same color are adjacent, with the colors in the order red, white, and blue.\n\nWe use the integers `0`, `1`, and `2` to represent the color red, white, and blue, respectively.\n\nYou must solve this problem without using the library's sort function. Can you come up with a one-pass algorithm using only `O(1)` extra space?",
+  "constraints": [
+   "1 <= nums.length <= 300",
+   "nums[i] is either 0, 1, or 2."
+  ],
+  "hints": [
+   "A two-pass counting sort works easily: count how many 0s, 1s, and 2s appear, then overwrite the array.",
+   "For a single-pass O(1)-space solution, apply Dijkstra's Dutch National Flag 3-way partitioning with three pointers: low, mid, and high.",
+   "Maintain the invariant: nums[0..low-1] are all 0s, nums[low..mid-1] are all 1s, nums[mid..high] are unexamined, and nums[high+1..n-1] are all 2s."
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "examples": [
+   {
+    "input": "nums = [2,0,2,1,1,0]",
+    "output": "[0,0,1,1,2,2]",
+    "explanation": "All 0s are moved to the front, 1s to the middle, and 2s to the end: [0, 0, 1, 1, 2, 2]."
+   },
+   {
+    "input": "nums = [2,0,1]",
+    "output": "[0,1,2]",
+    "explanation": "Sorting [2, 0, 1] in-place yields [0, 1, 2]."
+   },
+   {
+    "input": "nums = [0]",
+    "output": "[0]",
+    "explanation": "A single-element array is already sorted."
+   }
+  ],
+  "starterCode": {
+   "java": "class Solution {\n    public void sortColors(int[] nums) {\n        // Write your solution here\n    }\n}\n",
+   "python": "class Solution:\n    def sortColors(self, nums: List[int]) -> None:\n        # Write your solution here\n        pass\n"
+  },
+  "solutionCode": {
+   "java": "class Solution {\n    public void sortColors(int[] nums) {\n        int low = 0, mid = 0, high = nums.length - 1;\n        while (mid <= high) {\n            if (nums[mid] == 0) {\n                int tmp = nums[low];\n                nums[low] = nums[mid];\n                nums[mid] = tmp;\n                low++;\n                mid++;\n            } else if (nums[mid] == 1) {\n                mid++;\n            } else {\n                int tmp = nums[mid];\n                nums[mid] = nums[high];\n                nums[high] = tmp;\n                high--;\n            }\n        }\n    }\n}\n",
+   "python": "class Solution:\n    def sortColors(self, nums: List[int]) -> None:\n        low, mid, high = 0, 0, len(nums) - 1\n        while mid <= high:\n            if nums[mid] == 0:\n                nums[low], nums[mid] = nums[mid], nums[low]\n                low += 1\n                mid += 1\n            elif nums[mid] == 1:\n                mid += 1\n            else:\n                nums[mid], nums[high] = nums[high], nums[mid]\n                high -= 1\n"
+  },
+  "sampleArray": [
+   2,
+   0,
+   2,
+   1,
+   1,
+   0
+  ],
+  "visibleTestCount": 3,
+  "hiddenTestCount": 11,
+  "number": 2
+ },
+ {
+  "id": "merge-intervals",
+  "order": 3,
+  "topicId": "sorting",
+  "topic": "Sorting Algorithms",
+  "title": "Merge Intervals",
+  "slug": "merge-intervals",
+  "difficulty": "Medium",
+  "subtopic": "Custom Comparators",
+  "companies": [
+   "Meta",
+   "Google",
+   "Amazon",
+   "Microsoft",
+   "Bloomberg",
+   "Uber"
+  ],
+  "leetcode": 56,
+  "description": "Given an array of `intervals` where `intervals[i] = [start_i, end_i]`, merge all overlapping intervals, and return an array of the non-overlapping intervals that cover all the intervals in the input.\n\nTwo intervals `[a, b]` and `[c, d]` are considered overlapping if they share at least one point (i.e., `max(a, c) <= min(b, d)`). In particular, intervals touching at a single endpoint such as `[1, 4]` and `[4, 5]` must be merged into `[1, 5]`.",
+  "constraints": [
+   "1 <= intervals.length <= 10^4",
+   "intervals[i].length == 2",
+   "0 <= start_i <= end_i <= 10^4"
+  ],
+  "hints": [
+   "If you sort the intervals by their start value in ascending order, any set of overlapping intervals becomes contiguous in the sorted order.",
+   "Maintain the last merged interval in your result list. For each next interval [s, e], if s <= last_end, extend last_end = max(last_end, e).",
+   "Otherwise, the new interval is disjoint from all previous ones, so append [s, e] to the result."
+  ],
+  "timeComplexity": "O(n log n)",
+  "spaceComplexity": "O(n)",
+  "compare": "sorted",
+  "examples": [
+   {
+    "input": "intervals = [[1,3],[2,6],[8,10],[15,18]]",
+    "output": "[[1,6],[8,10],[15,18]]",
+    "explanation": "Since intervals [1, 3] and [2, 6] overlap, merge them into [1, 6]. [8, 10] and [15, 18] remain separate."
+   },
+   {
+    "input": "intervals = [[1,4],[4,5]]",
+    "output": "[[1,5]]",
+    "explanation": "Intervals [1, 4] and [4, 5] touch at endpoint 4 and are considered overlapping, merging into [1, 5]."
+   },
+   {
+    "input": "intervals = [[2,3],[1,4]]",
+    "output": "[[1,4]]",
+    "explanation": "Sorting first brings [1, 4] before [2, 3]; since [2, 3] lies completely inside [1, 4], the merged result is [[1, 4]]."
+   }
+  ],
+  "starterCode": {
+   "java": "class Solution {\n    public int[][] merge(int[][] intervals) {\n        // Write your solution here\n        return null;\n    }\n}\n",
+   "python": "class Solution:\n    def merge(self, intervals: List[List[int]]) -> List[List[int]]:\n        # Write your solution here\n        pass\n"
+  },
+  "solutionCode": {
+   "java": "class Solution {\n    public int[][] merge(int[][] intervals) {\n        Arrays.sort(intervals, (a, b) -> a[0] != b[0] ? Integer.compare(a[0], b[0]) : Integer.compare(a[1], b[1]));\n        List<int[]> merged = new ArrayList<>();\n        int curStart = intervals[0][0];\n        int curEnd = intervals[0][1];\n        for (int i = 1; i < intervals.length; i++) {\n            if (intervals[i][0] <= curEnd) {\n                curEnd = Math.max(curEnd, intervals[i][1]);\n            } else {\n                merged.add(new int[]{curStart, curEnd});\n                curStart = intervals[i][0];\n                curEnd = intervals[i][1];\n            }\n        }\n        merged.add(new int[]{curStart, curEnd});\n        return merged.toArray(new int[merged.size()][]);\n    }\n}\n",
+   "python": "class Solution:\n    def merge(self, intervals: List[List[int]]) -> List[List[int]]:\n        intervals.sort(key=lambda iv: (iv[0], iv[1]))\n        merged = [list(intervals[0])]\n        for s, e in intervals[1:]:\n            if s <= merged[-1][1]:\n                if e > merged[-1][1]:\n                    merged[-1][1] = e\n            else:\n                merged.append([s, e])\n        return merged\n"
+  },
+  "sampleArray": [],
+  "visibleTestCount": 3,
+  "hiddenTestCount": 11,
+  "number": 3
+ },
+ {
+  "id": "insert-interval",
+  "order": 4,
+  "topicId": "sorting",
+  "topic": "Sorting Algorithms",
+  "title": "Insert Interval",
+  "slug": "insert-interval",
+  "difficulty": "Medium",
+  "subtopic": "Custom Comparators",
+  "companies": [
+   "Google",
+   "Meta",
+   "Amazon",
+   "LinkedIn",
+   "Microsoft",
+   "Apple"
+  ],
+  "leetcode": 57,
+  "description": "You are given an array of non-overlapping intervals `intervals` where `intervals[i] = [start_i, end_i]` represent the start and the end of the `i`-th interval and `intervals` is sorted in ascending order by `start_i`. You are also given an interval `newInterval = [start, end]` that represents the start and end of another interval.\n\nInsert `newInterval` into `intervals` such that `intervals` is still sorted in ascending order by `start_i` and `intervals` still does not have any overlapping intervals (merge overlapping intervals if necessary; intervals sharing an endpoint are considered overlapping).\n\nReturn `intervals` after the insertion.",
+  "constraints": [
+   "0 <= intervals.length <= 10^4",
+   "intervals[i].length == 2",
+   "0 <= start_i <= end_i <= 10^5",
+   "intervals is sorted by start_i in ascending order and contains no overlapping intervals.",
+   "newInterval.length == 2",
+   "0 <= start <= end <= 10^5"
+  ],
+  "hints": [
+   "Since intervals is already sorted and non-overlapping, you do not need to re-sort; a single O(n) pass suffices.",
+   "Split the pass into three phases: (1) all intervals ending strictly before newInterval[0], (2) all intervals overlapping newInterval (starting <= newInterval[1]), and (3) all remaining intervals.",
+   "In phase (2), expand newInterval to [min(newStart, s), max(newEnd, e)] before adding it once to the result."
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "examples": [
+   {
+    "input": "intervals = [[1,3],[6,9]], newInterval = [2,5]",
+    "output": "[[1,5],[6,9]]",
+    "explanation": "[2, 5] overlaps with [1, 3], merging into [1, 5], followed by [6, 9]."
+   },
+   {
+    "input": "intervals = [[1,2],[3,5],[6,7],[8,10],[12,16]], newInterval = [4,8]",
+    "output": "[[1,2],[3,10],[12,16]]",
+    "explanation": "[4, 8] overlaps with [3, 5], [6, 7], and [8, 10], merging all four into [3, 10]."
+   },
+   {
+    "input": "intervals = [], newInterval = [5,7]",
+    "output": "[[5,7]]",
+    "explanation": "Inserting into an empty interval list returns [[5, 7]]."
+   }
+  ],
+  "starterCode": {
+   "java": "class Solution {\n    public int[][] insert(int[][] intervals, int[] newInterval) {\n        // Write your solution here\n        return null;\n    }\n}\n",
+   "python": "class Solution:\n    def insert(self, intervals: List[List[int]], newInterval: List[int]) -> List[List[int]]:\n        # Write your solution here\n        pass\n"
+  },
+  "solutionCode": {
+   "java": "class Solution {\n    public int[][] insert(int[][] intervals, int[] newInterval) {\n        List<int[]> res = new ArrayList<>();\n        int ns = newInterval[0];\n        int ne = newInterval[1];\n        int i = 0, n = intervals.length;\n        while (i < n && intervals[i][1] < ns) {\n            res.add(intervals[i++]);\n        }\n        while (i < n && intervals[i][0] <= ne) {\n            ns = Math.min(ns, intervals[i][0]);\n            ne = Math.max(ne, intervals[i][1]);\n            i++;\n        }\n        res.add(new int[]{ns, ne});\n        while (i < n) {\n            res.add(intervals[i++]);\n        }\n        return res.toArray(new int[res.size()][]);\n    }\n}\n",
+   "python": "class Solution:\n    def insert(self, intervals: List[List[int]], newInterval: List[int]) -> List[List[int]]:\n        res = []\n        ns, ne = newInterval\n        i, n = 0, len(intervals)\n        while i < n and intervals[i][1] < ns:\n            res.append(intervals[i])\n            i += 1\n        while i < n and intervals[i][0] <= ne:\n            if intervals[i][0] < ns:\n                ns = intervals[i][0]\n            if intervals[i][1] > ne:\n                ne = intervals[i][1]\n            i += 1\n        res.append([ns, ne])\n        while i < n:\n            res.append(intervals[i])\n            i += 1\n        return res\n"
+  },
+  "sampleArray": [
+   2,
+   5
+  ],
+  "visibleTestCount": 3,
+  "hiddenTestCount": 11,
+  "number": 4
+ },
+ {
+  "id": "meeting-rooms-ii",
+  "order": 5,
+  "topicId": "sorting",
+  "topic": "Sorting Algorithms",
+  "title": "Meeting Rooms II",
+  "slug": "meeting-rooms-ii",
+  "difficulty": "Medium",
+  "subtopic": "Heap Sort",
+  "companies": [
+   "Amazon",
+   "Google",
+   "Meta",
+   "Microsoft",
+   "Bloomberg",
+   "Uber"
+  ],
+  "leetcode": 253,
+  "description": "Given an array of meeting time intervals `intervals` where `intervals[i] = [start_i, end_i]`, return the minimum number of conference rooms required so that all meetings can take place.\n\nA room vacated at time `t` can be immediately reused by another meeting starting at time `t` (i.e., intervals `[a, b]` and `[b, c]` do not overlap).",
+  "constraints": [
+   "1 <= intervals.length <= 10^4",
+   "intervals[i].length == 2",
+   "0 <= start_i < end_i <= 10^6"
+  ],
+  "hints": [
+   "Sort the meetings chronologically by start time so you allocate rooms in the order meetings begin.",
+   "Keep a min-heap storing the end times of all currently active meetings. The top of the heap is the room that frees up earliest.",
+   "When a new meeting starts at time s, if the earliest end time in the heap is <= s, pop it (reuse that room), then push the new meeting's end time."
+  ],
+  "timeComplexity": "O(n log n)",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "examples": [
+   {
+    "input": "intervals = [[0,30],[5,10],[15,20]]",
+    "output": "2",
+    "explanation": "Meeting [0, 30] overlaps with [5, 10] and [15, 20], while [5, 10] and [15, 20] can share a room; 2 rooms are needed."
+   },
+   {
+    "input": "intervals = [[7,10],[2,4]]",
+    "output": "1",
+    "explanation": "[2, 4] finishes before [7, 10] begins, so 1 room suffices."
+   },
+   {
+    "input": "intervals = [[1,5],[5,10],[10,15]]",
+    "output": "1",
+    "explanation": "Back-to-back meetings [1, 5], [5, 10], and [10, 15] touch at endpoints and can all reuse a single room."
+   }
+  ],
+  "starterCode": {
+   "java": "class Solution {\n    public int minMeetingRooms(int[][] intervals) {\n        // Write your solution here\n        return 0;\n    }\n}\n",
+   "python": "class Solution:\n    def minMeetingRooms(self, intervals: List[List[int]]) -> int:\n        # Write your solution here\n        pass\n"
+  },
+  "solutionCode": {
+   "java": "class Solution {\n    public int minMeetingRooms(int[][] intervals) {\n        Arrays.sort(intervals, (a, b) -> Integer.compare(a[0], b[0]));\n        PriorityQueue<Integer> minHeap = new PriorityQueue<>();\n        for (int[] iv : intervals) {\n            if (!minHeap.isEmpty() && minHeap.peek() <= iv[0]) {\n                minHeap.poll();\n            }\n            minHeap.offer(iv[1]);\n        }\n        return minHeap.size();\n    }\n}\n",
+   "python": "class Solution:\n    def minMeetingRooms(self, intervals: List[List[int]]) -> int:\n        intervals.sort(key=lambda iv: iv[0])\n        heap = []\n        for s, e in intervals:\n            if heap and heap[0] <= s:\n                heapq.heapreplace(heap, e)\n            else:\n                heapq.heappush(heap, e)\n        return len(heap)\n"
+  },
+  "sampleArray": [],
+  "visibleTestCount": 3,
+  "hiddenTestCount": 11,
+  "number": 5
+ },
+ {
+  "id": "largest-number",
+  "order": 6,
+  "topicId": "sorting",
+  "topic": "Sorting Algorithms",
+  "title": "Largest Number",
+  "slug": "largest-number",
+  "difficulty": "Medium",
+  "subtopic": "Custom Comparators",
+  "companies": [
+   "Amazon",
+   "Microsoft",
+   "Meta",
+   "Google",
+   "Goldman Sachs",
+   "Adobe"
+  ],
+  "leetcode": 179,
+  "description": "Given a list of non-negative integers `nums`, arrange them such that they form the largest number and return it as a string.\n\nSince the result may be very large, return a string instead of an integer. The returned string must not contain unnecessary leading zeros (for example, if `nums` contains only zeros such as `[0, 0]`, return `\"0\"`).",
+  "constraints": [
+   "1 <= nums.length <= 100",
+   "0 <= nums[i] <= 10^9"
+  ],
+  "hints": [
+   "Standard lexicographical string comparison fails on pairs like \"3\" and \"30\": \"30\" > \"3\", yet \"330\" > \"303\".",
+   "Compare two stringified numbers a and b by comparing the concatenations (a + b) and (b + a): a should come before b if (a + b) > (b + a).",
+   "Handle the all-zeros edge case: after sorting, if the largest element is \"0\", the entire answer is simply \"0\"."
+  ],
+  "timeComplexity": "O(n log n * k)",
+  "spaceComplexity": "O(n * k)",
+  "compare": "exact",
+  "examples": [
+   {
+    "input": "nums = [10,2]",
+    "output": "\"210\"",
+    "explanation": "Arranging as \"2\" followed by \"10\" forms \"210\", which is greater than \"102\"."
+   },
+   {
+    "input": "nums = [3,30,34,5,9]",
+    "output": "\"9534330\"",
+    "explanation": "Ordering as [\"9\", \"5\", \"34\", \"3\", \"30\"] yields the largest possible number \"9534330\"."
+   },
+   {
+    "input": "nums = [0,0]",
+    "output": "\"0\"",
+    "explanation": "Multiple zeros collapse to a single \"0\" rather than \"00\"."
+   }
+  ],
+  "starterCode": {
+   "java": "class Solution {\n    public String largestNumber(int[] nums) {\n        // Write your solution here\n        return null;\n    }\n}\n",
+   "python": "class Solution:\n    def largestNumber(self, nums: List[int]) -> str:\n        # Write your solution here\n        pass\n"
+  },
+  "solutionCode": {
+   "java": "class Solution {\n    public String largestNumber(int[] nums) {\n        String[] strs = new String[nums.length];\n        for (int i = 0; i < nums.length; i++) {\n            strs[i] = String.valueOf(nums[i]);\n        }\n        Arrays.sort(strs, (a, b) -> (b + a).compareTo(a + b));\n        if (strs[0].equals(\"0\")) {\n            return \"0\";\n        }\n        StringBuilder sb = new StringBuilder();\n        for (String s : strs) {\n            sb.append(s);\n        }\n        return sb.toString();\n    }\n}\n",
+   "python": "from functools import cmp_to_key\n\n\nclass Solution:\n    def largestNumber(self, nums: List[int]) -> str:\n        strs = [str(x) for x in nums]\n\n        def cmp(a: str, b: str) -> int:\n            ab, ba = a + b, b + a\n            if ab > ba:\n                return -1\n            if ab < ba:\n                return 1\n            return 0\n\n        strs.sort(key=cmp_to_key(cmp))\n        if strs[0] == \"0\":\n            return \"0\"\n        return \"\".join(strs)\n"
+  },
+  "sampleArray": [
+   10,
+   2
+  ],
+  "visibleTestCount": 3,
+  "hiddenTestCount": 12,
+  "number": 6
+ },
+ {
+  "id": "wiggle-sort-ii",
+  "order": 7,
+  "topicId": "sorting",
+  "topic": "Sorting Algorithms",
+  "title": "Wiggle Sort II",
+  "slug": "wiggle-sort-ii",
+  "difficulty": "Medium",
+  "subtopic": "Quick Sort",
+  "companies": [
+   "Google",
+   "Amazon",
+   "Meta",
+   "Microsoft",
+   "Bloomberg"
+  ],
+  "leetcode": 324,
+  "description": "Given an integer array `nums`, reorder it **in-place** such that:\n\n`nums[0] < nums[1] > nums[2] < nums[3] ...`\n\nNote that all inequalities are **strict** (`<` at even indices, `>` at odd indices). You may assume the input array always has a valid answer. If multiple valid orderings exist, any valid permutation is accepted.\n\nCan you do it in `O(n)` average time and `O(1)` extra space? The judge validates that the modified `nums` is a permutation of the original array and satisfies the strict wiggle property (`true`).",
+  "constraints": [
+   "1 <= nums.length <= 5 * 10^4",
+   "0 <= nums[i] <= 5000",
+   "It is guaranteed that there will be a valid answer for the given input nums."
+  ],
+  "hints": [
+   "An O(n log n) approach sorts a copy of nums, splits it into a smaller half and a larger half, and places each half in reverse order into even and odd positions so equal medians stay as far apart as possible.",
+   "To reach O(n) average time, find the median element using 3-way Quickselect instead of full sorting.",
+   "Combine 3-way Dutch National Flag partitioning around the median with virtual index mapping idx(i) = (1 + 2 * i) % (n | 1) to place elements > median into odd slots and elements < median into even slots in-place."
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "examples": [
+   {
+    "input": "nums = [1,5,1,1,6,4]",
+    "output": "true",
+    "explanation": "A valid wiggle ordering such as [1, 6, 1, 5, 1, 4] satisfies 1 < 6 > 1 < 5 > 1 < 4."
+   },
+   {
+    "input": "nums = [1,3,2,2,3,1]",
+    "output": "true",
+    "explanation": "A valid wiggle ordering such as [2, 3, 1, 3, 1, 2] satisfies 2 < 3 > 1 < 3 > 1 < 2."
+   },
+   {
+    "input": "nums = [4,5,5,6]",
+    "output": "true",
+    "explanation": "Even with adjacent duplicates in the input, [5, 6, 4, 5] separates the two 5s and satisfies 5 < 6 > 4 < 5."
+   }
+  ],
+  "starterCode": {
+   "java": "class Solution {\n    public void wiggleSort(int[] nums) {\n        // Write your solution here\n    }\n}\n",
+   "python": "class Solution:\n    def wiggleSort(self, nums: List[int]) -> None:\n        # Write your solution here\n        pass\n"
+  },
+  "solutionCode": {
+   "java": "class Solution {\n    public void wiggleSort(int[] nums) {\n        int n = nums.length;\n        if (n <= 1) {\n            return;\n        }\n        int median = findKth(nums, n / 2);\n        int m = n | 1;\n        int left = 0, i = 0, right = n - 1;\n        while (i <= right) {\n            int vi = (1 + 2 * i) % m;\n            if (nums[vi] > median) {\n                int vl = (1 + 2 * left) % m;\n                swap(nums, vl, vi);\n                left++;\n                i++;\n            } else if (nums[vi] < median) {\n                int vr = (1 + 2 * right) % m;\n                swap(nums, vi, vr);\n                right--;\n            } else {\n                i++;\n            }\n        }\n    }\n\n    private int findKth(int[] nums, int k) {\n        int lo = 0, hi = nums.length - 1;\n        Random rng = new Random(42);\n        while (lo <= hi) {\n            int pivot = nums[lo + rng.nextInt(hi - lo + 1)];\n            int lt = lo, i = lo, gt = hi;\n            while (i <= gt) {\n                if (nums[i] < pivot) {\n                    swap(nums, lt++, i++);\n                } else if (nums[i] > pivot) {\n                    swap(nums, i, gt--);\n                } else {\n                    i++;\n                }\n            }\n            if (k < lt) {\n                hi = lt - 1;\n            } else if (k > gt) {\n                lo = gt + 1;\n            } else {\n                return pivot;\n            }\n        }\n        return nums[k];\n    }\n\n    private void swap(int[] a, int i, int j) {\n        int tmp = a[i];\n        a[i] = a[j];\n        a[j] = tmp;\n    }\n}\n",
+   "python": "import random\n\n\nclass Solution:\n    def wiggleSort(self, nums: List[int]) -> None:\n        n = len(nums)\n        if n <= 1:\n            return\n\n        # Iterative 3-way Quickselect for median\n        target = n // 2\n        lo, hi = 0, n - 1\n        rng = random.Random(42)\n        median = nums[0]\n        while lo <= hi:\n            pivot = nums[rng.randint(lo, hi)]\n            lt, i, gt = lo, lo, hi\n            while i <= gt:\n                if nums[i] < pivot:\n                    nums[lt], nums[i] = nums[i], nums[lt]\n                    lt += 1\n                    i += 1\n                elif nums[i] > pivot:\n                    nums[i], nums[gt] = nums[gt], nums[i]\n                    gt -= 1\n                else:\n                    i += 1\n            if target < lt:\n                hi = lt - 1\n            elif target > gt:\n                lo = gt + 1\n            else:\n                median = pivot\n                break\n\n        # Virtual index 3-way Dutch National Flag partition\n        m = n | 1\n        left, i, right = 0, 0, n - 1\n        while i <= right:\n            vi = (1 + 2 * i) % m\n            if nums[vi] > median:\n                vl = (1 + 2 * left) % m\n                nums[vl], nums[vi] = nums[vi], nums[vl]\n                left += 1\n                i += 1\n            elif nums[vi] < median:\n                vr = (1 + 2 * right) % m\n                nums[vi], nums[vr] = nums[vr], nums[vi]\n                right -= 1\n            else:\n                i += 1\n"
+  },
+  "sampleArray": [
+   1,
+   5,
+   1,
+   1,
+   6,
+   4
+  ],
+  "visibleTestCount": 3,
+  "hiddenTestCount": 11,
+  "number": 7
+ },
+ {
+  "id": "custom-sort-string",
+  "order": 8,
+  "topicId": "sorting",
+  "topic": "Sorting Algorithms",
+  "title": "Custom Sort String",
+  "slug": "custom-sort-string",
+  "difficulty": "Medium",
+  "subtopic": "Custom Comparators",
+  "companies": [
+   "Meta",
+   "Amazon",
+   "Google",
+   "Bloomberg",
+   "Microsoft"
+  ],
+  "leetcode": 791,
+  "description": "You are given two strings `order` and `s`. All the characters of `order` are **unique** and were sorted in some custom order previously.\n\nPermute the characters of `s` so that they match the order that `order` was sorted. More specifically, if a character `x` occurs before a character `y` in `order`, then every occurrence of `x` should occur before every occurrence of `y` in the permuted string.\n\nCharacters in `s` that do not appear in `order` can be placed at any position. Return **any** permutation of `s` that satisfies this property. The judge validates that your returned string is a permutation of `s` and respects the relative order defined by `order` (`true`).",
+  "constraints": [
+   "1 <= order.length <= 26",
+   "1 <= s.length <= 200",
+   "order and s consist of lowercase English letters.",
+   "All the characters of order are unique."
+  ],
+  "hints": [
+   "You can sort the characters of s using a custom comparator that maps each character in order to its index (and unranked characters to 26).",
+   "For an even faster O(n + m) solution, count the frequency of each character in s using an array of size 26.",
+   "Iterate through order and append each character as many times as it appears in s, then append all remaining characters that were not in order."
+  ],
+  "timeComplexity": "O(n + m)",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "examples": [
+   {
+    "input": "order = \"cba\", s = \"abcd\"",
+    "output": "true",
+    "explanation": "Characters 'c', 'b', and 'a' appear in order as c -> b -> a, so \"cbad\" (or \"dcba\", \"cdba\", etc.) is valid."
+   },
+   {
+    "input": "order = \"bcafg\", s = \"abcd\"",
+    "output": "true",
+    "explanation": "'b', 'c', and 'a' must appear in that relative order; 'd' is not in order and can go anywhere, e.g. \"bcad\"."
+   },
+   {
+    "input": "order = \"kqep\", s = \"pekeq\"",
+    "output": "true",
+    "explanation": "Following order \"kqep\", the permutation \"kqeep\" places 'k', 'q', both 'e's, then 'p'."
+   }
+  ],
+  "starterCode": {
+   "java": "class Solution {\n    public String customSortString(String order, String s) {\n        // Write your solution here\n        return \"\";\n    }\n}\n",
+   "python": "class Solution:\n    def customSortString(self, order: str, s: str) -> str:\n        # Write your solution here\n        return \"\"\n"
+  },
+  "solutionCode": {
+   "java": "class Solution {\n    public String customSortString(String order, String s) {\n        int[] counts = new int[26];\n        for (int i = 0; i < s.length(); i++) {\n            counts[s.charAt(i) - 'a']++;\n        }\n        StringBuilder sb = new StringBuilder(s.length());\n        for (int i = 0; i < order.length(); i++) {\n            char ch = order.charAt(i);\n            int idx = ch - 'a';\n            while (counts[idx] > 0) {\n                sb.append(ch);\n                counts[idx]--;\n            }\n        }\n        for (int idx = 0; idx < 26; idx++) {\n            char ch = (char) ('a' + idx);\n            while (counts[idx] > 0) {\n                sb.append(ch);\n                counts[idx]--;\n            }\n        }\n        return sb.toString();\n    }\n}\n",
+   "python": "class Solution:\n    def customSortString(self, order: str, s: str) -> str:\n        counts = [0] * 26\n        for ch in s:\n            counts[ord(ch) - 97] += 1\n        out = []\n        for ch in order:\n            idx = ord(ch) - 97\n            if counts[idx]:\n                out.append(ch * counts[idx])\n                counts[idx] = 0\n        for idx in range(26):\n            if counts[idx]:\n                out.append(chr(97 + idx) * counts[idx])\n        return \"\".join(out)\n"
+  },
+  "sampleArray": [],
+  "visibleTestCount": 3,
+  "hiddenTestCount": 11,
+  "number": 8
+ },
+ {
+  "id": "pancake-sorting",
+  "order": 9,
+  "topicId": "sorting",
+  "topic": "Sorting Algorithms",
+  "title": "Pancake Sorting",
+  "slug": "pancake-sorting",
+  "difficulty": "Medium",
+  "subtopic": "Custom Comparators",
+  "companies": [
+   "Google",
+   "Amazon",
+   "Meta",
+   "Microsoft",
+   "Uber"
+  ],
+  "leetcode": 969,
+  "description": "Given an array of integers `arr` that is a permutation of `[1, 2, ..., arr.length]`, sort `arr` by performing a series of **pancake flips**.\n\nIn one pancake flip you do the following steps:\n- Choose an integer `k` where `1 <= k <= arr.length`.\n- Reverse the sub-array `arr[0...k-1]` (0-indexed).\n\nReturn an array of the `k`-values corresponding to a sequence of pancake flips that sort `arr` in ascending order. Any valid answer that sorts the array within `10 * arr.length` flips will be judged as correct. The judge simulates your flip sequence and validates that `arr` ends up sorted within the flip budget (`true`).",
+  "constraints": [
+   "1 <= arr.length <= 100",
+   "1 <= arr[i] <= arr.length",
+   "All integers in arr are unique (arr is a permutation of [1, 2, ..., arr.length])."
+  ],
+  "hints": [
+   "Think like Selection Sort: place the largest unsorted element into its final position at the end of the unsorted prefix, one element at a time.",
+   "To move value x from index idx to its target position (x - 1), first flip the prefix of length (idx + 1) to bring x to index 0, then flip the prefix of length x to move x to index (x - 1).",
+   "Each element needs at most 2 flips, so the total number of flips is at most 2 * (n - 1), well under the 10 * n limit."
+  ],
+  "timeComplexity": "O(n^2)",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "examples": [
+   {
+    "input": "arr = [3,2,4,1]",
+    "output": "true",
+    "explanation": "For example, flips [3, 4, 2, 3, 2] transform [3, 2, 4, 1] -> [4, 2, 3, 1] -> [1, 3, 2, 4] -> [3, 1, 2, 4] -> [2, 1, 3, 4] -> [1, 2, 3, 4]."
+   },
+   {
+    "input": "arr = [1,2,3]",
+    "output": "true",
+    "explanation": "The array [1, 2, 3] is already sorted, so an empty list [] of flips is valid."
+   },
+   {
+    "input": "arr = [2,1]",
+    "output": "true",
+    "explanation": "Flipping prefix k = 2 reverses [2, 1] into [1, 2]."
+   }
+  ],
+  "starterCode": {
+   "java": "class Solution {\n    public List<Integer> pancakeSort(int[] arr) {\n        // Write your solution here\n        return new ArrayList<>();\n    }\n}\n",
+   "python": "class Solution:\n    def pancakeSort(self, arr: List[int]) -> List[int]:\n        # Write your solution here\n        return []\n"
+  },
+  "solutionCode": {
+   "java": "class Solution {\n    public List<Integer> pancakeSort(int[] arr) {\n        List<Integer> res = new ArrayList<>();\n        int n = arr.length;\n        for (int val = n; val >= 2; val--) {\n            int idx = 0;\n            while (arr[idx] != val) {\n                idx++;\n            }\n            if (idx == val - 1) {\n                continue;\n            }\n            if (idx > 0) {\n                reverse(arr, idx + 1);\n                res.add(idx + 1);\n            }\n            reverse(arr, val);\n            res.add(val);\n        }\n        return res;\n    }\n\n    private void reverse(int[] a, int k) {\n        for (int l = 0, r = k - 1; l < r; l++, r--) {\n            int tmp = a[l];\n            a[l] = a[r];\n            a[r] = tmp;\n        }\n    }\n}\n",
+   "python": "class Solution:\n    def pancakeSort(self, arr: List[int]) -> List[int]:\n        res = []\n        n = len(arr)\n        for val in range(n, 1, -1):\n            idx = arr.index(val)\n            if idx == val - 1:\n                continue\n            if idx > 0:\n                arr[:idx + 1] = reversed(arr[:idx + 1])\n                res.append(idx + 1)\n            arr[:val] = reversed(arr[:val])\n            res.append(val)\n        return res\n"
+  },
+  "sampleArray": [
+   3,
+   2,
+   4,
+   1
+  ],
+  "visibleTestCount": 3,
+  "hiddenTestCount": 10,
+  "number": 9
+ },
+ {
+  "id": "maximum-gap",
+  "order": 10,
+  "topicId": "sorting",
+  "topic": "Sorting Algorithms",
+  "title": "Maximum Gap",
+  "slug": "maximum-gap",
+  "difficulty": "Medium",
+  "subtopic": "Custom Comparators",
+  "companies": [
+   "Amazon",
+   "Google",
+   "Meta",
+   "Microsoft",
+   "Goldman Sachs"
+  ],
+  "leetcode": 164,
+  "description": "Given an integer array `nums`, return the maximum difference between two successive elements in its sorted form. If the array contains fewer than two elements, return `0`.\n\nYou must write an algorithm that runs in linear time `O(n)` and uses linear extra space `O(n)`.",
+  "constraints": [
+   "1 <= nums.length <= 10^5",
+   "0 <= nums[i] <= 10^9"
+  ],
+  "hints": [
+   "Comparison-based sorting takes O(n log n) time; to achieve O(n), exploit the Pigeonhole Principle via bucket partitioning (or Radix Sort).",
+   "With min value mn and max value mx over n elements, the maximum gap is at least ceil((mx - mn) / (n - 1)).",
+   "If each bucket has width b = max(1, (mx - mn) // (n - 1)), no two elements inside the same bucket can form the maximum gap—so you only need to track the minimum and maximum of each bucket and compare consecutive non-empty buckets."
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "examples": [
+   {
+    "input": "nums = [3,6,9,1]",
+    "output": "3",
+    "explanation": "The sorted form of the array is [1, 3, 6, 9]; either (3, 6) or (6, 9) has the maximum difference of 3."
+   },
+   {
+    "input": "nums = [10]",
+    "output": "0",
+    "explanation": "The array contains fewer than 2 elements, so return 0."
+   },
+   {
+    "input": "nums = [1,10000000]",
+    "output": "9999999",
+    "explanation": "With only two elements 1 and 10000000, the successive difference is 9999999."
+   }
+  ],
+  "starterCode": {
+   "java": "class Solution {\n    public int maximumGap(int[] nums) {\n        // Write your solution here\n        return 0;\n    }\n}\n",
+   "python": "class Solution:\n    def maximumGap(self, nums: List[int]) -> int:\n        # Write your solution here\n        pass\n"
+  },
+  "solutionCode": {
+   "java": "class Solution {\n    public int maximumGap(int[] nums) {\n        int n = nums.length;\n        if (n < 2) {\n            return 0;\n        }\n        int mn = Integer.MAX_VALUE, mx = Integer.MIN_VALUE;\n        for (int x : nums) {\n            if (x < mn) mn = x;\n            if (x > mx) mx = x;\n        }\n        if (mn == mx) {\n            return 0;\n        }\n        int bucketSize = Math.max(1, (mx - mn) / (n - 1));\n        int bucketCount = (mx - mn) / bucketSize + 1;\n        int[] bMin = new int[bucketCount];\n        int[] bMax = new int[bucketCount];\n        boolean[] used = new boolean[bucketCount];\n        Arrays.fill(bMin, Integer.MAX_VALUE);\n        Arrays.fill(bMax, Integer.MIN_VALUE);\n        for (int x : nums) {\n            int idx = (x - mn) / bucketSize;\n            used[idx] = true;\n            if (x < bMin[idx]) bMin[idx] = x;\n            if (x > bMax[idx]) bMax[idx] = x;\n        }\n        int maxGap = 0;\n        int prevMax = mn;\n        for (int i = 0; i < bucketCount; i++) {\n            if (!used[i]) {\n                continue;\n            }\n            maxGap = Math.max(maxGap, bMin[i] - prevMax);\n            prevMax = bMax[i];\n        }\n        return maxGap;\n    }\n}\n",
+   "python": "class Solution:\n    def maximumGap(self, nums: List[int]) -> int:\n        n = len(nums)\n        if n < 2:\n            return 0\n        mn = min(nums)\n        mx = max(nums)\n        if mn == mx:\n            return 0\n        bucket_size = max(1, (mx - mn) // (n - 1))\n        bucket_count = (mx - mn) // bucket_size + 1\n        b_min = [None] * bucket_count\n        b_max = [None] * bucket_count\n        for x in nums:\n            idx = (x - mn) // bucket_size\n            if b_min[idx] is None:\n                b_min[idx] = b_max[idx] = x\n            else:\n                if x < b_min[idx]:\n                    b_min[idx] = x\n                if x > b_max[idx]:\n                    b_max[idx] = x\n        max_gap = 0\n        prev_max = mn\n        for i in range(bucket_count):\n            if b_min[i] is None:\n                continue\n            gap = b_min[i] - prev_max\n            if gap > max_gap:\n                max_gap = gap\n            prev_max = b_max[i]\n        return max_gap\n"
+  },
+  "sampleArray": [
+   3,
+   6,
+   9,
+   1
+  ],
+  "visibleTestCount": 3,
+  "hiddenTestCount": 11,
+  "number": 10
+ },
+ {
+  "id": "h-index",
+  "order": 11,
+  "topicId": "sorting",
+  "topic": "Sorting Algorithms",
+  "title": "H-Index",
+  "slug": "h-index",
+  "difficulty": "Medium",
+  "subtopic": "Custom Comparators",
+  "companies": [
+   "Google",
+   "Meta",
+   "Amazon",
+   "Bloomberg",
+   "Microsoft"
+  ],
+  "leetcode": 274,
+  "description": "Given an array of integers `citations` where `citations[i]` is the number of citations a researcher received for their `i`-th paper, return the researcher's **h-index**.\n\nAccording to the definition of h-index: the h-index is the maximum value of `h` such that the given researcher has published at least `h` papers that have each been cited at least `h` times.",
+  "constraints": [
+   "1 <= citations.length <= 5000",
+   "0 <= citations[i] <= 1000"
+  ],
+  "hints": [
+   "A researcher with n papers can have an h-index of at most n, so any citation count greater than n can be capped at n.",
+   "Create a frequency array buckets of length n + 1 where buckets[c] counts how many papers have min(citations[i], n) == c.",
+   "Scan h from n down to 0 while accumulating the running count of papers with at least h citations; the first h with count >= h is the answer."
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "examples": [
+   {
+    "input": "citations = [3,0,6,1,5]",
+    "output": "3",
+    "explanation": "The researcher has 5 papers with citations [3, 0, 6, 1, 5]. Since 3 papers have at least 3 citations each (3, 6, 5), the h-index is 3."
+   },
+   {
+    "input": "citations = [1,3,1]",
+    "output": "1",
+    "explanation": "Only 1 paper has at least 2 citations (3), whereas 3 papers have at least 1 citation, so the h-index is 1."
+   },
+   {
+    "input": "citations = [0,0,0]",
+    "output": "0",
+    "explanation": "No paper has been cited, so the h-index is 0."
+   }
+  ],
+  "starterCode": {
+   "java": "class Solution {\n    public int hIndex(int[] citations) {\n        // Write your solution here\n        return 0;\n    }\n}\n",
+   "python": "class Solution:\n    def hIndex(self, citations: List[int]) -> int:\n        # Write your solution here\n        pass\n"
+  },
+  "solutionCode": {
+   "java": "class Solution {\n    public int hIndex(int[] citations) {\n        int n = citations.length;\n        int[] buckets = new int[n + 1];\n        for (int c : citations) {\n            buckets[Math.min(c, n)]++;\n        }\n        int papers = 0;\n        for (int h = n; h >= 0; h--) {\n            papers += buckets[h];\n            if (papers >= h) {\n                return h;\n            }\n        }\n        return 0;\n    }\n}\n",
+   "python": "class Solution:\n    def hIndex(self, citations: List[int]) -> int:\n        n = len(citations)\n        buckets = [0] * (n + 1)\n        for c in citations:\n            buckets[c if c < n else n] += 1\n        papers = 0\n        for h in range(n, -1, -1):\n            papers += buckets[h]\n            if papers >= h:\n                return h\n        return 0\n"
+  },
+  "sampleArray": [
+   3,
+   0,
+   6,
+   1,
+   5
+  ],
+  "visibleTestCount": 3,
+  "hiddenTestCount": 12,
+  "number": 11
+ }
+]

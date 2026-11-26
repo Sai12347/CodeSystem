@@ -1,0 +1,44 @@
+{
+  "title": "Row With the Maximum Number of Ones",
+  "difficulty": "Easy",
+  "subtopic": "Simulation",
+  "companies": [
+    "Amazon",
+    "Google",
+    "Microsoft"
+  ],
+  "description": "Each row of a binary matrix is sorted in non-decreasing order. Return the 0-based index of the row containing the most ones. If multiple rows tie, return the smallest index; if the matrix contains no ones, return -1. Input: `mat`. Output: the selected row index or -1.",
+  "constraints": [
+    "1 <= rows, columns <= 100000",
+    "rows*columns <= 1000000",
+    "Each row contains only 0s followed by 1s"
+  ],
+  "hints": [
+    "Check each cell using its row and column relationships.",
+    "Handle single-row, single-column, tie, and center-cell cases explicitly."
+  ],
+  "examples": [
+    {
+      "input": "mat = [[0, 0, 1], [0, 1, 1], [0, 0, 0]]",
+      "output": "1"
+    },
+    {
+      "input": "mat = [[0, 0], [0, 0]]",
+      "output": "-1"
+    }
+  ],
+  "timeComplexity": "O(rows*columns)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "rowWithMaximumOnes",
+    "params": [
+      {
+        "name": "mat",
+        "type": "int[][]"
+      }
+    ],
+    "returns": "int"
+  }
+}

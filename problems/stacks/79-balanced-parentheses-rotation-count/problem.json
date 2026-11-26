@@ -1,0 +1,45 @@
+{
+  "title": "Balanced Parentheses Rotation Count",
+  "difficulty": "Medium",
+  "subtopic": "Valid Parentheses",
+  "companies": [
+    "Google",
+    "Meta",
+    "Goldman Sachs",
+    "Bloomberg"
+  ],
+  "description": "Given a string `s` of length `n` consisting only of `'('` and `')'`, return the number of cyclic left shifts `k` (`0 <= k < n`) such that the rotated string `s[k:] + s[:k]` is a **valid balanced parentheses string**.",
+  "constraints": [
+    "1 <= s.length <= 2 * 10^5",
+    "s consists only of '(' and ')'."
+  ],
+  "hints": [
+    "First check that the total balance (`count('(') - count(')')`) is 0; otherwise no rotation can ever be balanced.",
+    "Track the prefix balance before each index `k`: a rotation starting at `k` never dips below 0 if and only if `prefixBalance[k]` attains the global minimum prefix balance across `0 <= k < n`."
+  ],
+  "examples": [
+    {
+      "explanation": "Shifts k=0 and k=2 both produce \"()()\", which is valid; k=1 and k=3 produce \")()(\", which is invalid."
+    },
+    {
+      "explanation": "Shifts k=1 and k=3 rotate \")()(\" into \"()()\", giving 2 valid rotations."
+    },
+    {
+      "explanation": "Total '(' != total ')', so no cyclic shift can be balanced."
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "countBalancedRotations",
+    "params": [
+      {
+        "name": "s",
+        "type": "String"
+      }
+    ],
+    "returns": "int"
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "title": "Distinct Echo Substrings",
+  "difficulty": "Hard",
+  "subtopic": "String Matching",
+  "companies": [
+    "Google",
+    "Meta",
+    "Uber"
+  ],
+  "description": "Return the number of distinct non-empty contiguous substrings of `text` that can be written as the concatenation of some string with itself (i.e., of the form `a + a` where `a` is non-empty).",
+  "constraints": [
+    "1 <= text.length <= 2000",
+    "text consists of lowercase English letters."
+  ],
+  "hints": [
+    "Precompute polynomial rolling hashes (or 64-bit / double hashes) so any two substrings can be compared in O(1).",
+    "For each even half-length L from 1 to n // 2, slide across indices i checking if hash(i, i + L) == hash(i + L, i + 2*L) and store matching hashes in a set."
+  ],
+  "examples": [
+    {
+      "explanation": "The 3 distinct echo substrings of \"abcabcabc\" are \"abcabc\", \"bcabca\", and \"cabcab\"."
+    },
+    {
+      "explanation": "The 2 distinct echo substrings of \"leetcodeleetcode\" are \"ee\" and \"leetcodeleetcode\"."
+    },
+    {
+      "explanation": "\"aaaa\" has 2 distinct echo substrings: \"aa\" and \"aaaa\"."
+    }
+  ],
+  "timeComplexity": "O(n^2)",
+  "spaceComplexity": "O(n^2)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "distinctEchoSubstrings",
+    "params": [
+      {
+        "name": "text",
+        "type": "String"
+      }
+    ],
+    "returns": "int"
+  }
+}

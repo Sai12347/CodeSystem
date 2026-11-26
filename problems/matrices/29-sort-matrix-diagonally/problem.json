@@ -1,0 +1,47 @@
+{
+  "title": "Sort the Matrix Diagonally",
+  "difficulty": "Medium",
+  "subtopic": "Spiral Traversal",
+  "companies": [
+    "Google",
+    "Amazon",
+    "Apple",
+    "Netflix"
+  ],
+  "description": "A matrix diagonal is a line of cells running from top-left toward bottom-right: starting at some cell `(r, c)` on the top row or leftmost column, and stepping repeatedly to `(r + 1, c + 1)` until reaching the matrix boundary.\n\nGiven an `m x n` integer matrix `mat`, sort each diagonal in ascending order from top-left to bottom-right and return the resulting matrix.",
+  "constraints": [
+    "m == mat.length",
+    "n == mat[i].length",
+    "1 <= m, n <= 100",
+    "1 <= mat[i][j] <= 10^4"
+  ],
+  "hints": [
+    "All cells on the same top-left to bottom-right diagonal share the exact same key (r - c).",
+    "Collect the elements of each diagonal (either via a map keyed by r - c or by iterating from each border start), sort them, and write them back along the same diagonal."
+  ],
+  "examples": [
+    {
+      "explanation": "Sorting each of the 6 diagonals independently yields [[1,1,1,1],[1,2,2,2],[1,2,3,3]]."
+    },
+    {
+      "explanation": "The main diagonal [5, 1] becomes [1, 5] while single-element diagonals stay unchanged."
+    },
+    {
+      "explanation": "A 1x4 matrix has four diagonals of length 1, so it remains unchanged."
+    }
+  ],
+  "timeComplexity": "O(m * n * log(min(m, n)))",
+  "spaceComplexity": "O(min(m, n))",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "diagonalSort",
+    "params": [
+      {
+        "name": "mat",
+        "type": "int[][]"
+      }
+    ],
+    "returns": "int[][]"
+  }
+}

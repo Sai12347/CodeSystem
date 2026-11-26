@@ -1,0 +1,55 @@
+{
+  "title": "Word Search",
+  "difficulty": "Medium",
+  "subtopic": "Board Puzzles",
+  "companies": [
+    "Google",
+    "Amazon",
+    "Meta",
+    "Microsoft",
+    "Bloomberg",
+    "Apple"
+  ],
+  "leetcode": 79,
+  "description": "Given an `m x n` grid of characters `board` and a string `word`, return `true` if `word` exists in the grid, and `false` otherwise.\n\nThe word can be constructed from letters of sequentially adjacent cells, where adjacent cells are horizontally or vertically neighboring (diagonal moves are not allowed). The same cell may not be used more than once in forming the word. Character matching is case-sensitive.",
+  "constraints": [
+    "1 <= board.length <= 6",
+    "1 <= board[i].length <= 6",
+    "1 <= word.length <= 15",
+    "board and word consist only of lowercase and uppercase English letters."
+  ],
+  "hints": [
+    "Start a depth-first search from every cell matching word[0], exploring up, down, left, and right neighbors.",
+    "Mark the current cell as visited (for example, temporarily overwriting it in-place with a sentinel like '#') before recursing, and restore its original character when backtracking.",
+    "Prune impossible searches early: verify the board has enough occurrences of every character in word, and consider reversing word when its last character is rarer on the board than its first."
+  ],
+  "examples": [
+    {
+      "explanation": "The path (0,0)->(0,1)->(0,2)->(1,2)->(2,2)->(2,1) spells \"ABCCED\" without reusing any cell."
+    },
+    {
+      "explanation": "The path (1,3)->(2,3)->(2,2) spells \"SEE\"."
+    },
+    {
+      "explanation": "\"ABCB\" cannot be formed because moving back from 'C' to 'B' would reuse cell (0,1)."
+    }
+  ],
+  "timeComplexity": "O(m * n * 3^L)",
+  "spaceComplexity": "O(L)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "exist",
+    "params": [
+      {
+        "name": "board",
+        "type": "char[][]"
+      },
+      {
+        "name": "word",
+        "type": "String"
+      }
+    ],
+    "returns": "boolean"
+  }
+}

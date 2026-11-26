@@ -1,0 +1,50 @@
+{
+  "title": "Replace the Substring for Balanced String",
+  "difficulty": "Medium",
+  "subtopic": "Substring Frequency",
+  "companies": [
+    "Google",
+    "Amazon",
+    "Meta",
+    "Microsoft",
+    "Atlassian"
+  ],
+  "leetcode": 1234,
+  "description": "You are given a string `s` of length `n` containing only four kinds of characters: `'Q'`, `'W'`, `'E'`, and `'R'`.\n\nA string is said to be **balanced** if each of these four characters appears exactly `n / 4` times.\n\nReturn the minimum length of a contiguous substring that can be replaced with any other string of the same length to make `s` balanced. If `s` is already balanced, return `0`.",
+  "constraints": [
+    "n == s.length",
+    "4 <= n <= 10^5",
+    "n is a multiple of 4.",
+    "s[i] is one of 'Q', 'W', 'E', or 'R'."
+  ],
+  "hints": [
+    "Focus on the characters OUTSIDE the replaced substring: you can make s balanced by replacing s[left..right] if and only if every character appears at most n / 4 times outside that window.",
+    "First count the total occurrences of 'Q', 'W', 'E', and 'R'. If all four counts are already at most n / 4, return 0 immediately.",
+    "Slide a dynamic window [left, right] representing the substring to replace: decrement the outside count of s[right], and whenever all four outside counts are at most n / 4, update the minimum length and shrink from left."
+  ],
+  "examples": [
+    {
+      "explanation": "Each of 'Q', 'W', 'E', and 'R' already appears 4 / 4 = 1 time, so no replacement is needed."
+    },
+    {
+      "explanation": "Replacing one 'Q' with 'R' yields \"RQWE\" (or \"QRWE\"), which is balanced; minimum length is 1."
+    },
+    {
+      "explanation": "Replacing the substring \"QQ\" with \"ER\" yields \"ERQW\", which is balanced; minimum length is 2."
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "balancedString",
+    "params": [
+      {
+        "name": "s",
+        "type": "String"
+      }
+    ],
+    "returns": "int"
+  }
+}

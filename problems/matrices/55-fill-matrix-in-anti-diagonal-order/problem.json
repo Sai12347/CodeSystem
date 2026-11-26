@@ -1,0 +1,47 @@
+{
+  "title": "Fill Matrix in Anti-Diagonal Order",
+  "difficulty": "Easy",
+  "subtopic": "Spiral Traversal",
+  "companies": [
+    "Amazon",
+    "Microsoft",
+    "Oracle"
+  ],
+  "description": "Given two positive integers `rows` and `cols`, construct and return a `rows x cols` integer matrix filled with consecutive integers from `1` to `rows * cols` along its **anti-diagonals**.\n\nAnti-diagonals are ordered by increasing coordinate sum `d = r + c` for `d = 0, 1, ..., rows + cols - 2`. Within each anti-diagonal `d`, fill cells from **top-right to bottom-left** (that is, in increasing order of row index `r`).",
+  "constraints": [
+    "1 <= rows, cols <= 100"
+  ],
+  "hints": [
+    "Every cell on anti-diagonal d satisfies r + c = d, so c = d - r.",
+    "For a fixed d, the valid row indices range from max(0, d - cols + 1) to min(rows - 1, d) inclusive."
+  ],
+  "examples": [
+    {
+      "explanation": "In a 3x3 matrix, anti-diagonal 0 fills (0,0)=1, anti-diagonal 1 fills (0,1)=2 and (1,0)=3, and so on down to (2,2)=9."
+    },
+    {
+      "explanation": "In a 2x4 matrix, anti-diagonals have lengths 1, 2, 2, 2, 1 moving top-right to bottom-left."
+    },
+    {
+      "explanation": "A 1x4 matrix has four length-1 anti-diagonals, producing [[1,2,3,4]]."
+    }
+  ],
+  "timeComplexity": "O(rows * cols)",
+  "spaceComplexity": "O(rows * cols)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "fillAntiDiagonal",
+    "params": [
+      {
+        "name": "rows",
+        "type": "int"
+      },
+      {
+        "name": "cols",
+        "type": "int"
+      }
+    ],
+    "returns": "int[][]"
+  }
+}

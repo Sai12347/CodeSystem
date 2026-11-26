@@ -1,0 +1,73 @@
+{
+  "title": "Middle Stack",
+  "difficulty": "Medium",
+  "subtopic": "Min Stack",
+  "companies": [
+    "Amazon",
+    "Microsoft",
+    "Google",
+    "Goldman Sachs"
+  ],
+  "description": "Design a stack `MiddleStack` that supports standard stack operations plus `O(1)` access and deletion of the middle element.\n\nFor a non-empty stack of size `n` indexed `0` (bottom) to `n - 1` (top), the *middle* element is defined as the element at index `(n - 1) // 2` (the lower middle when `n` is even).\n\nImplement the `MiddleStack` class:\n- `MiddleStack()` initializes an empty stack.\n- `void push(int val)` pushes non-negative integer `val` onto the top of the stack.\n- `int pop()` removes and returns the top element, or `-1` if the stack is empty.\n- `int top()` returns the top element without removing it, or `-1` if the stack is empty.\n- `int getMiddle()` returns the middle element without removing it, or `-1` if the stack is empty.\n- `int popMiddle()` removes and returns the middle element, or `-1` if the stack is empty.\n\nAll operations must run in `O(1)` time.",
+  "constraints": [
+    "0 <= val <= 10^9",
+    "At most 3 * 10^4 calls will be made across all methods."
+  ],
+  "hints": [
+    "Split the stack into two double-ended queues: left (bottom half) and right (top half), maintaining len(left) == len(right) or len(left) == len(right) + 1.",
+    "With this invariant, the middle element is always the back of left, and the top element is the back of right (or back of left if right is empty)."
+  ],
+  "examples": [
+    {
+      "explanation": "Stack becomes [1, 2, 3, 4]: middle is index 1 (value 2); popMiddle removes 2 leaving [1, 3, 4] with middle 3 and top 4; pop removes 4 leaving [1, 3] with middle 1."
+    },
+    {
+      "explanation": "All queries on an empty MiddleStack return -1."
+    },
+    {
+      "explanation": "Repeatedly popping the middle from [10, 20, 30] returns 20, then 10, then 30, then -1."
+    }
+  ],
+  "timeComplexity": "O(1) per op",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "design",
+    "className": "MiddleStack",
+    "constructor": {
+      "params": []
+    },
+    "methods": [
+      {
+        "name": "push",
+        "params": [
+          {
+            "name": "val",
+            "type": "int"
+          }
+        ],
+        "returns": "void"
+      },
+      {
+        "name": "pop",
+        "params": [],
+        "returns": "int"
+      },
+      {
+        "name": "top",
+        "params": [],
+        "returns": "int"
+      },
+      {
+        "name": "getMiddle",
+        "params": [],
+        "returns": "int"
+      },
+      {
+        "name": "popMiddle",
+        "params": [],
+        "returns": "int"
+      }
+    ]
+  }
+}

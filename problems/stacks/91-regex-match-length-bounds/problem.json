@@ -1,0 +1,46 @@
+{
+  "title": "Regex Match Length Bounds",
+  "difficulty": "Hard",
+  "subtopic": "Expression Parsing",
+  "companies": [
+    "Google",
+    "Meta",
+    "Amazon",
+    "Bloomberg"
+  ],
+  "description": "You are given a valid bounded regular expression string `regex` composed of:\n- Lowercase English letters `'a'`-`'z'`, each matching a single character (length `1`).\n- Grouping parentheses `'('` and `')'`.\n- Alternation `'|'` separating non-empty branches inside the current group or top level.\n- Postfix quantifiers applied to the immediately preceding atom (either a single letter or a `(...)` group), with at most one quantifier per atom:\n  - `'?'`: 0 or 1 repetition.\n  - `'{k}'`: exactly `k` repetitions (`0 <= k <= 100`).\n  - `'{a,b}'`: between `a` and `b` repetitions inclusive (`0 <= a <= b <= 100`).\n\nReturn a 2-element 64-bit integer array `[minLen, maxLen]` giving the shortest and longest string lengths matched by `regex`.",
+  "constraints": [
+    "1 <= regex.length <= 10^4",
+    "regex is syntactically valid with no empty branches and at most one quantifier per atom.",
+    "All intermediate and final lengths fit in a 64-bit signed integer."
+  ],
+  "hints": [
+    "Maintain a stack of group frames saving `(altMin, altMax, curMin, curMax)` before each `'('`, while keeping the most recent atom's range `(lastMin, lastMax)` separate until the next token arrives.",
+    "A quantifier immediately updates `(lastMin, lastMax)` (`?` sets `lastMin = 0`, `{a,b}` multiplies by `(a, b)`); on `'|'` or `')'`, flush `last` into `cur` and fold `cur` into the group's `(altMin, altMax)`."
+  ],
+  "examples": [
+    {
+      "explanation": "Shortest match is \"aee\" (length 3) by skipping (b|cd) and taking 2 e's; longest is \"acdeee\" (length 6)."
+    },
+    {
+      "explanation": "First branch (ab|c){2} has lengths [2, 4] and second branch defg has length [4, 4], giving [2, 4]."
+    },
+    {
+      "explanation": "a? has length [0, 1], repeated 3 times gives [0, 3]."
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "regexLengthBounds",
+    "params": [
+      {
+        "name": "regex",
+        "type": "String"
+      }
+    ],
+    "returns": "long[]"
+  }
+}

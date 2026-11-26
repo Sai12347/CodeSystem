@@ -1,0 +1,49 @@
+{
+  "title": "Symmetric Tree",
+  "difficulty": "Easy",
+  "subtopic": "DFS Traversals",
+  "companies": [
+    "Amazon",
+    "Google",
+    "Meta",
+    "Microsoft",
+    "LinkedIn",
+    "Bloomberg"
+  ],
+  "leetcode": 101,
+  "description": "Given the `root` of a binary tree, check whether it is a **mirror of itself** (i.e., symmetric around its center).\n\nReturn `true` if the left subtree is a structural and value-wise mirror image of the right subtree, and `false` otherwise.",
+  "constraints": [
+    "1 <= number of nodes <= 5000",
+    "-10^4 <= Node.val <= 10^4"
+  ],
+  "hints": [
+    "Checking whether a tree is symmetric reduces to checking whether `root.left` and `root.right` are mirror images of each other.",
+    "Two trees `a` and `b` are mirrors if both are `null`, or if neither is `null`, `a.val == b.val`, `a.left` mirrors `b.right`, and `a.right` mirrors `b.left`.",
+    "Be careful: a palindromic inorder traversal does NOT guarantee symmetry because structure matters."
+  ],
+  "examples": [
+    {
+      "explanation": "Left subtree [2, 3, 4] and right subtree [2, 4, 3] are exact mirror images."
+    },
+    {
+      "explanation": "Both 2s have only a right child (3), so the tree is not symmetric around the center."
+    },
+    {
+      "explanation": "A single-node tree is trivially symmetric."
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "isSymmetric",
+    "params": [
+      {
+        "name": "root",
+        "type": "TreeNode"
+      }
+    ],
+    "returns": "boolean"
+  }
+}

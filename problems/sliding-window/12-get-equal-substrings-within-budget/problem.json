@@ -1,0 +1,58 @@
+{
+  "title": "Get Equal Substrings Within Budget",
+  "difficulty": "Medium",
+  "subtopic": "Dynamic Window",
+  "companies": [
+    "Google",
+    "Amazon",
+    "Microsoft",
+    "Meta",
+    "Adobe"
+  ],
+  "leetcode": 1208,
+  "description": "You are given two strings `s` and `t` of the same length and an integer `maxCost`.\n\nYou want to change `s` to `t`. Changing the `i`-th character of `s` to the `i`-th character of `t` costs `|s[i] - t[i]|` (the absolute difference between the ASCII values of the characters).\n\nReturn the maximum length of a contiguous substring of `s` that can be changed to be the same as the corresponding substring of `t` with a total cost less than or equal to `maxCost`. If there is no such non-empty substring, return `0`.",
+  "constraints": [
+    "1 <= s.length <= 10^5",
+    "t.length == s.length",
+    "0 <= maxCost <= 10^6",
+    "s and t consist of only lowercase English letters."
+  ],
+  "hints": [
+    "Each index i has a fixed non-negative cost cost[i] = |s[i] - t[i]|, so the problem asks for the longest contiguous subarray whose sum is at most maxCost.",
+    "Because every cost is non-negative, expanding the right end of a window can only increase its cost, and advancing the left end can only decrease it.",
+    "Use a dynamic sliding window [left, right], adding |s[right] - t[right]| as right advances and incrementing left whenever the running cost exceeds maxCost."
+  ],
+  "examples": [
+    {
+      "explanation": "Changing \"abc\" to \"bcd\" costs 1 + 1 + 1 = 3 <= maxCost, giving maximum length 3."
+    },
+    {
+      "explanation": "Each character change costs 2, so at most one character can be changed within maxCost = 3."
+    },
+    {
+      "explanation": "With maxCost = 0, no differing characters can be changed; only \"a\" at index 0 already matches, giving length 1."
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "equalSubstring",
+    "params": [
+      {
+        "name": "s",
+        "type": "String"
+      },
+      {
+        "name": "t",
+        "type": "String"
+      },
+      {
+        "name": "maxCost",
+        "type": "int"
+      }
+    ],
+    "returns": "int"
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "title": "Longest Nice Substring",
+  "difficulty": "Easy",
+  "subtopic": "Substrings",
+  "companies": [
+    "Microsoft",
+    "Amazon",
+    "Meta"
+  ],
+  "description": "A string `s` is nice if for every letter of the alphabet that appears in `s`, both its uppercase and lowercase forms appear in `s`. Given a string `s` of English letters, return the longest contiguous substring of `s` that is nice. If multiple substrings share the maximum length, return the earliest one; if none exist, return `\"\"`.",
+  "constraints": [
+    "1 <= s.length <= 1000",
+    "s consists of uppercase and lowercase English letters."
+  ],
+  "hints": [
+    "Any character whose opposite-case counterpart is missing from the current range can never be part of a nice substring.",
+    "Split the string on any such unpaired character and solve recursively by divide-and-conquer (at most 26 recursion levels)."
+  ],
+  "examples": [
+    {
+      "explanation": "\"aAa\" has both 'a' and 'A', making it the longest nice substring."
+    },
+    {
+      "explanation": "The entire string \"Bb\" is nice."
+    },
+    {
+      "explanation": "No letter appears in both cases in \"c\", so return \"\"."
+    }
+  ],
+  "timeComplexity": "O(n * 26)",
+  "spaceComplexity": "O(26)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "longestNiceSubstring",
+    "params": [
+      {
+        "name": "s",
+        "type": "String"
+      }
+    ],
+    "returns": "String"
+  }
+}

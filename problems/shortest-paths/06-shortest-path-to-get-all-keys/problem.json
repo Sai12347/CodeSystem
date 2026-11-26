@@ -1,0 +1,38 @@
+{
+  "title": "Shortest Path to Get All Keys",
+  "difficulty": "Hard",
+  "subtopic": "Dijkstra",
+  "companies": ["Google", "Amazon", "Meta", "Uber", "Bloomberg"],
+  "leetcode": 864,
+  "description": "You are given an `m x n` grid where each cell is represented by a character:\n- `'.'` is an empty cell.\n- `'#'` is a wall (impassable).\n- `'@'` is the starting point.\n- Lowercase English letters (`'a'` to `'f'`) represent **keys**.\n- Uppercase English letters (`'A'` to `'F'`) represent **locks**.\n\nYou start at `'@'` and can move one cell up, down, left, or right per step. You cannot walk outside the grid or into a wall. Stepping onto a key collects it permanently. You cannot walk onto a lock unless you already hold its corresponding lowercase key.\n\nThere are `k` keys in the grid (`1 <= k <= 6`), using the first `k` lowercase letters, and each key has a matching lock. Return the **lowest number of moves** required to acquire all `k` keys. If it is impossible, return `-1`.",
+  "constraints": [
+    "m == grid.length",
+    "n == grid[i].length",
+    "1 <= m, n <= 30",
+    "grid[i][j] is either '.', '#', '@', 'a'-'f', or 'A'-'F'.",
+    "The number of keys k is in the range [1, 6].",
+    "Each key 'a' through chr('a' + k - 1) appears exactly once and has exactly one matching lock.",
+    "There is exactly one starting cell '@'."
+  ],
+  "hints": [
+    "Because revisiting a cell is useful after acquiring a new key, your shortest-path state must include both your position and the set of collected keys.",
+    "Since there are at most `6` keys, represent the collected key set as a `k`-bit integer bitmask `(0 .. 2^k - 1)`.",
+    "Run Breadth-First Search over states `(row, col, keyMask)`. When stepping onto a key, set its bit in `keyMask`; stop as soon as `keyMask == (1 << k) - 1`."
+  ],
+  "examples": [
+    {"explanation": "Move right to collect key 'a', go down through column 3, unlock 'A', and continue left to collect key 'b' in 8 moves total."},
+    {"explanation": "Walk right along row 0 to pick up 'a' and unlock 'A', then step down along column 4 to pick up 'b' in 6 moves."},
+    {"explanation": "Lock 'A' blocks the only path to key 'a', making it impossible to collect all keys."}
+  ],
+  "timeComplexity": "O(m * n * 2^k)",
+  "spaceComplexity": "O(m * n * 2^k)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "shortestPathAllKeys",
+    "params": [
+      {"name": "grid", "type": "String[]"}
+    ],
+    "returns": "int"
+  }
+}

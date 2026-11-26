@@ -1,0 +1,48 @@
+{
+  "title": "Uncommon Words from Two Sentences",
+  "difficulty": "Easy",
+  "subtopic": "Parsing",
+  "companies": [
+    "Amazon",
+    "Meta",
+    "Microsoft"
+  ],
+  "description": "A sentence is a string of single-space-separated lowercase words. A word is uncommon if it appears exactly once in one of the sentences and does not appear at all in the other sentence. Given two sentences `s1` and `s2`, return a list of all uncommon words in any order.",
+  "constraints": [
+    "1 <= s1.length, s2.length <= 10^4",
+    "s1 and s2 consist of lowercase English letters and single spaces separating words."
+  ],
+  "hints": [
+    "A word is uncommon iff its combined frequency across both s1 and s2 equals 1.",
+    "Count all words from s1 and s2 in a single hash map and collect those with count == 1."
+  ],
+  "examples": [
+    {
+      "explanation": "\"sweet\" and \"sour\" each appear once across both sentences."
+    },
+    {
+      "explanation": "\"apple\" appears twice in s1, so only \"banana\" is uncommon."
+    },
+    {
+      "explanation": "Every word appears twice, so no word is uncommon."
+    }
+  ],
+  "timeComplexity": "O(|s1| + |s2|)",
+  "spaceComplexity": "O(|s1| + |s2|)",
+  "compare": "sorted",
+  "signature": {
+    "kind": "function",
+    "method": "uncommonFromSentences",
+    "params": [
+      {
+        "name": "s1",
+        "type": "String"
+      },
+      {
+        "name": "s2",
+        "type": "String"
+      }
+    ],
+    "returns": "String[]"
+  }
+}

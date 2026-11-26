@@ -1,0 +1,45 @@
+{
+  "title": "Postfix to Minimal Infix Expression",
+  "difficulty": "Medium",
+  "subtopic": "Expression Parsing",
+  "companies": [
+    "Google",
+    "Microsoft",
+    "Meta",
+    "Amazon"
+  ],
+  "description": "Given a valid space-separated **postfix (Reverse Polish Notation)** expression `expr` consisting of single lowercase variables (`'a'`-`'z'`) and binary operators `'+'`, `'-'`, and `'*'`, convert it into an equivalent infix expression (without spaces) using the **minimum number of parentheses** needed to preserve the exact evaluation semantics.\n\nStandard precedence and associativity rules apply:\n- `'*'` has higher precedence than `'+'` and `'-'`.\n- `'+'` and `'-'` have equal precedence and associate left-to-right.\n- A left operand needs parentheses if and only if its root operator has strictly lower precedence than the parent operator; a right operand needs parentheses if its root operator has strictly lower precedence, or equal precedence when the parent operator is `'-'`.",
+  "constraints": [
+    "1 <= expr.length <= 5000",
+    "Tokens are separated by single spaces; each token is a single lowercase letter 'a'-'z' or one of '+', '-', '*'."
+  ],
+  "hints": [
+    "Maintain a stack where each entry stores (infixString, rootPrecedence), with variables having precedence 3, '*' having precedence 2, and '+'/'-' having precedence 1.",
+    "When popping right then left for operator op with precedence p, wrap left iff leftPrec < p and wrap right iff rightPrec < p or (rightPrec == p and op == '-')."
+  ],
+  "examples": [
+    {
+      "explanation": "(a + b) has lower precedence than '*', so it becomes \"(a+b)*c\"."
+    },
+    {
+      "explanation": "a - (b - c) requires parentheses on the right child because '-' is non-associative, yielding \"a-(b-c)\"."
+    },
+    {
+      "explanation": "a + (b * c) needs no parentheses because '*' has higher precedence than '+', yielding \"a+b*c\"."
+    }
+  ],
+  "timeComplexity": "O(n^2) worst-case string length",
+  "spaceComplexity": "O(n^2) worst-case",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "postfixToInfix",
+    "params": [
+      {
+        "name": "expr",
+        "type": "String"
+      }
+    ],
+    "returns": "String"
+  }
+}

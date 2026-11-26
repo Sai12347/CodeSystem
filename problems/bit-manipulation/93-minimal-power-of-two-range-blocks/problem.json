@@ -1,0 +1,48 @@
+{
+  "title": "Minimal Aligned Power-of-Two Range Blocks",
+  "difficulty": "Medium",
+  "subtopic": "Two Complement",
+  "companies": [
+    "Google",
+    "Amazon",
+    "LinkedIn"
+  ],
+  "description": "An aligned power-of-two block (like a CIDR IP block or binary buddy-allocator block) is a contiguous integer interval `[a, a + 2^k - 1]` of length `2^k` (`k >= 0`) whose starting address `a` is divisible by `2^k`. Given a non-negative starting integer `start` and a positive integer length `n`, return the minimum number of disjoint aligned power-of-two blocks required to exactly cover the interval `[start, start + n - 1]`.",
+  "constraints": [
+    "0 <= start <= 10^15",
+    "1 <= n <= 10^15"
+  ],
+  "hints": [
+    "At the current position `start`, the largest aligned block starting at `start` has size limited by `lowbit(start) = start & -start` (using two's complement; unbounded when `start == 0`).",
+    "The block size also cannot exceed the highest power of two `<= n`. Repeatedly advance `start += step` and `n -= step` with `step = min(lowbit(start), highestPow2(n))` until `n == 0`."
+  ],
+  "examples": [
+    {
+      "explanation": "Interval [0, 7] is itself a single aligned block of length 8."
+    },
+    {
+      "explanation": "Interval [1, 6] splits into 4 aligned blocks: [1,1], [2,3], [4,5], and [6,6]."
+    },
+    {
+      "explanation": "Interval [4, 10] splits into 3 aligned blocks: [4,7], [8,9], and [10,10]."
+    }
+  ],
+  "timeComplexity": "O(log n)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "minAlignedBlocks",
+    "params": [
+      {
+        "name": "start",
+        "type": "long"
+      },
+      {
+        "name": "n",
+        "type": "long"
+      }
+    ],
+    "returns": "int"
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "title": "Largest Substring Between Two Equal Characters",
+  "difficulty": "Easy",
+  "subtopic": "Substrings",
+  "companies": [
+    "Amazon",
+    "Adobe",
+    "Bloomberg"
+  ],
+  "description": "Given a lowercase string `s`, return the length of the longest contiguous substring strictly between two equal characters (excluding the two equal characters themselves). If no character appears at least twice in `s`, return `-1`.",
+  "constraints": [
+    "1 <= s.length <= 10^4",
+    "s contains only lowercase English letters."
+  ],
+  "hints": [
+    "To maximize distance between two occurrences of a character, always pair it with its very first occurrence.",
+    "Record the first index of each letter in a 26-element array and update max(best, i - first[c] - 1) on later occurrences."
+  ],
+  "examples": [
+    {
+      "explanation": "Between the two 'a's in \"aa\" lies an empty substring of length 0."
+    },
+    {
+      "explanation": "Between the two 'a's in \"abca\" lies \"bc\" of length 2."
+    },
+    {
+      "explanation": "All characters in \"cbzxy\" are unique, so return -1."
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "maxLengthBetweenEqualCharacters",
+    "params": [
+      {
+        "name": "s",
+        "type": "String"
+      }
+    ],
+    "returns": "int"
+  }
+}

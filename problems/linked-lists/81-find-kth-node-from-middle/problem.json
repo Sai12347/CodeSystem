@@ -1,0 +1,50 @@
+{
+  "title": "Find K-th Node from Middle",
+  "difficulty": "Easy",
+  "subtopic": "Fast/Slow Pointer",
+  "companies": [
+    "Amazon",
+    "Microsoft",
+    "Oracle",
+    "Salesforce"
+  ],
+  "description": "Given the `head` of a non-empty singly linked list of length `n` and a non-negative integer `k`, define the middle node to be the node at 0-based index `mid = floor(n / 2)` (so for even length `n`, this is the second of the two middle nodes).\n\nReturn the value of the node located `k` positions **before** the middle node (i.e., at 0-based index `mid - k`), or `-1` if `mid - k < 0`. Solve it in a **single pass** with `O(1)` extra space.",
+  "constraints": [
+    "The number of nodes in the list is in the range [1, 10^4].",
+    "1 <= Node.val <= 10^5",
+    "0 <= k <= 10^4"
+  ],
+  "hints": [
+    "Advance `fast` by 2 steps and `slow` by 1 step per iteration while counting the number of steps `steps` taken by `slow`.",
+    "Initialize a lagging pointer `lag` at `head` once `steps == k` and advance `lag` by 1 step whenever `steps > k`; when `fast` terminates, `slow` sits at `mid` and `lag` sits at `mid - k`."
+  ],
+  "examples": [
+    {
+      "explanation": "For [3, 4, 7, 5, 6, 16, 15, 61, 16] (n=9), mid=4 (value 6); 3 steps before index 4 is index 1 (value 4)."
+    },
+    {
+      "explanation": "For [1, 14, 6, 16, 4, 10] (n=6), mid=3 (value 16); 2 steps before index 3 is index 1 (value 14)."
+    },
+    {
+      "explanation": "For [1, 2, 3, 4] (n=4), mid=2; 3 steps before index 2 is -1 (out of bounds), so return -1."
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "kthFromMiddle",
+    "params": [
+      {
+        "name": "head",
+        "type": "ListNode"
+      },
+      {
+        "name": "k",
+        "type": "int"
+      }
+    ],
+    "returns": "int"
+  }
+}

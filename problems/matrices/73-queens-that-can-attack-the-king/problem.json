@@ -1,0 +1,56 @@
+{
+  "title": "Queens That Can Attack the King",
+  "difficulty": "Medium",
+  "subtopic": "Simulation",
+  "companies": [
+    "Google",
+    "Amazon",
+    "Meta",
+    "Bloomberg"
+  ],
+  "description": "On an `n x n` chessboard (0-indexed), there are several black queens at positions `queens[i] = [r, c]` and a single white king at `king = [kr, kc]`.\n\nA queen can attack the king if it lies in the same row, column, or diagonal as the king AND there is no other queen directly between them blocking the line of sight.\n\nReturn a 2D array of the coordinates `[r, c]` of all queens that can directly attack the king, sorted in **ascending lexicographical order** (first by `r`, then by `c`).",
+  "constraints": [
+    "1 <= n <= 100",
+    "0 <= queens.length < n * n",
+    "queens[i].length == 2 and king.length == 2",
+    "0 <= r, c, kr, kc < n",
+    "All queen positions and the king's position are distinct."
+  ],
+  "hints": [
+    "Instead of checking every queen against every other queen, mark all queens on an n x n boolean grid and cast 8 directional rays outward from the king.",
+    "The very first queen encountered along each of the 8 rays (if any) can attack the king; sort the collected coordinates by (r, c)."
+  ],
+  "examples": [
+    {
+      "explanation": "Casting 8 rays from king (0, 0) hits queens at (0, 1) east, (1, 0) south, and (3, 3) south-east; (0, 4), (4, 0), and (4, 4) are blocked."
+    },
+    {
+      "explanation": "From king (3, 3), the attacking queens are (2, 2) north-west, (3, 4) east, and (4, 4) south-east; (0, 0), (1, 1), and (3, 5) are blocked, giving [[2,2],[3,4],[4,4]]."
+    },
+    {
+      "explanation": "No queens share a row, column, or diagonal with the king at (0, 0), returning an empty list."
+    }
+  ],
+  "timeComplexity": "O(n + q)",
+  "spaceComplexity": "O(n^2)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "queensAttackTheKing",
+    "params": [
+      {
+        "name": "n",
+        "type": "int"
+      },
+      {
+        "name": "queens",
+        "type": "int[][]"
+      },
+      {
+        "name": "king",
+        "type": "int[]"
+      }
+    ],
+    "returns": "int[][]"
+  }
+}

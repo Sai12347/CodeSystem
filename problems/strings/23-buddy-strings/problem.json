@@ -1,0 +1,47 @@
+{
+  "title": "Buddy Strings",
+  "difficulty": "Easy",
+  "subtopic": "Anagrams",
+  "companies": [
+    "Amazon",
+    "Google",
+    "Microsoft"
+  ],
+  "description": "Two strings are buddy strings if swapping exactly two distinct positions in `s` makes it equal to `goal`. If the strings already match, the swap must exchange two equal characters. Return whether `s` and `goal` are buddy strings. Input: lowercase strings `s` and `goal`. Output: true or false.",
+  "constraints": [
+    "0 <= s.length, goal.length <= 10000",
+    "s and goal contain only lowercase English letters"
+  ],
+  "hints": [
+    "Keep track of the smallest state needed to continue matching or comparing characters.",
+    "Test empty, one-character, repeated-character, and boundary inputs."
+  ],
+  "examples": [
+    {
+      "input": "s = \"ab\", goal = \"ba\"",
+      "output": "true"
+    },
+    {
+      "input": "s = \"ab\", goal = \"ab\"",
+      "output": "false"
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "buddyStrings",
+    "params": [
+      {
+        "name": "s",
+        "type": "String"
+      },
+      {
+        "name": "goal",
+        "type": "String"
+      }
+    ],
+    "returns": "boolean"
+  }
+}

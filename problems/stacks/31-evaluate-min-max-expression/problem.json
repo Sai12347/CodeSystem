@@ -1,0 +1,45 @@
+{
+  "title": "Evaluate Min-Max Expression",
+  "difficulty": "Easy",
+  "subtopic": "Expression Parsing",
+  "companies": [
+    "Google",
+    "Amazon",
+    "Bloomberg"
+  ],
+  "description": "Given a valid expression string `expr` composed of signed 32-bit integers and nested binary functions `min(a,b)` and `max(a,b)`, evaluate the expression and return its integer result.\n\nThe expression follows the exact grammar (with no whitespace):\n- `expr := integer | \"min(\" expr \",\" expr \")\" | \"max(\" expr \",\" expr \")\"`\n\nDo not use any built-in expression evaluator such as `eval()`.",
+  "constraints": [
+    "1 <= expr.length <= 2 * 10^4",
+    "expr is a valid min-max expression with no whitespace.",
+    "Every integer literal fits in a signed 32-bit integer."
+  ],
+  "hints": [
+    "Use two stacks: one for pending operators ('min' or 'max') and one for evaluated integer arguments.",
+    "Whenever you encounter ')', pop the top two values and the top operator, apply min or max, and push the result back onto the value stack."
+  ],
+  "examples": [
+    {
+      "explanation": "min(7, -2) evaluates to -2, and max(3, -2) evaluates to 3."
+    },
+    {
+      "explanation": "max(1, 5) = 5 and max(2, 4) = 4, so min(5, 4) = 4."
+    },
+    {
+      "explanation": "A standalone integer literal evaluates directly to -42."
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "evaluateMinMax",
+    "params": [
+      {
+        "name": "expr",
+        "type": "String"
+      }
+    ],
+    "returns": "int"
+  }
+}

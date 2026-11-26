@@ -1,0 +1,65 @@
+{
+  "title": "Design Hit Counter",
+  "difficulty": "Medium",
+  "subtopic": "Deque Operations",
+  "companies": [
+    "Amazon",
+    "Google",
+    "Meta",
+    "Uber",
+    "Bloomberg",
+    "Microsoft"
+  ],
+  "leetcode": 362,
+  "description": "Design a hit counter which counts the number of hits received in the past 5 minutes (i.e., the past 300 seconds).\n\nYour system accepts a `timestamp` parameter (in seconds granularity), and you may assume that calls are being made to the system in chronological order (i.e., `timestamp` is monotonically non-decreasing). Several hits may arrive at the same timestamp.\n\nImplement the `HitCounter` class:\n- `HitCounter()` initializes the object of the hit counter system.\n- `void hit(int timestamp)` records a hit that happened at `timestamp` (in seconds).\n- `int getHits(int timestamp)` returns the number of hits in the past 5 minutes from `timestamp` (i.e., strictly greater than `timestamp - 300` and less than or equal to `timestamp`: `(timestamp - 300, timestamp]`).",
+  "constraints": [
+    "1 <= timestamp <= 2 * 10^9",
+    "All calls are made to the system in chronological order (timestamp is monotonically non-decreasing).",
+    "At most 10^4 calls will be made to hit and getHits."
+  ],
+  "hints": [
+    "Store pairs of (timestamp, count) in a deque along with a running total so multiple hits at the same second collapse into one entry.",
+    "Before returning from getHits(timestamp) (and optionally on hit), pop entries from the front whose timestamp is <= timestamp - 300 and subtract their counts from the running total.",
+    "Because there are at most 300 distinct seconds in the active window, the deque uses O(1) bounded space and amortized O(1) time per operation."
+  ],
+  "examples": [
+    {
+      "explanation": "Hits at 1, 2, 3 give 3 hits at t = 4. After a hit at 300, getHits(300) returns 4 (range (0, 300]). At t = 301, timestamp 1 expires (1 <= 301 - 300), leaving 3 hits."
+    },
+    {
+      "explanation": "Multiple hits at timestamp 10 all count together and expire simultaneously once getHits(310) is called."
+    }
+  ],
+  "timeComplexity": "O(1) amortized per call",
+  "spaceComplexity": "O(1) (at most 300 buckets)",
+  "compare": "exact",
+  "signature": {
+    "kind": "design",
+    "className": "HitCounter",
+    "constructor": {
+      "params": []
+    },
+    "methods": [
+      {
+        "name": "hit",
+        "params": [
+          {
+            "name": "timestamp",
+            "type": "int"
+          }
+        ],
+        "returns": "void"
+      },
+      {
+        "name": "getHits",
+        "params": [
+          {
+            "name": "timestamp",
+            "type": "int"
+          }
+        ],
+        "returns": "int"
+      }
+    ]
+  }
+}

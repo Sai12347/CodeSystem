@@ -1,0 +1,55 @@
+{
+  "title": "Suffix Instructions Staying in a Grid",
+  "difficulty": "Medium",
+  "subtopic": "Simulation",
+  "companies": [
+    "Amazon",
+    "Google",
+    "Salesforce"
+  ],
+  "description": "There is an `n x n` grid with top-left cell `(0, 0)` and bottom-right cell `(n - 1, n - 1)`. You are given `n`, a starting position `startPos = [startRow, startCol]`, and a string `s` of length `m` consisting of movement commands `'L'` (left), `'R'` (right), `'U'` (up), and `'D'` (down).\n\nFor each starting index `i` from `0` to `m - 1`, suppose the robot begins at `startPos` and executes instructions `s[i], s[i + 1], ...` one by one, stopping immediately before any instruction that would move the robot outside the `n x n` grid (or when `s` ends).\n\nReturn an integer array `answer` of length `m`, where `answer[i]` is the number of instructions the robot can execute starting from index `i`.",
+  "constraints": [
+    "1 <= n <= 500",
+    "startPos.length == 2",
+    "0 <= startPos[0], startPos[1] < n",
+    "1 <= s.length <= 500",
+    "s consists only of 'L', 'R', 'U', and 'D'."
+  ],
+  "hints": [
+    "For each suffix starting at index i, you can simulate step-by-step in O(m) time, giving O(m^2) overall\u2014or optimize to O(m) using backward prefix-displacement hash maps!",
+    "With prefix displacements (dr, dc) from the start of s, the robot leaves the grid at the earliest index j >= i where dr[j+1] - dr[i] hits (-startRow - 1) or (n - startRow), or dc[j+1] - dc[i] hits (-startCol - 1) or (n - startCol)."
+  ],
+  "examples": [
+    {
+      "explanation": "Starting at (0, 1) in a 3x3 grid, the suffixes starting at indices 0..5 stay in bounds for 1, 5, 4, 3, 1, and 0 steps respectively."
+    },
+    {
+      "explanation": "Starting at (1, 1) in a 2x2 grid, the suffixes execute 4, 1, 0, and 0 steps."
+    },
+    {
+      "explanation": "In a 1x1 grid, any move immediately exits the grid, so every suffix executes 0 instructions."
+    }
+  ],
+  "timeComplexity": "O(m)",
+  "spaceComplexity": "O(m)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "executeInstructions",
+    "params": [
+      {
+        "name": "n",
+        "type": "int"
+      },
+      {
+        "name": "startPos",
+        "type": "int[]"
+      },
+      {
+        "name": "s",
+        "type": "String"
+      }
+    ],
+    "returns": "int[]"
+  }
+}

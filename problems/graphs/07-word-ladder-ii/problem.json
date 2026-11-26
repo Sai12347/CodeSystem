@@ -1,0 +1,41 @@
+{
+  "title": "Word Ladder II",
+  "difficulty": "Hard",
+  "subtopic": "Connected Components",
+  "companies": ["Amazon", "Meta", "Google", "Microsoft", "Uber", "LinkedIn"],
+  "leetcode": 126,
+  "description": "A **transformation sequence** from word `beginWord` to word `endWord` using a dictionary `wordList` is a sequence of words `beginWord -> s_1 -> s_2 -> ... -> s_k` such that:\n\n- Every adjacent pair of words differs by **exactly one character**.\n- Every `s_i` for `1 <= i <= k` is in `wordList`. Note that `beginWord` does not need to be in `wordList`.\n- `s_k == endWord`.\n\nGiven two words `beginWord` and `endWord`, and a dictionary `wordList`, return **all the shortest transformation sequences** from `beginWord` to `endWord`, or an empty list `[]` if no such sequence exists. Each sequence should be returned as a list of the words `[beginWord, s_1, s_2, ..., s_k]`.\n\nYou may return the sequences in **any order**, though the words within each sequence must appear in exact transformation order.",
+  "constraints": [
+    "1 <= beginWord.length <= 5",
+    "endWord.length == beginWord.length",
+    "1 <= wordList.length <= 500",
+    "wordList[i].length == beginWord.length",
+    "beginWord, endWord, and wordList[i] consist of lowercase English letters.",
+    "beginWord != endWord",
+    "All the words in wordList are unique.",
+    "The sum of all shortest transformation sequences does not exceed 10^5."
+  ],
+  "hints": [
+    "Run a level-by-level BFS starting from `beginWord` to discover the shortest distance to every reachable word, stopping as soon as the level containing `endWord` finishes.",
+    "Do not mark a word as visited until the entire current BFS level has been expanded — otherwise you would miss alternative shortest paths that converge on the same word at the same depth.",
+    "Record each word's predecessor list (parents from the previous BFS level) to form a shortest-path DAG, then backtrack from `endWord` to `beginWord` so dead-end branches are never explored."
+  ],
+  "examples": [
+    {"explanation": "There are 2 shortest transformation sequences of length 5: \"hit\" -> \"hot\" -> \"dot\" -> \"dog\" -> \"cog\" and \"hit\" -> \"hot\" -> \"lot\" -> \"log\" -> \"cog\"."},
+    {"explanation": "The endWord \"cog\" is not in wordList, so no valid transformation sequence exists."},
+    {"explanation": "\"a\" differs from \"c\" by one character and \"c\" is in wordList, so [\"a\", \"c\"] is the unique shortest sequence."}
+  ],
+  "timeComplexity": "O(N * L^2 + P * D)",
+  "spaceComplexity": "O(N * L + P * D)",
+  "compare": "sorted",
+  "signature": {
+    "kind": "function",
+    "method": "findLadders",
+    "params": [
+      {"name": "beginWord", "type": "String"},
+      {"name": "endWord", "type": "String"},
+      {"name": "wordList", "type": "List<String>"}
+    ],
+    "returns": "List<List<String>>"
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "title": "Single Number",
+  "difficulty": "Easy",
+  "subtopic": "XOR Tricks",
+  "companies": [
+    "Amazon",
+    "Google",
+    "Microsoft"
+  ],
+  "description": "Given an integer array where every value appears exactly twice except one value, return the value that appears once.",
+  "constraints": [
+    "1 <= nums.length <= 3 * 10^4",
+    "All values satisfy the stated repetition rule."
+  ],
+  "hints": [
+    "XOR all values. Every paired value cancels, leaving the unique value."
+  ],
+  "examples": [
+    {
+      "input": "nums = [2,2,1]",
+      "output": "1"
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "singleNumber",
+    "params": [
+      {
+        "name": "nums",
+        "type": "int[]"
+      }
+    ],
+    "returns": "int"
+  }
+}

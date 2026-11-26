@@ -1,0 +1,48 @@
+{
+  "title": "Maximize Happiness of Selected Children",
+  "difficulty": "Medium",
+  "subtopic": "Traversal",
+  "companies": [
+    "Amazon",
+    "Google",
+    "Microsoft"
+  ],
+  "description": "There are children with happiness values in `happiness`. Choose exactly `k` children one at a time. Before the `i`th choice, every unchosen child's happiness has decreased by `i - 1`, but not below zero. Return the largest total happiness achievable. Input: `happiness`, `k`. Output: the maximum total.",
+  "constraints": [
+    "1 <= happiness.length <= 100000",
+    "0 <= happiness[i] <= 1000000000",
+    "1 <= k <= happiness.length"
+  ],
+  "hints": [
+    "Sort or count values once, then process each candidate in a single pass.",
+    "Check duplicates, all-equal inputs, and boundary values for `k`."
+  ],
+  "examples": [
+    {
+      "input": "happiness = [1, 2, 3], k = 2",
+      "output": "4"
+    },
+    {
+      "input": "happiness = [1, 1, 1, 1], k = 2",
+      "output": "1"
+    }
+  ],
+  "timeComplexity": "O(n log n)",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "maximumHappiness",
+    "params": [
+      {
+        "name": "happiness",
+        "type": "int[]"
+      },
+      {
+        "name": "k",
+        "type": "int"
+      }
+    ],
+    "returns": "long"
+  }
+}

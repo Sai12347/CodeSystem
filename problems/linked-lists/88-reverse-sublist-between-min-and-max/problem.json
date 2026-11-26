@@ -1,0 +1,46 @@
+{
+  "title": "Reverse Sublist Between Min and Max",
+  "difficulty": "Easy",
+  "subtopic": "Reversal",
+  "companies": [
+    "Amazon",
+    "Microsoft",
+    "Atlassian",
+    "Apple"
+  ],
+  "description": "Given the `head` of a singly linked list containing **distinct** integers, locate the node with the minimum value and the node with the maximum value.\n\nReverse the contiguous sublist starting from whichever of those two nodes appears **first** in the list and ending at whichever appears **second** (inclusive of both endpoints). Return the head of the modified linked list in `O(n)` time and `O(1)` extra space.",
+  "constraints": [
+    "The number of nodes in the list is in the range [0, 10^4].",
+    "-10^5 <= Node.val <= 10^5",
+    "All node values in the list are distinct."
+  ],
+  "hints": [
+    "Run a first pass to find the 1-based positions `minPos` and `maxPos` of the minimum and maximum values, then set `left = min(minPos, maxPos)` and `right = max(minPos, maxPos)`.",
+    "Run a second pass using a `dummy` node to reverse the sublist between positions `left` and `right` in-place."
+  ],
+  "examples": [
+    {
+      "explanation": "Minimum is 1 (pos 3) and maximum is 6 (pos 5); reversing [1, 4, 6] gives [3, 5, 6, 4, 1, 2]."
+    },
+    {
+      "explanation": "Maximum is 9 (pos 2) and minimum is 2 (pos 4); reversing [9, 4, 2] gives [7, 2, 4, 9, 5]."
+    },
+    {
+      "explanation": "Minimum is 1 (pos 1) and maximum is 4 (pos 4), so the entire list reverses to [4, 3, 2, 1]."
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "reverseBetweenMinMax",
+    "params": [
+      {
+        "name": "head",
+        "type": "ListNode"
+      }
+    ],
+    "returns": "ListNode"
+  }
+}

@@ -1,0 +1,43 @@
+{
+  "title": "Gas Station",
+  "difficulty": "Medium",
+  "subtopic": "Gas Station",
+  "companies": [
+    "Amazon",
+    "Google",
+    "Microsoft"
+  ],
+  "description": "There are circular gas stations. `gas[i]` is the fuel available at station `i`; `cost[i]` is the fuel needed to travel from station `i` to the next. Return any starting station index that allows a full circuit, or -1 if no such start exists.",
+  "constraints": [
+    "1 <= gas.length == cost.length <= 10^5",
+    "0 <= gas[i], cost[i] <= 10^4"
+  ],
+  "hints": [
+    "Sort or scan while maintaining the best feasible choice.",
+    "Check tie values and cases where no feasible choice remains."
+  ],
+  "examples": [
+    {
+      "input": "gas = [1,2,3,4,5], cost = [3,4,5,1,2]",
+      "output": "3"
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(1) extra",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "canCompleteCircuit",
+    "params": [
+      {
+        "name": "gas",
+        "type": "int[]"
+      },
+      {
+        "name": "cost",
+        "type": "int[]"
+      }
+    ],
+    "returns": "int"
+  }
+}

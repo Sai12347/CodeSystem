@@ -1,0 +1,52 @@
+{
+  "title": "Game of Life",
+  "difficulty": "Medium",
+  "subtopic": "Simulation",
+  "companies": [
+    "Amazon",
+    "Google",
+    "Meta",
+    "Uber",
+    "Microsoft",
+    "Bloomberg"
+  ],
+  "leetcode": 289,
+  "description": "Given an `m x n` grid `board` representing Conway's Game of Life, where each cell has an initial state of live (`1`) or dead (`0`), update `board` **in-place** to its next state.\n\nEvery cell interacts with its eight neighbors (horizontal, vertical, and diagonal) simultaneously according to the following four rules:\n\n1. Any live cell with fewer than two live neighbors dies (under-population).\n2. Any live cell with two or three live neighbors lives on to the next generation.\n3. Any live cell with more than three live neighbors dies (over-population).\n4. Any dead cell with exactly three live neighbors becomes a live cell (reproduction).\n\nAll births and deaths occur simultaneously based on the initial configuration. Aim for an `O(1)` extra space solution.",
+  "constraints": [
+    "m == board.length",
+    "n == board[i].length",
+    "1 <= m, n <= 50",
+    "board[i][j] is 0 or 1."
+  ],
+  "hints": [
+    "Updating cells directly to 0 or 1 corrupts neighbor counts for adjacent cells that have not been processed yet.",
+    "Since each cell only stores 0 or 1 (bit 0), use bit 1 (value 2) to store the cell's next-generation state while keeping its original state in bit 0.",
+    "Read a neighbor's original state using `board[nr][nc] & 1`. After computing all next states, right-shift every cell (`board[r][c] >>= 1`) in a second pass."
+  ],
+  "examples": [
+    {
+      "explanation": "Each cell counts its 8 original neighbors simultaneously; cells (1,0), (1,2), (2,1), (2,2), and (3,1) are alive in the next generation."
+    },
+    {
+      "explanation": "The three live cells each have 2 live neighbors and survive; the dead cell (1,1) has 3 live neighbors and becomes alive."
+    }
+  ],
+  "timeComplexity": "O(m * n)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "gameOfLife",
+    "params": [
+      {
+        "name": "board",
+        "type": "int[][]"
+      }
+    ],
+    "returns": "void",
+    "output": {
+      "mode": "param",
+      "param": "board"
+    }
+  }
+}

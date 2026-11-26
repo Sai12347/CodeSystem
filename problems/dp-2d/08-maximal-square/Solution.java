@@ -1,0 +1,1 @@
+class Solution { public int maximalSquare(int[][] a) { int n=a[0].length,best=0;int[] d=new int[n+1];for(int[] row:a){int prev=0;for(int j=1;j<=n;j++){int old=d[j];d[j]=row[j-1]==1?1+Math.min(d[j],Math.min(d[j-1],prev)):0;best=Math.max(best,d[j]);prev=old;}}return best*best;} }

@@ -1,0 +1,60 @@
+{
+  "title": "Logger Rate Limiter",
+  "difficulty": "Easy",
+  "subtopic": "Task Scheduler",
+  "companies": [
+    "Google",
+    "Amazon",
+    "Meta",
+    "Uber",
+    "Atlassian",
+    "Microsoft"
+  ],
+  "leetcode": 359,
+  "description": "Design a logger system that receives a stream of messages along with their timestamps. Each unique message should only be printed at most once every 10 seconds—that is, a message printed at timestamp `t` prevents any identical message from being printed until timestamp `t + 10` (inclusive).\n\nAll messages arrive in chronological order (timestamps are monotonically non-decreasing). Several messages may arrive at the same timestamp.\n\nImplement the `Logger` class:\n- `Logger()` initializes the logger object.\n- `boolean shouldPrintMessage(int timestamp, String message)` returns `true` if `message` should be printed at `timestamp`, otherwise returns `false`. Note that a rejected (`false`) call does not extend the 10-second cooldown.",
+  "constraints": [
+    "0 <= timestamp <= 10^9",
+    "Every timestamp is passed in non-decreasing (chronological) order.",
+    "1 <= message.length <= 30",
+    "At most 10^4 calls will be made to shouldPrintMessage."
+  ],
+  "hints": [
+    "A hash map storing each message's next allowed timestamp works in O(1) time, but keeps expired messages in memory forever.",
+    "To bound memory to only the last 10 seconds, pair a FIFO queue of (timestamp, message) entries with a hash set of active messages.",
+    "On each call, evict all queue entries with timestamp <= currentTimestamp - 10 from both the queue and the set before checking membership."
+  ],
+  "examples": [
+    {
+      "explanation": "foo prints at t=1 (blocked until t=11); bar prints at t=2 (blocked until t=12). foo at t=3 and t=10 and bar at t=8 are rejected. At t=11, foo is allowed again."
+    },
+    {
+      "explanation": "A message printed at t=0 is rejected at t=9, and allowed again at exactly t=10."
+    }
+  ],
+  "timeComplexity": "O(1) amortized per call",
+  "spaceComplexity": "O(W) where W is unique messages printed in the last 10s",
+  "compare": "exact",
+  "signature": {
+    "kind": "design",
+    "className": "Logger",
+    "constructor": {
+      "params": []
+    },
+    "methods": [
+      {
+        "name": "shouldPrintMessage",
+        "params": [
+          {
+            "name": "timestamp",
+            "type": "int"
+          },
+          {
+            "name": "message",
+            "type": "String"
+          }
+        ],
+        "returns": "boolean"
+      }
+    ]
+  }
+}

@@ -1,0 +1,43 @@
+{
+  "title": "Detect Capital Usage",
+  "difficulty": "Easy",
+  "subtopic": "Parsing",
+  "companies": [
+    "Amazon",
+    "Google",
+    "Microsoft"
+  ],
+  "description": "A word uses capital letters correctly if all its letters are uppercase, all are lowercase, or only its first letter is uppercase. Given an English word, return whether its capitalization follows one of these rules. Input: a non-empty ASCII English word `word`. Output: true when capitalization is valid.",
+  "constraints": [
+    "1 <= word.length <= 100",
+    "word contains only English letters A-Z and a-z"
+  ],
+  "hints": [
+    "Keep track of the smallest state needed to continue matching or comparing characters.",
+    "Test empty, one-character, repeated-character, and boundary inputs."
+  ],
+  "examples": [
+    {
+      "input": "word = \"USA\"",
+      "output": "true"
+    },
+    {
+      "input": "word = \"FlaG\"",
+      "output": "false"
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "detectCapitalUse",
+    "params": [
+      {
+        "name": "word",
+        "type": "String"
+      }
+    ],
+    "returns": "boolean"
+  }
+}

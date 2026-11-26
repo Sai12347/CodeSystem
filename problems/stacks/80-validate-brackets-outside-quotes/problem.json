@@ -1,0 +1,45 @@
+{
+  "title": "Validate Brackets Outside Quotes",
+  "difficulty": "Easy",
+  "subtopic": "Valid Parentheses",
+  "companies": [
+    "Amazon",
+    "Microsoft",
+    "Atlassian",
+    "Salesforce"
+  ],
+  "description": "Given a code snippet string `s` consisting of brackets `'('`, `')'`, `'['`, `']'`, `'{'`, `'}'`, double quotes `'\"'`, backslashes `'\\\\'`, letters, digits, and spaces, determine whether `s` is structurally valid under string-literal rules:\n- A double quote `'\"'` outside a string literal opens a string literal, and the next unescaped `'\"'` closes it.\n- Inside a string literal, all bracket characters are ignored as plain text; a backslash `'\\\\'` escapes the immediately following character (so `'\\\\\"'` does not close the string and `'\\\\\\\\'` is an escaped backslash).\n- Outside string literals, all brackets `'()'`, `'[]'`, and `'{}'` must be properly matched and nested.\n\nReturn `true` if all string literals are closed and all outside brackets are validly balanced, otherwise `false`.",
+  "constraints": [
+    "0 <= s.length <= 10^5",
+    "s contains only printable ASCII characters."
+  ],
+  "hints": [
+    "Combine a boolean state (`inQuote`, `escaped`) with a standard bracket-matching stack.",
+    "While `inQuote` is true, consume escaped characters directly and only toggle `inQuote` on an unescaped '\"'; at the end require both `not inQuote` and an empty bracket stack."
+  ],
+  "examples": [
+    {
+      "explanation": "The unmatched '(' and ']' sit inside the quoted literal and are ignored, while the outer '[' and ']' match."
+    },
+    {
+      "explanation": "Inside the string literal, '\\\"' is escaped so the string continues past ')', closes at the next '\"', and the outer '(' matches ')'."
+    },
+    {
+      "explanation": "The string literal is never closed (the trailing '\"' is escaped), so return false."
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "isValidOutsideQuotes",
+    "params": [
+      {
+        "name": "s",
+        "type": "String"
+      }
+    ],
+    "returns": "boolean"
+  }
+}

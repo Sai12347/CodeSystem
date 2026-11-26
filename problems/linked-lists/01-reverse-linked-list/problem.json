@@ -1,0 +1,33 @@
+{
+  "title": "Reverse Linked List",
+  "difficulty": "Easy",
+  "subtopic": "Reversal",
+  "companies": ["Amazon", "Google", "Meta", "Microsoft", "Apple", "Bloomberg"],
+  "leetcode": 206,
+  "description": "Given the `head` of a singly linked list, reverse the list and return the new head of the reversed linked list.\n\nIf the input list is empty (`null` / `None`), return `null` / `None`.\n\nTry to solve the problem iteratively in `O(1)` extra space.",
+  "constraints": [
+    "The number of nodes in the list is in the range [0, 5000].",
+    "-5000 <= Node.val <= 5000"
+  ],
+  "hints": [
+    "Maintain two pointers, `prev` (initially null) and `curr` (initially head), as you walk through the list.",
+    "Before reversing `curr.next` to point to `prev`, save `curr.next` in a temporary variable so you do not lose the remainder of the list.",
+    "Once `curr` reaches null, `prev` points to the new head of the reversed list."
+  ],
+  "examples": [
+    {"explanation": "Reversing [1 -> 2 -> 3 -> 4 -> 5] yields [5 -> 4 -> 3 -> 2 -> 1]."},
+    {"explanation": "Reversing a two-node list [1 -> 2] swaps their link direction to [2 -> 1]."},
+    {"explanation": "An empty list remains empty (null)."}
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "reverseList",
+    "params": [
+      {"name": "head", "type": "ListNode"}
+    ],
+    "returns": "ListNode"
+  }
+}

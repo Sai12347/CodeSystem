@@ -1,0 +1,1 @@
+class Solution { public int lastStoneWeightII(int[] a) { int sum=0;for(int x:a)sum+=x;int h=sum/2;boolean[] d=new boolean[h+1];d[0]=true;for(int x:a)for(int s=h;s>=x;s--)d[s]|=d[s-x];for(int s=h;s>=0;s--)if(d[s])return sum-2*s;return 0;} }

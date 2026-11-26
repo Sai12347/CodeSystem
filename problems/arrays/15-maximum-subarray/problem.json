@@ -1,0 +1,49 @@
+{
+  "title": "Maximum Subarray",
+  "difficulty": "Medium",
+  "subtopic": "Subarrays",
+  "companies": [
+    "Amazon",
+    "Google",
+    "Microsoft",
+    "Meta",
+    "Apple",
+    "LinkedIn"
+  ],
+  "leetcode": 53,
+  "description": "Given an integer array `nums`, find the contiguous non-empty subarray (containing at least one number) which has the largest sum, and return that maximum sum.\n\nA subarray is a contiguous part of an array. Solve this in `O(n)` time and `O(1)` auxiliary space.",
+  "constraints": [
+    "1 <= nums.length <= 10^5",
+    "-10^4 <= nums[i] <= 10^4"
+  ],
+  "hints": [
+    "As you scan left to right, decide at each index whether to extend the best subarray ending at the previous index or start a new subarray at the current element.",
+    "If the running sum before nums[i] is negative, carrying it forward only hurts the sum \u2014 reset to nums[i].",
+    "Track the global maximum across all ending positions (Kadane's algorithm), initializing both running and best sums to nums[0] so all-negative arrays are handled properly."
+  ],
+  "examples": [
+    {
+      "explanation": "The subarray [4, -1, 2, 1] has the largest sum 6."
+    },
+    {
+      "explanation": "The single-element subarray [1] has sum 1."
+    },
+    {
+      "explanation": "The entire array [5, 4, -1, 7, 8] achieves the maximum sum 23."
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "maxSubArray",
+    "params": [
+      {
+        "name": "nums",
+        "type": "int[]"
+      }
+    ],
+    "returns": "int"
+  }
+}

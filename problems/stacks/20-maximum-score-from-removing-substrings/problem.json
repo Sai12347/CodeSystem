@@ -1,0 +1,53 @@
+{
+  "title": "Maximum Score From Removing Substrings",
+  "difficulty": "Medium",
+  "subtopic": "LIFO Structure",
+  "companies": [
+    "Google",
+    "Amazon",
+    "Meta"
+  ],
+  "description": "You are given a lowercase English string `s` and two positive integers `x` and `y`. You can perform two types of operations any number of times:\n- Remove substring `\"ab\"` and gain `x` points.\n- Remove substring `\"ba\"` and gain `y` points.\n\nWhen a substring is removed, the remaining left and right parts are concatenated. Return the maximum total points you can gain by applying these operations in any order.",
+  "constraints": [
+    "1 <= s.length <= 10^5",
+    "1 <= x, y <= 10^4",
+    "s consists of lowercase English letters."
+  ],
+  "hints": [
+    "Within any maximal block of 'a' and 'b' characters, every removal removes one 'a' and one 'b', so the total number of removals is fixed at min(count_a, count_b).",
+    "Therefore, it is always optimal to greedily remove as many copies of the higher-scoring pair as possible using a stack pass, and then remove the lower-scoring pair in a second stack pass."
+  ],
+  "examples": [
+    {
+      "explanation": "Since y = 5 > x = 4, greedily remove \"ba\" pairs first (three times for 15 points), then one \"ab\" for 4 points, totaling 19."
+    },
+    {
+      "explanation": "Since x = 5 > y = 4, greedily remove \"ab\" pairs first (four times for 20 points), totaling 20."
+    },
+    {
+      "explanation": "No \"ab\" or \"ba\" pairs exist in \"ccc\", so the score is 0."
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "maximumGain",
+    "params": [
+      {
+        "name": "s",
+        "type": "String"
+      },
+      {
+        "name": "x",
+        "type": "int"
+      },
+      {
+        "name": "y",
+        "type": "int"
+      }
+    ],
+    "returns": "int"
+  }
+}

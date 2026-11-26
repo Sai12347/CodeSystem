@@ -1,0 +1,54 @@
+{
+  "title": "Allocate Minimum Number of Pages",
+  "difficulty": "Medium",
+  "subtopic": "Search on Answer Space",
+  "companies": [
+    "Google",
+    "Amazon",
+    "Microsoft",
+    "Adobe",
+    "Goldman Sachs",
+    "Oracle"
+  ],
+  "leetcode": null,
+  "description": "You are given an integer array `pages` of `n` books, where `pages[i]` is the number of pages in the `i`-th book, and an integer `students` representing the number of students.\n\nYou must allocate all `n` books among the students such that:\n1. Each student is allocated at least one book.\n2. Each book is allocated to exactly one student.\n3. Allocation is contiguous — each student receives a contiguous subarray of books.\n\nReturn the minimum possible value of the maximum number of pages allocated to any single student. If a valid allocation is impossible (i.e., `students > pages.length`), return `-1`.",
+  "constraints": [
+    "1 <= pages.length <= 10^5",
+    "1 <= pages[i] <= 10^4",
+    "1 <= students <= 10^5"
+  ],
+  "hints": [
+    "First check the impossibility condition: if students > pages.length, it is impossible to give every student at least one book, so return -1.",
+    "Any valid answer must be at least max(pages) and at most sum(pages). Given a page cap M, greedily assign contiguous books to the current student until adding the next book would exceed M.",
+    "Binary search M in [max(pages), sum(pages)] for the smallest cap that requires at most `students` students."
+  ],
+  "examples": [
+    {
+      "explanation": "Allocating [12, 34, 67] (113 pages) to student 1 and [90] (90 pages) to student 2 minimizes the maximum pages to 113."
+    },
+    {
+      "explanation": "There are 5 students but only 3 books, so it is impossible for each student to receive at least one book; return -1."
+    },
+    {
+      "explanation": "With only 1 student, that student must read all books: 22 + 23 + 67 = 112 pages."
+    }
+  ],
+  "timeComplexity": "O(n log S)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "allocatePages",
+    "params": [
+      {
+        "name": "pages",
+        "type": "int[]"
+      },
+      {
+        "name": "students",
+        "type": "int"
+      }
+    ],
+    "returns": "int"
+  }
+}

@@ -1,0 +1,5 @@
+def visible():
+    return [{'in': {'numCourses': 2, 'prerequisites': [[1, 0]], 'queries': [[0, 1], [1, 0]]}}, {'in': {'numCourses': 2, 'prerequisites': [], 'queries': [[0, 1], [1, 0]]}}, {'in': {'numCourses': 1, 'prerequisites': [], 'queries': [[0, 0]]}}]
+
+def hidden():
+    return [{'in': {'numCourses': 3, 'prerequisites': [[1, 2], [1, 0], [2, 0]], 'queries': [[1, 0], [1, 2]]}}, {'in': {'numCourses': 4, 'prerequisites': [[0, 1], [1, 2], [2, 3]], 'queries': [[0, 3], [3, 0], [1, 3]]}}, {'in': {'numCourses': 3, 'prerequisites': [[0, 1], [1, 2]], 'queries': [[0, 2], [2, 0]]}}, {'in': {'numCourses': 4, 'prerequisites': [[0, 2], [1, 2]], 'queries': [[0, 1], [0, 2]]}}, {'in': {'numCourses': 3, 'prerequisites': [[0, 1], [0, 2]], 'queries': [[1, 2], [2, 1]]}}, {'in': {'numCourses': 5, 'prerequisites': [[0, 1], [1, 2], [3, 4]], 'queries': [[0, 2], [3, 2], [4, 3]]}}, {'in': {'numCourses': 3, 'prerequisites': [[0, 1], [1, 0]], 'queries': [[0, 1], [1, 0]]}}, {'in': {'numCourses': 4, 'prerequisites': [[0, 1], [1, 2], [2, 0]], 'queries': [[0, 2], [2, 1]]}}]

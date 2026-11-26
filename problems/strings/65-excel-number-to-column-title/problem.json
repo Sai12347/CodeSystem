@@ -1,0 +1,43 @@
+{
+  "title": "Excel Sheet Column Title",
+  "difficulty": "Easy",
+  "subtopic": "Parsing",
+  "companies": [
+    "Microsoft",
+    "Amazon",
+    "Meta"
+  ],
+  "description": "Given a positive integer `columnNumber`, return its corresponding spreadsheet column title (where 1 -> `\"A\"`, 26 -> `\"Z\"`, 27 -> `\"AA\"`, 701 -> `\"ZY\"`).",
+  "constraints": [
+    "1 <= columnNumber <= 2^31 - 1"
+  ],
+  "hints": [
+    "Because there is no zero digit in Excel column titles, subtract 1 from columnNumber before taking modulo 26.",
+    "Append chr(ord('A') + rem), divide by 26, and reverse the collected characters at the end."
+  ],
+  "examples": [
+    {
+      "explanation": "1 corresponds to \"A\"."
+    },
+    {
+      "explanation": "28 = 1 * 26 + 2 corresponds to \"AB\"."
+    },
+    {
+      "explanation": "701 = 26 * 26 + 25 corresponds to \"ZY\"."
+    }
+  ],
+  "timeComplexity": "O(log_26 n)",
+  "spaceComplexity": "O(log_26 n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "convertToTitle",
+    "params": [
+      {
+        "name": "columnNumber",
+        "type": "int"
+      }
+    ],
+    "returns": "String"
+  }
+}

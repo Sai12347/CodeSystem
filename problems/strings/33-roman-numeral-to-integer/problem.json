@@ -1,0 +1,43 @@
+{
+  "title": "Roman Numeral to Integer",
+  "difficulty": "Easy",
+  "subtopic": "Parsing",
+  "companies": [
+    "Amazon",
+    "Google",
+    "Microsoft"
+  ],
+  "description": "Convert a valid Roman numeral to its integer value. The symbols are `I`, `V`, `X`, `L`, `C`, `D`, and `M`; subtract a symbol when it is smaller than the symbol immediately following it, and otherwise add it. Input: a canonical Roman numeral from 1 through 3999. Output: its integer value.",
+  "constraints": [
+    "1 <= s.length <= 15",
+    "s is a canonical Roman numeral representing an integer from 1 through 3999"
+  ],
+  "hints": [
+    "Track only the character counts or prefixes needed to decide the next step.",
+    "Check repeated symbols, empty or minimal cases, and impossible arrangements."
+  ],
+  "examples": [
+    {
+      "input": "s = \"III\"",
+      "output": "3"
+    },
+    {
+      "input": "s = \"MCMXCIV\"",
+      "output": "1994"
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "romanToInt",
+    "params": [
+      {
+        "name": "s",
+        "type": "String"
+      }
+    ],
+    "returns": "int"
+  }
+}

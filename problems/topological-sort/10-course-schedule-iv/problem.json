@@ -1,0 +1,48 @@
+{
+  "title": "Course Schedule IV",
+  "difficulty": "Medium",
+  "subtopic": "Post-Order DFS",
+  "companies": [
+    "Google",
+    "Amazon",
+    "Microsoft"
+  ],
+  "description": "Each prerequisite pair `[a,b]` means course `a` must be completed before course `b`. For each query `[u,v]`, return true if `u` is a direct or indirect prerequisite of `v`, otherwise false.",
+  "constraints": [
+    "1 <= numCourses <= 100",
+    "0 <= prerequisites.length <= numCourses*(numCourses-1)",
+    "0 <= queries.length <= 10^4"
+  ],
+  "hints": [
+    "Model each ordering rule as a directed edge.",
+    "Use indegrees to process prerequisites and identify cycles or forced choices."
+  ],
+  "examples": [
+    {
+      "input": "numCourses = 2, prerequisites = [[1,0]], queries = [[0,1],[1,0]]",
+      "output": "[false,true]"
+    }
+  ],
+  "timeComplexity": "O(V^3+Q)",
+  "spaceComplexity": "O(V^2)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "checkIfPrerequisite",
+    "params": [
+      {
+        "name": "numCourses",
+        "type": "int"
+      },
+      {
+        "name": "prerequisites",
+        "type": "int[][]"
+      },
+      {
+        "name": "queries",
+        "type": "int[][]"
+      }
+    ],
+    "returns": "List<Boolean>"
+  }
+}

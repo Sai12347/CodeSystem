@@ -1,0 +1,44 @@
+{
+  "title": "Number of Wonderful Substrings",
+  "difficulty": "Hard",
+  "subtopic": "Substrings",
+  "companies": [
+    "Google",
+    "Meta",
+    "Uber"
+  ],
+  "description": "A wonderful string is a non-empty string where at most one letter appears an odd number of times. Given a string `word` consisting solely of the first ten lowercase English letters (`'a'` through `'j'`), return the number of wonderful non-empty contiguous substrings in `word` as a 64-bit integer. Identical substrings at different index ranges are counted separately.",
+  "constraints": [
+    "1 <= word.length <= 10^5",
+    "word consists of lowercase English letters from 'a' to 'j'."
+  ],
+  "hints": [
+    "Maintain a 10-bit prefix parity mask for the letters 'a' through 'j' (at most 1024 possible masks).",
+    "At each prefix mask m, add count[m] (all-even substrings) plus count[m ^ (1 << b)] for each bit b in 0..9 (exactly one odd-count letter)."
+  ],
+  "examples": [
+    {
+      "explanation": "The four wonderful substrings of \"aba\" are \"a\", \"b\", \"a\", and \"aba\"."
+    },
+    {
+      "explanation": "Nine substrings of \"aabb\" have at most one odd-frequency letter."
+    },
+    {
+      "explanation": "Only the two single-character substrings \"h\" and \"e\" are wonderful."
+    }
+  ],
+  "timeComplexity": "O(10 * n)",
+  "spaceComplexity": "O(1024)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "wonderfulSubstrings",
+    "params": [
+      {
+        "name": "word",
+        "type": "String"
+      }
+    ],
+    "returns": "long"
+  }
+}

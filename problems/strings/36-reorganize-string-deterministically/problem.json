@@ -1,0 +1,43 @@
+{
+  "title": "Reorganize String Deterministically",
+  "difficulty": "Medium",
+  "subtopic": "Parsing",
+  "companies": [
+    "Amazon",
+    "Google",
+    "Microsoft"
+  ],
+  "description": "Rearrange the lowercase letters of `s` so no equal characters are adjacent. Repeatedly choose, among characters different from the previous output character, the one with the greatest remaining count; break ties by choosing the alphabetically smallest character. Return the resulting string, or an empty string if no valid arrangement exists. Input: `s`. Output: the deterministic arrangement or empty string.",
+  "constraints": [
+    "1 <= s.length <= 10000",
+    "s contains lowercase English letters"
+  ],
+  "hints": [
+    "Track only the character counts or prefixes needed to decide the next step.",
+    "Check repeated symbols, empty or minimal cases, and impossible arrangements."
+  ],
+  "examples": [
+    {
+      "input": "s = \"aab\"",
+      "output": "aba"
+    },
+    {
+      "input": "s = \"aaab\"",
+      "output": ""
+    }
+  ],
+  "timeComplexity": "O(n log 26)",
+  "spaceComplexity": "O(26)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "reorganizeString",
+    "params": [
+      {
+        "name": "s",
+        "type": "String"
+      }
+    ],
+    "returns": "String"
+  }
+}

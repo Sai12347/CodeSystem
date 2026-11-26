@@ -1,0 +1,1 @@
+class Solution { public List<Boolean> checkIfPrerequisite(int n,int[][] p,int[][] q) { boolean[][]r=new boolean[n][n];for(int[]e:p)r[e[0]][e[1]]=true;for(int k=0;k<n;k++)for(int i=0;i<n;i++)if(r[i][k])for(int j=0;j<n;j++)r[i][j]|=r[k][j];List<Boolean>out=new ArrayList<>();for(int[]e:q)out.add(r[e[0]][e[1]]);return out;} }

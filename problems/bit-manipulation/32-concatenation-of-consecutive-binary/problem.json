@@ -1,0 +1,43 @@
+{
+  "title": "Concatenation of Consecutive Binary",
+  "difficulty": "Medium",
+  "subtopic": "Two Complement",
+  "companies": [
+    "Amazon",
+    "Google",
+    "Bloomberg"
+  ],
+  "description": "Given a positive integer `n`, return the decimal value of the binary string formed by concatenating the binary representations of all integers from `1` to `n` in order (without leading zeros), modulo `10^9 + 7`.",
+  "constraints": [
+    "1 <= n <= 10^5"
+  ],
+  "hints": [
+    "Appending the binary representation of `i` (which has bit length `bits`) to the current value `ans` transforms `ans` into `((ans << bits) | i) % (10^9 + 7)`.",
+    "The bit length `bits` increases by 1 precisely when `i` is a power of two, i.e., `(i & (i - 1)) == 0`."
+  ],
+  "examples": [
+    {
+      "explanation": "Binary of 1 is \"1\", which equals 1."
+    },
+    {
+      "explanation": "Concatenating 1, 10, 11 gives \"11011\" = 27."
+    },
+    {
+      "explanation": "Concatenating 1..12 yields 118505380540, which is 505379714 modulo 10^9 + 7."
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "concatenatedBinary",
+    "params": [
+      {
+        "name": "n",
+        "type": "int"
+      }
+    ],
+    "returns": "int"
+  }
+}

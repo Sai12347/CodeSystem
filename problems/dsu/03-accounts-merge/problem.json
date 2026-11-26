@@ -1,0 +1,39 @@
+{
+  "title": "Accounts Merge",
+  "difficulty": "Medium",
+  "subtopic": "Equivalence Classes",
+  "companies": ["Meta", "Google", "Amazon", "Microsoft", "Uber", "LinkedIn"],
+  "leetcode": 721,
+  "description": "Given a list `accounts` where each element `accounts[i]` is a list of strings, `accounts[i][0]` is a person's `name`, and the remaining elements are email addresses belonging to that account.\n\nWe want to merge these accounts. Two accounts belong to the same person if they share at least one common email address. Note that even if two accounts have the same name, they may belong to different people, because different people can share a name. A single person can initially have any number of accounts, and all of their accounts are guaranteed to have the same name.\n\nAfter merging, return the accounts in the following format: the first element of each merged account is the person's name, and the remaining elements are all unique email addresses belonging to that person sorted in ASCII lexicographical order. The merged accounts themselves may be returned in any order.",
+  "constraints": [
+    "1 <= accounts.length <= 1000",
+    "2 <= accounts[i].length <= 10",
+    "1 <= accounts[i][j].length <= 30",
+    "accounts[i][0] consists of English letters.",
+    "accounts[i][j] (for j > 0) is a valid email."
+  ],
+  "hints": [
+    "Treat every email address (or every account index) as a node in a Disjoint Set Union (DSU) structure.",
+    "For each account, union all its emails with the account's first email, and record the owner name for each email.",
+    "Group all unique emails by their DSU root, sort each group lexicographically, and prepend the corresponding owner name."
+  ],
+  "examples": [
+    {
+      "explanation": "The first and second John accounts share 'johnsmith@mail.com', so they merge into one account with sorted emails. Mary and the third John account share no emails with any other account, so they remain separate."
+    },
+    {
+      "explanation": "None of the five accounts share a common email, so each account remains separate with its emails sorted in lexicographical order."
+    }
+  ],
+  "timeComplexity": "O(N * K * log(N * K))",
+  "spaceComplexity": "O(N * K)",
+  "compare": "sorted",
+  "signature": {
+    "kind": "function",
+    "method": "accountsMerge",
+    "params": [
+      {"name": "accounts", "type": "List<List<String>>"}
+    ],
+    "returns": "List<List<String>>"
+  }
+}

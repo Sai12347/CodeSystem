@@ -1,0 +1,78 @@
+{
+  "title": "Design a Stack With Increment Operation",
+  "difficulty": "Medium",
+  "subtopic": "Min Stack",
+  "companies": [
+    "Google",
+    "Amazon",
+    "Meta",
+    "Uber"
+  ],
+  "description": "Design a bounded stack `CustomStack` that supports incrementing the bottom `k` elements in `O(1)` time.\n\nImplement the `CustomStack` class:\n- `CustomStack(int maxSize)` initializes the stack with maximum capacity `maxSize`.\n- `void push(int x)` adds `x` to the top of the stack if the stack has not reached `maxSize`; otherwise does nothing.\n- `int pop()` pops and returns the top of the stack, or `-1` if the stack is empty.\n- `void increment(int k, int val)` increments the bottom `k` elements of the stack by `val`. If there are fewer than `k` elements in the stack, increment all elements currently in the stack.\n\nEvery operation (`push`, `pop`, and `increment`) must run in `O(1)` time.",
+  "constraints": [
+    "1 <= maxSize, x, k <= 1000",
+    "0 <= val <= 100",
+    "At most 2 * 10^4 calls will be made across push, pop, and increment."
+  ],
+  "hints": [
+    "Maintain a parallel lazy-increment array inc[] of the same length as the stack.",
+    "For increment(k, val), only add val to inc[min(k, size) - 1]; when popping index i, add inc[i] to the popped value and propagate inc[i] down to inc[i - 1]."
+  ],
+  "examples": [
+    {
+      "explanation": "Pushing 1, 2, popping 2, pushing 2, 3, 4 (4 ignored as maxSize=3), incrementing bottom 5 by 100 and bottom 2 by 100 yields [201, 202, 103], popping 103, 202, 201, then -1."
+    },
+    {
+      "explanation": "Incrementing an empty stack has no effect and popping returns -1."
+    },
+    {
+      "explanation": "With maxSize=1, only the first push succeeds and receives the lazy increment before popping."
+    }
+  ],
+  "timeComplexity": "O(1) per op",
+  "spaceComplexity": "O(maxSize)",
+  "compare": "exact",
+  "signature": {
+    "kind": "design",
+    "className": "CustomStack",
+    "constructor": {
+      "params": [
+        {
+          "name": "maxSize",
+          "type": "int"
+        }
+      ]
+    },
+    "methods": [
+      {
+        "name": "push",
+        "params": [
+          {
+            "name": "x",
+            "type": "int"
+          }
+        ],
+        "returns": "void"
+      },
+      {
+        "name": "pop",
+        "params": [],
+        "returns": "int"
+      },
+      {
+        "name": "increment",
+        "params": [
+          {
+            "name": "k",
+            "type": "int"
+          },
+          {
+            "name": "val",
+            "type": "int"
+          }
+        ],
+        "returns": "void"
+      }
+    ]
+  }
+}

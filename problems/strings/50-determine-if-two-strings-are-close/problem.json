@@ -1,0 +1,48 @@
+{
+  "title": "Determine if Two Strings Are Close",
+  "difficulty": "Medium",
+  "subtopic": "Anagrams",
+  "companies": [
+    "Google",
+    "Meta",
+    "Amazon"
+  ],
+  "description": "Two lowercase strings are considered close if you can transform one into the other using any number of two operations: (1) swap any two existing characters, or (2) transform every occurrence of one existing character into another existing character and vice versa. Return `true` if `word1` and `word2` are close, and `false` otherwise.",
+  "constraints": [
+    "1 <= word1.length, word2.length <= 10^5",
+    "word1 and word2 contain only lowercase English letters."
+  ],
+  "hints": [
+    "Operation 1 lets you freely reorder characters, while Operation 2 lets you permute frequency counts among existing distinct characters.",
+    "Two strings are close iff they have the same length, the exact same set of distinct characters, and the same sorted list of character frequencies."
+  ],
+  "examples": [
+    {
+      "explanation": "\"abc\" can become \"bca\" using only character swaps."
+    },
+    {
+      "explanation": "Different lengths mean \"a\" and \"aa\" can never be transformed into each other."
+    },
+    {
+      "explanation": "Both use {a, b, c} with sorted frequencies [1, 2, 3]."
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "closeStrings",
+    "params": [
+      {
+        "name": "word1",
+        "type": "String"
+      },
+      {
+        "name": "word2",
+        "type": "String"
+      }
+    ],
+    "returns": "boolean"
+  }
+}

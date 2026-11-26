@@ -1,0 +1,50 @@
+{
+  "title": "Number of Visible People in a Queue",
+  "difficulty": "Hard",
+  "subtopic": "Next Greater Element",
+  "companies": [
+    "Meta",
+    "Google",
+    "Amazon",
+    "Microsoft",
+    "Uber"
+  ],
+  "leetcode": 1944,
+  "description": "There are `n` people standing in a queue, numbered from `0` to `n - 1` from left to right. You are given an integer array `heights` of **distinct** positive integers where `heights[i]` represents the height of the `i`-th person.\n\nPerson `i` can **see** another person `j` to their right (`i < j`) if and only if everyone standing between them is shorter than both of them. Formally, person `i` can see person `j` when `i < j` and `min(heights[i], heights[j]) > max(heights[i + 1], heights[i + 2], ..., heights[j - 1])` (vacuously true when `j == i + 1`).\n\nReturn an array `answer` of length `n` where `answer[i]` is the number of people person `i` can see to their right in the queue.",
+  "constraints": [
+    "n == heights.length",
+    "1 <= n <= 10^5",
+    "1 <= heights[i] <= 10^5",
+    "All values of heights are unique."
+  ],
+  "hints": [
+    "Process the queue from right to left while maintaining a monotonic decreasing stack of heights currently visible from the left.",
+    "For person `i`, pop every person from the stack shorter than `heights[i]`: person `i` can see each of them, and nobody to the left of `i` will be able to see past `i` to those shorter people.",
+    "After popping shorter people, if the stack is still non-empty, person `i` can also see the first taller person on top of the stack (add `1` to the count), then push `heights[i]`."
+  ],
+  "examples": [
+    {
+      "explanation": "Person 0 (10) sees 6, 8, and 11 (count 3). Person 1 (6) sees 8. Person 2 (8) sees 5 and 11. Person 5 (9) sees no one to their right."
+    },
+    {
+      "explanation": "Person 0 (5) sees all four people to their right (1, 2, 3, 10) because each is taller than everyone before them in the gap."
+    },
+    {
+      "explanation": "Every person except the last immediately hits a taller neighbor and sees exactly 1 person."
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "canSeePersonsCount",
+    "params": [
+      {
+        "name": "heights",
+        "type": "int[]"
+      }
+    ],
+    "returns": "int[]"
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "title": "Search in Rotated Sorted Array",
+  "difficulty": "Medium",
+  "subtopic": "Rotated Array",
+  "companies": ["Amazon", "Meta", "Google", "Microsoft", "LinkedIn", "Bloomberg"],
+  "leetcode": 33,
+  "description": "There is an integer array `nums` sorted in ascending order with **distinct** values.\n\nPrior to being passed to your function, `nums` is **possibly left-rotated** at an unknown index `k` (`1 <= k < nums.length`) such that the resulting array is `[nums[k], nums[k + 1], ..., nums[n - 1], nums[0], nums[1], ..., nums[k - 1]]` (0-indexed). For example, `[0, 1, 2, 4, 5, 6, 7]` rotated at index `3` becomes `[4, 5, 6, 7, 0, 1, 2]`.\n\nGiven the array `nums` after the possible rotation and an integer `target`, return the 0-based index of `target` if it is in `nums`, or `-1` if it is not in `nums`.\n\nYou must write an algorithm with `O(log n)` runtime complexity.",
+  "constraints": [
+    "1 <= nums.length <= 5000",
+    "-10^4 <= nums[i] <= 10^4",
+    "All values of nums are unique.",
+    "nums is an ascending array that is possibly rotated.",
+    "-10^4 <= target <= 10^4"
+  ],
+  "hints": [
+    "At any midpoint mid, at least one of the two halves [left..mid] or [mid..right] is strictly sorted.",
+    "Check whether nums[left] <= nums[mid] to determine which half is sorted.",
+    "Once you identify the sorted half, test whether target lies within its inclusive bounds to decide which half to keep."
+  ],
+  "examples": [
+    {"explanation": "0 is located at index 4 in the rotated array."},
+    {"explanation": "3 does not exist in nums, so return -1."},
+    {"explanation": "0 does not match the single element 1, so return -1."}
+  ],
+  "timeComplexity": "O(log n)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "search",
+    "params": [
+      {"name": "nums", "type": "int[]"},
+      {"name": "target", "type": "int"}
+    ],
+    "returns": "int"
+  }
+}

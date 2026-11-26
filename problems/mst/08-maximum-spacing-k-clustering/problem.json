@@ -1,0 +1,49 @@
+{
+  "title": "Maximum Spacing for K Clusters",
+  "difficulty": "Hard",
+  "subtopic": "Kruskal Algorithm",
+  "companies": [
+    "Google",
+    "Amazon",
+    "Microsoft"
+  ],
+  "description": "Partition the vertices of a connected undirected weighted graph into exactly `k` non-empty clusters. The spacing is the minimum edge weight joining two different clusters. Return the maximum spacing achievable. Return -1 when `k` is 1 or `n` is 1 because the spacing is undefined.",
+  "constraints": [
+    "2 <= n <= 10^4",
+    "2 <= k <= n",
+    "The graph is connected",
+    "0 <= edge weight <= 10^9"
+  ],
+  "hints": [
+    "Sort candidate edges by weight and use a disjoint-set structure to track connected components.",
+    "Respect the stated tie-breaking rule and handle disconnected graphs if allowed."
+  ],
+  "examples": [
+    {
+      "input": "n = 4, k = 2, edges = [[0,1,1],[1,2,2],[2,3,3],[0,3,10]]",
+      "output": "3"
+    }
+  ],
+  "timeComplexity": "O(E log E)",
+  "spaceComplexity": "O(V+E)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "maximumSpacing",
+    "params": [
+      {
+        "name": "n",
+        "type": "int"
+      },
+      {
+        "name": "k",
+        "type": "int"
+      },
+      {
+        "name": "edges",
+        "type": "int[][]"
+      }
+    ],
+    "returns": "int"
+  }
+}

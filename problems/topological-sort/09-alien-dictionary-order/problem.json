@@ -1,0 +1,40 @@
+{
+  "title": "Alien Dictionary Order",
+  "difficulty": "Hard",
+  "subtopic": "Alien Dictionary",
+  "companies": [
+    "Google",
+    "Amazon",
+    "Microsoft"
+  ],
+  "description": "A sorted list of words is written in an unknown alphabet. Infer one valid character order consistent with the list. Return the lexicographically smallest valid order of all distinct characters present, or an empty string if the ordering is invalid or cyclic. When comparing words, the first differing character determines their order; a longer word cannot precede its own prefix.",
+  "constraints": [
+    "1 <= words.length <= 100",
+    "1 <= words[i].length <= 100",
+    "words contain lowercase English letters"
+  ],
+  "hints": [
+    "Model each ordering rule as a directed edge.",
+    "Use indegrees to process prerequisites and identify cycles or forced choices."
+  ],
+  "examples": [
+    {
+      "input": "words = [\"wrt\",\"wrf\",\"er\",\"ett\",\"rftt\"]",
+      "output": "\"wertf\""
+    }
+  ],
+  "timeComplexity": "O(V+E)",
+  "spaceComplexity": "O(V+E)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "alienOrder",
+    "params": [
+      {
+        "name": "words",
+        "type": "String[]"
+      }
+    ],
+    "returns": "String"
+  }
+}

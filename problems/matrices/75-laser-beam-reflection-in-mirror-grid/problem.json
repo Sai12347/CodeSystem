@@ -1,0 +1,47 @@
+{
+  "title": "Laser Beam Reflection in Mirror Grid",
+  "difficulty": "Medium",
+  "subtopic": "Simulation",
+  "companies": [
+    "Google",
+    "Amazon",
+    "Apple",
+    "Uber"
+  ],
+  "description": "You are given an `m x n` character matrix `grid` representing a room containing mirrors:\n- `'.'` is an empty cell where a laser beam continues straight.\n- `'/'` is a diagonal mirror reflecting `Right -> Up`, `Up -> Right`, `Left -> Down`, `Down -> Left`.\n- `'\\\\'` is a diagonal mirror reflecting `Right -> Down`, `Down -> Right`, `Left -> Up`, `Up -> Left`.\n\nA laser beam enters cell `(0, 0)` moving **Right**. Whenever the beam enters a cell, that cell becomes illuminated, the beam adjusts its direction according to the cell's character, and then moves one step in its new direction. The beam terminates when it exits the grid or enters a `(row, col, direction)` state it has previously visited.\n\nReturn the total number of **distinct cells** illuminated by the laser beam.",
+  "constraints": [
+    "m == grid.length",
+    "n == grid[i].length",
+    "1 <= m, n <= 100",
+    "grid[i][j] is one of '.', '/', or '\\\\'."
+  ],
+  "hints": [
+    "Encode directions as 0=Right, 1=Down, 2=Left, 3=Up: then '/' maps d to 3 - d and '\\\\' maps d to d ^ 1.",
+    "Track visited (r, c, dir) states using a 4-bit bitmask per cell to detect cycles in O(1), and count each cell the first time its mask transitions from 0 to non-zero."
+  ],
+  "examples": [
+    {
+      "explanation": "The beam moves right across (0,0), (0,1), reflects down at (0,2)='\\\\', moves through (1,2), reflects left at (2,2)='/', and exits past (2,0) after lighting 7 cells."
+    },
+    {
+      "explanation": "The beam hits '/' at (0,0), reflects upward immediately out of bounds, illuminating only 1 cell."
+    },
+    {
+      "explanation": "The beam reflects down at (0,0)='\\\\', right at (1,0)='\\\\', up at (1,1)='/', and exits through (0,1), illuminating 4 distinct cells."
+    }
+  ],
+  "timeComplexity": "O(m * n)",
+  "spaceComplexity": "O(m * n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "illuminatedCells",
+    "params": [
+      {
+        "name": "grid",
+        "type": "char[][]"
+      }
+    ],
+    "returns": "int"
+  }
+}

@@ -1,0 +1,45 @@
+{
+  "title": "Surface Area of 3D Shapes on a Grid",
+  "difficulty": "Easy",
+  "subtopic": "Simulation",
+  "companies": [
+    "Amazon",
+    "Apple",
+    "Microsoft"
+  ],
+  "description": "You are given an `n x n` integer matrix `grid` where `grid[r][c]` denotes the number of `1 x 1 x 1` cubes stacked vertically on cell `(r, c)`. Cubes placed on adjacent cells are glued together along their shared faces.\n\nReturn the **total surface area** of all resulting 3D shapes, including the bottom faces resting on the ground.",
+  "constraints": [
+    "n == grid.length == grid[i].length",
+    "1 <= n <= 50",
+    "0 <= grid[i][j] <= 50"
+  ],
+  "hints": [
+    "An isolated tower of height v > 0 contributes 4 * v side area plus 2 for its top and bottom faces.",
+    "Whenever two orthogonally adjacent towers of heights a and b touch, they hide 2 * min(a, b) square units of surface area (one face on each tower); subtract overlaps with the north and west neighbors to avoid double counting."
+  ],
+  "examples": [
+    {
+      "explanation": "A single stack of 2 cubes has 4 * 2 + 2 = 10 unit faces."
+    },
+    {
+      "explanation": "Four stacks [1,2; 3,4] contribute 6 + 10 + 14 + 18 = 48 minus shared internal faces 2*(1+1+2+3) = 14, giving 34."
+    },
+    {
+      "explanation": "Empty cells (height 0) add 0 and the two non-empty diagonal corners share no faces, contributing 6 + 10 = 16."
+    }
+  ],
+  "timeComplexity": "O(n^2)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "surfaceArea",
+    "params": [
+      {
+        "name": "grid",
+        "type": "int[][]"
+      }
+    ],
+    "returns": "int"
+  }
+}

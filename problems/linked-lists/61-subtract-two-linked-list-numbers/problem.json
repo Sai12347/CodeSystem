@@ -1,0 +1,50 @@
+{
+  "title": "Subtract Two Linked List Numbers",
+  "difficulty": "Medium",
+  "subtopic": "Reversal",
+  "companies": [
+    "Amazon",
+    "Microsoft",
+    "Goldman Sachs",
+    "Adobe"
+  ],
+  "description": "You are given two non-empty singly linked lists `l1` and `l2` representing two non-negative integers with the **most significant digit** at the head of each list (neither number contains leading zeros except when representing `0` itself).\n\nReturn a singly linked list representing the absolute difference `|num(l1) - num(l2)|` with the most significant digit at the head and no unnecessary leading zeros. If both numbers are equal, return a single node with value `0`.",
+  "constraints": [
+    "The number of nodes in each list is in the range [1, 10^4].",
+    "0 <= Node.val <= 9",
+    "Neither input list has leading zeros except for the single-node list [0]."
+  ],
+  "hints": [
+    "First compare the magnitudes of `l1` and `l2` (longer list is larger; on equal lengths compare digit-by-digit from head) so you always subtract the smaller number from the larger one.",
+    "Reverse both lists, perform schoolbook subtraction from least significant digit with a borrow flag, reverse the resulting list, and strip any leading zero nodes (leaving at least one node)."
+  ],
+  "examples": [
+    {
+      "explanation": "100 - 12 = 88 (leading zero stripped)."
+    },
+    {
+      "explanation": "|45 - 123| = 78."
+    },
+    {
+      "explanation": "500 - 500 = 0."
+    }
+  ],
+  "timeComplexity": "O(n + m)",
+  "spaceComplexity": "O(max(n, m))",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "subtractTwoNumbers",
+    "params": [
+      {
+        "name": "l1",
+        "type": "ListNode"
+      },
+      {
+        "name": "l2",
+        "type": "ListNode"
+      }
+    ],
+    "returns": "ListNode"
+  }
+}

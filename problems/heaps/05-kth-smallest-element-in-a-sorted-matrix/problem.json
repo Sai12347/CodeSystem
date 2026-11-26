@@ -1,0 +1,56 @@
+{
+  "title": "Kth Smallest Element in a Sorted Matrix",
+  "difficulty": "Medium",
+  "subtopic": "Merge K Sorted",
+  "companies": [
+    "Meta",
+    "Amazon",
+    "Google",
+    "Microsoft",
+    "Apple",
+    "Bloomberg"
+  ],
+  "leetcode": 378,
+  "description": "Given an `n x n` integer `matrix` where each of the rows and columns is sorted in **non-decreasing order**, return the `k`-th smallest element in the matrix.\n\nNote that it is the `k`-th smallest element in sorted order, **not** the `k`-th distinct element.\n\nYou should aim for a solution with better than `O(n^2 log n)` time complexity or `O(n^2)` extra space.",
+  "constraints": [
+    "n == matrix.length == matrix[i].length",
+    "1 <= n <= 300",
+    "-10^9 <= matrix[i][j] <= 10^9",
+    "All the rows and columns of matrix are guaranteed to be sorted in non-decreasing order.",
+    "1 <= k <= n^2"
+  ],
+  "hints": [
+    "Think of the n rows as n sorted lists — finding the k-th smallest element is equivalent to a k-way merge.",
+    "Initialize a min-heap with the first element of the first min(n, k) rows as `(value, row, col)`. Pop the smallest element k - 1 times, each time pushing the next element in the same row.",
+    "For an alternative O(1) space solution, binary search on the value range `[matrix[0][0], matrix[n-1][n-1]]` and count elements <= mid in O(n) time from the bottom-left corner."
+  ],
+  "examples": [
+    {
+      "explanation": "The elements in sorted order are [1, 5, 9, 10, 11, 12, 13, 13, 15], and the 8th smallest is 13."
+    },
+    {
+      "explanation": "A 1x1 matrix has only one element, -5."
+    },
+    {
+      "explanation": "Sorted elements are [1, 2, 3, 4], so the 3rd smallest is 3."
+    }
+  ],
+  "timeComplexity": "O(min(n, k) + k log(min(n, k)))",
+  "spaceComplexity": "O(min(n, k))",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "kthSmallest",
+    "params": [
+      {
+        "name": "matrix",
+        "type": "int[][]"
+      },
+      {
+        "name": "k",
+        "type": "int"
+      }
+    ],
+    "returns": "int"
+  }
+}

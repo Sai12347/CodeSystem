@@ -1,0 +1,53 @@
+{
+  "title": "Kth Smallest Number in Multiplication Table",
+  "difficulty": "Hard",
+  "subtopic": "2D Search",
+  "companies": [
+    "Google",
+    "Amazon",
+    "Meta",
+    "Goldman Sachs"
+  ],
+  "description": "Consider an `m x n` multiplication table (1-indexed) where the cell at row `i` and column `j` holds the value `i * j` (`1 <= i <= m`, `1 <= j <= n`).\n\nGiven integers `m`, `n`, and `k`, return the `k`-th smallest integer in this `m x n` multiplication table (counting duplicates with multiplicity).",
+  "constraints": [
+    "1 <= m, n <= 3 * 10^4",
+    "1 <= k <= m * n"
+  ],
+  "hints": [
+    "Binary search the answer value x in [1, m * n] rather than building the matrix.",
+    "For any candidate x, row i (which holds i, 2i, ..., n*i) contributes min(x // i, n) values <= x; sum this across all rows to check whether count(x) >= k."
+  ],
+  "examples": [
+    {
+      "explanation": "The 3x3 multiplication table sorted is [1, 2, 2, 3, 3, 4, 6, 6, 9]; the 5th smallest element is 3."
+    },
+    {
+      "explanation": "The 2x3 multiplication table sorted is [1, 2, 2, 3, 4, 6]; the 6th smallest element is 6."
+    },
+    {
+      "explanation": "The 1st smallest element in any multiplication table is always 1."
+    }
+  ],
+  "timeComplexity": "O(min(m, n) * log(m * n))",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "findKthNumber",
+    "params": [
+      {
+        "name": "m",
+        "type": "int"
+      },
+      {
+        "name": "n",
+        "type": "int"
+      },
+      {
+        "name": "k",
+        "type": "int"
+      }
+    ],
+    "returns": "int"
+  }
+}

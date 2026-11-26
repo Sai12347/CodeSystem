@@ -1,0 +1,33 @@
+{
+  "title": "House Robber",
+  "difficulty": "Medium",
+  "subtopic": "House Robber",
+  "companies": ["Amazon", "Google", "Microsoft", "Apple", "Meta", "Bloomberg"],
+  "leetcode": 198,
+  "description": "You are a professional robber planning to rob houses along a street. Each house has a certain amount of money stashed, given by a non-negative integer array `nums` where `nums[i]` represents the amount of money in the `i`-th house.\n\nAdjacent houses have connected security systems that will automatically alert the police if two adjacent houses are robbed on the same night.\n\nReturn the maximum amount of money you can rob tonight without alerting the police.",
+  "constraints": [
+    "1 <= nums.length <= 10^4",
+    "0 <= nums[i] <= 10^4"
+  ],
+  "hints": [
+    "At each house `i`, you have two choices: skip it (keeping the best total up to house `i - 1`) or rob it (adding `nums[i]` to the best total up to house `i - 2`).",
+    "Define `dp[i] = max(dp[i - 1], dp[i - 2] + nums[i])` as the maximum money obtainable from houses `0..i`.",
+    "Since `dp[i]` only depends on `dp[i - 1]` and `dp[i - 2]`, track those two values in O(1) extra space."
+  ],
+  "examples": [
+    {"explanation": "Rob house 0 (money = 1) and house 2 (money = 3). Total amount = 1 + 3 = 4."},
+    {"explanation": "Rob house 0 (money = 2), house 2 (money = 9), and house 4 (money = 1). Total amount = 2 + 9 + 1 = 12."},
+    {"explanation": "Rob house 0 (money = 2) and house 3 (money = 2), skipping two houses in between. Total amount = 2 + 2 = 4."}
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "rob",
+    "params": [
+      {"name": "nums", "type": "int[]"}
+    ],
+    "returns": "int"
+  }
+}

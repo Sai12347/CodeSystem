@@ -1,0 +1,46 @@
+{
+  "title": "Odd Even Linked List",
+  "difficulty": "Medium",
+  "subtopic": "Pointers & Nodes",
+  "companies": [
+    "Amazon",
+    "Google",
+    "Meta",
+    "Microsoft",
+    "Bloomberg"
+  ],
+  "description": "Given the `head` of a singly linked list, group all nodes positioned at **odd 1-based indices** together followed by the nodes positioned at **even 1-based indices**, and return the reordered list.\n\nThe relative order inside both the odd group and the even group must remain identical to the input. Solve the problem in `O(n)` time and `O(1)` extra space.",
+  "constraints": [
+    "The number of nodes in the list is in the range [0, 10^4].",
+    "-10^6 <= Node.val <= 10^6"
+  ],
+  "hints": [
+    "Maintain two running tail pointers `odd` (starting at `head`) and `even` (starting at `head.next`), and save `evenHead = even`.",
+    "In each step link `odd.next = even.next`, advance `odd`, link `even.next = odd.next`, and advance `even`; finally connect `odd.next = evenHead`."
+  ],
+  "examples": [
+    {
+      "explanation": "Odd-indexed nodes [1, 3, 5] come first, followed by even-indexed nodes [2, 4]."
+    },
+    {
+      "explanation": "Odd-indexed nodes [2, 3, 6, 7] precede even-indexed nodes [1, 5, 4]."
+    },
+    {
+      "explanation": "An empty list remains empty (null)."
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "oddEvenList",
+    "params": [
+      {
+        "name": "head",
+        "type": "ListNode"
+      }
+    ],
+    "returns": "ListNode"
+  }
+}

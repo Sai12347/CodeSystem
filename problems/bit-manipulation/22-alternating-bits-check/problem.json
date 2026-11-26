@@ -1,0 +1,43 @@
+{
+  "title": "Alternating Bits Check",
+  "difficulty": "Easy",
+  "subtopic": "Counting Bits",
+  "companies": [
+    "Apple",
+    "Microsoft",
+    "Atlassian"
+  ],
+  "description": "Given a positive integer `n`, return `true` if its binary representation has alternating bits \u2014 meaning no two adjacent bits have the same value \u2014 and `false` otherwise. Leading zeros above the most significant set bit are ignored.",
+  "constraints": [
+    "1 <= n <= 2^31 - 1"
+  ],
+  "hints": [
+    "What happens when you XOR `n` with `n >> 1` if all adjacent bits of `n` are different?",
+    "Every bit up to the MSB becomes `1`, which holds if and only if `(x & (x + 1)) == 0` where `x = n ^ (n >> 1)`."
+  ],
+  "examples": [
+    {
+      "explanation": "5 in binary is 101, which strictly alternates."
+    },
+    {
+      "explanation": "7 in binary is 111, which has adjacent 1s."
+    },
+    {
+      "explanation": "11 in binary is 1011, which has adjacent 1s at the lowest two bits."
+    }
+  ],
+  "timeComplexity": "O(1)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "hasAlternatingBits",
+    "params": [
+      {
+        "name": "n",
+        "type": "int"
+      }
+    ],
+    "returns": "boolean"
+  }
+}

@@ -1,0 +1,49 @@
+{
+  "title": "Check If a String Contains All Binary Codes of Size K",
+  "difficulty": "Medium",
+  "subtopic": "Counting Bits",
+  "companies": [
+    "Google",
+    "Meta",
+    "Atlassian"
+  ],
+  "description": "Given a binary string `s` and a positive integer `k`, return `true` if every binary string of length `k` (all `2^k` possible codes) appears as a contiguous substring of `s`, and `false` otherwise.",
+  "constraints": [
+    "1 <= s.length <= 10^5",
+    "1 <= k <= 18",
+    "s[i] is either '0' or '1'."
+  ],
+  "hints": [
+    "There are `2^k` distinct binary codes of length `k`, so if `s.length - k + 1 < 2^k` you can return `false` immediately.",
+    "Maintain a rolling `k`-bit integer mask `code = ((code << 1) & mask) | bit` and track newly seen codes in a boolean array of size `2^k`."
+  ],
+  "examples": [
+    {
+      "explanation": "All four 2-bit codes (\"00\", \"01\", \"10\", \"11\") appear in \"00110110\"."
+    },
+    {
+      "explanation": "Both 1-bit codes (\"0\" and \"1\") appear in \"0110\"."
+    },
+    {
+      "explanation": "The 2-bit code \"00\" never appears in \"0110\"."
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(2^k)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "hasAllCodes",
+    "params": [
+      {
+        "name": "s",
+        "type": "String"
+      },
+      {
+        "name": "k",
+        "type": "int"
+      }
+    ],
+    "returns": "boolean"
+  }
+}

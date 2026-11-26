@@ -25,6 +25,13 @@ jwt:
   secret: ${JWT_SECRET:codesystem_secure_jwt_signing_key_32_bytes_super_secret_for_production}
   expiration: 86400000 # 24 hours
 
+judge:
+  max-concurrent: ${JUDGE_MAX_CONCURRENT:4}
+  compile-timeout-seconds: ${JUDGE_COMPILE_TIMEOUT_SECONDS:15}
+  run-timeout-seconds: ${JUDGE_RUN_TIMEOUT_SECONDS:10}
+  per-test-limit-ms: ${JUDGE_PER_TEST_LIMIT_MS:2500}
+  python-command: ${JUDGE_PYTHON_COMMAND:}
+
 management:
   endpoints:
     web:

@@ -1,0 +1,47 @@
+{
+  "title": "Optimize Water Distribution in a Village",
+  "difficulty": "Hard",
+  "subtopic": "Min Cost Networks",
+  "companies": ["Google", "Amazon", "Meta", "Microsoft", "Apple"],
+  "leetcode": 1168,
+  "description": "There are `n` houses in a village, numbered from `1` to `n`. We want to supply water for all the houses by building wells and laying pipes.\n\nFor each house `i` (`1 <= i <= n`), we can either build a well inside it directly with cost `wells[i - 1]` (0-indexed), or pipe in water from another house that has water. The costs to lay pipes between houses are given by the array `pipes`, where each `pipes[j] = [house1j, house2j, costj]` represents the cost to connect `house1j` and `house2j` together using a bidirectional pipe.\n\nNote that there may be multiple valid connections between the same two houses with different costs.\n\nReturn the minimum total cost to supply water to all houses.",
+  "constraints": [
+    "1 <= n <= 10^4",
+    "wells.length == n",
+    "0 <= wells[i] <= 10^5",
+    "0 <= pipes.length <= 10^4",
+    "pipes[j].length == 3",
+    "1 <= house1j, house2j <= n",
+    "house1j != house2j",
+    "0 <= costj <= 10^5"
+  ],
+  "hints": [
+    "Every connected component of piped houses must contain at least one well.",
+    "Introduce a virtual water-source node 0 and add an edge of weight wells[i - 1] between node 0 and each house i.",
+    "Now supplying water to every house is equivalent to finding a Minimum Spanning Tree on the (n + 1)-node graph using Kruskal's or Prim's algorithm."
+  ],
+  "examples": [
+    {
+      "explanation": "Build a well in house 1 (cost 1) and connect houses 1-2 (cost 1) and 2-3 (cost 1) via pipes for a total cost of 3."
+    },
+    {
+      "explanation": "We can either build a well in each house (1 + 1 = 2) or build one well and connect them with the pipe of cost 1 (1 + 1 = 2)."
+    },
+    {
+      "explanation": "Pipes are more expensive than building wells directly, so build a well in every house for a total cost of 5 + 5 + 5 = 15."
+    }
+  ],
+  "timeComplexity": "O((n + m) log(n + m))",
+  "spaceComplexity": "O(n + m)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "minCostToSupplyWater",
+    "params": [
+      {"name": "n", "type": "int"},
+      {"name": "wells", "type": "int[]"},
+      {"name": "pipes", "type": "int[][]"}
+    ],
+    "returns": "int"
+  }
+}

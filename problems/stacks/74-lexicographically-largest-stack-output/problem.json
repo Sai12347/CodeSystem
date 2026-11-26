@@ -1,0 +1,45 @@
+{
+  "title": "Lexicographically Largest Stack Output",
+  "difficulty": "Medium",
+  "subtopic": "LIFO Structure",
+  "companies": [
+    "Google",
+    "Meta",
+    "Amazon",
+    "Uber"
+  ],
+  "description": "Given a permutation `nums` of `1, 2, ..., n`, you process elements from left to right using a single LIFO stack. Every element of `nums` must be pushed onto the stack in order, and at any moment you may pop the top element of the stack and append it to the output array until both `nums` and the stack are empty.\n\nReturn the **lexicographically largest** output permutation that can be formed.",
+  "constraints": [
+    "1 <= nums.length <= 10^5",
+    "nums is a permutation of integers from 1 to nums.length."
+  ],
+  "hints": [
+    "Precompute `suffixMax[i]`, the maximum value among `nums[i..n - 1]` (with `suffixMax[n] = 0`).",
+    "After pushing `nums[i]`, greedily pop from the stack to the output while the stack top is strictly greater than `suffixMax[i + 1]`."
+  ],
+  "examples": [
+    {
+      "explanation": "Push 2, push 1, push 5, pop 5, push 3, push 4, pop 4, pop 3, pop 1, pop 2 gives [5, 4, 3, 1, 2]."
+    },
+    {
+      "explanation": "Push 1, 2, 3, 4, then pop all to get [4, 3, 2, 1]."
+    },
+    {
+      "explanation": "Push 4 and immediately pop 4 (greater than all remaining), then push 2, 3 and pop 3, 2, then push/pop 1 -> [4, 3, 2, 1]."
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "largestStackOutput",
+    "params": [
+      {
+        "name": "nums",
+        "type": "int[]"
+      }
+    ],
+    "returns": "int[]"
+  }
+}

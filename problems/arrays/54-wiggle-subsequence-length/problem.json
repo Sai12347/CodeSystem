@@ -1,0 +1,43 @@
+{
+  "title": "Wiggle Subsequence Length",
+  "difficulty": "Medium",
+  "subtopic": "Traversal",
+  "companies": [
+    "Amazon",
+    "Google",
+    "Microsoft"
+  ],
+  "description": "A subsequence wiggles when consecutive differences alternate strictly between positive and negative; equal neighboring values do not create a turn. Given `nums`, return the maximum length of a wiggle subsequence. Input: `nums`. Output: that length.",
+  "constraints": [
+    "1 <= nums.length <= 100000",
+    "-1000000000 <= nums[i] <= 1000000000"
+  ],
+  "hints": [
+    "Maintain the prefix or window information needed to count candidate ranges.",
+    "Check repeated values, extreme bounds, and cases with no valid segment."
+  ],
+  "examples": [
+    {
+      "input": "nums = [1, 7, 4, 9, 2, 5]",
+      "output": "6"
+    },
+    {
+      "input": "nums = [1, 1, 1, 1]",
+      "output": "1"
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "wiggleMaxLength",
+    "params": [
+      {
+        "name": "nums",
+        "type": "int[]"
+      }
+    ],
+    "returns": "int"
+  }
+}

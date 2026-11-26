@@ -1,0 +1,40 @@
+{
+  "title": "Unique Paths II",
+  "difficulty": "Medium",
+  "subtopic": "Grid Paths",
+  "companies": [
+    "Google",
+    "Amazon",
+    "Microsoft"
+  ],
+  "description": "A robot starts at the top-left of a grid and may move only right or down. A cell containing 1 is blocked; 0 is open. Return the number of paths to the bottom-right cell. If the start or finish is blocked, return 0.",
+  "constraints": [
+    "1 <= rows, columns <= 100",
+    "obstacleGrid[i][j] is 0 or 1",
+    "The number of valid paths fits in a signed 32-bit integer."
+  ],
+  "hints": [
+    "Define a dynamic-programming state for each prefix of the inputs.",
+    "Update each state using only valid preceding states and the allowed transitions."
+  ],
+  "examples": [
+    {
+      "input": "obstacleGrid = [[0,0,0],[0,1,0],[0,0,0]]",
+      "output": "2"
+    }
+  ],
+  "timeComplexity": "O(m*n)",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "uniquePathsWithObstacles",
+    "params": [
+      {
+        "name": "obstacleGrid",
+        "type": "int[][]"
+      }
+    ],
+    "returns": "int"
+  }
+}

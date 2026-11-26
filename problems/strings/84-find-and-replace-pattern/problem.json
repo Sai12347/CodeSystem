@@ -1,0 +1,50 @@
+{
+  "title": "Find and Replace Pattern",
+  "difficulty": "Medium",
+  "subtopic": "String Matching",
+  "companies": [
+    "Google",
+    "Amazon",
+    "Meta"
+  ],
+  "description": "Given an array of lowercase strings `words` and a lowercase string `pattern`, return a list of all words in `words` (preserving their original order) that match `pattern`. A word matches `pattern` if there exists a bijection (one-to-one and onto mapping) between letters such that replacing every letter `x` in `pattern` with `p(x)` produces the word.",
+  "constraints": [
+    "1 <= words.length <= 200",
+    "1 <= pattern.length <= 50",
+    "words[i].length == pattern.length",
+    "All characters are lowercase English letters."
+  ],
+  "hints": [
+    "Normalize a string by assigning each newly encountered character its first-seen integer ID (0, 1, 2, ...).",
+    "Alternatively check forward and backward 26-element mapping arrays for each word against pattern."
+  ],
+  "examples": [
+    {
+      "explanation": "\"mee\" and \"aqq\" share the exact (0,1,1) pattern of \"abb\"."
+    },
+    {
+      "explanation": "Every single-character word matches \"a\"."
+    },
+    {
+      "explanation": "\"aba\" and \"cdc\" both follow the (0,1,0) pattern of \"xyx\"."
+    }
+  ],
+  "timeComplexity": "O(N * L)",
+  "spaceComplexity": "O(N * L)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "findAndReplacePattern",
+    "params": [
+      {
+        "name": "words",
+        "type": "String[]"
+      },
+      {
+        "name": "pattern",
+        "type": "String"
+      }
+    ],
+    "returns": "List<String>"
+  }
+}

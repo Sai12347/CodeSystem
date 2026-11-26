@@ -1,0 +1,77 @@
+{
+  "title": "Range Minimum Query with Range Updates",
+  "difficulty": "Hard",
+  "subtopic": "Lazy Propagation",
+  "companies": [
+    "Google",
+    "Amazon",
+    "Microsoft"
+  ],
+  "description": "Design a structure over an integer array that supports adding a value to every element in an inclusive index range and returning the minimum value in an inclusive index range. Implement `RangeMinTree(int[] nums)`, `rangeAdd(left, right, delta)`, and `minRange(left, right)`. Indices are zero-based.",
+  "constraints": [
+    "1 <= nums.length <= 10^5",
+    "-10^6 <= nums[i] <= 10^6",
+    "-10^6 <= delta <= 10^6",
+    "0 <= left <= right < nums.length",
+    "At most 10^5 operations are called."
+  ],
+  "hints": [
+    "A segment tree stores the minimum for each interval.",
+    "Store pending range additions as lazy values and push them to child intervals only when needed."
+  ],
+  "examples": [
+    {
+      "input": "ops = [\"RangeMinTree\",\"minRange\",\"rangeAdd\",\"minRange\"], args = [[[1,3,5,7]],[0,3],[1,2,2],[0,3]]",
+      "output": "[null,1,null,1]"
+    }
+  ],
+  "timeComplexity": "O(log n) per operation",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "design",
+    "className": "RangeMinTree",
+    "constructor": {
+      "params": [
+        {
+          "name": "nums",
+          "type": "int[]"
+        }
+      ]
+    },
+    "methods": [
+      {
+        "name": "rangeAdd",
+        "params": [
+          {
+            "name": "left",
+            "type": "int"
+          },
+          {
+            "name": "right",
+            "type": "int"
+          },
+          {
+            "name": "delta",
+            "type": "int"
+          }
+        ],
+        "returns": "void"
+      },
+      {
+        "name": "minRange",
+        "params": [
+          {
+            "name": "left",
+            "type": "int"
+          },
+          {
+            "name": "right",
+            "type": "int"
+          }
+        ],
+        "returns": "int"
+      }
+    ]
+  }
+}

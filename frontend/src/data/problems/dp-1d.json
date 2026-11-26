@@ -1,0 +1,684 @@
+[
+ {
+  "id": "climbing-stairs",
+  "order": 1,
+  "topicId": "dp-1d",
+  "topic": "Dynamic Programming (1D)",
+  "title": "Climbing Stairs",
+  "slug": "climbing-stairs",
+  "difficulty": "Easy",
+  "subtopic": "Fibonacci Transitions",
+  "companies": [
+   "Amazon",
+   "Google",
+   "Apple",
+   "Microsoft",
+   "Meta",
+   "Adobe"
+  ],
+  "leetcode": 70,
+  "description": "You are climbing a staircase that takes `n` steps to reach the top. Each time you can climb either `1` step or `2` steps.\n\nReturn the number of distinct ways you can climb to the top.\n\nTwo ways are considered distinct if the sequence of 1-step and 2-step moves differs at any position.",
+  "constraints": [
+   "1 <= n <= 45"
+  ],
+  "hints": [
+   "To reach step `i`, your last move must have been either 1 step from `i - 1` or 2 steps from `i - 2`.",
+   "Let `dp[i]` be the number of distinct ways to reach step `i`. Then `dp[i] = dp[i - 1] + dp[i - 2]` with base cases `dp[1] = 1` and `dp[2] = 2`.",
+   "Because each state only depends on the previous two states, you can optimize the space from O(n) to O(1) using two rolling variables."
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "examples": [
+   {
+    "input": "n = 2",
+    "output": "2",
+    "explanation": "There are 2 ways to climb to the top: (1 + 1) and (2)."
+   },
+   {
+    "input": "n = 3",
+    "output": "3",
+    "explanation": "There are 3 ways to climb to the top: (1 + 1 + 1), (1 + 2), and (2 + 1)."
+   },
+   {
+    "input": "n = 5",
+    "output": "8",
+    "explanation": "There are 8 distinct sequences of 1s and 2s that sum to 5."
+   }
+  ],
+  "starterCode": {
+   "java": "class Solution {\n    public int climbStairs(int n) {\n        // Write your solution here\n        return 0;\n    }\n}\n",
+   "python": "class Solution:\n    def climbStairs(self, n: int) -> int:\n        # Write your solution here\n        pass\n"
+  },
+  "solutionCode": {
+   "java": "class Solution {\n    public int climbStairs(int n) {\n        if (n <= 2) {\n            return n;\n        }\n        int prev2 = 1;\n        int prev1 = 2;\n        for (int i = 3; i <= n; i++) {\n            int curr = prev1 + prev2;\n            prev2 = prev1;\n            prev1 = curr;\n        }\n        return prev1;\n    }\n}\n",
+   "python": "class Solution:\n    def climbStairs(self, n: int) -> int:\n        if n <= 2:\n            return n\n        prev2, prev1 = 1, 2\n        for _ in range(3, n + 1):\n            prev2, prev1 = prev1, prev2 + prev1\n        return prev1\n"
+  },
+  "sampleArray": [],
+  "visibleTestCount": 3,
+  "hiddenTestCount": 10,
+  "number": 1
+ },
+ {
+  "id": "house-robber",
+  "order": 2,
+  "topicId": "dp-1d",
+  "topic": "Dynamic Programming (1D)",
+  "title": "House Robber",
+  "slug": "house-robber",
+  "difficulty": "Medium",
+  "subtopic": "House Robber",
+  "companies": [
+   "Amazon",
+   "Google",
+   "Microsoft",
+   "Apple",
+   "Meta",
+   "Bloomberg"
+  ],
+  "leetcode": 198,
+  "description": "You are a professional robber planning to rob houses along a street. Each house has a certain amount of money stashed, given by a non-negative integer array `nums` where `nums[i]` represents the amount of money in the `i`-th house.\n\nAdjacent houses have connected security systems that will automatically alert the police if two adjacent houses are robbed on the same night.\n\nReturn the maximum amount of money you can rob tonight without alerting the police.",
+  "constraints": [
+   "1 <= nums.length <= 10^4",
+   "0 <= nums[i] <= 10^4"
+  ],
+  "hints": [
+   "At each house `i`, you have two choices: skip it (keeping the best total up to house `i - 1`) or rob it (adding `nums[i]` to the best total up to house `i - 2`).",
+   "Define `dp[i] = max(dp[i - 1], dp[i - 2] + nums[i])` as the maximum money obtainable from houses `0..i`.",
+   "Since `dp[i]` only depends on `dp[i - 1]` and `dp[i - 2]`, track those two values in O(1) extra space."
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "examples": [
+   {
+    "input": "nums = [1,2,3,1]",
+    "output": "4",
+    "explanation": "Rob house 0 (money = 1) and house 2 (money = 3). Total amount = 1 + 3 = 4."
+   },
+   {
+    "input": "nums = [2,7,9,3,1]",
+    "output": "12",
+    "explanation": "Rob house 0 (money = 2), house 2 (money = 9), and house 4 (money = 1). Total amount = 2 + 9 + 1 = 12."
+   },
+   {
+    "input": "nums = [2,1,1,2]",
+    "output": "4",
+    "explanation": "Rob house 0 (money = 2) and house 3 (money = 2), skipping two houses in between. Total amount = 2 + 2 = 4."
+   }
+  ],
+  "starterCode": {
+   "java": "class Solution {\n    public int rob(int[] nums) {\n        // Write your solution here\n        return 0;\n    }\n}\n",
+   "python": "class Solution:\n    def rob(self, nums: List[int]) -> int:\n        # Write your solution here\n        pass\n"
+  },
+  "solutionCode": {
+   "java": "class Solution {\n    public int rob(int[] nums) {\n        int prev2 = 0;\n        int prev1 = 0;\n        for (int money : nums) {\n            int curr = Math.max(prev1, prev2 + money);\n            prev2 = prev1;\n            prev1 = curr;\n        }\n        return prev1;\n    }\n}\n",
+   "python": "class Solution:\n    def rob(self, nums: List[int]) -> int:\n        prev2 = 0\n        prev1 = 0\n        for money in nums:\n            prev2, prev1 = prev1, max(prev1, prev2 + money)\n        return prev1\n"
+  },
+  "sampleArray": [
+   1,
+   2,
+   3,
+   1
+  ],
+  "visibleTestCount": 3,
+  "hiddenTestCount": 11,
+  "number": 2
+ },
+ {
+  "id": "house-robber-ii",
+  "order": 3,
+  "topicId": "dp-1d",
+  "topic": "Dynamic Programming (1D)",
+  "title": "House Robber II",
+  "slug": "house-robber-ii",
+  "difficulty": "Medium",
+  "subtopic": "House Robber",
+  "companies": [
+   "Google",
+   "Amazon",
+   "Microsoft",
+   "Meta",
+   "Adobe",
+   "Uber"
+  ],
+  "leetcode": 213,
+  "description": "You are a professional robber planning to rob houses arranged in a circle. Because the houses form a circle, the first house (`nums[0]`) and the last house (`nums[n - 1]`) are adjacent to each other.\n\nEach house has a certain amount of money stashed, represented by a non-negative integer array `nums` where `nums[i]` is the amount of money in the `i`-th house. Adjacent houses have connected security systems that will alert the police if two adjacent houses are robbed on the same night.\n\nReturn the maximum amount of money you can rob tonight without alerting the police.",
+  "constraints": [
+   "1 <= nums.length <= 10^4",
+   "0 <= nums[i] <= 10^4"
+  ],
+  "hints": [
+   "Because house `0` and house `n - 1` are adjacent, any valid robbery plan cannot include both of them.",
+   "Split the circular problem into two linear House Robber subproblems: robbing houses `0..n - 2` (excluding the last house) and robbing houses `1..n - 1` (excluding the first house).",
+   "Handle the single-house edge case `n == 1` separately before taking the maximum of the two linear subproblems."
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "examples": [
+   {
+    "input": "nums = [2,3,2]",
+    "output": "3",
+    "explanation": "You cannot rob house 0 (money = 2) and house 2 (money = 2) because they are adjacent in the circle. The maximum is robbing house 1 (money = 3)."
+   },
+   {
+    "input": "nums = [1,2,3,1]",
+    "output": "4",
+    "explanation": "Rob house 0 (money = 1) and house 2 (money = 3). Total amount = 1 + 3 = 4."
+   },
+   {
+    "input": "nums = [1,2,3]",
+    "output": "3",
+    "explanation": "Only one house can be robbed from three houses arranged in a circle. Rob house 2 for 3."
+   }
+  ],
+  "starterCode": {
+   "java": "class Solution {\n    public int rob(int[] nums) {\n        // Write your solution here\n        return 0;\n    }\n}\n",
+   "python": "class Solution:\n    def rob(self, nums: List[int]) -> int:\n        # Write your solution here\n        pass\n"
+  },
+  "solutionCode": {
+   "java": "class Solution {\n    public int rob(int[] nums) {\n        int n = nums.length;\n        if (n == 1) {\n            return nums[0];\n        }\n        return Math.max(robRange(nums, 0, n - 1), robRange(nums, 1, n));\n    }\n\n    private int robRange(int[] nums, int start, int end) {\n        int prev2 = 0;\n        int prev1 = 0;\n        for (int i = start; i < end; i++) {\n            int curr = Math.max(prev1, prev2 + nums[i]);\n            prev2 = prev1;\n            prev1 = curr;\n        }\n        return prev1;\n    }\n}\n",
+   "python": "class Solution:\n    def rob(self, nums: List[int]) -> int:\n        if len(nums) == 1:\n            return nums[0]\n\n        def rob_range(start: int, end: int) -> int:\n            prev2 = 0\n            prev1 = 0\n            for i in range(start, end):\n                prev2, prev1 = prev1, max(prev1, prev2 + nums[i])\n            return prev1\n\n        return max(rob_range(0, len(nums) - 1), rob_range(1, len(nums)))\n"
+  },
+  "sampleArray": [
+   2,
+   3,
+   2
+  ],
+  "visibleTestCount": 3,
+  "hiddenTestCount": 11,
+  "number": 3
+ },
+ {
+  "id": "coin-change",
+  "order": 4,
+  "topicId": "dp-1d",
+  "topic": "Dynamic Programming (1D)",
+  "title": "Coin Change",
+  "slug": "coin-change",
+  "difficulty": "Medium",
+  "subtopic": "Linear States",
+  "companies": [
+   "Amazon",
+   "Google",
+   "Microsoft",
+   "Meta",
+   "Apple",
+   "Bloomberg"
+  ],
+  "leetcode": 322,
+  "description": "You are given an integer array `coins` representing coins of different denominations and an integer `amount` representing a total amount of money.\n\nReturn the fewest number of coins that you need to make up that exact `amount`. If that amount of money cannot be made up by any combination of the given coins, return `-1`.\n\nYou may assume that you have an infinite number of each kind of coin.",
+  "constraints": [
+   "1 <= coins.length <= 12",
+   "1 <= coins[i] <= 2^31 - 1",
+   "0 <= amount <= 10^4"
+  ],
+  "hints": [
+   "A greedy approach (always picking the largest coin) fails for coin systems like `[1, 3, 4]` with `amount = 6`.",
+   "Let `dp[a]` be the minimum number of coins required to make sum `a`. Initialize `dp[0] = 0` and all other entries to `amount + 1` (representing infinity).",
+   "For each amount `a` from `1` to `amount` (or for each coin `c <= amount`), update `dp[a] = min(dp[a], dp[a - c] + 1)` whenever `c <= a`."
+  ],
+  "timeComplexity": "O(amount * n)",
+  "spaceComplexity": "O(amount)",
+  "compare": "exact",
+  "examples": [
+   {
+    "input": "coins = [1,2,5], amount = 11",
+    "output": "3",
+    "explanation": "11 = 5 + 5 + 1, which uses 3 coins."
+   },
+   {
+    "input": "coins = [2], amount = 3",
+    "output": "-1",
+    "explanation": "No combination of coin 2 can sum to 3, so return -1."
+   },
+   {
+    "input": "coins = [1], amount = 0",
+    "output": "0",
+    "explanation": "Zero coins are needed to make amount 0."
+   }
+  ],
+  "starterCode": {
+   "java": "class Solution {\n    public int coinChange(int[] coins, int amount) {\n        // Write your solution here\n        return 0;\n    }\n}\n",
+   "python": "class Solution:\n    def coinChange(self, coins: List[int], amount: int) -> int:\n        # Write your solution here\n        pass\n"
+  },
+  "solutionCode": {
+   "java": "class Solution {\n    public int coinChange(int[] coins, int amount) {\n        int inf = amount + 1;\n        int[] dp = new int[amount + 1];\n        Arrays.fill(dp, inf);\n        dp[0] = 0;\n\n        for (int coin : coins) {\n            if (coin <= amount) {\n                for (int a = coin; a <= amount; a++) {\n                    if (dp[a - coin] + 1 < dp[a]) {\n                        dp[a] = dp[a - coin] + 1;\n                    }\n                }\n            }\n        }\n        return dp[amount] > amount ? -1 : dp[amount];\n    }\n}\n",
+   "python": "class Solution:\n    def coinChange(self, coins: List[int], amount: int) -> int:\n        inf = amount + 1\n        dp = [inf] * (amount + 1)\n        dp[0] = 0\n        for coin in coins:\n            if coin <= amount:\n                for a in range(coin, amount + 1):\n                    cand = dp[a - coin] + 1\n                    if cand < dp[a]:\n                        dp[a] = cand\n        return dp[amount] if dp[amount] <= amount else -1\n"
+  },
+  "sampleArray": [
+   1,
+   2,
+   5
+  ],
+  "visibleTestCount": 3,
+  "hiddenTestCount": 11,
+  "number": 4
+ },
+ {
+  "id": "coin-change-ii",
+  "order": 5,
+  "topicId": "dp-1d",
+  "topic": "Dynamic Programming (1D)",
+  "title": "Coin Change II",
+  "slug": "coin-change-ii",
+  "difficulty": "Medium",
+  "subtopic": "Linear States",
+  "companies": [
+   "Amazon",
+   "Google",
+   "Meta",
+   "Microsoft",
+   "Goldman Sachs",
+   "Uber"
+  ],
+  "leetcode": 518,
+  "description": "You are given an integer `amount` representing a total amount of money and an integer array `coins` representing coins of distinct denominations.\n\nReturn the number of distinct combinations that make up that `amount`. Two combinations are considered identical if they use the same count of each coin denomination (the order of coins does not matter). If that amount of money cannot be made up by any combination of the coins, return `0`.\n\nYou may assume that you have an infinite number of each kind of coin. The answer is guaranteed to fit into a signed 32-bit integer.",
+  "constraints": [
+   "1 <= coins.length <= 300",
+   "1 <= coins[i] <= 5000",
+   "All the values of coins are unique.",
+   "0 <= amount <= 5000",
+   "The answer is guaranteed to fit in a signed 32-bit integer."
+  ],
+  "hints": [
+   "To count combinations rather than permutations, decide how many times to use each coin denomination one denomination at a time.",
+   "Let `dp[a]` be the number of combinations that sum to `a`, starting with `dp[0] = 1` (one way to make amount 0: pick no coins).",
+   "Iterate over each `coin` in the outer loop and each amount `a` from `coin` to `amount` in the inner loop, updating `dp[a] += dp[a - coin]`."
+  ],
+  "timeComplexity": "O(amount * n)",
+  "spaceComplexity": "O(amount)",
+  "compare": "exact",
+  "examples": [
+   {
+    "input": "amount = 5, coins = [1,2,5]",
+    "output": "4",
+    "explanation": "There are 4 ways to make up 5: 5, 2+2+1, 2+1+1+1, and 1+1+1+1+1."
+   },
+   {
+    "input": "amount = 3, coins = [2]",
+    "output": "0",
+    "explanation": "No combination of coin 2 can sum to 3, so return 0."
+   },
+   {
+    "input": "amount = 10, coins = [10]",
+    "output": "1",
+    "explanation": "There is 1 way to make up 10 using the single coin 10."
+   }
+  ],
+  "starterCode": {
+   "java": "class Solution {\n    public int change(int amount, int[] coins) {\n        // Write your solution here\n        return 0;\n    }\n}\n",
+   "python": "class Solution:\n    def change(self, amount: int, coins: List[int]) -> int:\n        # Write your solution here\n        pass\n"
+  },
+  "solutionCode": {
+   "java": "class Solution {\n    public int change(int amount, int[] coins) {\n        int[] dp = new int[amount + 1];\n        dp[0] = 1;\n        for (int coin : coins) {\n            for (int a = coin; a <= amount; a++) {\n                dp[a] += dp[a - coin];\n            }\n        }\n        return dp[amount];\n    }\n}\n",
+   "python": "class Solution:\n    def change(self, amount: int, coins: List[int]) -> int:\n        dp = [0] * (amount + 1)\n        dp[0] = 1\n        for coin in coins:\n            if coin <= amount:\n                for a in range(coin, amount + 1):\n                    dp[a] += dp[a - coin]\n        return dp[amount]\n"
+  },
+  "sampleArray": [
+   1,
+   2,
+   5
+  ],
+  "visibleTestCount": 3,
+  "hiddenTestCount": 11,
+  "number": 5
+ },
+ {
+  "id": "longest-increasing-subsequence",
+  "order": 6,
+  "topicId": "dp-1d",
+  "topic": "Dynamic Programming (1D)",
+  "title": "Longest Increasing Subsequence",
+  "slug": "longest-increasing-subsequence",
+  "difficulty": "Medium",
+  "subtopic": "Subsequences",
+  "companies": [
+   "Google",
+   "Amazon",
+   "Microsoft",
+   "Meta",
+   "Apple",
+   "Oracle"
+  ],
+  "leetcode": 300,
+  "description": "Given an integer array `nums`, return the length of the longest strictly increasing subsequence.\n\nA subsequence is derived from `nums` by deleting zero or more elements without changing the relative order of the remaining elements. A subsequence is strictly increasing if every element is strictly greater than the preceding element (`sub[i] < sub[i + 1]`).",
+  "constraints": [
+   "1 <= nums.length <= 2500",
+   "-10^4 <= nums[i] <= 10^4"
+  ],
+  "hints": [
+   "An O(n^2) DP defines `dp[i]` as the length of the longest strictly increasing subsequence ending at index `i`: `dp[i] = 1 + max(dp[j])` over all `j < i` with `nums[j] < nums[i]`.",
+   "To achieve O(n log n), maintain an array `tails` where `tails[k]` is the smallest possible ending value of any strictly increasing subsequence of length `k + 1` seen so far.",
+   "Because `tails` is always strictly increasing, use binary search (lower bound) for each `x` in `nums` to find the first index where `tails[idx] >= x` and replace it, or append `x` if it is larger than all elements in `tails`."
+  ],
+  "timeComplexity": "O(n log n)",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "examples": [
+   {
+    "input": "nums = [10,9,2,5,3,7,101,18]",
+    "output": "4",
+    "explanation": "One longest strictly increasing subsequence is [2, 3, 7, 101], which has length 4."
+   },
+   {
+    "input": "nums = [0,1,0,3,2,3]",
+    "output": "4",
+    "explanation": "One longest strictly increasing subsequence is [0, 1, 2, 3], which has length 4."
+   },
+   {
+    "input": "nums = [7,7,7,7,7,7,7]",
+    "output": "1",
+    "explanation": "All elements are equal, so any strictly increasing subsequence can contain at most 1 element."
+   }
+  ],
+  "starterCode": {
+   "java": "class Solution {\n    public int lengthOfLIS(int[] nums) {\n        // Write your solution here\n        return 0;\n    }\n}\n",
+   "python": "class Solution:\n    def lengthOfLIS(self, nums: List[int]) -> int:\n        # Write your solution here\n        pass\n"
+  },
+  "solutionCode": {
+   "java": "class Solution {\n    public int lengthOfLIS(int[] nums) {\n        int[] tails = new int[nums.length];\n        int size = 0;\n        for (int x : nums) {\n            int lo = 0;\n            int hi = size;\n            while (lo < hi) {\n                int mid = lo + (hi - lo) / 2;\n                if (tails[mid] < x) {\n                    lo = mid + 1;\n                } else {\n                    hi = mid;\n                }\n            }\n            tails[lo] = x;\n            if (lo == size) {\n                size++;\n            }\n        }\n        return size;\n    }\n}\n",
+   "python": "class Solution:\n    def lengthOfLIS(self, nums: List[int]) -> int:\n        tails: List[int] = []\n        for x in nums:\n            idx = bisect.bisect_left(tails, x)\n            if idx == len(tails):\n                tails.append(x)\n            else:\n                tails[idx] = x\n        return len(tails)\n"
+  },
+  "sampleArray": [
+   10,
+   9,
+   2,
+   5,
+   3,
+   7,
+   101,
+   18
+  ],
+  "visibleTestCount": 3,
+  "hiddenTestCount": 11,
+  "number": 6
+ },
+ {
+  "id": "word-break",
+  "order": 7,
+  "topicId": "dp-1d",
+  "topic": "Dynamic Programming (1D)",
+  "title": "Word Break",
+  "slug": "word-break",
+  "difficulty": "Medium",
+  "subtopic": "Linear States",
+  "companies": [
+   "Amazon",
+   "Google",
+   "Microsoft"
+  ],
+  "leetcode": null,
+  "description": "Return true if `s` can be segmented into a sequence of one or more dictionary words. A dictionary word may be used multiple times.",
+  "constraints": [
+   "1 <= s.length <= 300",
+   "1 <= wordDict.length <= 1000"
+  ],
+  "hints": [
+   "Define a small state for the best answer ending at each position.",
+   "Update the state from the allowed previous positions."
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(n^2)",
+  "compare": "exact",
+  "examples": [
+   {
+    "input": "s = \"leetcode\", wordDict = [\"leet\",\"code\"]",
+    "output": "true"
+   },
+   {
+    "input": "s = \"applepenapple\", wordDict = [\"apple\",\"pen\"]",
+    "output": "true"
+   },
+   {
+    "input": "s = \"catsandog\", wordDict = [\"cats\",\"dog\",\"sand\",\"and\",\"cat\"]",
+    "output": "false"
+   }
+  ],
+  "starterCode": {
+   "java": "class Solution {\n    public boolean wordBreak(String s, String[] wordDict) {\n        // Write your solution here\n        return false;\n    }\n}\n",
+   "python": "class Solution:\n    def wordBreak(self, s: str, wordDict: List[str]) -> bool:\n        # Write your solution here\n        pass\n"
+  },
+  "solutionCode": {
+   "java": "class Solution { public boolean wordBreak(String s,String[] w) { Set<String> set=new HashSet<>(Arrays.asList(w));boolean[] d=new boolean[s.length()+1];d[0]=true;for(int i=1;i<=s.length();i++)for(int j=0;j<i;j++)if(d[j]&&set.contains(s.substring(j,i))){d[i]=true;break;}return d[s.length()];} }\n",
+   "python": "class Solution:\n    def wordBreak(self, s: str, wordDict: List[str]) -> bool:\n        words=set(wordDict); dp=[False]*(len(s)+1);dp[0]=True\n        for i in range(1,len(s)+1): dp[i]=any(dp[j] and s[j:i] in words for j in range(i))\n        return dp[-1]\n"
+  },
+  "sampleArray": [],
+  "visibleTestCount": 3,
+  "hiddenTestCount": 8,
+  "number": 7
+ },
+ {
+  "id": "decode-ways",
+  "order": 8,
+  "topicId": "dp-1d",
+  "topic": "Dynamic Programming (1D)",
+  "title": "Decode Ways",
+  "slug": "decode-ways",
+  "difficulty": "Medium",
+  "subtopic": "Linear States",
+  "companies": [
+   "Amazon",
+   "Google",
+   "Microsoft"
+  ],
+  "leetcode": null,
+  "description": "Digits 1 through 26 map to letters A through Z. Return the number of ways to decode `s`. A code cannot start with zero, and the input contains only digits.",
+  "constraints": [
+   "1 <= s.length <= 100",
+   "s contains only digits"
+  ],
+  "hints": [
+   "Define a small state for the best answer ending at each position.",
+   "Update the state from the allowed previous positions."
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "examples": [
+   {
+    "input": "s = \"12\"",
+    "output": "2"
+   },
+   {
+    "input": "s = \"226\"",
+    "output": "3"
+   },
+   {
+    "input": "s = \"06\"",
+    "output": "0"
+   }
+  ],
+  "starterCode": {
+   "java": "class Solution {\n    public int numDecodings(String s) {\n        // Write your solution here\n        return 0;\n    }\n}\n",
+   "python": "class Solution:\n    def numDecodings(self, s: str) -> int:\n        # Write your solution here\n        pass\n"
+  },
+  "solutionCode": {
+   "java": "class Solution { public int numDecodings(String s) { if(s.length()==0||s.charAt(0)=='0')return 0;int a=1,b=1;for(int i=1;i<s.length();i++){int c=s.charAt(i)=='0'?0:b;if(s.charAt(i-1)=='1'||(s.charAt(i-1)=='2'&&s.charAt(i)<='6'))c+=a;a=b;b=c;}return b;} }\n",
+   "python": "class Solution:\n    def numDecodings(self, s: str) -> int:\n        if not s or s[0]=='0':return 0\n        a=b=1\n        for i in range(1,len(s)):\n            cur=(b if s[i]!='0' else 0)+(a if 10<=int(s[i-1:i+1])<=26 else 0)\n            a,b=b,cur\n        return b\n"
+  },
+  "sampleArray": [],
+  "visibleTestCount": 3,
+  "hiddenTestCount": 8,
+  "number": 8
+ },
+ {
+  "id": "jump-game-ii",
+  "order": 10,
+  "topicId": "dp-1d",
+  "topic": "Dynamic Programming (1D)",
+  "title": "Jump Game II",
+  "slug": "jump-game-ii",
+  "difficulty": "Medium",
+  "subtopic": "Linear States",
+  "companies": [
+   "Amazon",
+   "Google",
+   "Microsoft"
+  ],
+  "leetcode": null,
+  "description": "Starting at index 0, each value gives the maximum forward distance you may jump. The last index is reachable. Return the minimum number of jumps needed to reach it.",
+  "constraints": [
+   "1 <= nums.length <= 10^4",
+   "0 <= nums[i] <= 1000",
+   "The last index is reachable"
+  ],
+  "hints": [
+   "Define a small state for the best answer ending at each position.",
+   "Update the state from the allowed previous positions."
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "examples": [
+   {
+    "input": "nums = [2,3,1,1,4]",
+    "output": "2"
+   },
+   {
+    "input": "nums = [2,3,0,1,4]",
+    "output": "2"
+   },
+   {
+    "input": "nums = [0]",
+    "output": "0"
+   }
+  ],
+  "starterCode": {
+   "java": "class Solution {\n    public int jump(int[] nums) {\n        // Write your solution here\n        return 0;\n    }\n}\n",
+   "python": "class Solution:\n    def jump(self, nums: List[int]) -> int:\n        # Write your solution here\n        pass\n"
+  },
+  "solutionCode": {
+   "java": "class Solution { public int jump(int[] a) { int jumps=0,end=0,far=0;for(int i=0;i<a.length-1;i++){far=Math.max(far,i+a[i]);if(i==end){jumps++;end=far;}}return jumps;} }\n",
+   "python": "class Solution:\n    def jump(self, nums: List[int]) -> int:\n        jumps=end=far=0\n        for i in range(len(nums)-1):\n            far=max(far,i+nums[i])\n            if i==end:jumps+=1;end=far\n        return jumps\n"
+  },
+  "sampleArray": [
+   2,
+   3,
+   1,
+   1,
+   4
+  ],
+  "visibleTestCount": 3,
+  "hiddenTestCount": 8,
+  "number": 9
+ },
+ {
+  "id": "stock-with-cooldown",
+  "order": 11,
+  "topicId": "dp-1d",
+  "topic": "Dynamic Programming (1D)",
+  "title": "Best Time to Buy and Sell Stock with Cooldown",
+  "slug": "stock-with-cooldown",
+  "difficulty": "Medium",
+  "subtopic": "Linear States",
+  "companies": [
+   "Amazon",
+   "Google",
+   "Microsoft"
+  ],
+  "leetcode": null,
+  "description": "You may buy and sell a stock multiple times, but after selling you must wait one full day before buying again. Return the maximum profit. You may hold at most one share at a time.",
+  "constraints": [
+   "1 <= prices.length <= 5000",
+   "0 <= prices[i] <= 1000"
+  ],
+  "hints": [
+   "Define a small state for the best answer ending at each position.",
+   "Update the state from the allowed previous positions."
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "examples": [
+   {
+    "input": "prices = [1,2,3,0,2]",
+    "output": "3"
+   },
+   {
+    "input": "prices = [1]",
+    "output": "0"
+   },
+   {
+    "input": "prices = [2,1]",
+    "output": "0"
+   }
+  ],
+  "starterCode": {
+   "java": "class Solution {\n    public int maxProfit(int[] prices) {\n        // Write your solution here\n        return 0;\n    }\n}\n",
+   "python": "class Solution:\n    def maxProfit(self, prices: List[int]) -> int:\n        # Write your solution here\n        pass\n"
+  },
+  "solutionCode": {
+   "java": "class Solution { public int maxProfit(int[] p) { int hold=Integer.MIN_VALUE/2,sold=0,rest=0;for(int x:p){int h=Math.max(hold,rest-x),s=hold+x,r=Math.max(rest,sold);hold=h;sold=s;rest=r;}return Math.max(sold,rest);} }\n",
+   "python": "class Solution:\n    def maxProfit(self, prices: List[int]) -> int:\n        hold=-10**9;sold=rest=0\n        for p in prices:\n            hold,sold,rest=max(hold,rest-p),hold+p,sold if sold>rest else rest\n        return max(sold,rest)\n"
+  },
+  "sampleArray": [
+   1,
+   2,
+   3,
+   0,
+   2
+  ],
+  "visibleTestCount": 3,
+  "hiddenTestCount": 8,
+  "number": 10
+ },
+ {
+  "id": "minimum-cost-climbing-stairs",
+  "order": 13,
+  "topicId": "dp-1d",
+  "topic": "Dynamic Programming (1D)",
+  "title": "Min Cost Climbing Stairs",
+  "slug": "minimum-cost-climbing-stairs",
+  "difficulty": "Easy",
+  "subtopic": "Fibonacci Transitions",
+  "companies": [
+   "Amazon",
+   "Google",
+   "Microsoft"
+  ],
+  "leetcode": null,
+  "description": "Each stair has a cost. After paying the cost of a stair, you may climb one or two steps. You may start at index 0 or 1. Return the minimum cost to reach the step just beyond the last stair.",
+  "constraints": [
+   "2 <= cost.length <= 1000",
+   "0 <= cost[i] <= 10^5"
+  ],
+  "hints": [
+   "Define a small state for the best answer ending at each position.",
+   "Update the state from the allowed previous positions."
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "examples": [
+   {
+    "input": "cost = [10,15,20]",
+    "output": "15"
+   },
+   {
+    "input": "cost = [1,100,1,1,1,100,1,1,100,1]",
+    "output": "6"
+   },
+   {
+    "input": "cost = [0,0]",
+    "output": "0"
+   }
+  ],
+  "starterCode": {
+   "java": "class Solution {\n    public int minCostClimbingStairs(int[] cost) {\n        // Write your solution here\n        return 0;\n    }\n}\n",
+   "python": "class Solution:\n    def minCostClimbingStairs(self, cost: List[int]) -> int:\n        # Write your solution here\n        pass\n"
+  },
+  "solutionCode": {
+   "java": "class Solution { public int minCostClimbingStairs(int[] c) { int a=0,b=0;for(int x:c){int z=Math.min(a+x,b+x);a=b;b=z;}return Math.min(a,b);} }\n",
+   "python": "class Solution:\n    def minCostClimbingStairs(self, cost: List[int]) -> int:\n        a=b=0\n        for x in cost:a,b=b,min(a+x,b+x)\n        return min(a,b)\n"
+  },
+  "sampleArray": [
+   10,
+   15,
+   20
+  ],
+  "visibleTestCount": 3,
+  "hiddenTestCount": 8,
+  "number": 11
+ }
+]

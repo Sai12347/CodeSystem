@@ -1,0 +1,43 @@
+{
+  "title": "Balanced Ternary Representation",
+  "difficulty": "Medium",
+  "subtopic": "Two Complement",
+  "companies": [
+    "Google",
+    "Bloomberg",
+    "Microsoft"
+  ],
+  "description": "Balanced ternary represents every signed integer uniquely in base `3` using the three signed digits `'-'` (`-1`), `'0'` (`0`), and `'+'` (`+1`), where digit `d_k` at position `k` from the right contributes `d_k * 3^k`. Given a 64-bit signed integer `n`, return its canonical balanced ternary string with no leading `'0'` characters (except `\"0\"` when `n == 0`).",
+  "constraints": [
+    "-10^15 <= n <= 10^15"
+  ],
+  "hints": [
+    "Extract the least significant digit using the non-negative remainder `r = ((n % 3) + 3) % 3`: `0 -> '0'`, `1 -> '+'` (subtract 1 before dividing by 3), and `2 -> '-'` (add 1 before dividing by 3).",
+    "Repeat until `n == 0` and reverse the collected digits."
+  ],
+  "examples": [
+    {
+      "explanation": "5 = 9 - 3 - 1 = (+1)*3^2 + (-1)*3^1 + (-1)*3^0, written \"+--\"."
+    },
+    {
+      "explanation": "-2 = -3 + 1 = (-1)*3^1 + (+1)*3^0, written \"-+\"."
+    },
+    {
+      "explanation": "0 is represented as \"0\"."
+    }
+  ],
+  "timeComplexity": "O(log |n|)",
+  "spaceComplexity": "O(log |n|)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "toBalancedTernary",
+    "params": [
+      {
+        "name": "n",
+        "type": "long"
+      }
+    ],
+    "returns": "String"
+  }
+}

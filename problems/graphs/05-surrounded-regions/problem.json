@@ -1,0 +1,39 @@
+{
+  "title": "Surrounded Regions",
+  "difficulty": "Medium",
+  "subtopic": "Flood Fill",
+  "companies": ["Amazon", "Google", "Meta", "Microsoft", "Bloomberg", "Uber"],
+  "leetcode": 130,
+  "description": "You are given an `m x n` matrix `board` containing the characters `'X'` and `'O'`. Capture all regions that are **4-directionally surrounded** by `'X'`.\n\nA region is formed by connecting adjacent `'O'` cells horizontally or vertically (diagonals are not connected). A region is **surrounded** if none of its `'O'` cells lie on the border (first row, last row, first column, or last column) of the board.\n\nTo capture a surrounded region, flip every `'O'` cell in that region to `'X'` **in-place** in the given `board`. Regions connected to any border `'O'` must remain `'O'`.",
+  "constraints": [
+    "m == board.length",
+    "n == board[i].length",
+    "1 <= m, n <= 200",
+    "board[i][j] is 'X' or 'O'."
+  ],
+  "hints": [
+    "Instead of trying to determine which interior `'O'` regions are fully surrounded, think in reverse: which `'O'` cells can *never* be captured?",
+    "Any `'O'` on the border—and any `'O'` reachable from a border `'O'` via 4-directional `'O'` steps—cannot be surrounded.",
+    "Run BFS or DFS from every border `'O'`, temporarily marking all safe cells with a placeholder such as `'S'`. Then scan the board once more: flip remaining `'O'` cells to `'X'` and restore `'S'` cells back to `'O'`."
+  ],
+  "examples": [
+    {"explanation": "The three interior 'O' cells form a region with no border contact and are flipped to 'X', while the bottom-border 'O' at (3, 1) cannot be captured."},
+    {"explanation": "A 1x1 board with 'X' has no 'O' regions to capture."},
+    {"explanation": "The single center 'O' at (1, 1) is completely surrounded on all four sides by 'X', so it is flipped to 'X'."}
+  ],
+  "timeComplexity": "O(m * n)",
+  "spaceComplexity": "O(m * n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "solve",
+    "params": [
+      {"name": "board", "type": "char[][]"}
+    ],
+    "returns": "void",
+    "output": {
+      "mode": "param",
+      "param": "board"
+    }
+  }
+}

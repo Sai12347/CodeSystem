@@ -1,0 +1,49 @@
+{
+  "title": "Camelcase Matching",
+  "difficulty": "Medium",
+  "subtopic": "String Matching",
+  "companies": [
+    "Google",
+    "Microsoft",
+    "Atlassian"
+  ],
+  "description": "Given an array of strings `queries` and a string `pattern`, return a boolean array `answer` where `answer[i]` is `true` if `queries[i]` matches `pattern`, and `false` otherwise. A query matches `pattern` if we can insert zero or more lowercase English letters anywhere into `pattern` to obtain the query.",
+  "constraints": [
+    "1 <= queries.length <= 200",
+    "1 <= queries[i].length, pattern.length <= 100",
+    "queries[i] and pattern consist of uppercase and lowercase English letters."
+  ],
+  "hints": [
+    "Use a two-pointer scan over each query and pattern.",
+    "Advance the pattern pointer when characters match; otherwise the query character must be lowercase, or matching immediately fails."
+  ],
+  "examples": [
+    {
+      "explanation": "\"FooBar\" and \"FooBarTest\" match \"FB\", whereas \"FootBall\" and \"ForceFeedBack\" contain extra uppercase letters or mismatch."
+    },
+    {
+      "explanation": "Inserting lowercase letters into \"FoBa\" forms \"FooBar\" and \"FootBall\" only."
+    },
+    {
+      "explanation": "\"FooBarTest\" matches \"FoBaT\", while the other queries lack the uppercase 'T'."
+    }
+  ],
+  "timeComplexity": "O(sum(|queries[i]|))",
+  "spaceComplexity": "O(queries.length)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "camelMatch",
+    "params": [
+      {
+        "name": "queries",
+        "type": "String[]"
+      },
+      {
+        "name": "pattern",
+        "type": "String"
+      }
+    ],
+    "returns": "boolean[]"
+  }
+}

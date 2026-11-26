@@ -1,0 +1,41 @@
+{
+  "title": "Number of Connected Components in an Undirected Graph",
+  "difficulty": "Medium",
+  "subtopic": "Connectivity",
+  "companies": ["Amazon", "Google", "Meta", "Microsoft", "LinkedIn"],
+  "leetcode": 323,
+  "description": "You have an undirected graph of `n` nodes labeled from `0` to `n - 1`. You are given an integer `n` and an array `edges` where `edges[i] = [ai, bi]` indicates that there is an undirected edge between nodes `ai` and `bi` in the graph.\n\nReturn the number of connected components in the graph. An isolated node with no incident edges counts as its own connected component.",
+  "constraints": [
+    "1 <= n <= 2000",
+    "0 <= edges.length <= 5000",
+    "edges[i].length == 2",
+    "0 <= ai < bi < n",
+    "ai != bi",
+    "There are no repeated edges."
+  ],
+  "hints": [
+    "Initially, before adding any edges, each of the n vertices forms its own connected component, so there are n components.",
+    "Use a Disjoint Set Union (DSU) structure to merge the two endpoints of each edge.",
+    "Each time an edge merges two previously distinct components, decrement the component count by 1."
+  ],
+  "examples": [
+    {
+      "explanation": "Nodes {0, 1, 2} form one connected component and nodes {3, 4} form a second connected component, giving 2 components in total."
+    },
+    {
+      "explanation": "All 5 nodes are chained together into a single connected component."
+    }
+  ],
+  "timeComplexity": "O(n + m * alpha(n))",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "countComponents",
+    "params": [
+      {"name": "n", "type": "int"},
+      {"name": "edges", "type": "int[][]"}
+    ],
+    "returns": "int"
+  }
+}

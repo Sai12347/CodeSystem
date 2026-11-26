@@ -1,0 +1,48 @@
+{
+  "title": "Count Battleships on a Board",
+  "difficulty": "Medium",
+  "subtopic": "Simulation",
+  "companies": [
+    "Meta",
+    "Amazon",
+    "Microsoft",
+    "Google"
+  ],
+  "description": "Given an `m x n` character matrix `board` where each cell is either a battleship segment `'X'` or empty water `'.'`, return the number of battleships on `board`.\n\nBattleships are placed strictly horizontally (`1 x k`) or vertically (`k x 1`) for any length `k >= 1`, and there is at least one horizontal or vertical empty cell separating any two distinct battleships (no two ships touch orthogonally). Aim for a single-pass `O(1)` extra-space solution without modifying `board`.",
+  "constraints": [
+    "m == board.length",
+    "n == board[i].length",
+    "1 <= m, n <= 200",
+    "board[i][j] is either '.' or 'X'.",
+    "No two battleships are adjacent horizontally or vertically."
+  ],
+  "hints": [
+    "Every horizontal or vertical ship has a unique top-leftmost cell ('head') that has no 'X' immediately above it and no 'X' immediately to its left.",
+    "Count all cells (r, c) where board[r][c] == 'X' and neither (r - 1, c) nor (r, c - 1) is 'X'."
+  ],
+  "examples": [
+    {
+      "explanation": "There is one 1x1 ship at (0, 0) and one vertical 3x1 ship in column 3, totaling 2 ships."
+    },
+    {
+      "explanation": "An empty 1x1 board contains 0 battleships."
+    },
+    {
+      "explanation": "Two horizontal ships and one vertical ship do not touch orthogonally, giving 3 battleships."
+    }
+  ],
+  "timeComplexity": "O(m * n)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "countBattleships",
+    "params": [
+      {
+        "name": "board",
+        "type": "char[][]"
+      }
+    ],
+    "returns": "int"
+  }
+}

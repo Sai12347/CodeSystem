@@ -1,0 +1,43 @@
+{
+  "title": "Maximize Number of Nice Divisors",
+  "difficulty": "Hard",
+  "subtopic": "Fast Exponentiation",
+  "companies": [
+    "Google",
+    "Meta",
+    "Netflix"
+  ],
+  "description": "You are given a positive integer `primeFactors`. You may construct a positive integer `n` whose prime factorization contains at most `primeFactors` prime factors (counted with multiplicity). A divisor of `n` is called nice if it is divisible by every distinct prime factor of `n`. Return the maximum number of nice divisors `n` can have, modulo `10^9 + 7`.",
+  "constraints": [
+    "1 <= primeFactors <= 10^9"
+  ],
+  "hints": [
+    "If `n = p_1^{e_1} * p_2^{e_2} * ... * p_k^{e_k}` with `e_1 + ... + e_k <= primeFactors`, the number of nice divisors is the product `e_1 * e_2 * ... * e_k`.",
+    "To maximize the product of positive integers with fixed sum `S >= 4`, split `S` into as many `3`s as possible (using `2 * 2` instead of `3 * 1` when `S % 3 == 1`), and compute `3^q` via fast modular exponentiation."
+  ],
+  "examples": [
+    {
+      "explanation": "Split 5 = 3 + 2 to get product 3 * 2 = 6 nice divisors (e.g., n = 2^3 * 3^2 = 72)."
+    },
+    {
+      "explanation": "Split 8 = 3 + 3 + 2 to get product 3 * 3 * 2 = 18 nice divisors."
+    },
+    {
+      "explanation": "With 1 prime factor, n = 2 has only 1 nice divisor."
+    }
+  ],
+  "timeComplexity": "O(log primeFactors)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "maxNiceDivisors",
+    "params": [
+      {
+        "name": "primeFactors",
+        "type": "int"
+      }
+    ],
+    "returns": "int"
+  }
+}

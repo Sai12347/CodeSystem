@@ -1,0 +1,43 @@
+{
+  "title": "Minimum Replacements for a Continuous Array",
+  "difficulty": "Hard",
+  "subtopic": "Traversal",
+  "companies": [
+    "Amazon",
+    "Google",
+    "Microsoft"
+  ],
+  "description": "An array is continuous when its values are distinct and its maximum minus minimum equals its length minus one. In one operation, replace any element with any positive integer. Return the fewest operations needed to make `nums` continuous. Input: `nums`. Output: the minimum operation count.",
+  "constraints": [
+    "1 <= nums.length <= 100000",
+    "1 <= nums[i] <= 1000000000"
+  ],
+  "hints": [
+    "Track the running prefix, window, or frequency information needed by the condition.",
+    "Check duplicates, all-equal values, and boundary-sized windows."
+  ],
+  "examples": [
+    {
+      "input": "nums = [4, 2, 5, 3]",
+      "output": "0"
+    },
+    {
+      "input": "nums = [1, 2, 3, 5, 6]",
+      "output": "1"
+    }
+  ],
+  "timeComplexity": "O(n log n)",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "minOperationsToMakeContinuous",
+    "params": [
+      {
+        "name": "nums",
+        "type": "int[]"
+      }
+    ],
+    "returns": "int"
+  }
+}

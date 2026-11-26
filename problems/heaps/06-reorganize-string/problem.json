@@ -1,0 +1,48 @@
+{
+  "title": "Reorganize String",
+  "difficulty": "Medium",
+  "subtopic": "Min/Max Heap",
+  "companies": [
+    "Amazon",
+    "Google",
+    "Meta",
+    "Microsoft",
+    "Uber",
+    "Apple"
+  ],
+  "leetcode": 767,
+  "description": "Given a string `s`, rearrange the characters of `s` so that any two adjacent characters are **not** the same.\n\nReturn **any** possible rearrangement of `s`, or return `\"\"` (empty string) if no valid rearrangement exists.\n\nThe judge validates that when a valid arrangement is possible, your output is a permutation of `s` with no identical adjacent characters, and when impossible, your output is `\"\"` (`true`).",
+  "constraints": [
+    "1 <= s.length <= 500",
+    "s consists of lowercase English letters."
+  ],
+  "hints": [
+    "When is a valid reorganization impossible? If the most frequent character appears more than `(n + 1) / 2` times, two copies must be adjacent by the Pigeonhole Principle.",
+    "Greedily place the most frequent remaining character that differs from the previously placed character.",
+    "Use a max-heap of `(remainingCount, char)`: pop the top character, append it, hold the previous character out of the heap for one step, and push it back if its remaining count is still positive."
+  ],
+  "examples": [
+    {
+      "explanation": "\"aba\" is a valid rearrangement where no two adjacent characters match."
+    },
+    {
+      "explanation": "'a' appears 3 times in a length-4 string (3 > (4 + 1) // 2 = 2), so no valid rearrangement exists and \"\" is returned."
+    },
+    {
+      "explanation": "A valid arrangement such as \"ababac\" separates all three 'a's and both 'b's."
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "adapter",
+    "inputs": [
+      {
+        "name": "s",
+        "type": "String",
+        "description": "Lowercase string to reorganize without identical adjacent characters"
+      }
+    ]
+  }
+}

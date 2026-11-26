@@ -1,0 +1,45 @@
+{
+  "title": "Insert GCD Nodes in Linked List",
+  "difficulty": "Medium",
+  "subtopic": "Pointers & Nodes",
+  "companies": [
+    "Google",
+    "Amazon",
+    "Apple",
+    "Adobe"
+  ],
+  "description": "Given the `head` of a singly linked list in which each node contains a positive integer value, insert a new node between every pair of adjacent nodes whose value is equal to the greatest common divisor (GCD) of the two adjacent nodes.\n\nReturn the head of the modified linked list after all insertions. If the list contains only one node, return it unchanged.",
+  "constraints": [
+    "The number of nodes in the list is in the range [1, 5000].",
+    "1 <= Node.val <= 10^4"
+  ],
+  "hints": [
+    "Traverse with pointer `curr`; while `curr.next != null`, compute `g = gcd(curr.val, curr.next.val)` using the Euclidean algorithm.",
+    "Insert `newNode = ListNode(g, curr.next)` right after `curr`, then advance `curr` directly to `newNode.next` so you do not process the newly inserted node as an original endpoint."
+  ],
+  "examples": [
+    {
+      "explanation": "gcd(18, 6)=6, gcd(6, 10)=2, and gcd(10, 3)=1 are inserted between consecutive pairs."
+    },
+    {
+      "explanation": "A single-node list has no adjacent pairs, so [7] remains [7]."
+    },
+    {
+      "explanation": "Adjacent pairs (12, 18) and (18, 24) yield GCDs 6 and 6."
+    }
+  ],
+  "timeComplexity": "O(n log(maxVal))",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "insertGreatestCommonDivisors",
+    "params": [
+      {
+        "name": "head",
+        "type": "ListNode"
+      }
+    ],
+    "returns": "ListNode"
+  }
+}

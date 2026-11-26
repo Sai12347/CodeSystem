@@ -1,0 +1,54 @@
+{
+  "title": "Zigzag Conversion",
+  "difficulty": "Medium",
+  "subtopic": "Parsing",
+  "companies": [
+    "Amazon",
+    "Google",
+    "Meta",
+    "Microsoft",
+    "Bloomberg",
+    "Apple"
+  ],
+  "leetcode": 6,
+  "description": "The string `s` is written in a zigzag pattern across `numRows` rows: starting at row `0`, characters are placed vertically downward down to row `numRows - 1`, then diagonally upward one row at a time back to row `0`, and this cycle repeats until all characters of `s` are placed.\n\nFor example, `\"PAYPALISHIRING\"` written with `numRows = 3` forms:\n```\nP   A   H   N\nA P L S I I G\nY   I   R\n```\nReading the pattern row by row from top to bottom yields `\"PAHNAPLSIIGYIR\"`.\n\nGiven `s` and `numRows`, return the resulting string read row by row. If `numRows == 1` or `numRows >= s.length`, the zigzag never bends, so return `s` unchanged.",
+  "constraints": [
+    "1 <= s.length <= 1000",
+    "s consists of English letters (lower-case and upper-case), ',' and '.'.",
+    "1 <= numRows <= 1000"
+  ],
+  "hints": [
+    "Handle the trivial cases `numRows == 1` or `numRows >= len(s)` up front by returning `s` directly.",
+    "The zigzag repeats every `cycle = 2 * (numRows - 1)` characters.",
+    "For each row `r`, characters appear at `r + k * cycle`; for middle rows (`0 < r < numRows - 1`), an additional diagonal character appears at `(r + k * cycle) + cycle - 2 * r`."
+  ],
+  "examples": [
+    {
+      "explanation": "Row 0: \"PAHN\", Row 1: \"APLSIIG\", Row 2: \"YIR\" -> \"PAHNAPLSIIGYIR\"."
+    },
+    {
+      "explanation": "With 4 rows: Row 0: \"PIN\", Row 1: \"ALSIG\", Row 2: \"YAHR\", Row 3: \"PI\" -> \"PINALSIGYAHRPI\"."
+    },
+    {
+      "explanation": "With a single row, the output is identical to the input string."
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "convert",
+    "params": [
+      {
+        "name": "s",
+        "type": "String"
+      },
+      {
+        "name": "numRows",
+        "type": "int"
+      }
+    ],
+    "returns": "String"
+  }
+}

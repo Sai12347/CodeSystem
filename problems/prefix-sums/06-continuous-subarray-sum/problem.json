@@ -1,0 +1,54 @@
+{
+  "title": "Continuous Subarray Sum",
+  "difficulty": "Medium",
+  "subtopic": "Hash + Prefix",
+  "companies": [
+    "Meta",
+    "Amazon",
+    "Google",
+    "Microsoft",
+    "Bloomberg"
+  ],
+  "leetcode": 523,
+  "description": "Given an integer array `nums` and a positive integer `k`, return `true` if `nums` has a **good subarray**, or `false` otherwise.\n\nA **good subarray** is a contiguous subarray where:\n- Its length is **at least two**, and\n- The sum of the elements of the subarray is a **multiple of `k`**.\n\nNote that an integer `x` is a multiple of `k` if there exists an integer `n` such that `x = n * k`. In particular, `0` is always a multiple of `k`.",
+  "constraints": [
+    "1 <= nums.length <= 10^5",
+    "0 <= nums[i] <= 10^9",
+    "0 <= sum(nums[i]) <= 2^31 - 1",
+    "1 <= k <= 2^31 - 1"
+  ],
+  "hints": [
+    "Two prefix sums `prefix[j]` and `prefix[i]` have a difference divisible by `k` if and only if they share the same remainder modulo `k`.",
+    "Store the earliest index where each remainder `prefix % k` appears in a hash map, seeded with `{0: -1}`.",
+    "Only return `true` when the same remainder is seen again at an index `j` with `j - firstIndex[rem] >= 2`, and never overwrite an earlier index."
+  ],
+  "examples": [
+    {
+      "explanation": "[2, 4] is a contiguous subarray of size 2 whose elements sum up to 6, which is a multiple of 6."
+    },
+    {
+      "explanation": "[23, 2, 6, 4, 7] is a contiguous subarray of size 5 whose elements sum up to 42 = 7 * 6."
+    },
+    {
+      "explanation": "No contiguous subarray of length at least 2 has a sum divisible by 13."
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(min(n, k))",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "checkSubarraySum",
+    "params": [
+      {
+        "name": "nums",
+        "type": "int[]"
+      },
+      {
+        "name": "k",
+        "type": "int"
+      }
+    ],
+    "returns": "boolean"
+  }
+}

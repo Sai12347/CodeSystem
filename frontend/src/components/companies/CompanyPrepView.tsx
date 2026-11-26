@@ -27,19 +27,19 @@ import {
   CompanyName,
   CompanyMeta,
   CompanyQuestionItem,
-  InterviewRound,
   getQuestionsForCompany,
 } from '../../data/companyCatalog';
 import { QuestionAnimationModal } from '../practice/QuestionAnimationModal';
 import { useUser } from '../../context/UserContext';
 import { dbService } from '../../services/databaseService';
+import { JudgeResponse, judgeService } from '../../services/judgeService';
+import { JudgeResultsPanel } from '../practice/JudgeResultsPanel';
 
 export const CompanyPrepView: React.FC = () => {
   const { user, recordProblemSolved } = useUser();
 
   // Selected Company & Filters
   const [selectedCompany, setSelectedCompany] = useState<CompanyName>('Google');
-  const [selectedRound, setSelectedRound] = useState<string>('All');
   const [selectedDifficulty, setSelectedDifficulty] = useState<string>('All');
   const [searchQuery, setSearchQuery] = useState<string>('');
 
@@ -58,13 +58,9 @@ export const CompanyPrepView: React.FC = () => {
   const [userCode, setUserCode] = useState<string>('');
   const [executing, setExecuting] = useState<boolean>(false);
   const [showHintIndex, setShowHintIndex] = useState<number | null>(null);
-  const [executionResult, setExecutionResult] = useState<{
-    status: 'ACCEPTED' | 'WRONG_ANSWER';
-    passedCount: number;
-    totalCount: number;
-    executionTimeMs: number;
-    memoryMb: number;
-  } | null>(null);
+  const [executionNotice, setExecutionNotice] = useState<string | null>(null);
+  const [judgeResult, setJudgeResult] = useState<JudgeResponse | null>(null);
+  const [xpAwarded, setXpAwarded] = useState<number | null>(null);
 
   // User database progress
   const userProgress = useMemo(() => dbService.getUserProgress(user.id), [user.id]);
@@ -80,15 +76,14 @@ export const CompanyPrepView: React.FC = () => {
   // Filter questions
   const filteredQuestions = useMemo(() => {
     return allCompanyQuestions.filter((q) => {
-      const matchRound = selectedRound === 'All' || q.roundType === selectedRound;
       const matchDiff = selectedDifficulty === 'All' || q.difficulty === selectedDifficulty;
       const matchSearch =
         q.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
         q.topic.toLowerCase().includes(searchQuery.toLowerCase()) ||
         q.subtopic.toLowerCase().includes(searchQuery.toLowerCase());
-      return matchRound && matchDiff && matchSearch;
+      return matchDiff && matchSearch;
     });
-  }, [allCompanyQuestions, selectedRound, selectedDifficulty, searchQuery]);
+  }, [allCompanyQuestions, selectedDifficulty, searchQuery]);
 
   const activeQuestion = useMemo(() => {
     const found = allCompanyQuestions.find((q) => q.id === activeQuestionId);
@@ -104,7 +99,9 @@ export const CompanyPrepView: React.FC = () => {
   const handleOpenPracticeForQuestion = (q: CompanyQuestionItem) => {
     setActiveQuestionId(q.id);
     setUserCode(language === 'java' ? q.starterCode.java : q.starterCode.python);
-    setExecutionResult(null);
+    setExecutionNotice(null);
+    setJudgeResult(null);
+    setXpAwarded(null);
     setShowHintIndex(null);
     setViewMode('PRACTICE_IDE');
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -115,7 +112,7 @@ export const CompanyPrepView: React.FC = () => {
     const adaptedQuestion: any = {
       ...q,
       hints: [
-        `Frequently asked in ${q.company}'s ${q.roundType}.`,
+        `This is a generated company-tagged practice prompt.`,
         `Focus on optimal asymptotic bounds: ${q.timeComplexity}.`,
       ],
       animationSteps: [],
@@ -131,41 +128,36 @@ export const CompanyPrepView: React.FC = () => {
     }
   };
 
-  // Run and submit code to database
-  const handleRunAndSubmit = () => {
+  const handleRunAndSubmit = async () => {
     if (!activeQuestion) return;
     setExecuting(true);
-    setExecutionResult(null);
-
-    setTimeout(() => {
-      setExecuting(false);
-      const executionTime = Math.floor(Math.random() * 35) + 15;
-      const memoryMb = Number((Math.random() * 4 + 12).toFixed(1));
-
-      setExecutionResult({
-        status: 'ACCEPTED',
-        passedCount: 3,
-        totalCount: 3,
-        executionTimeMs: executionTime,
-        memoryMb,
-      });
-
-      // Persist submission to database
+    setExecutionNotice(null);
+    setJudgeResult(null);
+    setXpAwarded(null);
+    try {
+      const result = await judgeService.submitSolution(activeQuestion.slug, language, userCode);
+      setJudgeResult(result);
       dbService.saveSubmission({
         userId: user.id,
         problemId: activeQuestion.id,
         problemTitle: activeQuestion.title,
         language,
         code: userCode,
-        status: 'ACCEPTED',
-        executionTimeMs: executionTime,
-        memoryMb,
+        status: result.status,
+        executionTimeMs: result.executionTimeMs,
+        memoryMb: null,
       });
-
-      // Award XP
-      const xpReward = activeQuestion.difficulty === 'Expert' ? 120 : activeQuestion.difficulty === 'Hard' ? 80 : 50;
-      recordProblemSolved(activeQuestion.id, xpReward);
-    }, 600);
+      if (result.status === 'ACCEPTED') {
+        const alreadySolved = userProgress.solvedProblemIds.includes(activeQuestion.id);
+        const reward = activeQuestion.difficulty === 'Hard' ? 80 : 50;
+        recordProblemSolved(activeQuestion.id, reward);
+        if (!alreadySolved) setXpAwarded(reward);
+      }
+    } catch (error) {
+      setExecutionNotice(error instanceof Error ? error.message : 'The judge request failed. Please try again.');
+    } finally {
+      setExecuting(false);
+    }
   };
 
   // Navigate to next or previous question
@@ -196,14 +188,14 @@ export const CompanyPrepView: React.FC = () => {
                 <Building2 className="w-4 h-4" />
               </span>
               <span className="text-xs font-bold uppercase tracking-wider text-blue-600 dark:text-blue-400">
-                Top MNCs Practice Arena • 100+ PYQs per Company
+                Curated problems grouped by company tags
               </span>
             </div>
             <h1 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-zinc-900 dark:text-white">
-              Company-Wise Coding & Interview Practice
+              Company-Tagged Practice
             </h1>
             <p className="text-xs text-zinc-500 dark:text-zinc-400 mt-1 max-w-2xl">
-              Practice real interview questions directly in code. Test your solutions in the sandbox, dry-run with custom test cases, and save submissions to the database.
+              Browse curated problems by company tags. Tags are for organizing practice and do not claim a question was asked at a specific interview.
             </p>
           </div>
 
@@ -227,7 +219,6 @@ export const CompanyPrepView: React.FC = () => {
                 key={c.name}
                 onClick={() => {
                   setSelectedCompany(c.name);
-                  setSelectedRound('All');
                   setSelectedDifficulty('All');
                   const firstQ = getQuestionsForCompany(c.name)[0];
                   if (firstQ) {
@@ -250,9 +241,8 @@ export const CompanyPrepView: React.FC = () => {
                   </h3>
                   <div className="flex items-center gap-1.5 mt-0.5">
                     <span className="text-[10px] font-semibold text-blue-600 dark:text-blue-400">
-                      {c.totalQuestions} Qs
+                      {getQuestionsForCompany(c.name).length} Qs
                     </span>
-                    <span className="text-[10px] text-zinc-400">• {c.acceptanceRate}</span>
                   </div>
                 </div>
               </button>
@@ -279,7 +269,7 @@ export const CompanyPrepView: React.FC = () => {
               <div>
                 <div className="flex items-center gap-2">
                   <span className="text-xs font-bold text-blue-600 dark:text-blue-400">
-                    {activeQuestion.company} PYQ #{activeQuestion.number}
+                    Question #{activeQuestion.number}
                   </span>
                   <span
                     className={`text-[9px] font-bold px-1.5 py-0.5 rounded ${
@@ -293,12 +283,6 @@ export const CompanyPrepView: React.FC = () => {
                     }`}
                   >
                     {activeQuestion.difficulty}
-                  </span>
-                  <span className="text-[10px] font-semibold px-2 py-0.5 rounded bg-zinc-100 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-300">
-                    {activeQuestion.roundType}
-                  </span>
-                  <span className="text-[10px] font-bold px-2 py-0.5 rounded bg-amber-500/10 text-amber-600">
-                    {activeQuestion.frequency}% Frequency
                   </span>
                 </div>
                 <h2 className="text-base font-bold text-zinc-900 dark:text-white mt-0.5">
@@ -347,15 +331,12 @@ export const CompanyPrepView: React.FC = () => {
               </div>
 
               <div>
+                <h3 className="text-xs font-bold uppercase tracking-wider text-zinc-400 mb-2">
+                  Problem Statement
+                </h3>
                 <p className="text-xs text-zinc-600 dark:text-zinc-300 leading-relaxed">
                   {activeQuestion.description}
                 </p>
-              </div>
-
-              {/* Real World Analogy */}
-              <div className="p-3 rounded-2xl bg-zinc-50 dark:bg-zinc-800/50 border border-zinc-200/50 dark:border-zinc-800/50 text-[11px] text-zinc-600 dark:text-zinc-300">
-                <span className="font-semibold text-zinc-800 dark:text-zinc-200">Company Context: </span>
-                {activeQuestion.realWorldAnalogy}
               </div>
 
               {/* Examples */}
@@ -478,46 +459,19 @@ export const CompanyPrepView: React.FC = () => {
 
                   <button
                     onClick={handleRunAndSubmit}
-                    disabled={executing}
-                    className="px-5 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-semibold text-xs flex items-center gap-2 shadow-sm transition-all disabled:opacity-50"
+                    className="px-5 py-2.5 rounded-xl bg-zinc-600 hover:bg-zinc-700 text-white font-semibold text-xs flex items-center gap-2 shadow-sm transition-all"
                   >
-                    {executing ? (
-                      <>
-                        <div className="w-3.5 h-3.5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
-                        <span>Running in Database Sandbox...</span>
-                      </>
-                    ) : (
-                      <>
-                        <Play className="w-3.5 h-3.5 fill-current" />
-                        <span>Submit to {activeQuestion.company} Tests</span>
-                      </>
-                    )}
+                    {executing ? 'Judging…' : 'Submit Solution'}
                   </button>
                 </div>
               </div>
 
-              {/* Execution Result Banner */}
-              {executionResult && (
-                <div className="bg-white dark:bg-zinc-900 border border-zinc-200/80 dark:border-zinc-800/80 rounded-3xl p-5 shadow-apple-sm space-y-2">
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-2">
-                      <CheckCircle2 className="w-5 h-5 text-emerald-500" />
-                      <span className="text-base font-bold text-emerald-600 dark:text-emerald-400">
-                        {executionResult.status} (Passed {executionResult.passedCount}/{executionResult.totalCount} Test Cases)
-                      </span>
-                    </div>
-                    <div className="flex items-center gap-3 text-xs font-mono text-zinc-500">
-                      <span className="flex items-center gap-1">
-                        <Clock className="w-3 h-3" /> {executionResult.executionTimeMs} ms
-                      </span>
-                      <span>{executionResult.memoryMb} MB</span>
-                    </div>
-                  </div>
-                  <p className="text-xs text-emerald-700 dark:text-emerald-300 font-medium">
-                    Verified against {activeQuestion.company}'s interview constraints & saved to database! +50 XP awarded.
-                  </p>
+              {executionNotice && (
+                <div className="p-4 rounded-2xl border border-amber-300 bg-amber-50 dark:bg-amber-950/30 dark:border-amber-800 text-xs text-amber-800 dark:text-amber-200" role="status">
+                  {executionNotice}
                 </div>
               )}
+              <JudgeResultsPanel result={judgeResult} errorMessage={null} xpAwarded={xpAwarded} />
             </div>
           </div>
         </div>
@@ -529,7 +483,7 @@ export const CompanyPrepView: React.FC = () => {
       {viewMode === 'CATALOG' && (
         <>
           {/* Active Company Hero Banner */}
-          <div className="p-6 rounded-3xl bg-white dark:bg-zinc-900 border border-zinc-200/80 dark:border-zinc-800/80 shadow-apple-sm flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+              <div className="p-6 rounded-3xl bg-white dark:bg-zinc-900 border border-zinc-200/80 dark:border-zinc-800/80 shadow-apple-sm flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
             <div className="flex items-center gap-4">
               <div className="text-4xl p-3 rounded-2xl bg-zinc-100 dark:bg-zinc-800 flex items-center justify-center shadow-inner">
                 {companyMeta.logo}
@@ -537,15 +491,11 @@ export const CompanyPrepView: React.FC = () => {
               <div>
                 <div className="flex items-center gap-2">
                   <h2 className="text-xl font-bold text-zinc-900 dark:text-white">
-                    {companyMeta.name} Interview Question Bank
+                    {companyMeta.name} Curated Problems
                   </h2>
-                  <span className="px-2 py-0.5 rounded-md text-[10px] font-bold bg-amber-500/10 text-amber-600 dark:text-amber-400">
-                    Avg: {companyMeta.avgDifficulty}
-                  </span>
                 </div>
                 <p className="text-xs text-zinc-500 dark:text-zinc-400 mt-1 max-w-xl">
-                  <span className="font-semibold text-zinc-700 dark:text-zinc-300">Interview Focus: </span>
-                  {companyMeta.hiringFocus}
+                  Problems tagged with this company in the curated practice bank.
                 </p>
               </div>
             </div>
@@ -555,39 +505,14 @@ export const CompanyPrepView: React.FC = () => {
               <div className="px-4 py-2.5 rounded-2xl bg-zinc-50 dark:bg-zinc-800/60 border border-zinc-200 dark:border-zinc-700 text-right">
                 <span className="text-[11px] text-zinc-400 block">Your {companyMeta.name} Progress</span>
                 <span className="text-sm font-bold text-emerald-600 dark:text-emerald-400">
-                  {solvedCompanyCount} / {companyMeta.totalQuestions} Solved
+                  {solvedCompanyCount} / {allCompanyQuestions.length} Solved
                 </span>
               </div>
             </div>
           </div>
 
-          {/* Round & Difficulty Filters */}
+          {/* Problem Search */}
           <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 bg-zinc-100/70 dark:bg-zinc-900/50 p-2.5 rounded-2xl border border-zinc-200/60 dark:border-zinc-800/60">
-            {/* Round Filter Tabs */}
-            <div className="flex items-center gap-1 overflow-x-auto no-scrollbar">
-              <span className="text-xs font-semibold text-zinc-500 mr-1 hidden sm:inline">Rounds:</span>
-              {[
-                'All',
-                'Online Assessment (OA)',
-                'Technical Screen',
-                'Technical Round 1',
-                'Technical Round 2',
-                'Onsite Bar Raiser',
-              ].map((r) => (
-                <button
-                  key={r}
-                  onClick={() => setSelectedRound(r)}
-                  className={`px-3 py-1.5 rounded-xl text-xs font-semibold whitespace-nowrap transition-colors ${
-                    selectedRound === r
-                      ? 'bg-zinc-900 text-white dark:bg-white dark:text-black shadow-sm'
-                      : 'text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white'
-                  }`}
-                >
-                  {r === 'All' ? 'All Rounds' : r.replace('Technical ', 'Tech ')}
-                </button>
-              ))}
-            </div>
-
             {/* Search */}
             <div className="relative sm:w-64">
               <Search className="w-3.5 h-3.5 text-zinc-400 absolute left-2.5 top-2.5 pointer-events-none" />
@@ -595,7 +520,7 @@ export const CompanyPrepView: React.FC = () => {
                 type="text"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                placeholder={`Search ${companyMeta.name} PYQs...`}
+                placeholder={`Search ${companyMeta.name} problems...`}
                 className="w-full pl-8 pr-3 py-1.5 rounded-xl bg-white dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 text-xs text-zinc-900 dark:text-white placeholder-zinc-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
               />
             </div>
@@ -608,7 +533,7 @@ export const CompanyPrepView: React.FC = () => {
                 {companyMeta.name} Questions ({filteredQuestions.length} Found) — Click Solve on Any Question
               </span>
               <div className="flex items-center gap-2">
-                {(['All', 'Easy', 'Medium', 'Hard', 'Expert'] as const).map((d) => (
+                {(['All', 'Easy', 'Medium', 'Hard'] as const).map((d) => (
                   <button
                     key={d}
                     onClick={() => setSelectedDifficulty(d)}
@@ -658,12 +583,6 @@ export const CompanyPrepView: React.FC = () => {
                           >
                             {q.difficulty}
                           </span>
-                          <span className="px-1.5 py-0.5 rounded text-[9px] font-semibold bg-zinc-100 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-400">
-                            {q.roundType}
-                          </span>
-                          <span className="px-1.5 py-0.5 rounded text-[9px] font-semibold bg-blue-500/10 text-blue-600 dark:text-blue-400">
-                            {q.year}
-                          </span>
                         </div>
 
                         <h4
@@ -673,6 +592,10 @@ export const CompanyPrepView: React.FC = () => {
                           {q.title}
                         </h4>
 
+                        <p className="text-xs text-zinc-600 dark:text-zinc-300 mt-1.5 leading-relaxed max-w-3xl">
+                          {q.description}
+                        </p>
+
                         <div className="flex items-center gap-3 text-[11px] text-zinc-400 mt-1">
                           <span>Topic: {q.topic} ({q.subtopic})</span>
                           <span>•</span>
@@ -681,21 +604,8 @@ export const CompanyPrepView: React.FC = () => {
                       </div>
                     </div>
 
-                    {/* Right Actions: Frequency Score, Dry-Run Animation, and Solve / Practice Button */}
+                    {/* Right Actions: Dry-Run Animation and Practice Button */}
                     <div className="flex items-center gap-2.5 w-full sm:w-auto justify-between sm:justify-end">
-                      {/* Frequency Score */}
-                      <div className="text-right min-w-[70px]">
-                        <div className="text-[10px] font-bold text-amber-600 dark:text-amber-400">
-                          {q.frequency}% Freq
-                        </div>
-                        <div className="w-16 h-1 bg-zinc-100 dark:bg-zinc-800 rounded-full mt-1 overflow-hidden">
-                          <div
-                            className="h-full bg-amber-500 rounded-full"
-                            style={{ width: `${q.frequency}%` }}
-                          />
-                        </div>
-                      </div>
-
                       {/* Dry-Run Animation Button */}
                       <button
                         onClick={() => handleOpenAnimation(q)}

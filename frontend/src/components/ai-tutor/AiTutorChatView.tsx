@@ -1,6 +1,5 @@
-import React, { useState } from 'react';
+﻿import React, { useState } from 'react';
 import { Bot, Send, Sparkles, Code2, HelpCircle, Lightbulb, User } from 'lucide-react';
-import { useVisualizer } from '../../context/VisualizerContext';
 
 interface ChatMessage {
   id: string;
@@ -11,13 +10,11 @@ interface ChatMessage {
 }
 
 export const AiTutorChatView: React.FC = () => {
-  const { metadata } = useVisualizer();
-
   const [messages, setMessages] = useState<ChatMessage[]>([
     {
       id: 'msg_welcome',
       sender: 'ai',
-      text: `Hello! I'm your AI DSA Tutor powered by Google Gemini. I can explain any algorithm step-by-step, generate dry runs, break down tricky variable moves, or provide hints without spoiling full solutions. What would you like to explore today?`,
+      text: `Hello! I'm your DSA tutor. Ask me to explain an algorithm, walk through an example, or give you a hint.`,
       timestamp: 'Just now',
     },
   ]);
@@ -32,9 +29,9 @@ export const AiTutorChatView: React.FC = () => {
     `Can you walk me through a dry run of Bubble Sort on [5, 1, 4]?`,
   ];
 
-  const handleSendQuery = (textToSend?: string) => {
+  const handleSendQuery = async (textToSend?: string) => {
     const query = textToSend || inputQuery;
-    if (!query.trim()) return;
+    if (!query.trim() || isThinking) return;
 
     const userMsg: ChatMessage = {
       id: `usr_${Date.now()}`,
@@ -47,54 +44,41 @@ export const AiTutorChatView: React.FC = () => {
     setInputQuery('');
     setIsThinking(true);
 
-    // Simulate structured AI response with beginner explanation, dry run, and practice question
-    setTimeout(() => {
+    try {
+      const response = await fetch('/api/ai-tutor/explain', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ query, topic: 'Data Structures and Algorithms', userLevel: 'beginner' }),
+      });
+      const payload = await response.json();
+      if (!response.ok) throw new Error(payload?.error || `Tutor request failed (${response.status}).`);
+
+      const modelText = payload?.data?.candidates?.[0]?.content?.parts
+        ?.map((part: { text?: string }) => part.text || '')
+        .filter(Boolean)
+        .join('\n');
+      const answer = payload?.explanation || modelText;
+      if (!answer) throw new Error(payload?.error || 'Tutor returned an empty response.');
+
+      setMessages((prev) => [...prev, {
+        id: `ai_${Date.now()}`,
+        sender: 'ai',
+        text: answer,
+        timestamp: 'Just now',
+      }]);
+    } catch (error) {
+      setMessages((prev) => [...prev, {
+        id: `ai_error_${Date.now()}`,
+        sender: 'ai',
+        text: error instanceof Error
+          ? `${error.message} Make sure the backend is running on port 8080.`
+          : 'Tutor request failed. Make sure the backend is running on port 8080.',
+        timestamp: 'Just now',
+      }]);
+    } finally {
       setIsThinking(false);
-      let aiResponseText = '';
-      let codeSnippet: string | undefined = undefined;
-
-      if (query.toLowerCase().includes('low +') || query.toLowerCase().includes('overflow')) {
-        aiResponseText = `### Why low + (high - low) / 2?
-
-1. **Simple Explanation:** In 32-bit signed integers (like Java's \`int\`), numbers can reach up to 2,147,483,647. If \`low\` and \`high\` are both large, \`low + high\` will exceed this ceiling and wrap around into a negative number!
-2. **Mathematical Equivalence:** 
-   low + (high - low) / 2 = low + high/2 - low/2 = low/2 + high/2 = (low + high) / 2.
-3. **Small Dry Run:**
-   - low = 2,000,000,000
-   - high = 2,000,000,000
-   - (low + high) = 4,000,000,000 (overflows in int!)
-   - low + (high - low) / 2 = 2,000,000,000 + 0 = 2,000,000,000 (safe!)
-
-**Practice Reflection:** What bitwise operation is even faster than dividing by 2? (Hint: \`>> 1\`)`;
-        codeSnippet = `int mid = low + ((high - low) >> 1); // Super safe & fast!`;
-      } else {
-        aiResponseText = `### Conceptual Breakdown for "${query}"
-
-1. **Core Intuition:** In DSA, this mechanism ensures we maintain the invariant while keeping time and space complexity bounded.
-2. **Step-by-Step Mechanism:**
-   - First, the algorithm identifies the search or transformation boundary.
-   - Second, it performs an in-place comparison or state update.
-   - Third, it eliminates redundant states so it never re-processes candidate elements twice.
-3. **Time & Space Impact:**
-   - Time Complexity: O(log n) or O(n) depending on data access pattern.
-   - Space Complexity: O(1) auxiliary space.
-
-**Key Rule to Remember:** Always check boundary cases (arrays of length 0 or 1, and duplicate elements).`;
-      }
-
-      setMessages((prev) => [
-        ...prev,
-        {
-          id: `ai_${Date.now()}`,
-          sender: 'ai',
-          text: aiResponseText,
-          timestamp: 'Just now',
-          codeSnippet,
-        },
-      ]);
-    }, 900);
+    }
   };
-
   return (
     <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-6">
       {/* Header */}
@@ -104,7 +88,7 @@ export const AiTutorChatView: React.FC = () => {
             <Bot className="w-4 h-4" />
           </div>
           <span className="text-xs font-bold uppercase tracking-wider text-purple-600 dark:text-purple-400">
-            AI Tutor • Google Gemini Powered
+            AI Tutor â€¢ Backend-connected tutor
           </span>
         </div>
         <h1 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-zinc-900 dark:text-white">
@@ -217,3 +201,4 @@ export const AiTutorChatView: React.FC = () => {
     </div>
   );
 };
+

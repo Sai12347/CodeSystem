@@ -1,0 +1,46 @@
+{
+  "title": "Call Stack Peak Memory",
+  "difficulty": "Easy",
+  "subtopic": "LIFO Structure",
+  "companies": [
+    "Amazon",
+    "Microsoft",
+    "Apple",
+    "Oracle"
+  ],
+  "description": "You are given a valid trace of stack-frame memory `events` executed by a single-threaded program:\n- `\"CALL <bytes>\"`: pushes a new stack frame initialized with `<bytes>` bytes.\n- `\"ALLOC <bytes>\"`: allocates `<bytes>` additional bytes owned by the currently active (top) stack frame.\n- `\"SHRINK <bytes>\"`: frees `min(topFrameBytes, <bytes>)` bytes from the currently active stack frame.\n- `\"RET\"`: pops the currently active stack frame, immediately releasing all bytes owned by that frame.\n\nReturn the **peak total memory** (in bytes, as a 64-bit integer `long`) held across all active stack frames at any point during execution.",
+  "constraints": [
+    "1 <= events.length <= 10^5",
+    "Every byte value is a non-negative integer <= 10^9.",
+    "ALLOC, SHRINK, and RET are only called when at least one frame is active."
+  ],
+  "hints": [
+    "Maintain a stack storing the current memory owned by each active frame alongside a running total `curMem` and `peakMem`.",
+    "On `SHRINK b`, compute `freed = min(stack[-1], b)` to update both the top frame and `curMem`; on `RET`, pop the top frame and subtract its full memory from `curMem`."
+  ],
+  "examples": [
+    {
+      "explanation": "CALL 100 -> 100, CALL 50 -> 150, ALLOC 80 -> 230 (peak), RET frees 130 -> 100, RET -> 0."
+    },
+    {
+      "explanation": "CALL 10 -> 10, SHRINK 25 reduces frame to 0 -> 0, ALLOC 40 -> 40 (peak), RET -> 0."
+    },
+    {
+      "explanation": "First call reaches 70 and returns; second call reaches 90 (peak)."
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "peakStackMemory",
+    "params": [
+      {
+        "name": "events",
+        "type": "String[]"
+      }
+    ],
+    "returns": "long"
+  }
+}

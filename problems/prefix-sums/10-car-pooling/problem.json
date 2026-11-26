@@ -1,0 +1,37 @@
+{
+  "title": "Car Pooling",
+  "difficulty": "Medium",
+  "subtopic": "Difference Array",
+  "companies": ["Amazon", "Google", "Uber", "Meta", "Microsoft"],
+  "leetcode": 1094,
+  "description": "There is a car with `capacity` empty seats. The vehicle only drives east (it cannot turn around and drive west).\n\nYou are given the integer `capacity` and an array `trips` where `trips[i] = [numPassengers_i, from_i, to_i]` indicates that the `i`-th trip has `numPassengers_i` passengers who are picked up at location `from_i` and dropped off at location `to_i`. Locations are given as the number of kilometers due east from the car's initial position.\n\nAt any location, passengers scheduled to be dropped off leave the car before any new passengers are picked up at that same location. Return `true` if it is possible to pick up and drop off all passengers for all the given trips without ever exceeding `capacity`, or `false` otherwise.",
+  "constraints": [
+    "1 <= trips.length <= 1000",
+    "trips[i].length == 3",
+    "1 <= numPassengers_i <= 100",
+    "0 <= from_i < to_i <= 1000",
+    "1 <= capacity <= 10^5"
+  ],
+  "hints": [
+    "Instead of simulating each trip individually across every kilometer, record only the net change in passenger count at pickup and drop-off locations.",
+    "Use a difference array `diff` indexed by location 0..1000: add `numPassengers` at `from` and subtract `numPassengers` at `to`.",
+    "Take the running prefix sum of `diff` from location 0 to 1000; if the occupancy ever exceeds `capacity`, return false."
+  ],
+  "examples": [
+    {"explanation": "At kilometer 3, both trips are active requiring 2 + 3 = 5 seats, which exceeds capacity 4."},
+    {"explanation": "The peak occupancy is 5 passengers between kilometers 3 and 5, which fits within capacity 5."},
+    {"explanation": "At kilometer 7, the first trip's 3 passengers drop off before the second trip's 3 passengers board, so peak occupancy is 3 + 8 = 11, fitting within capacity 11."}
+  ],
+  "timeComplexity": "O(n + M)",
+  "spaceComplexity": "O(M)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "carPooling",
+    "params": [
+      {"name": "trips", "type": "int[][]"},
+      {"name": "capacity", "type": "int"}
+    ],
+    "returns": "boolean"
+  }
+}

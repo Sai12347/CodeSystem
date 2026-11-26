@@ -1,0 +1,49 @@
+{
+  "title": "First Missing Positive",
+  "difficulty": "Hard",
+  "subtopic": "In-Place Operations",
+  "companies": [
+    "Amazon",
+    "Google",
+    "Meta",
+    "Microsoft",
+    "Apple",
+    "Goldman Sachs"
+  ],
+  "leetcode": 41,
+  "description": "Given an unsorted integer array `nums`, return the smallest positive integer (`>= 1`) that is not present in `nums`.\n\nYou must implement an algorithm that runs in `O(n)` time and uses `O(1)` auxiliary space. The array may contain zero, negative numbers, duplicates, and values larger than `nums.length`.",
+  "constraints": [
+    "1 <= nums.length <= 10^5",
+    "-2^31 <= nums[i] <= 2^31 - 1"
+  ],
+  "hints": [
+    "For an array of length n, the smallest missing positive integer must lie in the range [1, n + 1]. Any value <= 0 or > n cannot be the answer.",
+    "Use the input array itself as a hash table: place every in-range value v (1 <= v <= n) at index v - 1 by swapping it into position.",
+    "Guard against duplicates by only swapping when nums[v - 1] != v. Afterwards, the first index i with nums[i] != i + 1 gives the answer i + 1 (or n + 1 if all match)."
+  ],
+  "examples": [
+    {
+      "explanation": "1 and 2 are present in the array, so the smallest missing positive is 3."
+    },
+    {
+      "explanation": "1 is present, while 2 is missing, so return 2."
+    },
+    {
+      "explanation": "The smallest positive integer 1 is not in the array."
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "firstMissingPositive",
+    "params": [
+      {
+        "name": "nums",
+        "type": "int[]"
+      }
+    ],
+    "returns": "int"
+  }
+}

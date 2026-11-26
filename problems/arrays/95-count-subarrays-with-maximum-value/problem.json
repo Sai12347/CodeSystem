@@ -1,0 +1,43 @@
+{
+  "title": "Count Subarrays With Maximum Value",
+  "difficulty": "Medium",
+  "subtopic": "Subarrays",
+  "companies": [
+    "Amazon",
+    "Google",
+    "Microsoft"
+  ],
+  "description": "Let `M` be the largest value anywhere in `nums`. Count non-empty contiguous subarrays whose bitwise AND equals `M`. Input: a non-negative integer array `nums`. Output: the number of such subarrays.",
+  "constraints": [
+    "1 <= nums.length <= 100000",
+    "0 <= nums[i] <= 1000000000"
+  ],
+  "hints": [
+    "Keep a running total or frequency count rather than recomputing over all prefixes.",
+    "Test repeated values, zeros, and minimum-size inputs."
+  ],
+  "examples": [
+    {
+      "input": "nums = [1, 3, 3]",
+      "output": "3"
+    },
+    {
+      "input": "nums = [1, 2, 1]",
+      "output": "1"
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "countSubarraysWithMaximum",
+    "params": [
+      {
+        "name": "nums",
+        "type": "int[]"
+      }
+    ],
+    "returns": "long"
+  }
+}

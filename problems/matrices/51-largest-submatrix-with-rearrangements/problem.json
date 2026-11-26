@@ -1,0 +1,47 @@
+{
+  "title": "Largest Submatrix With Rearrangements",
+  "difficulty": "Medium",
+  "subtopic": "Dynamic Grids",
+  "companies": [
+    "Google",
+    "Amazon",
+    "Meta",
+    "Microsoft"
+  ],
+  "description": "You are given an `m x n` binary matrix `matrix` containing only `0`s and `1`s. You are allowed to rearrange the **columns** of `matrix` in any order.\n\nReturn the area of the largest submatrix consisting entirely of `1`s that can be formed after optimally rearranging the columns.",
+  "constraints": [
+    "m == matrix.length",
+    "n == matrix[i].length",
+    "1 <= m * n <= 10^5",
+    "matrix[i][j] is either 0 or 1."
+  ],
+  "hints": [
+    "For each row r, maintain heights[c] = number of consecutive 1s ending at (r, c) moving upward in column c.",
+    "Sorting heights in descending order simulates placing the tallest columns next to each other; check sortedHeights[i] * (i + 1) across all i."
+  ],
+  "examples": [
+    {
+      "explanation": "Moving column 2 next to column 0 creates a 2x2 all-ones submatrix of area 4 in the bottom two rows."
+    },
+    {
+      "explanation": "Rearranging the single row puts all three 1s adjacent, forming a 1x3 submatrix of area 3."
+    },
+    {
+      "explanation": "Only two 1s sit in the same row and no column has height 2, so the largest area is 2."
+    }
+  ],
+  "timeComplexity": "O(m * n * log n)",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "largestSubmatrix",
+    "params": [
+      {
+        "name": "matrix",
+        "type": "int[][]"
+      }
+    ],
+    "returns": "int"
+  }
+}

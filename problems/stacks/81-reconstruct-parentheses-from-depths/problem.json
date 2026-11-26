@@ -1,0 +1,45 @@
+{
+  "title": "Reconstruct Parentheses From Depths",
+  "difficulty": "Easy",
+  "subtopic": "Valid Parentheses",
+  "companies": [
+    "Google",
+    "Amazon",
+    "Bloomberg",
+    "Apple"
+  ],
+  "description": "In a valid balanced parentheses string `s`, the nesting depth of each character is defined as follows: scanning left to right with open-count `open` initially `0`, an opening `'('` increments `open` by `1` and has depth `open`; a closing `')'` has depth `open` and then decrements `open` by `1`.\n\nGiven an integer array `depths`, reconstruct and return the unique valid balanced parentheses string `s` whose character depths equal `depths`, or return an empty string `\"\"` if no valid balanced parentheses string has those depths.",
+  "constraints": [
+    "1 <= depths.length <= 10^5",
+    "0 <= depths[i] <= 10^5"
+  ],
+  "hints": [
+    "Track the current open count `open` starting at 0: at each position `i`, `'('` uniquely requires `depths[i] == open + 1` while `')'` uniquely requires `depths[i] == open` (with `open > 0`).",
+    "If `depths[i]` matches neither `open + 1` nor `open` (when `open > 0`), or if `open != 0` at the end, no valid string exists."
+  ],
+  "examples": [
+    {
+      "explanation": "Open transitions 0->1('('), 1->2('('), 2->1(')'), 1->0(')') yield depths [1, 2, 2, 1], uniquely giving \"(())\"."
+    },
+    {
+      "explanation": "Open transitions 0->1, 1->0, 0->1, 1->0 yield depths [1, 1, 1, 1], uniquely giving \"()()\"."
+    },
+    {
+      "explanation": "Jumping from depth 1 directly to depth 3 is impossible, so return \"\"."
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "reconstructFromDepths",
+    "params": [
+      {
+        "name": "depths",
+        "type": "int[]"
+      }
+    ],
+    "returns": "String"
+  }
+}

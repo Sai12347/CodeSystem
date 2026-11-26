@@ -1,0 +1,51 @@
+{
+  "title": "Add Two Numbers II",
+  "difficulty": "Medium",
+  "subtopic": "Reversal",
+  "companies": [
+    "Bloomberg",
+    "Amazon",
+    "Microsoft",
+    "Meta",
+    "Oracle"
+  ],
+  "description": "You are given two non-empty singly linked lists `l1` and `l2` representing two non-negative integers. The **most significant digit** comes first, and each node stores a single decimal digit (`0`\u2013`9`).\n\nAdd the two numbers and return the sum as a linked list in the same most-significant-digit-first order. Neither input list contains leading zeros except for the number `0` itself.",
+  "constraints": [
+    "The number of nodes in each linked list is in the range [1, 2000].",
+    "0 <= Node.val <= 9",
+    "Neither number has leading zeros, except the number 0 itself."
+  ],
+  "hints": [
+    "Reversing both input lists aligns their least significant digits at the heads so standard carry addition works in a single pass.",
+    "Prepend each newly computed sum digit to the front of the output list so the result is naturally built in most-significant-digit-first order."
+  ],
+  "examples": [
+    {
+      "explanation": "7243 + 564 = 7807, represented as [7, 8, 0, 7]."
+    },
+    {
+      "explanation": "243 + 564 = 807, represented as [8, 0, 7]."
+    },
+    {
+      "explanation": "999 + 1 = 1000 propagates a carry into a new leading node [1, 0, 0, 0]."
+    }
+  ],
+  "timeComplexity": "O(m + n)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "addTwoNumbers",
+    "params": [
+      {
+        "name": "l1",
+        "type": "ListNode"
+      },
+      {
+        "name": "l2",
+        "type": "ListNode"
+      }
+    ],
+    "returns": "ListNode"
+  }
+}

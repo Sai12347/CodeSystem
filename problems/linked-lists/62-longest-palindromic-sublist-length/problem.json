@@ -1,0 +1,45 @@
+{
+  "title": "Longest Palindromic Sublist Length",
+  "difficulty": "Hard",
+  "subtopic": "Reversal",
+  "companies": [
+    "Google",
+    "Amazon",
+    "Meta",
+    "Microsoft"
+  ],
+  "description": "Given the `head` of a singly linked list of integers, return the length of the longest contiguous sublist whose node values form a palindrome.\n\nSolve in `O(1)` extra space by reversing the already-visited prefix on the fly as you traverse the list and expanding outward from each center.",
+  "constraints": [
+    "The number of nodes in the list is in the range [0, 2000].",
+    "-10^5 <= Node.val <= 10^5"
+  ],
+  "hints": [
+    "As you step `curr` forward, reverse `curr.next = prev` so that `prev` points to the reversed prefix and `nxt` points to the unvisited suffix.",
+    "From every node `curr`, count matching elements between `prev` and `nxt` for odd-length palindromes (`2 * common + 1`), and between `curr` and `nxt` for even-length palindromes (`2 * common`)."
+  ],
+  "examples": [
+    {
+      "explanation": "The sublist [2, 3, 7, 3, 2] is a palindrome of length 5."
+    },
+    {
+      "explanation": "The entire list [1, 2, 2, 1] is an even-length palindrome of length 4."
+    },
+    {
+      "explanation": "All values are distinct, so the longest palindrome has length 1."
+    }
+  ],
+  "timeComplexity": "O(n^2)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "maxPalindromeLength",
+    "params": [
+      {
+        "name": "head",
+        "type": "ListNode"
+      }
+    ],
+    "returns": "int"
+  }
+}

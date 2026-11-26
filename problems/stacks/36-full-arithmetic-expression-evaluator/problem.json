@@ -1,0 +1,49 @@
+{
+  "title": "Full Arithmetic Expression Evaluator",
+  "difficulty": "Hard",
+  "subtopic": "Expression Parsing",
+  "companies": [
+    "Meta",
+    "Google",
+    "Amazon",
+    "Microsoft",
+    "Uber",
+    "Bloomberg"
+  ],
+  "description": "Given a string `s` representing a valid mathematical expression, evaluate it and return its integer result.\n\nThe expression string contains non-negative integers, binary operators `'+'`, `'-'`, `'*'`, `'/'`, parentheses `'('` and `')'`, and spaces `' '`:\n- Multiplication `'*'` and division `'/'` have higher precedence than addition `'+'` and subtraction `'-'`, and operators of equal precedence evaluate left-to-right.\n- Integer division truncates toward zero (e.g., `7 / 2 = 3` and `-7 / 2 = -3`).\n- Unary `'-'` may appear at the start of the expression or immediately after `'('` (e.g., `\"-(2+3)\"` or `\"(-7)/2\"`), and no two binary operators appear consecutively.\n- All intermediate and final values fit in a 32-bit signed integer. Do not use any built-in expression evaluator such as `eval()`.",
+  "constraints": [
+    "1 <= s.length <= 2 * 10^4",
+    "s consists of digits, '+', '-', '*', '/', '(', ')', and ' '.",
+    "s is a valid expression with no division by zero.",
+    "Every intermediate value and the final answer fit in a 32-bit signed integer."
+  ],
+  "hints": [
+    "Maintain a stack of additive terms for the current parenthesis level: '+' and '-' push signed terms, while '*' and '/' combine immediately with the top term.",
+    "When seeing '(', save the current term stack and pending operator onto a frame stack; when seeing ')', sum the current frame to get the parenthesized value and restore the outer frame."
+  ],
+  "examples": [
+    {
+      "explanation": "6 - 4 / 2 = 6 - 2 = 4."
+    },
+    {
+      "explanation": "2 * (5 + 10) / 3 + (3 + 8) = 30 / 3 + 11 = 10 + 11 = 21."
+    },
+    {
+      "explanation": "(2 + 18 + 5 - (6 + 2) * 5) + 3 = (25 - 40) + 3 = -12."
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "evaluateExpression",
+    "params": [
+      {
+        "name": "s",
+        "type": "String"
+      }
+    ],
+    "returns": "int"
+  }
+}

@@ -1,0 +1,43 @@
+{
+  "title": "Minimum One Bit Operations",
+  "difficulty": "Hard",
+  "subtopic": "Counting Bits",
+  "companies": [
+    "Google",
+    "Meta",
+    "Amazon"
+  ],
+  "description": "Given a non-negative integer `n`, you may transform it into `0` using two operations any number of times: (1) change the rightmost bit (bit `0`), or (2) change bit `i` (`i > 0`) if bit `i - 1` is `1` and all bits from `0` through `i - 2` are `0`. Return the minimum number of operations needed to reduce `n` to `0`.",
+  "constraints": [
+    "0 <= n <= 10^9"
+  ],
+  "hints": [
+    "The sequence of states visited when reducing `2^k` to `0` is the reflected binary Gray code, taking `2^(k + 1) - 1` steps.",
+    "The minimum steps from any `n` to `0` is the inverse Gray code of `n`, computed by repeatedly XORing `n` with `n >> 1` down to `0`."
+  ],
+  "examples": [
+    {
+      "explanation": "3 (11) -> 2 (10) -> 0 (00) takes 2 operations."
+    },
+    {
+      "explanation": "6 (110) -> 7 (111) -> 5 (101) -> 4 (100) -> 0 (000) takes 4 operations."
+    },
+    {
+      "explanation": "0 is already zero, so 0 operations are needed."
+    }
+  ],
+  "timeComplexity": "O(log n)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "minimumOneBitOperations",
+    "params": [
+      {
+        "name": "n",
+        "type": "int"
+      }
+    ],
+    "returns": "int"
+  }
+}

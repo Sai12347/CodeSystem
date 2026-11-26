@@ -1,0 +1,99 @@
+{
+  "title": "Design Circular Deque",
+  "difficulty": "Medium",
+  "subtopic": "Deque Operations",
+  "companies": [
+    "Amazon",
+    "Google",
+    "Meta",
+    "Microsoft",
+    "Bloomberg"
+  ],
+  "leetcode": 641,
+  "description": "Design your implementation of a circular double-ended queue (deque) with fixed maximum capacity `k`.\n\nImplement the `MyCircularDeque` class:\n- `MyCircularDeque(int k)` initializes the deque with a maximum size of `k`.\n- `boolean insertFront(int value)` adds an item at the front of the deque. Returns `true` if successful, or `false` if the deque is full.\n- `boolean insertLast(int value)` adds an item at the rear of the deque. Returns `true` if successful, or `false` if the deque is full.\n- `boolean deleteFront()` deletes an item from the front of the deque. Returns `true` if successful, or `false` if the deque is empty.\n- `boolean deleteLast()` deletes an item from the rear of the deque. Returns `true` if successful, or `false` if the deque is empty.\n- `int getFront()` returns the front item from the deque, or `-1` if the deque is empty.\n- `int getRear()` returns the last item from the deque, or `-1` if the deque is empty.\n- `boolean isEmpty()` returns `true` if the deque is empty, or `false` otherwise.\n- `boolean isFull()` returns `true` if the deque is full, or `false` otherwise.\n\nYou must solve the problem without using a built-in deque data structure.",
+  "constraints": [
+    "1 <= k <= 1000",
+    "0 <= value <= 1000",
+    "At most 2000 calls will be made to insertFront, insertLast, deleteFront, deleteLast, getFront, getRear, isEmpty, and isFull."
+  ],
+  "hints": [
+    "Use a fixed-size circular array of length k with a head pointer and an element count.",
+    "To insert at the front, move head backward modulo k: head = (head - 1 + k) % k, then write value to buf[head].",
+    "To insert or delete at the rear, only the tail position (head + count) % k and count change—head does not move."
+  ],
+  "examples": [
+    {
+      "explanation": "With k = 3, inserting 1 and 2 at the rear and 3 at the front yields [3, 1, 2]. insertFront(4) fails because the deque is full. After deleteLast(), insertFront(4) succeeds and getFront() returns 4."
+    },
+    {
+      "explanation": "Operations on an empty deque return -1 for getters and false for deletes. Inserting at the front and deleting from the rear works symmetrically."
+    }
+  ],
+  "timeComplexity": "O(1) per op",
+  "spaceComplexity": "O(k)",
+  "compare": "exact",
+  "signature": {
+    "kind": "design",
+    "className": "MyCircularDeque",
+    "constructor": {
+      "params": [
+        {
+          "name": "k",
+          "type": "int"
+        }
+      ]
+    },
+    "methods": [
+      {
+        "name": "insertFront",
+        "params": [
+          {
+            "name": "value",
+            "type": "int"
+          }
+        ],
+        "returns": "boolean"
+      },
+      {
+        "name": "insertLast",
+        "params": [
+          {
+            "name": "value",
+            "type": "int"
+          }
+        ],
+        "returns": "boolean"
+      },
+      {
+        "name": "deleteFront",
+        "params": [],
+        "returns": "boolean"
+      },
+      {
+        "name": "deleteLast",
+        "params": [],
+        "returns": "boolean"
+      },
+      {
+        "name": "getFront",
+        "params": [],
+        "returns": "int"
+      },
+      {
+        "name": "getRear",
+        "params": [],
+        "returns": "int"
+      },
+      {
+        "name": "isEmpty",
+        "params": [],
+        "returns": "boolean"
+      },
+      {
+        "name": "isFull",
+        "params": [],
+        "returns": "boolean"
+      }
+    ]
+  }
+}

@@ -1,0 +1,47 @@
+{
+  "title": "Maximum Subarray Sum Along Spiral Order",
+  "difficulty": "Medium",
+  "subtopic": "Spiral Traversal",
+  "companies": [
+    "Amazon",
+    "Google",
+    "Meta",
+    "Goldman Sachs"
+  ],
+  "description": "You are given an `m x n` integer matrix `matrix` whose cells may contain positive, zero, or negative values.\n\nConsider the 1D sequence formed by traversing `matrix` in standard **clockwise spiral order** starting at `(0, 0)` (right across the top row, down the right column, left across the bottom row, up the left column, and repeating inward).\n\nReturn the **maximum sum** of a non-empty contiguous subarray within this spiral sequence (wrap-around is not allowed). Try to solve it in `O(1)` extra space without materializing the 1D array.",
+  "constraints": [
+    "m == matrix.length",
+    "n == matrix[i].length",
+    "1 <= m, n <= 200",
+    "-10^4 <= matrix[i][j] <= 10^4"
+  ],
+  "hints": [
+    "Maintain the four shrinking spiral boundaries (top, bottom, left, right) just as in standard spiral traversal.",
+    "Feed each visited element directly into Kadane's algorithm (cur = max(val, cur + val); best = max(best, cur)), ensuring you handle all-negative matrices correctly."
+  ],
+  "examples": [
+    {
+      "explanation": "The clockwise spiral order is [1, -2, 3, 4, 5, -1, 2, -6, 10]; the contiguous segment [3, 4, 5, -1, 2, -6, 10] has maximum sum 17."
+    },
+    {
+      "explanation": "All entries are negative, so the best non-empty subarray along the spiral is the single largest element -2."
+    },
+    {
+      "explanation": "The spiral order is [2, 3, -10, 4, 5, 1]; the contiguous segment [4, 5, 1] yields sum 10."
+    }
+  ],
+  "timeComplexity": "O(m * n)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "maxSpiralSubarraySum",
+    "params": [
+      {
+        "name": "matrix",
+        "type": "int[][]"
+      }
+    ],
+    "returns": "int"
+  }
+}

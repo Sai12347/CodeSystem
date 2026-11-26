@@ -1,0 +1,44 @@
+{
+  "title": "Validate IP Address",
+  "difficulty": "Medium",
+  "subtopic": "Parsing",
+  "companies": [
+    "Meta",
+    "Amazon",
+    "Microsoft"
+  ],
+  "description": "Given a string `queryIP`, return `\"IPv4\"` if it is a valid IPv4 address, `\"IPv6\"` if it is a valid IPv6 address, or `\"Neither\"` otherwise. A valid IPv4 address has 4 decimal segments `x1.x2.x3.x4` separated by `'.'`, where each `xi` is in `[0, 255]` with no leading zeros (except `\"0\"`). A valid IPv6 address has 8 hexadecimal segments separated by `':'`, where each segment has length 1 to 4 and consists solely of hex digits `0-9`, `a-f`, or `A-F`.",
+  "constraints": [
+    "0 <= queryIP.length <= 100",
+    "queryIP consists of English letters, digits, '.', and ':'."
+  ],
+  "hints": [
+    "Check '.' and ':' counts or split preserving empty trailing segments (split(\".\", -1) in Java).",
+    "For IPv4 verify 1-3 ASCII digits, value <= 255, and no leading '0' when length > 1; for IPv6 verify length 1..4 and only hex characters."
+  ],
+  "examples": [
+    {
+      "explanation": "Four decimal octets in [0, 255] without leading zeros form a valid IPv4 address."
+    },
+    {
+      "explanation": "Eight groups of 1-4 hex digits form a valid IPv6 address."
+    },
+    {
+      "explanation": "256 exceeds the IPv4 octet upper bound of 255."
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "validIPAddress",
+    "params": [
+      {
+        "name": "queryIP",
+        "type": "String"
+      }
+    ],
+    "returns": "String"
+  }
+}

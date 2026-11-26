@@ -1,0 +1,49 @@
+{
+  "title": "Largest Number",
+  "difficulty": "Medium",
+  "subtopic": "Custom Comparators",
+  "companies": [
+    "Amazon",
+    "Microsoft",
+    "Meta",
+    "Google",
+    "Goldman Sachs",
+    "Adobe"
+  ],
+  "leetcode": 179,
+  "description": "Given a list of non-negative integers `nums`, arrange them such that they form the largest number and return it as a string.\n\nSince the result may be very large, return a string instead of an integer. The returned string must not contain unnecessary leading zeros (for example, if `nums` contains only zeros such as `[0, 0]`, return `\"0\"`).",
+  "constraints": [
+    "1 <= nums.length <= 100",
+    "0 <= nums[i] <= 10^9"
+  ],
+  "hints": [
+    "Standard lexicographical string comparison fails on pairs like \"3\" and \"30\": \"30\" > \"3\", yet \"330\" > \"303\".",
+    "Compare two stringified numbers a and b by comparing the concatenations (a + b) and (b + a): a should come before b if (a + b) > (b + a).",
+    "Handle the all-zeros edge case: after sorting, if the largest element is \"0\", the entire answer is simply \"0\"."
+  ],
+  "examples": [
+    {
+      "explanation": "Arranging as \"2\" followed by \"10\" forms \"210\", which is greater than \"102\"."
+    },
+    {
+      "explanation": "Ordering as [\"9\", \"5\", \"34\", \"3\", \"30\"] yields the largest possible number \"9534330\"."
+    },
+    {
+      "explanation": "Multiple zeros collapse to a single \"0\" rather than \"00\"."
+    }
+  ],
+  "timeComplexity": "O(n log n * k)",
+  "spaceComplexity": "O(n * k)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "largestNumber",
+    "params": [
+      {
+        "name": "nums",
+        "type": "int[]"
+      }
+    ],
+    "returns": "String"
+  }
+}

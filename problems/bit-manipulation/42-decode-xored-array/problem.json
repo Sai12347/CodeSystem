@@ -1,0 +1,49 @@
+{
+  "title": "Decode XORed Array",
+  "difficulty": "Easy",
+  "subtopic": "XOR Tricks",
+  "companies": [
+    "Amazon",
+    "Microsoft",
+    "Apple"
+  ],
+  "description": "There is a hidden integer array `arr` consisting of `n` non-negative integers. It was encoded into another integer array `encoded` of length `n - 1` such that `encoded[i] = arr[i] XOR arr[i + 1]` for every `0 <= i < n - 1`. Given `encoded` and the first element `first = arr[0]`, return the original array `arr`.",
+  "constraints": [
+    "1 <= encoded.length <= 10^4",
+    "0 <= encoded[i] <= 10^5",
+    "0 <= first <= 10^5"
+  ],
+  "hints": [
+    "XOR is its own inverse: if `encoded[i] = arr[i] ^ arr[i + 1]`, then `arr[i + 1] = arr[i] ^ encoded[i]`.",
+    "Initialize the result array with `first` and iteratively XOR the last decoded element with `encoded[i]`."
+  ],
+  "examples": [
+    {
+      "explanation": "Starting from 1: 1^1=0, 0^2=2, 2^3=1, recovering [1, 0, 2, 1]."
+    },
+    {
+      "explanation": "Starting from 4: 4^6=2, 2^2=0, 0^7=7, 7^3=4, recovering [4, 2, 0, 7, 4]."
+    },
+    {
+      "explanation": "With a single encoded value 0, both elements equal first = 5."
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "decodeXoredArray",
+    "params": [
+      {
+        "name": "encoded",
+        "type": "int[]"
+      },
+      {
+        "name": "first",
+        "type": "int"
+      }
+    ],
+    "returns": "int[]"
+  }
+}

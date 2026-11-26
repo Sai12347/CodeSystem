@@ -1,0 +1,47 @@
+{
+  "title": "Running Sum of 1D Array",
+  "difficulty": "Easy",
+  "subtopic": "1D Prefix Sum",
+  "companies": [
+    "Google",
+    "Amazon",
+    "Meta",
+    "Microsoft",
+    "Bloomberg"
+  ],
+  "leetcode": 1480,
+  "description": "Given an integer array `nums`, define its running sum as an array `runningSum` of the same length where `runningSum[i] = sum(nums[0] ... nums[i])` for every index `0 <= i < nums.length`.\n\nReturn the running sum array of `nums`.",
+  "constraints": [
+    "1 <= nums.length <= 1000",
+    "-10^6 <= nums[i] <= 10^6"
+  ],
+  "hints": [
+    "Each entry `runningSum[i]` only differs from `runningSum[i - 1]` by adding `nums[i]`.",
+    "Maintain a single running total variable as you iterate once from left to right."
+  ],
+  "examples": [
+    {
+      "explanation": "Running sum is obtained as follows: [1, 1+2, 1+2+3, 1+2+3+4] = [1, 3, 6, 10]."
+    },
+    {
+      "explanation": "Running sum is obtained as follows: [1, 1+1, 1+1+1, 1+1+1+1, 1+1+1+1+1] = [1, 2, 3, 4, 5]."
+    },
+    {
+      "explanation": "Running sum is [3, 3+1, 3+1+2, 3+1+2+10, 3+1+2+10+1] = [3, 4, 6, 16, 17]."
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "runningSum",
+    "params": [
+      {
+        "name": "nums",
+        "type": "int[]"
+      }
+    ],
+    "returns": "int[]"
+  }
+}

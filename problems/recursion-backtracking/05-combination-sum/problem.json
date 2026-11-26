@@ -1,0 +1,56 @@
+{
+  "title": "Combination Sum",
+  "difficulty": "Medium",
+  "subtopic": "Combinations",
+  "companies": [
+    "Amazon",
+    "Meta",
+    "Google",
+    "Microsoft",
+    "Uber",
+    "Apple"
+  ],
+  "leetcode": 39,
+  "description": "Given an array of distinct positive integers `candidates` and a target integer `target`, return a list of all unique combinations of `candidates` where the chosen numbers sum to `target`.\n\nThe same number may be chosen from `candidates` an unlimited number of times. Two combinations are unique if the frequency of at least one of the chosen numbers is different. You may return the combinations in any order, and the numbers inside each combination may be in any order.",
+  "constraints": [
+    "1 <= candidates.length <= 30",
+    "2 <= candidates[i] <= 40",
+    "All elements of candidates are distinct.",
+    "1 <= target <= 40",
+    "The number of unique combinations summing to target is less than 150 for every test case."
+  ],
+  "hints": [
+    "Sort `candidates` so you can stop exploring a branch as soon as the current candidate exceeds the remaining target.",
+    "Pass a `start` index into your recursive helper so combinations are built in non-decreasing index order and permutations of the same multiset are never repeated.",
+    "Because each candidate may be reused, pass `i` (not `i + 1`) as the next `start` index when recursing after picking `candidates[i]`."
+  ],
+  "examples": [
+    {
+      "explanation": "2 + 2 + 3 = 7 and 7 = 7 are the only two unique combinations summing to 7."
+    },
+    {
+      "explanation": "The unique combinations summing to 8 are [2, 2, 2, 2], [2, 3, 3], and [3, 5]."
+    },
+    {
+      "explanation": "Since every candidate is at least 2, no combination can sum to 1, so return []."
+    }
+  ],
+  "timeComplexity": "O(n^(T/M + 1))",
+  "spaceComplexity": "O(T/M)",
+  "compare": "sortedDeep",
+  "signature": {
+    "kind": "function",
+    "method": "combinationSum",
+    "params": [
+      {
+        "name": "candidates",
+        "type": "int[]"
+      },
+      {
+        "name": "target",
+        "type": "int"
+      }
+    ],
+    "returns": "List<List<Integer>>"
+  }
+}

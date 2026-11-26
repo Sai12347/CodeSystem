@@ -1,0 +1,49 @@
+{
+  "title": "Diameter of Binary Tree",
+  "difficulty": "Easy",
+  "subtopic": "DFS Traversals",
+  "companies": [
+    "Meta",
+    "Amazon",
+    "Google",
+    "Microsoft",
+    "Apple",
+    "Bloomberg"
+  ],
+  "leetcode": 543,
+  "description": "Given the `root` of a binary tree, return the **length of the diameter** of the tree.\n\nThe **diameter** of a binary tree is the length of the longest path between any two nodes in the tree, measured by the **number of edges** between them. This path may or may not pass through the `root`. For a single-node tree, the diameter is `0`.",
+  "constraints": [
+    "1 <= number of nodes <= 5000",
+    "-10^4 <= Node.val <= 10^4"
+  ],
+  "hints": [
+    "For any node, the longest path that bends at that node has length `height(node.left) + height(node.right)` edges.",
+    "Remember that the overall diameter does not have to pass through the root — it could lie entirely inside a left or right subtree.",
+    "Compute subtree heights in a single post-order DFS while updating a global maximum diameter at every node to achieve O(n) time."
+  ],
+  "examples": [
+    {
+      "explanation": "The longest path is 4 -> 2 -> 1 -> 3 (or 5 -> 2 -> 1 -> 3), which has 3 edges."
+    },
+    {
+      "explanation": "The longest path is 1 -> 2, which has 1 edge."
+    },
+    {
+      "explanation": "A tree with a single node has no edges, so its diameter is 0."
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "diameterOfBinaryTree",
+    "params": [
+      {
+        "name": "root",
+        "type": "TreeNode"
+      }
+    ],
+    "returns": "int"
+  }
+}

@@ -1,0 +1,88 @@
+{
+  "title": "Design LRU Cache with TTL",
+  "difficulty": "Hard",
+  "subtopic": "LRU Design",
+  "companies": [
+    "Google",
+    "Amazon",
+    "Meta",
+    "Uber",
+    "Netflix"
+  ],
+  "description": "Design an LRU cache `TTLLRUCache` where each stored entry also has a **time-to-live (TTL)**:\n- `TTLLRUCache(int capacity)` initializes the cache with positive `capacity`.\n- `int get(int key, int timestamp)` returns the value of `key` if it exists and has **not expired** (`timestamp < expireAt`), marking `key` as the most recently used entry (without changing its `expireAt`). If `key` does not exist or has expired (`timestamp >= expireAt`), remove it if present and return `-1`.\n- `void put(int key, int value, int timestamp, int ttl)` inserts or updates `key` with `value`, sets its expiration time to `expireAt = timestamp + ttl`, and marks it as most recently used. Before evicting any live entry when at capacity, purge all expired entries (`expireAt <= timestamp`); if the cache is still at capacity after purging expired entries, evict the least recently used live entry.\n\nTimestamps across all calls are guaranteed to be non-decreasing.",
+  "constraints": [
+    "1 <= capacity <= 1000",
+    "0 <= key, value <= 10^5",
+    "0 <= timestamp <= 10^6 (non-decreasing across calls)",
+    "1 <= ttl <= 10^6",
+    "At most 2000 calls will be made to get and put."
+  ],
+  "hints": [
+    "Combine a standard LRU doubly linked list + hash map with a min-heap keyed by `(expireAt, version, key)`.",
+    "Before executing `get` or `put` at `timestamp`, pop every heap entry with `expireAt <= timestamp` and unlink the corresponding node from the DLL if its `version` still matches (lazy invalidation for updated keys)."
+  ],
+  "examples": [
+    {
+      "explanation": "Key 1 expires at t=6, so get(1,5)=10 succeeds while get(1,6)=-1; put(3,30,7,5) purges expired key 1 so key 2 is not evicted."
+    },
+    {
+      "explanation": "Neither key expires, so get(1,3) refreshes key 1 and put(3,3,4,100) evicts the LRU key 2."
+    },
+    {
+      "explanation": "Updating key 1 at t=4 refreshes both its value to 99 and its expiration to 4+10=14."
+    }
+  ],
+  "timeComplexity": "O(log n) amortized",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "design",
+    "className": "TTLLRUCache",
+    "constructor": {
+      "params": [
+        {
+          "name": "capacity",
+          "type": "int"
+        }
+      ]
+    },
+    "methods": [
+      {
+        "name": "get",
+        "params": [
+          {
+            "name": "key",
+            "type": "int"
+          },
+          {
+            "name": "timestamp",
+            "type": "int"
+          }
+        ],
+        "returns": "int"
+      },
+      {
+        "name": "put",
+        "params": [
+          {
+            "name": "key",
+            "type": "int"
+          },
+          {
+            "name": "value",
+            "type": "int"
+          },
+          {
+            "name": "timestamp",
+            "type": "int"
+          },
+          {
+            "name": "ttl",
+            "type": "int"
+          }
+        ],
+        "returns": "void"
+      }
+    ]
+  }
+}

@@ -1,0 +1,58 @@
+{
+  "title": "Outward Spiral Matrix Walk",
+  "difficulty": "Medium",
+  "subtopic": "Spiral Traversal",
+  "companies": [
+    "Google",
+    "Amazon",
+    "Meta",
+    "Uber"
+  ],
+  "description": "You start at the cell `(rStart, cStart)` of an `rows x cols` grid facing east. The top-left corner is at `(0, 0)` and the bottom-right corner is at `(rows - 1, cols - 1)`.\n\nYou walk in a clockwise outward spiral to visit every position in this grid. Whenever you step outside the grid boundary, you continue walking outside and may re-enter the grid later. Specifically, starting at `(rStart, cStart)`, take 1 step east, 1 step south, 2 steps west, 2 steps north, 3 steps east, 3 steps south, and so on.\n\nReturn a 2D array of `[r, c]` coordinates representing every cell of the grid in the exact order it is visited.",
+  "constraints": [
+    "1 <= rows, cols <= 100",
+    "0 <= rStart < rows",
+    "0 <= cStart < cols"
+  ],
+  "hints": [
+    "Notice the step lengths along the directions East, South, West, North follow the sequence 1, 1, 2, 2, 3, 3, 4, 4, ...",
+    "Advance step by step along the current direction, recording coordinates whenever 0 <= r < rows and 0 <= c < cols until all rows * cols cells are collected."
+  ],
+  "examples": [
+    {
+      "explanation": "Starting at (0, 0) in a 1x4 grid, the walk visits (0, 0) then moves east through (0, 1), (0, 2), and (0, 3)."
+    },
+    {
+      "explanation": "Starting at (1, 4) in a 5x6 grid, the spiral steps outside the right boundary and re-enters on the south and west legs until all 30 cells are recorded."
+    },
+    {
+      "explanation": "A 1x1 grid only contains (0, 0), which is visited immediately."
+    }
+  ],
+  "timeComplexity": "O(max(rows, cols)^2)",
+  "spaceComplexity": "O(rows * cols)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "spiralMatrixIII",
+    "params": [
+      {
+        "name": "rows",
+        "type": "int"
+      },
+      {
+        "name": "cols",
+        "type": "int"
+      },
+      {
+        "name": "rStart",
+        "type": "int"
+      },
+      {
+        "name": "cStart",
+        "type": "int"
+      }
+    ],
+    "returns": "int[][]"
+  }
+}

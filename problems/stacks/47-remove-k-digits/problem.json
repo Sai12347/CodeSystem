@@ -1,0 +1,50 @@
+{
+  "title": "Remove K Digits",
+  "difficulty": "Medium",
+  "subtopic": "LIFO Structure",
+  "companies": [
+    "Google",
+    "Amazon",
+    "Meta",
+    "Microsoft",
+    "Bloomberg"
+  ],
+  "description": "Given a non-negative integer represented as a string of digits `num` and an integer `k`, remove exactly `k` digits from `num` so that the resulting number is the **smallest possible**.\n\nReturn the resulting number as a string with no leading zeros (if all digits are removed or only zeros remain, return `\"0\"`).",
+  "constraints": [
+    "1 <= k <= num.length <= 10^5",
+    "num consists only of digits '0'-'9' and has no leading zeros except possibly \"0\" itself."
+  ],
+  "hints": [
+    "Iterate through the digits left to right using a monotonic increasing stack: whenever the current digit is smaller than the stack top and k > 0, pop the larger digit and decrement k.",
+    "If k > 0 after processing all digits, pop the remaining k digits from the end of the stack, strip leading zeros, and return \"0\" if empty."
+  ],
+  "examples": [
+    {
+      "explanation": "Removing digits 4, 3, and 2 from \"1432219\" yields the smallest possible number \"1219\"."
+    },
+    {
+      "explanation": "Removing the leading '1' from \"10200\" leaves \"0200\", which strips leading zeros to \"200\"."
+    },
+    {
+      "explanation": "Removing all 2 digits from \"10\" leaves nothing, so return \"0\"."
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "removeKdigits",
+    "params": [
+      {
+        "name": "num",
+        "type": "String"
+      },
+      {
+        "name": "k",
+        "type": "int"
+      }
+    ],
+    "returns": "String"
+  }
+}

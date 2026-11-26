@@ -1,0 +1,47 @@
+{
+  "title": "Number of Bit Changes to Make Two Integers Equal",
+  "difficulty": "Easy",
+  "subtopic": "Counting Bits",
+  "companies": [
+    "Amazon",
+    "Apple",
+    "Microsoft"
+  ],
+  "description": "You are given two non-negative integers `n` and `k`. In one operation, you may choose any bit in the binary representation of `n` that is currently equal to `1` and change it to `0` (you cannot change a `0` bit to `1`). Return the minimum number of operations needed to make `n` equal to `k`, or `-1` if it is impossible.",
+  "constraints": [
+    "0 <= n, k <= 10^9"
+  ],
+  "hints": [
+    "Since you can only clear `1` bits to `0`, every `1` bit in `k` must already be a `1` bit in `n`, which holds if and only if `(n & k) == k`.",
+    "When `(n & k) == k`, the exact number of bits that must be cleared is the population count of `n ^ k`."
+  ],
+  "examples": [
+    {
+      "explanation": "13 is 1101 and 4 is 0100 in binary; clearing bits 3 and 0 takes 2 changes."
+    },
+    {
+      "explanation": "21 already equals 21, requiring 0 bit changes."
+    },
+    {
+      "explanation": "14 is 1110 and 13 is 1101; bit 0 is 0 in 14 but 1 in 13, so it is impossible."
+    }
+  ],
+  "timeComplexity": "O(1)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "minBitChanges",
+    "params": [
+      {
+        "name": "n",
+        "type": "int"
+      },
+      {
+        "name": "k",
+        "type": "int"
+      }
+    ],
+    "returns": "int"
+  }
+}

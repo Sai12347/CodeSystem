@@ -1,0 +1,44 @@
+{
+  "title": "Push Dominoes",
+  "difficulty": "Medium",
+  "subtopic": "Parsing",
+  "companies": [
+    "Google",
+    "Meta",
+    "Amazon"
+  ],
+  "description": "There are `n` dominoes in a line, represented by a string `dominoes` where `'L'` means the `i`-th domino was pushed left, `'R'` means it was pushed right, and `'.'` means it was not pushed. Each second, a falling domino pushes its adjacent upright domino in the same direction; a domino pushed equally from both sides simultaneously stays upright. Return the string representing the final state.",
+  "constraints": [
+    "1 <= dominoes.length <= 10^5",
+    "dominoes[i] is 'L', 'R', or '.'."
+  ],
+  "hints": [
+    "Consider each maximal segment of '.' bounded by non-dot symbols (using virtual 'L' at index -1 and 'R' at index n).",
+    "If both boundaries match ('L'..'L' or 'R'..'R'), fill the middle with that symbol; if 'R'..'L', push inward from both ends leaving the exact middle '.' if odd."
+  ],
+  "examples": [
+    {
+      "explanation": "Each pushed domino knocks over the single adjacent dot until balanced."
+    },
+    {
+      "explanation": "Opposing 'R' and 'L' forces meet in the middle, leaving an odd center upright."
+    },
+    {
+      "explanation": "No domino is pushed, so all remain upright."
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "pushDominoes",
+    "params": [
+      {
+        "name": "dominoes",
+        "type": "String"
+      }
+    ],
+    "returns": "String"
+  }
+}

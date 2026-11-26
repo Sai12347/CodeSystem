@@ -1,0 +1,43 @@
+{
+  "title": "Course Schedule",
+  "difficulty": "Medium",
+  "subtopic": "Kahn Algorithm",
+  "companies": [
+    "Amazon",
+    "Google",
+    "Microsoft"
+  ],
+  "description": "There are `numCourses` courses numbered from 0. Each pair `[a,b]` means course `b` must be completed before course `a`. Return true if it is possible to complete every course.",
+  "constraints": [
+    "1 <= numCourses <= 2000",
+    "0 <= prerequisites.length <= 5000"
+  ],
+  "hints": [
+    "Represent prerequisites as directed edges and process zero in-degree vertices.",
+    "A cycle prevents a complete ordering; unique orderings require a single available choice at each step."
+  ],
+  "examples": [
+    {
+      "input": "numCourses = 2, prerequisites = [[1,0]]",
+      "output": "true"
+    }
+  ],
+  "timeComplexity": "O(V+E)",
+  "spaceComplexity": "O(V+E)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "canFinish",
+    "params": [
+      {
+        "name": "numCourses",
+        "type": "int"
+      },
+      {
+        "name": "prerequisites",
+        "type": "int[][]"
+      }
+    ],
+    "returns": "boolean"
+  }
+}

@@ -1,0 +1,53 @@
+{
+  "title": "Longest Substring with At Most K Distinct Characters",
+  "difficulty": "Medium",
+  "subtopic": "At Most K Elements",
+  "companies": [
+    "Google",
+    "Amazon",
+    "Meta",
+    "Microsoft",
+    "Uber"
+  ],
+  "leetcode": 340,
+  "description": "Given a string `s` and an integer `k`, return the length of the **longest substring** of `s` that contains **at most** `k` distinct characters.\n\nCharacters are case-sensitive (for example, `'a'` and `'A'` are distinct). If `k == 0`, no non-empty substring can contain at most 0 distinct characters, so return `0`.",
+  "constraints": [
+    "1 <= s.length <= 5 * 10^4",
+    "0 <= k <= 50",
+    "s consists of printable ASCII characters."
+  ],
+  "hints": [
+    "Maintain a sliding window [left, right] and a frequency map of characters currently inside the window.",
+    "Expand right by one character. While the number of distinct keys in the map exceeds k, decrement counts[s[left]], delete the key when its count hits 0, and increment left.",
+    "After restoring the invariant (<= k distinct characters), update the maximum window length right - left + 1."
+  ],
+  "examples": [
+    {
+      "explanation": "The longest substring with at most 2 distinct characters is \"ece\", with length 3."
+    },
+    {
+      "explanation": "The entire string \"aa\" contains only 1 distinct character, giving length 2."
+    },
+    {
+      "explanation": "The substring \"accc\" has 2 distinct characters ('a' and 'c') and length 4."
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(k)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "lengthOfLongestSubstringKDistinct",
+    "params": [
+      {
+        "name": "s",
+        "type": "String"
+      },
+      {
+        "name": "k",
+        "type": "int"
+      }
+    ],
+    "returns": "int"
+  }
+}

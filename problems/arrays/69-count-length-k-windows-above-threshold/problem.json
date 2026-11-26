@@ -1,0 +1,53 @@
+{
+  "title": "Count Length-K Windows Above Average Threshold",
+  "difficulty": "Medium",
+  "subtopic": "Subarrays",
+  "companies": [
+    "Amazon",
+    "Google",
+    "Microsoft"
+  ],
+  "description": "Given an integer array `nums`, positive window length `k`, and integer `threshold`, count contiguous windows of exactly `k` elements whose average is at least `threshold`. Compare using the exact sum, without rounding. Input: `nums`, `k`, `threshold`. Output: the number of qualifying windows.",
+  "constraints": [
+    "1 <= nums.length <= 100000",
+    "1 <= k <= nums.length",
+    "-100000 <= nums[i] <= 100000",
+    "-100000 <= threshold <= 100000"
+  ],
+  "hints": [
+    "Track the running prefix, window, or frequency information needed by the condition.",
+    "Check duplicates, all-equal values, and boundary-sized windows."
+  ],
+  "examples": [
+    {
+      "input": "nums = [2, 2, 2, 2, 5, 5, 5, 8], k = 3, threshold = 4",
+      "output": "3"
+    },
+    {
+      "input": "nums = [1, 1, 1, 1], k = 2, threshold = 2",
+      "output": "0"
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "numOfWindowsAboveThreshold",
+    "params": [
+      {
+        "name": "nums",
+        "type": "int[]"
+      },
+      {
+        "name": "k",
+        "type": "int"
+      },
+      {
+        "name": "threshold",
+        "type": "int"
+      }
+    ],
+    "returns": "int"
+  }
+}

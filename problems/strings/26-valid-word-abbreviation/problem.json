@@ -1,0 +1,48 @@
+{
+  "title": "Valid Word Abbreviation",
+  "difficulty": "Easy",
+  "subtopic": "Parsing",
+  "companies": [
+    "Amazon",
+    "Google",
+    "Microsoft"
+  ],
+  "description": "An abbreviation matches a word when each letter matches literally and each positive decimal number skips exactly that many characters. A number cannot start with zero. Given lowercase `word` and an abbreviation containing lowercase letters and digits, return whether it matches the whole word. Input: `word`, `abbr`. Output: true or false.",
+  "constraints": [
+    "1 <= word.length <= 10000",
+    "1 <= abbr.length <= 10000",
+    "word contains lowercase letters; abbr contains lowercase letters and digits"
+  ],
+  "hints": [
+    "Keep track of the smallest state needed to continue matching or comparing characters.",
+    "Test empty, one-character, repeated-character, and boundary inputs."
+  ],
+  "examples": [
+    {
+      "input": "word = \"internationalization\", abbr = \"i12iz4n\"",
+      "output": "true"
+    },
+    {
+      "input": "word = \"apple\", abbr = \"a2e\"",
+      "output": "false"
+    }
+  ],
+  "timeComplexity": "O(n+m)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "validWordAbbreviation",
+    "params": [
+      {
+        "name": "word",
+        "type": "String"
+      },
+      {
+        "name": "abbr",
+        "type": "String"
+      }
+    ],
+    "returns": "boolean"
+  }
+}

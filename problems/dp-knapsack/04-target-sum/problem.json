@@ -1,0 +1,44 @@
+{
+  "title": "Target Sum",
+  "difficulty": "Medium",
+  "subtopic": "Subset Sum",
+  "companies": [
+    "Amazon",
+    "Google",
+    "Microsoft"
+  ],
+  "description": "Place either a plus or minus sign before each value in `nums`. Return the number of sign assignments whose resulting sum equals `target`.",
+  "constraints": [
+    "1 <= nums.length <= 20",
+    "0 <= nums[i] <= 1000",
+    "-1000 <= target <= 1000"
+  ],
+  "hints": [
+    "Define a state by the capacity or sum achievable after processing a prefix.",
+    "For 0/1 choices, update capacities in descending order so an item is not reused."
+  ],
+  "examples": [
+    {
+      "input": "nums = [1,1,1,1,1], target = 3",
+      "output": "5"
+    }
+  ],
+  "timeComplexity": "O(n*capacity)",
+  "spaceComplexity": "O(capacity)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "findTargetSumWays",
+    "params": [
+      {
+        "name": "nums",
+        "type": "int[]"
+      },
+      {
+        "name": "target",
+        "type": "int"
+      }
+    ],
+    "returns": "int"
+  }
+}

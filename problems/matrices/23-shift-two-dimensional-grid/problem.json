@@ -1,0 +1,49 @@
+{
+  "title": "Shift a Two-Dimensional Grid",
+  "difficulty": "Medium",
+  "subtopic": "Simulation",
+  "companies": [
+    "Amazon",
+    "Google",
+    "Microsoft"
+  ],
+  "description": "Shift every element of a rectangular grid `k` positions forward in row-major order, wrapping elements that pass the end back to the beginning. Return a new grid with the same dimensions. Input: `grid`, non-negative `k`. Output: the shifted grid.",
+  "constraints": [
+    "1 <= rows, columns <= 1000",
+    "rows*columns <= 100000",
+    "0 <= k <= 1000000000",
+    "-100000 <= grid[i][j] <= 100000"
+  ],
+  "hints": [
+    "Check each cell using its row and column relationships.",
+    "Handle single-row, single-column, tie, and center-cell cases explicitly."
+  ],
+  "examples": [
+    {
+      "input": "grid = [[1, 2, 3], [4, 5, 6], [7, 8, 9]], k = 1",
+      "output": "[[9,1,2],[3,4,5],[6,7,8]]"
+    },
+    {
+      "input": "grid = [[1, 2], [3, 4]], k = 4",
+      "output": "[[1,2],[3,4]]"
+    }
+  ],
+  "timeComplexity": "O(rows*columns)",
+  "spaceComplexity": "O(rows*columns)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "shiftGrid",
+    "params": [
+      {
+        "name": "grid",
+        "type": "int[][]"
+      },
+      {
+        "name": "k",
+        "type": "int"
+      }
+    ],
+    "returns": "int[][]"
+  }
+}

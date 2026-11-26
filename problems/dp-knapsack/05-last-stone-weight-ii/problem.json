@@ -1,0 +1,39 @@
+{
+  "title": "Last Stone Weight II",
+  "difficulty": "Medium",
+  "subtopic": "Subset Sum",
+  "companies": [
+    "Amazon",
+    "Google",
+    "Microsoft"
+  ],
+  "description": "Repeatedly divide the stones into two groups whose total weights are as close as possible; the remaining weight is the absolute difference between the group sums. Return the smallest possible remaining weight.",
+  "constraints": [
+    "1 <= stones.length <= 30",
+    "1 <= stones[i] <= 100"
+  ],
+  "hints": [
+    "Define a state by the capacity or sum achievable after processing a prefix.",
+    "For 0/1 choices, update capacities in descending order so an item is not reused."
+  ],
+  "examples": [
+    {
+      "input": "stones = [2,7,4,1,8,1]",
+      "output": "1"
+    }
+  ],
+  "timeComplexity": "O(n*capacity)",
+  "spaceComplexity": "O(capacity)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "lastStoneWeightII",
+    "params": [
+      {
+        "name": "stones",
+        "type": "int[]"
+      }
+    ],
+    "returns": "int"
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "title": "Matrix Diagonal Sum",
+  "difficulty": "Easy",
+  "subtopic": "Simulation",
+  "companies": [
+    "Amazon",
+    "Microsoft",
+    "Google"
+  ],
+  "description": "Return the sum of both diagonals of a square matrix. Count the center cell only once when the matrix has odd size.",
+  "constraints": [
+    "1 <= rows, columns <= 50",
+    "-100 <= matrix[i][j] <= 100"
+  ],
+  "hints": [
+    "Use row and column structure to identify the required values.",
+    "Check single-row, single-column, and tie cases."
+  ],
+  "examples": [
+    {
+      "input": "mat = [[1,2,3],[4,5,6],[7,8,9]]",
+      "output": "25"
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "diagonalSum",
+    "params": [
+      {
+        "name": "mat",
+        "type": "int[][]"
+      }
+    ],
+    "returns": "int"
+  }
+}

@@ -1,0 +1,1 @@
+class Solution { public int countPartitions(int[]a,int diff){int sum=0;for(int x:a)sum+=x;if(diff>sum||(sum+diff)%2!=0)return 0;int t=(sum+diff)/2;int[]d=new int[t+1];d[0]=1;for(int x:a)for(int s=t;s>=x;s--)d[s]+=d[s-x];return d[t];} }

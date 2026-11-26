@@ -1,0 +1,45 @@
+{
+  "title": "Check Knight Tour Configuration",
+  "difficulty": "Medium",
+  "subtopic": "Simulation",
+  "companies": [
+    "Amazon",
+    "Google",
+    "Atlassian"
+  ],
+  "description": "You are given an `n x n` integer matrix `grid` containing every integer from `0` to `n^2 - 1` exactly once, where `grid[r][c]` indicates the step index at which a chess knight visits cell `(r, c)`.\n\nReturn `true` if `grid` represents a **valid knight's tour** starting at the top-left corner `(0, 0)` (meaning `grid[0][0] == 0` and every move from step `t` to `t + 1` is a legal L-shaped knight jump of 2 cells along one axis and 1 cell along the perpendicular axis), and `false` otherwise.",
+  "constraints": [
+    "n == grid.length == grid[i].length",
+    "3 <= n <= 30",
+    "grid contains every integer in [0, n^2 - 1] exactly once."
+  ],
+  "hints": [
+    "First verify that the knight actually starts at the top-left corner: grid[0][0] == 0.",
+    "From the current position (r, c) at step t, check its at most 8 in-bounds knight neighbors for step t + 1; this verifies the entire tour in O(n^2) time and O(1) extra space."
+  ],
+  "examples": [
+    {
+      "explanation": "The 5x5 board starts with 0 at (0, 0) and every consecutive number 0 -> 1 -> ... -> 24 is a valid knight move."
+    },
+    {
+      "explanation": "On a 3x3 board, the center cell (1, 1) cannot be reached by a knight from any other cell, so step 7 -> 8 is illegal."
+    },
+    {
+      "explanation": "Although consecutive steps form knight jumps, cell (0, 0) is not 0, violating the starting corner requirement."
+    }
+  ],
+  "timeComplexity": "O(n^2)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "checkValidKnightTour",
+    "params": [
+      {
+        "name": "grid",
+        "type": "int[][]"
+      }
+    ],
+    "returns": "boolean"
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "title": "Divide Array Into Equal Pairs",
+  "difficulty": "Easy",
+  "subtopic": "Traversal",
+  "companies": [
+    "Amazon",
+    "Google",
+    "Microsoft"
+  ],
+  "description": "An array can be divided into pairs when every element belongs to exactly one pair of equal values. Given an even-length array `nums`, return whether such a division is possible. Input: `nums`. Output: true if every value has even frequency.",
+  "constraints": [
+    "2 <= nums.length <= 100000",
+    "nums.length is even",
+    "1 <= nums[i] <= 500"
+  ],
+  "hints": [
+    "Sort or count values once, then process each candidate in a single pass.",
+    "Check duplicates, all-equal inputs, and boundary values for `k`."
+  ],
+  "examples": [
+    {
+      "input": "nums = [3, 2, 3, 2, 2, 2]",
+      "output": "True"
+    },
+    {
+      "input": "nums = [1, 2, 3, 4]",
+      "output": "False"
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "canDivideIntoPairs",
+    "params": [
+      {
+        "name": "nums",
+        "type": "int[]"
+      }
+    ],
+    "returns": "boolean"
+  }
+}

@@ -1,0 +1,43 @@
+{
+  "title": "Highest Altitude",
+  "difficulty": "Easy",
+  "subtopic": "Prefix/Suffix",
+  "companies": [
+    "Amazon",
+    "Google",
+    "Microsoft"
+  ],
+  "description": "A cyclist starts at altitude 0. For each entry in `gain`, the altitude changes by that amount. Return the highest altitude reached, including the starting altitude. Input: the altitude changes `gain`. Output: the maximum altitude.",
+  "constraints": [
+    "1 <= gain.length <= 100000",
+    "-10000 <= gain[i] <= 10000"
+  ],
+  "hints": [
+    "Keep a running total or frequency count rather than recomputing over all prefixes.",
+    "Test repeated values, zeros, and minimum-size inputs."
+  ],
+  "examples": [
+    {
+      "input": "gain = [-5, 1, 5, 0, -7]",
+      "output": "1"
+    },
+    {
+      "input": "gain = [-4, -3, -2, -1, 4, 3, 2]",
+      "output": "0"
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "largestAltitude",
+    "params": [
+      {
+        "name": "gain",
+        "type": "int[]"
+      }
+    ],
+    "returns": "int"
+  }
+}

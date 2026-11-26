@@ -1,0 +1,47 @@
+{
+  "title": "Sign of the Product of an Array",
+  "difficulty": "Easy",
+  "subtopic": "Traversal",
+  "companies": [
+    "Microsoft",
+    "Amazon",
+    "Google",
+    "Adobe"
+  ],
+  "leetcode": 1822,
+  "description": "Define a function `signFunc(x)` that returns:\n- `1` if `x` is positive,\n- `-1` if `x` is negative,\n- `0` if `x` is equal to `0`.\n\nYou are given an integer array `nums`. Let `product` be the product of all values in `nums`. Return `signFunc(product)`. Note that multiplying all elements directly can overflow standard 32-bit and 64-bit integer types.",
+  "constraints": [
+    "1 <= nums.length <= 1000",
+    "-100 <= nums[i] <= 100"
+  ],
+  "hints": [
+    "You never need to compute the actual magnitude of the product \u2014 only its sign matters.",
+    "If any element is 0, the entire product is 0, so you can return 0 immediately.",
+    "Start with sign = 1 and negate it every time you encounter a negative number."
+  ],
+  "examples": [
+    {
+      "explanation": "There are 4 negative numbers (even) and no zeros, so the product 144 is positive and we return 1."
+    },
+    {
+      "explanation": "The array contains 0, so the product is 0 and we return 0."
+    },
+    {
+      "explanation": "There are 3 negative numbers (odd) and no zeros, so the product -1 is negative and we return -1."
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "arraySign",
+    "params": [
+      {
+        "name": "nums",
+        "type": "int[]"
+      }
+    ],
+    "returns": "int"
+  }
+}

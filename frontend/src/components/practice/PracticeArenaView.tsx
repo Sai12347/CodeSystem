@@ -1,9 +1,8 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import {
   Code2,
   Play,
   CheckCircle2,
-  Clock,
   Sparkles,
   Lightbulb,
   RotateCcw,
@@ -23,19 +22,23 @@ import {
 import { useUser } from '../../context/UserContext';
 import {
   QuestionItem,
-  Difficulty,
   getQuestionsForTopic,
+  getAvailableQuestionTopicIds,
   getTotalQuestionsCount,
 } from '../../data/questionBank';
 import { COMPLETE_30_DSA_TOPICS } from '../../data/dsaTopicsCatalog';
 import { QuestionAnimationModal } from './QuestionAnimationModal';
 import { dbService } from '../../services/databaseService';
+import { JudgeResultsPanel } from './JudgeResultsPanel';
+import { JudgeHealth, JudgeResponse, judgeService } from '../../services/judgeService';
 
-export const PracticeArenaView: React.FC = () => {
+export const PracticeArenaView: React.FC<{ initialTopicId?: string }> = ({ initialTopicId = 'arrays' }) => {
   const { user, recordProblemSolved } = useUser();
+  const practiceTopicIds = getAvailableQuestionTopicIds();
+  const practiceTopics = COMPLETE_30_DSA_TOPICS.filter((topic) => practiceTopicIds.includes(topic.id));
 
   // Topic Selector State: default to 'arrays'
-  const [selectedTopicId, setSelectedTopicId] = useState<string>('arrays');
+  const [selectedTopicId, setSelectedTopicId] = useState<string>(initialTopicId);
   const [selectedDifficulty, setSelectedDifficulty] = useState<string>('All');
   const [searchQuery, setSearchQuery] = useState<string>('');
 
@@ -66,20 +69,39 @@ export const PracticeArenaView: React.FC = () => {
     return filteredQuestions[0] || topicQuestions[0];
   }, [filteredQuestions, activeQuestionId, topicQuestions]);
 
+  useEffect(() => {
+    if (!activeQuestion) return;
+    setUserCode(language === 'java' ? activeQuestion.starterCode.java : activeQuestion.starterCode.python);
+    setResults(null);
+    setJudgeError(null);
+    setXpAwarded(null);
+  }, [activeQuestion?.id]);
+
   // Editor states
   const [language, setLanguage] = useState<'java' | 'python'>('java');
   const [userCode, setUserCode] = useState<string>(activeQuestion?.starterCode?.java || '');
   const [executing, setExecuting] = useState<boolean>(false);
-  const [results, setResults] = useState<{
-    status: 'ACCEPTED' | 'WRONG_ANSWER';
-    passedCount: number;
-    totalCount: number;
-    executionTimeMs: number;
-    memoryMb: number;
-  } | null>(null);
+  const [results, setResults] = useState<JudgeResponse | null>(null);
+  const [judgeError, setJudgeError] = useState<string | null>(null);
+  const [xpAwarded, setXpAwarded] = useState<number | null>(null);
+  const [judgeHealth, setJudgeHealth] = useState<JudgeHealth | null>(null);
 
   const [showHintIndex, setShowHintIndex] = useState<number | null>(null);
   const [isAnimationModalOpen, setIsAnimationModalOpen] = useState<boolean>(false);
+
+  useEffect(() => {
+    let mounted = true;
+    const refreshJudgeHealth = async () => {
+      const health = await judgeService.checkHealth();
+      if (mounted) setJudgeHealth(health);
+    };
+    void refreshJudgeHealth();
+    const timer = window.setInterval(refreshJudgeHealth, 15000);
+    return () => {
+      mounted = false;
+      window.clearInterval(timer);
+    };
+  }, []);
 
   // User progress from database
   const userProgress = useMemo(() => dbService.getUserProgress(user.id), [user.id]);
@@ -98,45 +120,48 @@ export const PracticeArenaView: React.FC = () => {
     }
   };
 
-  const handleRunTests = () => {
+  const handleRunTests = async (submit: boolean) => {
     if (!activeQuestion) return;
     setExecuting(true);
     setResults(null);
+    setJudgeError(null);
+    setXpAwarded(null);
 
-    // Simulate isolated test suite execution and persist to database
-    setTimeout(() => {
+    try {
+      const result = submit
+        ? await judgeService.submitSolution(activeQuestion.slug, language, userCode)
+        : await judgeService.runSampleTests(activeQuestion.slug, language, userCode);
+      setResults(result);
+
+      if (submit) {
+        dbService.saveSubmission({
+          userId: user.id,
+          problemId: activeQuestion.id,
+          problemTitle: activeQuestion.title,
+          language,
+          code: userCode,
+          status: result.status,
+          executionTimeMs: result.executionTimeMs,
+          memoryMb: null,
+        });
+
+        if (result.status === 'ACCEPTED') {
+          const xpReward = activeQuestion.difficulty === 'Hard' ? 80 : 50;
+          const alreadySolved = userProgress.solvedProblemIds.includes(activeQuestion.id);
+          recordProblemSolved(activeQuestion.id, xpReward);
+          if (!alreadySolved) setXpAwarded(xpReward);
+        }
+      }
+    } catch (error) {
+      setJudgeError(error instanceof Error ? error.message : 'The judge request failed. Please try again.');
+    } finally {
       setExecuting(false);
-      const executionTime = Math.floor(Math.random() * 35) + 15;
-      const memoryMb = Number((Math.random() * 4 + 12).toFixed(1));
-
-      setResults({
-        status: 'ACCEPTED',
-        passedCount: 3,
-        totalCount: 3,
-        executionTimeMs: executionTime,
-        memoryMb,
-      });
-
-      // Save submission to database
-      dbService.saveSubmission({
-        userId: user.id,
-        problemId: activeQuestion.id,
-        problemTitle: activeQuestion.title,
-        language,
-        code: userCode,
-        status: 'ACCEPTED',
-        executionTimeMs: executionTime,
-        memoryMb,
-      });
-
-      // Award XP
-      const xpReward = activeQuestion.difficulty === 'Expert' ? 120 : activeQuestion.difficulty === 'Hard' ? 80 : 50;
-      recordProblemSolved(activeQuestion.id, xpReward);
-    }, 600);
+    }
   };
 
   const isSolved = activeQuestion ? userProgress.solvedProblemIds.includes(activeQuestion.id) : false;
-  const currentTopic = COMPLETE_30_DSA_TOPICS.find((t) => t.id === selectedTopicId) || COMPLETE_30_DSA_TOPICS[0];
+  const currentTopic = practiceTopics.find((t) => t.id === selectedTopicId) || practiceTopics[0];
+  const currentTopicQuestionCount = getQuestionsForTopic(currentTopic.id).length;
   const totalAllQuestions = getTotalQuestionsCount();
 
   return (
@@ -152,14 +177,14 @@ export const PracticeArenaView: React.FC = () => {
                 <FolderOpen className="w-4 h-4" />
               </span>
               <span className="text-xs font-bold uppercase tracking-wider text-blue-600 dark:text-blue-400">
-                All 30 DSA Topics • 100-130 Questions Each ({totalAllQuestions}+ Total)
+                Curated problem bank · {practiceTopics.length} topics · {totalAllQuestions} questions
               </span>
             </div>
             <h1 className="text-2xl font-extrabold tracking-tight text-zinc-900 dark:text-white">
               Practice Session Topic Selector
             </h1>
             <p className="text-xs text-zinc-500 dark:text-zinc-400 mt-0.5">
-              Select any of the 30 DSA topics below. Every question includes real MNC interview PYQ tags and step-by-step testcase animations.
+              Choose a topic to practice. Each problem includes its statement, examples, constraints, hints, and reference solution.
             </p>
           </div>
 
@@ -175,8 +200,9 @@ export const PracticeArenaView: React.FC = () => {
 
         {/* 30-Topic Selector Grid / Carousel */}
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 lg:grid-cols-6 gap-2 pt-2 max-h-56 overflow-y-auto pr-1">
-          {COMPLETE_30_DSA_TOPICS.map((topic) => {
+          {practiceTopics.map((topic) => {
             const isSelected = selectedTopicId === topic.id;
+            const topicQuestionCount = getQuestionsForTopic(topic.id).length;
             return (
               <button
                 key={topic.id}
@@ -200,7 +226,7 @@ export const PracticeArenaView: React.FC = () => {
                           : 'bg-zinc-200 dark:bg-zinc-700 text-zinc-600 dark:text-zinc-300'
                       }`}
                     >
-                      {topic.questionCount} Qs
+                      {topicQuestionCount} Qs
                     </span>
                     <span className="text-[9px] text-zinc-400 font-medium">{topic.category.slice(0, 3)}</span>
                   </div>
@@ -225,10 +251,10 @@ export const PracticeArenaView: React.FC = () => {
       <div className="flex flex-col sm:flex-row items-center justify-between gap-3 bg-zinc-100/70 dark:bg-zinc-900/50 p-2.5 rounded-2xl border border-zinc-200/60 dark:border-zinc-800/60">
         <div className="flex items-center gap-1.5 overflow-x-auto no-scrollbar w-full sm:w-auto">
           <span className="text-xs font-bold text-zinc-800 dark:text-zinc-200 mr-2 whitespace-nowrap">
-            {currentTopic.name} ({currentTopic.questionCount} Questions)
+            {currentTopic.name} ({currentTopicQuestionCount} Questions)
           </span>
 
-          {(['All', 'Easy', 'Medium', 'Hard', 'Expert'] as const).map((diff) => (
+          {(['All', 'Easy', 'Medium', 'Hard'] as const).map((diff) => (
             <button
               key={diff}
               onClick={() => setSelectedDifficulty(diff)}
@@ -357,11 +383,12 @@ export const PracticeArenaView: React.FC = () => {
                 </p>
               </div>
 
-              {/* Real World Analogy */}
-              <div className="p-3 rounded-2xl bg-zinc-50 dark:bg-zinc-800/50 border border-zinc-200/50 dark:border-zinc-800/50 text-[11px] text-zinc-600 dark:text-zinc-300">
-                <span className="font-semibold text-zinc-800 dark:text-zinc-200">Real-World Context: </span>
-                {activeQuestion.realWorldAnalogy}
-              </div>
+              {activeQuestion.realWorldAnalogy && (
+                <div className="p-3 rounded-2xl bg-zinc-50 dark:bg-zinc-800/50 border border-zinc-200/50 dark:border-zinc-800/50 text-[11px] text-zinc-600 dark:text-zinc-300">
+                  <span className="font-semibold text-zinc-800 dark:text-zinc-200">Context: </span>
+                  {activeQuestion.realWorldAnalogy}
+                </div>
+              )}
 
               {/* Examples */}
               <div>
@@ -502,57 +529,46 @@ export const PracticeArenaView: React.FC = () => {
               />
             </div>
 
-            {/* Footer with Submit Button */}
+            {/* Run sample cases or submit against the full hidden suite */}
             <div className="mt-4 pt-3 border-t border-zinc-100 dark:border-zinc-800 flex items-center justify-between">
-              <div className="flex items-center gap-2 text-xs text-zinc-400 font-mono">
-                <span>Optimal: {activeQuestion?.timeComplexity || 'O(n)'}</span>
-                <span>•</span>
-                <span>Space: {activeQuestion?.spaceComplexity || 'O(1)'}</span>
+              <div className="space-y-1.5">
+                <div className="flex items-center gap-2 text-xs text-zinc-400 font-mono">
+                  <span>Optimal: {activeQuestion?.timeComplexity || 'O(n)'}</span>
+                  <span>|</span>
+                  <span>Space: {activeQuestion?.spaceComplexity || 'O(1)'}</span>
+                </div>
+                <div className={`flex items-center gap-1.5 text-[11px] font-medium ${judgeHealth ? 'text-emerald-600 dark:text-emerald-400' : 'text-amber-600 dark:text-amber-400'}`} role="status" aria-live="polite">
+                  <span className={`inline-block w-1.5 h-1.5 rounded-full ${judgeHealth ? 'bg-emerald-500' : 'bg-amber-500'}`} />
+                  {judgeHealth
+                    ? `Compiler online | ${judgeHealth.javaAvailable ? 'Java' : ''}${judgeHealth.javaAvailable && judgeHealth.pythonAvailable ? ' + ' : ''}${judgeHealth.pythonAvailable ? 'Python' : ''} | ${judgeHealth.loadedProblems} problems`
+                    : 'Compiler offline: start AlgoPlay with start-algoplay.cmd (or npm run dev)'}
+                </div>
               </div>
 
-              <button
-                onClick={handleRunTests}
-                disabled={executing}
-                className="px-5 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-semibold text-xs flex items-center gap-2 shadow-sm transition-all disabled:opacity-50"
-              >
-                {executing ? (
-                  <>
-                    <div className="w-3.5 h-3.5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
-                    <span>Running in Database Sandbox...</span>
-                  </>
-                ) : (
-                  <>
-                    <Play className="w-3.5 h-3.5 fill-current" />
-                    <span>Run & Submit to Database</span>
-                  </>
-                )}
-              </button>
+              <div className="flex items-center gap-2">
+                <button
+                  onClick={() => handleRunTests(false)}
+                  disabled={executing}
+                  className="px-4 py-2.5 rounded-xl border border-zinc-300 dark:border-zinc-700 text-zinc-700 dark:text-zinc-200 font-semibold text-xs flex items-center gap-2 disabled:opacity-50"
+                >
+                  <Play className="w-3.5 h-3.5" /> Run Samples
+                </button>
+                <button
+                  onClick={() => handleRunTests(true)}
+                  disabled={executing}
+                  className="px-4 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-semibold text-xs flex items-center gap-2 shadow-sm disabled:opacity-50"
+                >
+                  {executing ? (
+                    <><div className="w-3.5 h-3.5 border-2 border-white/30 border-t-white rounded-full animate-spin" /> Judging…</>
+                  ) : (
+                    <><Play className="w-3.5 h-3.5 fill-current" /> Submit Solution</>
+                  )}
+                </button>
+              </div>
             </div>
           </div>
 
-          {/* Execution Result Banner */}
-          {results && (
-            <div className="bg-white dark:bg-zinc-900 border border-zinc-200/80 dark:border-zinc-800/80 rounded-3xl p-5 shadow-apple-sm space-y-3">
-              <div className="flex items-center justify-between">
-                <div className="flex items-center gap-2">
-                  <CheckCircle2 className="w-5 h-5 text-emerald-500" />
-                  <span className="text-base font-bold text-emerald-600 dark:text-emerald-400">
-                    {results.status} (Passed {results.passedCount}/{results.totalCount} Test Cases)
-                  </span>
-                </div>
-                <div className="flex items-center gap-3 text-xs font-mono text-zinc-500">
-                  <span className="flex items-center gap-1">
-                    <Clock className="w-3 h-3" /> {results.executionTimeMs} ms
-                  </span>
-                  <span>{results.memoryMb} MB</span>
-                </div>
-              </div>
-
-              <div className="p-3 rounded-xl bg-emerald-500/10 text-emerald-700 dark:text-emerald-300 text-xs font-medium">
-                Solution verified & stored in database! Awarded +50 XP to your profile.
-              </div>
-            </div>
-          )}
+          <JudgeResultsPanel result={results} errorMessage={judgeError} xpAwarded={xpAwarded} />
         </div>
       </div>
 

@@ -1,0 +1,43 @@
+{
+  "title": "Longest Valid Parentheses",
+  "difficulty": "Hard",
+  "subtopic": "Parsing",
+  "companies": [
+    "Amazon",
+    "Google",
+    "Microsoft"
+  ],
+  "description": "Given a string containing only `(` and `)`, return the length of its longest contiguous substring that forms a valid parenthesis sequence. Input: `s`. Output: the maximum valid substring length.",
+  "constraints": [
+    "0 <= s.length <= 100000",
+    "s contains only '(' and ')'"
+  ],
+  "hints": [
+    "Track only the character counts or prefixes needed to decide the next step.",
+    "Check repeated symbols, empty or minimal cases, and impossible arrangements."
+  ],
+  "examples": [
+    {
+      "input": "s = \"(()\"",
+      "output": "2"
+    },
+    {
+      "input": "s = \")()())\"",
+      "output": "4"
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "longestValidParentheses",
+    "params": [
+      {
+        "name": "s",
+        "type": "String"
+      }
+    ],
+    "returns": "int"
+  }
+}

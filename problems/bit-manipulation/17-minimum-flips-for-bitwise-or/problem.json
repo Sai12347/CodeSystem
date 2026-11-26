@@ -1,0 +1,51 @@
+{
+  "title": "Minimum Flips for Bitwise OR",
+  "difficulty": "Medium",
+  "subtopic": "XOR Tricks",
+  "companies": [
+    "Microsoft",
+    "Amazon",
+    "Adobe"
+  ],
+  "description": "Given three positive integers `a`, `b`, and `c`, return the minimum number of single-bit flips required in the binary representations of `a` and `b` so that `(a | b) == c`. A flip changes a single bit from `0` to `1` or from `1` to `0`.",
+  "constraints": [
+    "1 <= a, b, c <= 10^9"
+  ],
+  "hints": [
+    "Inspect each bit independently: `(a | b) ^ c` identifies every bit position where `a | b` differs from `c`.",
+    "Every mismatching bit needs 1 flip, except when `c` has bit `0` while both `a` and `b` have bit `1`, which requires 2 flips."
+  ],
+  "examples": [
+    {
+      "explanation": "Flipping 2 (0010) to 1 (0001) and 6 (0110) to 4 (0100) takes 3 flips so 1 | 4 == 5."
+    },
+    {
+      "explanation": "Flipping bit 0 of 4 (0100) to 5 (0101) takes 1 flip so 5 | 2 == 7."
+    },
+    {
+      "explanation": "1 | 2 already equals 3, so 0 flips are needed."
+    }
+  ],
+  "timeComplexity": "O(1)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "minFlipsForOr",
+    "params": [
+      {
+        "name": "a",
+        "type": "int"
+      },
+      {
+        "name": "b",
+        "type": "int"
+      },
+      {
+        "name": "c",
+        "type": "int"
+      }
+    ],
+    "returns": "int"
+  }
+}

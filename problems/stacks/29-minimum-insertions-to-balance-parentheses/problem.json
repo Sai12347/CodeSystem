@@ -1,0 +1,44 @@
+{
+  "title": "Minimum Insertions to Balance Parentheses",
+  "difficulty": "Medium",
+  "subtopic": "Valid Parentheses",
+  "companies": [
+    "Meta",
+    "Google",
+    "Amazon"
+  ],
+  "description": "Given a parentheses string `s` containing only `'('` and `')'`, a string is considered *balanced* under the double-close rule if:\n- Every `'('` has a corresponding two consecutive `'))'` appearing after it.\n- Every pair of consecutive `'))'` matches a `'('` appearing before it.\n\nFor example, `\"())\"`, `\"())(())))\"`, and `\"(())())))\"` are balanced, whereas `\")()\"`, `\"(()))\"`, and `\"(())))\"` are not.\n\nYou may insert `'('` or `')'` at any position of `s`. Return the minimum number of insertions needed to make `s` balanced.",
+  "constraints": [
+    "1 <= s.length <= 10^5",
+    "s consists only of '(' and ')'."
+  ],
+  "hints": [
+    "Track the count of unmatched '(' characters on an implicit stack while scanning left to right.",
+    "When encountering ')', consume a second consecutive ')' if present (otherwise insert one ')'), and match that pair with an open '(' (or insert one '(' if none are open); at the end, each remaining '(' needs two ')' insertions."
+  ],
+  "examples": [
+    {
+      "explanation": "The second '(' has only one matching ')', so inserting one ')' makes \"(())))\" balanced."
+    },
+    {
+      "explanation": "\"())\" already satisfies the rule with 0 insertions."
+    },
+    {
+      "explanation": "Insert '(' before the leading '))' and two ')' after the trailing '(' for 3 insertions total."
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "minInsertions",
+    "params": [
+      {
+        "name": "s",
+        "type": "String"
+      }
+    ],
+    "returns": "int"
+  }
+}

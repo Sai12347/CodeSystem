@@ -1,0 +1,666 @@
+[
+ {
+  "id": "min-cost-to-connect-all-points",
+  "order": 1,
+  "topicId": "mst",
+  "topic": "Minimum Spanning Trees",
+  "title": "Min Cost to Connect All Points",
+  "slug": "min-cost-to-connect-all-points",
+  "difficulty": "Medium",
+  "subtopic": "Manhattan MST",
+  "companies": [
+   "Amazon",
+   "Google",
+   "Microsoft",
+   "Meta",
+   "Uber"
+  ],
+  "leetcode": 1584,
+  "description": "You are given an array `points` representing integer coordinates of some points on a 2D-plane, where `points[i] = [xi, yi]`.\n\nThe cost of connecting two points `[xi, yi]` and `[xj, yj]` is the Manhattan distance between them: `|xi - xj| + |yi - yj|`, where `|val|` denotes the absolute value of `val`.\n\nReturn the minimum cost to make all points connected. All points are connected if there is exactly one simple path between any two points (a spanning tree). If there is only one point, the minimum cost is `0`.",
+  "constraints": [
+   "1 <= points.length <= 1000",
+   "-10^6 <= xi, yi <= 10^6",
+   "All pairs (xi, yi) are distinct."
+  ],
+  "hints": [
+   "Model the points as vertices of a complete undirected weighted graph where the edge weight between points i and j is their Manhattan distance.",
+   "The problem asks for the total weight of a Minimum Spanning Tree (MST) on this dense complete graph.",
+   "Because the graph is complete with n <= 1000, an array-based Prim's algorithm runs in O(n^2) time and O(n) extra space without materializing all O(n^2) edges."
+  ],
+  "timeComplexity": "O(n^2)",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "examples": [
+   {
+    "input": "points = [[0,0],[2,2],[3,10],[5,2],[7,0]]",
+    "output": "20",
+    "explanation": "We can connect the points with edges (0,0)-(2,2) [cost 4], (2,2)-(5,2) [cost 3], (5,2)-(7,0) [cost 4], and (2,2)-(3,10) [cost 9] for a total minimum cost of 4 + 3 + 4 + 9 = 20."
+   },
+   {
+    "input": "points = [[3,12],[-2,5],[-4,1]]",
+    "output": "18",
+    "explanation": "Connect (3,12) to (-2,5) with cost 12 and (-2,5) to (-4,1) with cost 6 for a total cost of 18."
+   },
+   {
+    "input": "points = [[0,0],[1,1],[1,0],[-1,1]]",
+    "output": "4",
+    "explanation": "Connect (0,0) to (1,0) [cost 1], (1,0) to (1,1) [cost 1], and (1,1) to (-1,1) [cost 2] for a total cost of 4."
+   }
+  ],
+  "starterCode": {
+   "java": "class Solution {\n    public int minCostConnectPoints(int[][] points) {\n        // Write your solution here\n        return 0;\n    }\n}\n",
+   "python": "class Solution:\n    def minCostConnectPoints(self, points: List[List[int]]) -> int:\n        # Write your solution here\n        pass\n"
+  },
+  "solutionCode": {
+   "java": "class Solution {\n    public int minCostConnectPoints(int[][] points) {\n        int n = points.length;\n        if (n <= 1) {\n            return 0;\n        }\n        boolean[] inMst = new boolean[n];\n        int[] minDist = new int[n];\n        Arrays.fill(minDist, Integer.MAX_VALUE);\n        minDist[0] = 0;\n\n        int totalCost = 0;\n        for (int iter = 0; iter < n; iter++) {\n            int u = -1;\n            int best = Integer.MAX_VALUE;\n            for (int i = 0; i < n; i++) {\n                if (!inMst[i] && minDist[i] < best) {\n                    best = minDist[i];\n                    u = i;\n                }\n            }\n            inMst[u] = true;\n            totalCost += best;\n            int ux = points[u][0];\n            int uy = points[u][1];\n            for (int v = 0; v < n; v++) {\n                if (!inMst[v]) {\n                    int d = Math.abs(ux - points[v][0]) + Math.abs(uy - points[v][1]);\n                    if (d < minDist[v]) {\n                        minDist[v] = d;\n                    }\n                }\n            }\n        }\n        return totalCost;\n    }\n}\n",
+   "python": "class Solution:\n    def minCostConnectPoints(self, points: List[List[int]]) -> int:\n        n = len(points)\n        if n <= 1:\n            return 0\n\n        in_mst = [False] * n\n        min_dist = [10**9] * n\n        min_dist[0] = 0\n        total_cost = 0\n\n        for _ in range(n):\n            u = -1\n            best = 10**9\n            for i in range(n):\n                if not in_mst[i] and min_dist[i] < best:\n                    best = min_dist[i]\n                    u = i\n            in_mst[u] = True\n            total_cost += best\n            ux, uy = points[u]\n            for v in range(n):\n                if not in_mst[v]:\n                    d = abs(ux - points[v][0]) + abs(uy - points[v][1])\n                    if d < min_dist[v]:\n                        min_dist[v] = d\n\n        return total_cost\n"
+  },
+  "sampleArray": [],
+  "visibleTestCount": 3,
+  "hiddenTestCount": 10,
+  "number": 1
+ },
+ {
+  "id": "connecting-cities-with-minimum-cost",
+  "order": 2,
+  "topicId": "mst",
+  "topic": "Minimum Spanning Trees",
+  "title": "Connecting Cities With Minimum Cost",
+  "slug": "connecting-cities-with-minimum-cost",
+  "difficulty": "Medium",
+  "subtopic": "Kruskal Algorithm",
+  "companies": [
+   "Amazon",
+   "Google",
+   "Microsoft",
+   "Bloomberg",
+   "Oracle"
+  ],
+  "leetcode": 1135,
+  "description": "There are `n` cities labeled from `1` to `n`. You are given the integer `n` and an array `connections` where `connections[i] = [xi, yi, costi]` indicates that the cost of connecting city `xi` and city `yi` (bidirectional connection) is `costi`.\n\nReturn the minimum cost to connect all the `n` cities such that there is at least one path between each pair of cities. If it is impossible to connect all the `n` cities, return `-1`.\n\nThe cost is the sum of the connections' costs used. Note that multiple connections may exist between the same pair of cities, and `connections` may be empty. If `n == 1`, all cities are already connected with cost `0`.",
+  "constraints": [
+   "1 <= n <= 10^4",
+   "0 <= connections.length <= 10^4",
+   "connections[i].length == 3",
+   "1 <= xi, yi <= n",
+   "xi != yi",
+   "0 <= costi <= 10^5"
+  ],
+  "hints": [
+   "Think of cities as vertices and connections as undirected weighted edges; you want the weight of a Minimum Spanning Tree.",
+   "Sort all connections by cost in ascending order and greedily add an edge whenever it connects two previously disconnected components.",
+   "Use a Disjoint Set Union (Union-Find) data structure with path compression and union by rank/size; after processing edges, verify that all n cities form a single connected component."
+  ],
+  "timeComplexity": "O(m log m)",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "examples": [
+   {
+    "input": "n = 3, connections = [[1,2,5],[1,3,6],[2,3,1]]",
+    "output": "6",
+    "explanation": "Choosing edges [2,3,1] and [1,2,5] connects all 3 cities with minimum total cost 1 + 5 = 6."
+   },
+   {
+    "input": "n = 4, connections = [[1,2,3],[3,4,4]]",
+    "output": "-1",
+    "explanation": "Cities {1, 2} and {3, 4} cannot be connected into a single component, so return -1."
+   },
+   {
+    "input": "n = 4, connections = [[1,2,1],[2,3,2],[3,4,3],[1,4,10],[1,3,2]]",
+    "output": "6",
+    "explanation": "Choose edges [1,2,1], [2,3,2], and [3,4,3] (or [1,2,1], [1,3,2], and [3,4,3]) for a total minimum cost of 6."
+   }
+  ],
+  "starterCode": {
+   "java": "class Solution {\n    public int minimumCost(int n, int[][] connections) {\n        // Write your solution here\n        return 0;\n    }\n}\n",
+   "python": "class Solution:\n    def minimumCost(self, n: int, connections: List[List[int]]) -> int:\n        # Write your solution here\n        pass\n"
+  },
+  "solutionCode": {
+   "java": "class Solution {\n    private int find(int[] parent, int x) {\n        while (parent[x] != x) {\n            parent[x] = parent[parent[x]];\n            x = parent[x];\n        }\n        return x;\n    }\n\n    public int minimumCost(int n, int[][] connections) {\n        if (n <= 1) {\n            return 0;\n        }\n        if (connections.length < n - 1) {\n            return -1;\n        }\n        int[][] edges = connections.clone();\n        Arrays.sort(edges, (a, b) -> Integer.compare(a[2], b[2]));\n\n        int[] parent = new int[n + 1];\n        int[] size = new int[n + 1];\n        for (int i = 1; i <= n; i++) {\n            parent[i] = i;\n            size[i] = 1;\n        }\n\n        int total = 0;\n        int components = n;\n        for (int[] e : edges) {\n            int ru = find(parent, e[0]);\n            int rv = find(parent, e[1]);\n            if (ru != rv) {\n                if (size[ru] < size[rv]) {\n                    int tmp = ru;\n                    ru = rv;\n                    rv = tmp;\n                }\n                parent[rv] = ru;\n                size[ru] += size[rv];\n                total += e[2];\n                components--;\n                if (components == 1) {\n                    return total;\n                }\n            }\n        }\n        return -1;\n    }\n}\n",
+   "python": "class Solution:\n    def minimumCost(self, n: int, connections: List[List[int]]) -> int:\n        if n <= 1:\n            return 0\n        if len(connections) < n - 1:\n            return -1\n\n        parent = list(range(n + 1))\n        size = [1] * (n + 1)\n\n        def find(x: int) -> int:\n            while parent[x] != x:\n                parent[x] = parent[parent[x]]\n                x = parent[x]\n            return x\n\n        sorted_edges = sorted(connections, key=lambda e: e[2])\n        total = 0\n        components = n\n\n        for u, v, cost in sorted_edges:\n            ru, rv = find(u), find(v)\n            if ru != rv:\n                if size[ru] < size[rv]:\n                    ru, rv = rv, ru\n                parent[rv] = ru\n                size[ru] += size[rv]\n                total += cost\n                components -= 1\n                if components == 1:\n                    return total\n\n        return -1\n"
+  },
+  "sampleArray": [],
+  "visibleTestCount": 3,
+  "hiddenTestCount": 10,
+  "number": 2
+ },
+ {
+  "id": "optimize-water-distribution",
+  "order": 3,
+  "topicId": "mst",
+  "topic": "Minimum Spanning Trees",
+  "title": "Optimize Water Distribution in a Village",
+  "slug": "optimize-water-distribution",
+  "difficulty": "Hard",
+  "subtopic": "Min Cost Networks",
+  "companies": [
+   "Google",
+   "Amazon",
+   "Meta",
+   "Microsoft",
+   "Apple"
+  ],
+  "leetcode": 1168,
+  "description": "There are `n` houses in a village, numbered from `1` to `n`. We want to supply water for all the houses by building wells and laying pipes.\n\nFor each house `i` (`1 <= i <= n`), we can either build a well inside it directly with cost `wells[i - 1]` (0-indexed), or pipe in water from another house that has water. The costs to lay pipes between houses are given by the array `pipes`, where each `pipes[j] = [house1j, house2j, costj]` represents the cost to connect `house1j` and `house2j` together using a bidirectional pipe.\n\nNote that there may be multiple valid connections between the same two houses with different costs.\n\nReturn the minimum total cost to supply water to all houses.",
+  "constraints": [
+   "1 <= n <= 10^4",
+   "wells.length == n",
+   "0 <= wells[i] <= 10^5",
+   "0 <= pipes.length <= 10^4",
+   "pipes[j].length == 3",
+   "1 <= house1j, house2j <= n",
+   "house1j != house2j",
+   "0 <= costj <= 10^5"
+  ],
+  "hints": [
+   "Every connected component of piped houses must contain at least one well.",
+   "Introduce a virtual water-source node 0 and add an edge of weight wells[i - 1] between node 0 and each house i.",
+   "Now supplying water to every house is equivalent to finding a Minimum Spanning Tree on the (n + 1)-node graph using Kruskal's or Prim's algorithm."
+  ],
+  "timeComplexity": "O((n + m) log(n + m))",
+  "spaceComplexity": "O(n + m)",
+  "compare": "exact",
+  "examples": [
+   {
+    "input": "n = 3, wells = [1,2,2], pipes = [[1,2,1],[2,3,1]]",
+    "output": "3",
+    "explanation": "Build a well in house 1 (cost 1) and connect houses 1-2 (cost 1) and 2-3 (cost 1) via pipes for a total cost of 3."
+   },
+   {
+    "input": "n = 2, wells = [1,1], pipes = [[1,2,1],[1,2,2]]",
+    "output": "2",
+    "explanation": "We can either build a well in each house (1 + 1 = 2) or build one well and connect them with the pipe of cost 1 (1 + 1 = 2)."
+   },
+   {
+    "input": "n = 3, wells = [5,5,5], pipes = [[1,2,10],[2,3,10]]",
+    "output": "15",
+    "explanation": "Pipes are more expensive than building wells directly, so build a well in every house for a total cost of 5 + 5 + 5 = 15."
+   }
+  ],
+  "starterCode": {
+   "java": "class Solution {\n    public int minCostToSupplyWater(int n, int[] wells, int[][] pipes) {\n        // Write your solution here\n        return 0;\n    }\n}\n",
+   "python": "class Solution:\n    def minCostToSupplyWater(self, n: int, wells: List[int], pipes: List[List[int]]) -> int:\n        # Write your solution here\n        pass\n"
+  },
+  "solutionCode": {
+   "java": "class Solution {\n    private int find(int[] parent, int x) {\n        while (parent[x] != x) {\n            parent[x] = parent[parent[x]];\n            x = parent[x];\n        }\n        return x;\n    }\n\n    public int minCostToSupplyWater(int n, int[] wells, int[][] pipes) {\n        int m = pipes.length;\n        int[][] edges = new int[n + m][3];\n        for (int i = 0; i < n; i++) {\n            edges[i][0] = 0;\n            edges[i][1] = i + 1;\n            edges[i][2] = wells[i];\n        }\n        for (int i = 0; i < m; i++) {\n            edges[n + i][0] = pipes[i][0];\n            edges[n + i][1] = pipes[i][1];\n            edges[n + i][2] = pipes[i][2];\n        }\n        Arrays.sort(edges, (a, b) -> Integer.compare(a[2], b[2]));\n\n        int[] parent = new int[n + 1];\n        int[] size = new int[n + 1];\n        for (int i = 0; i <= n; i++) {\n            parent[i] = i;\n            size[i] = 1;\n        }\n\n        int total = 0;\n        int components = n + 1;\n        for (int[] e : edges) {\n            int ru = find(parent, e[0]);\n            int rv = find(parent, e[1]);\n            if (ru != rv) {\n                if (size[ru] < size[rv]) {\n                    int tmp = ru;\n                    ru = rv;\n                    rv = tmp;\n                }\n                parent[rv] = ru;\n                size[ru] += size[rv];\n                total += e[2];\n                components--;\n                if (components == 1) {\n                    break;\n                }\n            }\n        }\n        return total;\n    }\n}\n",
+   "python": "class Solution:\n    def minCostToSupplyWater(self, n: int, wells: List[int], pipes: List[List[int]]) -> int:\n        edges = [(wells[i], 0, i + 1) for i in range(n)]\n        for u, v, cost in pipes:\n            edges.append((cost, u, v))\n        edges.sort()\n\n        parent = list(range(n + 1))\n        size = [1] * (n + 1)\n\n        def find(x: int) -> int:\n            while parent[x] != x:\n                parent[x] = parent[parent[x]]\n                x = parent[x]\n            return x\n\n        total = 0\n        components = n + 1\n        for cost, u, v in edges:\n            ru, rv = find(u), find(v)\n            if ru != rv:\n                if size[ru] < size[rv]:\n                    ru, rv = rv, ru\n                parent[rv] = ru\n                size[ru] += size[rv]\n                total += cost\n                components -= 1\n                if components == 1:\n                    break\n        return total\n"
+  },
+  "sampleArray": [
+   1,
+   2,
+   2
+  ],
+  "visibleTestCount": 3,
+  "hiddenTestCount": 10,
+  "number": 3
+ },
+ {
+  "id": "critical-and-pseudo-critical-edges-mst",
+  "order": 4,
+  "topicId": "mst",
+  "topic": "Minimum Spanning Trees",
+  "title": "Find Critical and Pseudo-Critical Edges in Minimum Spanning Tree",
+  "slug": "critical-and-pseudo-critical-edges-mst",
+  "difficulty": "Hard",
+  "subtopic": "Kruskal Algorithm",
+  "companies": [
+   "Google",
+   "Amazon",
+   "Meta",
+   "Microsoft",
+   "Bloomberg"
+  ],
+  "leetcode": 1489,
+  "description": "Given a weighted undirected connected graph with `n` vertices numbered from `0` to `n - 1`, and an array `edges` where `edges[i] = [ai, bi, weighti]` represents a bidirectional and weighted edge between nodes `ai` and `bi`. A minimum spanning tree (MST) is a subset of the graph's edges that connects all vertices without cycles and with the minimum possible total edge weight.\n\nFind all the critical and pseudo-critical edges in the given graph's minimum spanning tree (MST):\n- A **critical edge** is an MST edge whose deletion from the graph would cause the MST weight to increase (or disconnect the graph so no spanning tree exists).\n- A **pseudo-critical edge** is an edge that can appear in some MSTs, but not all (it is not critical, yet there exists at least one MST containing it).\n\nReturn a list `[critical, pseudoCritical]` containing the 0-based indices of all critical edges and all pseudo-critical edges respectively. **Sort each of the two lists in ascending order of edge index.**",
+  "constraints": [
+   "2 <= n <= 100",
+   "1 <= edges.length <= min(200, n * (n - 1) / 2)",
+   "edges[i].length == 3",
+   "0 <= ai < bi < n",
+   "1 <= weighti <= 1000",
+   "All pairs (ai, bi) are distinct.",
+   "The graph is connected."
+  ],
+  "hints": [
+   "First sort the edges by weight (preserving their original indices) and run Kruskal's algorithm to compute the baseline MST weight.",
+   "An edge i is critical if running Kruskal's algorithm while skipping edge i fails to connect all n vertices or yields a strictly larger spanning tree weight.",
+   "If edge i is not critical, force-include it first in DSU and run Kruskal's on the remaining edges; if the resulting spanning tree has the exact baseline MST weight, then edge i is pseudo-critical."
+  ],
+  "timeComplexity": "O(m^2 * alpha(n))",
+  "spaceComplexity": "O(n + m)",
+  "compare": "exact",
+  "examples": [
+   {
+    "input": "n = 5, edges = [[0,1,1],[1,2,1],[2,3,2],[0,3,2],[0,4,3],[3,4,3],[1,4,6]]",
+    "output": "[[0,1],[2,3,4,5]]",
+    "explanation": "The MST weight is 7. Removing edge 0 or edge 1 increases the MST weight, so [0, 1] are critical. Edges 2, 3, 4, and 5 each appear in some MSTs of weight 7 but not all, while edge 6 (weight 6) never appears in any MST."
+   },
+   {
+    "input": "n = 4, edges = [[0,1,1],[1,2,1],[2,3,1],[0,3,1]]",
+    "output": "[[],[0,1,2,3]]",
+    "explanation": "All four edges have weight 1 forming a 4-cycle; any 3 edges form an MST of weight 3, so no edge is critical and all four edges [0, 1, 2, 3] are pseudo-critical."
+   },
+   {
+    "input": "n = 3, edges = [[0,1,1],[1,2,2],[0,2,5]]",
+    "output": "[[0,1],[]]",
+    "explanation": "The unique MST uses edges 0 and 1 (total weight 3). Both are critical, and edge 2 (weight 5) is never part of any MST."
+   }
+  ],
+  "starterCode": {
+   "java": "class Solution {\n    public List<List<Integer>> findCriticalAndPseudoCriticalEdges(int n, int[][] edges) {\n        // Write your solution here\n        return null;\n    }\n}\n",
+   "python": "class Solution:\n    def findCriticalAndPseudoCriticalEdges(self, n: int, edges: List[List[int]]) -> List[List[int]]:\n        # Write your solution here\n        pass\n"
+  },
+  "solutionCode": {
+   "java": "class Solution {\n    private static final int INF = Integer.MAX_VALUE;\n\n    private int find(int[] parent, int x) {\n        while (parent[x] != x) {\n            parent[x] = parent[parent[x]];\n            x = parent[x];\n        }\n        return x;\n    }\n\n    private boolean union(int[] parent, int[] size, int a, int b) {\n        int ra = find(parent, a);\n        int rb = find(parent, b);\n        if (ra == rb) {\n            return false;\n        }\n        if (size[ra] < size[rb]) {\n            int tmp = ra;\n            ra = rb;\n            rb = tmp;\n        }\n        parent[rb] = ra;\n        size[ra] += size[rb];\n        return true;\n    }\n\n    private int kruskal(int n, int[][] indexed, int skipIdx, int forcePos) {\n        int[] parent = new int[n];\n        int[] size = new int[n];\n        for (int i = 0; i < n; i++) {\n            parent[i] = i;\n            size[i] = 1;\n        }\n        int weight = 0;\n        int used = 0;\n        if (forcePos != -1) {\n            union(parent, size, indexed[forcePos][0], indexed[forcePos][1]);\n            weight += indexed[forcePos][2];\n            used++;\n        }\n        for (int pos = 0; pos < indexed.length; pos++) {\n            if (pos == forcePos || indexed[pos][3] == skipIdx) {\n                continue;\n            }\n            if (union(parent, size, indexed[pos][0], indexed[pos][1])) {\n                weight += indexed[pos][2];\n                used++;\n                if (used == n - 1) {\n                    break;\n                }\n            }\n        }\n        return used == n - 1 ? weight : INF;\n    }\n\n    public List<List<Integer>> findCriticalAndPseudoCriticalEdges(int n, int[][] edges) {\n        int m = edges.length;\n        int[][] indexed = new int[m][4];\n        for (int i = 0; i < m; i++) {\n            indexed[i][0] = edges[i][0];\n            indexed[i][1] = edges[i][1];\n            indexed[i][2] = edges[i][2];\n            indexed[i][3] = i;\n        }\n        Arrays.sort(indexed, (a, b) -> Integer.compare(a[2], b[2]));\n\n        int baseMst = kruskal(n, indexed, -1, -1);\n        List<Integer> critical = new ArrayList<>();\n        List<Integer> pseudo = new ArrayList<>();\n\n        for (int pos = 0; pos < m; pos++) {\n            int idx = indexed[pos][3];\n            if (kruskal(n, indexed, idx, -1) > baseMst) {\n                critical.add(idx);\n            } else if (kruskal(n, indexed, -1, pos) == baseMst) {\n                pseudo.add(idx);\n            }\n        }\n\n        Collections.sort(critical);\n        Collections.sort(pseudo);\n        List<List<Integer>> result = new ArrayList<>(2);\n        result.add(critical);\n        result.add(pseudo);\n        return result;\n    }\n}\n",
+   "python": "class Solution:\n    def findCriticalAndPseudoCriticalEdges(self, n: int, edges: List[List[int]]) -> List[List[int]]:\n        indexed = sorted((w, u, v, i) for i, (u, v, w) in enumerate(edges))\n        INF = 10**18\n\n        def kruskal(skip_idx: int = -1, force_pos: int = -1) -> int:\n            parent = list(range(n))\n            size = [1] * n\n\n            def find(x: int) -> int:\n                while parent[x] != x:\n                    parent[x] = parent[parent[x]]\n                    x = parent[x]\n                return x\n\n            def union(a: int, b: int) -> bool:\n                ra, rb = find(a), find(b)\n                if ra == rb:\n                    return False\n                if size[ra] < size[rb]:\n                    ra, rb = rb, ra\n                parent[rb] = ra\n                size[ra] += size[rb]\n                return True\n\n            weight = 0\n            used = 0\n            if force_pos != -1:\n                fw, fu, fv, _ = indexed[force_pos]\n                union(fu, fv)\n                weight += fw\n                used += 1\n\n            for pos, (w, u, v, idx) in enumerate(indexed):\n                if idx == skip_idx or pos == force_pos:\n                    continue\n                if union(u, v):\n                    weight += w\n                    used += 1\n                    if used == n - 1:\n                        break\n\n            return weight if used == n - 1 else INF\n\n        base_mst = kruskal()\n        critical = []\n        pseudo = []\n\n        for pos, (_, _, _, idx) in enumerate(indexed):\n            if kruskal(skip_idx=idx) > base_mst:\n                critical.append(idx)\n            elif kruskal(force_pos=pos) == base_mst:\n                pseudo.append(idx)\n\n        critical.sort()\n        pseudo.sort()\n        return [critical, pseudo]\n"
+  },
+  "sampleArray": [],
+  "visibleTestCount": 3,
+  "hiddenTestCount": 10,
+  "number": 4
+ },
+ {
+  "id": "minimum-spanning-tree-weight",
+  "order": 5,
+  "topicId": "mst",
+  "topic": "Minimum Spanning Trees",
+  "title": "Minimum Spanning Tree Total Weight",
+  "slug": "minimum-spanning-tree-weight",
+  "difficulty": "Medium",
+  "subtopic": "Prim Algorithm",
+  "companies": [
+   "Google",
+   "Amazon",
+   "Microsoft",
+   "Goldman Sachs",
+   "Oracle"
+  ],
+  "leetcode": null,
+  "description": "Given an undirected weighted graph with `n` vertices labeled from `0` to `n - 1` and an array `edges` where `edges[i] = [u, v, w]` represents an undirected edge between vertices `u` and `v` with non-negative weight `w`.\n\nThe graph may contain **self-loops** (`u == v`) and **parallel edges** (multiple edges between the same pair of vertices with possibly different weights), and it may be disconnected.\n\nFind and return the total weight of a Minimum Spanning Tree (MST) connecting all `n` vertices. If the graph is disconnected and no spanning tree exists, return `-1`. For `n == 1`, a single vertex is already a valid spanning tree of total weight `0` (self-loops are never included in a spanning tree). Note that the total weight may exceed the 32-bit signed integer range, so return a 64-bit integer (`long`).",
+  "constraints": [
+   "1 <= n <= 10^4",
+   "0 <= edges.length <= 2 * 10^4",
+   "edges[i].length == 3",
+   "0 <= u, v < n",
+   "0 <= w <= 10^9"
+  ],
+  "hints": [
+   "Build an adjacency list for all edges (ignoring self-loops where u == v) and grow the MST from vertex 0 using Prim's algorithm with a min-heap.",
+   "At each step, pop the minimum-weight edge leading to an unvisited vertex, mark that vertex visited, add the weight to a 64-bit accumulator, and push all outgoing edges to unvisited neighbors.",
+   "If fewer than n vertices are visited when the heap becomes empty, the graph is disconnected so return -1."
+  ],
+  "timeComplexity": "O((n + m) log n)",
+  "spaceComplexity": "O(n + m)",
+  "compare": "exact",
+  "examples": [
+   {
+    "input": "n = 4, edges = [[0,1,4],[0,2,3],[1,2,1],[1,3,2],[2,3,5]]",
+    "output": "6",
+    "explanation": "Pick edges (1,2,1), (1,3,2), and (0,2,3) to connect all 4 vertices with minimum total weight 1 + 2 + 3 = 6."
+   },
+   {
+    "input": "n = 4, edges = [[0,1,2],[2,3,5]]",
+    "output": "-1",
+    "explanation": "Vertices {0, 1} and {2, 3} are in separate connected components, so no spanning tree exists and we return -1."
+   },
+   {
+    "input": "n = 3, edges = [[0,0,1],[0,1,10],[0,1,3],[1,2,4],[0,2,8]]",
+    "output": "7",
+    "explanation": "Ignore the self-loop (0,0,1) and the heavier parallel edge (0,1,10). Choosing (0,1,3) and (1,2,4) gives total weight 7."
+   }
+  ],
+  "starterCode": {
+   "java": "class Solution {\n    public long minimumSpanningTreeWeight(int n, int[][] edges) {\n        // Write your solution here\n        return 0;\n    }\n}\n",
+   "python": "class Solution:\n    def minimumSpanningTreeWeight(self, n: int, edges: List[List[int]]) -> int:\n        # Write your solution here\n        pass\n"
+  },
+  "solutionCode": {
+   "java": "class Solution {\n    public long minimumSpanningTreeWeight(int n, int[][] edges) {\n        if (n <= 1) {\n            return 0L;\n        }\n        List<List<int[]>> adj = new ArrayList<>(n);\n        for (int i = 0; i < n; i++) {\n            adj.add(new ArrayList<>());\n        }\n        for (int[] e : edges) {\n            int u = e[0];\n            int v = e[1];\n            int w = e[2];\n            if (u != v) {\n                adj.get(u).add(new int[]{v, w});\n                adj.get(v).add(new int[]{u, w});\n            }\n        }\n\n        boolean[] visited = new boolean[n];\n        PriorityQueue<int[]> pq = new PriorityQueue<>((a, b) -> Integer.compare(a[0], b[0]));\n        pq.offer(new int[]{0, 0});\n\n        long total = 0L;\n        int visitedCount = 0;\n\n        while (!pq.isEmpty() && visitedCount < n) {\n            int[] cur = pq.poll();\n            int w = cur[0];\n            int u = cur[1];\n            if (visited[u]) {\n                continue;\n            }\n            visited[u] = true;\n            total += w;\n            visitedCount++;\n            for (int[] nxt : adj.get(u)) {\n                int v = nxt[0];\n                if (!visited[v]) {\n                    pq.offer(new int[]{nxt[1], v});\n                }\n            }\n        }\n        return visitedCount == n ? total : -1L;\n    }\n}\n",
+   "python": "class Solution:\n    def minimumSpanningTreeWeight(self, n: int, edges: List[List[int]]) -> int:\n        if n <= 1:\n            return 0\n\n        adj = [[] for _ in range(n)]\n        for u, v, w in edges:\n            if u != v:\n                adj[u].append((w, v))\n                adj[v].append((w, u))\n\n        visited = [False] * n\n        heap = [(0, 0)]\n        total = 0\n        visited_count = 0\n\n        while heap and visited_count < n:\n            w, u = heapq.heappop(heap)\n            if visited[u]:\n                continue\n            visited[u] = True\n            total += w\n            visited_count += 1\n            for nw, v in adj[u]:\n                if not visited[v]:\n                    heapq.heappush(heap, (nw, v))\n\n        return total if visited_count == n else -1\n"
+  },
+  "sampleArray": [],
+  "visibleTestCount": 3,
+  "hiddenTestCount": 10,
+  "number": 5
+ },
+ {
+  "id": "remove-max-edges-fully-traversable",
+  "order": 6,
+  "topicId": "mst",
+  "topic": "Minimum Spanning Trees",
+  "title": "Remove Max Number of Edges to Keep Graph Fully Traversable",
+  "slug": "remove-max-edges-fully-traversable",
+  "difficulty": "Hard",
+  "subtopic": "Kruskal Algorithm",
+  "companies": [
+   "Google",
+   "Amazon",
+   "Meta",
+   "Microsoft",
+   "Uber"
+  ],
+  "leetcode": 1579,
+  "description": "Alice and Bob have an undirected graph of `n` nodes labeled from `1` to `n` and three types of edges:\n- Type `1`: Can be traversed by Alice only.\n- Type `2`: Can be traversed by Bob only.\n- Type `3`: Can be traversed by both Alice and Bob.\n\nGiven an array `edges` where `edges[i] = [typei, ui, vi]` represents a bidirectional edge of type `typei` between nodes `ui` and `vi`, find the maximum number of edges you can remove so that after removing the edges, the graph can still be fully traversed by both Alice and Bob. The graph is fully traversable by Alice and Bob if starting from any node, they can reach all other nodes.\n\nReturn the maximum number of edges you can remove, or return `-1` if Alice and Bob cannot fully traverse the graph.",
+  "constraints": [
+   "1 <= n <= 10^5",
+   "0 <= edges.length <= min(10^5, 3 * n * (n - 1) / 2)",
+   "edges[i].length == 3",
+   "1 <= typei <= 3",
+   "1 <= ui < vi <= n",
+   "All tuples (typei, ui, vi) are distinct."
+  ],
+  "hints": [
+   "Maximizing the number of removed edges is equivalent to minimizing the number of edges kept so that both Alice and Bob have a spanning tree.",
+   "Always prioritize Type 3 edges first, because a single Type 3 edge that merges two components helps both Alice and Bob simultaneously instead of needing one Type 1 edge and one Type 2 edge.",
+   "Maintain two Disjoint Set Union structures (one for Alice, one for Bob): first process all Type 3 edges, then process Type 1 edges on Alice's DSU and Type 2 edges on Bob's DSU."
+  ],
+  "timeComplexity": "O((n + m) * alpha(n))",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "examples": [
+   {
+    "input": "n = 4, edges = [[3,1,2],[3,2,3],[1,1,3],[1,2,4],[1,1,2],[2,3,4]]",
+    "output": "2",
+    "explanation": "If we remove the 2 edges [1,1,2] and [1,1,3], the remaining 4 edges still allow both Alice and Bob to traverse all 4 nodes. Removing any more makes the graph untraversable."
+   },
+   {
+    "input": "n = 4, edges = [[3,1,2],[3,2,3],[1,1,4],[2,1,4]]",
+    "output": "0",
+    "explanation": "All 4 edges are required: the two Type 3 edges connect {1,2,3}, while node 4 needs both the Type 1 edge for Alice and the Type 2 edge for Bob. So 0 edges can be removed."
+   },
+   {
+    "input": "n = 4, edges = [[3,2,3],[1,1,2],[2,3,4]]",
+    "output": "-1",
+    "explanation": "Alice cannot reach node 4 and Bob cannot reach node 1, so the graph cannot be fully traversed by both; return -1."
+   }
+  ],
+  "starterCode": {
+   "java": "class Solution {\n    public int maxNumEdgesToRemove(int n, int[][] edges) {\n        // Write your solution here\n        return 0;\n    }\n}\n",
+   "python": "class Solution:\n    def maxNumEdgesToRemove(self, n: int, edges: List[List[int]]) -> int:\n        # Write your solution here\n        pass\n"
+  },
+  "solutionCode": {
+   "java": "class Solution {\n    static class DSU {\n        int[] parent;\n        int[] size;\n        int components;\n\n        DSU(int n) {\n            parent = new int[n + 1];\n            size = new int[n + 1];\n            components = n;\n            for (int i = 1; i <= n; i++) {\n                parent[i] = i;\n                size[i] = 1;\n            }\n        }\n\n        int find(int x) {\n            while (parent[x] != x) {\n                parent[x] = parent[parent[x]];\n                x = parent[x];\n            }\n            return x;\n        }\n\n        boolean union(int a, int b) {\n            int ra = find(a);\n            int rb = find(b);\n            if (ra == rb) {\n                return false;\n            }\n            if (size[ra] < size[rb]) {\n                int tmp = ra;\n                ra = rb;\n                rb = tmp;\n            }\n            parent[rb] = ra;\n            size[ra] += size[rb];\n            components--;\n            return true;\n        }\n    }\n\n    public int maxNumEdgesToRemove(int n, int[][] edges) {\n        if (n <= 1) {\n            return edges.length;\n        }\n        DSU alice = new DSU(n);\n        DSU bob = new DSU(n);\n        int kept = 0;\n\n        for (int[] e : edges) {\n            if (e[0] == 3) {\n                boolean mergedA = alice.union(e[1], e[2]);\n                boolean mergedB = bob.union(e[1], e[2]);\n                if (mergedA || mergedB) {\n                    kept++;\n                }\n            }\n        }\n\n        for (int[] e : edges) {\n            if (e[0] == 1) {\n                if (alice.union(e[1], e[2])) {\n                    kept++;\n                }\n            } else if (e[0] == 2) {\n                if (bob.union(e[1], e[2])) {\n                    kept++;\n                }\n            }\n        }\n\n        if (alice.components != 1 || bob.components != 1) {\n            return -1;\n        }\n        return edges.length - kept;\n    }\n}\n",
+   "python": "class Solution:\n    def maxNumEdgesToRemove(self, n: int, edges: List[List[int]]) -> int:\n        if n <= 1:\n            return len(edges)\n\n        class DSU:\n            def __init__(self, size: int):\n                self.parent = list(range(size + 1))\n                self.sz = [1] * (size + 1)\n                self.components = size\n\n            def find(self, x: int) -> int:\n                while self.parent[x] != x:\n                    self.parent[x] = self.parent[self.parent[x]]\n                    x = self.parent[x]\n                return x\n\n            def union(self, a: int, b: int) -> bool:\n                ra, rb = self.find(a), self.find(b)\n                if ra == rb:\n                    return False\n                if self.sz[ra] < self.sz[rb]:\n                    ra, rb = rb, ra\n                self.parent[rb] = ra\n                self.sz[ra] += self.sz[rb]\n                self.components -= 1\n                return True\n\n        alice = DSU(n)\n        bob = DSU(n)\n        kept = 0\n\n        for t, u, v in edges:\n            if t == 3:\n                merged_a = alice.union(u, v)\n                merged_b = bob.union(u, v)\n                if merged_a or merged_b:\n                    kept += 1\n\n        for t, u, v in edges:\n            if t == 1:\n                if alice.union(u, v):\n                    kept += 1\n            elif t == 2:\n                if bob.union(u, v):\n                    kept += 1\n\n        if alice.components != 1 or bob.components != 1:\n            return -1\n        return len(edges) - kept\n"
+  },
+  "sampleArray": [],
+  "visibleTestCount": 3,
+  "hiddenTestCount": 10,
+  "number": 6
+ },
+ {
+  "id": "minimum-bottleneck-spanning-tree",
+  "order": 7,
+  "topicId": "mst",
+  "topic": "Minimum Spanning Trees",
+  "title": "Minimum Bottleneck Spanning Tree",
+  "slug": "minimum-bottleneck-spanning-tree",
+  "difficulty": "Medium",
+  "subtopic": "Kruskal Algorithm",
+  "companies": [
+   "Google",
+   "Amazon",
+   "Microsoft"
+  ],
+  "leetcode": null,
+  "description": "Given a connected undirected weighted graph, choose a spanning tree that minimizes its largest edge weight. Return the minimum possible largest edge weight.",
+  "constraints": [
+   "1 <= n <= 10^4",
+   "The graph is connected",
+   "0 <= edge weight <= 10^9"
+  ],
+  "hints": [
+   "Sort candidate edges by weight and use a disjoint-set structure to track connected components.",
+   "Respect the stated tie-breaking rule and handle disconnected graphs if allowed."
+  ],
+  "timeComplexity": "O(E log E)",
+  "spaceComplexity": "O(V+E)",
+  "compare": "exact",
+  "examples": [
+   {
+    "input": "n = 4, edges = [[0,1,5],[1,2,3],[2,3,4],[0,3,8]]",
+    "output": "5"
+   },
+   {
+    "input": "n = 3, edges = [[0,1,1],[1,2,10],[0,2,5]]",
+    "output": "5"
+   },
+   {
+    "input": "n = 1, edges = []",
+    "output": "0"
+   }
+  ],
+  "starterCode": {
+   "java": "class Solution {\n    public int minimumBottleneck(int n, int[][] edges) {\n        // Write your solution here\n        return 0;\n    }\n}\n",
+   "python": "class Solution:\n    def minimumBottleneck(self, n: int, edges: List[List[int]]) -> int:\n        # Write your solution here\n        pass\n"
+  },
+  "solutionCode": {
+   "java": "class Solution { int f(int[]p,int x){while(p[x]!=x){p[x]=p[p[x]];x=p[x];}return x;} public int minimumBottleneck(int n,int[][]e){if(n==1)return 0;Arrays.sort(e,(a,b)->Integer.compare(a[2],b[2]));int[]p=new int[n];for(int i=0;i<n;i++)p[i]=i;for(int[]x:e){int a=f(p,x[0]),b=f(p,x[1]);if(a!=b){p[a]=b;if(--n==1)return x[2];}}return -1;} }\n",
+   "python": "class Solution:\n    def minimumBottleneck(self, n: int, edges: List[List[int]]) -> int:\n        p=list(range(n))\n        def find(x):\n            while p[x]!=x:p[x]=p[p[x]];x=p[x]\n            return x\n        if n==1:return 0\n        for a,b,w in sorted(edges,key=lambda e:e[2]):\n            x,y=find(a),find(b)\n            if x!=y:\n                p[x]=y;n-=1\n                if n==1:return w\n        return -1\n"
+  },
+  "sampleArray": [],
+  "visibleTestCount": 3,
+  "hiddenTestCount": 8,
+  "number": 7
+ },
+ {
+  "id": "maximum-spacing-k-clustering",
+  "order": 8,
+  "topicId": "mst",
+  "topic": "Minimum Spanning Trees",
+  "title": "Maximum Spacing for K Clusters",
+  "slug": "maximum-spacing-k-clustering",
+  "difficulty": "Hard",
+  "subtopic": "Kruskal Algorithm",
+  "companies": [
+   "Google",
+   "Amazon",
+   "Microsoft"
+  ],
+  "leetcode": null,
+  "description": "Partition the vertices of a connected undirected weighted graph into exactly `k` non-empty clusters. The spacing is the minimum edge weight joining two different clusters. Return the maximum spacing achievable. Return -1 when `k` is 1 or `n` is 1 because the spacing is undefined.",
+  "constraints": [
+   "2 <= n <= 10^4",
+   "2 <= k <= n",
+   "The graph is connected",
+   "0 <= edge weight <= 10^9"
+  ],
+  "hints": [
+   "Sort candidate edges by weight and use a disjoint-set structure to track connected components.",
+   "Respect the stated tie-breaking rule and handle disconnected graphs if allowed."
+  ],
+  "timeComplexity": "O(E log E)",
+  "spaceComplexity": "O(V+E)",
+  "compare": "exact",
+  "examples": [
+   {
+    "input": "n = 4, k = 2, edges = [[0,1,1],[1,2,2],[2,3,3],[0,3,10]]",
+    "output": "3"
+   },
+   {
+    "input": "n = 3, k = 2, edges = [[0,1,2],[1,2,5],[0,2,9]]",
+    "output": "5"
+   },
+   {
+    "input": "n = 2, k = 2, edges = [[0,1,7]]",
+    "output": "7"
+   }
+  ],
+  "starterCode": {
+   "java": "class Solution {\n    public int maximumSpacing(int n, int k, int[][] edges) {\n        // Write your solution here\n        return 0;\n    }\n}\n",
+   "python": "class Solution:\n    def maximumSpacing(self, n: int, k: int, edges: List[List[int]]) -> int:\n        # Write your solution here\n        pass\n"
+  },
+  "solutionCode": {
+   "java": "class Solution { int f(int[]p,int x){while(p[x]!=x){p[x]=p[p[x]];x=p[x];}return x;}public int maximumSpacing(int n,int k,int[][]e){if(k<=1||n<=1)return -1;Arrays.sort(e,(a,b)->Integer.compare(a[2],b[2]));int[]p=new int[n];for(int i=0;i<n;i++)p[i]=i;int c=n;for(int[]x:e){int a=f(p,x[0]),b=f(p,x[1]);if(a!=b){if(c==k)return x[2];p[a]=b;c--;}}return -1;} }\n",
+   "python": "class Solution:\n    def maximumSpacing(self, n: int, k: int, edges: List[List[int]]) -> int:\n        if k<=1 or n<=1:return -1\n        p=list(range(n));components=n\n        def find(x):\n            while p[x]!=x:p[x]=p[p[x]];x=p[x]\n            return x\n        for a,b,w in sorted(edges,key=lambda e:e[2]):\n            x,y=find(a),find(b)\n            if x!=y:\n                if components==k:return w\n                p[x]=y;components-=1\n        return -1\n"
+  },
+  "sampleArray": [],
+  "visibleTestCount": 3,
+  "hiddenTestCount": 8,
+  "number": 8
+ },
+ {
+  "id": "minimax-path-queries",
+  "order": 9,
+  "topicId": "mst",
+  "topic": "Minimum Spanning Trees",
+  "title": "Minimum Bottleneck Path Queries",
+  "slug": "minimax-path-queries",
+  "difficulty": "Hard",
+  "subtopic": "Prim Algorithm",
+  "companies": [
+   "Google",
+   "Amazon",
+   "Microsoft"
+  ],
+  "leetcode": null,
+  "description": "For every query `[u,v]`, find a path from `u` to `v` that minimizes the largest edge weight on the path. Return that minimum largest-edge weight, or -1 if no path exists. The answer for `u == v` is 0.",
+  "constraints": [
+   "1 <= n <= 100",
+   "0 <= edges.length <= n*(n-1)/2",
+   "0 <= queries.length <= 10^4",
+   "0 <= edge weight <= 10^6"
+  ],
+  "hints": [
+   "Sort candidate edges by weight and use a disjoint-set structure to track connected components.",
+   "Respect the stated tie-breaking rule and handle disconnected graphs if allowed."
+  ],
+  "timeComplexity": "O(E log E)",
+  "spaceComplexity": "O(V+E)",
+  "compare": "exact",
+  "examples": [
+   {
+    "input": "n = 3, edges = [[0,1,4],[1,2,7],[0,2,10]], queries = [[0,2],[0,1],[2,2]]",
+    "output": "[7,4,0]"
+   },
+   {
+    "input": "n = 2, edges = [[0,1,0]], queries = [[0,1],[1,0]]",
+    "output": "[0,0]"
+   },
+   {
+    "input": "n = 1, edges = [], queries = [[0,0]]",
+    "output": "[0]"
+   }
+  ],
+  "starterCode": {
+   "java": "class Solution {\n    public int[] minimaxPathQueries(int n, int[][] edges, int[][] queries) {\n        // Write your solution here\n        return null;\n    }\n}\n",
+   "python": "class Solution:\n    def minimaxPathQueries(self, n: int, edges: List[List[int]], queries: List[List[int]]) -> List[int]:\n        # Write your solution here\n        pass\n"
+  },
+  "solutionCode": {
+   "java": "class Solution { public int[] minimaxPathQueries(int n,int[][]e,int[][]q){int inf=1000000000;int[][]d=new int[n][n];for(int i=0;i<n;i++){Arrays.fill(d[i],inf);d[i][i]=0;}for(int[]x:e){d[x[0]][x[1]]=Math.min(d[x[0]][x[1]],x[2]);d[x[1]][x[0]]=Math.min(d[x[1]][x[0]],x[2]);}for(int k=0;k<n;k++)for(int i=0;i<n;i++)for(int j=0;j<n;j++)d[i][j]=Math.min(d[i][j],Math.max(d[i][k],d[k][j]));int[]a=new int[q.length];for(int i=0;i<q.length;i++)a[i]=d[q[i][0]][q[i][1]]==inf?-1:d[q[i][0]][q[i][1]];return a;} }\n",
+   "python": "class Solution:\n    def minimaxPathQueries(self, n: int, edges: List[List[int]], queries: List[List[int]]) -> List[int]:\n        inf=10**18;d=[[inf]*n for _ in range(n)]\n        for i in range(n):d[i][i]=0\n        for a,b,w in edges:d[a][b]=d[b][a]=min(d[a][b],w)\n        for k in range(n):\n            for i in range(n):\n                for j in range(n):d[i][j]=min(d[i][j],max(d[i][k],d[k][j]))\n        return [-1 if d[a][b]==inf else d[a][b] for a,b in queries]\n"
+  },
+  "sampleArray": [],
+  "visibleTestCount": 3,
+  "hiddenTestCount": 8,
+  "number": 9
+ },
+ {
+  "id": "minimum-spanning-forest-weight",
+  "order": 10,
+  "topicId": "mst",
+  "topic": "Minimum Spanning Trees",
+  "title": "Minimum Spanning Forest Weight",
+  "slug": "minimum-spanning-forest-weight",
+  "difficulty": "Medium",
+  "subtopic": "Kruskal Algorithm",
+  "companies": [
+   "Google",
+   "Amazon",
+   "Microsoft"
+  ],
+  "leetcode": null,
+  "description": "Given an undirected weighted graph that may be disconnected, return the minimum total weight of a spanning forest: a minimum spanning tree for each connected component. Ignore self-loops and redundant edges.",
+  "constraints": [
+   "1 <= n <= 10^4",
+   "0 <= edges.length <= 10^5",
+   "0 <= edge weight <= 10^6"
+  ],
+  "hints": [
+   "Sort candidate edges by weight and use a disjoint-set structure to track connected components.",
+   "Respect the stated tie-breaking rule and handle disconnected graphs if allowed."
+  ],
+  "timeComplexity": "O(E log E)",
+  "spaceComplexity": "O(V+E)",
+  "compare": "exact",
+  "examples": [
+   {
+    "input": "n = 4, edges = [[0,1,1],[1,2,2],[0,2,4]]",
+    "output": "3"
+   },
+   {
+    "input": "n = 3, edges = []",
+    "output": "0"
+   },
+   {
+    "input": "n = 1, edges = []",
+    "output": "0"
+   }
+  ],
+  "starterCode": {
+   "java": "class Solution {\n    public int minimumForestWeight(int n, int[][] edges) {\n        // Write your solution here\n        return 0;\n    }\n}\n",
+   "python": "class Solution:\n    def minimumForestWeight(self, n: int, edges: List[List[int]]) -> int:\n        # Write your solution here\n        pass\n"
+  },
+  "solutionCode": {
+   "java": "class Solution { int f(int[]p,int x){while(p[x]!=x){p[x]=p[p[x]];x=p[x];}return x;}public int minimumForestWeight(int n,int[][]e){Arrays.sort(e,(a,b)->Integer.compare(a[2],b[2]));int[]p=new int[n];for(int i=0;i<n;i++)p[i]=i;int s=0;for(int[]x:e){int a=f(p,x[0]),b=f(p,x[1]);if(a!=b){p[a]=b;s+=x[2];}}return s;} }\n",
+   "python": "class Solution:\n    def minimumForestWeight(self, n: int, edges: List[List[int]]) -> int:\n        p=list(range(n))\n        def find(x):\n            while p[x]!=x:p[x]=p[p[x]];x=p[x]\n            return x\n        total=0\n        for a,b,w in sorted(edges,key=lambda e:e[2]):\n            x,y=find(a),find(b)\n            if x!=y:p[x]=y;total+=w\n        return total\n"
+  },
+  "sampleArray": [],
+  "visibleTestCount": 3,
+  "hiddenTestCount": 8,
+  "number": 10
+ },
+ {
+  "id": "minimum-spanning-tree-edge-indices",
+  "order": 11,
+  "topicId": "mst",
+  "topic": "Minimum Spanning Trees",
+  "title": "Minimum Spanning Tree Edge Indices",
+  "slug": "minimum-spanning-tree-edge-indices",
+  "difficulty": "Medium",
+  "subtopic": "Kruskal Algorithm",
+  "companies": [
+   "Google",
+   "Amazon",
+   "Microsoft"
+  ],
+  "leetcode": null,
+  "description": "Given a connected undirected weighted graph, return the input indices of the edges in a minimum spanning tree. Kruskal’s algorithm must break equal-weight ties by smaller input index. Return selected indices in increasing input order.",
+  "constraints": [
+   "1 <= n <= 10^4",
+   "The graph is connected",
+   "0 <= edge weight <= 10^9"
+  ],
+  "hints": [
+   "Sort candidate edges by weight and use a disjoint-set structure to track connected components.",
+   "Respect the stated tie-breaking rule and handle disconnected graphs if allowed."
+  ],
+  "timeComplexity": "O(E log E)",
+  "spaceComplexity": "O(V+E)",
+  "compare": "sorted",
+  "examples": [
+   {
+    "input": "n = 3, edges = [[0,1,1],[1,2,2],[0,2,3]]",
+    "output": "[0,1]"
+   },
+   {
+    "input": "n = 4, edges = [[0,1,1],[1,2,1],[2,3,1],[0,3,1]]",
+    "output": "[0,1,2]"
+   },
+   {
+    "input": "n = 1, edges = []",
+    "output": "[]"
+   }
+  ],
+  "starterCode": {
+   "java": "class Solution {\n    public List<Integer> minimumSpanningTreeEdges(int n, int[][] edges) {\n        // Write your solution here\n        return null;\n    }\n}\n",
+   "python": "class Solution:\n    def minimumSpanningTreeEdges(self, n: int, edges: List[List[int]]) -> List[int]:\n        # Write your solution here\n        pass\n"
+  },
+  "solutionCode": {
+   "java": "class Solution { int f(int[]p,int x){while(p[x]!=x){p[x]=p[p[x]];x=p[x];}return x;}public List<Integer> minimumSpanningTreeEdges(int n,int[][]e){Integer[]idx=new Integer[e.length];for(int i=0;i<e.length;i++)idx[i]=i;Arrays.sort(idx,(i,j)->{int c=Integer.compare(e[i][2],e[j][2]);return c!=0?c:Integer.compare(i,j);});int[]p=new int[n];for(int i=0;i<n;i++)p[i]=i;List<Integer>out=new ArrayList<>();for(int i:idx){int a=f(p,e[i][0]),b=f(p,e[i][1]);if(a!=b){p[a]=b;out.add(i);}}if(out.size()!=n-1)return new ArrayList<>();Collections.sort(out);return out;} }\n",
+   "python": "class Solution:\n    def minimumSpanningTreeEdges(self, n: int, edges: List[List[int]]) -> List[int]:\n        p=list(range(n))\n        def find(x):\n            while p[x]!=x:p[x]=p[p[x]];x=p[x]\n            return x\n        chosen=[]\n        for i in sorted(range(len(edges)),key=lambda i:(edges[i][2],i)):\n            a,b,w=edges[i];x,y=find(a),find(b)\n            if x!=y:p[x]=y;chosen.append(i)\n        return sorted(chosen) if len(chosen)==n-1 else []\n"
+  },
+  "sampleArray": [],
+  "visibleTestCount": 3,
+  "hiddenTestCount": 8,
+  "number": 11
+ }
+]

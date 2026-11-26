@@ -1,0 +1,43 @@
+{
+  "title": "Leftmost Equilibrium Position",
+  "difficulty": "Easy",
+  "subtopic": "Prefix/Suffix",
+  "companies": [
+    "Amazon",
+    "Microsoft",
+    "Google"
+  ],
+  "description": "Given an integer array `nums`, find the smallest index whose elements strictly before it sum to the elements strictly after it. The element at the index is excluded from both sums. Return -1 if no such index exists. Input: `nums`. Output: the leftmost matching index or -1.",
+  "constraints": [
+    "1 <= nums.length <= 100000",
+    "-100000 <= nums[i] <= 100000"
+  ],
+  "hints": [
+    "Scan the array while retaining only the state needed for the answer.",
+    "Check the first, last, repeated, and all-equal cases."
+  ],
+  "examples": [
+    {
+      "input": "nums = [1, 7, 3, 6, 5, 6]",
+      "output": "3"
+    },
+    {
+      "input": "nums = [1, 2, 3]",
+      "output": "-1"
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "equilibriumIndex",
+    "params": [
+      {
+        "name": "nums",
+        "type": "int[]"
+      }
+    ],
+    "returns": "int"
+  }
+}

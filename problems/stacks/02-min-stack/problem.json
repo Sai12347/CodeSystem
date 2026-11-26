@@ -1,0 +1,35 @@
+{
+  "title": "Min Stack",
+  "difficulty": "Medium",
+  "subtopic": "Min Stack",
+  "companies": ["Amazon", "Google", "Meta", "Microsoft", "Bloomberg", "Apple"],
+  "leetcode": 155,
+  "description": "Design a stack that supports push, pop, top, and retrieving the minimum element in constant `O(1)` time.\n\nImplement the `MinStack` class:\n- `MinStack()` initializes the stack object.\n- `void push(int val)` pushes the element `val` onto the stack.\n- `void pop()` removes the element on the top of the stack.\n- `int top()` gets the top element of the stack.\n- `int getMin()` retrieves the minimum element in the stack.\n\nYou must implement a solution with `O(1)` time complexity for each function.",
+  "constraints": [
+    "-2^31 <= val <= 2^31 - 1",
+    "Methods pop, top and getMin operations will always be called on non-empty stacks.",
+    "At most 3 * 10^4 calls will be made to push, pop, top, and getMin."
+  ],
+  "hints": [
+    "Consider storing the current minimum alongside each pushed element.",
+    "Alternatively, maintain a second auxiliary stack that tracks the running minimum at every depth."
+  ],
+  "examples": [
+    {"explanation": "After pushing -2, 0, -3, getMin returns -3. After popping -3, top is 0 and getMin is -2."},
+    {"explanation": "Duplicate minimum values must stay tracked until all copies are popped."}
+  ],
+  "timeComplexity": "O(1) per op",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "design",
+    "className": "MinStack",
+    "constructor": {"params": []},
+    "methods": [
+      {"name": "push", "params": [{"name": "val", "type": "int"}], "returns": "void"},
+      {"name": "pop", "params": [], "returns": "void"},
+      {"name": "top", "params": [], "returns": "int"},
+      {"name": "getMin", "params": [], "returns": "int"}
+    ]
+  }
+}

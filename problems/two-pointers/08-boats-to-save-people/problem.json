@@ -1,0 +1,53 @@
+{
+  "title": "Boats to Save People",
+  "difficulty": "Medium",
+  "subtopic": "Converging Pointers",
+  "companies": [
+    "Amazon",
+    "Google",
+    "Meta",
+    "Microsoft",
+    "Uber",
+    "Salesforce"
+  ],
+  "leetcode": 881,
+  "description": "You are given an integer array `people` where `people[i]` is the weight of the `i`-th person, and an unlimited number of boats where each boat can carry a maximum weight of `limit`.\n\nEach boat can carry **at most two** people at the same time, provided the sum of their weights is at most `limit`.\n\nReturn the minimum number of boats required to carry every given person.",
+  "constraints": [
+    "1 <= people.length <= 5 * 10^4",
+    "1 <= people[i] <= limit <= 3 * 10^4"
+  ],
+  "hints": [
+    "Sort the array of weights so you can easily inspect the lightest and heaviest remaining people.",
+    "The heaviest remaining person must go in some boat; if they can share it with the lightest remaining person (people[left] + people[right] <= limit), pairing them never hurts any future pairing.",
+    "Advance left only when a pair fits, always decrement right, and count one boat per step."
+  ],
+  "examples": [
+    {
+      "explanation": "One boat carries both people (1 + 2 <= 3)."
+    },
+    {
+      "explanation": "Three boats are needed: (1, 2), (2), and (3)."
+    },
+    {
+      "explanation": "No two people have combined weight <= 5, so 4 boats are needed: (3), (3), (4), (5)."
+    }
+  ],
+  "timeComplexity": "O(n log n)",
+  "spaceComplexity": "O(log n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "numRescueBoats",
+    "params": [
+      {
+        "name": "people",
+        "type": "int[]"
+      },
+      {
+        "name": "limit",
+        "type": "int"
+      }
+    ],
+    "returns": "int"
+  }
+}

@@ -1,0 +1,47 @@
+{
+  "title": "Spiral Matrix II",
+  "difficulty": "Medium",
+  "subtopic": "Spiral Traversal",
+  "companies": [
+    "Amazon",
+    "Google",
+    "Microsoft",
+    "Apple",
+    "Oracle"
+  ],
+  "leetcode": 59,
+  "description": "Given a positive integer `n`, generate an `n x n` integer matrix filled with the elements from `1` to `n^2` in clockwise spiral order.\n\nStart filling `1` at the top-left corner `(0, 0)` and move right, then down, then left, then up, spiraling inward until `n^2` is placed at the center.",
+  "constraints": [
+    "1 <= n <= 50"
+  ],
+  "hints": [
+    "Maintain four shrinking boundary pointers: top = 0, bottom = n - 1, left = 0, and right = n - 1, along with a counter starting at 1.",
+    "Fill the top row left-to-right, right column top-to-bottom, bottom row right-to-left, and left column bottom-to-top, updating the corresponding boundary after each edge.",
+    "When n is odd, the final layer has top == bottom == left == right and places n^2 in the exact center."
+  ],
+  "examples": [
+    {
+      "explanation": "Numbers 1 through 9 fill the 3x3 grid clockwise from (0,0) inward to 9 at (1,1)."
+    },
+    {
+      "explanation": "For n = 1, the only cell receives 1."
+    },
+    {
+      "explanation": "Numbers 1 through 16 spiral clockwise through the outer 4x4 ring (1..12) and inner 2x2 ring (13..16)."
+    }
+  ],
+  "timeComplexity": "O(n^2)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "generateMatrix",
+    "params": [
+      {
+        "name": "n",
+        "type": "int"
+      }
+    ],
+    "returns": "int[][]"
+  }
+}

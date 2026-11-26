@@ -1,0 +1,48 @@
+{
+  "title": "Winner of an Array Game",
+  "difficulty": "Medium",
+  "subtopic": "Traversal",
+  "companies": [
+    "Amazon",
+    "Google",
+    "Microsoft"
+  ],
+  "description": "An array game repeatedly compares the first two remaining values: the larger stays at the front and the smaller moves to the end. The first value to win `k` consecutive rounds is the winner. Return its value. Input: distinct-value array `arr` and positive `k`. Output: the winner.",
+  "constraints": [
+    "2 <= arr.length <= 100000",
+    "arr contains distinct positive integers",
+    "1 <= k <= 1000000000"
+  ],
+  "hints": [
+    "Keep a running total or frequency count rather than recomputing over all prefixes.",
+    "Test repeated values, zeros, and minimum-size inputs."
+  ],
+  "examples": [
+    {
+      "input": "arr = [2, 1, 3, 5, 4, 6, 7], k = 2",
+      "output": "5"
+    },
+    {
+      "input": "arr = [3, 2, 1], k = 10",
+      "output": "3"
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "getWinner",
+    "params": [
+      {
+        "name": "arr",
+        "type": "int[]"
+      },
+      {
+        "name": "k",
+        "type": "int"
+      }
+    ],
+    "returns": "int"
+  }
+}

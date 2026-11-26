@@ -1,0 +1,73 @@
+{
+  "title": "Range Sum Query - Mutable",
+  "difficulty": "Medium",
+  "subtopic": "Fenwick Tree",
+  "companies": [
+    "Google",
+    "Amazon",
+    "Microsoft"
+  ],
+  "description": "Design a structure over an integer array that supports point updates and inclusive range-sum queries. Implement `NumArray(int[] nums)`, `update(index, value)` to replace one element, and `sumRange(left, right)` to return the sum from index `left` through `right`. Indices are zero-based.",
+  "constraints": [
+    "1 <= nums.length <= 3 * 10^4",
+    "-100 <= nums[i], value <= 100",
+    "0 <= index <= nums.length - 1",
+    "0 <= left <= right <= nums.length - 1",
+    "At most 3 * 10^4 method calls are made."
+  ],
+  "hints": [
+    "Keep the original values so an update can be converted into a delta.",
+    "A Fenwick tree supports both point updates and prefix sums in O(log n)."
+  ],
+  "examples": [
+    {
+      "input": "ops = [\"NumArray\",\"sumRange\",\"update\",\"sumRange\",\"update\",\"sumRange\"], args = [[[1,3,5]],[0,2],[1,2],[0,2],[2,0],[0,2]]",
+      "output": "[null,9,null,8,null,3]"
+    }
+  ],
+  "timeComplexity": "O(log n) per operation",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "design",
+    "className": "NumArray",
+    "constructor": {
+      "params": [
+        {
+          "name": "nums",
+          "type": "int[]"
+        }
+      ]
+    },
+    "methods": [
+      {
+        "name": "update",
+        "params": [
+          {
+            "name": "index",
+            "type": "int"
+          },
+          {
+            "name": "value",
+            "type": "int"
+          }
+        ],
+        "returns": "void"
+      },
+      {
+        "name": "sumRange",
+        "params": [
+          {
+            "name": "left",
+            "type": "int"
+          },
+          {
+            "name": "right",
+            "type": "int"
+          }
+        ],
+        "returns": "int"
+      }
+    ]
+  }
+}

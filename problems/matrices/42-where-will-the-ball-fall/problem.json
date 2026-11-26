@@ -1,0 +1,47 @@
+{
+  "title": "Where Will the Ball Fall",
+  "difficulty": "Medium",
+  "subtopic": "Simulation",
+  "companies": [
+    "Google",
+    "Amazon",
+    "Meta",
+    "Uber"
+  ],
+  "description": "You have a 2D box of size `m x n` represented by an integer matrix `grid`, open at both the top and bottom. Each cell contains a diagonal board spanning two opposite corners:\n- `1` redirects a ball to the **right** (from top-left to bottom-right).\n- `-1` redirects a ball to the **left** (from top-right to bottom-left).\n\nWe drop `n` balls simultaneously, one at the top of each column `0, 1, ..., n - 1`. A ball gets stuck and cannot fall further if it hits either side wall of the box or lands in a `'V'`-shaped pocket formed by a `1` immediately to the left of a `-1`.\n\nReturn an integer array `answer` of length `n`, where `answer[j]` is the column where the ball dropped from column `j` exits the bottom, or `-1` if it gets stuck.",
+  "constraints": [
+    "m == grid.length",
+    "n == grid[i].length",
+    "1 <= m, n <= 100",
+    "grid[i][j] is either 1 or -1."
+  ],
+  "hints": [
+    "Simulate each ball independently from row 0 down to row m - 1, tracking its current column col.",
+    "At cell (r, col) with direction d = grid[r][col], the ball advances to nextCol = col + d only if 0 <= nextCol < n and grid[r][nextCol] == d; otherwise it gets stuck."
+  ],
+  "examples": [
+    {
+      "explanation": "Only the ball dropped at column 0 navigates through all 5 rows and exits at column 1; all other balls get trapped in V-pockets or walls."
+    },
+    {
+      "explanation": "A single column box always pushes the ball into a side wall, returning [-1]."
+    },
+    {
+      "explanation": "The first five balls exit cleanly at columns 0 through 4, while the ball dropped at column 5 hits the right wall on row 0 and returns -1."
+    }
+  ],
+  "timeComplexity": "O(m * n)",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "findBall",
+    "params": [
+      {
+        "name": "grid",
+        "type": "int[][]"
+      }
+    ],
+    "returns": "int[]"
+  }
+}

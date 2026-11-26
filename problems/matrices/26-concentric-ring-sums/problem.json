@@ -1,0 +1,46 @@
+{
+  "title": "Concentric Ring Sums",
+  "difficulty": "Easy",
+  "subtopic": "Spiral Traversal",
+  "companies": [
+    "Google",
+    "Bloomberg",
+    "Oracle"
+  ],
+  "description": "Given an `m x n` integer `matrix`, partition its cells into concentric rectangular rings from the outermost border inward.\n\nRing `0` consists of all cells on the outer border of the matrix; ring `1` consists of the outer border remaining after removing ring `0`, and so on until all cells are accounted for. Note that the innermost ring may degenerate into a single row, a single column, or a single cell.\n\nReturn an integer array `sums` where `sums[k]` is the sum of all elements in ring `k`.",
+  "constraints": [
+    "m == matrix.length",
+    "n == matrix[i].length",
+    "1 <= m, n <= 100",
+    "-10^4 <= matrix[i][j] <= 10^4"
+  ],
+  "hints": [
+    "Maintain four shrinking boundaries: top, bottom, left, and right, just like spiral traversal.",
+    "Carefully avoid double-counting corner cells and handle the degenerate cases where top == bottom or left == right."
+  ],
+  "examples": [
+    {
+      "explanation": "Outer ring sums 1+2+3+6+9+8+7+4 = 40, and the single center cell forms ring 1 with sum 5."
+    },
+    {
+      "explanation": "Ring 0 contains the 10 outer border elements summing to 65; ring 1 is the inner row [6, 7] summing to 13."
+    },
+    {
+      "explanation": "A 1x4 matrix has only one ring containing all 4 elements, summing to 10."
+    }
+  ],
+  "timeComplexity": "O(m * n)",
+  "spaceComplexity": "O(min(m, n))",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "concentricRingSums",
+    "params": [
+      {
+        "name": "matrix",
+        "type": "int[][]"
+      }
+    ],
+    "returns": "int[]"
+  }
+}

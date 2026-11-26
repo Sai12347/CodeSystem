@@ -1,0 +1,35 @@
+{
+  "title": "Longest Repeating Character Replacement",
+  "difficulty": "Medium",
+  "subtopic": "Substrings",
+  "companies": ["Google", "Amazon", "Meta", "Microsoft", "Uber"],
+  "leetcode": 424,
+  "description": "You are given a string `s` consisting of uppercase English letters and an integer `k`. You can choose any character in the string and replace it with any other uppercase English letter, performing this operation at most `k` times.\n\nReturn the length of the longest contiguous substring containing all identical letters that can be obtained after performing at most `k` character replacements.",
+  "constraints": [
+    "1 <= s.length <= 10^5",
+    "s consists of only uppercase English letters ('A'-'Z').",
+    "0 <= k <= s.length"
+  ],
+  "hints": [
+    "For any window [left..right], the minimum number of replacements needed to make all characters equal is (window length) - (frequency of the most common character in the window).",
+    "Use a sliding window with a 26-element frequency array. Whenever window_len - max_freq > k, advance left by 1.",
+    "You do not need to recompute max_freq when shrinking left: the window only needs to grow past the best valid length found so far, which requires an even larger frequency."
+  ],
+  "examples": [
+    {"explanation": "Replace the two 'A's with 'B's (or two 'B's with 'A's) to obtain a uniform string of length 4."},
+    {"explanation": "Replace the middle 'A' in \"AABABBA\" to form \"AABBBBA\", giving a repeating substring \"BBBB\" of length 4."},
+    {"explanation": "With k = 0 replacements allowed and all distinct letters, the longest uniform substring has length 1."}
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "characterReplacement",
+    "params": [
+      {"name": "s", "type": "String"},
+      {"name": "k", "type": "int"}
+    ],
+    "returns": "int"
+  }
+}

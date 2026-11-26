@@ -1,0 +1,51 @@
+{
+  "title": "Rotate Linked List",
+  "difficulty": "Medium",
+  "subtopic": "Pointers & Nodes",
+  "companies": [
+    "Amazon",
+    "Google",
+    "Microsoft",
+    "LinkedIn",
+    "Bloomberg"
+  ],
+  "description": "Given the `head` of a singly linked list and a non-negative integer `k`, rotate the list to the right by `k` places and return the new head.\n\nOne right rotation moves the last node of the list to the front. Note that `k` can be much larger than the length of the list.",
+  "constraints": [
+    "The number of nodes in the list is in the range [0, 5000].",
+    "-1000 <= Node.val <= 1000",
+    "0 <= k <= 2 * 10^9"
+  ],
+  "hints": [
+    "First traverse to the tail to compute the list length `n`, then reduce `k = k % n` (if `k == 0`, return `head` immediately).",
+    "Temporarily connect `tail.next = head` to form a ring, walk `n - k` steps from `tail` to reach the new tail, and break the ring there."
+  ],
+  "examples": [
+    {
+      "explanation": "Rotating [1, 2, 3, 4, 5] right by 2 moves 4 and 5 to the front: [4, 5, 1, 2, 3]."
+    },
+    {
+      "explanation": "Rotating [0, 1, 2] right by 4 is equivalent to rotating by 4 % 3 = 1: [2, 0, 1]."
+    },
+    {
+      "explanation": "Rotating an empty list yields null."
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(1)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "rotateRight",
+    "params": [
+      {
+        "name": "head",
+        "type": "ListNode"
+      },
+      {
+        "name": "k",
+        "type": "int"
+      }
+    ],
+    "returns": "ListNode"
+  }
+}

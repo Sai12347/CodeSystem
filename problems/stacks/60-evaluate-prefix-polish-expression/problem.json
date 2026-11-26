@@ -1,0 +1,46 @@
+{
+  "title": "Evaluate Prefix Polish Expression",
+  "difficulty": "Easy",
+  "subtopic": "Expression Parsing",
+  "companies": [
+    "Amazon",
+    "Microsoft",
+    "LinkedIn",
+    "Oracle"
+  ],
+  "description": "You are given an array of string `tokens` representing a valid arithmetic expression in **Prefix (Polish) Notation**.\n\nValid operators are `'+'`, `'-'`, `'*'`, and `'/'`. Each operand is an integer (possibly negative). Division between two integers truncates toward zero (e.g., `7 / 2 = 3` and `-7 / 2 = -3`).\n\nEvaluate the expression and return its integer result. It is guaranteed that there is no division by zero and that every intermediate and final value fits in a 32-bit signed integer.",
+  "constraints": [
+    "1 <= tokens.length <= 10^4",
+    "tokens[i] is '+', '-', '*', '/', or a valid integer string.",
+    "The expression is valid and all intermediate/final values fit in a 32-bit signed integer."
+  ],
+  "hints": [
+    "Scan the tokens array from right to left while maintaining a stack of operand values.",
+    "When encountering an operator, pop the top value as the left operand a and the next value as the right operand b, then push (a op b)."
+  ],
+  "examples": [
+    {
+      "explanation": "* (+ 2 1) 3 = (2 + 1) * 3 = 9."
+    },
+    {
+      "explanation": "+ 4 (/ 13 5) = 4 + 2 = 6."
+    },
+    {
+      "explanation": "- 10 (* 2 3) = 10 - 6 = 4."
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "evalPrefix",
+    "params": [
+      {
+        "name": "tokens",
+        "type": "String[]"
+      }
+    ],
+    "returns": "int"
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "title": "Path With Minimum Effort",
+  "difficulty": "Medium",
+  "subtopic": "Dijkstra",
+  "companies": ["Google", "Amazon", "Meta", "Microsoft", "Uber"],
+  "leetcode": 1631,
+  "description": "You are a hiker preparing for an upcoming hike. You are given `heights`, a 2D array of size `rows x columns`, where `heights[row][col]` represents the height of cell `(row, col)`. You are situated in the top-left cell `(0, 0)`, and you hope to travel to the bottom-right cell `(rows - 1, columns - 1)` (0-indexed). You can move **up, down, left, or right**, and you wish to find a route that requires the minimum **effort**.\n\nA route's **effort** is the **maximum absolute difference** in heights between two consecutive cells of the route.\n\nReturn the minimum **effort** required to travel from the top-left cell to the bottom-right cell.",
+  "constraints": [
+    "rows == heights.length",
+    "columns == heights[i].length",
+    "1 <= rows, columns <= 100",
+    "1 <= heights[i][j] <= 10^6"
+  ],
+  "hints": [
+    "Model the grid as an undirected weighted graph where the weight of an edge between two adjacent cells is `|heights[r1][c1] - heights[r2][c2]|`, and path cost is the maximum edge weight along the path rather than the sum.",
+    "Because the path cost `max(effortSoFar, edgeWeight)` is monotonically non-decreasing as edges are appended, Dijkstra's algorithm with a min-heap finds the exact minimum effort to every cell.",
+    "Alternatively, binary search on the allowed maximum effort `mid` in `[0, 10^6]` and check with BFS/DFS whether `(rows - 1, columns - 1)` is reachable using only transitions with difference `<= mid`."
+  ],
+  "examples": [
+    {"explanation": "The route [1, 3, 5, 3, 5] has a maximum absolute difference of 2 in consecutive cells, which is better than [1, 2, 2, 2, 5] with a maximum difference of 3."},
+    {"explanation": "The route [1, 2, 3, 4, 5] has a maximum absolute difference of 1, which is optimal."},
+    {"explanation": "A winding route following the cells of height 1 connects the top-left to the bottom-right with effort 0."}
+  ],
+  "timeComplexity": "O(m * n * log(m * n))",
+  "spaceComplexity": "O(m * n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "function",
+    "method": "minimumEffortPath",
+    "params": [
+      {"name": "heights", "type": "int[][]"}
+    ],
+    "returns": "int"
+  }
+}

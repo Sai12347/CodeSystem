@@ -1,0 +1,48 @@
+{
+  "title": "Permutations II",
+  "difficulty": "Medium",
+  "subtopic": "Permutations",
+  "companies": [
+    "LinkedIn",
+    "Microsoft",
+    "Amazon",
+    "Meta",
+    "Google"
+  ],
+  "leetcode": 47,
+  "description": "Given a collection of numbers `nums` that might contain duplicates, return all possible unique permutations in any order.\n\nEach permutation must have the same length and element multiplicities as `nums`, and no two returned permutations may be identical.",
+  "constraints": [
+    "1 <= nums.length <= 8",
+    "-10 <= nums[i] <= 10"
+  ],
+  "hints": [
+    "Sort `nums` first so duplicate values sit next to each other.",
+    "Track used indices with a boolean array `used`. To ensure identical values are placed in a single canonical order, skip index `i` when `i > 0 and nums[i] == nums[i - 1] and not used[i - 1]`.",
+    "Alternatively, count frequencies of each unique value in a map and branch once per unique value with remaining count > 0."
+  ],
+  "examples": [
+    {
+      "explanation": "There are 3! / 2! = 3 unique permutations of [1, 1, 2]: [1, 1, 2], [1, 2, 1], and [2, 1, 1]."
+    },
+    {
+      "explanation": "All elements are distinct, so all 3! = 6 permutations are returned."
+    },
+    {
+      "explanation": "There are 4! / (2! * 2!) = 6 unique permutations of [2, 2, 1, 1]."
+    }
+  ],
+  "timeComplexity": "O(n * n!)",
+  "spaceComplexity": "O(n)",
+  "compare": "sorted",
+  "signature": {
+    "kind": "function",
+    "method": "permuteUnique",
+    "params": [
+      {
+        "name": "nums",
+        "type": "int[]"
+      }
+    ],
+    "returns": "List<List<Integer>>"
+  }
+}

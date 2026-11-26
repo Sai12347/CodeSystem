@@ -1,0 +1,75 @@
+{
+  "title": "Dinner Plate Stacks",
+  "difficulty": "Hard",
+  "subtopic": "LIFO Structure",
+  "companies": [
+    "Google",
+    "Amazon",
+    "Bloomberg",
+    "Uber"
+  ],
+  "description": "You have an infinite sequence of stacks arranged left-to-right at indices `0, 1, 2, ...`, where every stack has the same fixed maximum `capacity`.\n\nImplement the `DinnerPlates` class:\n- `DinnerPlates(int capacity)` initializes the object with maximum stack capacity `capacity`.\n- `void push(int val)` pushes `val` onto the **leftmost** stack whose current size is strictly less than `capacity`.\n- `int pop()` removes and returns the top value of the **rightmost** non-empty stack, or returns `-1` if all stacks are empty.\n- `int popAtStack(int index)` removes and returns the top value of the stack at `index`, or returns `-1` if that stack is empty or does not exist.",
+  "constraints": [
+    "1 <= capacity <= 2 * 10^4",
+    "1 <= val <= 2 * 10^4",
+    "0 <= index <= 10^5",
+    "At most 2 * 10^5 calls will be made in total to push, pop, and popAtStack."
+  ],
+  "hints": [
+    "Maintain a list of stacks together with a min-heap of stack indices that currently have room below capacity.",
+    "Lazily pop empty trailing stacks on pop/popAtStack, and lazily discard stale heap indices (out-of-bounds or full) during push."
+  ],
+  "examples": [
+    {
+      "explanation": "Pushing 1..5 fills stacks [1,2], [3,4], [5]; popAtStack(0) returns 2 leaving space at stack 0 so push(20) goes to stack 0 and push(21) goes to stack 2."
+    },
+    {
+      "explanation": "Popping from an empty structure or an out-of-range stack index returns -1."
+    },
+    {
+      "explanation": "With capacity 1, each element occupies its own stack and popping middle stacks opens leftmost slots for subsequent pushes."
+    }
+  ],
+  "timeComplexity": "O(log n) amortized per op",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "design",
+    "className": "DinnerPlates",
+    "constructor": {
+      "params": [
+        {
+          "name": "capacity",
+          "type": "int"
+        }
+      ]
+    },
+    "methods": [
+      {
+        "name": "push",
+        "params": [
+          {
+            "name": "val",
+            "type": "int"
+          }
+        ],
+        "returns": "void"
+      },
+      {
+        "name": "pop",
+        "params": [],
+        "returns": "int"
+      },
+      {
+        "name": "popAtStack",
+        "params": [
+          {
+            "name": "index",
+            "type": "int"
+          }
+        ],
+        "returns": "int"
+      }
+    ]
+  }
+}

@@ -1,0 +1,51 @@
+{
+  "title": "Insert Delete GetRandom O(1)",
+  "difficulty": "Medium",
+  "subtopic": "Collision Resolution",
+  "companies": [
+    "Meta",
+    "Amazon",
+    "Google",
+    "Bloomberg",
+    "Uber",
+    "Microsoft"
+  ],
+  "leetcode": 380,
+  "description": "Implement the `RandomizedSet` class supporting insert, remove, and uniform random retrieval in **average `O(1)` time**:\n\n- `RandomizedSet()` initializes an empty `RandomizedSet` object.\n- `bool insert(int val)` inserts `val` into the set if not present. Returns `true` if the item was not present, `false` otherwise.\n- `bool remove(int val)` removes `val` from the set if present. Returns `true` if the item was present, `false` otherwise.\n- `int getRandom()` returns a random element from the current set of elements (it is guaranteed that at least one element exists when this method is called). Each element must have the **same probability** of being returned.\n\nBecause `getRandom()` is randomized, the judge validates every operation return value and verifies that every `getRandom()` returns a valid member of the set with non-degenerate randomness, returning `true` when all checks pass.",
+  "constraints": [
+    "-2^31 <= val <= 2^31 - 1",
+    "At most 2 * 10^5 calls will be made to insert, remove, and getRandom.",
+    "There will be at least one element in the data structure when getRandom is called."
+  ],
+  "hints": [
+    "A hash set supports O(1) insert and remove, but cannot pick a uniformly random element in O(1) time; a dynamic array supports O(1) random indexing, but removing from the middle takes O(n).",
+    "Combine both: store values in a dynamic array and maintain a hash map from value to its current index in the array.",
+    "To remove a value in O(1), overwrite its slot in the array with the last element, update the last element's index in the hash map, and pop the array's tail."
+  ],
+  "examples": [
+    {
+      "explanation": "insert(1)->true, remove(2)->false, insert(2)->true, getRandom()->1 or 2, remove(1)->true, insert(2)->false, getRandom()->2. All operations pass validation."
+    },
+    {
+      "explanation": "Removing the only element and re-inserting it keeps the internal array and index map consistent."
+    }
+  ],
+  "timeComplexity": "O(1) average per op",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "adapter",
+    "inputs": [
+      {
+        "name": "ops",
+        "type": "String[]",
+        "description": "Sequence of operations starting with RandomizedSet"
+      },
+      {
+        "name": "args",
+        "type": "List<List<Integer>>",
+        "description": "Arguments corresponding to each operation"
+      }
+    ]
+  }
+}

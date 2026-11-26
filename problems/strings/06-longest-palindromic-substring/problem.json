@@ -1,0 +1,49 @@
+{
+  "title": "Longest Palindromic Substring",
+  "difficulty": "Medium",
+  "subtopic": "Palindromes",
+  "companies": [
+    "Amazon",
+    "Google",
+    "Meta",
+    "Microsoft",
+    "Apple",
+    "Adobe"
+  ],
+  "leetcode": 5,
+  "description": "Given a string `s`, return the longest **palindromic substring** in `s`.\n\nA substring is a contiguous non-empty sequence of characters within a string. Comparison is case-sensitive (`'A'` and `'a'` are distinct characters). If multiple palindromic substrings share the maximum length, you may return any one of them.",
+  "constraints": [
+    "1 <= s.length <= 1000",
+    "s consists only of English letters (lower-case and upper-case) and digits (0-9)."
+  ],
+  "hints": [
+    "Every palindrome mirrors around its center, which is either a single character (odd length) or a gap between two adjacent characters (even length).",
+    "Expanding outward from all 2n - 1 possible centers finds the longest palindrome in O(n^2) time and O(1) extra space.",
+    "To reach O(n) time, insert sentinel separators between characters and apply Manacher's algorithm to reuse previously computed palindrome radii via symmetry."
+  ],
+  "examples": [
+    {
+      "explanation": "\"bab\" is a longest palindromic substring of length 3; \"aba\" is also a valid answer."
+    },
+    {
+      "explanation": "\"bb\" is the unique longest palindromic substring of length 2."
+    },
+    {
+      "explanation": "The entire string \"racecar\" is itself a palindrome of length 7."
+    }
+  ],
+  "timeComplexity": "O(n)",
+  "spaceComplexity": "O(n)",
+  "compare": "anyOf",
+  "signature": {
+    "kind": "function",
+    "method": "longestPalindrome",
+    "params": [
+      {
+        "name": "s",
+        "type": "String"
+      }
+    ],
+    "returns": "String"
+  }
+}

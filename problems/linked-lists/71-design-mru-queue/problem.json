@@ -1,0 +1,59 @@
+{
+  "title": "Design MRU Queue",
+  "difficulty": "Medium",
+  "subtopic": "LRU Design",
+  "companies": [
+    "Google",
+    "Amazon",
+    "Meta",
+    "Bloomberg"
+  ],
+  "description": "Design a queue-like data structure `MRUQueue` that moves the most recently used element to the end of the queue:\n- `MRUQueue(int n)` constructs the queue containing the `n` integers `[1, 2, 3, ..., n]` in order.\n- `int fetch(int k)` moves the `k`-th element (**1-indexed**) to the end of the queue and returns its value.\n\nAim for `O(sqrt(n))` time per `fetch` using sqrt-decomposed linked-list buckets (or `O(log n)` with an order-statistic tree / Fenwick tree).",
+  "constraints": [
+    "1 <= n <= 2000",
+    "1 <= k <= n",
+    "At most 2000 calls will be made to fetch."
+  ],
+  "hints": [
+    "Partition the `n` elements into `ceil(n / B)` doubly linked lists (deques) of bucket size `B = isqrt(n) + 1`, so locating bucket `b = (k - 1) // B` and offset `(k - 1) % B` takes O(sqrt(n)) time.",
+    "After removing the fetched element from bucket `b` and appending it to the last bucket, shift the front element of bucket `j + 1` to the back of bucket `j` for each `j` from `b` to `numBuckets - 2` in O(1) per bucket, preserving fixed bucket sizes."
+  ],
+  "examples": [
+    {
+      "explanation": "Start [1..8]: fetch(3)->3 ([1,2,4,5,6,7,8,3]), fetch(5)->6 ([1,2,4,5,7,8,3,6]), fetch(2)->2 ([1,4,5,7,8,3,6,2]), fetch(8)->2."
+    },
+    {
+      "explanation": "With n=1, the single element 1 is always fetched and placed back at index 1."
+    },
+    {
+      "explanation": "Start [1,2,3,4]: fetch(1)->1 ([2,3,4,1]), fetch(1)->2 ([3,4,1,2]), fetch(4)->2, fetch(3)->1."
+    }
+  ],
+  "timeComplexity": "O(sqrt(n)) per fetch",
+  "spaceComplexity": "O(n)",
+  "compare": "exact",
+  "signature": {
+    "kind": "design",
+    "className": "MRUQueue",
+    "constructor": {
+      "params": [
+        {
+          "name": "n",
+          "type": "int"
+        }
+      ]
+    },
+    "methods": [
+      {
+        "name": "fetch",
+        "params": [
+          {
+            "name": "k",
+            "type": "int"
+          }
+        ],
+        "returns": "int"
+      }
+    ]
+  }
+}
